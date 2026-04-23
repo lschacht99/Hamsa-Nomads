@@ -712,17 +712,19 @@
           </div>
 
           <div class="field">
-            <label for="about_you">Tell us a little about yourself</label>
-            <textarea id="about_you" name="about_you" placeholder="Just a short introduction is perfect — anything you’d like to share about yourself."></textarea>
+            <label for="about_you">
+              Tell us a little about yourself, and anything you might naturally enjoy bringing to the retreat
+            </label>
+            <textarea
+              id="about_you"
+              name="about_you"
+              required
+              placeholder="A short introduction is perfect — tell us a little about yourself, the kind of energy you bring, and anything you might enjoy sharing with the group, whether that’s a skill, an interest, a learning topic, music, hosting, or simply a warm presence."
+            ></textarea>
           </div>
 
           <div class="field">
-            <label for="skills_share">Is there anything you enjoy doing or any skill you might be happy to share during the retreat? *</label>
-            <textarea id="skills_share" name="skills_share" required placeholder="This can be anything simple — a talent, an interest, a professional skill, a learning topic, music, organizing, hosting, or just the kind of energy you naturally bring."></textarea>
-          </div>
-
-          <div class="field">
-            <label>Would you be open to quietly helping if needed?</label>
+            <label>Would you enjoy being part of the flow of the weekend, if it feels natural?</label>
             <div class="radio-group inline">
               <label class="radio-item">
                 <input type="radio" name="help_open" value="Yes" />
@@ -1045,7 +1047,7 @@
     }
 
     function validateRequiredFields() {
-      const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type", "skills_share"];
+      const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type", "about_you"];
       for (const id of requiredIds) {
         const el = document.getElementById(id);
         if (!el || !el.value.trim()) {
