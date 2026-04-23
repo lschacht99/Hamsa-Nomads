@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Hamsa Nomads</title>
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --bg-soft: #fbf8f2;
+      --paper: rgba(255, 252, 246, 0.68);
+      --paper-strong: rgba(255, 252, 246, 0.82);
+      --ink: #1f231f;
+      --muted: #60655e;
+      --forest: #274537;
+      --gold: #b88b2f;
+      --line: rgba(19, 17, 14, 0.18);
+      --border: rgba(39, 69, 55, 0.12);
+      --shadow: 0 16px 50px rgba(31, 28, 20, 0.08);
+      --radius: 26px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 34%),
+        linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+    }
+
+    .line-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
+    .line-overlay svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .line-path {
+      fill: none;
+      stroke: var(--line);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .line-path.back { stroke-width: 3.1; }
+    .line-path.front { stroke-width: 1.45; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glass {
+      background: var(--paper);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.46);
+      border-radius: var(--radius);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(249, 246, 239, 0.76);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(39, 69, 55, 0.08);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(39, 69, 55, 0.08);
+      color: var(--gold);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .button:hover,
+    .button-secondary:hover { transform: translateY(-1px); }
+
+    .button {
+      background: rgba(39, 69, 55, 0.94);
+      color: white;
+      box-shadow: 0 12px 30px rgba(39, 69, 55, 0.22);
+      border: 1px solid rgba(39, 69, 55, 0.26);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,0.6);
+      color: var(--ink);
+      border: 1px solid rgba(39, 69, 55, 0.14);
+      box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
+    }
+
+    .hero {
+      padding: 26px 0 18px;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      padding: clamp(28px, 4vw, 54px);
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.62), transparent 24%),
+        linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03));
+      pointer-events: none;
+    }
+
+    .hero-copy,
+    .hero-note {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.94;
+      color: var(--forest);
+      max-width: 8.5ch;
+      margin-bottom: 18px;
+    }
+
+    .hero-lead {
+      max-width: 34ch;
+      font-size: clamp(1.08rem, 2vw, 1.32rem);
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      padding: 24px;
+      border-radius: 22px;
+      background: var(--paper-strong);
+      border: 1px solid rgba(39,69,55,0.08);
+      box-shadow: var(--shadow);
+      align-self: end;
+    }
+
+    .hero-note h3 {
+      font-size: 1.35rem;
+      color: var(--forest);
+      margin-bottom: 10px;
+    }
+
+    .hero-note p {
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 20px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+      padding: 12px 4px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--forest);
+    }
+
+    .section-header p {
+      max-width: 54ch;
+      color: var(--muted);
+    }
+
+    .story-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .story-card,
+    .quote-card,
+    .pillar-card,
+    .final-card {
+      padding: 24px;
+    }
+
+    .story-card p + p,
+    .final-card p + p {
+      margin-top: 16px;
+    }
+
+    .story-card p,
+    .final-card p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .quote-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .quote-card blockquote {
+      margin: 0;
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.35rem);
+      line-height: 1.25;
+      color: var(--forest);
+    }
+
+    .quote-card .small {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.3rem;
+      color: var(--forest);
+      margin-bottom: 10px;
+    }
+
+    .pillar-card p {
+      color: var(--muted);
+    }
+
+    .final-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .final-card h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--forest);
+      margin-bottom: 12px;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 10px 4px 50px;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-card,
+      .story-layout,
+      .memory-grid,
+      .final-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 12px 16px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="line-overlay" aria-hidden="true">
+      <svg viewBox="0 0 1440 3800" preserveAspectRatio="none">
+        <path class="line-path back" d="M1040 32 C960 70, 928 124, 964 176 C1002 228, 1124 222, 1136 292 C1148 362, 1018 390, 964 438 C908 486, 914 556, 978 596 C1046 638, 1142 628, 1148 698 C1155 772, 1042 806, 978 848 C914 890, 892 948, 936 1000 C988 1060, 1096 1062, 1142 1138 C1182 1206, 1166 1286, 1114 1342 C1060 1400, 970 1432, 928 1498 C884 1568, 900 1648, 964 1700 C1034 1755, 1148 1764, 1200 1842 C1254 1922, 1234 2016, 1166 2080 C1098 2146, 986 2174, 934 2244 C880 2316, 896 2402, 970 2456 C1048 2512, 1174 2519, 1230 2604 C1282 2682, 1266 2774, 1204 2842 C1138 2913, 1020 2946, 964 3024 C910 3098, 926 3184, 1002 3240 C1080 3296, 1204 3305, 1260 3388 C1310 3462, 1294 3548, 1228 3610" />
+        <path class="line-path front" d="M1041 33 C961 71, 929 125, 965 177 C1003 229, 1125 223, 1137 293 C1149 363, 1019 391, 965 439 C909 487, 915 557, 979 597 C1047 639, 1143 629, 1149 699 C1156 773, 1043 807, 979 849 C915 891, 893 949, 937 1001 C989 1061, 1097 1063, 1143 1139 C1183 1207, 1167 1287, 1115 1343 C1061 1401, 971 1433, 929 1499 C885 1569, 901 1649, 965 1701 C1035 1756, 1149 1765, 1201 1843 C1255 1923, 1235 2017, 1167 2081 C1099 2147, 987 2175, 935 2245 C881 2317, 897 2403, 971 2457 C1049 2513, 1175 2520, 1231 2605 C1283 2683, 1267 2775, 1205 2843 C1139 2914, 1021 2947, 965 3025 C911 3099, 927 3185, 1003 3241 C1081 3297, 1205 3306, 1261 3389 C1311 3463, 1295 3549, 1229 3611" />
+      </svg>
+    </div>
+
+    <header class="site-header">
+      <div class="container nav">
+      <a href="#top" class="brand">
+  <img src="./logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo" class="brand-logo" />
+  <div>
+    <div class="brand-name">Hamsa Nomads</div>
+    <div class="brand-sub">Kosher travel</div>
+  </div>
+</a>
+
+        <nav class="nav-links">
+          <a href="#story">Our Story</a>
+          <a href="#memories">What Shaped Us</a>
+          <a href="#vision">Our Vision</a>
+          <a href="index.html" class="button-secondary">Back to Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card glass">
+            <div class="hero-copy">
+              <div class="eyebrow">About Hamsa Nomads</div>
+              <h1>Jewish travel, built from lived experience.</h1>
+              <p class="hero-lead">
+                Hamsa Nomads was born from years of travel across Europe and Asia, and from one question that stayed with us everywhere: how do you remain rooted in Jewish life while moving through the world?
+              </p>
+              <div class="hero-actions">
+                <a href="#story" class="button">Read Our Story</a>
+                <a href="#vision" class="button-secondary">Our Vision</a>
+              </div>
+            </div>
+
+            <div class="hero-note">
+              <h3>Why we created it</h3>
+              <p>
+                We built Hamsa Nomads to share the beauty of kosher travel, Shabbat, Yom Tov, and meaningful Jewish gathering in a way that feels warm, thoughtful, elevated, and real.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">Our story</div>
+              <h2>Jewish life appeared in the most unexpected places.</h2>
+            </div>
+            <p>
+              Again and again, while traveling, we discovered that keeping kosher, keeping Shabbat and Chag, and staying connected to faith was not only a challenge — it was also the source of some of the most unforgettable moments of our lives.
+            </p>
+          </div>
+
+          <div class="story-layout">
+            <article class="story-card glass">
+              <p>
+                Hamsa Nomads was born from years of travel across Europe and Asia, and from a simple challenge we came to know deeply: how do you keep kosher, keep Shabbat and Chag, and stay rooted in your faith while moving through the world?
+              </p>
+              <p>
+                Again and again, we found that Jewish life appears in the most unexpected places.
+              </p>
+              <p>
+                In India, we spent time with local Jewish communities and discovered their remarkable stories from Mumbai to Pune to Kochi. In the south of the country, when we were in the middle of nowhere and preparing to spend Shabbat alone, we suddenly noticed Hebrew letters on a street sign. Following that small clue led us to a hotel owner, then to the phone number of a rabbi, and finally to a Shabbat meal we never could have imagined.
+              </p>
+              <p>
+                It was one of those unforgettable moments that stays with you forever — and one of the moments that eventually brought Hamsa Nomads into being.
+              </p>
+            </article>
+
+            <aside class="quote-card glass">
+              <blockquote>
+                “We built Hamsa Nomads to share those unforgettable memories — and to create new ones with you.”
+              </blockquote>
+              <div class="small">
+                Not as spectators, but as people who lived the questions, the improvisation, the wonder, and the connection ourselves.
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="memories" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">What shaped us</div>
+              <h2>The moments that stayed with us.</h2>
+            </div>
+            <p>
+              These experiences were not just travel memories. They shaped how we think about hospitality, Jewish belonging, and what it means to gather people around something real.
+            </p>
+          </div>
+
+          <div class="memory-grid">
+            <article class="pillar-card glass">
+              <h3>India</h3>
+              <p>
+                From Mumbai to Pune to Kochi, we encountered deep and living Jewish histories. In the far south, a few Hebrew letters on a street led us unexpectedly to a rabbi and a Shabbat meal when we thought we would be alone.
+              </p>
+            </article>
+
+            <article class="pillar-card glass">
+              <h3>Vietnam, Japan & Asia</h3>
+              <p>
+                In Vietnam, everyday life inspired us — children at play, local cooking, and the challenge of recreating flavors in a kosher way. In Japan and elsewhere in Asia, conversations about Judaism emerged in places we never expected, opening surprising windows into memory, identity, and connection.
+              </p>
+            </article>
+
+            <article class="pillar-card glass">
+              <h3>Morocco & the Sahara</h3>
+              <p>
+                In Morocco, chance encounters turned into conversations about Jewish identity. In the Sahara, around a narguileh in the desert, we heard someone say, “Are you Jewish? Me too, but centuries ago…” and then share Jewish Moroccan music while others joined in with song and darboukah.
+              </p>
+            </article>
+
+            <article class="pillar-card glass">
+              <h3>South Korea</h3>
+              <p>
+                Even simple curiosity — a glance at a kippah, a question about who we were — became the beginning of meaningful exchanges about Judaism, visibility, and carrying identity with openness.
+              </p>
+            </article>
+
+            <article class="pillar-card glass">
+              <h3>Sri Lanka</h3>
+              <p>
+                Even the practical details of Jewish life on the road became part of the story. Toveling vessels while balancing on rocks against the waves reminded us that Jewish life is made real through action, even far from home.
+              </p>
+            </article>
+
+            <article class="pillar-card glass">
+              <h3>France</h3>
+              <p>
+                In France, Moshe’s experience leading a Jewish union taught us something essential: people can be brought together around what they share, and Judaism has the power to create belonging, meaning, and community.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="vision" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">Our vision</div>
+              <h2>Frum at heart, open in spirit.</h2>
+            </div>
+            <p>
+              Across all of these experiences, we discovered something we wanted to build: a way to share the beauty of Jewish life through travel, hospitality, and gathering.
+            </p>
+          </div>
+
+          <article class="final-card glass">
+            <div>
+              <h2>What Hamsa Nomads stands for</h2>
+              <p>
+                Hamsa Nomads creates kosher, thoughtful, meaningful travel and retreat experiences rooted in Jewish life, designed for people who want to experience the gift of Shabbat, Yom Tov, Chagim, and kashrut in a way that feels alive, elevated, and real.
+              </p>
+              <p>
+                Our programs are frum at heart, while remaining open and welcoming to those who genuinely want to experience that world with respect, curiosity, and joy.
+              </p>
+              <p>
+                We built Hamsa Nomads from lived experience — from challenge, inspiration, improvisation, hospitality, and wonder — and we hope every experience we host carries that same feeling forward.
+              </p>
+            </div>
+
+            <div>
+              <a href="index.html" class="button">Explore Hamsa Nomads</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div class="container">
+      <div class="footer-note">
+        Hamsa Nomads — built for you, and with you.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
