@@ -682,74 +682,6 @@
               <label for="room_with_name">Who would you like to room with?</label>
               <input type="text" id="room_with_name" name="room_with_name" />
             </div>
-
-            <div class="field">
-              <label>Would you like us to match you with a roommate?</label>
-              <div class="radio-group">
-                <label class="radio-item">
-                  <input type="radio" name="roommate_match" value="Yes" />
-                  <span>Yes</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="roommate_match" value="Yes, but only with someone similar in age / vibe" />
-                  <span>Yes, but only with someone similar in age / vibe</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="roommate_match" value="No, I prefer a private option" />
-                  <span>No, I prefer a private option</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="roommate_match" value="Not sure" />
-                  <span>Not sure</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="room_style_preference">Preferred room style</label>
-              <select id="room_style_preference" name="room_style_preference">
-                <option value="">Select an option</option>
-                <option value="Private room">Private room</option>
-                <option value="Shared room">Shared room</option>
-                <option value="Either works">Either works</option>
-                <option value="Cheapest option available">Cheapest option available</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Any preferences for a roommate?</label>
-            <div class="choices inline">
-              <label class="check-item">
-                <input type="checkbox" name="roommate_preferences" value="Quiet / early sleeper" />
-                <span>Quiet / early sleeper</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="roommate_preferences" value="Social / chatty" />
-                <span>Social / chatty</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="roommate_preferences" value="Early riser" />
-                <span>Early riser</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="roommate_preferences" value="Night owl" />
-                <span>Night owl</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="roommate_preferences" value="Similar age" />
-                <span>Similar age</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="roommate_preferences" value="No strong preference" />
-                <span>No strong preference</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="roommate_notes">Anything important for us to know for roommate matching?</label>
-            <textarea id="roommate_notes" name="roommate_notes" placeholder="Sleep style, comfort level, vibe, rooming preferences, etc."></textarea>
           </div>
         </div>
 
@@ -1005,14 +937,21 @@
             <label for="anything_else">Anything else you’d like us to know?</label>
             <textarea id="anything_else" name="anything_else" placeholder="Questions, details, concerns, schedule notes, anything helpful for us to know."></textarea>
           </div>
+
+          <div class="field">
+            <label class="check-item">
+              <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
+              <span>I agree to the rules etc *</span>
+            </label>
+          </div>
         </div>
 
         <div class="submit-wrap">
           <button type="submit" class="submit-btn" id="submitBtn">Submit application</button>
           <div id="formStatus" class="status" role="status" aria-live="polite"></div>
           <div class="footer-note">
-            By submitting, you’re sharing information that may be used for room matching,
-            food planning, and retreat coordination.
+            By submitting, you’re sharing information that may be used for food planning,
+            retreat coordination, and general hosting logistics.
           </div>
         </div>
       </form>
@@ -1020,7 +959,7 @@
   </div>
 
   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwSTOAnGsRKxa2itRPylbbcHC9gDgmqALQKzTS0Jzz5NcMJ00xqOj8UpKvUk8-82LoU/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxyDX0nGOBzayk0L3k_jH9IE5RXrQE-W-svlA7lBb4/dev";
 
     const VALID_COUPONS = [
       "HAMSA10",
@@ -1109,10 +1048,6 @@
         reservation_type: document.getElementById("reservation_type").value,
         coming_with_someone: selectedRadioValue("coming_with_someone"),
         room_with_name: document.getElementById("room_with_name").value.trim(),
-        roommate_match: selectedRadioValue("roommate_match"),
-        room_style_preference: document.getElementById("room_style_preference").value,
-        roommate_preferences: selectedCheckboxValues("roommate_preferences").join(" | "),
-        roommate_notes: document.getElementById("roommate_notes").value.trim(),
 
         contribution_types: selectedCheckboxValues("contribution_types").join(" | "),
         help_open: selectedRadioValue("help_open"),
@@ -1135,6 +1070,7 @@
 
         retreat_hopes: document.getElementById("retreat_hopes").value.trim(),
         anything_else: document.getElementById("anything_else").value.trim(),
+        agree_rules: document.getElementById("agree_rules").checked ? "Yes" : "No",
 
         submitted_at: submittedAtInput.value
       };
@@ -1150,6 +1086,13 @@
           return false;
         }
       }
+
+      if (!document.getElementById("agree_rules").checked) {
+        document.getElementById("agree_rules").focus();
+        showStatus("Please agree to the rules before submitting.", "error");
+        return false;
+      }
+
       return true;
     }
 
