@@ -24,11 +24,6 @@
       --shadow: 0 24px 60px rgba(28, 45, 34, 0.12);
       --shadow-soft: 0 10px 28px rgba(28, 45, 34, 0.08);
 
-      --radius-xl: 34px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --radius-sm: 14px;
-
       --line: rgba(31, 47, 39, 0.55);
       --success: #245a39;
       --error: #8d3d34;
@@ -144,7 +139,8 @@
     .brand-text {
       display: flex;
       flex-direction: column;
-      line-height: 1.05;
+      line-height: 1.15;
+      gap: 4px;
     }
 
     .brand-text strong {
@@ -183,8 +179,8 @@
       position: relative;
       overflow: hidden;
       border-radius: 38px;
-      padding: 34px 30px 28px;
-      margin-bottom: 22px;
+      padding: 38px 30px 32px;
+      margin-bottom: 24px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06)),
         linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
@@ -208,7 +204,7 @@
       position: relative;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
+      gap: 24px;
       align-items: stretch;
     }
 
@@ -218,11 +214,11 @@
       letter-spacing: 0.16em;
       font-size: 0.76rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     h1 {
-      margin: 0 0 14px;
+      margin: 0 0 18px;
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(2.3rem, 4.5vw, 4.5rem);
       line-height: 0.95;
@@ -235,13 +231,13 @@
       margin: 0;
       max-width: 60ch;
       color: #4d4a45;
-      line-height: 1.72;
-      font-size: 1.02rem;
+      line-height: 1.9;
+      font-size: 1.04rem;
     }
 
     .hero-note {
       align-self: end;
-      padding: 20px 20px 18px;
+      padding: 22px 20px 20px;
       border-radius: 26px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
@@ -253,24 +249,26 @@
 
     .hero-note strong {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--green);
       font-family: Georgia, "Times New Roman", serif;
       font-size: 1.08rem;
       font-weight: 600;
+      line-height: 1.5;
     }
 
     .hero-note span {
       color: var(--muted);
       font-size: 0.95rem;
-      line-height: 1.7;
+      line-height: 1.85;
+      display: block;
     }
 
     .form-shell {
       position: relative;
       overflow: hidden;
       border-radius: 38px;
-      padding: 26px;
+      padding: 28px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.05)),
         linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
@@ -282,14 +280,14 @@
 
     form {
       display: grid;
-      gap: 20px;
+      gap: 22px;
     }
 
     .section {
       position: relative;
       overflow: hidden;
       border-radius: 28px;
-      padding: 24px;
+      padding: 28px 24px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
       border: 1px solid rgba(255,255,255,0.24);
@@ -310,24 +308,25 @@
     }
 
     .section h2 {
-      margin: 0 0 7px;
+      margin: 0 0 10px;
       font-family: Georgia, "Times New Roman", serif;
       font-size: 1.5rem;
       font-weight: 500;
       letter-spacing: -0.03em;
       color: var(--green);
+      line-height: 1.4;
     }
 
     .section-intro {
-      margin: 0 0 18px;
+      margin: 0 0 22px;
       color: var(--muted);
       font-size: 0.96rem;
-      line-height: 1.7;
+      line-height: 1.85;
     }
 
     .grid {
       display: grid;
-      gap: 16px;
+      gap: 18px;
     }
 
     .grid.two {
@@ -337,19 +336,21 @@
     .field {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     label {
       font-size: 0.93rem;
       font-weight: 600;
       color: var(--green);
+      line-height: 1.65;
     }
 
     .tiny,
     .hint {
       font-size: 0.83rem;
       color: var(--muted);
+      line-height: 1.75;
     }
 
     input[type="text"],
@@ -362,8 +363,9 @@
       background: rgba(255,255,255,0.12);
       color: var(--text);
       border-radius: 18px;
-      padding: 14px 15px;
+      padding: 15px 15px;
       font: inherit;
+      line-height: 1.7;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.14),
         0 8px 20px rgba(28,45,34,0.04);
@@ -374,9 +376,9 @@
     }
 
     textarea {
-      min-height: 118px;
+      min-height: 130px;
       resize: vertical;
-      line-height: 1.55;
+      line-height: 1.75;
     }
 
     input:focus,
@@ -394,7 +396,7 @@
     .radio-group,
     .choices {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     .inline {
@@ -404,9 +406,9 @@
     .radio-item,
     .check-item {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       align-items: flex-start;
-      padding: 13px 14px;
+      padding: 14px 15px;
       border-radius: 18px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
@@ -415,6 +417,7 @@
       backdrop-filter: blur(18px) saturate(165%);
       -webkit-backdrop-filter: blur(18px) saturate(165%);
       transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+      line-height: 1.7;
     }
 
     .radio-item:hover,
@@ -427,7 +430,7 @@
 
     .radio-item input,
     .check-item input {
-      margin-top: 3px;
+      margin-top: 4px;
       accent-color: var(--gold);
       flex: 0 0 auto;
     }
@@ -436,8 +439,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 12px;
-      padding-top: 2px;
+      gap: 14px;
+      padding-top: 4px;
     }
 
     .submit-btn {
@@ -445,7 +448,7 @@
       appearance: none;
       cursor: pointer;
       border-radius: 999px;
-      padding: 15px 24px;
+      padding: 16px 26px;
       font: inherit;
       font-weight: 600;
       color: #fff8ef;
@@ -470,7 +473,7 @@
       padding: 13px 15px;
       border-radius: 16px;
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.75;
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.20);
       backdrop-filter: blur(16px);
@@ -496,12 +499,71 @@
     .footer-note {
       color: var(--muted);
       font-size: 0.88rem;
-      line-height: 1.65;
+      line-height: 1.8;
       max-width: 70ch;
     }
 
     .hidden {
       display: none !important;
+    }
+
+    .success-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(22, 34, 28, 0.30);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .success-modal.show {
+      display: flex;
+    }
+
+    .success-modal-card {
+      width: min(560px, 100%);
+      border-radius: 30px;
+      padding: 28px 24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.10)),
+        linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.28);
+      box-shadow: 0 24px 70px rgba(18, 34, 25, 0.18);
+      text-align: center;
+      backdrop-filter: blur(24px) saturate(170%);
+      -webkit-backdrop-filter: blur(24px) saturate(170%);
+    }
+
+    .success-modal-card h3 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--green);
+      line-height: 1.35;
+    }
+
+    .success-modal-card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .modal-btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font: inherit;
+      font-weight: 600;
+      color: #fff8ef;
+      background: linear-gradient(135deg, var(--green), #1f5842);
+      box-shadow: 0 16px 34px rgba(22, 63, 49, 0.18);
     }
 
     @media (max-width: 920px) {
@@ -529,7 +591,7 @@
       }
 
       .section {
-        padding: 18px;
+        padding: 20px 18px;
       }
 
       .inline {
@@ -591,38 +653,41 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">A thoughtfully curated experience</div>
+          <div class="eyebrow">A Shavuot mountain escape</div>
           <h1>Apply for your place.</h1>
           <p>
-            A small application helps us shape the rooming, food planning,
-            davening coordination, and overall atmosphere with more care.
-            Share your stay preference, anything you’d like to contribute,
-            and the details that would help us host well.
+            Join us for a warm and thoughtfully curated Shavuot experience near Mount Snow —
+            with mountain air, spa time, a swimming pool, fitness space, a gaming room,
+            and a beautiful setting to slow down, connect, celebrate, and enjoy the holiday together.
           </p>
         </div>
 
         <div class="hero-note">
-          <strong>Peaceful. Warm. Thoughtfully curated.</strong>
+          <strong>Peaceful. Restful. Beautifully hosted.</strong>
           <span>
-            This form is part logistics, part intention. It helps us create a retreat
-            that feels welcoming, balanced, and well matched.
+            This retreat is designed to feel spacious, welcoming, and memorable —
+            with comfort, nature, thoughtful details, and a lovely group experience from beginning to end.
           </span>
         </div>
       </div>
     </section>
 
     <section class="form-shell">
-     <form
-  id="applyForm"
-  action="https://script.google.com/macros/s/AKfycbwP88hAuD_90kzTImOqF4sOfyjs3KU1nDKopjBvtRUKDx3Ziw71wEsPqbx5RCZ7yOOR/exec"
-  method="POST"
-  target="hidden_iframe"
-  novalidate
->
+      <form
+        id="applyForm"
+        action="https://script.google.com/macros/s/AKfycbwP88hAuD_90kzTImOqF4sOfyjs3KU1nDKopjBvtRUKDx3Ziw71wEsPqbx5RCZ7yOOR/exec"
+        method="POST"
+        target="hidden_iframe"
+        novalidate
+      >
+        <input type="hidden" id="coupon_valid" name="coupon_valid" value="false" />
+        <input type="hidden" id="submitted_at" name="submitted_at" value="" />
 
         <div class="section">
-          <h2>Basic information</h2>
-          <p class="section-intro">Start with the essentials.</p>
+          <h2>Who are you ?</h2>
+          <p class="section-intro">
+            We’d love a small introduction.
+          </p>
 
           <div class="grid two">
             <div class="field">
@@ -645,11 +710,41 @@
               <input type="tel" id="phone" name="phone" required />
             </div>
           </div>
+
+          <div class="field">
+            <label for="about_you">Tell us a little about yourself</label>
+            <textarea id="about_you" name="about_you" placeholder="Just a short introduction is perfect — anything you’d like to share about yourself."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="skills_share">Is there anything you enjoy doing or any skill you might be happy to share during the retreat? *</label>
+            <textarea id="skills_share" name="skills_share" required placeholder="This can be anything simple — a talent, an interest, a professional skill, a learning topic, music, organizing, hosting, or just the kind of energy you naturally bring."></textarea>
+          </div>
+
+          <div class="field">
+            <label>Would you be open to quietly helping if needed?</label>
+            <div class="radio-group inline">
+              <label class="radio-item">
+                <input type="radio" name="help_open" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="help_open" value="Maybe" />
+                <span>Maybe</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="help_open" value="No" />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="section">
           <h2>Stay preference</h2>
-          <p class="section-intro">Choose the type of reservation you’re looking for.</p>
+          <p class="section-intro">
+            Choose the kind of stay that feels right for you.
+          </p>
 
           <div class="field">
             <label for="reservation_type">What type of reservation are you looking for? *</label>
@@ -690,87 +785,10 @@
         </div>
 
         <div class="section">
-          <h2>Contributing to the experience</h2>
-          <p class="section-intro">Optional, but helpful if you’d like to help shape the retreat.</p>
-
-          <div class="field">
-            <label>Would you like to contribute something to the experience?</label>
-            <div class="choices">
-              <label class="check-item">
-                <input type="checkbox" name="contribution_types" value="Lead a shiur" />
-                <span>Lead a shiur</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="contribution_types" value="Facilitate a discussion" />
-                <span>Facilitate a discussion</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="contribution_types" value="Help with a learning night / late-night session" />
-                <span>Help with a learning night / late-night session</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="contribution_types" value="Organize an activity" />
-                <span>Organize an activity</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="contribution_types" value="Prefer to just attend" />
-                <span>Prefer to just attend</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Would you be open to helping behind the scenes if needed?</label>
-            <div class="radio-group inline">
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="Yes" />
-                <span>Yes</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="Maybe" />
-                <span>Maybe</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="No" />
-                <span>No</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="field hidden" id="help_types_wrap">
-            <label>What would you be open to helping with?</label>
-            <div class="choices inline">
-              <label class="check-item">
-                <input type="checkbox" name="help_types" value="Food prep / kitchen support" />
-                <span>Food prep / kitchen support</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="help_types" value="Setup / cleanup" />
-                <span>Setup / cleanup</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="help_types" value="Logistics / rides" />
-                <span>Logistics / rides</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="help_types" value="Welcoming guests / community vibe" />
-                <span>Welcoming guests / community vibe</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="help_types" value="Tech / music / setup" />
-                <span>Tech / music / setup</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="help_types" value="Flexible / happy to jump in where needed" />
-                <span>Flexible / happy to jump in where needed</span>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
           <h2>Davening & minyan</h2>
-          <p class="section-intro">This helps us understand participation and plan more thoughtfully.</p>
+          <p class="section-intro">
+            This helps us plan the flow of the holiday with more care.
+          </p>
 
           <div class="grid two">
             <div class="field">
@@ -810,41 +828,17 @@
             </div>
           </div>
 
-          <div class="field hidden" id="davening_roles_wrap">
-            <label>How would you like to contribute?</label>
-            <div class="choices inline">
-              <label class="check-item">
-                <input type="checkbox" name="davening_roles" value="Chazzan (leading davening)" />
-                <span>Chazzan (leading davening)</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="davening_roles" value="Baal koreh (Torah reading)" />
-                <span>Baal koreh (Torah reading)</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="davening_roles" value="Helping ensure a minyan" />
-                <span>Helping ensure a minyan</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="davening_roles" value="Organizing or coordinating davening" />
-                <span>Organizing or coordinating davening</span>
-              </label>
-              <label class="check-item">
-                <input type="checkbox" name="davening_roles" value="Other" />
-                <span>Other</span>
-              </label>
-            </div>
-          </div>
-
           <div class="field hidden" id="davening_notes_wrap">
             <label for="davening_notes">Please add any details</label>
-            <textarea id="davening_notes" name="davening_notes" placeholder="Experience, comfort level, what you’d be open to helping with, etc."></textarea>
+            <textarea id="davening_notes" name="davening_notes" placeholder="Experience, comfort level, or anything helpful for us to know."></textarea>
           </div>
         </div>
 
         <div class="section">
           <h2>Food & logistics</h2>
-          <p class="section-intro">A few practical details so we can plan well.</p>
+          <p class="section-intro">
+            A few practical details so everything feels smooth and well prepared.
+          </p>
 
           <div class="field">
             <label>Do you have any dietary restrictions or allergies?</label>
@@ -893,7 +887,9 @@
 
         <div class="section">
           <h2>Coupon & referral</h2>
-          <p class="section-intro">If you have a referral or coupon code, enter it here.</p>
+          <p class="section-intro">
+            If you have a referral or coupon code, enter it here.
+          </p>
 
           <div class="grid two">
             <div class="field">
@@ -930,7 +926,9 @@
 
         <div class="section">
           <h2>Final notes</h2>
-          <p class="section-intro">A little context helps us create a better experience.</p>
+          <p class="section-intro">
+            A little context helps us create a more thoughtful experience.
+          </p>
 
           <div class="field">
             <label for="retreat_hopes">What are you hoping to get out of this retreat?</label>
@@ -945,7 +943,7 @@
           <div class="field">
             <label class="check-item">
               <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
-              <span>I agree to the rules etc *</span>
+              <span>I agree of the rules, and impatient to attend to this program with you !</span>
             </label>
           </div>
         </div>
@@ -962,146 +960,172 @@
     </section>
   </div>
 
+  <div class="success-modal" id="successModal" aria-hidden="true">
+    <div class="success-modal-card">
+      <h3>Congratulation!</h3>
+      <p>
+        We will send you a confirmation soon with the link to pay if your admition is accepted !
+      </p>
+      <button type="button" class="modal-btn" id="closeSuccessModal">Close</button>
+    </div>
+  </div>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
   <script>
-<script>
-  const form = document.getElementById("applyForm");
-  const submitBtn = document.getElementById("submitBtn");
-  const formStatus = document.getElementById("formStatus");
+    const form = document.getElementById("applyForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const formStatus = document.getElementById("formStatus");
 
-  const roommateNameWrap = document.getElementById("roommate_name_wrap");
-  const helpTypesWrap = document.getElementById("help_types_wrap");
-  const daveningRolesWrap = document.getElementById("davening_roles_wrap");
-  const daveningNotesWrap = document.getElementById("davening_notes_wrap");
-  const dietaryOtherWrap = document.getElementById("dietary_other_wrap");
-  const friendNameWrap = document.getElementById("friend_name_wrap");
-  const heardOtherWrap = document.getElementById("heard_other_wrap");
+    const roommateNameWrap = document.getElementById("roommate_name_wrap");
+    const dietaryOtherWrap = document.getElementById("dietary_other_wrap");
+    const friendNameWrap = document.getElementById("friend_name_wrap");
+    const heardOtherWrap = document.getElementById("heard_other_wrap");
+    const daveningNotesWrap = document.getElementById("davening_notes_wrap");
 
-  const couponInput = document.getElementById("coupon_code");
-  const couponValidInput = document.getElementById("coupon_valid");
-  const submittedAtInput = document.getElementById("submitted_at");
+    const couponInput = document.getElementById("coupon_code");
+    const couponValidInput = document.getElementById("coupon_valid");
+    const submittedAtInput = document.getElementById("submitted_at");
 
-  const VALID_COUPONS = [
-    "HAMSA10",
-    "FRIEND50",
-    "EARLYBIRD",
-    "SHAVUOS",
-    "NOMADS"
-  ];
+    const successModal = document.getElementById("successModal");
+    const closeSuccessModal = document.getElementById("closeSuccessModal");
 
-  function showStatus(message, type) {
-    formStatus.textContent = message;
-    formStatus.className = `status show ${type}`;
-  }
+    const VALID_COUPONS = [
+      "HAMSA10",
+      "FRIEND50",
+      "EARLYBIRD",
+      "SHAVUOS",
+      "NOMADS"
+    ];
 
-  function hideStatus() {
-    formStatus.textContent = "";
-    formStatus.className = "status";
-  }
-
-  function selectedRadioValue(name) {
-    const checked = document.querySelector(`input[name="${name}"]:checked`);
-    return checked ? checked.value : "";
-  }
-
-  function toggleConditionalFields() {
-    const comingWithSomeone = selectedRadioValue("coming_with_someone");
-    if (roommateNameWrap) {
-      roommateNameWrap.classList.toggle("hidden", comingWithSomeone !== "Yes");
+    function showStatus(message, type) {
+      formStatus.textContent = message;
+      formStatus.className = `status show ${type}`;
     }
 
-    const helpOpen = selectedRadioValue("help_open");
-    if (helpTypesWrap) {
-      helpTypesWrap.classList.toggle("hidden", !(helpOpen === "Yes" || helpOpen === "Maybe"));
+    function hideStatus() {
+      formStatus.textContent = "";
+      formStatus.className = "status";
     }
 
-    const supportDavening = selectedRadioValue("support_davening");
-    const showDavening = supportDavening === "Yes" || supportDavening === "Maybe";
-    if (daveningRolesWrap) daveningRolesWrap.classList.toggle("hidden", !showDavening);
-    if (daveningNotesWrap) daveningNotesWrap.classList.toggle("hidden", !showDavening);
-
-    const dietaryOtherCheck = document.getElementById("dietary_other_check");
-    if (dietaryOtherWrap && dietaryOtherCheck) {
-      dietaryOtherWrap.classList.toggle("hidden", !dietaryOtherCheck.checked);
+    function selectedRadioValue(name) {
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : "";
     }
 
-    const heardAbout = document.getElementById("heard_about");
-    const heardValue = heardAbout ? heardAbout.value : "";
-    if (friendNameWrap) friendNameWrap.classList.toggle("hidden", heardValue !== "Friend");
-    if (heardOtherWrap) heardOtherWrap.classList.toggle("hidden", heardValue !== "Other");
-  }
+    function toggleConditionalFields() {
+      const comingWithSomeone = selectedRadioValue("coming_with_someone");
+      if (roommateNameWrap) {
+        roommateNameWrap.classList.toggle("hidden", comingWithSomeone !== "Yes");
+      }
 
-  function normalizeCoupon(code) {
-    return (code || "").trim().toUpperCase();
-  }
+      const supportDavening = selectedRadioValue("support_davening");
+      const showDavening = supportDavening === "Yes" || supportDavening === "Maybe";
+      if (daveningNotesWrap) daveningNotesWrap.classList.toggle("hidden", !showDavening);
 
-  function updateCouponValidity() {
-    const normalized = normalizeCoupon(couponInput.value);
-    const isValid = normalized !== "" && VALID_COUPONS.includes(normalized);
-    couponValidInput.value = isValid ? "true" : "false";
-  }
+      const dietaryOtherCheck = document.getElementById("dietary_other_check");
+      if (dietaryOtherWrap && dietaryOtherCheck) {
+        dietaryOtherWrap.classList.toggle("hidden", !dietaryOtherCheck.checked);
+      }
 
-  function validateRequiredFields() {
-    const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type"];
-    for (const id of requiredIds) {
-      const el = document.getElementById(id);
-      if (!el || !el.value.trim()) {
-        if (el) el.focus();
-        showStatus("Please complete all required fields marked with *.", "error");
+      const heardAbout = document.getElementById("heard_about");
+      const heardValue = heardAbout ? heardAbout.value : "";
+      if (friendNameWrap) friendNameWrap.classList.toggle("hidden", heardValue !== "Friend");
+      if (heardOtherWrap) heardOtherWrap.classList.toggle("hidden", heardValue !== "Other");
+    }
+
+    function normalizeCoupon(code) {
+      return (code || "").trim().toUpperCase();
+    }
+
+    function updateCouponValidity() {
+      const normalized = normalizeCoupon(couponInput.value);
+      const isValid = normalized !== "" && VALID_COUPONS.includes(normalized);
+      couponValidInput.value = isValid ? "true" : "false";
+    }
+
+    function validateRequiredFields() {
+      const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type", "skills_share"];
+      for (const id of requiredIds) {
+        const el = document.getElementById(id);
+        if (!el || !el.value.trim()) {
+          if (el) el.focus();
+          showStatus("Please complete all required fields marked with *.", "error");
+          return false;
+        }
+      }
+
+      const agreeRules = document.getElementById("agree_rules");
+      if (agreeRules && !agreeRules.checked) {
+        agreeRules.focus();
+        showStatus("Please agree to the rules before submitting.", "error");
         return false;
       }
+
+      return true;
     }
 
-    const agreeRules = document.getElementById("agree_rules");
-    if (agreeRules && !agreeRules.checked) {
-      agreeRules.focus();
-      showStatus("Please agree to the rules before submitting.", "error");
-      return false;
+    function openSuccessModal() {
+      successModal.classList.add("show");
+      successModal.setAttribute("aria-hidden", "false");
     }
 
-    return true;
-  }
-
-  document.querySelectorAll('input[type="radio"]').forEach(input => {
-    input.addEventListener("change", toggleConditionalFields);
-  });
-
-  const dietaryOtherCheck = document.getElementById("dietary_other_check");
-  if (dietaryOtherCheck) dietaryOtherCheck.addEventListener("change", toggleConditionalFields);
-
-  const heardAbout = document.getElementById("heard_about");
-  if (heardAbout) heardAbout.addEventListener("change", toggleConditionalFields);
-
-  if (couponInput) couponInput.addEventListener("input", updateCouponValidity);
-
-  toggleConditionalFields();
-  updateCouponValidity();
-
-  form.addEventListener("submit", function (event) {
-    hideStatus();
-
-    if (!validateRequiredFields()) {
-      event.preventDefault();
-      return;
+    function closeModal() {
+      successModal.classList.remove("show");
+      successModal.setAttribute("aria-hidden", "true");
     }
 
-    submittedAtInput.value = new Date().toISOString();
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
+      input.addEventListener("change", toggleConditionalFields);
+    });
+
+    const dietaryOtherCheck = document.getElementById("dietary_other_check");
+    if (dietaryOtherCheck) dietaryOtherCheck.addEventListener("change", toggleConditionalFields);
+
+    const heardAbout = document.getElementById("heard_about");
+    if (heardAbout) heardAbout.addEventListener("change", toggleConditionalFields);
+
+    if (couponInput) couponInput.addEventListener("input", updateCouponValidity);
+
+    if (closeSuccessModal) {
+      closeSuccessModal.addEventListener("click", closeModal);
+    }
+
+    if (successModal) {
+      successModal.addEventListener("click", function(e) {
+        if (e.target === successModal) closeModal();
+      });
+    }
+
+    toggleConditionalFields();
     updateCouponValidity();
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
+    form.addEventListener("submit", function (event) {
+      hideStatus();
 
-    showStatus("Submitting application...", "success");
+      if (!validateRequiredFields()) {
+        event.preventDefault();
+        return;
+      }
 
-    setTimeout(() => {
-      showStatus("Application submitted. Please check your Google Sheet in a few seconds.", "success");
-      form.reset();
-      couponValidInput.value = "false";
-      toggleConditionalFields();
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit application";
-    }, 1500);
-  });
-</script>
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+      submittedAtInput.value = new Date().toISOString();
+      updateCouponValidity();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+
+      showStatus("Submitting application...", "success");
+
+      setTimeout(() => {
+        form.reset();
+        couponValidInput.value = "false";
+        toggleConditionalFields();
+        hideStatus();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit application";
+        openSuccessModal();
+      }, 1200);
+    });
+  </script>
 </body>
 </html>
