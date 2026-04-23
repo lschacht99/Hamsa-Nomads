@@ -934,46 +934,35 @@
             <textarea id="anything_else" name="anything_else" placeholder="Questions, details, concerns, schedule notes, anything helpful for us to know."></textarea>
           </div>
 
-          <div class="field">
-            <label>Do you wish to help during the retreat?</label>
-            <div class="tiny">Limited spots available.</div>
-            <div class="radio-group inline">
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="Yes" />
-                <span>Yes</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="Maybe" />
-                <span>Maybe</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="No" />
-                <span>No</span>
-              </label>
-            </div>
-          </div>
-          <div class="field">
-            <label class="check-item">
-              <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
-              <span>
-                I agree to the retreat guidelines and cancellation policy, and I’m excited to join this experience with you.
-              </span>
-            </label>
-          </div>
-        </div>
+         <div class="field" style="margin-top: 14px;">
+  <label style="margin-bottom: 4px;">Do you wish to help during the retreat?</label>
+  <div class="tiny" style="margin-bottom: 16px;">Limited spots available.</div>
 
-        <div class="submit-wrap">
-          <button type="submit" class="submit-btn" id="submitBtn">Submit application</button>
-          <div id="formStatus" class="status" role="status" aria-live="polite"></div>
-          <div class="footer-note">
-            By submitting, you’re sharing information that may be used for food planning,
-            retreat coordination, and general hosting logistics.
-          </div>
-        </div>
-      </form>
-    </section>
+  <div class="radio-group inline" style="margin-bottom: 28px;">
+    <label class="radio-item">
+      <input type="radio" name="help_open" value="Yes" />
+      <span>Yes</span>
+    </label>
+    <label class="radio-item">
+      <input type="radio" name="help_open" value="Maybe" />
+      <span>Maybe</span>
+    </label>
+    <label class="radio-item">
+      <input type="radio" name="help_open" value="No" />
+      <span>No</span>
+    </label>
   </div>
+</div>
 
+<div class="field" style="margin-top: 14px;">
+  <label class="check-item" style="margin-top: 8px;">
+    <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
+    <span>
+      I agree to the retreat guidelines and cancellation policy, and I’m excited to join this experience with you.
+    </span>
+  </label>
+</div>
+          
   <div class="success-modal" id="successModal" aria-hidden="true">
     <div class="success-modal-card">
       <h3>Congratulation!</h3>
