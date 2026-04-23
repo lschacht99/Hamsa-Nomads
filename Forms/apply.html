@@ -1019,184 +1019,187 @@
     </section>
   </div>
 
-<script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzk0DeaIBA8jvPxGl_8ETp0TboDLXPMlffELDK-vSxVCb-_SV5aJn-5TmNm7b4NneIu/exec";
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzk0DeaIBA8jvPxGl_8ETp0TboDLXPMlffELDK-vSxVCb-_SV5aJn-5TmNm7b4NneIu/exec";
 
-  const VALID_COUPONS = [
-    "HAMSA10",
-    "FRIEND50",
-    "EARLYBIRD",
-    "SHAVUOS",
-    "NOMADS"
-  ];
+    const VALID_COUPONS = [
+      "HAMSA10",
+      "FRIEND50",
+      "EARLYBIRD",
+      "SHAVUOS",
+      "NOMADS"
+    ];
 
-  const form = document.getElementById("applyForm");
-  const submitBtn = document.getElementById("submitBtn");
-  const formStatus = document.getElementById("formStatus");
+    const form = document.getElementById("applyForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const formStatus = document.getElementById("formStatus");
 
-  const roommateNameWrap = document.getElementById("roommate_name_wrap");
-  const helpTypesWrap = document.getElementById("help_types_wrap");
-  const daveningRolesWrap = document.getElementById("davening_roles_wrap");
-  const daveningNotesWrap = document.getElementById("davening_notes_wrap");
-  const dietaryOtherWrap = document.getElementById("dietary_other_wrap");
-  const friendNameWrap = document.getElementById("friend_name_wrap");
-  const heardOtherWrap = document.getElementById("heard_other_wrap");
+    const roommateNameWrap = document.getElementById("roommate_name_wrap");
+    const helpTypesWrap = document.getElementById("help_types_wrap");
+    const daveningRolesWrap = document.getElementById("davening_roles_wrap");
+    const daveningNotesWrap = document.getElementById("davening_notes_wrap");
+    const dietaryOtherWrap = document.getElementById("dietary_other_wrap");
+    const friendNameWrap = document.getElementById("friend_name_wrap");
+    const heardOtherWrap = document.getElementById("heard_other_wrap");
 
-  const couponInput = document.getElementById("coupon_code");
-  const couponValidInput = document.getElementById("coupon_valid");
-  const submittedAtInput = document.getElementById("submitted_at");
+    const couponInput = document.getElementById("coupon_code");
+    const couponValidInput = document.getElementById("coupon_valid");
+    const submittedAtInput = document.getElementById("submitted_at");
 
-  function showStatus(message, type) {
-    formStatus.textContent = message;
-    formStatus.className = `status show ${type}`;
-  }
+    function showStatus(message, type) {
+      formStatus.textContent = message;
+      formStatus.className = `status show ${type}`;
+    }
 
-  function hideStatus() {
-    formStatus.textContent = "";
-    formStatus.className = "status";
-  }
+    function hideStatus() {
+      formStatus.textContent = "";
+      formStatus.className = "status";
+    }
 
-  function selectedRadioValue(name) {
-    const checked = document.querySelector(`input[name="${name}"]:checked`);
-    return checked ? checked.value : "";
-  }
+    function selectedRadioValue(name) {
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : "";
+    }
 
-  function selectedCheckboxValues(name) {
-    return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
-      .map(input => input.value);
-  }
+    function selectedCheckboxValues(name) {
+      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+        .map(input => input.value);
+    }
 
-  function toggleConditionalFields() {
-    const comingWithSomeone = selectedRadioValue("coming_with_someone");
-    roommateNameWrap.classList.toggle("hidden", comingWithSomeone !== "Yes");
+    function toggleConditionalFields() {
+      const comingWithSomeone = selectedRadioValue("coming_with_someone");
+      roommateNameWrap.classList.toggle("hidden", comingWithSomeone !== "Yes");
 
-    const helpOpen = selectedRadioValue("help_open");
-    helpTypesWrap.classList.toggle("hidden", !(helpOpen === "Yes" || helpOpen === "Maybe"));
+      const helpOpen = selectedRadioValue("help_open");
+      helpTypesWrap.classList.toggle("hidden", !(helpOpen === "Yes" || helpOpen === "Maybe"));
 
-    const supportDavening = selectedRadioValue("support_davening");
-    const showDavening = supportDavening === "Yes" || supportDavening === "Maybe";
-    daveningRolesWrap.classList.toggle("hidden", !showDavening);
-    daveningNotesWrap.classList.toggle("hidden", !showDavening);
+      const supportDavening = selectedRadioValue("support_davening");
+      const showDavening = supportDavening === "Yes" || supportDavening === "Maybe";
+      daveningRolesWrap.classList.toggle("hidden", !showDavening);
+      daveningNotesWrap.classList.toggle("hidden", !showDavening);
 
-    const dietaryOtherChecked = document.getElementById("dietary_other_check").checked;
-    dietaryOtherWrap.classList.toggle("hidden", !dietaryOtherChecked);
+      const dietaryOtherChecked = document.getElementById("dietary_other_check").checked;
+      dietaryOtherWrap.classList.toggle("hidden", !dietaryOtherChecked);
 
-    const heardAbout = document.getElementById("heard_about").value;
-    friendNameWrap.classList.toggle("hidden", heardAbout !== "Friend");
-    heardOtherWrap.classList.toggle("hidden", heardAbout !== "Other");
-  }
+      const heardAbout = document.getElementById("heard_about").value;
+      friendNameWrap.classList.toggle("hidden", heardAbout !== "Friend");
+      heardOtherWrap.classList.toggle("hidden", heardAbout !== "Other");
+    }
 
-  function normalizeCoupon(code) {
-    return (code || "").trim().toUpperCase();
-  }
+    function normalizeCoupon(code) {
+      return (code || "").trim().toUpperCase();
+    }
 
-  function updateCouponValidity() {
-    const normalized = normalizeCoupon(couponInput.value);
-    const isValid = normalized !== "" && VALID_COUPONS.includes(normalized);
-    couponValidInput.value = isValid ? "true" : "false";
-  }
+    function updateCouponValidity() {
+      const normalized = normalizeCoupon(couponInput.value);
+      const isValid = normalized !== "" && VALID_COUPONS.includes(normalized);
+      couponValidInput.value = isValid ? "true" : "false";
+    }
 
-  function validateRequiredFields() {
-    const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type"];
-    for (const id of requiredIds) {
-      const el = document.getElementById(id);
-      if (!el.value.trim()) {
-        el.focus();
-        showStatus("Please complete all required fields marked with *.", "error");
-        return false;
+    function buildPayload() {
+      updateCouponValidity();
+      submittedAtInput.value = new Date().toISOString();
+
+      return {
+        first_name: document.getElementById("first_name").value.trim(),
+        last_name: document.getElementById("last_name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+
+        reservation_type: document.getElementById("reservation_type").value,
+        coming_with_someone: selectedRadioValue("coming_with_someone"),
+        room_with_name: document.getElementById("room_with_name").value.trim(),
+        roommate_match: selectedRadioValue("roommate_match"),
+        room_style_preference: document.getElementById("room_style_preference").value,
+        roommate_preferences: selectedCheckboxValues("roommate_preferences").join(" | "),
+        roommate_notes: document.getElementById("roommate_notes").value.trim(),
+
+        contribution_types: selectedCheckboxValues("contribution_types").join(" | "),
+        help_open: selectedRadioValue("help_open"),
+        help_types: selectedCheckboxValues("help_types").join(" | "),
+
+        attend_minyan: selectedRadioValue("attend_minyan"),
+        support_davening: selectedRadioValue("support_davening"),
+        davening_roles: selectedCheckboxValues("davening_roles").join(" | "),
+        davening_notes: document.getElementById("davening_notes").value.trim(),
+
+        dietary_restrictions: selectedCheckboxValues("dietary_restrictions").join(" | "),
+        dietary_other: document.getElementById("dietary_other").value.trim(),
+        food_notes: document.getElementById("food_notes").value.trim(),
+
+        coupon_code: normalizeCoupon(document.getElementById("coupon_code").value),
+        coupon_valid: couponValidInput.value,
+        heard_about: document.getElementById("heard_about").value,
+        friend_name: document.getElementById("friend_name").value.trim(),
+        heard_other: document.getElementById("heard_other").value.trim(),
+
+        retreat_hopes: document.getElementById("retreat_hopes").value.trim(),
+        anything_else: document.getElementById("anything_else").value.trim(),
+
+        submitted_at: submittedAtInput.value
+      };
+    }
+
+    function validateRequiredFields() {
+      const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type"];
+      for (const id of requiredIds) {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.focus();
+          showStatus("Please complete all required fields marked with *.", "error");
+          return false;
+        }
       }
+      return true;
     }
-    return true;
-  }
 
-  function buildFormData() {
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
+      input.addEventListener("change", toggleConditionalFields);
+    });
+
+    document.getElementById("dietary_other_check").addEventListener("change", toggleConditionalFields);
+    document.getElementById("heard_about").addEventListener("change", toggleConditionalFields);
+    couponInput.addEventListener("input", updateCouponValidity);
+
+    toggleConditionalFields();
     updateCouponValidity();
-    submittedAtInput.value = new Date().toISOString();
 
-    const data = new URLSearchParams();
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      hideStatus();
 
-    data.append("first_name", document.getElementById("first_name").value.trim());
-    data.append("last_name", document.getElementById("last_name").value.trim());
-    data.append("email", document.getElementById("email").value.trim());
-    data.append("phone", document.getElementById("phone").value.trim());
+      if (!validateRequiredFields()) return;
 
-    data.append("reservation_type", document.getElementById("reservation_type").value);
-    data.append("coming_with_someone", selectedRadioValue("coming_with_someone"));
-    data.append("room_with_name", document.getElementById("room_with_name").value.trim());
-    data.append("roommate_match", selectedRadioValue("roommate_match"));
-    data.append("room_style_preference", document.getElementById("room_style_preference").value);
-    data.append("roommate_preferences", selectedCheckboxValues("roommate_preferences").join(" | "));
-    data.append("roommate_notes", document.getElementById("roommate_notes").value.trim());
+      const payload = buildPayload();
 
-    data.append("contribution_types", selectedCheckboxValues("contribution_types").join(" | "));
-    data.append("help_open", selectedRadioValue("help_open"));
-    data.append("help_types", selectedCheckboxValues("help_types").join(" | "));
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
 
-    data.append("attend_minyan", selectedRadioValue("attend_minyan"));
-    data.append("support_davening", selectedRadioValue("support_davening"));
-    data.append("davening_roles", selectedCheckboxValues("davening_roles").join(" | "));
-    data.append("davening_notes", document.getElementById("davening_notes").value.trim());
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
 
-    data.append("dietary_restrictions", selectedCheckboxValues("dietary_restrictions").join(" | "));
-    data.append("dietary_other", document.getElementById("dietary_other").value.trim());
-    data.append("food_notes", document.getElementById("food_notes").value.trim());
+        if (!response.ok) {
+          throw new Error(`Server returned ${response.status}`);
+        }
 
-    data.append("coupon_code", normalizeCoupon(document.getElementById("coupon_code").value));
-    data.append("coupon_valid", couponValidInput.value);
-    data.append("heard_about", document.getElementById("heard_about").value);
-    data.append("friend_name", document.getElementById("friend_name").value.trim());
-    data.append("heard_other", document.getElementById("heard_other").value.trim());
-
-    data.append("retreat_hopes", document.getElementById("retreat_hopes").value.trim());
-    data.append("anything_else", document.getElementById("anything_else").value.trim());
-    data.append("submitted_at", submittedAtInput.value);
-
-    return data;
-  }
-
-  document.querySelectorAll('input[type="radio"]').forEach(input => {
-    input.addEventListener("change", toggleConditionalFields);
-  });
-
-  document.getElementById("dietary_other_check").addEventListener("change", toggleConditionalFields);
-  document.getElementById("heard_about").addEventListener("change", toggleConditionalFields);
-  couponInput.addEventListener("input", updateCouponValidity);
-
-  toggleConditionalFields();
-  updateCouponValidity();
-
-  form.addEventListener("submit", async function (event) {
-    event.preventDefault();
-    hideStatus();
-
-    if (!validateRequiredFields()) return;
-
-    const formData = buildFormData();
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
-
-    try {
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        body: formData.toString()
-      });
-
-      showStatus("Application submitted successfully. We’ll be in touch soon.", "success");
-      form.reset();
-      couponValidInput.value = "false";
-      toggleConditionalFields();
-    } catch (error) {
-      console.error(error);
-      showStatus("The form could not be submitted. Your Apps Script may need a correct doPost(e) setup.", "error");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit application";
-    }
-  });
-</script>
+        showStatus("Application submitted successfully. We’ll be in touch soon.", "success");
+        form.reset();
+        couponValidInput.value = "false";
+        toggleConditionalFields();
+      } catch (error) {
+        console.error("Submission error:", error);
+        showStatus("Your form could not be submitted. Check that your Google Apps Script web app has a working doPost(e) deployment and that access is enabled.", "error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit application";
+      }
+    });
+  </script>
 </body>
 </html>
