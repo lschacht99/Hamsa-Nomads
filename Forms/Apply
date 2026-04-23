@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply | Hamsa Nomads</title>
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --paper: rgba(255,255,255,0.88);
+      --text: #1f2a26;
+      --muted: #5f6a62;
+      --forest: #274537;
+      --forest-dark: #1d352a;
+      --line: rgba(39,69,55,0.14);
+      --shadow: 0 20px 60px rgba(23,35,28,0.08);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1000px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(210, 184, 140, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(39,69,55,0.06), transparent 24%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--forest);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .shell {
+      background: var(--paper);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      padding: 1.3rem;
+    }
+
+    .header {
+      padding: 0.6rem 0.4rem 1rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 1rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--forest);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, serif;
+      font-weight: 500;
+      margin: 0 0 0.45rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.02;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .note {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      background: rgba(39,69,55,0.06);
+      border: 1px solid rgba(39,69,55,0.10);
+      color: var(--forest-dark);
+      font-size: 0.95rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .section {
+      background: rgba(255,255,255,0.66);
+      border: 1px solid rgba(39,69,55,0.07);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .section-copy {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .field {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    label.label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--forest-dark);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(39,69,55,0.14);
+      background: rgba(255,255,255,0.95);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 0.95rem 1rem;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(39,69,55,0.34);
+      box-shadow: 0 0 0 4px rgba(39,69,55,0.08);
+    }
+
+    .choice-group {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.2rem;
+    }
+
+    .choice-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.95rem 1rem;
+      border: 1px solid rgba(39,69,55,0.12);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.85);
+    }
+
+    .choice-card input {
+      margin-top: 0.2rem;
+      width: auto;
+    }
+
+    .choice-card span {
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .help {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: -0.1rem;
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.95rem 1.4rem;
+      background: var(--forest);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    button:hover {
+      background: var(--forest-dark);
+    }
+
+    .status {
+      display: none;
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      font-size: 0.95rem;
+    }
+
+    .status.error {
+      background: rgba(153, 34, 34, 0.08);
+      border: 1px solid rgba(153, 34, 34, 0.14);
+      color: #7d1d1d;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 860px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="index.html">← Back to main page</a>
+
+    <div class="shell">
+      <div class="header">
+        <div class="eyebrow">Hamsa Nomads Application</div>
+        <h1>Apply for the retreat</h1>
+        <p>
+          This version keeps the full question structure from the form you pasted,
+          while still submitting into your Google Apps Script + Google Sheet setup.
+        </p>
+        <div class="note">
+          After submitting, you can keep your existing payment follow-up flow here. Example:
+          “After submitting the form, please use the payment instructions provided by Hamsa Nomads.
+          You’ll receive confirmation once your registration is reviewed.”
+        </div>
+      </div>
+
+      <div id="errorBox" class="status error"></div>
+
+      <form id="hamsa-form">
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
+
+        <section class="section">
+          <h2>Reservation</h2>
+          <p class="section-copy">Choose the option that best matches your stay.</p>
+          <div class="field">
+            <label class="label">Reservation Options <span aria-hidden="true">*</span></label>
+            <div class="choice-group">
+              <label class="choice-card">
+                <input type="radio" name="reservation_option" value="You in a room with 3 others: $499" required />
+                <span>You in a room with 3 others: $499</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="reservation_option" value="You in a room with 1 other: $799" required />
+                <span>You in a room with 1 other: $799</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="reservation_option" value="Private Room: $1099" required />
+                <span>Private Room: $1099</span>
+              </label>
+            </div>
+            <div class="help">Discounts or group arrangements can be handled separately if needed.</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Basic Information</h2>
+          <p class="section-copy">The essentials we need to review your application.</p>
+
+          <div class="grid-2">
+            <div class="field">
+              <label class="label" for="first_name">First Name *</label>
+              <input id="first_name" type="text" name="first_name" required />
+            </div>
+            <div class="field">
+              <label class="label" for="last_name">Last Name *</label>
+              <input id="last_name" type="text" name="last_name" required />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label class="label" for="email">Email *</label>
+              <input id="email" type="email" name="email" required />
+            </div>
+            <div class="field">
+              <label class="label" for="email_confirmation">Email Confirmation *</label>
+              <input id="email_confirmation" type="email" name="email_confirmation" required />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label class="label" for="cell_phone">Cell Phone *</label>
+              <input id="cell_phone" type="tel" name="cell_phone" required />
+            </div>
+            <div class="field">
+              <label class="label">Gender *</label>
+              <div class="choice-group">
+                <label class="choice-card">
+                  <input type="radio" name="gender" value="Male" required />
+                  <span>Male</span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="gender" value="Female" required />
+                  <span>Female</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label class="label" for="birthdate">Birthdate *</label>
+              <input id="birthdate" type="date" name="birthdate" required />
+              <div class="help">Feel free to choose Jan 1 and your birth year if you prefer.</div>
+            </div>
+            <div class="field">
+              <label class="label" for="age">Age *</label>
+              <input id="age" type="number" name="age" min="0" step="1" required />
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Rooming & Logistics</h2>
+          <p class="section-copy">Travel, rooming, and practical details.</p>
+
+          <div class="field">
+            <label class="label" for="roommates">Roommates</label>
+            <input id="roommates" type="text" name="roommates" />
+            <div class="help">Is there anyone in particular that you'd like to room with?</div>
+          </div>
+
+          <div class="field">
+            <label class="label">Transportation / Rides</label>
+            <div class="choice-group">
+              <label class="choice-card">
+                <input type="radio" name="transportation" value="I can take others (There will be compensation.)" />
+                <span>I can take others (There will be compensation.)</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="transportation" value="I need a ride (There will be a charge.)" />
+                <span>I need a ride (There will be a charge.)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="address">Address</label>
+            <input id="address" type="text" name="address" autocomplete="street-address" />
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Participation & Community</h2>
+          <p class="section-copy">Ways you may want to contribute to the retreat experience.</p>
+
+          <div class="field">
+            <label class="label" for="talents">Talents</label>
+            <textarea id="talents" name="talents"></textarea>
+            <div class="help">Interested in teaching a class, giving a lecture, or leading a workshop? Please provide a title and summary.</div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="dvar_torah">Dvar Torah</label>
+            <input id="dvar_torah" type="text" name="dvar_torah" />
+            <div class="help">Would you like to give a short but meaningful Dvar Torah during one of the meals?</div>
+          </div>
+
+          <div class="field">
+            <label class="label">Lead Activity</label>
+            <div class="choice-group">
+              <label class="choice-card">
+                <input type="checkbox" name="lead_activity" value="Davening (Chazan)" />
+                <span>Davening (Chazan)</span>
+              </label>
+              <label class="choice-card">
+                <input type="checkbox" name="lead_activity" value="Laining (Baal Koreh)" />
+                <span>Laining (Baal Koreh)</span>
+              </label>
+              <label class="choice-card">
+                <input type="checkbox" name="lead_activity" value="Birchat Hamazon" />
+                <span>Birchat Hamazon</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>About You</h2>
+          <p class="section-copy">A little more background so the experience can be a good fit.</p>
+
+          <div class="field">
+            <label class="label" for="referral">How did you hear about this event?</label>
+            <input id="referral" type="text" name="referral" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="hobbies">Hobbies</label>
+            <input id="hobbies" type="text" name="hobbies" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="religious_level">Religious Level</label>
+            <input id="religious_level" type="text" name="religious_level" />
+            <div class="help">Describe your religious level in your own words.</div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="special_requests">Special Requests</label>
+            <input id="special_requests" type="text" name="special_requests" />
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Status & Matching</h2>
+          <p class="section-copy">These questions were part of the original form structure and are preserved here.</p>
+
+          <div class="field">
+            <label class="label">Marriage Status *</label>
+            <div class="choice-group">
+              <label class="choice-card">
+                <input type="radio" name="marriage_status" value="Single never married" required />
+                <span>Single never married</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="marriage_status" value="Divorced" required />
+                <span>Divorced</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="marriage_status" value="Widow(er)" required />
+                <span>Widow(er)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Children Status *</label>
+            <div class="choice-group">
+              <label class="choice-card">
+                <input type="radio" name="children_status" value="Have children" required />
+                <span>Have children</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="children_status" value="Don't have children" required />
+                <span>Don't have children</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="children_status" value="Older children" required />
+                <span>Older children</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Cohain / Eligibility *</label>
+            <div class="choice-group">
+              <label class="choice-card">
+                <input type="radio" name="cohain_eligibility" value="Yes" required />
+                <span>Yes</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="cohain_eligibility" value="No" required />
+                <span>No</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="cohain_eligibility" value="I dont know" required />
+                <span>I don’t know</span>
+              </label>
+            </div>
+            <div class="help">For men: Are you a cohen? For women: Are you eligible for a Cohen?</div>
+          </div>
+
+          <div class="field">
+            <label class="label">Do you want to be matched? *</label>
+            <div class="choice-group">
+              <label class="choice-card">
+                <input type="radio" name="want_to_be_matched" value="Yes" required />
+                <span>Yes</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="want_to_be_matched" value="No" required />
+                <span>No</span>
+              </label>
+            </div>
+            <div class="help">If yes, you can follow up separately with any matching-related materials you want to collect.</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Policies</h2>
+          <p class="section-copy">Required acknowledgements.</p>
+
+          <div class="field">
+            <label class="choice-card">
+              <input type="checkbox" name="cancellation_policy_agreed" value="I agree" required />
+              <span>I agree to the cancellation policy.</span>
+            </label>
+            <div class="help">
+              Cancellation Policy: tickets are transferable until one week prior to the retreat, but not refundable.
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="choice-card">
+              <input type="checkbox" name="release_and_indemnity_agreed" value="I agree" required />
+              <span>I agree to the release and indemnity terms.</span>
+            </label>
+            <div class="help">
+              I release and hold harmless the organizers and related parties to the fullest extent permitted by law.
+            </div>
+          </div>
+        </section>
+
+        <div class="submit-row">
+          <button type="submit" id="submitButton">Submit Application</button>
+          <div class="help">This submits directly to your Google Apps Script / Google Sheet.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_URL";
+
+    const form = document.getElementById("hamsa-form");
+    const errorBox = document.getElementById("errorBox");
+    const submitButton = document.getElementById("submitButton");
+
+    function getGroupedFormData(formEl) {
+      const formData = new FormData(formEl);
+      const data = {};
+      const checkboxGroups = {};
+
+      for (const [key, value] of formData.entries()) {
+        if (key === "website") continue;
+
+        const field = formEl.elements[key];
+
+        if (field instanceof RadioNodeList) {
+          if (!data[key]) data[key] = value;
+          continue;
+        }
+
+        if (field && field.type === "checkbox") {
+          if (!checkboxGroups[key]) checkboxGroups[key] = [];
+          checkboxGroups[key].push(value);
+          continue;
+        }
+
+        data[key] = value;
+      }
+
+      Object.keys(checkboxGroups).forEach(key => {
+        data[key] = checkboxGroups[key].join(", ");
+      });
+
+      return data;
+    }
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      errorBox.style.display = "none";
+      errorBox.textContent = "";
+
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const emailConfirmation = document.getElementById("email_confirmation").value.trim().toLowerCase();
+
+      if (email !== emailConfirmation) {
+        errorBox.textContent = "Email and Email Confirmation must match.";
+        errorBox.style.display = "block";
+        return;
+      }
+
+      const data = getGroupedFormData(form);
+
+      if (form.website.value.trim() !== "") {
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+
+        window.location.href = "index.html?success=true";
+      } catch (error) {
+        errorBox.textContent = "Something went wrong while submitting. Please try again.";
+        errorBox.style.display = "block";
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Application";
+      }
+    });
+  </script>
+</body>
+</html>
