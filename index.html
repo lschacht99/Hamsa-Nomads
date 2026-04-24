@@ -1567,7 +1567,7 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
 
 <script>
   (function () {
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
 
     const slider = document.getElementById('hnTripSlider');
     const slides = Array.from(slider.querySelectorAll('.hn-trip-slide'));
@@ -1586,7 +1586,7 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
     const tripCopy = {
       "Boston July 4": {
         title: "July 4 in Boston",
-        subtitle: "Leave your info and join the interest list for the Boston weekend comes together."
+        subtitle: "Leave your info and join the interest list as the Boston weekend comes together."
       },
       "Pennsylvania Renaissance Fair": {
         title: "Renaissance Fair in Pennsylvania",
@@ -1714,7 +1714,7 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
     tripForm.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec")) {
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
         popupMessage.textContent = "Add your Google Script link in the code first.";
         popupMessage.classList.add("error");
         return;
@@ -1730,15 +1730,11 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
       popupMessage.textContent = "";
       popupMessage.classList.remove("error");
 
-      fetch(GOOGLE_SCRIPT_URL, {"https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+      fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         body: formData
       })
       .then(function (response) {
-        if (!response.ok) {
-          throw new Error("Submission failed");
-        }
-
         popupMessage.textContent = "You’re on the list. We’ll send details soon.";
         tripForm.reset();
 
