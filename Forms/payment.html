@@ -9,9 +9,7 @@
   <style>
     :root {
       --cream: #f7f1e8;
-      --sand: #e5d7c4;
       --green: #21483a;
-      --green-soft: #dce9df;
       --gold: #c89b4f;
       --text: #1e2a24;
       --white-glass: rgba(255, 255, 255, 0.62);
@@ -256,37 +254,6 @@
       resize: vertical;
     }
 
-    .price-summary {
-      grid-column: 1 / -1;
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(33, 72, 58, 0.12);
-      border-radius: 24px;
-      padding: 18px;
-      display: none;
-    }
-
-    .price-summary.show {
-      display: block;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 6px 0;
-      font-size: 15px;
-      color: rgba(30, 42, 36, 0.78);
-    }
-
-    .price-row.final {
-      border-top: 1px solid rgba(33, 72, 58, 0.12);
-      margin-top: 8px;
-      padding-top: 12px;
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--green);
-    }
-
     .discount-message {
       display: none;
       width: fit-content;
@@ -429,6 +396,47 @@
       line-height: 1.5;
     }
 
+    .success-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 42, 36, 0.32);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 22px;
+    }
+
+    .success-popup.show {
+      display: flex;
+    }
+
+    .success-card {
+      width: min(420px, 100%);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 28px;
+      box-shadow: 0 24px 70px rgba(30, 42, 36, 0.22);
+      padding: 30px;
+      text-align: center;
+      color: var(--green);
+    }
+
+    .success-card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      font-weight: 500;
+      margin: 0 0 10px;
+    }
+
+    .success-card p {
+      margin: 0 0 22px;
+      color: rgba(30, 42, 36, 0.72);
+      line-height: 1.5;
+    }
+
     @media (max-width: 720px) {
       header {
         align-items: flex-start;
@@ -436,10 +444,6 @@
       }
 
       .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .payment-info {
         grid-template-columns: 1fr;
       }
 
@@ -548,35 +552,18 @@
           </div>
 
           <div class="field">
-            <label for="discountCode">Discount Code</label>
-            <input id="discountCode" name="discountCode" type="text" placeholder="Optional">
-            <div id="discountMessage" class="discount-message">
-              Estimated discount
-            </div>
-            <div id="discountSubnote" class="discount-subnote">
-              Final discount will be verified after submission.
-            </div>
-          </div>
-
-          <div class="field">
             <label for="amountPaid">Amount to Pay</label>
             <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
           </div>
 
-          <div id="priceSummary" class="price-summary">
-            <div class="price-row">
-              <span>Original price</span>
-              <strong id="originalPriceText">$0.00</strong>
+          <div class="field">
+            <label for="discountCode">Discount Code</label>
+            <input id="discountCode" name="discountCode" type="text" placeholder="Optional">
+            <div id="discountMessage" class="discount-message">
+              Discount entered
             </div>
-
-            <div class="price-row">
-              <span>Estimated discount</span>
-              <strong id="discountText">$0.00</strong>
-            </div>
-
-            <div class="price-row final">
-              <span>Estimated amount</span>
-              <strong id="finalPriceText">$0.00</strong>
+            <div id="discountSubnote" class="discount-subnote">
+              Code will be verified after submission.
             </div>
           </div>
 
@@ -628,6 +615,14 @@
     </section>
   </main>
 
+  <div id="successPopup" class="success-popup">
+    <div class="success-card">
+      <h2>Thank you</h2>
+      <p>Your payment proof was submitted.</p>
+      <button type="button" id="closePopupBtn">Close</button>
+    </div>
+  </div>
+
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP88hAuD_90kzTImOqF4sOfyjs3KU1nDKopjBvtRUKDx3Ziw71wEsPqbx5RCZ7yOOR/exec";
 
@@ -636,21 +631,18 @@
     const submitBtn = document.getElementById("submitBtn");
 
     const reservationType = document.getElementById("reservationType");
-    const discountCode = document.getElementById("discountCode");
     const amountPaid = document.getElementById("amountPaid");
-
-    const priceSummary = document.getElementById("priceSummary");
-    const originalPriceText = document.getElementById("originalPriceText");
-    const discountText = document.getElementById("discountText");
-    const finalPriceText = document.getElementById("finalPriceText");
+    const discountCode = document.getElementById("discountCode");
     const discountMessage = document.getElementById("discountMessage");
     const discountSubnote = document.getElementById("discountSubnote");
 
     const paymentMethod = document.getElementById("paymentMethod");
     const paymentReminder = document.getElementById("paymentReminder");
 
+    const successPopup = document.getElementById("successPopup");
+    const closePopupBtn = document.getElementById("closePopupBtn");
+
     let currentOriginalPrice = 0;
-    let currentDiscountAmount = 0;
     let currentFinalPrice = 0;
     let currentDiscountStatus = "No code entered";
 
@@ -663,48 +655,17 @@
       const basePrice = Number(selectedOption.dataset.price || 0);
       const code = discountCode.value.trim();
 
-      let discountAmount = 0;
-      let finalPrice = basePrice;
-      let discountStatus = "No code entered";
-
-      /*
-        Important:
-        The real discount code is NOT stored here.
-        This only shows an estimated discount.
-        The real validation should happen privately in Code.gs.
-      */
-      if (basePrice > 0 && code.length > 0) {
-        discountAmount = basePrice * 0.10;
-        finalPrice = basePrice - discountAmount;
-        discountStatus = "Pending verification";
-      }
-
       currentOriginalPrice = basePrice;
-      currentDiscountAmount = discountAmount;
-      currentFinalPrice = finalPrice;
-      currentDiscountStatus = discountStatus;
+      currentFinalPrice = basePrice;
+      currentDiscountStatus = code.length > 0 ? "Pending verification" : "No code entered";
 
       if (basePrice > 0) {
-        amountPaid.value = formatMoney(finalPrice);
-        originalPriceText.textContent = formatMoney(basePrice);
-
-        if (discountAmount > 0) {
-          discountText.textContent = "-" + formatMoney(discountAmount);
-        } else {
-          discountText.textContent = "$0.00";
-        }
-
-        finalPriceText.textContent = formatMoney(finalPrice);
-        priceSummary.classList.add("show");
+        amountPaid.value = formatMoney(basePrice);
       } else {
         amountPaid.value = "";
-        originalPriceText.textContent = "$0.00";
-        discountText.textContent = "$0.00";
-        finalPriceText.textContent = "$0.00";
-        priceSummary.classList.remove("show");
       }
 
-      if (code.length > 0 && basePrice > 0) {
+      if (code.length > 0) {
         discountMessage.classList.add("show");
         discountSubnote.classList.add("show");
       } else {
@@ -734,6 +695,14 @@
       }, 4500);
     });
 
+    closePopupBtn.addEventListener("click", () => {
+      successPopup.classList.remove("show");
+    });
+
+    function showSuccessPopup() {
+      successPopup.classList.add("show");
+    }
+
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -757,10 +726,6 @@
       submitBtn.textContent = "Submitting...";
 
       try {
-        if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR")) {
-          throw new Error("Missing Google Apps Script URL. Please paste your Web App URL in the code.");
-        }
-
         const fileInput = document.getElementById("proofFile");
         const file = fileInput.files[0];
 
@@ -794,8 +759,7 @@
           originalPrice: formatMoney(currentOriginalPrice),
           discountCode: discountCode.value.trim(),
           discountStatus: currentDiscountStatus,
-          estimatedDiscount: formatMoney(currentDiscountAmount),
-          estimatedFinalAmount: formatMoney(currentFinalPrice),
+          finalAmount: formatMoney(currentFinalPrice),
           paymentMethod: paymentMethod.value,
           notes: document.getElementById("notes").value.trim(),
           fileName: file.name,
@@ -814,16 +778,15 @@
 
         form.reset();
         amountPaid.value = "";
-        priceSummary.classList.remove("show");
         discountMessage.classList.remove("show");
         discountSubnote.classList.remove("show");
 
         currentOriginalPrice = 0;
-        currentDiscountAmount = 0;
         currentFinalPrice = 0;
         currentDiscountStatus = "No code entered";
 
-        statusEl.textContent = "Thank you — your payment proof was submitted.";
+        statusEl.textContent = "";
+        showSuccessPopup();
 
       } catch (error) {
         statusEl.textContent = error.message || "Something went wrong. Please try again.";
