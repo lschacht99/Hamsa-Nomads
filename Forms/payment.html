@@ -139,10 +139,10 @@
     }
 
     .payment-info {
-      max-width: 640px;
+      max-width: 360px;
       margin: 24px auto 0;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 14px;
     }
 
@@ -154,7 +154,7 @@
       box-shadow: 0 12px 28px rgba(34, 54, 44, 0.08);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      text-align: left;
+      text-align: center;
     }
 
     .payment-pill span {
@@ -168,7 +168,7 @@
     }
 
     .payment-pill strong {
-      font-size: 21px;
+      font-size: 22px;
       color: var(--green);
     }
 
@@ -288,13 +288,32 @@
     }
 
     .discount-message {
-      font-size: 13px;
-      margin-top: 8px;
-      color: var(--green);
       display: none;
+      width: fit-content;
+      margin-top: 7px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(33, 72, 58, 0.08);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1;
     }
 
     .discount-message.show {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .discount-subnote {
+      display: none;
+      font-size: 11px;
+      color: rgba(30, 42, 36, 0.58);
+      line-height: 1.35;
+      margin-top: 4px;
+    }
+
+    .discount-subnote.show {
       display: block;
     }
 
@@ -490,11 +509,6 @@
           <span>Zelle / Venmo</span>
           <strong>3479888869</strong>
         </div>
-
-        <div class="payment-pill">
-          <span>Discount Code</span>
-          <strong>Hamsa555</strong>
-        </div>
       </div>
     </section>
 
@@ -537,7 +551,10 @@
             <label for="discountCode">Discount Code</label>
             <input id="discountCode" name="discountCode" type="text" placeholder="Optional">
             <div id="discountMessage" class="discount-message">
-              10% discount applied.
+              Estimated discount
+            </div>
+            <div id="discountSubnote" class="discount-subnote">
+              Final discount will be verified after submission.
             </div>
           </div>
 
@@ -553,12 +570,12 @@
             </div>
 
             <div class="price-row">
-              <span>Discount</span>
+              <span>Estimated discount</span>
               <strong id="discountText">$0.00</strong>
             </div>
 
             <div class="price-row final">
-              <span>Final amount</span>
+              <span>Estimated amount</span>
               <strong id="finalPriceText">$0.00</strong>
             </div>
           </div>
@@ -605,7 +622,7 @@
         </div>
 
         <p class="tiny">
-          Your reservation is confirmed only after we verify your payment.
+          Your reservation is confirmed only after we verify your payment and discount code, if used.
         </p>
       </form>
     </section>
@@ -627,6 +644,7 @@
     const discountText = document.getElementById("discountText");
     const finalPriceText = document.getElementById("finalPriceText");
     const discountMessage = document.getElementById("discountMessage");
+    const discountSubnote = document.getElementById("discountSubnote");
 
     const paymentMethod = document.getElementById("paymentMethod");
     const paymentReminder = document.getElementById("paymentReminder");
@@ -634,36 +652,48 @@
     let currentOriginalPrice = 0;
     let currentDiscountAmount = 0;
     let currentFinalPrice = 0;
-    let currentDiscountApplied = "No";
+    let currentDiscountStatus = "No code entered";
 
     function formatMoney(number) {
-      return "$" + Number(number).toFixed(2);
+      return "$" + Number(number || 0).toFixed(2);
     }
 
     function calculatePrice() {
       const selectedOption = reservationType.options[reservationType.selectedIndex];
       const basePrice = Number(selectedOption.dataset.price || 0);
-      const code = discountCode.value.trim().toLowerCase();
+      const code = discountCode.value.trim();
 
       let discountAmount = 0;
       let finalPrice = basePrice;
-      let discountApplied = "No";
+      let discountStatus = "No code entered";
 
-      if (basePrice > 0 && code === "hamsa555") {
+      /*
+        Important:
+        The real discount code is NOT stored here.
+        This only shows an estimated discount.
+        The real validation should happen privately in Code.gs.
+      */
+      if (basePrice > 0 && code.length > 0) {
         discountAmount = basePrice * 0.10;
         finalPrice = basePrice - discountAmount;
-        discountApplied = "Yes";
+        discountStatus = "Pending verification";
       }
 
       currentOriginalPrice = basePrice;
       currentDiscountAmount = discountAmount;
       currentFinalPrice = finalPrice;
-      currentDiscountApplied = discountApplied;
+      currentDiscountStatus = discountStatus;
 
       if (basePrice > 0) {
         amountPaid.value = formatMoney(finalPrice);
         originalPriceText.textContent = formatMoney(basePrice);
-        discountText.textContent = "-" + formatMoney(discountAmount);
+
+        if (discountAmount > 0) {
+          discountText.textContent = "-" + formatMoney(discountAmount);
+        } else {
+          discountText.textContent = "$0.00";
+        }
+
         finalPriceText.textContent = formatMoney(finalPrice);
         priceSummary.classList.add("show");
       } else {
@@ -674,10 +704,12 @@
         priceSummary.classList.remove("show");
       }
 
-      if (discountApplied === "Yes") {
+      if (code.length > 0 && basePrice > 0) {
         discountMessage.classList.add("show");
+        discountSubnote.classList.add("show");
       } else {
         discountMessage.classList.remove("show");
+        discountSubnote.classList.remove("show");
       }
     }
 
@@ -761,18 +793,22 @@
           reservationType: reservationType.value,
           originalPrice: formatMoney(currentOriginalPrice),
           discountCode: discountCode.value.trim(),
-          discountApplied: currentDiscountApplied,
-          finalAmount: formatMoney(currentFinalPrice),
+          discountStatus: currentDiscountStatus,
+          estimatedDiscount: formatMoney(currentDiscountAmount),
+          estimatedFinalAmount: formatMoney(currentFinalPrice),
           paymentMethod: paymentMethod.value,
           notes: document.getElementById("notes").value.trim(),
           fileName: file.name,
-          mimeType: file.type,
+          mimeType: file.type || "application/octet-stream",
           fileData: fileData
         };
 
         await fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
           body: JSON.stringify(payload)
         });
 
@@ -780,11 +816,12 @@
         amountPaid.value = "";
         priceSummary.classList.remove("show");
         discountMessage.classList.remove("show");
+        discountSubnote.classList.remove("show");
 
         currentOriginalPrice = 0;
         currentDiscountAmount = 0;
         currentFinalPrice = 0;
-        currentDiscountApplied = "No";
+        currentDiscountStatus = "No code entered";
 
         statusEl.textContent = "Thank you — your payment proof was submitted.";
 
