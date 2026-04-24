@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>About Hamsa Nomads</title>
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
   <style>
     :root {
       --bg: #f7f3ea;
-      --bg-soft: #fbf8f2;
       --paper: rgba(255, 252, 246, 0.68);
       --paper-strong: rgba(255, 252, 246, 0.82);
       --ink: #1f231f;
@@ -15,7 +18,6 @@
       --forest: #274537;
       --gold: #b88b2f;
       --line: rgba(16, 14, 11, 0.22);
-      --border: rgba(39, 69, 55, 0.12);
       --shadow: 0 16px 50px rgba(31, 28, 20, 0.08);
       --radius: 26px;
       --container: 1220px;
@@ -58,7 +60,6 @@
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
-      opacity: 1;
     }
 
     .line-overlay svg {
@@ -79,8 +80,10 @@
 
     .path-main.back,
     .path-hamsa.back { stroke-width: 3.2; }
+
     .path-main.front,
     .path-hamsa.front { stroke-width: 1.5; }
+
     .path-slice.back { stroke-width: 3; }
     .path-slice.front { stroke-width: 1.3; }
 
@@ -104,17 +107,19 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(249, 246, 239, 0.76);
-      backdrop-filter: blur(12px);
+      background: rgba(249, 246, 239, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(39, 69, 55, 0.08);
     }
 
     .nav {
-      min-height: 78px;
+      min-height: 86px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 28px;
+      padding: 14px 0;
     }
 
     .brand {
@@ -122,39 +127,45 @@
       align-items: center;
       gap: 14px;
       min-width: 0;
+      flex-shrink: 0;
     }
 
     .brand-logo {
-      width: 54px;
-      height: 54px;
+      width: 52px;
+      height: 52px;
       object-fit: contain;
       flex-shrink: 0;
     }
 
     .brand-name {
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.16em;
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      line-height: 1;
+      line-height: 0.95;
+      white-space: nowrap;
     }
 
     .brand-sub {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 6px;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 26px;
       color: var(--muted);
-      font-size: 0.96rem;
-      flex-wrap: wrap;
+      font-size: 0.95rem;
+      flex-wrap: nowrap;
       justify-content: flex-end;
+      margin-left: auto;
+      min-width: 0;
     }
 
+    .nav-links a { white-space: nowrap; }
     .nav-links a:hover { color: var(--ink); }
 
     .button,
@@ -162,61 +173,77 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
+      min-height: 48px;
       padding: 0 24px;
       border-radius: 999px;
       font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0.02em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .button:hover,
     .button-secondary:hover { transform: translateY(-1px); }
 
     .button {
-      background: rgba(39, 69, 55, 0.94);
+      background: rgba(39, 69, 55, 0.92);
       color: white;
       box-shadow: 0 12px 30px rgba(39, 69, 55, 0.22);
       border: 1px solid rgba(39, 69, 55, 0.26);
     }
 
     .button-secondary {
-      background: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.62);
       color: var(--ink);
       border: 1px solid rgba(39, 69, 55, 0.14);
       box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
     }
 
     .hero {
-      padding: 26px 0 18px;
+      padding: 26px 0 24px;
     }
 
     .hero-card {
       position: relative;
       overflow: hidden;
-      min-height: 72vh;
-      padding: clamp(28px, 4vw, 56px);
+      min-height: 76vh;
+      border-radius: 34px;
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
+      align-items: end;
+      background: #e9dfd0;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(20, 18, 12, 0.52), rgba(20, 18, 12, 0.18) 52%, rgba(20, 18, 12, 0.04)),
+        linear-gradient(180deg, rgba(20,18,12,0.05), rgba(20,18,12,0.30));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(30px, 5vw, 62px);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 28px;
       align-items: end;
     }
 
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.62), transparent 24%),
-        linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.03));
-      pointer-events: none;
-    }
-
-    .hero-copy,
-    .hero-note {
-      position: relative;
-      z-index: 1;
+    .hero-copy {
+      color: #fffdf8;
     }
 
     .eyebrow {
@@ -227,20 +254,27 @@
       margin-bottom: 14px;
     }
 
+    .hero .eyebrow {
+      color: #e0ae43;
+      text-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
     .hero h1 {
       font-size: clamp(3rem, 7vw, 6rem);
       line-height: 0.94;
-      color: var(--forest);
-      max-width: 8.6ch;
+      color: #fffdf8;
+      max-width: 8.8ch;
       margin-bottom: 18px;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.22);
     }
 
     .hero-lead {
-      max-width: 34ch;
+      max-width: 38ch;
       font-size: clamp(1.08rem, 2vw, 1.32rem);
       line-height: 1.5;
-      color: var(--muted);
+      color: rgba(255,251,245,0.92);
       margin-bottom: 22px;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.22);
     }
 
     .hero-actions {
@@ -252,9 +286,11 @@
     .hero-note {
       padding: 24px;
       border-radius: 22px;
-      background: var(--paper-strong);
-      border: 1px solid rgba(39,69,55,0.08);
+      background: rgba(255, 252, 246, 0.76);
+      border: 1px solid rgba(255,255,255,0.45);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       align-self: end;
     }
 
@@ -269,7 +305,7 @@
     }
 
     .section {
-      padding: 22px 0;
+      padding: 28px 0;
     }
 
     .section-header {
@@ -391,18 +427,97 @@
       color: var(--muted);
     }
 
-    .footer-note {
-      color: var(--muted);
-      font-size: 0.95rem;
-      padding: 10px 4px 50px;
+    .footer {
+      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
+      color: #e8e6df;
+      padding: 60px 20px 30px;
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-family: Georgia, serif;
+      letter-spacing: 0.2em;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #cfcac1;
+      line-height: 1.6;
+      max-width: 340px;
+    }
+
+    .footer-icons {
+      margin-top: 20px;
+      display: flex;
+      gap: 14px;
+      color: #cfcac1;
+    }
+
+    .footer-icons svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      margin: 0 0 14px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #cfcac1;
+    }
+
+    .footer-col a {
+      color: #cfcac1;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
       text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #a9a49a;
     }
 
     @media (max-width: 1100px) {
-      .hero-card,
+      .hero-content,
       .intro-grid,
       .memory-grid,
-      .closing-card {
+      .closing-card,
+      .footer-container {
         grid-template-columns: 1fr;
       }
     }
@@ -418,6 +533,7 @@
         width: 100%;
         justify-content: flex-start;
         gap: 12px 16px;
+        flex-wrap: wrap;
       }
 
       .section-header {
@@ -441,21 +557,19 @@
 </head>
 <body>
   <div class="page">
+
+    <!-- BACKGROUND LINE -->
     <div class="line-overlay" aria-hidden="true">
       <svg viewBox="0 0 1440 5200" preserveAspectRatio="none">
-        <path class="path-hamsa back" id="hamsaBack" d="M820 86 C820 150, 820 210, 818 278 C816 346, 804 376, 786 376 C766 375, 760 338, 759 277 C759 207, 760 139, 760 81 C760 18, 784 -16, 822 -16 C859 -16, 883 19, 883 83 C884 140, 884 208, 884 280 C884 339, 878 374, 860 375 C842 375, 830 346, 828 279 C826 210, 826 148, 826 89" />
-        <path class="path-hamsa front" id="hamsaFront" d="M821 86 C821 150, 821 210, 819 278 C817 346, 805 376, 787 376 C767 375, 761 338, 760 277 C760 207, 761 139, 761 81 C761 18, 785 -16, 823 -16 C860 -16, 884 19, 884 83 C885 140, 885 208, 885 280 C885 339, 879 374, 861 375 C843 375, 831 346, 829 279 C827 210, 827 148, 827 89" />
-        <path class="path-main back" id="lineBack" d="M667 330 C625 306, 578 304, 547 323 C519 341, 511 367, 522 392 C535 421, 568 428, 589 447 C611 465, 619 500, 605 526 C587 557, 552 560, 529 583 C505 607, 496 652, 505 695 C518 762, 525 832, 546 895 C563 946, 596 982, 644 985 C694 986, 750 968, 791 972 C835 976, 874 1001, 879 1038 C886 1086, 841 1123, 824 1165 C810 1198, 821 1244, 855 1264 C898 1289, 951 1285, 989 1310 C1035 1340, 1054 1390, 1040 1439 C1024 1491, 987 1535, 966 1584 C943 1637, 938 1699, 964 1747 C994 1803, 1057 1836, 1123 1843 C1190 1851, 1262 1838, 1308 1870 C1358 1905, 1365 1972, 1328 2017 C1288 2067, 1216 2077, 1148 2088 C1075 2099, 1009 2122, 981 2173 C951 2227, 967 2294, 1022 2330 C1077 2367, 1159 2370, 1236 2382 C1302 2392, 1360 2422, 1379 2472 C1403 2537, 1368 2608, 1304 2645 C1243 2681, 1164 2686, 1098 2725 C1046 2756, 1008 2808, 1006 2860 C1004 2917, 1047 2964, 1104 2988 C1163 3014, 1232 3017, 1281 3047 C1341 3083, 1367 3144, 1349 3206 C1328 3279, 1263 3328, 1188 3350 C1115 3371, 1035 3370, 980 3406 C928 3440, 904 3496, 916 3553 C931 3622, 984 3675, 1032 3726 C1081 3779, 1124 3841, 1121 3908 C1117 3986, 1058 4050, 977 4075 C894 4102, 802 4088, 725 4116 C646 4144, 588 4201, 585 4268 C582 4339, 638 4401, 718 4429 C803 4459, 900 4454, 985 4485 C1076 4518, 1149 4583, 1169 4657 C1190 4737, 1155 4811, 1088 4857 C1017 4906, 922 4924, 846 4962" />
-        <path class="path-main front" id="lineFront" d="M668 330 C626 307, 579 305, 548 324 C520 342, 512 367, 523 393 C536 422, 568 429, 590 447 C612 466, 620 500, 606 526 C588 558, 553 561, 530 584 C506 608, 497 652, 506 696 C519 763, 526 833, 547 896 C564 947, 597 983, 645 986 C695 987, 751 968, 792 973 C836 977, 875 1001, 880 1039 C887 1087, 842 1124, 825 1165 C811 1199, 822 1244, 856 1265 C899 1290, 952 1286, 990 1311 C1036 1341, 1055 1390, 1041 1440 C1025 1492, 988 1536, 967 1584 C944 1638, 939 1700, 965 1748 C995 1804, 1058 1837, 1124 1844 C1191 1851, 1263 1839, 1309 1871 C1359 1906, 1366 1973, 1329 2018 C1289 2068, 1217 2078, 1149 2089 C1076 2100, 1010 2123, 982 2174 C952 2228, 968 2295, 1023 2331 C1078 2368, 1160 2371, 1237 2383 C1303 2393, 1361 2422, 1380 2473 C1404 2538, 1369 2609, 1305 2646 C1244 2682, 1165 2687, 1099 2726 C1047 2757, 1009 2809, 1007 2861 C1005 2918, 1048 2965, 1105 2989 C1164 3015, 1233 3018, 1282 3048 C1342 3084, 1368 3145, 1350 3207 C1329 3280, 1264 3329, 1189 3351 C1116 3372, 1036 3371, 981 3407 C929 3441, 905 3497, 917 3554 C932 3623, 985 3676, 1033 3727 C1082 3780, 1125 3842, 1122 3909 C1118 3987, 1059 4051, 978 4076 C895 4103, 803 4089, 726 4117 C647 4145, 589 4202, 586 4269 C583 4340, 639 4402, 719 4430 C804 4460, 901 4455, 986 4486 C1077 4519, 1150 4584, 1170 4658 C1191 4738, 1156 4812, 1089 4858 C1018 4907, 923 4925, 847 4963" />
-        <path class="path-slice back" id="sliceBack" d="M846 4963 C906 4918, 987 4888, 1073 4898 C1158 4908, 1228 4947, 1278 5005" />
-        <path class="path-slice front" id="sliceFront" d="M847 4963 C907 4919, 988 4889, 1074 4899 C1159 4909, 1229 4948, 1279 5006" />
+        <path class="path-main back" id="lineBack" d="M667 330 C625 306, 578 304, 547 323 C519 341, 511 367, 522 392 C535 421, 568 428, 589 447 C611 465, 619 500, 605 526 C587 557, 552 560, 529 583 C505 607, 496 652, 505 695 C518 762, 525 832, 546 895 C563 946, 596 982, 644 985 C694 986, 750 968, 791 972 C835 976, 874 1001, 879 1038 C886 1086, 841 1123, 824 1165 C810 1198, 821 1244, 855 1264 C898 1289, 951 1285, 989 1310 C1035 1340, 1054 1390, 1040 1439 C1024 1491, 987 1535, 966 1584 C943 1637, 938 1699, 964 1747 C994 1803, 1057 1836, 1123 1843 C1190 1851, 1262 1838, 1308 1870 C1358 1905, 1365 1972, 1328 2017 C1288 2067, 1216 2077, 1148 2088 C1075 2099, 1009 2122, 981 2173 C951 2227, 967 2294, 1022 2330 C1077 2367, 1159 2370, 1236 2382 C1302 2392, 1360 2422, 1379 2472 C1403 2537, 1368 2608, 1304 2645 C1243 2681, 1164 2686, 1098 2725 C1046 2756, 1008 2808, 1006 2860 C1004 2917, 1047 2964, 1104 2988 C1163 3014, 1232 3017, 1281 3047 C1341 3083, 1367 3144, 1349 3206 C1328 3279, 1263 3328, 1188 3350 C1115 3371, 1035 3370, 980 3406 C928 3440, 904 3496, 916 3553 C931 3622, 984 3675, 1032 3726 C1081 3779, 1124 3841, 1121 3908 C1117 3986, 1058 4050, 977 4075 C894 4102, 802 4088, 725 4116 C646 4144, 588 4201, 585 4268 C582 4339, 638 4401, 718 4429 C803 4459, 900 4454, 985 4485 C1076 4518, 1149 4583, 1169 4657 C1190 4737, 1155 4811, 1088 4857 C1017 4906, 922 4924, 846 4962"/>
       </svg>
     </div>
 
+    <!-- HEADER -->
     <header class="site-header">
       <div class="container nav">
         <a href="../index.html" class="brand">
-          <img src="../logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo" class="brand-logo" />
+          <img src="../logo/logo-hamsa-nomads.png" class="brand-logo">
           <div>
             <div class="brand-name">Hamsa Nomads</div>
             <div class="brand-sub">Kosher travel</div>
@@ -463,213 +577,322 @@
         </a>
 
         <nav class="nav-links">
-          <a href="#story">Our Story</a>
+          <a href="#story">Story</a>
           <a href="#journeys">Journeys</a>
-          <a href="#why">Why We Built This</a>
-          <a href="../index.html" class="button-secondary">Back to Home</a>
+          <a href="#why">Why</a>
+          <a href="../index.html" class="button-secondary">Home</a>
         </nav>
       </div>
     </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="container">
-          <div class="hero-card glass">
+    <!-- HERO WITH IMAGE -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+
+          <!-- CHANGE IMAGE HERE -->
+          <img src="../Image/about-hero.jpg" class="hero-media" alt="Hamsa Nomads story">
+          <div class="hero-scrim"></div>
+
+          <div class="hero-content">
             <div class="hero-copy">
               <div class="eyebrow">About Hamsa Nomads</div>
               <h1>Built from real Jewish travel.</h1>
               <p class="hero-lead">
-                Hamsa Nomads was born from months of traveling across Europe and Asia while trying to stay rooted in kashrut, Shabbat, Chag, and Jewish life — even far from home.
+                Not imagined. Not designed from afar. Built from moments of uncertainty, connection, and meaning while traveling across the world.
               </p>
               <div class="hero-actions">
                 <a href="#story" class="button">Read the Story</a>
-                <a href="#journeys" class="button-secondary">See the Journeys</a>
               </div>
             </div>
 
             <div class="hero-note">
-              <h3>What inspired us</h3>
+              <h3>What stayed with us</h3>
               <p>
-                Again and again, we found Jewish memory, Jewish hospitality, and Jewish connection in the most unexpected places. Those moments became the heart of Hamsa Nomads.
+                The moments you don’t plan — when Jewish life appears where you thought it didn’t exist.
               </p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="story" class="section">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow">Our story</div>
-              <h2>How we build Hamsa Nomads </h2>
-            </div>
+    <!-- STORY -->
+    <section id="story" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>The origin</h2>
+          <p>Traveling far while trying to stay rooted.</p>
+        </div>
+
+        <div class="intro-grid">
+          <div class="card glass">
             <p>
-              We created Hamsa Nomads out of lived experience: traveling far, trying to remain faithful to Jewish life, and discovering that some of the most meaningful encounters happen when you least expect them.
+              We spent months across Europe and Asia asking a simple but difficult question:
+              how do you stay Jewish when everything around you changes?
+            </p>
+
+            <p>
+              Keeping kosher. Preparing for Shabbat. Finding meaning far from community.
+              Sometimes it felt impossible.
+            </p>
+
+            <p>
+              But again and again, something unexpected would happen.
+            </p>
+
+            <p>
+              In Sri Lanka, we walked into the ocean to tovel our vessels.
+              The waves were strong, unpredictable.
+              It wasn’t simple, it wasn’t controlled.
+            </p>
+
+            <p>
+              And yet — that moment became one of the most real expressions of kashrut we had ever lived.
+              Not convenience. Commitment.
+            </p>
+
+            <p>
+              That is what stayed with us.
             </p>
           </div>
 
-          <div class="intro-grid">
-            <article class="card glass">
-              <p>
-                We are experienced travelers who spent months moving across Europe and Asia while facing the same question again and again: how do you keep kosher, keep Shabbat and Chag, and remain connected to your faith while crossing cultures, languages, and landscapes?
-              </p>
-              <p>
-                In India, we spent time with local Jewish communities and discovered remarkable stories from Mumbai to Pune to Kochi. In the south of the country, when we thought we would be spending Shabbat entirely alone, we noticed Hebrew letters on a street. Following that trail led us to a hotel owner, then to the number of a rabbi, and finally to a Shabbat meal we never could have imagined.
-              </p>
-              <p>
-                That kind of moment stayed with us. It reminded us that Jewish life is not only carried by institutions or cities — it is also carried by memory, kindness, and the invisible threads that connect people across the world.
-              </p>
-            </article>
-
-            <aside class="card glass quote-card">
-              <blockquote>
-                “We built Hamsa Nomads to share those unforgettable memories — and to create new ones with you.”
-              </blockquote>
-              <div class="small">
-                Not as spectators, but as people who lived the improvisation, the challenge, the warmth, and the wonder ourselves.
-              </div>
-            </aside>
+          <div class="card glass quote-card">
+            <blockquote>
+              “Judaism doesn’t disappear when you travel.
+              It becomes more real.”
+            </blockquote>
+            <div class="small">
+              Not structured. Not scheduled. But deeply lived.
+            </div>
           </div>
         </div>
-      </section>
-
-      <section id="journeys" class="section">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow">Journeys that shaped us</div>
-              <h2>Places, encounters, and memories</h2>
-            </div>
-            <p>
-           </p>
+      </div>
+    </section>
+        <!-- JOURNEYS -->
+    <section id="journeys" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Journeys that shaped us</div>
+            <h2>Places, encounters, and roots</h2>
           </div>
-
-          <div class="memory-grid">
-            <article class="memory-card glass">
-              <div class="memory-sketch">
-                <img src="../about-us/sketches/india.png" alt="Sketch of India" />
-              </div>
-              <div class="memory-content">
-                <h3>India</h3>
-                <p>
-                  India was one of the deepest sources of inspiration for us. From Mumbai to Pune to Kochi, we encountered living Jewish histories and communities. In the south, when we were ready to spend Shabbat alone in the middle of nowhere, a few Hebrew letters on a street led us unexpectedly to a rabbi and a Shabbat meal.
-                </p>
-              </div>
-            </article>
-
-            <article class="memory-card glass">
-              <div class="memory-sketch">
-                <img src="../about-us/sketches/vietnam.png" alt="Sketch of Vietnam" />
-              </div>
-              <div class="memory-content">
-                <h3>Vietnam</h3>
-                <p>
-                  In Vietnam, we were moved by small everyday beauty: children inventing games, local ways of cooking, and the challenge of learning recipes and adapting them into our own kosher kitchen with what we had.
-                </p>
-              </div>
-            </article>
-
-            <article class="memory-card glass">
-              <div class="memory-sketch">
-                <img src="../about-us/sketches/japan.png" alt="Sketch of Japan" />
-              </div>
-              <div class="memory-content">
-                <h3>Japan</h3>
-                <p>
-                  In Japan, we met people who spoke of a connection to Judaism and history in unexpected ways. Those conversations opened our eyes to how identity and memory can echo across cultures, even where you do not expect them.
-                </p>
-              </div>
-            </article>
-
-            <article class="memory-card glass">
-              <div class="memory-sketch">
-                <img src="../about-us/sketches/morocco.png" alt="Sketch of Morocco" />
-              </div>
-              <div class="memory-content">
-                <h3>Morocco & the Sahara</h3>
-                <p>
-                  In Morocco and in the Sahara, we experienced moments of astonishing recognition. Around a narguileh in the desert, an Amazigh man heard the name “Moshe Cohen” and answered, “Are you Jewish? Me too, but centuries ago…” Then came Jewish Moroccan music, voices joining in, and darboukah under the desert sky.
-                </p>
-              </div>
-            </article>
-
-            <article class="memory-card glass">
-              <div class="memory-sketch">
-                <img src="../about-us/sketches/south-korea.png" alt="Sketch of South Korea" />
-              </div>
-              <div class="memory-content">
-                <h3>South Korea</h3>
-                <p>
-                  In South Korea, even simple curiosity about a kippah became the beginning of conversations about who we are. Sometimes a small visible sign of Jewish life opens a much bigger exchange.
-                </p>
-              </div>
-            </article>
-
-            <article class="memory-card glass">
-              <div class="memory-sketch">
-                <img src="../about-us/sketches/sri-lanka.png" alt="Sketch of Sri Lanka" />
-              </div>
-              <div class="memory-content">
-                <h3>Sri Lanka & France</h3>
-                <p>
-                  In Sri Lanka, even toveling vessels became an adventure against the waves. In France, Moshe’s experience leading a Jewish union taught us something essential: people can be brought together around what they share, and Judaism has the power to create belonging, connection, and meaning.
-                </p>
-              </div>
-            </article>
-          </div>
+          <p>
+            Hamsa Nomads grew from real places, real challenges, and real moments of Jewish connection across the world.
+          </p>
         </div>
-      </section>
 
-      <section id="why" class="section">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow">Why we built this</div>
-              <h2>From travel memories to shared experiences</h2>
+        <div class="memory-grid">
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/india.png" alt="Sketch of India" />
             </div>
-            <p>
-              Across all of these journeys, what grew in us was not only resilience, but also a deep desire to gather, to host, and to share.
-            </p>
-          </div>
-
-          <article class="closing-card glass">
-            <div>
-              <h2>What we want to offer</h2>
+            <div class="memory-content">
+              <h3>India</h3>
               <p>
-                Hamsa Nomads is our way of taking those incomparable memories and turning them into something living: thoughtful Jewish travel and retreat experiences built with care, beauty, and meaning.
+                India became one of our deepest sources of inspiration. From Mumbai to Pune to Kochi, we discovered Jewish stories, communities, and traces of history. In the south, when we thought we would spend Shabbat alone, Hebrew letters on a street led us to a hotel owner, then to a rabbi, and finally to a Shabbat meal we never expected.
               </p>
-              <p style="margin-top: 14px;">
-                We want to share the gift of Shabbat, Yom Tov, Chagim, kashrut, hospitality, and Jewish togetherness with people who genuinely want to experience it. That is the spirit behind everything we build.
-              </p>
-            </div>
-            <div>
-              <a href="../index.html" class="button">Explore Hamsa Nomads</a>
             </div>
           </article>
-        </div>
-      </section>
-    </main>
 
-    <div class="container">
-      <div class="footer-note">
-        Hamsa Nomads — built from lived experience, and meant to be shared.
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/sri-lanka.png" alt="Sketch of Sri Lanka" />
+            </div>
+            <div class="memory-content">
+              <h3>Sri Lanka</h3>
+              <p>
+                In Sri Lanka, kashrut became something physical and unforgettable. We went to the ocean to tovel our vessels — the kashering of our kitchen tools in the waves. It was not neat or easy. The water moved, the waves pushed back, and the moment became a reminder that Jewish life while traveling is not always convenient, but it can be deeply alive.
+              </p>
+            </div>
+          </article>
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/france.png" alt="Sketch of France" />
+            </div>
+            <div class="memory-content">
+              <h3>France</h3>
+              <p>
+                France shaped part of the foundation of Hamsa Nomads through years of Jewish community involvement and event planning. Leading and organizing within a Jewish student union taught us how to bring people together, how to create belonging, and how much thoughtful details matter when building a meaningful Jewish experience.
+              </p>
+            </div>
+          </article>
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/israel.png" alt="Sketch of Israel" />
+            </div>
+            <div class="memory-content">
+              <h3>Israel</h3>
+              <p>
+                Israel is where everything is rooted. It is the center of the story, the place where Jewish time, Jewish land, Jewish memory, and Jewish responsibility all become tangible. For Hamsa Nomads, Israel is not just another destination — it is the anchor behind the way we think about Jewish life wherever we go.
+              </p>
+            </div>
+          </article>
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/usa.png" alt="Sketch of the United States" />
+            </div>
+            <div class="memory-content">
+              <h3>USA</h3>
+              <p>
+                The United States is where everything feels possible. It is where ideas can quickly become real, where communities can be built from scratch, and where Hamsa Nomads can grow into retreats, gatherings, Shabbatonim, and travel experiences for people looking for something warm, beautiful, and Jewish.
+              </p>
+            </div>
+          </article>
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/morocco.png" alt="Sketch of Morocco" />
+            </div>
+            <div class="memory-content">
+              <h3>Morocco & the Sahara</h3>
+              <p>
+                In Morocco and the Sahara, we felt how Jewish memory can live inside music, names, and stories. Around a narguileh in the desert, an Amazigh man heard a Jewish name and answered with a memory of his own roots. Then came Moroccan Jewish music, darboukah, and the strange feeling of being both far away and deeply connected.
+              </p>
+            </div>
+          </article>
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/vietnam.png" alt="Sketch of Vietnam" />
+            </div>
+            <div class="memory-content">
+              <h3>Vietnam</h3>
+              <p>
+                In Vietnam, we were moved by everyday creativity: children inventing games, local ways of cooking, and the challenge of adapting what we saw into our own kosher kitchen. It taught us that travel is not only about seeing places, but about learning how people live.
+              </p>
+            </div>
+          </article>
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/japan.png" alt="Sketch of Japan" />
+            </div>
+            <div class="memory-content">
+              <h3>Japan</h3>
+              <p>
+                In Japan, unexpected conversations opened a window into identity, history, and the ways people relate to Jewish memory from a distance. It reminded us that Jewish presence can spark curiosity and connection in places we never expected.
+              </p>
+            </div>
+          </article>
+
+          <article class="memory-card glass">
+            <div class="memory-sketch">
+              <img src="../about-us/sketches/south-korea.png" alt="Sketch of South Korea" />
+            </div>
+            <div class="memory-content">
+              <h3>South Korea</h3>
+              <p>
+                In South Korea, a simple visible sign of Jewish life — like a kippah — became the beginning of conversations. Sometimes the smallest details open the deepest exchanges.
+              </p>
+            </div>
+          </article>
+
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Why we built this</div>
+            <h2>From travel memories to shared experiences</h2>
+          </div>
+          <p>
+            Hamsa Nomads is our way of turning those lived moments into something others can experience too.
+          </p>
+        </div>
+
+        <article class="closing-card glass">
+          <div>
+            <h2>What we want to offer</h2>
+            <p>
+              We want to create Jewish travel and retreat experiences that feel beautiful, grounded, and real — not generic programs, but spaces where people can connect, celebrate, rest, and feel part of something warm.
+            </p>
+            <p style="margin-top: 14px;">
+              Hamsa Nomads is built from the belief that Shabbat, Chagim, kashrut, hospitality, and Jewish togetherness can travel with us — across countries, landscapes, and moments of life.
+            </p>
+          </div>
+
+          <div>
+            <a href="../index.html" class="button">Explore Hamsa Nomads</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+
+        <div class="footer-col">
+          <h2 class="footer-logo">HAMSA NOMADS</h2>
+          <p class="footer-text">
+            Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
+            beautiful places, and warm community.
+          </p>
+
+          <div class="footer-icons" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2C9 5 7.5 8.3 7.5 12S9 19 12 22"/>
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M4 6h16v12H4z"/>
+              <path d="M4 7l8 6 8-6"/>
+            </svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="../index.html#experience">Experience</a></li>
+            <li><a href="../index.html#gallery">Gallery</a></li>
+            <li><a href="../index.html#details">More Information</a></li>
+            <li><a href="#story">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Retreat</h4>
+          <ul>
+            <li>Shavuos in Vermont</li>
+            <li>Private home</li>
+            <li>Kosher food</li>
+            <li>Minyan & Eiruv</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>hamsanomads.com</li>
+            <li>Text: 347-988-8869</li>
+            <li><a href="../Forms/apply.html">Apply Now</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Hamsa Nomads — All rights reserved
+      </div>
+    </footer>
   </div>
 
   <script>
     (() => {
       const drawPaths = [
-        document.getElementById('hamsaBack'),
-        document.getElementById('hamsaFront'),
-        document.getElementById('lineBack'),
-        document.getElementById('lineFront')
-      ].filter(Boolean);
-
-      const slicePaths = [
-        document.getElementById('sliceBack'),
-        document.getElementById('sliceFront')
+        document.getElementById('lineBack')
       ].filter(Boolean);
 
       function updateLine() {
@@ -680,13 +903,6 @@
           const len = path.getTotalLength();
           path.style.strokeDasharray = len;
           path.style.strokeDashoffset = len * (1 - Math.min(progress * 1.06, 1));
-        });
-
-        const sliceProgress = Math.max(0, (progress - 0.82) / 0.18);
-        slicePaths.forEach((path) => {
-          const len = path.getTotalLength();
-          path.style.strokeDasharray = len;
-          path.style.strokeDashoffset = len * (1 - sliceProgress);
         });
       }
 
