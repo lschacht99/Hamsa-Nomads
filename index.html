@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Hamsa Nomads — Shavuos in Vermont</title>
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
   <style>
     :root {
       --bg: #f7f3ea;
@@ -20,6 +24,7 @@
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -356,7 +361,7 @@
     }
 
     .section {
-      padding: 28px 0;
+      padding: 34px 0;
     }
 
     .section-header {
@@ -379,20 +384,15 @@
     }
 
     .value-grid,
-    .feature-grid,
-    .gallery-grid,
-    .footer-grid {
+    .gallery-grid {
       display: grid;
       gap: 18px;
     }
 
     .value-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .feature-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
     .gallery-grid { grid-template-columns: 1.15fr 0.85fr 0.85fr; }
-    .footer-grid { grid-template-columns: 1.05fr 0.95fr; }
 
-    .card,
-    .footer-card {
+    .card {
       padding: 24px;
       position: relative;
       z-index: 2;
@@ -405,9 +405,7 @@
     }
 
     .card p,
-    .feature-item,
-    .footer-card p,
-    .footer-note,
+    .footer-text,
     li {
       color: var(--muted);
     }
@@ -427,9 +425,60 @@
 
     .gallery-card.tall { grid-row: span 2; }
 
-    .feature-item {
-      padding: 18px 20px;
-      font-size: 1rem;
+    .liquid-info {
+      padding: 26px;
+      background:
+        linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.90)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
+      color: #fff;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow:
+        0 22px 60px rgba(20, 45, 35, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+
+    .liquid-item {
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .liquid-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.14);
+      color: #e0ae43;
+      margin-bottom: 14px;
+    }
+
+    .liquid-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .liquid-item h3 {
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .liquid-item p {
+      color: rgba(255,255,255,0.78);
+      font-size: 0.94rem;
     }
 
     .promise-bar {
@@ -449,43 +498,102 @@
       font-style: italic;
     }
 
-    footer {
-      padding: 30px 0 60px;
+    .footer {
+      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
+      color: #e8e6df;
+      padding: 60px 20px 30px;
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
     }
 
-    .footer-card h3 {
-      font-size: 1.8rem;
-      color: var(--forest);
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-family: Georgia, serif;
+      letter-spacing: 0.2em;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #cfcac1;
+      line-height: 1.6;
+      max-width: 340px;
+    }
+
+    .footer-icons {
+      margin-top: 20px;
+      display: flex;
+      gap: 14px;
+      color: #cfcac1;
+    }
+
+    .footer-icons svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      margin: 0 0 14px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col li {
       margin-bottom: 10px;
+      font-size: 14px;
+      color: #cfcac1;
     }
 
-    .footer-note {
-      margin-top: 18px;
-      font-size: 0.94rem;
+    .footer-col a {
+      color: #cfcac1;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: white;
     }
 
     .footer-bottom {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #a9a49a;
     }
 
     @media (max-width: 1080px) {
       .value-grid,
-      .feature-grid,
-      .footer-grid,
       .gallery-grid,
-      .hero-bottom-card {
+      .hero-bottom-card,
+      .liquid-info,
+      .footer-container {
         grid-template-columns: 1fr 1fr;
       }
 
       .gallery-grid > :first-child,
-      .hero-bottom-card > :first-child,
-      .footer-grid > :first-child {
+      .hero-bottom-card > :first-child {
         grid-column: 1 / -1;
       }
 
@@ -493,9 +601,7 @@
     }
 
     @media (max-width: 980px) {
-      .nav {
-        gap: 18px;
-      }
+      .nav { gap: 18px; }
 
       .brand-logo {
         width: 46px;
@@ -526,9 +632,7 @@
         padding: 12px 0;
       }
 
-      .brand {
-        justify-content: flex-start;
-      }
+      .brand { justify-content: flex-start; }
 
       .nav-links {
         width: 100%;
@@ -537,19 +641,14 @@
         flex-wrap: wrap;
       }
 
-      .hero-wrap {
-        min-height: 760px;
-      }
-
-      .hero-copy {
-        padding-top: 22px;
-      }
+      .hero-wrap { min-height: 760px; }
+      .hero-copy { padding-top: 22px; }
 
       .hero-bottom-card,
       .value-grid,
-      .feature-grid,
       .gallery-grid,
-      .footer-grid {
+      .liquid-info,
+      .footer-container {
         grid-template-columns: 1fr;
       }
 
@@ -560,6 +659,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="site-shell">
     <div class="line-overlay" aria-hidden="true">
@@ -586,7 +686,7 @@
         <nav class="nav-links">
           <a href="#experience">Experience</a>
           <a href="#gallery">Gallery</a>
-          <a href="#details">Details</a>
+          <a href="#details">More Information</a>
           <a href="about-us/about-us.html">About Hamsa Nomads</a>
           <a href="Forms/apply.html" class="button">Apply Now</a>
         </nav>
@@ -639,24 +739,26 @@
         <div class="container">
           <div class="section-header">
             <div>
-              <div class="eyebrow" style="color: var(--gold);">A meaningful Yom Tov atmosphere</div>
-              <h2>Thoughtfully curated, not overprogrammed.</h2>
+              <div class="eyebrow" style="color: var(--gold);">What is included</div>
+              <h2>The retreat experience</h2>
             </div>
-            <p>A retreat designed to feel peaceful, warm, and genuinely held — with shared meals, a welcoming crowd, inspiring Yom Tov energy, and enough space for both connection and rest.</p>
+            <p>A warm Shavuos retreat with meaningful programming, relaxed social time, meals together, and space to enjoy the Vermont setting.</p>
           </div>
 
           <div class="value-grid">
             <article class="card glass">
-              <h3>Thoughtfully Chosen Location</h3>
-              <p>A private Vermont home with mountain views, room to gather, and the sense of being tucked away from everyday life.</p>
+              <h3>Thursday night learning</h3>
+              <p>Arrive, settle in, meet the group, and ease into the retreat with a relaxed learning night and warm opening atmosphere.</p>
             </article>
+
             <article class="card glass">
-              <h3>Meaningful Connections</h3>
-              <p>A curated group of like-minded guests and a welcoming, relaxed atmosphere that makes meeting people feel natural.</p>
+              <h3>Shabbos & Yom Tov meals</h3>
+              <p>Shared kosher meals, meaningful conversation, singing, divrei Torah, and a calm Shabbos and Yom Tov atmosphere.</p>
             </article>
+
             <article class="card glass">
-              <h3>Rest, Recharge &amp; Enjoy</h3>
-              <p>The right balance of inspiration, downtime, nature, and comfort — so the weekend feels both grounding and genuinely enjoyable.</p>
+              <h3>Games & connection</h3>
+              <p>Board games, casual hangouts, discussion groups, and unstructured time to connect naturally with other guests.</p>
             </article>
           </div>
         </div>
@@ -696,21 +798,44 @@
         <div class="container">
           <div class="section-header">
             <div>
-              <div class="eyebrow" style="color: var(--gold);">What to expect</div>
-              <h2>Everything people want to know, kept clean.</h2>
+              <div class="eyebrow" style="color: var(--gold);">More information</div>
+              <h2>Weekend rhythm</h2>
             </div>
-            <p>A beautiful private home, a warm Shabbos and Yom Tov atmosphere, kosher food, meaningful company, and the kind of weekend that feels both uplifting and deeply relaxing.</p>
+            <p>The weekend is designed to feel full but not overwhelming — a balance of Yom Tov, rest, connection, and the beauty of Vermont.</p>
           </div>
 
-          <div class="feature-grid">
-            <div class="feature-item glass">Private home &amp; mountain views</div>
-            <div class="feature-item glass">Camping options available</div>
-            <div class="feature-item glass">Game room</div>
-            <div class="feature-item glass">Hot tub</div>
-            <div class="feature-item glass">Kosher food</div>
-            <div class="feature-item glass">Eiruv</div>
-            <div class="feature-item glass">Minyan</div>
-            <div class="feature-item glass">Shabbos &amp; Yom Tov atmosphere</div>
+          <div class="liquid-info glass">
+            <div class="liquid-item">
+              <div class="liquid-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 3v18M5 12h14M7 7l10 10M17 7L7 17"/></svg>
+              </div>
+              <h3>Thursday → Friday</h3>
+              <p>Arrival, settling in, opening learning night, relaxed introductions, and preparing for Shabbos together.</p>
+            </div>
+
+            <div class="liquid-item">
+              <div class="liquid-icon">
+                <svg viewBox="0 0 24 24"><path d="M18 15.5A7 7 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5z"/></svg>
+              </div>
+              <h3>Shabbos</h3>
+              <p>Meals, davening, discussions, rest, games, and time to enjoy the group in a slower, meaningful setting.</p>
+            </div>
+
+            <div class="liquid-item">
+              <div class="liquid-icon">
+                <svg viewBox="0 0 24 24"><path d="M3 20h18L12 4 3 20zM12 4l-2 16M12 4l4 16"/></svg>
+              </div>
+              <h3>Sunday hike</h3>
+              <p>A Vermont nature outing or hike, plus open time for the hot tub, game room, conversations, and relaxing on the property.</p>
+            </div>
+
+            <div class="liquid-item">
+              <div class="liquid-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2l2.5 7H22l-6 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2 9h7.5L12 2z"/></svg>
+              </div>
+              <h3>Included atmosphere</h3>
+              <p>Kosher food, minyan, eiruv, Shabbos and Yom Tov environment, private home, mountain views, and curated group energy.</p>
+            </div>
           </div>
 
           <div class="promise-bar glass">
@@ -721,28 +846,53 @@
       </section>
     </main>
 
-    <footer id="contact">
-      <div class="container footer-grid">
-        <article class="footer-card glass">
-          <h3>Retreat details</h3>
-          <p>Shavuos in Vermont is designed for Jewish young adults and couples looking for a meaningful Yom Tov in a beautiful, relaxed setting with good people, good food, and room to slow down.</p>
-          <p class="footer-note">Private home • Mountain views • Kosher food • Eiruv • Minyan • Hot tub • Game room • Camping options</p>
-        </article>
-
-        <article class="footer-card glass">
-          <h3>Contact</h3>
-          <p>Questions before applying? Reach out and we’ll be happy to share more details about the retreat, accommodations, and atmosphere.</p>
-          <p class="footer-note">
-            hamsanomads.com<br>
-            Text: 347-988-8869<br>
-            <a href="about-us/about-us.html">About Hamsa Nomads</a>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h2 class="footer-logo">HAMSA NOMADS</h2>
+          <p class="footer-text">
+            Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
+            beautiful places, and warm community.
           </p>
-        </article>
+          <div class="footer-icons" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2C9 5 7.5 8.3 7.5 12S9 19 12 22"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#details">More Information</a></li>
+            <li><a href="about-us/about-us.html">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Retreat</h4>
+          <ul>
+            <li>Shavuos in Vermont</li>
+            <li>Private home</li>
+            <li>Kosher food</li>
+            <li>Minyan & Eiruv</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>hamsanomads.com</li>
+            <li>Text: 347-988-8869</li>
+            <li><a href="Forms/apply.html">Apply Now</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="container footer-bottom">
-        <div>© Hamsa Nomads</div>
-        <div><a href="#top">Back to top</a></div>
+      <div class="footer-bottom">
+        © 2026 Hamsa Nomads — All rights reserved
       </div>
     </footer>
   </div>
