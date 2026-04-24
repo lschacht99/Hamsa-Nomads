@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Hamsa Nomads — Upcoming Trips</title>
+  <meta name="description" content="Upcoming Hamsa Nomads trips, city weekends, holiday retreats, playful escapes, and kosher travel experiences with community." />
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+  <meta property="og:title" content="Hamsa Nomads — Upcoming Trips" />
+  <meta property="og:description" content="Discover upcoming Hamsa Nomads trips and join the interest list for future kosher travel experiences." />
+  <meta property="og:image" content="https://www.hamsanomads.com/Image/trips/boston.png" />
+  <meta property="og:url" content="https://www.hamsanomads.com/trips-page/trips.html" />
+  <meta property="og:type" content="website" />
 
   <style>
     :root {
@@ -93,10 +100,6 @@
       border-radius: var(--radius);
     }
 
-    /* =========================
-       Moving imperfect line
-    ========================= */
-
     .line-overlay {
       position: fixed;
       inset: 0;
@@ -112,8 +115,7 @@
     }
 
     .path-main,
-    .path-slice,
-    .path-hamsa {
+    .path-slice {
       fill: none;
       stroke: var(--line);
       stroke-linecap: round;
@@ -121,13 +123,11 @@
       vector-effect: non-scaling-stroke;
     }
 
-    .path-main.back,
-    .path-hamsa.back {
+    .path-main.back {
       stroke-width: 3.2;
     }
 
-    .path-main.front,
-    .path-hamsa.front {
+    .path-main.front {
       stroke-width: 1.5;
     }
 
@@ -138,10 +138,6 @@
     .path-slice.front {
       stroke-width: 1.3;
     }
-
-    /* =========================
-       Header
-    ========================= */
 
     .site-header {
       position: sticky;
@@ -257,10 +253,6 @@
       box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
     }
 
-    /* =========================
-       Trips Hero
-    ========================= */
-
     .trips-hero {
       position: relative;
       z-index: 2;
@@ -283,10 +275,10 @@
     .trips-hero-bg {
       position: absolute;
       inset: 0;
-      opacity: 0.28;
+      opacity: 0.32;
       background:
         linear-gradient(90deg, rgba(21, 17, 12, 0.52), rgba(21, 17, 12, 0.12)),
-        var(--hero-image, url('./Image/trips/boston.png'));
+        url("../Image/trips/boston.png");
       background-size: cover;
       background-position: center;
       transform: scale(1.02);
@@ -412,10 +404,6 @@
       border: 1px solid rgba(39,69,55,0.09);
     }
 
-    /* =========================
-       Trips Page Intro
-    ========================= */
-
     .page-intro {
       position: relative;
       z-index: 2;
@@ -464,155 +452,71 @@
       line-height: 1.7;
     }
 
-    /* =========================
-       Full Trip Slider
-    ========================= */
-
     .trips-section {
       position: relative;
       z-index: 2;
       padding: 44px 0 70px;
     }
 
-    .slider-shell {
-      position: relative;
-      padding: 28px;
-      border-radius: 34px;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
-        rgba(255, 252, 246, 0.34);
-      border: 1px solid rgba(255,255,255,0.48);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
     }
 
-    .slider-shell-line {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .slider-shell-line svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .slider-shell-line path {
-      fill: none;
-      stroke: rgba(31, 42, 34, 0.14);
-      stroke-width: 2.1;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 8 12;
-    }
-
-    .slider-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .slider-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .slider-hint {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .slider-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .slider-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 1px solid rgba(38, 71, 52, 0.15);
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-      color: var(--forest);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.22s ease;
-    }
-
-    .slider-btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.72);
-    }
-
-    .slider-btn:disabled {
-      opacity: 0.45;
-      cursor: default;
-      transform: none;
-    }
-
-    .trip-slider {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 10px 11vw 18px 2px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .trip-slider::-webkit-scrollbar {
-      display: none;
-    }
-
-    .trip-slide {
-      scroll-snap-align: start;
-      flex: 0 0 min(86vw, 520px);
-    }
-
-    .trip-card {
+    .bento-card {
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 720px;
-      border-radius: 30px;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.52);
-      border: 1px solid rgba(255, 255, 255, 0.46);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(255, 255, 255, 0.48);
       box-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      min-height: 100%;
     }
 
-    .trip-image {
+    .bento-featured {
+      grid-column: span 2;
+      min-height: 690px;
+    }
+
+    .bento-medium {
+      min-height: 690px;
+    }
+
+    .bento-wide {
+      grid-column: 1 / -1;
+    }
+
+    .bento-image {
       position: relative;
-      min-height: 340px;
-      background:
-        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
-        var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
+      min-height: 320px;
       background-size: cover;
       background-position: center;
       overflow: hidden;
     }
 
-    .trip-image::after {
+    .bento-featured .bento-image {
+      min-height: 360px;
+    }
+
+    .bento-image.small {
+      min-height: 250px;
+    }
+
+    .bento-image::after {
       content: "";
       position: absolute;
       inset: auto 0 0;
-      height: 48%;
-      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.25));
+      height: 45%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.22));
     }
 
-    .trip-badge {
+    .bento-badge {
       position: absolute;
       top: 18px;
       left: 18px;
@@ -629,58 +533,42 @@
       -webkit-backdrop-filter: blur(12px);
     }
 
-    .image-note {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      z-index: 2;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.74);
-      color: var(--ink);
-      font-size: 0.82rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .trip-body {
+    .bento-content {
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 28px 26px 26px;
+      padding: 26px;
     }
 
-    .trip-meta {
+    .bento-meta {
       font-size: 0.92rem;
       color: var(--muted);
       margin-bottom: 12px;
     }
 
-    .trip-name {
-      margin: 0 0 12px;
-      font-size: clamp(1.7rem, 2.6vw, 2.25rem);
+    .bento-title {
+      font-size: clamp(1.55rem, 2vw, 2.3rem);
       line-height: 1.08;
-      letter-spacing: -0.03em;
       color: var(--ink);
-      font-weight: 500;
+      margin-bottom: 12px;
     }
 
-    .trip-copy {
-      margin: 0 0 20px;
+    .bento-text {
       color: var(--muted);
       line-height: 1.7;
       font-size: 1rem;
+      margin-bottom: 18px;
     }
 
-    .trip-bullets {
+    .bento-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 26px;
+      margin: 0 0 24px;
       display: grid;
       gap: 10px;
     }
 
-    .trip-bullets li {
+    .bento-list li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
@@ -689,7 +577,7 @@
       line-height: 1.55;
     }
 
-    .trip-bullets li::before {
+    .bento-list li::before {
       content: "•";
       color: var(--soft-gold);
       font-size: 1.15rem;
@@ -697,7 +585,7 @@
       margin-top: 2px;
     }
 
-    .trip-footer {
+    .bento-footer {
       margin-top: auto;
       display: flex;
       align-items: center;
@@ -706,7 +594,7 @@
       flex-wrap: wrap;
     }
 
-    .trip-status {
+    .bento-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -715,7 +603,7 @@
       font-weight: 600;
     }
 
-    .trip-status-dot {
+    .bento-status-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
@@ -743,44 +631,7 @@
       box-shadow: 0 18px 34px rgba(38, 71, 52, 0.26);
     }
 
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .slider-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      border: 0;
-      background: rgba(38, 71, 52, 0.22);
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .slider-dot.is-active {
-      width: 28px;
-      background: var(--forest);
-    }
-
-    /* =========================
-       Bottom CTA
-    ========================= */
-
-    .bottom-cta {
-      position: relative;
-      z-index: 2;
-      padding: 12px 0 70px;
-    }
-
-    .bottom-cta-card {
-      padding: clamp(26px, 4vw, 44px);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
+    .bento-cta-card {
       background:
         linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.90)),
         radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
@@ -791,41 +642,42 @@
         inset 0 1px 0 rgba(255,255,255,0.22);
     }
 
-    .bottom-cta-card h2 {
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1;
-      margin-bottom: 12px;
-    }
-
-    .bottom-cta-card p {
+    .bento-cta-card .bento-meta,
+    .bento-cta-card .bento-text {
       color: rgba(255,255,255,0.78);
-      font-size: 1.02rem;
-      line-height: 1.7;
-      max-width: 54ch;
     }
 
-    .bottom-cta-actions {
+    .bento-cta-card .bento-title {
+      color: #fff;
+    }
+
+    .bento-cta-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      padding: 28px;
+      min-height: 220px;
+    }
+
+    .bento-cta-actions {
       display: flex;
       justify-content: flex-end;
       gap: 12px;
       flex-wrap: wrap;
     }
 
-    .bottom-cta .button {
+    .bento-cta-card .button {
       background: rgba(255,255,255,0.92);
       color: var(--forest);
       border-color: rgba(255,255,255,0.30);
     }
 
-    .bottom-cta .button-secondary {
+    .bento-cta-card .button-secondary {
       background: rgba(255,255,255,0.12);
-      color: white;
+      color: #fff;
       border-color: rgba(255,255,255,0.24);
     }
-
-    /* =========================
-       Popup
-    ========================= */
 
     .popup-overlay {
       position: fixed;
@@ -957,10 +809,6 @@
       color: #8b2f25;
     }
 
-    /* =========================
-       Floating Share
-    ========================= */
-
     .floating-share {
       position: fixed;
       right: 22px;
@@ -1031,10 +879,6 @@
       background: rgba(255, 255, 255, 0.75);
       transform: translateX(-2px);
     }
-
-    /* =========================
-       Footer
-    ========================= */
 
     .footer {
       background: linear-gradient(180deg, #1c3b2f, #0f2a22);
@@ -1121,29 +965,31 @@
       color: #a9a49a;
     }
 
-    /* =========================
-       Responsive
-    ========================= */
-
-    @media (min-width: 900px) {
-      .trip-slide {
-        flex: 0 0 min(58vw, 560px);
+    @media (max-width: 1100px) {
+      .bento-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .trip-slider {
-        padding-right: 16vw;
+      .bento-featured {
+        grid-column: 1 / -1;
+        min-height: 640px;
       }
-    }
 
-    @media (min-width: 1200px) {
-      .trip-slide {
-        flex: 0 0 min(47vw, 580px);
+      .bento-medium {
+        min-height: 620px;
+      }
+
+      .bento-cta-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-cta-actions {
+        justify-content: flex-start;
       }
     }
 
     @media (max-width: 1080px) {
       .trips-hero-inner,
-      .bottom-cta-card,
       .footer-container {
         grid-template-columns: 1fr 1fr;
       }
@@ -1203,7 +1049,6 @@
       }
 
       .trips-hero-inner,
-      .bottom-cta-card,
       .footer-container {
         grid-template-columns: 1fr;
       }
@@ -1221,37 +1066,27 @@
         align-items: flex-start;
       }
 
-      .slider-shell {
-        padding: 18px;
+      .bento-grid {
+        grid-template-columns: 1fr;
       }
 
-      .slider-topbar {
-        align-items: flex-start;
-        flex-direction: column;
+      .bento-featured,
+      .bento-medium,
+      .bento-wide {
+        grid-column: auto;
+        min-height: auto;
       }
 
-      .trip-card {
-        min-height: 650px;
+      .bento-image,
+      .bento-featured .bento-image {
+        min-height: 250px;
       }
 
-      .trip-body {
-        padding: 22px 20px 22px;
+      .bento-content {
+        padding: 22px 20px;
       }
 
-      .trip-image {
-        min-height: 255px;
-      }
-
-      .trip-slider {
-        gap: 18px;
-        padding-right: 14vw;
-      }
-
-      .trip-slide {
-        flex: 0 0 min(88vw, 390px);
-      }
-
-      .trip-footer {
+      .bento-footer {
         flex-direction: column;
         align-items: stretch;
       }
@@ -1261,16 +1096,16 @@
         text-align: center;
       }
 
+      .bento-cta-inner {
+        padding: 24px 20px;
+      }
+
       .popup-row {
         grid-template-columns: 1fr;
       }
 
       .popup-bubble {
         padding: 28px 22px 24px;
-      }
-
-      .bottom-cta-actions {
-        justify-content: flex-start;
       }
 
       .floating-share {
@@ -1289,7 +1124,6 @@
 <body>
   <div class="site-shell">
 
-    <!-- Moving Background Line -->
     <div class="line-overlay" aria-hidden="true">
       <svg viewBox="0 0 1400 1800" preserveAspectRatio="none">
         <path
@@ -1316,11 +1150,10 @@
       </svg>
     </div>
 
-    <!-- Header -->
     <header class="site-header">
       <div class="container nav">
-        <a class="brand" href="./index.html" aria-label="Hamsa Nomads home">
-          <img class="brand-logo" src="./logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
+        <a class="brand" href="../index.html" aria-label="Hamsa Nomads home">
+          <img class="brand-logo" src="../logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
           <div class="brand-text">
             <div class="brand-name">Hamsa Nomads</div>
             <div class="brand-sub">Kosher travel experiences</div>
@@ -1328,21 +1161,20 @@
         </a>
 
         <nav class="nav-links" aria-label="Main navigation">
-          <a href="./index.html">Home</a>
-          <a href="./about-us/about-us.html">About</a>
-          <a href="./trips.html">Trips</a>
-          <a href="./Forms/apply.html">Apply</a>
-          <a class="button" href="./Forms/apply.html">Apply Now</a>
+          <a href="../index.html">Home</a>
+          <a href="../about-us/about-us.html">About</a>
+          <a href="trips.html">Trips</a>
+          <a href="../Forms/apply.html">Apply</a>
+          <a class="button" href="../Forms/apply.html">Apply Now</a>
         </nav>
       </div>
     </header>
 
     <main>
 
-      <!-- Hero -->
       <section class="trips-hero">
         <div class="container">
-          <div class="trips-hero-wrap" style="--hero-image: url('./Image/trips/boston.png');">
+          <div class="trips-hero-wrap">
             <div class="trips-hero-bg"></div>
 
             <div class="trips-hero-line" aria-hidden="true">
@@ -1388,7 +1220,6 @@
         </div>
       </section>
 
-      <!-- Intro -->
       <section class="page-intro">
         <div class="container">
           <div class="section-header">
@@ -1420,194 +1251,132 @@
               <h3>Built around place</h3>
               <p>
                 Boston feels different from a farm. A Renaissance Fair feels different from Vermont.
-                Each trip should have its own visual world and personality.
+                Each trip has its own visual world and personality.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Trips Slider -->
       <section class="trips-section" id="trip-list">
         <div class="container">
           <div class="section-header">
             <h2>Upcoming possibilities</h2>
             <p>
-              Slide through the next trip ideas. Each one has its own interest list,
-              so people can choose what actually speaks to them.
+              A small map of where Hamsa Nomads might go next — playful city weekends,
+              immersive escapes, and holiday experiences with meaning.
             </p>
           </div>
 
-          <div class="slider-shell">
-            <div class="slider-shell-line" aria-hidden="true">
-              <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
-                <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
-                <path d="M -80 540 C 130 500, 170 640, 340 620 S 630 520, 790 600 S 1030 730, 1180 660 S 1320 600, 1490 700" />
-              </svg>
-            </div>
+          <div class="bento-grid">
 
-            <div class="slider-content">
-              <div class="slider-topbar">
-                <div class="slider-hint">Swipe or tap through the next chapters.</div>
+            <article class="bento-card bento-featured">
+              <div class="bento-image" style="background-image: url('../Image/trips/boston.png');">
+                <span class="bento-badge">Featured trip</span>
+              </div>
 
-                <div class="slider-controls">
-                  <button class="slider-btn" id="tripsPrev" aria-label="Previous trip">←</button>
-                  <button class="slider-btn" id="tripsNext" aria-label="Next trip">→</button>
+              <div class="bento-content">
+                <div class="bento-meta">July 4 Weekend • Boston, Massachusetts</div>
+                <h3 class="bento-title">July 4 in Boston</h3>
+                <p class="bento-text">
+                  Fireworks, harbor air, historic streets, and a summer city weekend
+                  with Jewish warmth woven in.
+                </p>
+
+                <ul class="bento-list">
+                  <li>Boston energy with a curated, social Hamsa Nomads feel</li>
+                  <li>Perfect for city, summer, and community</li>
+                  <li>An iconic July kickoff with classic American atmosphere</li>
+                </ul>
+
+                <div class="bento-footer">
+                  <div class="bento-status">
+                    <span class="bento-status-dot"></span>
+                    Planning in progress
+                  </div>
+                  <button class="trip-cta" type="button" onclick="openTripPopup('Boston July 4')">
+                    Join the interest list
+                  </button>
                 </div>
               </div>
+            </article>
 
-              <div class="trip-slider" id="tripSlider">
-
-                <!-- CARD 1 -->
-                <article class="trip-slide">
-                  <div class="trip-card">
-                    <div
-                      class="trip-image"
-                      style="--trip-image: url('./Image/trips/boston.png');"
-                    >
-                      <span class="trip-badge">Patriotic and camp</span>
-                      <span class="image-note">Join us</span>
-                    </div>
-
-                    <div class="trip-body">
-                      <div class="trip-meta">July 4 Weekend • Boston, Massachusetts</div>
-                      <h3 class="trip-name">July 4 in Boston</h3>
-                      <p class="trip-copy">
-                        Fireworks, harbor air, historic streets, and a summer city weekend
-                        with Jewish warmth woven in.
-                      </p>
-
-                      <ul class="trip-bullets">
-                        <li>Boston energy with a curated, social Hamsa Nomads feel</li>
-                        <li>Perfect for city, summer, and community</li>
-                        <li>A July kickoff trip with iconic American atmosphere</li>
-                      </ul>
-
-                      <div class="trip-footer">
-                        <div class="trip-status">
-                          <span class="trip-status-dot"></span>
-                          Planning in progress
-                        </div>
-                        <button class="trip-cta" data-trip="Boston July 4">
-                          Join the interest list
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-
-                <!-- CARD 2 -->
-                <article class="trip-slide">
-                  <div class="trip-card">
-                    <div
-                      class="trip-image"
-                      style="--trip-image: url('./Image/trips/pennsylvania-renaissance.png');"
-                    >
-                      <span class="trip-badge">Playful August Weekend</span>
-                      <span class="image-note">History, legacy...</span>
-                    </div>
-
-                    <div class="trip-body">
-                      <div class="trip-meta">August • Pennsylvania</div>
-                      <h3 class="trip-name">Renaissance Fair in Pennsylvania</h3>
-                      <p class="trip-copy">
-                        A quirky, costume-friendly, countryside weekend built around the fair —
-                        playful, memorable, and very not ordinary.
-                      </p>
-
-                      <ul class="trip-bullets">
-                        <li>A lighter, fun, social summer experience</li>
-                        <li>Whimsical fair energy with Shabbos and community</li>
-                        <li>Original, visual, and easy to share</li>
-                      </ul>
-
-                      <div class="trip-footer">
-                        <div class="trip-status">
-                          <span class="trip-status-dot"></span>
-                          Planning in progress
-                        </div>
-                        <button class="trip-cta" data-trip="Pennsylvania Renaissance Fair">
-                          Join the Fair list
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-
-                <!-- CARD 3 -->
-                <article class="trip-slide">
-                  <div class="trip-card">
-                    <div
-                      class="trip-image"
-                      style="--trip-image: url('./Image/trips/rosh-hashanah-farm.png');"
-                    >
-                      <span class="trip-badge">High Holiday Retreat</span>
-                      <span class="image-note">The llamas are waiting...</span>
-                    </div>
-
-                    <div class="trip-body">
-                      <div class="trip-meta">Rosh Hashanah • Farm Retreat</div>
-                      <h3 class="trip-name">Rosh Hashanah on the Farm</h3>
-                      <p class="trip-copy">
-                        Open fields, apples, honey, candlelit meals, nature, and a softer
-                        beginning to the new year.
-                      </p>
-
-                      <ul class="trip-bullets">
-                        <li>The farm concept feels especially beautiful in the fall</li>
-                        <li>Grounding and emotionally rich for the High Holidays</li>
-                        <li>A slower, warmer way to begin the year</li>
-                      </ul>
-
-                      <div class="trip-footer">
-                        <div class="trip-status">
-                          <span class="trip-status-dot"></span>
-                          Coming soon
-                        </div>
-                        <button class="trip-cta" data-trip="Rosh Hashanah Farm">
-                          Join the farm list
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </article>
+            <article class="bento-card bento-medium">
+              <div class="bento-image small" style="background-image: url('../Image/trips/pennsylvania-renaissance.png');">
+                <span class="bento-badge">Playful August Weekend</span>
               </div>
 
-              <div class="slider-dots" id="tripDots">
-                <button class="slider-dot is-active" aria-label="Go to slide 1"></button>
-                <button class="slider-dot" aria-label="Go to slide 2"></button>
-                <button class="slider-dot" aria-label="Go to slide 3"></button>
+              <div class="bento-content">
+                <div class="bento-meta">August • Pennsylvania</div>
+                <h3 class="bento-title">Renaissance Fair in Pennsylvania</h3>
+                <p class="bento-text">
+                  A quirky, costume-friendly countryside weekend built around the fair —
+                  playful, memorable, and very not ordinary.
+                </p>
+
+                <div class="bento-footer">
+                  <div class="bento-status">
+                    <span class="bento-status-dot"></span>
+                    Planning in progress
+                  </div>
+                  <button class="trip-cta" type="button" onclick="openTripPopup('Pennsylvania Renaissance Fair')">
+                    Join the Fair list
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </article>
 
-      <!-- Bottom CTA -->
-      <section class="bottom-cta">
-        <div class="container">
-          <div class="bottom-cta-card glass">
-            <div>
-              <h2>Want to hear when trips open?</h2>
-              <p>
-                Join the general interest list and we’ll send updates as each trip becomes real —
-                dates, prices, room options, and the small details that make it feel like Hamsa Nomads.
-              </p>
-            </div>
+            <article class="bento-card bento-medium">
+              <div class="bento-image small" style="background-image: url('../Image/trips/rosh-hashanah-farm.png');">
+                <span class="bento-badge">High Holiday Retreat</span>
+              </div>
 
-            <div class="bottom-cta-actions">
-              <button class="button" type="button" onclick="openTripPopup('General Trips Interest')">
-                Join interest list
-              </button>
-              <a class="button-secondary" href="Forms/apply.html">Apply for Vermont</a>
-            </div>
+              <div class="bento-content">
+                <div class="bento-meta">Rosh Hashanah • Farm Retreat</div>
+                <h3 class="bento-title">Rosh Hashanah on the Farm</h3>
+                <p class="bento-text">
+                  Open fields, apples, honey, candlelit meals, nature, and a softer
+                  beginning to the new year.
+                </p>
+
+                <div class="bento-footer">
+                  <div class="bento-status">
+                    <span class="bento-status-dot"></span>
+                    Coming soon
+                  </div>
+                  <button class="trip-cta" type="button" onclick="openTripPopup('Rosh Hashanah Farm')">
+                    Join the farm list
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="bento-card bento-wide bento-cta-card">
+              <div class="bento-cta-inner">
+                <div>
+                  <div class="bento-meta">General interest list</div>
+                  <h3 class="bento-title">Not sure which one yet?</h3>
+                  <p class="bento-text">
+                    Join the main Hamsa Nomads interest list and we’ll let you know
+                    when future trips open, with dates, details, and first access.
+                  </p>
+                </div>
+
+                <div class="bento-cta-actions">
+                  <button class="button" type="button" onclick="openTripPopup('General Trips Interest')">
+                    Join interest list
+                  </button>
+                  <a class="button-secondary" href="../Forms/apply.html">Apply for Vermont</a>
+                </div>
+              </div>
+            </article>
+
           </div>
         </div>
       </section>
 
     </main>
 
-    <!-- Popup Form -->
     <div class="popup-overlay" id="tripPopup">
       <div class="popup-bubble">
         <button class="popup-close" type="button" id="popupClose" aria-label="Close popup">×</button>
@@ -1638,7 +1407,6 @@
       </div>
     </div>
 
-    <!-- Floating Share Button -->
     <div class="floating-share">
       <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
         Share around you
@@ -1652,7 +1420,6 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -1671,10 +1438,10 @@
         <div class="footer-col">
           <h4>Explore</h4>
           <ul>
-            <li><a href="./index.html#experience">Experience</a></li>
-            <li><a href="./index.html#gallery">Gallery</a></li>
-            <li><a href="./index.html#details">More Information</a></li>
-            <li><a href="./about-us/about-us.html">About</a></li>
+            <li><a href="../index.html#experience">Experience</a></li>
+            <li><a href="../index.html#gallery">Gallery</a></li>
+            <li><a href="../index.html#details">More Information</a></li>
+            <li><a href="../about-us/about-us.html">About</a></li>
           </ul>
         </div>
 
@@ -1693,7 +1460,7 @@
           <ul>
             <li>hamsanomads.com</li>
             <li>Text: 347-988-8869</li>
-            <li><a href="Forms/apply.html">Apply Now</a></li>
+            <li><a href="../Forms/apply.html">Apply Now</a></li>
           </ul>
         </div>
       </div>
@@ -1708,86 +1475,6 @@
     (function () {
       const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
 
-      /* Slider */
-      const slider = document.getElementById('tripSlider');
-      const slides = Array.from(slider.querySelectorAll('.trip-slide'));
-      const prevBtn = document.getElementById('tripsPrev');
-      const nextBtn = document.getElementById('tripsNext');
-      const dots = Array.from(document.querySelectorAll('#tripDots .slider-dot'));
-
-      function getGap() {
-        const styles = window.getComputedStyle(slider);
-        return parseFloat(styles.columnGap || styles.gap || 24);
-      }
-
-      function getStep() {
-        if (!slides.length) return 0;
-        return slides[0].getBoundingClientRect().width + getGap();
-      }
-
-      function getActiveIndex() {
-        const center = slider.scrollLeft + (slider.clientWidth / 2);
-        let activeIndex = 0;
-        let closestDistance = Infinity;
-
-        slides.forEach((slide, index) => {
-          const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
-          const distance = Math.abs(slideCenter - center);
-
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            activeIndex = index;
-          }
-        });
-
-        return activeIndex;
-      }
-
-      function updateSliderUI() {
-        const activeIndex = getActiveIndex();
-
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('is-active', index === activeIndex);
-        });
-
-        prevBtn.disabled = slider.scrollLeft <= 6;
-        nextBtn.disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 6;
-      }
-
-      prevBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: -getStep(), behavior: 'smooth' });
-      });
-
-      nextBtn.addEventListener('click', () => {
-        slider.scrollBy({ left: getStep(), behavior: 'smooth' });
-      });
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          slider.scrollTo({
-            left: slides[index].offsetLeft,
-            behavior: 'smooth'
-          });
-        });
-      });
-
-      let sliderTicking = false;
-
-      slider.addEventListener('scroll', () => {
-        if (!sliderTicking) {
-          window.requestAnimationFrame(() => {
-            updateSliderUI();
-            sliderTicking = false;
-          });
-          sliderTicking = true;
-        }
-      });
-
-      window.addEventListener('resize', updateSliderUI);
-      window.addEventListener('load', updateSliderUI);
-      updateSliderUI();
-
-      /* Popup */
       const popup = document.getElementById('tripPopup');
       const popupClose = document.getElementById('popupClose');
       const popupTitle = document.getElementById('popupTitle');
@@ -1850,13 +1537,6 @@
         }
       });
 
-      document.querySelectorAll('.trip-cta').forEach((button) => {
-        button.addEventListener('click', function () {
-          const tripName = this.getAttribute('data-trip');
-          window.openTripPopup(tripName);
-        });
-      });
-
       tripForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -1899,7 +1579,6 @@
         });
       });
 
-      /* Share Button */
       const shareBtn = document.getElementById("shareBtn");
       const shareOptions = document.getElementById("shareOptions");
       const copyLinkBtn = document.getElementById("copyLinkBtn");
@@ -1938,7 +1617,6 @@
         }
       });
 
-      /* Moving Line */
       const drawPaths = [
         document.getElementById('lineBack'),
         document.getElementById('lineFront')
@@ -1960,6 +1638,7 @@
         });
 
         const sliceProgress = Math.max(0, (progress - 0.82) / 0.18);
+
         slicePaths.forEach((path) => {
           const len = path.getTotalLength();
           path.style.strokeDasharray = len;
