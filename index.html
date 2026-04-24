@@ -845,7 +845,144 @@
         </div>
       </section>
     </main>
+<!-- Floating Share Button -->
+<div class="floating-share">
+  <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
+    Share
+  </button>
 
+  <div class="share-options" id="shareOptions">
+    <a id="whatsappShare" target="_blank">WhatsApp</a>
+    <a id="facebookShare" target="_blank">Facebook</a>
+    <a id="emailShare">Email</a>
+    <button id="copyLinkBtn">Copy link</button>
+  </div>
+</div>
+
+<style>
+  .floating-share {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9999;
+    font-family: inherit;
+  }
+
+  .share-main-btn {
+    border: 1px solid rgba(30, 30, 30, 0.18);
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    color: #1f1f1f;
+    padding: 13px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+    transition: all 0.25s ease;
+  }
+
+  .share-main-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .share-options {
+    position: absolute;
+    right: 0;
+    bottom: 58px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    width: 155px;
+    padding: 12px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border: 1px solid rgba(30, 30, 30, 0.12);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+  }
+
+  .share-options.open {
+    display: flex;
+  }
+
+  .share-options a,
+  .share-options button {
+    width: 100%;
+    border: none;
+    background: rgba(255, 255, 255, 0.42);
+    color: #1f1f1f;
+    text-decoration: none;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 14px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .share-options a:hover,
+  .share-options button:hover {
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateX(-2px);
+  }
+
+  @media (max-width: 600px) {
+    .floating-share {
+      right: 16px;
+      bottom: 16px;
+    }
+
+    .share-main-btn {
+      padding: 12px 16px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<script>
+  const shareBtn = document.getElementById("shareBtn");
+  const shareOptions = document.getElementById("shareOptions");
+  const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+  const pageUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+
+  document.getElementById("whatsappShare").href =
+    `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+
+  document.getElementById("facebookShare").href =
+    `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+  document.getElementById("emailShare").href =
+    `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+  shareBtn.addEventListener("click", () => {
+    shareOptions.classList.toggle("open");
+  });
+
+  copyLinkBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      copyLinkBtn.textContent = "Copied!";
+      setTimeout(() => {
+        copyLinkBtn.textContent = "Copy link";
+      }, 1600);
+    } catch (err) {
+      alert("Copy failed. Please copy the URL manually.");
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".floating-share")) {
+      shareOptions.classList.remove("open");
+    }
+  });
+</script>
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -934,5 +1071,6 @@
       updateLine();
     })();
   </script>
+  
 </body>
 </html>
