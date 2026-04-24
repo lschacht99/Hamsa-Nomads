@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Payment Confirmation | Hamsa Nomads</title>
+
+  <style>
+    :root {
+      --cream: #f7f1e8;
+      --sand: #e5d7c4;
+      --green: #21483a;
+      --green-soft: #dce9df;
+      --gold: #c89b4f;
+      --text: #1e2a24;
+      --white-glass: rgba(255, 255, 255, 0.62);
+      --border: rgba(255, 255, 255, 0.68);
+      --shadow: 0 20px 60px rgba(34, 54, 44, 0.16);
+      --error: #9b2f2f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(200, 155, 79, 0.24), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(33, 72, 58, 0.18), transparent 36%),
+        linear-gradient(135deg, #f7f1e8 0%, #efe3d3 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.45) 0 1px, transparent 1px),
+        radial-gradient(circle at 80% 70%, rgba(33,72,58,0.08) 0 1px, transparent 1px);
+      background-size: 34px 34px, 48px 48px;
+      opacity: 0.45;
+    }
+
+    .page {
+      width: min(980px, 92%);
+      margin: 0 auto;
+      padding: 34px 0 76px;
+      position: relative;
+    }
+
+    .line-art {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    .line-art svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 44px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--green);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      font-size: 14px;
+    }
+
+    .logo img {
+      width: 48px;
+      height: auto;
+      display: block;
+    }
+
+    .back-link {
+      color: var(--green);
+      text-decoration: none;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(33, 72, 58, 0.35);
+      padding-bottom: 3px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 34px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 7vw, 74px);
+      line-height: 0.95;
+      color: var(--green);
+      margin: 0 0 18px;
+      font-weight: 500;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: rgba(30, 42, 36, 0.78);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .payment-info {
+      max-width: 640px;
+      margin: 24px auto 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .payment-pill {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 22px;
+      padding: 16px 18px;
+      box-shadow: 0 12px 28px rgba(34, 54, 44, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      text-align: left;
+    }
+
+    .payment-pill span {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(33, 72, 58, 0.68);
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .payment-pill strong {
+      font-size: 21px;
+      color: var(--green);
+    }
+
+    .form-card {
+      background: var(--white-glass);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 34px;
+      padding: clamp(24px, 5vw, 46px);
+      position: relative;
+      overflow: visible;
+      z-index: 2;
+    }
+
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(33, 72, 58, 0.08);
+      border-radius: 26px;
+      pointer-events: none;
+    }
+
+    form {
+      position: relative;
+      z-index: 3;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: 0.02em;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(33, 72, 58, 0.18);
+      border-radius: 18px;
+      padding: 15px 16px;
+      background: rgba(255, 255, 255, 0.74);
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(33, 72, 58, 0.56);
+      box-shadow: 0 0 0 4px rgba(33, 72, 58, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    input[readonly] {
+      background: rgba(220, 233, 223, 0.55);
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .price-summary {
+      grid-column: 1 / -1;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(33, 72, 58, 0.12);
+      border-radius: 24px;
+      padding: 18px;
+      display: none;
+    }
+
+    .price-summary.show {
+      display: block;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 6px 0;
+      font-size: 15px;
+      color: rgba(30, 42, 36, 0.78);
+    }
+
+    .price-row.final {
+      border-top: 1px solid rgba(33, 72, 58, 0.12);
+      margin-top: 8px;
+      padding-top: 12px;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .discount-message {
+      font-size: 13px;
+      margin-top: 8px;
+      color: var(--green);
+      display: none;
+    }
+
+    .discount-message.show {
+      display: block;
+    }
+
+    .upload-box {
+      border: 1px dashed rgba(33, 72, 58, 0.35);
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .upload-note {
+      font-size: 13px;
+      color: rgba(30, 42, 36, 0.68);
+      line-height: 1.45;
+      margin-top: 8px;
+    }
+
+    .payment-method-wrap {
+      position: relative;
+    }
+
+    .payment-note {
+      font-size: 14px;
+      color: rgba(30, 42, 36, 0.72);
+      margin: 6px 0 0;
+      line-height: 1.45;
+    }
+
+    .payment-reminder {
+      position: absolute;
+      right: 12px;
+      top: -22px;
+      max-width: 300px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(33, 72, 58, 0.18);
+      box-shadow: 0 16px 38px rgba(33, 72, 58, 0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 14px 16px;
+      color: var(--green);
+      font-size: 14px;
+      line-height: 1.45;
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 20;
+    }
+
+    .payment-reminder span {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+    }
+
+    .payment-reminder.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      background: var(--green);
+      color: white;
+      border-radius: 999px;
+      padding: 16px 28px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(33, 72, 58, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(33, 72, 58, 0.28);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status {
+      font-size: 14px;
+      color: var(--green);
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    .status.error {
+      color: var(--error);
+    }
+
+    .tiny {
+      font-size: 12px;
+      color: rgba(30, 42, 36, 0.62);
+      margin-top: 22px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-info {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding-top: 24px;
+      }
+
+      .form-card {
+        border-radius: 26px;
+      }
+
+      h1 {
+        font-size: 44px;
+      }
+
+      .payment-reminder {
+        position: relative;
+        right: auto;
+        top: auto;
+        max-width: none;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="line-art" aria-hidden="true">
+    <svg viewBox="0 0 1200 900" preserveAspectRatio="none">
+      <path
+        d="M-40,120 C160,90 190,260 350,230 C520,200 530,80 710,120 C870,160 840,340 1010,315 C1120,300 1160,230 1240,250"
+        fill="none"
+        stroke="#21483a"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-dasharray="2 10"
+      />
+      <path
+        d="M90,790 C210,650 320,760 430,610 C540,465 650,600 760,450 C870,300 1010,420 1160,250"
+        fill="none"
+        stroke="#21483a"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+  </div>
+
+  <main class="page">
+    <header>
+      <a class="logo" href="../index.html">
+        <img src="../logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
+        <span>HAMSA NOMADS</span>
+      </a>
+
+      <a class="back-link" href="../index.html">Back to site</a>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Payment Confirmation</div>
+      <h1>Confirm Your Payment</h1>
+      <p>
+        Please send your payment by Zelle or Venmo, then upload a screenshot so we can match it with your reservation.
+      </p>
+
+      <div class="payment-info">
+        <div class="payment-pill">
+          <span>Zelle / Venmo</span>
+          <strong>3479888869</strong>
+        </div>
+
+        <div class="payment-pill">
+          <span>Discount Code</span>
+          <strong>Hamsa555</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <form id="paymentForm">
+        <div class="grid">
+          <div class="field">
+            <label for="firstName">First Name *</label>
+            <input id="firstName" name="firstName" type="text" required>
+          </div>
+
+          <div class="field">
+            <label for="lastName">Last Name *</label>
+            <input id="lastName" name="lastName" type="text" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone *</label>
+            <input id="phone" name="phone" type="tel" required>
+          </div>
+
+          <div class="field full">
+            <label for="reservationType">Reservation Type *</label>
+            <select id="reservationType" name="reservationType" required>
+              <option value="">Select an option</option>
+              <option value="Shared Full Bed - Shared Room" data-price="500">$500 — Shared Full Bed - Shared Room</option>
+              <option value="Bunk Bed - Shared Room" data-price="550">$550 — Bunk Bed - Shared Room</option>
+              <option value="Twin Bed - Shared Room" data-price="650">$650 — Twin Bed - Shared Room</option>
+              <option value="Couple Suite" data-price="1350">$1350 — Couple Suite</option>
+              <option value="Camping Spot" data-price="350">$350 — Camping Spot</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="discountCode">Discount Code</label>
+            <input id="discountCode" name="discountCode" type="text" placeholder="Optional">
+            <div id="discountMessage" class="discount-message">
+              10% discount applied.
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="amountPaid">Amount to Pay</label>
+            <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
+          </div>
+
+          <div id="priceSummary" class="price-summary">
+            <div class="price-row">
+              <span>Original price</span>
+              <strong id="originalPriceText">$0.00</strong>
+            </div>
+
+            <div class="price-row">
+              <span>Discount</span>
+              <strong id="discountText">$0.00</strong>
+            </div>
+
+            <div class="price-row final">
+              <span>Final amount</span>
+              <strong id="finalPriceText">$0.00</strong>
+            </div>
+          </div>
+
+          <div class="field full payment-method-wrap">
+            <label for="paymentMethod">Payment Method *</label>
+
+            <select id="paymentMethod" name="paymentMethod" required>
+              <option value="">Choose one</option>
+              <option value="Zelle">Zelle</option>
+              <option value="Venmo">Venmo</option>
+            </select>
+
+            <div id="paymentReminder" class="payment-reminder">
+              <strong>Before sending:</strong><br>
+              Did you send the payment to the correct number?<br>
+              <span>3479888869</span>
+            </div>
+
+            <p class="payment-note">
+              Please send payment by Zelle or Venmo to <strong>3479888869</strong>.
+            </p>
+          </div>
+
+          <div class="field full">
+            <label for="proofFile">Upload Screenshot / Proof of Payment *</label>
+            <div class="upload-box">
+              <input id="proofFile" name="proofFile" type="file" accept="image/*,.pdf" required>
+              <div class="upload-note">
+                Upload a screenshot, photo, or PDF showing the payment confirmation.
+              </div>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" placeholder="Anything we should know?"></textarea>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button id="submitBtn" type="submit">Submit Payment Proof</button>
+          <div id="status" class="status"></div>
+        </div>
+
+        <p class="tiny">
+          Your reservation is confirmed only after we verify your payment.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP88hAuD_90kzTImOqF4sOfyjs3KU1nDKopjBvtRUKDx3Ziw71wEsPqbx5RCZ7yOOR/exec";
+
+    const form = document.getElementById("paymentForm");
+    const statusEl = document.getElementById("status");
+    const submitBtn = document.getElementById("submitBtn");
+
+    const reservationType = document.getElementById("reservationType");
+    const discountCode = document.getElementById("discountCode");
+    const amountPaid = document.getElementById("amountPaid");
+
+    const priceSummary = document.getElementById("priceSummary");
+    const originalPriceText = document.getElementById("originalPriceText");
+    const discountText = document.getElementById("discountText");
+    const finalPriceText = document.getElementById("finalPriceText");
+    const discountMessage = document.getElementById("discountMessage");
+
+    const paymentMethod = document.getElementById("paymentMethod");
+    const paymentReminder = document.getElementById("paymentReminder");
+
+    let currentOriginalPrice = 0;
+    let currentDiscountAmount = 0;
+    let currentFinalPrice = 0;
+    let currentDiscountApplied = "No";
+
+    function formatMoney(number) {
+      return "$" + Number(number).toFixed(2);
+    }
+
+    function calculatePrice() {
+      const selectedOption = reservationType.options[reservationType.selectedIndex];
+      const basePrice = Number(selectedOption.dataset.price || 0);
+      const code = discountCode.value.trim().toLowerCase();
+
+      let discountAmount = 0;
+      let finalPrice = basePrice;
+      let discountApplied = "No";
+
+      if (basePrice > 0 && code === "hamsa555") {
+        discountAmount = basePrice * 0.10;
+        finalPrice = basePrice - discountAmount;
+        discountApplied = "Yes";
+      }
+
+      currentOriginalPrice = basePrice;
+      currentDiscountAmount = discountAmount;
+      currentFinalPrice = finalPrice;
+      currentDiscountApplied = discountApplied;
+
+      if (basePrice > 0) {
+        amountPaid.value = formatMoney(finalPrice);
+        originalPriceText.textContent = formatMoney(basePrice);
+        discountText.textContent = "-" + formatMoney(discountAmount);
+        finalPriceText.textContent = formatMoney(finalPrice);
+        priceSummary.classList.add("show");
+      } else {
+        amountPaid.value = "";
+        originalPriceText.textContent = "$0.00";
+        discountText.textContent = "$0.00";
+        finalPriceText.textContent = "$0.00";
+        priceSummary.classList.remove("show");
+      }
+
+      if (discountApplied === "Yes") {
+        discountMessage.classList.add("show");
+      } else {
+        discountMessage.classList.remove("show");
+      }
+    }
+
+    reservationType.addEventListener("change", calculatePrice);
+    discountCode.addEventListener("input", calculatePrice);
+
+    paymentMethod.addEventListener("focus", () => {
+      paymentReminder.classList.add("show");
+    });
+
+    paymentMethod.addEventListener("change", () => {
+      paymentReminder.classList.add("show");
+
+      setTimeout(() => {
+        paymentReminder.classList.remove("show");
+      }, 6500);
+    });
+
+    paymentMethod.addEventListener("blur", () => {
+      setTimeout(() => {
+        paymentReminder.classList.remove("show");
+      }, 4500);
+    });
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const base64String = reader.result.split(",")[1];
+          resolve(base64String);
+        };
+
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      statusEl.textContent = "";
+      statusEl.classList.remove("error");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+
+      try {
+        if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR")) {
+          throw new Error("Missing Google Apps Script URL. Please paste your Web App URL in the code.");
+        }
+
+        const fileInput = document.getElementById("proofFile");
+        const file = fileInput.files[0];
+
+        if (!reservationType.value) {
+          throw new Error("Please choose a reservation type.");
+        }
+
+        if (!paymentMethod.value) {
+          throw new Error("Please choose a payment method.");
+        }
+
+        if (!file) {
+          throw new Error("Please upload a proof of payment screenshot.");
+        }
+
+        const maxFileSize = 8 * 1024 * 1024;
+
+        if (file.size > maxFileSize) {
+          throw new Error("File is too large. Please upload a file under 8MB.");
+        }
+
+        const fileData = await fileToBase64(file);
+
+        const payload = {
+          formType: "payment",
+          firstName: document.getElementById("firstName").value.trim(),
+          lastName: document.getElementById("lastName").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          phone: document.getElementById("phone").value.trim(),
+          reservationType: reservationType.value,
+          originalPrice: formatMoney(currentOriginalPrice),
+          discountCode: discountCode.value.trim(),
+          discountApplied: currentDiscountApplied,
+          finalAmount: formatMoney(currentFinalPrice),
+          paymentMethod: paymentMethod.value,
+          notes: document.getElementById("notes").value.trim(),
+          fileName: file.name,
+          mimeType: file.type,
+          fileData: fileData
+        };
+
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(payload)
+        });
+
+        form.reset();
+        amountPaid.value = "";
+        priceSummary.classList.remove("show");
+        discountMessage.classList.remove("show");
+
+        currentOriginalPrice = 0;
+        currentDiscountAmount = 0;
+        currentFinalPrice = 0;
+        currentDiscountApplied = "No";
+
+        statusEl.textContent = "Thank you — your payment proof was submitted.";
+
+      } catch (error) {
+        statusEl.textContent = error.message || "Something went wrong. Please try again.";
+        statusEl.classList.add("error");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Payment Proof";
+      }
+    });
+  </script>
+</body>
+</html>
