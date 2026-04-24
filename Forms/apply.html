@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Apply | Hamsa Nomads</title>
+
   <style>
     :root {
       --cream: #f5efe4;
@@ -104,75 +106,106 @@
       padding: 24px 0 70px;
     }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 80;
       margin-bottom: 22px;
-      padding: 6px 4px 0;
+      background: rgba(249, 246, 239, 0.78);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 0 0 26px 26px;
+      box-shadow: 0 12px 34px rgba(28, 45, 34, 0.08);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
     }
 
-    .brand {
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 12px 18px;
+    }
+
+    .site-brand {
       display: flex;
       align-items: center;
       gap: 14px;
       text-decoration: none;
       color: var(--green);
+      min-width: 0;
     }
 
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-      border: 1px solid rgba(255,255,255,0.28);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      display: grid;
-      place-items: center;
-      font-size: 18px;
-      color: var(--gold);
+    .site-logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
-    .brand-text {
+    .site-brand-text {
       display: flex;
       flex-direction: column;
-      line-height: 1.15;
-      gap: 4px;
+      gap: 5px;
+      line-height: 1;
     }
 
-    .brand-text strong {
+    .site-brand-text strong {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: 0.92rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .site-brand-text span {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover {
       color: var(--green);
     }
 
-    .brand-text span {
-      color: var(--muted);
-      font-size: 0.88rem;
+    .nav-button {
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff8ef !important;
+      background: linear-gradient(135deg, var(--green), #1f5842);
+      box-shadow: 0 12px 28px rgba(22, 63, 49, 0.18);
     }
 
+    /* OLD TOPBAR CLASSES KEPT SAFE IN CASE USED ELSEWHERE */
+    .topbar {
+      display: none;
+    }
+
+    .brand,
     .back-link {
       text-decoration: none;
-      color: var(--green);
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.26);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      transition: transform 0.18s ease, background 0.18s ease;
-      font-size: 0.95rem;
-    }
-
-    .back-link:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.22);
     }
 
     .hero {
@@ -517,6 +550,94 @@
       font-size: 0.9rem;
     }
 
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
+      color: #e8e6df;
+      padding: 60px 20px 30px;
+      margin-top: 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-family: Georgia, serif;
+      letter-spacing: 0.2em;
+      font-size: 18px;
+      color: #fff;
+      margin: 0 0 15px;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #cfcac1;
+      line-height: 1.6;
+      max-width: 340px;
+      margin: 0;
+    }
+
+    .footer-icons {
+      margin-top: 20px;
+      display: flex;
+      gap: 14px;
+      color: #cfcac1;
+    }
+
+    .footer-icons svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      margin: 0 0 14px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #cfcac1;
+    }
+
+    .footer-col a {
+      color: #cfcac1;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #a9a49a;
+    }
+
+    /* SUCCESS MODAL */
     .success-modal {
       position: fixed;
       inset: 0;
@@ -576,9 +697,37 @@
       box-shadow: 0 16px 34px rgba(22, 63, 49, 0.18);
     }
 
+    @media (max-width: 1080px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 920px) {
       .hero-grid,
       .grid.two {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .site-nav {
+        justify-content: flex-start;
+        gap: 12px 16px;
+      }
+
+      .site-brand-text strong {
+        font-size: 0.82rem;
+        letter-spacing: 0.16em;
+      }
+
+      .footer-container {
         grid-template-columns: 1fr;
       }
     }
@@ -587,11 +736,6 @@
       .page {
         width: min(100% - 16px, 1120px);
         padding-top: 14px;
-      }
-
-      .topbar {
-        flex-direction: column;
-        align-items: flex-start;
       }
 
       .hero,
@@ -610,6 +754,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="line-overlay" aria-hidden="true">
     <svg viewBox="0 0 1440 2200" preserveAspectRatio="none">
@@ -648,17 +793,23 @@
   </div>
 
   <div class="page">
-    <div class="topbar">
-      <a href="../index.html" class="brand">
-        <div class="brand-mark">✦</div>
-        <div class="brand-text">
-          <strong>Hamsa Nomads</strong>
-          <span>Retreat application</span>
-        </div>
-      </a>
+    <header class="site-header">
+      <div class="nav">
+        <a href="../index.html" class="site-brand">
+          <img src="../logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo" class="site-logo">
+          <div class="site-brand-text">
+            <strong>HAMSA NOMADS</strong>
+            <span>Retreat application</span>
+          </div>
+        </a>
 
-      <a href="../index.html" class="back-link">← Back to home</a>
-    </div>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="../trips-page/trips.html">Trips</a>
+          <a href="../about-us/about-us.html">About</a>
+        </nav>
+      </div>
+    </header>
 
     <section class="hero">
       <div class="hero-grid">
@@ -694,7 +845,7 @@
         <input type="hidden" id="submitted_at" name="submitted_at" value="" />
 
         <div class="section">
-          <h2>Who are you ?</h2>
+          <h2>Who are you?</h2>
           <p class="section-intro">
             We’d love a small introduction.
           </p>
@@ -723,19 +874,19 @@
 
           <div class="field">
             <label for="about_you">
-              Tell us a about yourself, and anything you might enjoy bringing to the retreat
+              Tell us about yourself, and anything you might enjoy bringing to the retreat
             </label>
             <textarea
               id="about_you"
               name="about_you"
               required
-              placeholder="A short introduction is perfect — tell us a about yourself, the kind of energy you bring, and anything you might enjoy sharing with the group."
+              placeholder="A short introduction is perfect — tell us about yourself, the kind of energy you bring, and anything you might enjoy sharing with the group."
             ></textarea>
           </div>
         </div>
 
         <div class="section">
-          <h2>Stay preference - Early Bird Pricing </h2>
+          <h2>Stay preference - Early Bird Pricing</h2>
           <p class="section-intro">
             Choose the kind of stay that feels right for you.
           </p>
@@ -750,7 +901,6 @@
               <option value="Couple Suite - $1350">$1350 — Couple Suite</option>
               <option value="Camping Spot - $350">$350 — Camping Spot</option>
             </select>
-            <div class="tiny"></div>
           </div>
 
           <div class="grid two">
@@ -935,34 +1085,34 @@
             <textarea id="anything_else" name="anything_else" placeholder="Questions, details, concerns, schedule notes, anything helpful for us to know."></textarea>
           </div>
 
-<div class="field" style="margin-top: 10px;">
-  <label style="margin-bottom: 2px;">Do you wish to help during the retreat?</label>
-  <div class="tiny" style="margin-bottom: 14px;">Limited spots available.</div>
+          <div class="field" style="margin-top: 10px;">
+            <label style="margin-bottom: 2px;">Do you wish to help during the retreat?</label>
+            <div class="tiny" style="margin-bottom: 14px;">Limited spots available.</div>
 
-  <div class="radio-group inline" style="margin-bottom: 22px;">
-    <label class="radio-item">
-      <input type="radio" name="help_open" value="Yes" />
-      <span>Yes</span>
-    </label>
-    <label class="radio-item">
-      <input type="radio" name="help_open" value="Maybe" />
-      <span>Maybe</span>
-    </label>
-    <label class="radio-item">
-      <input type="radio" name="help_open" value="No" />
-      <span>No</span>
-    </label>
-  </div>
-</div>
+            <div class="radio-group inline" style="margin-bottom: 22px;">
+              <label class="radio-item">
+                <input type="radio" name="help_open" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="help_open" value="Maybe" />
+                <span>Maybe</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="help_open" value="No" />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
 
-        <div class="field" style="margin-top: 10px;">
-  <label class="check-item" style="margin-top: 6px;">
-    <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
-    <span>
-      I agree to the retreat guidelines and cancellation policy, and I’m excited to join this experience with you.
-    </span>
-  </label>
-</div>
+          <div class="field" style="margin-top: 10px;">
+            <label class="check-item" style="margin-top: 6px;">
+              <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
+              <span>
+                I agree to the retreat guidelines and cancellation policy, and I’m excited to join this experience with you.
+              </span>
+            </label>
+          </div>
         </div>
 
         <div class="submit-wrap">
@@ -977,11 +1127,62 @@
     </section>
   </div>
 
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h2 class="footer-logo">HAMSA NOMADS</h2>
+        <p class="footer-text">
+          Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
+          beautiful places, and warm community.
+        </p>
+
+        <div class="footer-icons" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2C9 5 7.5 8.3 7.5 12S9 19 12 22"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#gallery">Gallery</a></li>
+          <li><a href="../index.html#details">More Information</a></li>
+          <li><a href="../about-us/about-us.html">About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Retreat</h4>
+        <ul>
+          <li>Shavuos in Vermont</li>
+          <li>Private home</li>
+          <li>Kosher food</li>
+          <li>Minyan & Eiruv</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>hamsanomads.com</li>
+          <li>Text: 347-988-8869</li>
+    <li><a href="../index.html">Back to Home</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Hamsa Nomads — All rights reserved
+    </div>
+  </footer>
+
   <div class="success-modal" id="successModal" aria-hidden="true">
     <div class="success-modal-card">
-      <h3>Congratulation!</h3>
+      <h3>Congratulations!</h3>
       <p>
-        We will send you a confirmation soon with the link to pay if your admission is accepted!
+        We will send you a confirmation soon with the link to pay if your application is accepted.
       </p>
       <button type="button" class="modal-btn" id="closeSuccessModal">Close</button>
     </div>
@@ -1063,8 +1264,10 @@
 
     function validateRequiredFields() {
       const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type", "about_you"];
+
       for (const id of requiredIds) {
         const el = document.getElementById(id);
+
         if (!el || !el.value.trim()) {
           if (el) el.focus();
           showStatus("Please complete all required fields marked with *.", "error");
@@ -1073,6 +1276,7 @@
       }
 
       const agreeRules = document.getElementById("agree_rules");
+
       if (agreeRules && !agreeRules.checked) {
         agreeRules.focus();
         showStatus("Please agree to the rules before submitting.", "error");
