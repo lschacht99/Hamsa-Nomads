@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hamsa Nomads — Upcoming Trips</title>
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --paper: rgba(255, 252, 246, 0.62);
+      --ink: #1c211d;
+      --muted: #5f655d;
+      --forest: #274537;
+      --gold: #b88b2f;
+      --soft-gold: #d5b25c;
+      --line: rgba(16, 14, 11, 0.22);
+      --shadow: 0 16px 50px rgba(31, 28, 20, 0.08);
+      --radius: 24px;
+      --container: 1280px;
+      --border: rgba(39, 69, 55, 0.12);
+      --cream: #faf7f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.72), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
+        linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .serif {
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .site-shell {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glass {
+      background: var(--paper);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.48);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.45);
+      border-radius: var(--radius);
+    }
+
+    /* =========================
+       Moving imperfect line
+    ========================= */
+
+    .line-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .line-overlay svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .path-main,
+    .path-slice,
+    .path-hamsa {
+      fill: none;
+      stroke: var(--line);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .path-main.back,
+    .path-hamsa.back {
+      stroke-width: 3.2;
+    }
+
+    .path-main.front,
+    .path-hamsa.front {
+      stroke-width: 1.5;
+    }
+
+    .path-slice.back {
+      stroke-width: 3;
+    }
+
+    .path-slice.front {
+      stroke-width: 1.3;
+    }
+
+    /* =========================
+       Header
+    ========================= */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(249, 246, 239, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(39, 69, 55, 0.08);
+    }
+
+    .nav {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 6px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      margin-left: auto;
+      min-width: 0;
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .button:hover,
+    .button-secondary:hover {
+      transform: translateY(-1px);
+    }
+
+    .button {
+      background: rgba(39, 69, 55, 0.92);
+      color: white;
+      box-shadow: 0 12px 30px rgba(39, 69, 55, 0.22);
+      border: 1px solid rgba(39, 69, 55, 0.26);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--ink);
+      border: 1px solid rgba(39, 69, 55, 0.14);
+      box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
+    }
+
+    /* =========================
+       Trips Hero
+    ========================= */
+
+    .trips-hero {
+      position: relative;
+      z-index: 2;
+      padding: 34px 0 24px;
+    }
+
+    .trips-hero-wrap {
+      position: relative;
+      min-height: min(78vh, 820px);
+      overflow: hidden;
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.86)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
+      color: #fffdf8;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+
+    .trips-hero-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.28;
+      background:
+        linear-gradient(90deg, rgba(21, 17, 12, 0.52), rgba(21, 17, 12, 0.12)),
+        var(--hero-image, url('./Image/trips/boston.png'));
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+
+    .trips-hero-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .trips-hero-line svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .trips-hero-line path {
+      fill: none;
+      stroke: rgba(255,255,255,0.28);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 9 13;
+    }
+
+    .trips-hero-inner {
+      position: relative;
+      z-index: 2;
+      min-height: inherit;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: end;
+      padding: clamp(28px, 5vw, 64px);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.92;
+      font-weight: 700;
+    }
+
+    .trips-hero h1 {
+      font-size: clamp(3.1rem, 8vw, 7.2rem);
+      line-height: 0.92;
+      text-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      max-width: 9ch;
+    }
+
+    .trips-hero h1 .gold {
+      color: #e0ae43;
+    }
+
+    .hero-lead {
+      max-width: 34ch;
+      font-size: clamp(1.08rem, 2vw, 1.45rem);
+      line-height: 1.42;
+      color: rgba(255,251,245,0.94);
+      text-shadow: 0 5px 18px rgba(0,0,0,0.18);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .hero-actions .button {
+      min-height: 56px;
+      padding: 0 30px;
+      font-size: 1rem;
+    }
+
+    .hero-side-card {
+      align-self: end;
+      padding: 26px;
+      border-radius: 28px;
+      background: rgba(252, 247, 239, 0.78);
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.14);
+    }
+
+    .hero-side-card h2 {
+      color: var(--forest);
+      font-size: clamp(1.75rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    .hero-side-card p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 18px;
+      font-size: 0.94rem;
+      color: var(--forest);
+    }
+
+    .quick-facts div {
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(39,69,55,0.09);
+    }
+
+    /* =========================
+       Trips Page Intro
+    ========================= */
+
+    .page-intro {
+      position: relative;
+      z-index: 2;
+      padding: 38px 0 14px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding: 14px 4px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      color: var(--forest);
+    }
+
+    .section-header p {
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .intro-card {
+      padding: 24px;
+    }
+
+    .intro-card h3 {
+      font-size: 1.45rem;
+      color: var(--forest);
+      margin-bottom: 10px;
+    }
+
+    .intro-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* =========================
+       Full Trip Slider
+    ========================= */
+
+    .trips-section {
+      position: relative;
+      z-index: 2;
+      padding: 44px 0 70px;
+    }
+
+    .slider-shell {
+      position: relative;
+      padding: 28px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
+        rgba(255, 252, 246, 0.34);
+      border: 1px solid rgba(255,255,255,0.48);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .slider-shell-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .slider-shell-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .slider-shell-line path {
+      fill: none;
+      stroke: rgba(31, 42, 34, 0.14);
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 8 12;
+    }
+
+    .slider-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .slider-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .slider-hint {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slider-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid rgba(38, 71, 52, 0.15);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      color: var(--forest);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .slider-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .slider-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+      transform: none;
+    }
+
+    .trip-slider {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 10px 11vw 18px 2px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .trip-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .trip-slide {
+      scroll-snap-align: start;
+      flex: 0 0 min(86vw, 520px);
+    }
+
+    .trip-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 720px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.46);
+      box-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .trip-image {
+      position: relative;
+      min-height: 340px;
+      background:
+        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
+        var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .trip-image::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 48%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.25));
+    }
+
+    .trip-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 2;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.74);
+      color: var(--forest);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .image-note {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 2;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.74);
+      color: var(--ink);
+      font-size: 0.82rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .trip-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 28px 26px 26px;
+    }
+
+    .trip-meta {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .trip-name {
+      margin: 0 0 12px;
+      font-size: clamp(1.7rem, 2.6vw, 2.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .trip-copy {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .trip-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 26px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .trip-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    .trip-bullets li::before {
+      content: "•";
+      color: var(--soft-gold);
+      font-size: 1.15rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .trip-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .trip-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--forest);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .trip-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--soft-gold);
+    }
+
+    .trip-cta,
+    .popup-submit {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--forest);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.22s ease;
+      box-shadow: 0 16px 28px rgba(38, 71, 52, 0.20);
+    }
+
+    .trip-cta:hover,
+    .popup-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(38, 71, 52, 0.26);
+    }
+
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(38, 71, 52, 0.22);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .slider-dot.is-active {
+      width: 28px;
+      background: var(--forest);
+    }
+
+    /* =========================
+       Bottom CTA
+    ========================= */
+
+    .bottom-cta {
+      position: relative;
+      z-index: 2;
+      padding: 12px 0 70px;
+    }
+
+    .bottom-cta-card {
+      padding: clamp(26px, 4vw, 44px);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      background:
+        linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.90)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow:
+        0 22px 60px rgba(20, 45, 35, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+
+    .bottom-cta-card h2 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .bottom-cta-card p {
+      color: rgba(255,255,255,0.78);
+      font-size: 1.02rem;
+      line-height: 1.7;
+      max-width: 54ch;
+    }
+
+    .bottom-cta-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .bottom-cta .button {
+      background: rgba(255,255,255,0.92);
+      color: var(--forest);
+      border-color: rgba(255,255,255,0.30);
+    }
+
+    .bottom-cta .button-secondary {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border-color: rgba(255,255,255,0.24);
+    }
+
+    /* =========================
+       Popup
+    ========================= */
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(22, 29, 25, 0.32);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .popup-overlay.is-open {
+      display: flex;
+    }
+
+    .popup-bubble {
+      position: relative;
+      width: min(100%, 480px);
+      border-radius: 34px;
+      padding: 30px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.78), rgba(255,255,255,0.48));
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.22);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .popup-bubble::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: -80px;
+      top: -80px;
+      border-radius: 999px;
+      background: rgba(213,178,92,0.18);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(38, 71, 52, 0.12);
+      background: rgba(255,255,255,0.58);
+      cursor: pointer;
+      color: var(--forest);
+      font-size: 1.3rem;
+      line-height: 1;
+      z-index: 3;
+    }
+
+    .popup-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .popup-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .popup-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 2.35rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .popup-subtitle {
+      margin: 12px 0 22px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .popup-form {
+      display: grid;
+      gap: 13px;
+    }
+
+    .popup-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .popup-form input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(38, 71, 52, 0.14);
+      border-radius: 16px;
+      padding: 14px 15px;
+      background: rgba(255,255,255,0.62);
+      color: var(--ink);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .popup-form input:focus {
+      border-color: rgba(38, 71, 52, 0.42);
+      box-shadow: 0 0 0 4px rgba(38, 71, 52, 0.08);
+    }
+
+    .popup-submit {
+      margin-top: 4px;
+      width: 100%;
+    }
+
+    .popup-message {
+      min-height: 22px;
+      font-size: 0.92rem;
+      color: var(--forest);
+      text-align: center;
+    }
+
+    .popup-message.error {
+      color: #8b2f25;
+    }
+
+    /* =========================
+       Floating Share
+    ========================= */
+
+    .floating-share {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 9999;
+      font-family: inherit;
+    }
+
+    .share-main-btn {
+      border: 1px solid rgba(30, 30, 30, 0.18);
+      background: rgba(255, 255, 255, 0.52);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      color: #1f1f1f;
+      padding: 13px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+      transition: all 0.25s ease;
+    }
+
+    .share-main-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .share-options {
+      position: absolute;
+      right: 0;
+      bottom: 58px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      width: 155px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(30, 30, 30, 0.12);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    }
+
+    .share-options.open {
+      display: flex;
+    }
+
+    .share-options a,
+    .share-options button {
+      width: 100%;
+      border: none;
+      background: rgba(255, 255, 255, 0.42);
+      color: #1f1f1f;
+      text-decoration: none;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .share-options a:hover,
+    .share-options button:hover {
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateX(-2px);
+    }
+
+    /* =========================
+       Footer
+    ========================= */
+
+    .footer {
+      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
+      color: #e8e6df;
+      padding: 60px 20px 30px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-family: Georgia, serif;
+      letter-spacing: 0.2em;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #cfcac1;
+      line-height: 1.6;
+      max-width: 340px;
+    }
+
+    .footer-icons {
+      margin-top: 20px;
+      display: flex;
+      gap: 14px;
+      color: #cfcac1;
+    }
+
+    .footer-icons svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      margin: 0 0 14px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #cfcac1;
+    }
+
+    .footer-col a {
+      color: #cfcac1;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: #a9a49a;
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
+
+    @media (min-width: 900px) {
+      .trip-slide {
+        flex: 0 0 min(58vw, 560px);
+      }
+
+      .trip-slider {
+        padding-right: 16vw;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .trip-slide {
+        flex: 0 0 min(47vw, 580px);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .trips-hero-inner,
+      .bottom-cta-card,
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        gap: 18px;
+      }
+
+      .brand-logo {
+        width: 46px;
+        height: 46px;
+      }
+
+      .brand-name {
+        font-size: 0.82rem;
+        letter-spacing: 0.18em;
+      }
+
+      .nav-links {
+        gap: 18px;
+        font-size: 0.9rem;
+      }
+
+      .button,
+      .button-secondary {
+        min-height: 46px;
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 0;
+      }
+
+      .brand {
+        justify-content: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 12px 14px;
+        flex-wrap: wrap;
+      }
+
+      .trips-hero-wrap {
+        min-height: 790px;
+      }
+
+      .trips-hero-inner,
+      .bottom-cta-card,
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side-card {
+        align-self: stretch;
+      }
+
+      .quick-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .slider-shell {
+        padding: 18px;
+      }
+
+      .slider-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .trip-card {
+        min-height: 650px;
+      }
+
+      .trip-body {
+        padding: 22px 20px 22px;
+      }
+
+      .trip-image {
+        min-height: 255px;
+      }
+
+      .trip-slider {
+        gap: 18px;
+        padding-right: 14vw;
+      }
+
+      .trip-slide {
+        flex: 0 0 min(88vw, 390px);
+      }
+
+      .trip-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .trip-cta {
+        width: 100%;
+        text-align: center;
+      }
+
+      .popup-row {
+        grid-template-columns: 1fr;
+      }
+
+      .popup-bubble {
+        padding: 28px 22px 24px;
+      }
+
+      .bottom-cta-actions {
+        justify-content: flex-start;
+      }
+
+      .floating-share {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .share-main-btn {
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-shell">
+
+    <!-- Moving Background Line -->
+    <div class="line-overlay" aria-hidden="true">
+      <svg viewBox="0 0 1400 1800" preserveAspectRatio="none">
+        <path
+          id="lineBack"
+          class="path-main back"
+          d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
+        />
+        <path
+          id="lineFront"
+          class="path-main front"
+          d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
+        />
+
+        <path
+          id="sliceBack"
+          class="path-slice back"
+          d="M 1010 1580 C 1080 1510, 1175 1515, 1230 1600 C 1170 1655, 1080 1665, 1010 1580 Z"
+        />
+        <path
+          id="sliceFront"
+          class="path-slice front"
+          d="M 1010 1580 C 1080 1510, 1175 1515, 1230 1600 C 1170 1655, 1080 1665, 1010 1580 Z"
+        />
+      </svg>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="./index.html" aria-label="Hamsa Nomads home">
+          <img class="brand-logo" src="./logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
+          <div class="brand-text">
+            <div class="brand-name">Hamsa Nomads</div>
+            <div class="brand-sub">Kosher travel experiences</div>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./about-us/about-us.html">About</a>
+          <a href="./trips.html">Trips</a>
+          <a href="./Forms/apply.html">Apply</a>
+          <a class="button" href="./Forms/apply.html">Apply Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Hero -->
+      <section class="trips-hero">
+        <div class="container">
+          <div class="trips-hero-wrap" style="--hero-image: url('./Image/trips/boston.png');">
+            <div class="trips-hero-bg"></div>
+
+            <div class="trips-hero-line" aria-hidden="true">
+              <svg viewBox="0 0 1400 820" preserveAspectRatio="none">
+                <path d="M -60 170 C 120 90, 220 260, 370 210 S 650 90, 820 260 S 1040 470, 1240 350 S 1490 250, 1450 560" />
+                <path d="M -80 640 C 140 560, 280 750, 470 675 S 760 520, 960 650 S 1220 790, 1490 670" />
+              </svg>
+            </div>
+
+            <div class="trips-hero-inner">
+              <div class="hero-copy">
+                <div class="eyebrow">Upcoming Trips</div>
+                <h1>Where the line goes <span class="gold">next</span></h1>
+                <p class="hero-lead">
+                  A growing map of Hamsa Nomads experiences — city weekends, playful escapes,
+                  holiday retreats, and Jewish travel with soul.
+                </p>
+
+                <div class="hero-actions">
+                  <a class="button" href="#trip-list">See the trips</a>
+                  <button class="button-secondary" type="button" onclick="openTripPopup('General Trips Interest')">
+                    Join interest list
+                  </button>
+                </div>
+              </div>
+
+              <aside class="hero-side-card">
+                <h2>Not a program. A shared adventure.</h2>
+                <p>
+                  Each trip is built around place, timing, community, and a little unexpected magic —
+                  the kind of weekend that feels curated without feeling stiff.
+                </p>
+
+                <div class="quick-facts">
+                  <div>City weekends</div>
+                  <div>Holiday retreats</div>
+                  <div>Kosher-minded</div>
+                  <div>Small group energy</div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Intro -->
+      <section class="page-intro">
+        <div class="container">
+          <div class="section-header">
+            <h2>Trips with a little story inside.</h2>
+            <p>
+              This page is where people can discover future Hamsa Nomads trips and quietly raise their hand
+              before the full details are released.
+            </p>
+          </div>
+
+          <div class="intro-grid">
+            <article class="intro-card glass">
+              <h3>Curated, not crowded</h3>
+              <p>
+                The goal is not to make every trip huge. It is to create warm, memorable experiences
+                where the people, setting, and timing actually fit together.
+              </p>
+            </article>
+
+            <article class="intro-card glass">
+              <h3>Jewish, but alive</h3>
+              <p>
+                Shabbos, chag, kosher food, and Jewish connection are part of the structure —
+                but the feeling should still be playful, beautiful, and human.
+              </p>
+            </article>
+
+            <article class="intro-card glass">
+              <h3>Built around place</h3>
+              <p>
+                Boston feels different from a farm. A Renaissance Fair feels different from Vermont.
+                Each trip should have its own visual world and personality.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trips Slider -->
+      <section class="trips-section" id="trip-list">
+        <div class="container">
+          <div class="section-header">
+            <h2>Upcoming possibilities</h2>
+            <p>
+              Slide through the next trip ideas. Each one has its own interest list,
+              so people can choose what actually speaks to them.
+            </p>
+          </div>
+
+          <div class="slider-shell">
+            <div class="slider-shell-line" aria-hidden="true">
+              <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
+                <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
+                <path d="M -80 540 C 130 500, 170 640, 340 620 S 630 520, 790 600 S 1030 730, 1180 660 S 1320 600, 1490 700" />
+              </svg>
+            </div>
+
+            <div class="slider-content">
+              <div class="slider-topbar">
+                <div class="slider-hint">Swipe or tap through the next chapters.</div>
+
+                <div class="slider-controls">
+                  <button class="slider-btn" id="tripsPrev" aria-label="Previous trip">←</button>
+                  <button class="slider-btn" id="tripsNext" aria-label="Next trip">→</button>
+                </div>
+              </div>
+
+              <div class="trip-slider" id="tripSlider">
+
+                <!-- CARD 1 -->
+                <article class="trip-slide">
+                  <div class="trip-card">
+                    <div
+                      class="trip-image"
+                      style="--trip-image: url('./Image/trips/boston.png');"
+                    >
+                      <span class="trip-badge">Patriotic and camp</span>
+                      <span class="image-note">Join us</span>
+                    </div>
+
+                    <div class="trip-body">
+                      <div class="trip-meta">July 4 Weekend • Boston, Massachusetts</div>
+                      <h3 class="trip-name">July 4 in Boston</h3>
+                      <p class="trip-copy">
+                        Fireworks, harbor air, historic streets, and a summer city weekend
+                        with Jewish warmth woven in.
+                      </p>
+
+                      <ul class="trip-bullets">
+                        <li>Boston energy with a curated, social Hamsa Nomads feel</li>
+                        <li>Perfect for city, summer, and community</li>
+                        <li>A July kickoff trip with iconic American atmosphere</li>
+                      </ul>
+
+                      <div class="trip-footer">
+                        <div class="trip-status">
+                          <span class="trip-status-dot"></span>
+                          Planning in progress
+                        </div>
+                        <button class="trip-cta" data-trip="Boston July 4">
+                          Join the interest list
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="trip-slide">
+                  <div class="trip-card">
+                    <div
+                      class="trip-image"
+                      style="--trip-image: url('./Image/trips/pennsylvania-renaissance.png');"
+                    >
+                      <span class="trip-badge">Playful August Weekend</span>
+                      <span class="image-note">History, legacy...</span>
+                    </div>
+
+                    <div class="trip-body">
+                      <div class="trip-meta">August • Pennsylvania</div>
+                      <h3 class="trip-name">Renaissance Fair in Pennsylvania</h3>
+                      <p class="trip-copy">
+                        A quirky, costume-friendly, countryside weekend built around the fair —
+                        playful, memorable, and very not ordinary.
+                      </p>
+
+                      <ul class="trip-bullets">
+                        <li>A lighter, fun, social summer experience</li>
+                        <li>Whimsical fair energy with Shabbos and community</li>
+                        <li>Original, visual, and easy to share</li>
+                      </ul>
+
+                      <div class="trip-footer">
+                        <div class="trip-status">
+                          <span class="trip-status-dot"></span>
+                          Planning in progress
+                        </div>
+                        <button class="trip-cta" data-trip="Pennsylvania Renaissance Fair">
+                          Join the Fair list
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- CARD 3 -->
+                <article class="trip-slide">
+                  <div class="trip-card">
+                    <div
+                      class="trip-image"
+                      style="--trip-image: url('./Image/trips/rosh-hashanah-farm.png');"
+                    >
+                      <span class="trip-badge">High Holiday Retreat</span>
+                      <span class="image-note">The llamas are waiting...</span>
+                    </div>
+
+                    <div class="trip-body">
+                      <div class="trip-meta">Rosh Hashanah • Farm Retreat</div>
+                      <h3 class="trip-name">Rosh Hashanah on the Farm</h3>
+                      <p class="trip-copy">
+                        Open fields, apples, honey, candlelit meals, nature, and a softer
+                        beginning to the new year.
+                      </p>
+
+                      <ul class="trip-bullets">
+                        <li>The farm concept feels especially beautiful in the fall</li>
+                        <li>Grounding and emotionally rich for the High Holidays</li>
+                        <li>A slower, warmer way to begin the year</li>
+                      </ul>
+
+                      <div class="trip-footer">
+                        <div class="trip-status">
+                          <span class="trip-status-dot"></span>
+                          Coming soon
+                        </div>
+                        <button class="trip-cta" data-trip="Rosh Hashanah Farm">
+                          Join the farm list
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="slider-dots" id="tripDots">
+                <button class="slider-dot is-active" aria-label="Go to slide 1"></button>
+                <button class="slider-dot" aria-label="Go to slide 2"></button>
+                <button class="slider-dot" aria-label="Go to slide 3"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom CTA -->
+      <section class="bottom-cta">
+        <div class="container">
+          <div class="bottom-cta-card glass">
+            <div>
+              <h2>Want to hear when trips open?</h2>
+              <p>
+                Join the general interest list and we’ll send updates as each trip becomes real —
+                dates, prices, room options, and the small details that make it feel like Hamsa Nomads.
+              </p>
+            </div>
+
+            <div class="bottom-cta-actions">
+              <button class="button" type="button" onclick="openTripPopup('General Trips Interest')">
+                Join interest list
+              </button>
+              <a class="button-secondary" href="Forms/apply.html">Apply for Vermont</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Popup Form -->
+    <div class="popup-overlay" id="tripPopup">
+      <div class="popup-bubble">
+        <button class="popup-close" type="button" id="popupClose" aria-label="Close popup">×</button>
+
+        <div class="popup-content">
+          <div class="popup-kicker">Join the interest list</div>
+          <h3 class="popup-title" id="popupTitle">Upcoming Trip</h3>
+          <p class="popup-subtitle" id="popupSubtitle">
+            Leave your info and we’ll send details as this trip comes together.
+          </p>
+
+          <form class="popup-form" id="tripForm">
+            <input type="hidden" name="tripInterest" id="tripInterest" />
+
+            <div class="popup-row">
+              <input type="text" name="name" placeholder="Name" required />
+              <input type="text" name="lastName" placeholder="Last Name" required />
+            </div>
+
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="tel" name="phone" placeholder="Phone" required />
+
+            <button class="popup-submit" type="submit">Join interest list</button>
+
+            <div class="popup-message" id="popupMessage"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Share Button -->
+    <div class="floating-share">
+      <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
+        Share around you
+      </button>
+
+      <div class="share-options" id="shareOptions">
+        <a id="whatsappShare" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="facebookShare" target="_blank" rel="noopener">Facebook</a>
+        <a id="emailShare">Email</a>
+        <button id="copyLinkBtn" type="button">Copy link</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h2 class="footer-logo">HAMSA NOMADS</h2>
+          <p class="footer-text">
+            Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
+            beautiful places, and warm community.
+          </p>
+          <div class="footer-icons" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2C9 5 7.5 8.3 7.5 12S9 19 12 22"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="./index.html#experience">Experience</a></li>
+            <li><a href="./index.html#gallery">Gallery</a></li>
+            <li><a href="./index.html#details">More Information</a></li>
+            <li><a href="./about-us/about-us.html">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Trips</h4>
+          <ul>
+            <li>July 4 in Boston</li>
+            <li>Pennsylvania Renaissance Fair</li>
+            <li>Rosh Hashanah Farm Retreat</li>
+            <li>More coming soon</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>hamsanomads.com</li>
+            <li>Text: 347-988-8869</li>
+            <li><a href="Forms/apply.html">Apply Now</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Hamsa Nomads — All rights reserved
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
+
+      /* Slider */
+      const slider = document.getElementById('tripSlider');
+      const slides = Array.from(slider.querySelectorAll('.trip-slide'));
+      const prevBtn = document.getElementById('tripsPrev');
+      const nextBtn = document.getElementById('tripsNext');
+      const dots = Array.from(document.querySelectorAll('#tripDots .slider-dot'));
+
+      function getGap() {
+        const styles = window.getComputedStyle(slider);
+        return parseFloat(styles.columnGap || styles.gap || 24);
+      }
+
+      function getStep() {
+        if (!slides.length) return 0;
+        return slides[0].getBoundingClientRect().width + getGap();
+      }
+
+      function getActiveIndex() {
+        const center = slider.scrollLeft + (slider.clientWidth / 2);
+        let activeIndex = 0;
+        let closestDistance = Infinity;
+
+        slides.forEach((slide, index) => {
+          const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+          const distance = Math.abs(slideCenter - center);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            activeIndex = index;
+          }
+        });
+
+        return activeIndex;
+      }
+
+      function updateSliderUI() {
+        const activeIndex = getActiveIndex();
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('is-active', index === activeIndex);
+        });
+
+        prevBtn.disabled = slider.scrollLeft <= 6;
+        nextBtn.disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 6;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: -getStep(), behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        slider.scrollBy({ left: getStep(), behavior: 'smooth' });
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          slider.scrollTo({
+            left: slides[index].offsetLeft,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      let sliderTicking = false;
+
+      slider.addEventListener('scroll', () => {
+        if (!sliderTicking) {
+          window.requestAnimationFrame(() => {
+            updateSliderUI();
+            sliderTicking = false;
+          });
+          sliderTicking = true;
+        }
+      });
+
+      window.addEventListener('resize', updateSliderUI);
+      window.addEventListener('load', updateSliderUI);
+      updateSliderUI();
+
+      /* Popup */
+      const popup = document.getElementById('tripPopup');
+      const popupClose = document.getElementById('popupClose');
+      const popupTitle = document.getElementById('popupTitle');
+      const popupSubtitle = document.getElementById('popupSubtitle');
+      const tripInterestInput = document.getElementById('tripInterest');
+      const tripForm = document.getElementById('tripForm');
+      const popupMessage = document.getElementById('popupMessage');
+
+      const tripCopy = {
+        "General Trips Interest": {
+          title: "Hamsa Nomads trips",
+          subtitle: "Leave your info and we’ll send updates as future trips open."
+        },
+        "Boston July 4": {
+          title: "July 4 in Boston",
+          subtitle: "Leave your info and join the interest list as the Boston weekend comes together."
+        },
+        "Pennsylvania Renaissance Fair": {
+          title: "Renaissance Fair in Pennsylvania",
+          subtitle: "Join the August list for our playful countryside weekend."
+        },
+        "Rosh Hashanah Farm": {
+          title: "Rosh Hashanah on the Farm",
+          subtitle: "Be the first to hear when the High Holiday farm retreat opens."
+        }
+      };
+
+      window.openTripPopup = function (tripName) {
+        const selectedTrip = tripCopy[tripName] || {
+          title: tripName,
+          subtitle: "Leave your info and we’ll send details as this trip comes together."
+        };
+
+        popupTitle.textContent = selectedTrip.title;
+        popupSubtitle.textContent = selectedTrip.subtitle;
+        tripInterestInput.value = tripName;
+        popupMessage.textContent = "";
+        popupMessage.classList.remove("error");
+
+        popup.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      };
+
+      function closeTripPopup() {
+        popup.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      popupClose.addEventListener('click', closeTripPopup);
+
+      popup.addEventListener('click', function (event) {
+        if (event.target === popup) {
+          closeTripPopup();
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && popup.classList.contains('is-open')) {
+          closeTripPopup();
+        }
+      });
+
+      document.querySelectorAll('.trip-cta').forEach((button) => {
+        button.addEventListener('click', function () {
+          const tripName = this.getAttribute('data-trip');
+          window.openTripPopup(tripName);
+        });
+      });
+
+      tripForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
+          popupMessage.textContent = "Add your Google Script link in the code first.";
+          popupMessage.classList.add("error");
+          return;
+        }
+
+        const submitButton = tripForm.querySelector('.popup-submit');
+        const formData = new FormData(tripForm);
+
+        formData.append("timestamp", new Date().toISOString());
+        formData.append("sourcePage", "trips.html");
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+        popupMessage.textContent = "";
+        popupMessage.classList.remove("error");
+
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          body: formData
+        })
+        .then(function () {
+          popupMessage.textContent = "You’re on the list. We’ll send details soon.";
+          tripForm.reset();
+
+          setTimeout(function () {
+            closeTripPopup();
+            submitButton.disabled = false;
+            submitButton.textContent = "Join interest list";
+          }, 1300);
+        })
+        .catch(function () {
+          popupMessage.textContent = "Something went wrong. Please try again.";
+          popupMessage.classList.add("error");
+          submitButton.disabled = false;
+          submitButton.textContent = "Join interest list";
+        });
+      });
+
+      /* Share Button */
+      const shareBtn = document.getElementById("shareBtn");
+      const shareOptions = document.getElementById("shareOptions");
+      const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+
+      document.getElementById("whatsappShare").href =
+        `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+
+      document.getElementById("facebookShare").href =
+        `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+      document.getElementById("emailShare").href =
+        `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+      shareBtn.addEventListener("click", () => {
+        shareOptions.classList.toggle("open");
+      });
+
+      copyLinkBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyLinkBtn.textContent = "Copied!";
+          setTimeout(() => {
+            copyLinkBtn.textContent = "Copy link";
+          }, 1600);
+        } catch (err) {
+          alert("Copy failed. Please copy the URL manually.");
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".floating-share")) {
+          shareOptions.classList.remove("open");
+        }
+      });
+
+      /* Moving Line */
+      const drawPaths = [
+        document.getElementById('lineBack'),
+        document.getElementById('lineFront')
+      ].filter(Boolean);
+
+      const slicePaths = [
+        document.getElementById('sliceBack'),
+        document.getElementById('sliceFront')
+      ].filter(Boolean);
+
+      function updateLine() {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, window.scrollY / maxScroll);
+
+        drawPaths.forEach((path) => {
+          const len = path.getTotalLength();
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len * (1 - Math.min(progress * 1.06, 1));
+        });
+
+        const sliceProgress = Math.max(0, (progress - 0.82) / 0.18);
+        slicePaths.forEach((path) => {
+          const len = path.getTotalLength();
+          path.style.strokeDasharray = len;
+          path.style.strokeDashoffset = len * (1 - sliceProgress);
+        });
+      }
+
+      window.addEventListener('scroll', updateLine, { passive: true });
+      window.addEventListener('resize', updateLine);
+      updateLine();
+    })();
+  </script>
+</body>
+</html>
