@@ -1442,7 +1442,7 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
                 Interest list opening soon
               </div>
               <button class="hn-trip-cta" data-trip="Boston July 4">
-                Get Boston details
+                Join the list
               </button>
             </div>
           </div>
@@ -1567,8 +1567,7 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
 
 <script>
   (function () {
-    /* Replace this with your Google Apps Script Web App URL */
-    const GOOGLE_SCRIPT_URL = https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec;
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
 
     const slider = document.getElementById('hnTripSlider');
     const slides = Array.from(slider.querySelectorAll('.hn-trip-slide'));
@@ -1587,7 +1586,7 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
     const tripCopy = {
       "Boston July 4": {
         title: "July 4 in Boston",
-        subtitle: "Leave your info and we’ll send details as the Boston weekend comes together."
+        subtitle: "Leave your info and join the interest list for the Boston weekend comes together."
       },
       "Pennsylvania Renaissance Fair": {
         title: "Renaissance Fair in Pennsylvania",
@@ -1715,7 +1714,7 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
     tripForm.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
+      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec")) {
         popupMessage.textContent = "Add your Google Script link in the code first.";
         popupMessage.classList.add("error");
         return;
