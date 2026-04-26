@@ -787,36 +787,29 @@
       </section>
     </article>
   </main>
- 
-    <div id="site-footer"></div>
 
-  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-title">Hamsa Nomads</div>
+        <p class="footer-text">
+          Small curated trips, meaningful gatherings, and travel experiences built around connection, discovery, and community.
+        </p>
+        <p class="footer-small">© 2026 Hamsa Nomads. All rights reserved.</p>
+      </div>
 
-  <script src="/assets/site-components.js"></script>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="trips-page/trips.html">Trips</a>
+        <a href="Forms/apply.html">Apply</a>
+      </div>
 
-  <script>
-    const faqItems = document.querySelectorAll(".faq-item");
-
-    faqItems.forEach((item) => {
-      const button = item.querySelector(".faq-question");
-      const answer = item.querySelector(".faq-answer");
-
-      button.addEventListener("click", () => {
-        const isOpen = item.classList.contains("open");
-
-        faqItems.forEach((otherItem) => {
-          otherItem.classList.remove("open");
-          otherItem.querySelector(".faq-answer").style.maxHeight = null;
-        });
-
-        if (!isOpen) {
-          item.classList.add("open");
-          answer.style.maxHeight = answer.scrollHeight + "px";
-        }
-      });
-    });
-  </script>
-
+      <div class="footer-links">
+        <a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
     </div>
-  </body>
+  </footer>
+</body>
 </html>
