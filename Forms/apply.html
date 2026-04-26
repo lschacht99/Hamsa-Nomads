@@ -56,6 +56,12 @@
       position: relative;
     }
 
+    a,
+    a:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+
     body::before {
       content: "";
       position: fixed;
@@ -525,6 +531,126 @@
       flex: 0 0 auto;
     }
 
+    .agreement-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 17px 18px;
+      margin: 4px 0 2px;
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.36), rgba(255,255,255,0.12)),
+        radial-gradient(circle at top right, rgba(180,135,61,0.12), transparent 36%);
+      border: 1px solid rgba(255,255,255,0.44);
+      box-shadow:
+        0 16px 38px rgba(28, 45, 34, 0.08),
+        inset 0 1px 0 rgba(255,255,255,0.28);
+      backdrop-filter: blur(22px) saturate(170%);
+      -webkit-backdrop-filter: blur(22px) saturate(170%);
+      cursor: pointer;
+      transition: 0.22s ease;
+      color: var(--text);
+    }
+
+    .agreement-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(180, 135, 61, 0.36);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.44), rgba(255,255,255,0.16)),
+        radial-gradient(circle at top right, rgba(180,135,61,0.16), transparent 36%);
+    }
+
+    .agreement-card input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .custom-check {
+      width: 24px;
+      height: 24px;
+      margin-top: 3px;
+      border-radius: 9px;
+      border: 1.5px solid rgba(22, 63, 49, 0.44);
+      background: rgba(255,255,255,0.46);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      transition: 0.2s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.34);
+    }
+
+    .custom-check::after {
+      content: "";
+      width: 11px;
+      height: 6px;
+      border-left: 2px solid #fff8ef;
+      border-bottom: 2px solid #fff8ef;
+      transform: rotate(-45deg) scale(0);
+      margin-top: -2px;
+      transition: 0.18s ease;
+    }
+
+    .agreement-card input:checked + .custom-check {
+      background: linear-gradient(135deg, var(--green), #1f5842);
+      border-color: var(--green);
+      box-shadow: 0 9px 20px rgba(22, 63, 49, 0.24);
+    }
+
+    .agreement-card input:checked + .custom-check::after {
+      transform: rotate(-45deg) scale(1);
+    }
+
+    .agreement-card:has(input:checked) {
+      border-color: rgba(22, 63, 49, 0.28);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.42), rgba(255,255,255,0.14)),
+        radial-gradient(circle at top right, rgba(22,63,49,0.10), transparent 38%);
+    }
+
+    .agreement-text {
+      display: grid;
+      gap: 7px;
+      color: var(--text);
+      line-height: 1.35;
+      min-width: 0;
+    }
+
+    .agreement-text strong {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.3;
+    }
+
+    .agreement-text small {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .agreement-text a,
+    .agreement-text a:visited {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      color: var(--green);
+      font-weight: 750;
+      text-decoration: none;
+      padding: 2px 7px;
+      margin: 0 2px;
+      border-radius: 999px;
+      background: rgba(22, 63, 49, 0.07);
+      border: 1px solid rgba(22, 63, 49, 0.10);
+      transition: 0.18s ease;
+    }
+
+    .agreement-text a:hover {
+      color: #fff8ef;
+      background: var(--green);
+      border-color: var(--green);
+    }
+
     .submit-wrap {
       display: flex;
       flex-direction: column;
@@ -671,6 +797,10 @@
     .footer-col a {
       color: #cfcac1;
       text-decoration: none;
+    }
+
+    .footer-col a:visited {
+      color: #cfcac1;
     }
 
     .footer-col a:hover {
@@ -920,6 +1050,20 @@
         padding: 24px 18px;
         border-radius: 26px;
       }
+
+      .agreement-card {
+        padding: 15px 14px;
+        border-radius: 19px;
+      }
+
+      .agreement-text small {
+        font-size: 0.82rem;
+      }
+
+      .agreement-text a,
+      .agreement-text a:visited {
+        margin: 2px 1px;
+      }
     }
 
     @media (max-width: 420px) {
@@ -962,97 +1106,7 @@
       .hero-note span {
         font-size: 0.76rem;
       }
-.agreement-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 15px 16px;
-  margin: 14px 0 6px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.56);
-  border: 1px solid rgba(39, 69, 55, 0.16);
-  box-shadow: 0 12px 28px rgba(31, 28, 20, 0.07);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  cursor: pointer;
-  transition: 0.22s ease;
-}
 
-.agreement-card:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.72);
-  border-color: rgba(184, 139, 47, 0.34);
-}
-
-.agreement-card input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.custom-check {
-  width: 22px;
-  height: 22px;
-  margin-top: 2px;
-  border-radius: 7px;
-  border: 1.5px solid rgba(39, 69, 55, 0.42);
-  background: rgba(255, 255, 255, 0.65);
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  transition: 0.2s ease;
-}
-
-.custom-check::after {
-  content: "";
-  width: 10px;
-  height: 6px;
-  border-left: 2px solid white;
-  border-bottom: 2px solid white;
-  transform: rotate(-45deg) scale(0);
-  margin-top: -2px;
-  transition: 0.18s ease;
-}
-
-.agreement-card input:checked + .custom-check {
-  background: var(--forest, #274537);
-  border-color: var(--forest, #274537);
-  box-shadow: 0 8px 18px rgba(39, 69, 55, 0.22);
-}
-
-.agreement-card input:checked + .custom-check::after {
-  transform: rotate(-45deg) scale(1);
-}
-
-.agreement-text {
-  display: grid;
-  gap: 3px;
-  color: var(--ink, #1c211d);
-  line-height: 1.35;
-}
-
-.agreement-text strong {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--forest, #274537);
-}
-
-.agreement-text small {
-  font-size: 0.86rem;
-  color: var(--muted, #5f655d);
-}
-
-.agreement-text a {
-  color: var(--forest, #274537);
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: rgba(184, 139, 47, 0.65);
-  text-underline-offset: 3px;
-}
-
-.agreement-text a:hover {
-  color: var(--gold, #b88b2f);
-}
       .footer {
         padding: 24px 14px 16px;
       }
@@ -1061,8 +1115,152 @@
         grid-template-columns: 1fr;
         gap: 16px;
       }
-      
     }
+    /* ===== INDEX-STYLE COMPACT FOOTER ===== */
+
+.footer {
+  background: linear-gradient(180deg, #1c3b2f, #0f2a22);
+  color: #e8e6df;
+  padding: 34px 20px 18px;
+  margin-top: 42px;
+  position: relative;
+  z-index: 2;
+  border-radius: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.75fr 0.75fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.footer-logo {
+  font-family: Georgia, serif;
+  letter-spacing: 0.18em;
+  font-size: 15px;
+  color: #fff;
+  margin: 0 0 9px;
+  text-transform: uppercase;
+}
+
+.footer-text {
+  font-size: 12.8px;
+  color: #cfcac1;
+  line-height: 1.55;
+  max-width: 300px;
+  margin: 0;
+}
+
+.footer-icons {
+  display: none;
+}
+
+.footer-col h4 {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  margin: 0 0 10px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.footer-col li {
+  margin: 0;
+  font-size: 12.8px;
+  color: #cfcac1;
+  line-height: 1.35;
+}
+
+.footer-col a,
+.footer-col a:visited {
+  color: #cfcac1;
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 22px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+  font-size: 12px;
+  color: #a9a49a;
+}
+
+/* override the old apply-page mobile footer hiding */
+@media (max-width: 1080px) {
+  .footer-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .footer {
+    padding: 24px 16px 16px;
+    margin-top: 34px;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 20px;
+  }
+
+  .footer-col,
+  .footer-col:not(.footer-brand):not(.footer-contact) {
+    display: block;
+  }
+
+  .footer-col:first-child,
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-logo {
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+
+  .footer-text {
+    max-width: none;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .footer-col h4 {
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+
+  .footer-col li {
+    font-size: 12.5px;
+    line-height: 1.35;
+  }
+
+  .footer-bottom {
+    margin-top: 16px;
+    padding-top: 12px;
+    font-size: 11.5px;
+    line-height: 1.4;
+  }
+}
   </style>
 </head>
 
@@ -1380,82 +1578,81 @@
             <label for="heard_other">If other, please specify <span class="optional">(optional)</span></label>
             <input type="text" id="heard_other" name="heard_other" />
           </div>
-<label class="agreement-card">
-  <input type="checkbox" name="termsAccepted" required>
 
-  <span class="custom-check" aria-hidden="true"></span>
+          <label class="agreement-card" for="termsAccepted">
+            <input type="checkbox" id="termsAccepted" name="termsAccepted" value="Yes" required>
 
-  <span class="agreement-text">
-    <strong>I agree to the retreat policies.</strong>
-    <small>
-      I have read and agree to the
-      <a href="../terms.html" target="_blank">Terms & Conditions</a>
-      and
-      <a href="../privacy.html" target="_blank">Privacy Policy</a>.
-    </small>
-  </span>
-</label>
-        <div class="submit-wrap">
-          <button type="submit" class="submit-btn" id="submitBtn">Send my application</button>
-          <div id="formStatus" class="status" role="status" aria-live="polite"></div>
-          <div class="footer-note">
-            By submitting, you’re sharing information that may be used for food planning,
-            retreat coordination, and general hosting logistics.
+            <span class="custom-check" aria-hidden="true"></span>
+
+            <span class="agreement-text">
+              <strong>I agree to the retreat policies.</strong>
+              <small>
+                I have read and agree to the
+                <a href="../terms.html" target="_blank" rel="noopener">Terms & Conditions</a>
+                and
+                <a href="../privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+              </small>
+            </span>
+          </label>
+
+          <div class="submit-wrap">
+            <button type="submit" class="submit-btn" id="submitBtn">Send my application</button>
+            <div id="formStatus" class="status" role="status" aria-live="polite"></div>
+            <div class="footer-note">
+              By submitting, you’re sharing information that may be used for food planning,
+              retreat coordination, and general hosting logistics.
+            </div>
           </div>
         </div>
       </form>
     </section>
   </div>
 
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col footer-brand">
-        <h2 class="footer-logo">HAMSA NOMADS</h2>
-        <p class="footer-text">
-          Curated kosher retreats in beautiful places, built for meaningful Jewish connection and warm community.
-        </p>
-
-        <div class="footer-icons" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2C9 5 7.5 8.3 7.5 12S9 19 12 22"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="../index.html#experience">Experience</a></li>
-          <li><a href="../index.html#gallery">Gallery</a></li>
-          <li><a href="../index.html#details">More Info</a></li>
-          <li><a href="../about-us/about-us.html">About</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Retreat</h4>
-        <ul>
-          <li>Shavuos in Vermont</li>
-          <li>Private home</li>
-          <li>Kosher food</li>
-          <li>Minyan & Eiruv</li>
-        </ul>
-      </div>
-
-      <div class="footer-col footer-contact">
-        <h4>Contact</h4>
-        <ul>
-          <li>hamsanomads.com</li>
-          <li>Text: 347-988-8869</li>
-        </ul>
-      </div>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col footer-brand">
+      <h2 class="footer-logo">HAMSA NOMADS</h2>
+      <p class="footer-text">
+        Curated kosher travel experiences for meaningful Jewish connection, beautiful places, and warm community.
+      </p>
     </div>
 
-    <div class="footer-bottom">
-      © 2026 Hamsa Nomads — All rights reserved
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../trips-page/trips.html">Trips</a></li>
+        <li><a href="../about-us/about-us.html">About us</a></li>
+        <li><a href="../index.html#pricing">Pricing</a></li>
+      </ul>
     </div>
-  </footer>
 
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../terms.html">Terms</a></li>
+        <li><a href="../privacy.html">Privacy</a></li>
+        <li>Shavuos in Vermont</li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></li>
+        <li>Text: 347-988-8869</li>
+        <li>New York, USA</li>
+        <li><a href="../Forms/apply.html">Join us for Shavuos</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Hamsa Nomads — All rights reserved
+  </div>
+</footer>
+  
   <div class="success-modal" id="successModal" aria-hidden="true">
     <div class="success-modal-card">
       <h3>Congratulations!</h3>
@@ -1551,11 +1748,11 @@
         }
       }
 
-      const agreeRules = document.getElementById("agree_rules");
+      const termsAccepted = document.getElementById("termsAccepted");
 
-      if (agreeRules && !agreeRules.checked) {
-        agreeRules.focus();
-        showStatus("Please agree to the retreat guidelines and cancellation policy.", "error");
+      if (termsAccepted && !termsAccepted.checked) {
+        termsAccepted.focus();
+        showStatus("Please agree to the Terms & Conditions and Privacy Policy before submitting.", "error");
         return false;
       }
 
