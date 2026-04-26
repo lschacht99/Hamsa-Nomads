@@ -498,6 +498,475 @@
       font-style: italic;
     }
 
+    /* =========================
+    Hamsa Nomads — Upcoming Trips Section + Popup Form
+    ========================= */
+
+    :root {
+      --hn-bg: #f7f3ec;
+      --hn-card: rgba(255, 255, 255, 0.52);
+      --hn-card-border: rgba(255, 255, 255, 0.42);
+      --hn-text: #1f2a22;
+      --hn-muted: #5d6a61;
+      --hn-green: #264734;
+      --hn-gold: #d5b25c;
+      --hn-line: rgba(31, 42, 34, 0.16);
+      --hn-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
+    }
+
+    .hn-upcoming-section {
+      position: relative;
+      overflow: hidden;
+      padding: 110px 20px 90px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
+        var(--hn-bg);
+    }
+
+    .hn-upcoming-inner {
+      position: relative;
+      max-width: 1280px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .hn-upcoming-header {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .hn-overline {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--hn-green);
+      opacity: 0.75;
+      font-weight: 700;
+    }
+
+    .hn-upcoming-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4.25rem);
+      line-height: 1.02;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--hn-text);
+    }
+
+    .hn-upcoming-subtitle {
+      margin: 18px 0 0;
+      font-size: clamp(1rem, 1.35vw, 1.14rem);
+      line-height: 1.7;
+      color: var(--hn-muted);
+      max-width: 700px;
+    }
+
+    .hn-upcoming-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hn-upcoming-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hn-upcoming-line path {
+      fill: none;
+      stroke: var(--hn-line);
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 8 12;
+    }
+
+    .hn-slider-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .hn-slider-hint {
+      font-size: 0.95rem;
+      color: var(--hn-muted);
+    }
+
+    .hn-slider-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hn-slider-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid rgba(38, 71, 52, 0.15);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      color: var(--hn-green);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .hn-slider-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .hn-slider-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+      transform: none;
+    }
+
+    .hn-trip-slider {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 10px 12vw 18px 2px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .hn-trip-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hn-trip-slide {
+      scroll-snap-align: start;
+      flex: 0 0 min(86vw, 430px);
+    }
+
+    .hn-trip-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 650px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--hn-card);
+      border: 1px solid var(--hn-card-border);
+      box-shadow: var(--hn-shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hn-trip-image {
+      position: relative;
+      min-height: 290px;
+      background:
+        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
+        var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hn-trip-image::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 44%;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.22));
+    }
+
+    .hn-trip-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 2;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      color: var(--hn-green);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hn-image-note {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 2;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      color: var(--hn-text);
+      font-size: 0.82rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hn-trip-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 26px 24px 24px;
+    }
+
+    .hn-trip-meta {
+      font-size: 0.92rem;
+      color: var(--hn-muted);
+      margin-bottom: 12px;
+    }
+
+    .hn-trip-name {
+      margin: 0 0 12px;
+      font-size: clamp(1.55rem, 2.4vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--hn-text);
+      font-weight: 600;
+    }
+
+    .hn-trip-copy {
+      margin: 0 0 20px;
+      color: var(--hn-muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .hn-trip-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 26px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hn-trip-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--hn-text);
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    .hn-trip-bullets li::before {
+      content: "•";
+      color: var(--hn-gold);
+      font-size: 1.15rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .hn-trip-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .hn-trip-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--hn-green);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .hn-trip-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--hn-gold);
+    }
+
+    .hn-trip-cta,
+    .hn-popup-submit {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--hn-green);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.22s ease;
+      box-shadow: 0 16px 28px rgba(38, 71, 52, 0.20);
+    }
+
+    .hn-trip-cta:hover,
+    .hn-popup-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(38, 71, 52, 0.26);
+    }
+
+    .hn-slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .hn-slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(38, 71, 52, 0.22);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .hn-slider-dot.is-active {
+      width: 28px;
+      background: var(--hn-green);
+    }
+
+    .hn-popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(22, 29, 25, 0.32);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hn-popup-overlay.is-open {
+      display: flex;
+    }
+
+    .hn-popup-bubble {
+      position: relative;
+      width: min(100%, 480px);
+      border-radius: 34px;
+      padding: 30px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.78), rgba(255,255,255,0.48));
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.22);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      overflow: hidden;
+    }
+
+    .hn-popup-bubble::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      right: -80px;
+      top: -80px;
+      border-radius: 999px;
+      background: rgba(213,178,92,0.18);
+    }
+
+    .hn-popup-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(38, 71, 52, 0.12);
+      background: rgba(255,255,255,0.58);
+      cursor: pointer;
+      color: var(--hn-green);
+      font-size: 1.3rem;
+      line-height: 1;
+      z-index: 3;
+    }
+
+    .hn-popup-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hn-popup-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--hn-green);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hn-popup-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 2.35rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--hn-text);
+    }
+
+    .hn-popup-subtitle {
+      margin: 12px 0 22px;
+      color: var(--hn-muted);
+      line-height: 1.6;
+    }
+
+    .hn-popup-form {
+      display: grid;
+      gap: 13px;
+    }
+
+    .hn-popup-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .hn-popup-form input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(38, 71, 52, 0.14);
+      border-radius: 16px;
+      padding: 14px 15px;
+      background: rgba(255,255,255,0.62);
+      color: var(--hn-text);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .hn-popup-form input:focus {
+      border-color: rgba(38, 71, 52, 0.42);
+      box-shadow: 0 0 0 4px rgba(38, 71, 52, 0.08);
+    }
+
+    .hn-popup-submit {
+      margin-top: 4px;
+      width: 100%;
+    }
+
+    .hn-popup-message {
+      min-height: 22px;
+      font-size: 0.92rem;
+      color: var(--hn-green);
+      text-align: center;
+    }
+
+    .hn-popup-message.error {
+      color: #8b2f25;
+    }
+
     .footer {
       background: linear-gradient(180deg, #1c3b2f, #0f2a22);
       color: #e8e6df;
@@ -583,6 +1052,93 @@
       color: #a9a49a;
     }
 
+    .floating-share {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 9999;
+      font-family: inherit;
+    }
+
+    .share-main-btn {
+      border: 1px solid rgba(30, 30, 30, 0.18);
+      background: rgba(255, 255, 255, 0.52);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      color: #1f1f1f;
+      padding: 13px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+      transition: all 0.25s ease;
+    }
+
+    .share-main-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .share-options {
+      position: absolute;
+      right: 0;
+      bottom: 58px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      width: 155px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(30, 30, 30, 0.12);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    }
+
+    .share-options.open {
+      display: flex;
+    }
+
+    .share-options a,
+    .share-options button {
+      width: 100%;
+      border: none;
+      background: rgba(255, 255, 255, 0.42);
+      color: #1f1f1f;
+      text-decoration: none;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .share-options a:hover,
+    .share-options button:hover {
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateX(-2px);
+    }
+
+    @media (min-width: 900px) {
+      .hn-trip-slide {
+        flex: 0 0 min(58vw, 500px);
+      }
+
+      .hn-trip-slider {
+        padding-right: 16vw;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hn-trip-slide {
+        flex: 0 0 min(48vw, 520px);
+      }
+    }
+
     @media (max-width: 1080px) {
       .value-grid,
       .gallery-grid,
@@ -655,6 +1211,66 @@
       .section-header {
         flex-direction: column;
         align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 699px) {
+      .hn-upcoming-section {
+        padding: 86px 16px 72px;
+      }
+
+      .hn-slider-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hn-trip-card {
+        min-height: 620px;
+      }
+
+      .hn-trip-body {
+        padding: 22px 20px 22px;
+      }
+
+      .hn-trip-image {
+        min-height: 250px;
+      }
+
+      .hn-trip-slider {
+        gap: 18px;
+        padding-right: 14vw;
+      }
+
+      .hn-trip-slide {
+        flex: 0 0 min(88vw, 390px);
+      }
+
+      .hn-trip-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hn-trip-cta {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hn-popup-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hn-popup-bubble {
+        padding: 28px 22px 24px;
+      }
+
+      .floating-share {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .share-main-btn {
+        padding: 12px 16px;
+        font-size: 13px;
       }
     }
   </style>
@@ -845,1120 +1461,92 @@
         </div>
       </section>
 
-      <!-- =========================
-Hamsa Nomads — Upcoming Trips Section + Popup Form
-========================= -->
-
-<style>
-  :root {
-    --hn-bg: #f7f3ec;
-    --hn-card: rgba(255, 255, 255, 0.52);
-    --hn-card-border: rgba(255, 255, 255, 0.42);
-    --hn-text: #1f2a22;
-    --hn-muted: #5d6a61;
-    --hn-green: #264734;
-    --hn-gold: #d5b25c;
-    --hn-line: rgba(31, 42, 34, 0.16);
-    --hn-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
-  }
-
-  .hn-upcoming-section {
-    position: relative;
-    overflow: hidden;
-    padding: 110px 20px 90px;
-    background:
-      radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
-      radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
-      var(--hn-bg);
-  }
-
-  .hn-upcoming-inner {
-    position: relative;
-    max-width: 1280px;
-    margin: 0 auto;
-    z-index: 2;
-  }
-
-  .hn-upcoming-header {
-    max-width: 760px;
-    margin-bottom: 34px;
-  }
-
-  .hn-overline {
-    display: inline-block;
-    margin-bottom: 12px;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--hn-green);
-    opacity: 0.75;
-    font-weight: 700;
-  }
-
-  .hn-upcoming-title {
-    margin: 0;
-    font-size: clamp(2rem, 4vw, 4.25rem);
-    line-height: 1.02;
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    color: var(--hn-text);
-  }
-
-  .hn-upcoming-subtitle {
-    margin: 18px 0 0;
-    font-size: clamp(1rem, 1.35vw, 1.14rem);
-    line-height: 1.7;
-    color: var(--hn-muted);
-    max-width: 700px;
-  }
-
-  .hn-upcoming-line {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hn-upcoming-line svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .hn-upcoming-line path {
-    fill: none;
-    stroke: var(--hn-line);
-    stroke-width: 2.1;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 8 12;
-  }
-
-  .hn-slider-topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 18px;
-  }
-
-  .hn-slider-hint {
-    font-size: 0.95rem;
-    color: var(--hn-muted);
-  }
-
-  .hn-slider-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hn-slider-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 999px;
-    border: 1px solid rgba(38, 71, 52, 0.15);
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-    color: var(--hn-green);
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.22s ease;
-  }
-
-  .hn-slider-btn:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .hn-slider-btn:disabled {
-    opacity: 0.45;
-    cursor: default;
-    transform: none;
-  }
-
-  .hn-trip-slider {
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 10px 12vw 18px 2px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .hn-trip-slider::-webkit-scrollbar {
-    display: none;
-  }
-
-  .hn-trip-slide {
-    scroll-snap-align: start;
-    flex: 0 0 min(86vw, 430px);
-  }
-
-  .hn-trip-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 650px;
-    border-radius: 28px;
-    overflow: hidden;
-    background: var(--hn-card);
-    border: 1px solid var(--hn-card-border);
-    box-shadow: var(--hn-shadow);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-
-  .hn-trip-image {
-    position: relative;
-    min-height: 290px;
-    background:
-      linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
-      var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-
-  .hn-trip-image::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 44%;
-    background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.22));
-  }
-
-  .hn-trip-badge {
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    z-index: 2;
-    padding: 8px 13px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.7);
-    color: var(--hn-green);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-
-  .hn-image-note {
-    position: absolute;
-    left: 18px;
-    bottom: 18px;
-    z-index: 2;
-    padding: 7px 12px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.72);
-    color: var(--hn-text);
-    font-size: 0.82rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  .hn-trip-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 26px 24px 24px;
-  }
-
-  .hn-trip-meta {
-    font-size: 0.92rem;
-    color: var(--hn-muted);
-    margin-bottom: 12px;
-  }
-
-  .hn-trip-name {
-    margin: 0 0 12px;
-    font-size: clamp(1.55rem, 2.4vw, 2rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--hn-text);
-    font-weight: 600;
-  }
-
-  .hn-trip-copy {
-    margin: 0 0 20px;
-    color: var(--hn-muted);
-    line-height: 1.7;
-    font-size: 1rem;
-  }
-
-  .hn-trip-bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 26px;
-    display: grid;
-    gap: 10px;
-  }
-
-  .hn-trip-bullets li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    color: var(--hn-text);
-    font-size: 0.96rem;
-    line-height: 1.55;
-  }
-
-  .hn-trip-bullets li::before {
-    content: "•";
-    color: var(--hn-gold);
-    font-size: 1.15rem;
-    line-height: 1;
-    margin-top: 2px;
-  }
-
-  .hn-trip-footer {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  .hn-trip-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--hn-green);
-    font-size: 0.88rem;
-    font-weight: 600;
-  }
-
-  .hn-trip-status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--hn-gold);
-  }
-
-  .hn-trip-cta,
-  .hn-popup-submit {
-    appearance: none;
-    border: 0;
-    border-radius: 999px;
-    padding: 13px 18px;
-    background: var(--hn-green);
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.22s ease;
-    box-shadow: 0 16px 28px rgba(38, 71, 52, 0.20);
-  }
-
-  .hn-trip-cta:hover,
-  .hn-popup-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 34px rgba(38, 71, 52, 0.26);
-  }
-
-  .hn-slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 22px;
-  }
-
-  .hn-slider-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    border: 0;
-    background: rgba(38, 71, 52, 0.22);
-    cursor: pointer;
-    transition: 0.2s ease;
-  }
-
-  .hn-slider-dot.is-active {
-    width: 28px;
-    background: var(--hn-green);
-  }
-
-  /* Popup */
-  .hn-popup-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9998;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 22px;
-    background: rgba(22, 29, 25, 0.32);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-
-  .hn-popup-overlay.is-open {
-    display: flex;
-  }
-
-  .hn-popup-bubble {
-    position: relative;
-    width: min(100%, 480px);
-    border-radius: 34px;
-    padding: 30px;
-    background:
-      linear-gradient(145deg, rgba(255,255,255,0.78), rgba(255,255,255,0.48));
-    border: 1px solid rgba(255,255,255,0.55);
-    box-shadow: 0 30px 90px rgba(0,0,0,0.22);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    overflow: hidden;
-  }
-
-  .hn-popup-bubble::before {
-    content: "";
-    position: absolute;
-    width: 190px;
-    height: 190px;
-    right: -80px;
-    top: -80px;
-    border-radius: 999px;
-    background: rgba(213,178,92,0.18);
-  }
-
-  .hn-popup-close {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    width: 38px;
-    height: 38px;
-    border-radius: 999px;
-    border: 1px solid rgba(38, 71, 52, 0.12);
-    background: rgba(255,255,255,0.58);
-    cursor: pointer;
-    color: var(--hn-green);
-    font-size: 1.3rem;
-    line-height: 1;
-    z-index: 3;
-  }
-
-  .hn-popup-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hn-popup-kicker {
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--hn-green);
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .hn-popup-title {
-    margin: 0;
-    font-size: clamp(1.8rem, 5vw, 2.35rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--hn-text);
-  }
-
-  .hn-popup-subtitle {
-    margin: 12px 0 22px;
-    color: var(--hn-muted);
-    line-height: 1.6;
-  }
-
-  .hn-popup-form {
-    display: grid;
-    gap: 13px;
-  }
-
-  .hn-popup-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 13px;
-  }
-
-  .hn-popup-form input {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid rgba(38, 71, 52, 0.14);
-    border-radius: 16px;
-    padding: 14px 15px;
-    background: rgba(255,255,255,0.62);
-    color: var(--hn-text);
-    font-size: 1rem;
-    outline: none;
-  }
-
-  .hn-popup-form input:focus {
-    border-color: rgba(38, 71, 52, 0.42);
-    box-shadow: 0 0 0 4px rgba(38, 71, 52, 0.08);
-  }
-
-  .hn-popup-submit {
-    margin-top: 4px;
-    width: 100%;
-  }
-
-  .hn-popup-message {
-    min-height: 22px;
-    font-size: 0.92rem;
-    color: var(--hn-green);
-    text-align: center;
-  }
-
-  .hn-popup-message.error {
-    color: #8b2f25;
-  }
-
-  @media (min-width: 900px) {
-    .hn-trip-slide {
-      flex: 0 0 min(58vw, 500px);
-    }
-
-    .hn-trip-slider {
-      padding-right: 16vw;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .hn-trip-slide {
-      flex: 0 0 min(48vw, 520px);
-    }
-  }
-
-  @media (max-width: 699px) {
-    .hn-upcoming-section {
-      padding: 86px 16px 72px;
-    }
-
-    .hn-slider-topbar {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .hn-trip-card {
-      min-height: 620px;
-    }
-
-    .hn-trip-body {
-      padding: 22px 20px 22px;
-    }
-
-    .hn-trip-image {
-      min-height: 250px;
-    }
-
-    .hn-trip-slider {
-      gap: 18px;
-      padding-right: 14vw;
-    }
-
-    .hn-trip-slide {
-      flex: 0 0 min(88vw, 390px);
-    }
-
-    .hn-trip-footer {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .hn-trip-cta {
-      width: 100%;
-      text-align: center;
-    }
-
-    .hn-popup-row {
-      grid-template-columns: 1fr;
-    }
-
-    .hn-popup-bubble {
-      padding: 28px 22px 24px;
-    }
-  }
-</style>
-
-<section class="hn-upcoming-section" id="upcoming-trips">
-  <div class="hn-upcoming-line" aria-hidden="true">
-    <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
-      <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
-      <path d="M -80 540 C 130 500, 170 640, 340 620 S 630 520, 790 600 S 1030 730, 1180 660 S 1320 600, 1490 700" />
-    </svg>
-  </div>
-
-  <div class="hn-upcoming-inner">
-    <div class="hn-upcoming-header">
-      <span class="hn-overline">Upcoming Trips</span>
-      <h2 class="hn-upcoming-title">Where the line goes next</h2>
-      <p class="hn-upcoming-subtitle">
-        A growing map of Hamsa Nomads experiences — city weekends, playful escapes,
-        and holiday retreats with a soul. Slide through what’s coming next.
-      </p>
-    </div>
-
-    <div class="hn-slider-topbar">
-      <div class="hn-slider-hint">Swipe or tap through the next chapters.</div>
-
-      <div class="hn-slider-controls">
-        <button class="hn-slider-btn" id="hnTripsPrev" aria-label="Previous trip">←</button>
-        <button class="hn-slider-btn" id="hnTripsNext" aria-label="Next trip">→</button>
-      </div>
-    </div>
-
-    <div class="hn-trip-slider" id="hnTripSlider">
-      <!-- CARD 1 -->
-      <article class="hn-trip-slide">
-        <div class="hn-trip-card">
-          <div
-            class="hn-trip-image"
-            style="--trip-image: url('./Image/trips/boston.png');"
-          >
-            <span class="hn-trip-badge">Patriotic and camp</span>
-            <span class="hn-image-note">Join us</span>
+      <section class="hn-upcoming-section" id="upcoming-trips">
+        <div class="hn-upcoming-line" aria-hidden="true">
+          <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
+            <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
+            <path d="M -80 540 C 130 500, 170 640, 340 620 S 630 520, 790 600 S 1030 730, 1180 660 S 1320 600, 1490 700" />
+          </svg>
+        </div>
+
+        <div class="hn-upcoming-inner">
+          <div class="hn-upcoming-header">
+            <span class="hn-overline">Upcoming Trips</span>
+            <h2 class="hn-upcoming-title">Where the line goes next</h2>
+            <p class="hn-upcoming-subtitle">
+              A growing map of Hamsa Nomads experiences — city weekends, playful escapes,
+              and holiday retreats with a soul. Slide through what’s coming next.
+            </p>
           </div>
 
-          <div class="hn-trip-body">
-            <div class="hn-trip-meta">July 4 Weekend • Boston, Massachusetts</div>
-            <h3 class="hn-trip-name">July 4 in Boston</h3>
-            <p class="hn-trip-copy">
-              Fireworks, harbor air, historic streets, and a summer city weekend
-              with Jewish warmth woven in.
-            </p>
+          <div class="hn-slider-topbar">
+            <div class="hn-slider-hint">Swipe or tap through the next chapters.</div>
 
-            <ul class="hn-trip-bullets">
-              <li>Boston energy with a curated, social Hamsa Nomads feel</li>
-              <li>Perfect for city, summer, and community</li>
-              <li>A July kickoff trip with iconic American atmosphere</li>
-            </ul>
-
-            <div class="hn-trip-footer">
-              <div class="hn-trip-status">
-                <span class="hn-trip-status-dot"></span>
-                Planning in progress
-              </div>
-              <button class="hn-trip-cta" data-trip="Boston July 4">
-                Join the interest list 
-              </button>
+            <div class="hn-slider-controls">
+              <button class="hn-slider-btn" id="hnTripsPrev" aria-label="Previous trip">←</button>
+              <button class="hn-slider-btn" id="hnTripsNext" aria-label="Next trip">→</button>
             </div>
           </div>
-        </div>
-      </article>
 
-      <!-- CARD 2 -->
-      <article class="hn-trip-slide">
-        <div class="hn-trip-card">
-          <div
-            class="hn-trip-image"
-            style="--trip-image: url('./Image/trips/pennsylvania-renaissance.png');"
-          >
-            <span class="hn-trip-badge">Playful August Weekend</span>
-            <span class="hn-image-note">History, legacy...</span>
+          <div class="hn-trip-slider" id="hnTripSlider">
+            <article class="hn-trip-slide">
+              <div class="hn-trip-card">
+                <div class="hn-trip-body">
+                  <h3 class="hn-trip-name">Loading trips...</h3>
+                  <p class="hn-trip-copy">Pulling the upcoming trips from the trips page.</p>
+                </div>
+              </div>
+            </article>
           </div>
 
-          <div class="hn-trip-body">
-            <div class="hn-trip-meta">August • Pennsylvania</div>
-            <h3 class="hn-trip-name">Renaissance Fair in Pennsylvania</h3>
-            <p class="hn-trip-copy">
-              A quirky, costume-friendly, countryside weekend built around the fair —
-              playful, memorable, and very not ordinary.
+          <div class="hn-slider-dots" id="hnTripDots"></div>
+        </div>
+      </section>
+
+      <div class="hn-popup-overlay" id="hnTripPopup">
+        <div class="hn-popup-bubble">
+          <button class="hn-popup-close" type="button" id="hnPopupClose" aria-label="Close popup">×</button>
+
+          <div class="hn-popup-content">
+            <div class="hn-popup-kicker">Join the interest list</div>
+            <h3 class="hn-popup-title" id="hnPopupTitle">Upcoming Trip</h3>
+            <p class="hn-popup-subtitle" id="hnPopupSubtitle">
+              Leave your info and we’ll send details as this trip comes together.
             </p>
 
-            <ul class="hn-trip-bullets">
-              <li>A lighter, fun, social summer experience</li>
-              <li>Whimsical fair energy with Shabbos and community</li>
-              <li>Original, visual, and easy to share</li>
-            </ul>
+            <form class="hn-popup-form" id="hnTripForm">
+              <input type="hidden" name="tripInterest" id="hnTripInterest" />
 
-            <div class="hn-trip-footer">
-              <div class="hn-trip-status">
-                <span class="hn-trip-status-dot"></span>
-                Planning in progress
+              <div class="hn-popup-row">
+                <input type="text" name="name" placeholder="Name" required />
+                <input type="text" name="lastName" placeholder="Last Name" required />
               </div>
-              <button class="hn-trip-cta" data-trip="Pennsylvania Renaissance Fair">
-                Join the Fair list
-              </button>
-            </div>
+
+              <input type="email" name="email" placeholder="Email" required />
+              <input type="tel" name="phone" placeholder="Phone" required />
+
+              <button class="hn-popup-submit" type="submit">Join interest list</button>
+
+              <div class="hn-popup-message" id="hnPopupMessage"></div>
+            </form>
           </div>
         </div>
-      </article>
-
-      <!-- CARD 3 -->
-      <article class="hn-trip-slide">
-        <div class="hn-trip-card">
-          <div
-            class="hn-trip-image"
-            style="--trip-image: url('./Image/trips/rosh-hashanah-farm.png');"
-          >
-            <span class="hn-trip-badge">High Holiday Retreat</span>
-            <span class="hn-image-note">the lamas are waiting for you..</span>
-          </div>
-
-          <div class="hn-trip-body">
-            <div class="hn-trip-meta">Rosh Hashanah • Farm Retreat</div>
-            <h3 class="hn-trip-name">Rosh Hashanah on the Farm</h3>
-            <p class="hn-trip-copy">
-              Open fields, apples, honey, candlelit meals, nature, and a softer
-              beginning to the new year.
-            </p>
-
-            <ul class="hn-trip-bullets">
-              <li>The farm concept feels especially beautiful in the fall</li>
-              <li>Grounding and emotionally rich for the High Holidays</li>
-            </ul>
-
-            <div class="hn-trip-footer">
-              <div class="hn-trip-status">
-                <span class="hn-trip-status-dot"></span>
-                Coming soon
-              </div>
-              <button class="hn-trip-cta" data-trip="Rosh Hashanah Farm">
-                Join the farm list
-              </button>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="hn-slider-dots" id="hnTripDots">
-      <button class="hn-slider-dot is-active" aria-label="Go to slide 1"></button>
-      <button class="hn-slider-dot" aria-label="Go to slide 2"></button>
-      <button class="hn-slider-dot" aria-label="Go to slide 3"></button>
-    </div>
-  </div>
-</section>
-
-<!-- Floating Popup Form -->
-<div class="hn-popup-overlay" id="hnTripPopup">
-  <div class="hn-popup-bubble">
-    <button class="hn-popup-close" type="button" id="hnPopupClose" aria-label="Close popup">×</button>
-
-    <div class="hn-popup-content">
-      <div class="hn-popup-kicker">Join the interest list</div>
-      <h3 class="hn-popup-title" id="hnPopupTitle">Upcoming Trip</h3>
-      <p class="hn-popup-subtitle" id="hnPopupSubtitle">
-        Leave your info and we’ll send details as this trip comes together.
-      </p>
-
-      <form class="hn-popup-form" id="hnTripForm">
-        <input type="hidden" name="tripInterest" id="hnTripInterest" />
-
-        <div class="hn-popup-row">
-          <input type="text" name="name" placeholder="Name" required />
-          <input type="text" name="lastName" placeholder="Last Name" required />
-        </div>
-
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="tel" name="phone" placeholder="Phone" required />
-
-        <button class="hn-popup-submit" type="submit">Join interest list</button>
-
-        <div class="hn-popup-message" id="hnPopupMessage"></div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<script>
-  (function () {
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
-
-    const slider = document.getElementById('hnTripSlider');
-    const slides = Array.from(slider.querySelectorAll('.hn-trip-slide'));
-    const prevBtn = document.getElementById('hnTripsPrev');
-    const nextBtn = document.getElementById('hnTripsNext');
-    const dots = Array.from(document.querySelectorAll('#hnTripDots .hn-slider-dot'));
-
-    const popup = document.getElementById('hnTripPopup');
-    const popupClose = document.getElementById('hnPopupClose');
-    const popupTitle = document.getElementById('hnPopupTitle');
-    const popupSubtitle = document.getElementById('hnPopupSubtitle');
-    const tripInterestInput = document.getElementById('hnTripInterest');
-    const tripForm = document.getElementById('hnTripForm');
-    const popupMessage = document.getElementById('hnPopupMessage');
-
-    const tripCopy = {
-      "Boston July 4": {
-        title: "July 4 in Boston",
-        subtitle: "Leave your info and join the interest list as the Boston weekend comes together."
-      },
-      "Pennsylvania Renaissance Fair": {
-        title: "Renaissance Fair in Pennsylvania",
-        subtitle: "Join the August list for our playful countryside weekend."
-      },
-      "Rosh Hashanah Farm": {
-        title: "Rosh Hashanah on the Farm",
-        subtitle: "Be the first to hear when the High Holiday farm retreat opens."
-      }
-    };
-
-    function getGap() {
-      const styles = window.getComputedStyle(slider);
-      return parseFloat(styles.columnGap || styles.gap || 24);
-    }
-
-    function getStep() {
-      if (!slides.length) return 0;
-      return slides[0].getBoundingClientRect().width + getGap();
-    }
-
-    function getActiveIndex() {
-      const center = slider.scrollLeft + (slider.clientWidth / 2);
-      let activeIndex = 0;
-      let closestDistance = Infinity;
-
-      slides.forEach((slide, index) => {
-        const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
-        const distance = Math.abs(slideCenter - center);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          activeIndex = index;
-        }
-      });
-
-      return activeIndex;
-    }
-
-    function updateUI() {
-      const activeIndex = getActiveIndex();
-
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('is-active', index === activeIndex);
-      });
-
-      prevBtn.disabled = slider.scrollLeft <= 6;
-      nextBtn.disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 6;
-    }
-
-    prevBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: -getStep(), behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: getStep(), behavior: 'smooth' });
-    });
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        slider.scrollTo({
-          left: slides[index].offsetLeft,
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    let ticking = false;
-
-    slider.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateUI();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-
-    window.addEventListener('resize', updateUI);
-    window.addEventListener('load', updateUI);
-
-    window.openTripPopup = function (tripName) {
-      const selectedTrip = tripCopy[tripName] || {
-        title: tripName,
-        subtitle: "Leave your info and we’ll send details as this trip comes together."
-      };
-
-      popupTitle.textContent = selectedTrip.title;
-      popupSubtitle.textContent = selectedTrip.subtitle;
-      tripInterestInput.value = tripName;
-      popupMessage.textContent = "";
-      popupMessage.classList.remove("error");
-
-      popup.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-    };
-
-    function closeTripPopup() {
-      popup.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
-
-    popupClose.addEventListener('click', closeTripPopup);
-
-    popup.addEventListener('click', function (event) {
-      if (event.target === popup) {
-        closeTripPopup();
-      }
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && popup.classList.contains('is-open')) {
-        closeTripPopup();
-      }
-    });
-
-    document.querySelectorAll('.hn-trip-cta').forEach((button) => {
-      button.addEventListener('click', function () {
-        const tripName = this.getAttribute('data-trip');
-        window.openTripPopup(tripName);
-      });
-    });
-
-    tripForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
-        popupMessage.textContent = "Add your Google Script link in the code first.";
-        popupMessage.classList.add("error");
-        return;
-      }
-
-      const submitButton = tripForm.querySelector('.hn-popup-submit');
-      const formData = new FormData(tripForm);
-
-      formData.append("timestamp", new Date().toISOString());
-
-      submitButton.disabled = true;
-      submitButton.textContent = "Submitting...";
-      popupMessage.textContent = "";
-      popupMessage.classList.remove("error");
-
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        body: formData
-      })
-      .then(function (response) {
-        popupMessage.textContent = "You’re on the list. We’ll send details soon.";
-        tripForm.reset();
-
-        setTimeout(function () {
-          closeTripPopup();
-          submitButton.disabled = false;
-          submitButton.textContent = "Join interest list";
-        }, 1300);
-      })
-      .catch(function () {
-        popupMessage.textContent = "Something went wrong. Please try again.";
-        popupMessage.classList.add("error");
-        submitButton.disabled = false;
-        submitButton.textContent = "Join interest list";
-      });
-    });
-  })();
-</script>
-      <script src="data/trips-data.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  renderUpcomingTrips();
-  renderLineNext();
-});
-
-function getActiveTrips() {
-  return (window.HAMSA_TRIPS || [])
-    .filter(trip => trip.status !== "Past")
-    .sort((a, b) => (a.lineOrder || 999) - (b.lineOrder || 999));
-}
-
-function renderUpcomingTrips() {
-  const container = document.querySelector("[data-upcoming-trips]");
-  if (!container) return;
-
-  const trips = getActiveTrips();
-
-  container.innerHTML = trips.map(trip => `
-    <article class="trip-card">
-      <div class="trip-card-image" style="background-image: url('${trip.image}')"></div>
-
-      <div class="trip-card-content">
-        <div class="trip-card-meta">
-          <span>${trip.dateLabel}</span>
-          <span>${trip.status}</span>
-        </div>
-
-        <h3>${trip.title}</h3>
-        <p>${trip.shortText}</p>
-
-        <ul>
-          ${trip.highlights.map(item => `<li>${item}</li>`).join("")}
-        </ul>
-
-        <a href="${trip.ctaLink}" class="trip-card-button">
-          ${trip.ctaText}
-        </a>
       </div>
-    </article>
-  `).join("");
-}
-
-function renderLineNext() {
-  const container = document.querySelector("[data-line-next]");
-  if (!container) return;
-
-  const trips = getActiveTrips();
-
-  container.innerHTML = trips.map((trip, index) => `
-    <article class="line-stop ${trip.featured ? "is-featured" : ""}">
-      <div class="line-dot">
-        <span>${index + 1}</span>
-      </div>
-
-      <div class="line-stop-card">
-        <div class="line-stop-date">${trip.dateLabel}</div>
-        <h3>${trip.title}</h3>
-        <p>${trip.shortText}</p>
-        <a href="${trip.ctaLink}">${trip.ctaText}</a>
-      </div>
-    </article>
-  `).join("");
-}
-</script>
-
     </main>
-<!-- Floating Share Button -->
-<div class="floating-share">
-  <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
-    Share around you 
-  </button>
 
-  <div class="share-options" id="shareOptions">
-    <a id="whatsappShare" target="_blank">WhatsApp</a>
-    <a id="facebookShare" target="_blank">Facebook</a>
-    <a id="emailShare">Email</a>
-    <button id="copyLinkBtn">Copy link</button>
-  </div>
-</div>
+    <div class="floating-share">
+      <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
+        Share around you
+      </button>
 
-<style>
-  .floating-share {
-    position: fixed;
-    right: 22px;
-    bottom: 22px;
-    z-index: 9999;
-    font-family: inherit;
-  }
+      <div class="share-options" id="shareOptions">
+        <a id="whatsappShare" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="facebookShare" target="_blank" rel="noopener">Facebook</a>
+        <a id="emailShare">Email</a>
+        <button id="copyLinkBtn" type="button">Copy link</button>
+      </div>
+    </div>
 
-  .share-main-btn {
-    border: 1px solid rgba(30, 30, 30, 0.18);
-    background: rgba(255, 255, 255, 0.52);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    color: #1f1f1f;
-    padding: 13px 18px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
-    transition: all 0.25s ease;
-  }
-
-  .share-main-btn:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .share-options {
-    position: absolute;
-    right: 0;
-    bottom: 58px;
-    display: none;
-    flex-direction: column;
-    gap: 8px;
-    width: 155px;
-    padding: 12px;
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.58);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border: 1px solid rgba(30, 30, 30, 0.12);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-  }
-
-  .share-options.open {
-    display: flex;
-  }
-
-  .share-options a,
-  .share-options button {
-    width: 100%;
-    border: none;
-    background: rgba(255, 255, 255, 0.42);
-    color: #1f1f1f;
-    text-decoration: none;
-    text-align: left;
-    padding: 10px 12px;
-    border-radius: 14px;
-    font-size: 13px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s ease;
-  }
-
-  .share-options a:hover,
-  .share-options button:hover {
-    background: rgba(255, 255, 255, 0.75);
-    transform: translateX(-2px);
-  }
-
-  @media (max-width: 600px) {
-    .floating-share {
-      right: 16px;
-      bottom: 16px;
-    }
-
-    .share-main-btn {
-      padding: 12px 16px;
-      font-size: 13px;
-    }
-  }
-</style>
-
-<script>
-  const shareBtn = document.getElementById("shareBtn");
-  const shareOptions = document.getElementById("shareOptions");
-  const copyLinkBtn = document.getElementById("copyLinkBtn");
-
-  const pageUrl = encodeURIComponent(window.location.href);
-  const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
-
-  document.getElementById("whatsappShare").href =
-    `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
-
-  document.getElementById("facebookShare").href =
-    `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-
-  document.getElementById("emailShare").href =
-    `mailto:?subject=${pageTitle}&body=${pageUrl}`;
-
-  shareBtn.addEventListener("click", () => {
-    shareOptions.classList.toggle("open");
-  });
-
-  copyLinkBtn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      copyLinkBtn.textContent = "Copied!";
-      setTimeout(() => {
-        copyLinkBtn.textContent = "Copy link";
-      }, 1600);
-    } catch (err) {
-      alert("Copy failed. Please copy the URL manually.");
-    }
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".floating-share")) {
-      shareOptions.classList.remove("open");
-    }
-  });
-</script>
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-col">
@@ -2011,6 +1599,440 @@ function renderLineNext() {
   </div>
 
   <script>
+    (function () {
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
+      const TRIPS_PAGE_URL = "trips-page/trips.html";
+
+      const slider = document.getElementById("hnTripSlider");
+      const prevBtn = document.getElementById("hnTripsPrev");
+      const nextBtn = document.getElementById("hnTripsNext");
+      const dotsWrap = document.getElementById("hnTripDots");
+
+      const popup = document.getElementById("hnTripPopup");
+      const popupClose = document.getElementById("hnPopupClose");
+      const popupTitle = document.getElementById("hnPopupTitle");
+      const popupSubtitle = document.getElementById("hnPopupSubtitle");
+      const tripInterestInput = document.getElementById("hnTripInterest");
+      const tripForm = document.getElementById("hnTripForm");
+      const popupMessage = document.getElementById("hnPopupMessage");
+
+      const tripCopy = {
+        "General Trips Interest": {
+          title: "Hamsa Nomads trips",
+          subtitle: "Leave your info and we’ll send updates as future trips open."
+        }
+      };
+
+      function cleanText(text) {
+        return (text || "").replace(/\s+/g, " ").trim();
+      }
+
+      function escapeHTML(value) {
+        return String(value || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function getBackgroundImageUrl(styleValue, baseUrl) {
+        const match = String(styleValue || "").match(/url\((['"]?)(.*?)\1\)/i);
+        if (!match || !match[2]) return "";
+
+        return new URL(match[2], baseUrl).href;
+      }
+
+      function getTripNameFromOnclick(onclickValue) {
+        const match = String(onclickValue || "").match(/openTripPopup\(['"](.+?)['"]\)/);
+        return match ? match[1] : "";
+      }
+
+      function extractTripCardsFromTripsPage(html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const baseUrl = new URL(TRIPS_PAGE_URL, window.location.href);
+
+        const cards = Array.from(
+          doc.querySelectorAll(".bento-grid .bento-card:not(.bento-cta-card)")
+        );
+
+        return cards.map((card) => {
+          const imageEl = card.querySelector(".bento-image");
+          const button = card.querySelector(".trip-cta");
+
+          const title = cleanText(card.querySelector(".bento-title")?.textContent);
+          const meta = cleanText(card.querySelector(".bento-meta")?.textContent);
+          const text = cleanText(card.querySelector(".bento-text")?.textContent);
+          const badge = cleanText(imageEl?.querySelector(".bento-badge")?.textContent) || "Upcoming trip";
+          const status = cleanText(card.querySelector(".bento-status")?.textContent);
+          const ctaText = cleanText(button?.textContent) || "Join the interest list";
+
+          const bullets = Array.from(card.querySelectorAll(".bento-list li"))
+            .map((li) => cleanText(li.textContent))
+            .filter(Boolean);
+
+          const imageStyle =
+            imageEl?.getAttribute("style") ||
+            imageEl?.style?.backgroundImage ||
+            "";
+
+          const image = getBackgroundImageUrl(imageStyle, baseUrl);
+
+          const tripInterest =
+            getTripNameFromOnclick(button?.getAttribute("onclick")) ||
+            title;
+
+          tripCopy[tripInterest] = {
+            title: title,
+            subtitle: text || "Leave your info and we’ll send details as this trip comes together."
+          };
+
+          return {
+            title,
+            meta,
+            text,
+            badge,
+            status,
+            ctaText,
+            bullets,
+            image,
+            tripInterest
+          };
+        }).filter((trip) => trip.title);
+      }
+
+      function renderTrips(trips) {
+        if (!slider || !dotsWrap) return;
+
+        if (!trips.length) {
+          slider.innerHTML = `
+            <article class="hn-trip-slide">
+              <div class="hn-trip-card">
+                <div class="hn-trip-body">
+                  <h3 class="hn-trip-name">Trips coming soon</h3>
+                  <p class="hn-trip-copy">
+                    We could not load the trips yet. Please check the trips-page/trips.html path.
+                  </p>
+                </div>
+              </div>
+            </article>
+          `;
+          dotsWrap.innerHTML = "";
+          updateUI();
+          return;
+        }
+
+        slider.innerHTML = trips.map((trip) => {
+          const imageStyle = trip.image
+            ? `--trip-image: url('${escapeHTML(trip.image)}');`
+            : "";
+
+          return `
+            <article class="hn-trip-slide">
+              <div class="hn-trip-card">
+                <div
+                  class="hn-trip-image"
+                  style="${imageStyle}"
+                >
+                  <span class="hn-trip-badge">${escapeHTML(trip.badge)}</span>
+                  <span class="hn-image-note">${escapeHTML(trip.status || "Join us")}</span>
+                </div>
+
+                <div class="hn-trip-body">
+                  <div class="hn-trip-meta">${escapeHTML(trip.meta)}</div>
+
+                  <h3 class="hn-trip-name">${escapeHTML(trip.title)}</h3>
+
+                  <p class="hn-trip-copy">
+                    ${escapeHTML(trip.text)}
+                  </p>
+
+                  ${
+                    trip.bullets.length
+                      ? `<ul class="hn-trip-bullets">
+                          ${trip.bullets.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}
+                        </ul>`
+                      : ""
+                  }
+
+                  <div class="hn-trip-footer">
+                    <div class="hn-trip-status">
+                      <span class="hn-trip-status-dot"></span>
+                      ${escapeHTML(trip.status || "Planning in progress")}
+                    </div>
+
+                    <button
+                      class="hn-trip-cta"
+                      type="button"
+                      data-trip="${escapeHTML(trip.tripInterest)}"
+                    >
+                      ${escapeHTML(trip.ctaText)}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        dotsWrap.innerHTML = trips.map((trip, index) => `
+          <button
+            class="hn-slider-dot ${index === 0 ? "is-active" : ""}"
+            type="button"
+            aria-label="Go to slide ${index + 1}"
+          ></button>
+        `).join("");
+
+        updateUI();
+      }
+
+      function getSlides() {
+        return Array.from(slider.querySelectorAll(".hn-trip-slide"));
+      }
+
+      function getDots() {
+        return Array.from(dotsWrap.querySelectorAll(".hn-slider-dot"));
+      }
+
+      function getGap() {
+        const styles = window.getComputedStyle(slider);
+        return parseFloat(styles.columnGap || styles.gap || 24);
+      }
+
+      function getStep() {
+        const slides = getSlides();
+        if (!slides.length) return 0;
+
+        return slides[0].getBoundingClientRect().width + getGap();
+      }
+
+      function getActiveIndex() {
+        const slides = getSlides();
+        if (!slides.length) return 0;
+
+        const center = slider.scrollLeft + slider.clientWidth / 2;
+        let activeIndex = 0;
+        let closestDistance = Infinity;
+
+        slides.forEach((slide, index) => {
+          const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+          const distance = Math.abs(slideCenter - center);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            activeIndex = index;
+          }
+        });
+
+        return activeIndex;
+      }
+
+      function updateUI() {
+        if (!slider || !prevBtn || !nextBtn || !dotsWrap) return;
+
+        const dots = getDots();
+        const activeIndex = getActiveIndex();
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("is-active", index === activeIndex);
+        });
+
+        prevBtn.disabled = slider.scrollLeft <= 6;
+        nextBtn.disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 6;
+      }
+
+      function loadTripsFromTripsPage() {
+        if (!slider) return;
+
+        fetch(TRIPS_PAGE_URL, { cache: "no-cache" })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Could not load trips.html");
+            }
+
+            return response.text();
+          })
+          .then((html) => {
+            const trips = extractTripCardsFromTripsPage(html);
+            renderTrips(trips);
+          })
+          .catch(() => {
+            renderTrips([]);
+          });
+      }
+
+      prevBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: -getStep(), behavior: "smooth" });
+      });
+
+      nextBtn.addEventListener("click", () => {
+        slider.scrollBy({ left: getStep(), behavior: "smooth" });
+      });
+
+      dotsWrap.addEventListener("click", (event) => {
+        const dot = event.target.closest(".hn-slider-dot");
+        if (!dot) return;
+
+        const dots = getDots();
+        const slides = getSlides();
+        const index = dots.indexOf(dot);
+
+        if (slides[index]) {
+          slider.scrollTo({
+            left: slides[index].offsetLeft,
+            behavior: "smooth"
+          });
+        }
+      });
+
+      let ticking = false;
+
+      slider.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateUI();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      slider.addEventListener("click", function (event) {
+        const button = event.target.closest(".hn-trip-cta");
+        if (!button) return;
+
+        const tripName = button.getAttribute("data-trip");
+        window.openTripPopup(tripName);
+      });
+
+      window.addEventListener("resize", updateUI);
+      window.addEventListener("load", updateUI);
+
+      window.openTripPopup = function (tripName) {
+        const selectedTrip = tripCopy[tripName] || {
+          title: tripName,
+          subtitle: "Leave your info and we’ll send details as this trip comes together."
+        };
+
+        popupTitle.textContent = selectedTrip.title;
+        popupSubtitle.textContent = selectedTrip.subtitle;
+        tripInterestInput.value = tripName;
+        popupMessage.textContent = "";
+        popupMessage.classList.remove("error");
+
+        popup.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      };
+
+      function closeTripPopup() {
+        popup.classList.remove("is-open");
+        document.body.style.overflow = "";
+      }
+
+      popupClose.addEventListener("click", closeTripPopup);
+
+      popup.addEventListener("click", function (event) {
+        if (event.target === popup) {
+          closeTripPopup();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && popup.classList.contains("is-open")) {
+          closeTripPopup();
+        }
+      });
+
+      tripForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
+          popupMessage.textContent = "Add your Google Script link in the code first.";
+          popupMessage.classList.add("error");
+          return;
+        }
+
+        const submitButton = tripForm.querySelector(".hn-popup-submit");
+        const formData = new FormData(tripForm);
+
+        formData.append("timestamp", new Date().toISOString());
+        formData.append("sourcePage", "index.html");
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+        popupMessage.textContent = "";
+        popupMessage.classList.remove("error");
+
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          body: formData
+        })
+          .then(function () {
+            popupMessage.textContent = "You’re on the list. We’ll send details soon.";
+            tripForm.reset();
+
+            setTimeout(function () {
+              closeTripPopup();
+              submitButton.disabled = false;
+              submitButton.textContent = "Join interest list";
+            }, 1300);
+          })
+          .catch(function () {
+            popupMessage.textContent = "Something went wrong. Please try again.";
+            popupMessage.classList.add("error");
+            submitButton.disabled = false;
+            submitButton.textContent = "Join interest list";
+          });
+      });
+
+      loadTripsFromTripsPage();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const shareBtn = document.getElementById("shareBtn");
+      const shareOptions = document.getElementById("shareOptions");
+      const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+
+      document.getElementById("whatsappShare").href =
+        `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+
+      document.getElementById("facebookShare").href =
+        `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+      document.getElementById("emailShare").href =
+        `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+      shareBtn.addEventListener("click", () => {
+        shareOptions.classList.toggle("open");
+      });
+
+      copyLinkBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyLinkBtn.textContent = "Copied!";
+          setTimeout(() => {
+            copyLinkBtn.textContent = "Copy link";
+          }, 1600);
+        } catch (err) {
+          alert("Copy failed. Please copy the URL manually.");
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".floating-share")) {
+          shareOptions.classList.remove("open");
+        }
+      });
+    })();
+  </script>
+
+  <script>
     (() => {
       const drawPaths = [
         document.getElementById('hamsaBack'),
@@ -2047,6 +2069,5 @@ function renderLineNext() {
       updateLine();
     })();
   </script>
-  
 </body>
 </html>
