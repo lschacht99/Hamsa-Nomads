@@ -1,4 +1,414 @@
 /* =========================================================
+   HAMSA NOMADS — SHARED HEADER / FOOTER / SHARE / BACKGROUND
+   File: assets/site-components.css
+   ========================================================= */
+
+:root {
+  --hn-cream: #f9f6ef;
+  --hn-ink: #1c211d;
+  --hn-muted: #5f655d;
+  --hn-forest: #274537;
+  --hn-gold: #e0ae43;
+  --hn-line: rgba(16, 14, 11, 0.22);
+  --hn-footer-bg-1: #1c3b2f;
+  --hn-footer-bg-2: #0f2a22;
+}
+
+/* =========================================================
+   GLOBAL HAMSA NOMADS BACKGROUND
+   ========================================================= */
+
+html {
+  background: #f7f3ea;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(224, 174, 67, 0.12), transparent 28%),
+    radial-gradient(circle at 12% 78%, rgba(39, 69, 55, 0.08), transparent 30%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(90, 70, 40, 0.012) 0px,
+      rgba(90, 70, 40, 0.012) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(180deg, #faf7f0 0%, #f7f3ea 52%, #efe6d8 100%) !important;
+  background-attachment: fixed;
+  color: var(--hn-ink);
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   GLOBAL DRAWING ROUTE LINE BACKGROUND
+   Supports both old .hn-global-route-* and new .hn-trip-* names.
+   This prevents the black SVG blob issue.
+   ========================================================= */
+
+.hn-trip-line-overlay,
+.hn-global-route-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.74;
+}
+
+.hn-trip-line-overlay svg,
+.hn-global-route-overlay svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Critical anti-blob fix */
+.hn-trip-line-overlay svg path,
+.hn-global-route-overlay svg path {
+  fill: none !important;
+}
+
+.hn-trip-path-main,
+.hn-trip-path-slice,
+.hn-global-route-line {
+  fill: none !important;
+  stroke: var(--hn-line);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.hn-trip-path-main.back {
+  stroke-width: 3.2;
+  opacity: 0.68;
+}
+
+.hn-trip-path-main.front {
+  stroke-width: 1.5;
+  opacity: 0.92;
+}
+
+.hn-trip-path-slice.back {
+  stroke-width: 3;
+  opacity: 0.68;
+}
+
+.hn-trip-path-slice.front {
+  stroke-width: 1.3;
+  opacity: 0.92;
+}
+
+.hn-global-route-line.back {
+  stroke-width: 3.8;
+}
+
+.hn-global-route-line.front {
+  stroke-width: 1.8;
+}
+
+.hn-global-route-dot {
+  fill: rgba(224, 174, 67, 0.34);
+  stroke: rgba(28, 30, 25, 0.42);
+  stroke-width: 1.8;
+  opacity: 0;
+  transform: scale(0.65);
+  transform-origin: center;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.hn-global-route-dot.is-visible {
+  opacity: 0.9;
+  transform: scale(1);
+}
+
+/* Keeps page content above the shared background line */
+.site-shell,
+main,
+section,
+#site-header,
+#site-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   SHARED CONTAINER
+   ========================================================= */
+
+.hn-shared-container {
+  width: min(calc(100% - 32px), 1280px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+#site-header {
+  position: relative;
+  z-index: 9999;
+}
+
+.hn-shared-header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgba(249, 246, 239, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(39, 69, 55, 0.08);
+}
+
+.hn-shared-nav {
+  min-height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 14px 0;
+}
+
+.hn-shared-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  flex-shrink: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hn-shared-brand-logo {
+  display: block;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.hn-shared-brand-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+
+.hn-shared-brand-name {
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  white-space: nowrap;
+  color: var(--hn-ink);
+}
+
+.hn-shared-brand-sub {
+  font-size: 0.82rem;
+  color: var(--hn-muted);
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.hn-shared-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  color: var(--hn-muted);
+  font-size: 0.95rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  margin-left: auto;
+  min-width: 0;
+}
+
+.hn-shared-nav-links a {
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hn-shared-nav-links a:visited {
+  color: inherit;
+}
+
+.hn-shared-nav-links a:hover,
+.hn-shared-nav-links a.is-active {
+  color: var(--hn-ink);
+}
+
+.hn-shared-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: rgba(39, 69, 55, 0.92);
+  color: #fff !important;
+  box-shadow: 0 12px 30px rgba(39, 69, 55, 0.22);
+  border: 1px solid rgba(39, 69, 55, 0.26);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.hn-shared-button:hover {
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.hn-shared-footer {
+  position: relative;
+  z-index: 20;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(224, 174, 67, 0.16), transparent 26%),
+    linear-gradient(180deg, var(--hn-footer-bg-1), var(--hn-footer-bg-2));
+  color: #e8e6df;
+  padding: 42px 20px 18px;
+  margin-top: 42px;
+}
+
+.hn-shared-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.65fr 0.75fr 0.75fr 0.8fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.hn-shared-footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 13px;
+}
+
+.hn-shared-footer-logo-img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.hn-shared-footer-logo {
+  font-family: "Iowan Old Style", Georgia, serif;
+  letter-spacing: 0.16em;
+  font-size: 15px;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.hn-shared-footer-tagline {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: rgba(232, 230, 223, 0.68);
+  line-height: 1.3;
+}
+
+.hn-shared-footer-text {
+  font-size: 13px;
+  color: #cfcac1;
+  line-height: 1.6;
+  max-width: 360px;
+  margin: 0 0 16px;
+}
+
+.hn-shared-footer-cta {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 38px;
+  padding: 0 15px;
+  border-radius: 999px;
+  background: rgba(224, 174, 67, 0.15);
+  border: 1px solid rgba(224, 174, 67, 0.28);
+  color: #f5dfaa !important;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.hn-shared-footer-cta:hover {
+  background: rgba(224, 174, 67, 0.23);
+  transform: translateY(-1px);
+}
+
+.hn-shared-footer-col h4 {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  margin: 0 0 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.hn-shared-footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.hn-shared-footer-col li {
+  margin: 0;
+  font-size: 12.8px;
+  color: #cfcac1;
+  line-height: 1.35;
+}
+
+.hn-shared-footer-col a,
+.hn-shared-footer-col a:visited {
+  color: #cfcac1;
+  text-decoration: none;
+}
+
+.hn-shared-footer-col a:hover {
+  color: #fff;
+}
+
+.hn-shared-footer-contact li:first-child a {
+  color: #f5dfaa;
+}
+
+.hn-shared-footer-bottom {
+  max-width: 1200px;
+  margin: 26px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  font-size: 12px;
+  color: #a9a49a;
+}
+
+/* =========================================================
    FOOTER DESIGN CREDIT
    ========================================================= */
 
@@ -61,4 +471,256 @@
 .hn-shared-footer-credit-link:hover {
   opacity: 0.86;
   transform: translateY(-1px);
+}
+
+/* =========================================================
+   GLOBAL FLOATING SHARE BUTTON
+   ========================================================= */
+
+.hn-shared-floating-share {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 999999;
+  font-family: inherit;
+}
+
+.hn-shared-share-main-btn {
+  border: 1px solid rgba(30, 30, 30, 0.18);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  color: #1f1f1f;
+  padding: 13px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+  transition: all 0.25s ease;
+}
+
+.hn-shared-share-main-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.hn-shared-share-options {
+  position: absolute;
+  right: 0;
+  bottom: 58px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  width: 155px;
+  padding: 12px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.66);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(30, 30, 30, 0.12);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.hn-shared-share-options.is-open {
+  display: flex;
+}
+
+.hn-shared-share-options a,
+.hn-shared-share-options button {
+  width: 100%;
+  border: none;
+  background: rgba(255, 255, 255, 0.42);
+  color: #1f1f1f;
+  text-decoration: none;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.hn-shared-share-options a:visited {
+  color: #1f1f1f;
+}
+
+.hn-shared-share-options a:hover,
+.hn-shared-share-options button:hover {
+  background: rgba(255, 255, 255, 0.82);
+  transform: translateX(-2px);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .hn-shared-footer-container {
+    grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .hn-shared-nav-links {
+    gap: 18px;
+    font-size: 0.9rem;
+  }
+
+  .hn-shared-button {
+    min-height: 44px;
+    padding: 0 18px;
+  }
+}
+
+@media (max-width: 860px) {
+  .hn-trip-line-overlay,
+  .hn-global-route-overlay {
+    opacity: 0.42;
+  }
+
+  .hn-trip-path-main.back,
+  .hn-global-route-line.back {
+    stroke-width: 2.4;
+  }
+
+  .hn-trip-path-main.front,
+  .hn-global-route-line.front {
+    stroke-width: 1.15;
+  }
+
+  .hn-trip-path-slice.back {
+    stroke-width: 2.2;
+  }
+
+  .hn-trip-path-slice.front {
+    stroke-width: 1.05;
+  }
+
+  .hn-shared-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .hn-shared-nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 12px 14px;
+    flex-wrap: wrap;
+  }
+
+  .hn-shared-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .hn-shared-brand-logo {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+  }
+
+  .hn-shared-brand-name {
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+  }
+
+  .hn-shared-footer {
+    padding: 28px 16px 16px;
+    margin-top: 34px;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .hn-shared-footer-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
+  }
+
+  .hn-shared-footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .hn-shared-footer-logo-img {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .hn-shared-footer-text {
+    max-width: none;
+  }
+
+  .hn-shared-footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    margin-top: 20px;
+    font-size: 11.5px;
+  }
+
+  .hn-shared-footer-credit {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hn-shared-footer-credit-topline {
+    justify-content: center;
+  }
+
+  .hn-shared-floating-share {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .hn-shared-share-main-btn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hn-shared-container {
+    width: min(calc(100% - 24px), 1280px);
+  }
+
+  .hn-shared-nav-links {
+    font-size: 0.84rem;
+  }
+
+  .hn-shared-nav-links a:not(.hn-shared-button) {
+    padding: 3px 0;
+  }
+
+  .hn-shared-button {
+    min-height: 40px;
+    padding: 0 16px;
+    font-size: 0.86rem;
+  }
+
+  .hn-shared-footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 18px;
+  }
+
+  .hn-shared-footer-logo {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+  }
+
+  .hn-shared-footer-text,
+  .hn-shared-footer-col li {
+    font-size: 12.3px;
+  }
+
+  .hn-shared-footer-credit {
+    max-width: 100%;
+    padding: 12px 14px;
+  }
+
+  .hn-shared-share-main-btn {
+    max-width: calc(100vw - 32px);
+  }
 }
