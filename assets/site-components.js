@@ -140,8 +140,21 @@ function markActiveNav() {
   const activeLink = document.querySelector(`[data-nav="${active.key}"]`);
   if (activeLink) activeLink.classList.add("is-active");
 }
+function updateHeaderHeight() {
+  const header = document.getElementById("site-header");
+  if (!header) return;
+
+  const height = header.offsetHeight || 86;
+  document.documentElement.style.setProperty("--hn-header-height", `${height}px`);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   insertSiteHeader();
   insertSiteFooter();
+
+  requestAnimationFrame(updateHeaderHeight);
+  setTimeout(updateHeaderHeight, 250);
 });
+
+window.addEventListener("resize", updateHeaderHeight);
+window.addEventListener("load", updateHeaderHeight);
