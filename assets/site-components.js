@@ -1,8 +1,12 @@
 const BASE = document.currentScript?.dataset.base || "";
 
+/* Links use BASE because pages inside folders need ../ */
 function withBase(path) {
   return `${BASE}${path}`;
 }
+
+/* Logo always loads from the website root */
+const LOGO_SRC = "/logo/logo-hamsa-nomads.png";
 
 function insertSiteHeader() {
   const headerTarget = document.getElementById("site-header");
@@ -12,7 +16,7 @@ function insertSiteHeader() {
     <header class="hn-shared-header">
       <div class="hn-shared-container hn-shared-nav">
         <a href="${withBase("index.html")}" class="hn-shared-brand" aria-label="Hamsa Nomads home">
-          <img class="hn-shared-brand-logo" src="${withBase("Image/logo-hamsa-nomads.png")}" alt="Hamsa Nomads logo" />
+          <img class="hn-shared-brand-logo" src="${LOGO_SRC}" alt="Hamsa Nomads logo" />
           <div class="hn-shared-brand-text">
             <div class="hn-shared-brand-name">Hamsa Nomads</div>
             <div class="hn-shared-brand-sub">Kosher travel</div>
@@ -44,7 +48,7 @@ function insertSiteFooter() {
 
         <div class="hn-shared-footer-brand">
           <div class="hn-shared-footer-logo-row">
-            <img src="${withBase("Image/logo-hamsa-nomads.png")}" alt="Hamsa Nomads logo" class="hn-shared-footer-logo-img" />
+            <img src="${LOGO_SRC}" alt="Hamsa Nomads logo" class="hn-shared-footer-logo-img" />
             <div>
               <h2 class="hn-shared-footer-logo">Hamsa Nomads</h2>
               <p class="hn-shared-footer-tagline">Curated kosher travel experiences</p>
