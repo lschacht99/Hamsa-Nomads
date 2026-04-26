@@ -210,12 +210,21 @@
       display: flex;
       align-items: center;
       background-color: #e9e1d3;
-      background-image: url("../Image/vermont-hero.png");
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(247,241,231,0.96) 0%,
+          rgba(247,241,231,0.86) 46%,
+          rgba(247,241,231,0.42) 100%
+        ),
+        url("../Image/vermont-hero.png");
+      background-size: cover, cover;
+      background-position: center center, center center;
+      background-repeat: no-repeat, no-repeat;
       border: 1px solid rgba(255,255,255,0.42);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(24px) saturate(170%);
+      -webkit-backdrop-filter: blur(24px) saturate(170%);
       max-width: 100%;
     }
 
@@ -223,15 +232,11 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(248,243,232,0.88),
-        rgba(248,243,232,0.94)
-      );
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      z-index: 0;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(255,255,255,0.46), transparent 32%),
+        linear-gradient(120deg, rgba(255,255,255,0.22), transparent 45%);
       pointer-events: none;
+      z-index: -1;
     }
 
     .hero::after {
@@ -242,9 +247,9 @@
         linear-gradient(90deg, rgba(22,63,49,0.08) 1px, transparent 1px),
         linear-gradient(rgba(22,63,49,0.05) 1px, transparent 1px);
       background-size: 36px 36px;
-      opacity: 0.16;
+      opacity: 0.18;
       pointer-events: none;
-      z-index: 1;
+      z-index: -1;
     }
 
     .hero-grid {
@@ -252,7 +257,7 @@
       z-index: 2;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 18px;
+      gap: 24px;
       width: 100%;
       max-width: 760px;
       min-width: 0;
@@ -280,7 +285,7 @@
       letter-spacing: -0.06em;
       font-weight: 500;
       color: var(--green);
-      max-width: 10ch;
+      max-width: 9ch;
     }
 
     .title-gold {
@@ -288,39 +293,41 @@
     }
 
     .hero-copy p {
-      margin: 6px 0 0;
-      max-width: 54ch;
+      margin: 0;
+      max-width: 58ch;
       color: #4d4a45;
-      line-height: 1.68;
-      font-size: 1rem;
+      line-height: 1.85;
+      font-size: 1.04rem;
       overflow-wrap: break-word;
     }
 
     .hero-note {
       width: min(100%, 520px);
       max-width: 100%;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.55);
-      border: 1px solid rgba(0,0,0,0.05);
-      box-shadow: 0 10px 24px rgba(28,45,34,0.06);
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.38);
+      border: 1px solid rgba(255,255,255,0.42);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px) saturate(170%);
+      -webkit-backdrop-filter: blur(18px) saturate(170%);
       min-width: 0;
     }
 
     .hero-note strong {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       color: var(--green);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1rem;
+      font-size: 1.03rem;
       font-weight: 600;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     .hero-note span {
       color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.55;
+      font-size: 0.92rem;
+      line-height: 1.65;
       display: block;
     }
 
@@ -840,10 +847,22 @@
       }
 
       .hero {
-        min-height: 315px;
+        min-height: 330px;
         padding: 22px 18px;
         border-radius: 26px;
         align-items: flex-start;
+        background-color: #e9e1d3;
+        background-image:
+          linear-gradient(
+            180deg,
+            rgba(247,241,231,0.96) 0%,
+            rgba(247,241,231,0.88) 52%,
+            rgba(247,241,231,0.58) 100%
+          ),
+          url("../Image/vermont-hero.png");
+        background-size: cover, cover;
+        background-position: center center, center center;
+        background-repeat: no-repeat, no-repeat;
       }
 
       .hero-grid {
@@ -874,7 +893,7 @@
       .hero-note {
         padding: 12px 14px;
         border-radius: 18px;
-        background: rgba(255,255,255,0.58);
+        background: rgba(255,255,255,0.42);
       }
 
       .hero-note strong {
@@ -905,9 +924,21 @@
 
     @media (max-width: 420px) {
       .hero {
-        min-height: 300px;
+        min-height: 315px;
         padding: 20px 16px;
         border-radius: 24px;
+        background-color: #e9e1d3;
+        background-image:
+          linear-gradient(
+            180deg,
+            rgba(247,241,231,0.96) 0%,
+            rgba(247,241,231,0.88) 52%,
+            rgba(247,241,231,0.58) 100%
+          ),
+          url("../Image/vermont-hero.png");
+        background-size: cover, cover;
+        background-position: center center, center center;
+        background-repeat: no-repeat, no-repeat;
       }
 
       h1 {
@@ -983,17 +1014,19 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">A Shavuot mountain escape</div>
-          <h1>Request to <span class="title-gold">Join</span></h1>
+          <h1>Apply for your <span class="title-gold">place.</span></h1>
           <p>
-            A warm, thoughtfully curated Shavuot in Vermont — mountain air, kosher meals,
-            and a small group to slow down, connect, and celebrate together.
+            Join us for a warm and thoughtfully curated Shavuot experience in Vermont —
+            with mountain air, kosher meals, hot tub, a swimming pool, a game room,
+            and a beautiful setting to slow down, connect, celebrate, and enjoy the holiday together.
           </p>
         </div>
 
         <div class="hero-note">
-          <strong>How it works.</strong>
+          <strong>Peaceful. Restful. Beautifully hosted.</strong>
           <span>
-            Submit your request → we review → you receive confirmation + payment link.
+            This application helps us understand who is coming, what stay fits you best,
+            and how to create a warm, well-matched group.
           </span>
         </div>
       </div>
@@ -1266,10 +1299,7 @@
         </div>
 
         <div class="submit-wrap">
-          <button type="submit" class="submit-btn" id="submitBtn">Send my request</button>
-          <div class="tiny">
-            Small, curated group. We review each request personally.
-          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">Send my application</button>
           <div id="formStatus" class="status" role="status" aria-live="polite"></div>
           <div class="footer-note">
             By submitting, you’re sharing information that may be used for food planning,
@@ -1331,9 +1361,9 @@
 
   <div class="success-modal" id="successModal" aria-hidden="true">
     <div class="success-modal-card">
-      <h3>Request received</h3>
+      <h3>Congratulations!</h3>
       <p>
-        We’ll review your request and send confirmation with the payment link if your spot can be confirmed.
+        We will send you a confirmation soon with the link to pay if your application is accepted.
       </p>
       <button type="button" class="modal-btn" id="closeSuccessModal">Close</button>
     </div>
@@ -1480,14 +1510,14 @@
       submitBtn.disabled = true;
       submitBtn.textContent = "Submitting...";
 
-      showStatus("Submitting request...", "success");
+      showStatus("Submitting application...", "success");
 
       setTimeout(() => {
         form.reset();
         toggleConditionalFields();
         hideStatus();
         submitBtn.disabled = false;
-        submitBtn.textContent = "Send my request";
+        submitBtn.textContent = "Send my application";
         openSuccessModal();
       }, 1200);
     });
