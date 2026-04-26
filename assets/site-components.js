@@ -5,8 +5,8 @@ function withBase(path) {
   return `${BASE}${path}`;
 }
 
-/* Logo always loads from the website root */
-const LOGO_SRC = "/logo/logo-hamsa-nomads.png";
+/* Logo uses the full public URL so mobile does not break the path */
+const LOGO_SRC = "https://www.hamsanomads.com/logo/logo-hamsa-nomads.png?v=3";
 
 function insertSiteHeader() {
   const headerTarget = document.getElementById("site-header");
@@ -16,7 +16,12 @@ function insertSiteHeader() {
     <header class="hn-shared-header">
       <div class="hn-shared-container hn-shared-nav">
         <a href="${withBase("index.html")}" class="hn-shared-brand" aria-label="Hamsa Nomads home">
-          <img class="hn-shared-brand-logo" src="${LOGO_SRC}" alt="Hamsa Nomads logo" />
+          <img
+            class="hn-shared-brand-logo"
+            src="${LOGO_SRC}"
+            alt="Hamsa Nomads logo"
+            loading="eager"
+          />
           <div class="hn-shared-brand-text">
             <div class="hn-shared-brand-name">Hamsa Nomads</div>
             <div class="hn-shared-brand-sub">Kosher travel</div>
@@ -48,7 +53,12 @@ function insertSiteFooter() {
 
         <div class="hn-shared-footer-brand">
           <div class="hn-shared-footer-logo-row">
-            <img src="${LOGO_SRC}" alt="Hamsa Nomads logo" class="hn-shared-footer-logo-img" />
+            <img
+              src="${LOGO_SRC}"
+              alt="Hamsa Nomads logo"
+              class="hn-shared-footer-logo-img"
+              loading="lazy"
+            />
             <div>
               <h2 class="hn-shared-footer-logo">Hamsa Nomads</h2>
               <p class="hn-shared-footer-tagline">Curated kosher travel experiences</p>
