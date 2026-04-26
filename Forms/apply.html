@@ -1040,22 +1040,22 @@
             </div>
           </div>
 
-          <div class="field">
-            <label>Would you be interested in helping lead or support davening? <span class="optional">(optional)</span></label>
-            <div class="radio-group">
-              <label class="radio-item">
-                <input type="radio" name="support_davening" value="Yes" />
-                <span>Yes</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="support_davening" value="Maybe" />
-                <span>Maybe</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="support_davening" value="No" />
-                <span>No</span>
-              </label>
-            </div>
+        <div class="form-group">
+  <label for="campingInterest">
+    Would you be interested in an optional overnight camping add-on in a nearby area?
+    <span class="optional">(optional)</span>
+  </label>
+  <p class="field-note">
+    We’re considering adding an extra overnight camping option for guests who’d like a more outdoorsy extension to the retreat.
+  </p>
+
+  <select id="campingInterest" name="campingInterest">
+    <option value="">Please select</option>
+    <option value="Yes, I’d be interested">Yes, I’d be interested</option>
+    <option value="Maybe, depending on the details">Maybe, depending on the details</option>
+    <option value="No, probably not">No, probably not</option>
+  </select>
+</div>
           </div>
 
           <div class="field hidden" id="davening_notes_wrap">
@@ -1123,7 +1123,7 @@
 
           <div class="field">
             <label>Would you like to help during the retreat? <span class="optional">(optional)</span></label>
-            <div class="tiny">There may be a few discounted volunteer/helper spots available.</div>
+            <div class="tiny">Limited volunteer/helper spots available.</div>
 
             <div class="radio-group">
               <label class="radio-item">
