@@ -396,15 +396,22 @@
     min-width: 40px;
   }
 }
-/* Keep shared header visible while scrolling */
+/* Fixed shared header */
 #site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 99999;
+  left: 0;
+  width: 100%;
+  z-index: 999999;
 }
 
 .hn-shared-header {
   position: relative;
   top: auto;
-  z-index: 99999;
+  z-index: 999999;
+}
+
+/* Prevent page content from hiding behind the fixed header */
+body {
+  padding-top: var(--hn-header-height, 86px);
 }
