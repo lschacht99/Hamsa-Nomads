@@ -8,6 +8,7 @@
   <meta name="description" content="Upcoming Hamsa Nomads trips, city weekends, holiday retreats, playful escapes, and kosher travel experiences with community." />
 
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/site-components.css" />
 
   <meta property="og:title" content="Hamsa Nomads — Upcoming Trips" />
   <meta property="og:description" content="Discover upcoming Hamsa Nomads trips and join the interest list for future kosher travel experiences." />
@@ -79,6 +80,23 @@
       font: inherit;
     }
 
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+    }
+
+    .hn-shared-header {
+      position: relative;
+      top: auto;
+      z-index: 99999;
+    }
+
+    #site-footer {
+      position: relative;
+      z-index: 2;
+    }
+
     .site-shell {
       position: relative;
       isolation: isolate;
@@ -138,84 +156,6 @@
 
     .path-slice.front {
       stroke-width: 1.3;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(249, 246, 239, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(39, 69, 55, 0.08);
-    }
-
-    .nav {
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      flex-shrink: 0;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .brand-text {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 1;
-    }
-
-    .brand-name {
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      line-height: 0.95;
-      white-space: nowrap;
-    }
-
-    .brand-sub {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 6px;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      margin-left: auto;
-      min-width: 0;
-    }
-
-    .nav-links a {
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover {
-      color: var(--ink);
     }
 
     .button,
@@ -898,91 +838,6 @@
       transform: translateX(-2px);
     }
 
-    .footer {
-      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
-      color: #e8e6df;
-      padding: 60px 20px 30px;
-      margin-top: 20px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    .footer-logo {
-      font-family: Georgia, serif;
-      letter-spacing: 0.2em;
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 15px;
-    }
-
-    .footer-text {
-      font-size: 14px;
-      color: #cfcac1;
-      line-height: 1.6;
-      max-width: 340px;
-    }
-
-    .footer-icons {
-      margin-top: 20px;
-      display: flex;
-      gap: 14px;
-      color: #cfcac1;
-    }
-
-    .footer-icons svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .footer-col h4 {
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      margin: 0 0 14px;
-      color: #fff;
-      text-transform: uppercase;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-col li {
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #cfcac1;
-    }
-
-    .footer-col a {
-      color: #cfcac1;
-      text-decoration: none;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 13px;
-      color: #a9a49a;
-    }
-
     @media (max-width: 1100px) {
       .bento-grid {
         grid-template-columns: 1fr 1fr;
@@ -1007,8 +862,7 @@
     }
 
     @media (max-width: 1080px) {
-      .trips-hero-inner,
-      .footer-container {
+      .trips-hero-inner {
         grid-template-columns: 1fr 1fr;
       }
 
@@ -1017,57 +871,12 @@
       }
     }
 
-    @media (max-width: 980px) {
-      .nav {
-        gap: 18px;
-      }
-
-      .brand-logo {
-        width: 46px;
-        height: 46px;
-      }
-
-      .brand-name {
-        font-size: 0.82rem;
-        letter-spacing: 0.18em;
-      }
-
-      .nav-links {
-        gap: 18px;
-        font-size: 0.9rem;
-      }
-
-      .button,
-      .button-secondary {
-        min-height: 46px;
-        padding: 0 20px;
-      }
-    }
-
     @media (max-width: 760px) {
-      .nav {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 12px 0;
-      }
-
-      .brand {
-        justify-content: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 12px 14px;
-        flex-wrap: wrap;
-      }
-
       .trips-hero-wrap {
         min-height: 790px;
       }
 
-      .trips-hero-inner,
-      .footer-container {
+      .trips-hero-inner {
         grid-template-columns: 1fr;
       }
 
@@ -1140,8 +949,9 @@
 </head>
 
 <body>
-  <div class="site-shell">
+  <div id="site-header"></div>
 
+  <div class="site-shell">
     <div class="line-overlay" aria-hidden="true">
       <svg viewBox="0 0 1400 1800" preserveAspectRatio="none">
         <path
@@ -1154,7 +964,6 @@
           class="path-main front"
           d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
         />
-
         <path
           id="sliceBack"
           class="path-slice back"
@@ -1168,28 +977,7 @@
       </svg>
     </div>
 
-    <header class="site-header">
-      <div class="container nav">
-        <a class="brand" href="../index.html" aria-label="Hamsa Nomads home">
-          <img class="brand-logo" src="../logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
-          <div class="brand-text">
-            <div class="brand-name">Hamsa Nomads</div>
-            <div class="brand-sub">Kosher travel experiences</div>
-          </div>
-        </a>
-
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="../index.html">Home</a>
-          <a href="../about-us/about-us.html">About</a>
-          <a href="trips.html">Trips</a>
-          <a href="../Forms/apply.html">Apply</a>
-          <a class="button" href="../Forms/apply.html">Apply Now</a>
-        </nav>
-      </div>
-    </header>
-
     <main>
-
       <section class="trips-hero">
         <div class="container">
           <div class="trips-hero-wrap">
@@ -1285,7 +1073,6 @@
           </div>
 
           <div class="bento-grid">
-
             <article class="bento-card bento-featured">
               <div class="bento-image" style="background-image: url('../Image/trips/boston.png');">
                 <span class="bento-badge">Featured trip</span>
@@ -1398,16 +1185,16 @@
               </div>
             </article>
 
-             <article class="bento-card bento-medium">
+            <article class="bento-card bento-medium">
               <div class="bento-image small" style="background-image: url('../about-us/sketches/vietnam.png');">
                 <span class="bento-badge">Along the Mekong</span>
               </div>
 
               <div class="bento-content">
-                <div class="bento-meta">Potentially september 2027 • India</div>
-                <h3 class="bento-title">A trip through Vietnam </h3>
+                <div class="bento-meta">Potentially September 2027 • Vietnam</div>
+                <h3 class="bento-title">A trip through Vietnam</h3>
                 <p class="bento-text">
-                  Cuisine and history discovery
+                  Cuisine and history discovery.
                 </p>
 
                 <ul class="bento-list">
@@ -1419,7 +1206,7 @@
                 <div class="bento-footer">
                   <div class="bento-status">
                     <span class="bento-status-dot"></span>
-                    Potentially september 2027
+                    Potentially September 2027
                   </div>
                   <button class="trip-cta" type="button" onclick="openTripPopup('A trip to Vietnam')">
                     Join the Vietnam list
@@ -1427,6 +1214,7 @@
                 </div>
               </div>
             </article>
+
             <article class="bento-card bento-wide bento-cta-card">
               <div class="bento-cta-inner">
                 <div>
@@ -1446,11 +1234,9 @@
                 </div>
               </div>
             </article>
-
           </div>
         </div>
       </section>
-
     </main>
 
     <div class="popup-overlay" id="tripPopup">
@@ -1501,69 +1287,23 @@
         <button id="copyLinkBtn" type="button">Copy link</button>
       </div>
     </div>
-
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-col">
-          <h2 class="footer-logo">HAMSA NOMADS</h2>
-          <p class="footer-text">
-            Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
-            beautiful places, and warm community.
-          </p>
-          <div class="footer-icons" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2C9 5 7.5 8.3 7.5 12S9 19 12 22"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="../index.html#experience">Experience</a></li>
-            <li><a href="../index.html#gallery">Gallery</a></li>
-            <li><a href="../index.html#details">More Information</a></li>
-            <li><a href="../about-us/about-us.html">About</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Trips</h4>
-          <ul>
-            <li>July 4 in Boston</li>
-            <li>Pennsylvania Renaissance Fair</li>
-            <li>Rosh Hashanah Farm Retreat</li>
-            <li>India</li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li>hamsanomads.com</li>
-            <li>Text: 347-988-8869</li>
-            <li><a href="../Forms/apply.html">Apply Now</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Hamsa Nomads — All rights reserved
-      </div>
-    </footer>
   </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../assets/site-components.js" data-base="../"></script>
 
   <script>
     (function () {
       const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
 
-      const popup = document.getElementById('tripPopup');
-      const popupClose = document.getElementById('popupClose');
-      const popupTitle = document.getElementById('popupTitle');
-      const popupSubtitle = document.getElementById('popupSubtitle');
-      const tripInterestInput = document.getElementById('tripInterest');
-      const tripForm = document.getElementById('tripForm');
-      const popupMessage = document.getElementById('popupMessage');
+      const popup = document.getElementById("tripPopup");
+      const popupClose = document.getElementById("popupClose");
+      const popupTitle = document.getElementById("popupTitle");
+      const popupSubtitle = document.getElementById("popupSubtitle");
+      const tripInterestInput = document.getElementById("tripInterest");
+      const tripForm = document.getElementById("tripForm");
+      const popupMessage = document.getElementById("popupMessage");
 
       const tripCopy = {
         "General Trips Interest": {
@@ -1585,6 +1325,10 @@
         "A trip to India": {
           title: "India with Hamsa Nomads",
           subtitle: "Join the interest list for a future trip through Jewish history, community, and real encounters across India."
+        },
+        "A trip to Vietnam": {
+          title: "Vietnam with Hamsa Nomads",
+          subtitle: "Join the interest list for a future Vietnam experience built around cuisine, history, and community."
         }
       };
 
@@ -1600,30 +1344,30 @@
         popupMessage.textContent = "";
         popupMessage.classList.remove("error");
 
-        popup.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
+        popup.classList.add("is-open");
+        document.body.style.overflow = "hidden";
       };
 
       function closeTripPopup() {
-        popup.classList.remove('is-open');
-        document.body.style.overflow = '';
+        popup.classList.remove("is-open");
+        document.body.style.overflow = "";
       }
 
-      popupClose.addEventListener('click', closeTripPopup);
+      popupClose.addEventListener("click", closeTripPopup);
 
-      popup.addEventListener('click', function (event) {
+      popup.addEventListener("click", function (event) {
         if (event.target === popup) {
           closeTripPopup();
         }
       });
 
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && popup.classList.contains('is-open')) {
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && popup.classList.contains("is-open")) {
           closeTripPopup();
         }
       });
 
-      tripForm.addEventListener('submit', function (event) {
+      tripForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
         if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
@@ -1632,7 +1376,7 @@
           return;
         }
 
-        const submitButton = tripForm.querySelector('.popup-submit');
+        const submitButton = tripForm.querySelector(".popup-submit");
         const formData = new FormData(tripForm);
 
         formData.append("timestamp", new Date().toISOString());
@@ -1704,13 +1448,13 @@
       });
 
       const drawPaths = [
-        document.getElementById('lineBack'),
-        document.getElementById('lineFront')
+        document.getElementById("lineBack"),
+        document.getElementById("lineFront")
       ].filter(Boolean);
 
       const slicePaths = [
-        document.getElementById('sliceBack'),
-        document.getElementById('sliceFront')
+        document.getElementById("sliceBack"),
+        document.getElementById("sliceFront")
       ].filter(Boolean);
 
       function updateLine() {
@@ -1732,8 +1476,8 @@
         });
       }
 
-      window.addEventListener('scroll', updateLine, { passive: true });
-      window.addEventListener('resize', updateLine);
+      window.addEventListener("scroll", updateLine, { passive: true });
+      window.addEventListener("resize", updateLine);
       updateLine();
     })();
   </script>
