@@ -64,27 +64,24 @@ body {
 
 .hn-global-route-line {
   fill: none;
-  stroke: rgba(28, 30, 25, 0.24);
+  stroke: rgba(28, 30, 25, 0.34);
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
 .hn-global-route-line.back {
-  stroke-width: 3.1;
-  opacity: 0.34;
+  stroke-width: 3.8;
 }
 
 .hn-global-route-line.front {
-  stroke-width: 1.35;
-  stroke: rgba(28, 30, 25, 0.42);
-  opacity: 0.78;
+  stroke-width: 1.8;
 }
 
 .hn-global-route-dot {
-  fill: rgba(224, 174, 67, 0.22);
-  stroke: rgba(28, 30, 25, 0.26);
-  stroke-width: 1.2;
+  fill: rgba(224, 174, 67, 0.34);
+  stroke: rgba(28, 30, 25, 0.42);
+  stroke-width: 1.8;
   opacity: 0;
   transform: scale(0.65);
   transform-origin: center;
@@ -92,7 +89,7 @@ body {
 }
 
 .hn-global-route-dot.is-visible {
-  opacity: 0.72;
+  opacity: 0.9;
   transform: scale(1);
 }
 
