@@ -945,13 +945,26 @@
           </div>
 
           <div class="field">
+  <label for="coming_from">Where are you coming from? <span class="optional">(optional)</span></label>
+  <p class="field-help">
+    City, neighborhood, or general area is perfect. This may help us coordinate rides or carpools.
+  </p>
+  <input
+    type="text"
+    id="coming_from"
+    name="coming_from"
+    placeholder="Example: Brooklyn, Albany, Teaneck..."
+  />
+</div>
+          
+          <div class="field">
             <label for="about_you">
               Tell us about yourself, and anything you might enjoy bringing to the retreat *
             </label>
-            <p class="field-help">
-              A short introduction is perfect. You can mention the kind of energy you bring,
-              where you’re coming from, and if you may be able to help with rides or carpooling.
-            </p>
+           <p class="field-help">
+  A short introduction is perfect. You can mention the kind of energy you bring,
+  what drew you to the retreat, and if you may be able to help with rides or carpooling.
+</p>
             <textarea
               id="about_you"
               name="about_you"
@@ -1150,6 +1163,30 @@
             <input type="text" id="heard_other" name="heard_other" />
           </div>
 
+          <div class="field">
+  <label>
+    Would you be interested in an optional extra overnight camping + night hike experience?
+    <span class="optional">(optional)</span>
+  </label>
+  <p class="field-help">
+    We’re considering adding a small nature-based extension for people who want a more outdoorsy experience.
+  </p>
+
+  <div class="radio-group">
+    <label class="radio-item">
+      <input type="radio" name="extra_camping_hike" value="Yes" />
+      <span>Yes, I’d be interested</span>
+    </label>
+    <label class="radio-item">
+      <input type="radio" name="extra_camping_hike" value="Maybe" />
+      <span>Maybe, depending on the details</span>
+    </label>
+    <label class="radio-item">
+      <input type="radio" name="extra_camping_hike" value="No" />
+      <span>No, probably not</span>
+    </label>
+  </div>
+</div>
           <label class="agreement-card" for="termsAccepted">
             <input type="checkbox" id="termsAccepted" name="termsAccepted" value="Yes" required>
 
