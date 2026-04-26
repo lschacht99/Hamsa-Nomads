@@ -6,7 +6,8 @@
 
   <title>Hamsa Nomads — Shavuos in Vermont</title>
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="Image/logo-hamsa-nomads.png" type="image/png" />
+  <link rel="stylesheet" href="assets/site-components.css" />
 
   <style>
     :root {
@@ -101,84 +102,6 @@
       border: 1px solid rgba(255,255,255,0.48);
       box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.45);
       border-radius: var(--radius);
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(249, 246, 239, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(39, 69, 55, 0.08);
-    }
-
-    .nav {
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      flex-shrink: 0;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .brand-text {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 1;
-    }
-
-    .brand-name {
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      line-height: 0.95;
-      white-space: nowrap;
-    }
-
-    .brand-sub {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 6px;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      margin-left: auto;
-      min-width: 0;
-    }
-
-    .nav-links a {
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover {
-      color: var(--ink);
     }
 
     .button,
@@ -405,7 +328,6 @@
     }
 
     .card p,
-    .footer-text,
     li {
       color: var(--muted);
     }
@@ -518,7 +440,6 @@
       line-height: 1.65;
     }
 
-    /* FAQ preview inserted between pricing and upcoming trips */
     .home-faq-preview {
       position: relative;
       z-index: 2;
@@ -638,7 +559,6 @@
       font-weight: 700;
     }
 
-    /* Upcoming Trips */
     .hn-upcoming-section {
       position: relative;
       overflow: hidden;
@@ -1180,82 +1100,6 @@
       transform: translateX(-2px);
     }
 
-    .footer {
-      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
-      color: #e8e6df;
-      padding: 34px 20px 18px;
-      margin-top: 22px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.15fr 0.75fr 0.75fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .footer-logo {
-      font-family: Georgia, serif;
-      letter-spacing: 0.18em;
-      font-size: 15px;
-      color: #fff;
-      margin: 0 0 9px;
-      text-transform: uppercase;
-    }
-
-    .footer-text {
-      font-size: 12.8px;
-      color: #cfcac1;
-      line-height: 1.55;
-      max-width: 300px;
-    }
-
-    .footer-col h4 {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      margin: 0 0 10px;
-      color: #fff;
-      text-transform: uppercase;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 7px;
-    }
-
-    .footer-col li {
-      margin: 0;
-      font-size: 12.8px;
-      color: #cfcac1;
-      line-height: 1.35;
-    }
-
-    .footer-col a {
-      color: #cfcac1;
-      text-decoration: none;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 22px auto 0;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      text-align: left;
-      font-size: 12px;
-      color: #a9a49a;
-    }
-
     @media (min-width: 900px) {
       .hn-trip-slide {
         flex: 0 0 min(58vw, 500px);
@@ -1286,54 +1130,9 @@
       }
 
       .gallery-card.tall { grid-row: span 1; }
-
-      .footer-container {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 18px;
-      }
-    }
-
-    @media (max-width: 980px) {
-      .nav { gap: 18px; }
-
-      .brand-logo {
-        width: 46px;
-        height: 46px;
-      }
-
-      .brand-name {
-        font-size: 0.82rem;
-        letter-spacing: 0.18em;
-      }
-
-      .nav-links {
-        gap: 18px;
-        font-size: 0.9rem;
-      }
-
-      .button,
-      .button-secondary {
-        min-height: 46px;
-        padding: 0 20px;
-      }
     }
 
     @media (max-width: 760px) {
-      .nav {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 12px 0;
-      }
-
-      .brand { justify-content: flex-start; }
-
-      .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 12px 14px;
-        flex-wrap: wrap;
-      }
-
       .hero-wrap { min-height: 620px; }
       .hero-copy { padding-top: 14px; }
 
@@ -1440,31 +1239,6 @@
         padding: 12px 16px;
         font-size: 13px;
       }
-
-      .footer {
-        padding: 24px 16px 16px;
-        margin-top: 18px;
-      }
-
-      .footer-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px 20px;
-      }
-
-      .footer-col:first-child {
-        grid-column: 1 / -1;
-      }
-
-      .footer-text {
-        max-width: none;
-        font-size: 12.5px;
-      }
-
-      .footer-bottom {
-        margin-top: 16px;
-        padding-top: 12px;
-        font-size: 11.5px;
-      }
     }
   </style>
 </head>
@@ -1482,26 +1256,7 @@
       </svg>
     </div>
 
-    <header class="site-header">
-      <div class="container nav">
-        <a href="#top" class="brand">
-          <img class="brand-logo" src="./logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo" />
-          <div class="brand-text">
-            <div class="brand-name">Hamsa Nomads</div>
-            <div class="brand-sub">Kosher travel</div>
-          </div>
-        </a>
-
-        <nav class="nav-links">
-          <a href="#experience">Experience</a>
-          <a href="#gallery">Gallery</a>
-          <a href="trips-page/trips.html">Upcoming trips</a>
-          <a href="faq.html">FAQ</a>
-          <a href="about-us/about-us.html">About us</a>
-          <a href="Forms/apply.html" class="button">Join the retreat</a>
-        </nav>
-      </div>
-    </header>
+    <div id="site-header"></div>
 
     <main id="top">
       <section class="hero">
@@ -1784,51 +1539,10 @@
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-col">
-          <h2 class="footer-logo">HAMSA NOMADS</h2>
-          <p class="footer-text">
-            Curated kosher travel experiences for meaningful Jewish connection, beautiful places, and warm community.
-          </p>
-        </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="trips-page/trips.html">Trips</a></li>
-            <li><a href="about-us/about-us.html">About us</a></li>
-            <li><a href="Forms/apply.html">Apply</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Info</h4>
-          <ul>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="terms.html">Terms</a></li>
-            <li><a href="privacy.html">Privacy</a></li>
-            <li>Shavuos in Vermont</li>
-          </ul>
-        </div>
-
-        <div class="footer-col footer-contact">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></li>
-            <li>Text: 347-988-8869</li>
-            <li>New York, USA</li>
-            <li><a href="Forms/apply.html">Join us for Shavuos</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Hamsa Nomads — All rights reserved
-      </div>
-    </footer>
+    <div id="site-footer"></div>
   </div>
+
+  <script src="assets/site-components.js" data-base=""></script>
 
   <script>
     (() => {
@@ -1893,9 +1607,7 @@
       try {
         const response = await fetch("faq.html", { cache: "no-store" });
 
-        if (!response.ok) {
-          throw new Error("FAQ page could not be loaded.");
-        }
+        if (!response.ok) throw new Error("FAQ page could not be loaded.");
 
         const html = await response.text();
         const parser = new DOMParser();
@@ -1906,13 +1618,10 @@
         const faqs = faqItems.map((item) => {
           const question = item.querySelector(".faq-question span:first-child")?.textContent?.trim();
           const answer = item.querySelector(".faq-answer-inner")?.textContent?.trim();
-
           return { question, answer };
         }).filter((faq) => faq.question && faq.answer);
 
-        if (!faqs.length) {
-          throw new Error("No FAQ items found.");
-        }
+        if (!faqs.length) throw new Error("No FAQ items found.");
 
         const randomFaq = faqs[Math.floor(Math.random() * faqs.length)];
 
@@ -1973,7 +1682,6 @@
       function getBackgroundImageUrl(styleValue, baseUrl) {
         const match = String(styleValue || "").match(/url\((['"]?)(.*?)\1\)/i);
         if (!match || !match[2]) return "";
-
         return new URL(match[2], baseUrl).href;
       }
 
@@ -2072,9 +1780,7 @@
 
                 <div class="hn-trip-body">
                   <div class="hn-trip-meta">${escapeHTML(trip.meta)}</div>
-
                   <h3 class="hn-trip-name">${escapeHTML(trip.title)}</h3>
-
                   <p class="hn-trip-copy">${escapeHTML(trip.text)}</p>
 
                   ${
@@ -2132,7 +1838,6 @@
       function getStep() {
         const slides = getSlides();
         if (!slides.length) return 0;
-
         return slides[0].getBoundingClientRect().width + getGap();
       }
 
@@ -2176,10 +1881,7 @@
 
         fetch(TRIPS_PAGE_URL, { cache: "no-cache" })
           .then((response) => {
-            if (!response.ok) {
-              throw new Error("Could not load trips.html");
-            }
-
+            if (!response.ok) throw new Error("Could not load trips.html");
             return response.text();
           })
           .then((html) => {
@@ -2262,9 +1964,7 @@
       popupClose.addEventListener("click", closeTripPopup);
 
       popup.addEventListener("click", function (event) {
-        if (event.target === popup) {
-          closeTripPopup();
-        }
+        if (event.target === popup) closeTripPopup();
       });
 
       document.addEventListener("keydown", function (event) {
