@@ -6,6 +6,9 @@
 
   <title>Apply | Hamsa Nomads</title>
 
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/site-components.css" />
+
   <style>
     :root {
       --cream: #f5efe4;
@@ -123,86 +126,6 @@
       width: min(1120px, calc(100% - 28px));
       margin: 0 auto;
       padding: 24px 0 70px;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 80;
-      margin-bottom: 22px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.42), rgba(255,255,255,0.16));
-      border: 1px solid rgba(255,255,255,0.38);
-      border-radius: 0 0 26px 26px;
-      box-shadow: 0 12px 34px rgba(28, 45, 34, 0.08);
-      backdrop-filter: blur(20px) saturate(170%);
-      -webkit-backdrop-filter: blur(20px) saturate(170%);
-    }
-
-    .nav {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      padding: 12px 18px;
-    }
-
-    .site-brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: var(--green);
-      min-width: 0;
-    }
-
-    .site-logo {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .site-brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      line-height: 1;
-    }
-
-    .site-brand-text strong {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 0.92rem;
-      letter-spacing: 0.2em;
-      color: var(--green);
-      white-space: nowrap;
-    }
-
-    .site-brand-text span {
-      font-size: 0.82rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .site-nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 24px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      flex-wrap: wrap;
-    }
-
-    .site-nav a {
-      color: var(--muted);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .site-nav a:hover {
-      color: var(--green);
     }
 
     .hero {
@@ -723,99 +646,6 @@
       display: none !important;
     }
 
-    .footer {
-      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
-      color: #e8e6df;
-      padding: 54px 20px 26px;
-      margin-top: 60px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    .footer-logo {
-      font-family: Georgia, serif;
-      letter-spacing: 0.2em;
-      font-size: 18px;
-      color: #fff;
-      margin: 0 0 15px;
-    }
-
-    .footer-text {
-      font-size: 14px;
-      color: #cfcac1;
-      line-height: 1.6;
-      max-width: 340px;
-      margin: 0;
-    }
-
-    .footer-icons {
-      margin-top: 18px;
-      display: flex;
-      gap: 14px;
-      color: #cfcac1;
-    }
-
-    .footer-icons svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .footer-col h4 {
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      margin: 0 0 12px;
-      color: #fff;
-      text-transform: uppercase;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-col li {
-      margin-bottom: 9px;
-      font-size: 14px;
-      color: #cfcac1;
-      line-height: 1.45;
-    }
-
-    .footer-col a {
-      color: #cfcac1;
-      text-decoration: none;
-    }
-
-    .footer-col a:visited {
-      color: #cfcac1;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 34px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.10);
-      font-size: 13px;
-      color: #a9a49a;
-    }
-
     .success-modal {
       position: fixed;
       inset: 0;
@@ -877,95 +707,6 @@
     @media (min-width: 900px) {
       .section:first-of-type .grid.two {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 1080px) {
-      .footer-container {
-        grid-template-columns: 1.4fr 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 920px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-
-      .site-nav {
-        justify-content: flex-start;
-        gap: 12px 16px;
-      }
-
-      .site-brand-text strong {
-        font-size: 0.82rem;
-        letter-spacing: 0.16em;
-      }
-
-      .footer {
-        padding: 28px 16px 18px;
-        margin-top: 42px;
-        border-radius: 28px 28px 0 0;
-      }
-
-      .footer-container {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .footer-brand {
-        grid-column: auto;
-      }
-
-      .footer-col:not(.footer-brand):not(.footer-contact) {
-        display: none;
-      }
-
-      .footer-logo {
-        font-size: 13px;
-        letter-spacing: 0.15em;
-        margin-bottom: 8px;
-      }
-
-      .footer-text {
-        font-size: 12.5px;
-        line-height: 1.5;
-        max-width: 36ch;
-      }
-
-      .footer-icons {
-        display: none;
-      }
-
-      .footer-contact h4 {
-        font-size: 10.5px;
-        letter-spacing: 0.12em;
-        margin-bottom: 8px;
-      }
-
-      .footer-contact ul {
-        display: grid;
-        gap: 5px;
-      }
-
-      .footer-contact li {
-        margin-bottom: 0;
-        font-size: 12.5px;
-        line-height: 1.35;
-      }
-
-      .footer-bottom {
-        margin-top: 18px;
-        padding-top: 12px;
-        font-size: 11px;
-        line-height: 1.4;
       }
     }
 
@@ -1106,161 +847,7 @@
       .hero-note span {
         font-size: 0.76rem;
       }
-
-      .footer {
-        padding: 24px 14px 16px;
-      }
-
-      .footer-container {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
     }
-    /* ===== INDEX-STYLE COMPACT FOOTER ===== */
-
-.footer {
-  background: linear-gradient(180deg, #1c3b2f, #0f2a22);
-  color: #e8e6df;
-  padding: 34px 20px 18px;
-  margin-top: 42px;
-  position: relative;
-  z-index: 2;
-  border-radius: 0;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1.15fr 0.75fr 0.75fr 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.footer-logo {
-  font-family: Georgia, serif;
-  letter-spacing: 0.18em;
-  font-size: 15px;
-  color: #fff;
-  margin: 0 0 9px;
-  text-transform: uppercase;
-}
-
-.footer-text {
-  font-size: 12.8px;
-  color: #cfcac1;
-  line-height: 1.55;
-  max-width: 300px;
-  margin: 0;
-}
-
-.footer-icons {
-  display: none;
-}
-
-.footer-col h4 {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  margin: 0 0 10px;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 7px;
-}
-
-.footer-col li {
-  margin: 0;
-  font-size: 12.8px;
-  color: #cfcac1;
-  line-height: 1.35;
-}
-
-.footer-col a,
-.footer-col a:visited {
-  color: #cfcac1;
-  text-decoration: none;
-}
-
-.footer-col a:hover {
-  color: white;
-}
-
-.footer-bottom {
-  max-width: 1200px;
-  margin: 22px auto 0;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-align: left;
-  font-size: 12px;
-  color: #a9a49a;
-}
-
-/* override the old apply-page mobile footer hiding */
-@media (max-width: 1080px) {
-  .footer-container {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
-  }
-}
-
-@media (max-width: 760px) {
-  .footer {
-    padding: 24px 16px 16px;
-    margin-top: 34px;
-    border-radius: 28px 28px 0 0;
-  }
-
-  .footer-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px 20px;
-  }
-
-  .footer-col,
-  .footer-col:not(.footer-brand):not(.footer-contact) {
-    display: block;
-  }
-
-  .footer-col:first-child,
-  .footer-brand {
-    grid-column: 1 / -1;
-  }
-
-  .footer-logo {
-    font-size: 13px;
-    letter-spacing: 0.15em;
-    margin-bottom: 8px;
-  }
-
-  .footer-text {
-    max-width: none;
-    font-size: 12.5px;
-    line-height: 1.5;
-  }
-
-  .footer-col h4 {
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    margin-bottom: 8px;
-  }
-
-  .footer-col li {
-    font-size: 12.5px;
-    line-height: 1.35;
-  }
-
-  .footer-bottom {
-    margin-top: 16px;
-    padding-top: 12px;
-    font-size: 11.5px;
-    line-height: 1.4;
-  }
-}
   </style>
 </head>
 
@@ -1280,25 +867,9 @@
     </svg>
   </div>
 
+  <div id="site-header"></div>
+
   <div class="page">
-    <header class="site-header">
-      <div class="nav">
-        <a href="../index.html" class="site-brand">
-          <img src="../logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo" class="site-logo">
-          <div class="site-brand-text">
-            <strong>HAMSA NOMADS</strong>
-            <span>Retreat application</span>
-          </div>
-        </a>
-
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="../index.html">Home</a>
-          <a href="../trips-page/trips.html">Trips</a>
-          <a href="../about-us/about-us.html">About</a>
-        </nav>
-      </div>
-    </header>
-
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
@@ -1608,51 +1179,8 @@
     </section>
   </div>
 
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-col footer-brand">
-      <h2 class="footer-logo">HAMSA NOMADS</h2>
-      <p class="footer-text">
-        Curated kosher travel experiences for meaningful Jewish connection, beautiful places, and warm community.
-      </p>
-    </div>
+  <div id="site-footer"></div>
 
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="../index.html#experience">Experience</a></li>
-        <li><a href="../trips-page/trips.html">Trips</a></li>
-        <li><a href="../about-us/about-us.html">About us</a></li>
-        <li><a href="../index.html#pricing">Pricing</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Info</h4>
-      <ul>
-        <li><a href="../faq.html">FAQ</a></li>
-        <li><a href="../terms.html">Terms</a></li>
-        <li><a href="../privacy.html">Privacy</a></li>
-        <li>Shavuos in Vermont</li>
-      </ul>
-    </div>
-
-    <div class="footer-col footer-contact">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></li>
-        <li>Text: 347-988-8869</li>
-        <li>New York, USA</li>
-        <li><a href="../Forms/apply.html">Join us for Shavuos</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 Hamsa Nomads — All rights reserved
-  </div>
-</footer>
-  
   <div class="success-modal" id="successModal" aria-hidden="true">
     <div class="success-modal-card">
       <h3>Congratulations!</h3>
@@ -1664,6 +1192,8 @@
   </div>
 
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+  <script src="../assets/site-components.js" data-base="../"></script>
 
   <script>
     const form = document.getElementById("applyForm");
