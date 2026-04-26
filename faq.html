@@ -7,8 +7,8 @@
   <title>FAQ | Hamsa Nomads</title>
   <meta name="description" content="Frequently asked questions about Hamsa Nomads curated Jewish retreats." />
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="assets/site-components.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/site-components.css?v=question1">
 
   <style>
     :root {
@@ -25,17 +25,18 @@
       --border: rgba(39, 69, 55, 0.12);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       font-family: Inter, Arial, sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.72), transparent 34%),
-        linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
       line-height: 1.55;
       overflow-x: hidden;
     }
@@ -47,48 +48,31 @@
       margin: 0;
     }
 
-    p { margin: 0; }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
     .site-shell {
       position: relative;
       isolation: isolate;
       min-height: 100vh;
     }
-
-    .line-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .line-overlay svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .path-main,
-    .path-slice,
-    .path-hamsa {
-      fill: none;
-      stroke: var(--line);
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .path-main.back,
-    .path-hamsa.back { stroke-width: 3.2; }
-
-    .path-main.front,
-    .path-hamsa.front { stroke-width: 1.5; }
-
-    .path-slice.back { stroke-width: 3; }
-    .path-slice.front { stroke-width: 1.3; }
 
     .container {
       width: min(calc(100% - 32px), var(--container));
@@ -277,6 +261,146 @@
       color: var(--forest);
     }
 
+    /* QUESTION FORM SECTION */
+
+    .question-section {
+      position: relative;
+      z-index: 2;
+      padding: 8px 0 54px;
+    }
+
+    .question-card {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 42px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-card::before {
+      content: "";
+      position: absolute;
+      right: -110px;
+      top: -120px;
+      width: 310px;
+      height: 310px;
+      border-radius: 999px;
+      background: rgba(184, 139, 47, 0.13);
+      pointer-events: none;
+    }
+
+    .question-layout {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(22px, 4vw, 42px);
+      align-items: start;
+    }
+
+    .question-copy h2 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 0.98;
+      color: var(--forest);
+      margin-bottom: 14px;
+    }
+
+    .question-copy p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1rem;
+      max-width: 440px;
+    }
+
+    .question-mini-note {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.48);
+      border: 1px solid rgba(39, 69, 55, 0.1);
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .question-form {
+      display: grid;
+      gap: 13px;
+    }
+
+    .question-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .question-form input,
+    .question-form textarea {
+      width: 100%;
+      border: 1px solid rgba(39, 69, 55, 0.14);
+      border-radius: 16px;
+      padding: 14px 15px;
+      background: rgba(255, 255, 255, 0.58);
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.32),
+        0 10px 24px rgba(31, 28, 20, 0.04);
+    }
+
+    .question-form textarea {
+      min-height: 130px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .question-form input:focus,
+    .question-form textarea:focus {
+      border-color: rgba(184, 139, 47, 0.48);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.32),
+        0 0 0 4px rgba(184, 139, 47, 0.12),
+        0 12px 28px rgba(31, 28, 20, 0.07);
+    }
+
+    .question-submit {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      min-height: 50px;
+      padding: 0 24px;
+      background: rgba(39, 69, 55, 0.94);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      box-shadow: 0 14px 30px rgba(39, 69, 55, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .question-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 38px rgba(39, 69, 55, 0.26);
+    }
+
+    .question-submit:disabled {
+      opacity: 0.68;
+      cursor: wait;
+      transform: none;
+    }
+
+    .question-status {
+      min-height: 22px;
+      color: var(--forest);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .question-status.error {
+      color: #8b2f25;
+    }
+
     .faq-cta {
       position: relative;
       z-index: 2;
@@ -330,6 +454,26 @@
         padding: 20px 2px;
       }
 
+      .question-section {
+        padding: 0 0 38px;
+      }
+
+      .question-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .question-row {
+        grid-template-columns: 1fr;
+      }
+
+      .question-card {
+        border-radius: 22px;
+      }
+
+      .question-submit {
+        width: 100%;
+      }
+
       .faq-cta-card {
         flex-direction: column;
         align-items: flex-start;
@@ -344,15 +488,6 @@
 
 <body>
   <div class="site-shell">
-
-    <div class="line-overlay" aria-hidden="true">
-      <svg viewBox="0 0 1440 1200" preserveAspectRatio="none">
-        <path class="path-main back" d="M-80 220 C 160 80, 330 360, 540 210 S 900 40, 1110 230 S 1320 520, 1540 360" />
-        <path class="path-main front" d="M-60 760 C 180 590, 320 850, 540 710 S 860 520, 1080 700 S 1300 940, 1510 760" />
-        <path class="path-slice back" d="M100 1120 C 320 910, 540 1160, 760 990 S 1120 780, 1380 960" />
-      </svg>
-    </div>
-
     <div id="site-header"></div>
 
     <main>
@@ -509,6 +644,68 @@
         </div>
       </section>
 
+   <section class="question-section" id="ask-question">
+  <div class="container">
+    <div class="question-card glass">
+      <div class="question-layout">
+        <div class="question-copy">
+          <div class="faq-kicker">We’re happy to help</div>
+          <h2>Have a question?</h2>
+          <p>
+            Not sure if the retreat is the right fit, wondering about rooms, food,
+            pricing, travel, or something else? Send us a note and we’ll get back to you.
+          </p>
+
+          <div class="question-mini-note">
+            No pressure — this is just a simple way to ask before applying or reserving a spot.
+          </div>
+        </div>
+
+        <form
+          class="question-form"
+          id="questionForm"
+          action="https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+          method="POST"
+          target="question_iframe"
+        >
+          <input type="hidden" name="submitted_at" id="questionSubmittedAt">
+          <input type="hidden" name="source_page" value="faq.html">
+
+          <div class="question-row">
+            <input type="text" name="first_name" placeholder="First name *" required>
+            <input type="text" name="last_name" placeholder="Last name *" required>
+          </div>
+
+          <div class="question-row">
+            <input type="tel" name="phone" placeholder="Phone number *" required>
+            <input type="email" name="email" placeholder="Email address *" required>
+          </div>
+
+          <input
+            type="text"
+            name="writing_from"
+            placeholder="Where are you writing from? Optional"
+          >
+
+          <textarea
+            name="question"
+            placeholder="What would you like to ask? *"
+            required
+          ></textarea>
+
+          <button type="submit" class="question-submit" id="questionSubmit">
+            Send my question
+          </button>
+
+          <div class="question-status" id="questionStatus" aria-live="polite"></div>
+        </form>
+
+        <iframe name="question_iframe" style="display:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
       <section class="faq-cta">
         <div class="container">
           <div class="faq-cta-card glass">
@@ -518,17 +715,16 @@
                 Start with the application. It helps us understand if the trip is the right fit before anyone commits.
               </p>
             </div>
-            <a href="Forms/apply.html" class="button">Apply for a retreat</a>
+            <a href="/Forms/apply.html" class="button">Apply for a retreat</a>
           </div>
         </div>
       </section>
     </main>
 
     <div id="site-footer"></div>
-
   </div>
 
-  <script src="assets/site-components.js" data-base=""></script>
+  <script src="/assets/site-components.js?v=question1"></script>
 
   <script>
     const faqItems = document.querySelectorAll(".faq-item");
@@ -551,6 +747,29 @@
         }
       });
     });
+
+    const questionForm = document.getElementById("questionForm");
+    const questionSubmit = document.getElementById("questionSubmit");
+    const questionStatus = document.getElementById("questionStatus");
+    const questionSubmittedAt = document.getElementById("questionSubmittedAt");
+
+    if (questionForm) {
+      questionForm.addEventListener("submit", function () {
+        questionSubmittedAt.value = new Date().toISOString();
+
+        questionSubmit.disabled = true;
+        questionSubmit.textContent = "Sending...";
+        questionStatus.classList.remove("error");
+        questionStatus.textContent = "Sending your question...";
+
+        setTimeout(() => {
+          questionForm.reset();
+          questionSubmit.disabled = false;
+          questionSubmit.textContent = "Send my question";
+         questionStatus.textContent = "Thank you — we received your question and will get back to you soon.";
+        }, 1100);
+      });
+    }
   </script>
 </body>
 </html>
