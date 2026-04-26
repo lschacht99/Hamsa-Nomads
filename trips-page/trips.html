@@ -74,7 +74,8 @@
     }
 
     button,
-    input {
+    input,
+    textarea {
       font: inherit;
     }
 
@@ -708,6 +709,8 @@
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
       overflow: hidden;
+      max-height: calc(100vh - 44px);
+      overflow-y: auto;
     }
 
     .popup-bubble::before {
@@ -776,7 +779,8 @@
       gap: 13px;
     }
 
-    .popup-form input {
+    .popup-form input,
+    .popup-form textarea {
       width: 100%;
       box-sizing: border-box;
       border: 1px solid rgba(38, 71, 52, 0.14);
@@ -786,9 +790,17 @@
       color: var(--ink);
       font-size: 1rem;
       outline: none;
+      font-family: inherit;
     }
 
-    .popup-form input:focus {
+    .popup-form textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.5;
+    }
+
+    .popup-form input:focus,
+    .popup-form textarea:focus {
       border-color: rgba(38, 71, 52, 0.42);
       box-shadow: 0 0 0 4px rgba(38, 71, 52, 0.08);
     }
@@ -796,6 +808,12 @@
     .popup-submit {
       margin-top: 4px;
       width: 100%;
+    }
+
+    .popup-submit:disabled {
+      opacity: 0.72;
+      cursor: wait;
+      transform: none;
     }
 
     .popup-message {
@@ -1225,7 +1243,7 @@
           <div class="section-header">
             <h2>Trips with a little story inside.</h2>
             <p>
-              A idea of what we have to offer. 
+              A idea of what we have to offer.
             </p>
           </div>
 
@@ -1241,7 +1259,8 @@
             <article class="intro-card glass">
               <h3>Kosher travel</h3>
               <p>
-Shabbos, chag, kosher food, and Jewish connection are built into the experience.              </p>
+                Shabbos, chag, kosher food, and Jewish connection are built into the experience.
+              </p>
             </article>
 
             <article class="intro-card glass">
@@ -1347,18 +1366,25 @@ Shabbos, chag, kosher food, and Jewish connection are built into the experience.
                 </div>
               </div>
             </article>
-   <article class="bento-card bento-medium">
+
+            <article class="bento-card bento-medium">
               <div class="bento-image small" style="background-image: url('../Image/about-hero.jpg');">
                 <span class="bento-badge">A dream experience</span>
               </div>
 
               <div class="bento-content">
-                <div class="bento-meta"> India</div>
-                <h3 class="bento-title">Discover the local jewish community</h3>
+                <div class="bento-meta">Potentially February 2027 • India</div>
+                <h3 class="bento-title">A trip through history and the Jewish community of India</h3>
                 <p class="bento-text">
-                  This project means a lot to us. We want to share this unforgettable experience with a small, curated group — not just to visit places, but to meet people, hear their stories, and feel how much these moments can stay with you. 
-                  A trip through history, real encounters, and the Jewish communities of India, that’s really what matters to us.
+                  This project means a lot to us — not just to visit places, but to meet people,
+                  hear their stories, and share an experience that stayed with us deeply.
                 </p>
+
+                <ul class="bento-list">
+                  <li>From Mumbai to Pune to Kochi, discovering Jewish stories that are still alive</li>
+                  <li>Real encounters with local communities, not just a trip through landmarks</li>
+                  <li>A small curated group for an unforgettable experience through history, faith, and meeting</li>
+                </ul>
 
                 <div class="bento-footer">
                   <div class="bento-status">
@@ -1366,7 +1392,7 @@ Shabbos, chag, kosher food, and Jewish connection are built into the experience.
                     Potentially February 2027
                   </div>
                   <button class="trip-cta" type="button" onclick="openTripPopup('A trip to India')">
-                    Join the Indian List
+                    Join the India list
                   </button>
                 </div>
               </div>
@@ -1420,6 +1446,12 @@ Shabbos, chag, kosher food, and Jewish connection are built into the experience.
             <input type="email" name="email" placeholder="Email" required />
             <input type="tel" name="phone" placeholder="Phone" required />
 
+            <textarea
+              name="suggestion"
+              placeholder="A suggestion, idea, or anything you’d like to share"
+              rows="4"
+            ></textarea>
+
             <button class="popup-submit" type="submit">Join interest list</button>
 
             <div class="popup-message" id="popupMessage"></div>
@@ -1472,7 +1504,7 @@ Shabbos, chag, kosher food, and Jewish connection are built into the experience.
             <li>July 4 in Boston</li>
             <li>Pennsylvania Renaissance Fair</li>
             <li>Rosh Hashanah Farm Retreat</li>
-            <li>More coming soon</li>
+            <li>India</li>
           </ul>
         </div>
 
@@ -1520,6 +1552,10 @@ Shabbos, chag, kosher food, and Jewish connection are built into the experience.
         "Rosh Hashanah Farm": {
           title: "Rosh Hashanah on the Farm",
           subtitle: "Be the first to hear when the High Holiday farm retreat opens."
+        },
+        "A trip to India": {
+          title: "India with Hamsa Nomads",
+          subtitle: "Join the interest list for a future trip through Jewish history, community, and real encounters across India."
         }
       };
 
