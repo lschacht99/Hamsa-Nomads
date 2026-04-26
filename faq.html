@@ -7,7 +7,8 @@
   <title>FAQ | Hamsa Nomads</title>
   <meta name="description" content="Frequently asked questions about Hamsa Nomads curated Jewish retreats." />
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/site-components.css">
 
   <style>
     :root {
@@ -24,9 +25,13 @@
       --border: rgba(39, 69, 55, 0.12);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -46,9 +51,19 @@
       margin: 0;
     }
 
-    p { margin: 0; }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
     .site-shell {
       position: relative;
@@ -81,19 +96,21 @@
     }
 
     .path-main.back,
-    .path-hamsa.back { stroke-width: 3.2; }
+    .path-hamsa.back {
+      stroke-width: 3.2;
+    }
 
     .path-main.front,
-    .path-hamsa.front { stroke-width: 1.5; }
+    .path-hamsa.front {
+      stroke-width: 1.5;
+    }
 
-    .path-slice.back { stroke-width: 3; }
-    .path-slice.front { stroke-width: 1.3; }
+    .path-slice.back {
+      stroke-width: 3;
+    }
 
-    .container {
-      width: min(calc(100% - 32px), var(--container));
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+    .path-slice.front {
+      stroke-width: 1.3;
     }
 
     .glass {
@@ -105,122 +122,6 @@
       border-radius: var(--radius);
     }
 
-    /* HEADER — matching your current site */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(249, 246, 239, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(39, 69, 55, 0.08);
-    }
-
-    .nav {
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      flex-shrink: 0;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .brand-text {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 1;
-    }
-
-    .brand-name {
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      line-height: 0.95;
-      white-space: nowrap;
-    }
-
-    .brand-sub {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 6px;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      margin-left: auto;
-      min-width: 0;
-    }
-
-    .nav-links a {
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--ink);
-    }
-
-    .button,
-    .button-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 24px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .button:hover,
-    .button-secondary:hover {
-      transform: translateY(-1px);
-    }
-
-    .button {
-      background: rgba(39, 69, 55, 0.92);
-      color: white;
-      box-shadow: 0 12px 30px rgba(39, 69, 55, 0.22);
-      border: 1px solid rgba(39, 69, 55, 0.26);
-    }
-
-    .button-secondary {
-      background: rgba(255, 255, 255, 0.62);
-      color: var(--ink);
-      border: 1px solid rgba(39, 69, 55, 0.14);
-      box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
-    }
-
-    /* FAQ PAGE */
     .faq-hero {
       position: relative;
       z-index: 2;
@@ -392,145 +293,12 @@
 
     .faq-cta-card .button {
       background: #e0ae43;
-      color: #1c211d;
+      color: #1c211d !important;
       border-color: rgba(255,255,255,0.18);
       box-shadow: 0 12px 30px rgba(0,0,0,0.16);
     }
 
-    /* FOOTER — same compact mobile behavior */
-    .footer {
-      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
-      color: #e8e6df;
-      padding: 60px 20px 30px;
-      margin-top: 40px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    .footer-logo {
-      font-family: Georgia, serif;
-      letter-spacing: 0.2em;
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 15px;
-    }
-
-    .footer-text {
-      font-size: 14px;
-      color: #cfcac1;
-      line-height: 1.6;
-      max-width: 340px;
-    }
-
-    .footer-icons {
-      margin-top: 20px;
-      display: flex;
-      gap: 14px;
-      color: #cfcac1;
-    }
-
-    .footer-icons svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .footer-col h4 {
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      margin: 0 0 14px;
-      color: #fff;
-      text-transform: uppercase;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-col li {
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #cfcac1;
-    }
-
-    .footer-col a {
-      color: #cfcac1;
-      text-decoration: none;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 13px;
-      color: #a9a49a;
-    }
-
-    @media (max-width: 980px) {
-      .nav { gap: 18px; }
-
-      .brand-logo {
-        width: 46px;
-        height: 46px;
-      }
-
-      .brand-name {
-        font-size: 0.82rem;
-        letter-spacing: 0.18em;
-      }
-
-      .nav-links {
-        gap: 18px;
-        font-size: 0.9rem;
-      }
-
-      .button,
-      .button-secondary {
-        min-height: 46px;
-        padding: 0 20px;
-      }
-    }
-
     @media (max-width: 760px) {
-      .nav {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 12px 0;
-      }
-
-      .brand {
-        justify-content: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 12px 14px;
-        flex-wrap: wrap;
-      }
-
-      .nav-links .button {
-        min-height: 42px;
-        padding: 0 18px;
-      }
-
       .faq-hero {
         padding: 34px 0 18px;
       }
@@ -551,56 +319,6 @@
       .faq-cta-card .button {
         width: 100%;
       }
-
-      .footer {
-        padding: 28px 16px 18px;
-        margin-top: 24px;
-      }
-
-      .footer-container {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .footer-col:not(:first-child):not(.footer-contact) {
-        display: none;
-      }
-
-      .footer-logo {
-        font-size: 15px;
-        margin-bottom: 10px;
-      }
-
-      .footer-text {
-        font-size: 13px;
-        line-height: 1.55;
-        max-width: none;
-      }
-
-      .footer-icons {
-        display: none;
-      }
-
-      .footer-contact h4 {
-        margin-bottom: 10px;
-      }
-
-      .footer-contact ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px 14px;
-      }
-
-      .footer-contact li {
-        margin-bottom: 0;
-        font-size: 13px;
-      }
-
-      .footer-bottom {
-        margin-top: 20px;
-        text-align: left;
-        font-size: 12px;
-      }
     }
   </style>
 </head>
@@ -616,30 +334,13 @@
       </svg>
     </div>
 
-    <header class="site-header">
-      <div class="container nav">
-        <a href="index.html" class="brand">
-          <img src="./logo/logo-hamsa-nomads.png" alt="Hamsa Nomads" class="brand-logo">
-          <div class="brand-text">
-            <div class="brand-name">Hamsa Nomads</div>
-            <div class="brand-sub">Curated Jewish travel</div>
-          </div>
-        </a>
-
-        <nav class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="trips-page/trips.html">Trips</a>
-          <a href="faq.html" class="active">FAQ</a>
-          <a href="./Forms/apply.html" class="button">Apply</a>
-        </nav>
-      </div>
-    </header>
+    <div id="site-header"></div>
 
     <main>
       <section class="faq-hero">
         <div class="container">
           <div class="faq-hero-card glass">
-            <div class="faq-kicker"></div>
+            <div class="faq-kicker">Before you apply</div>
             <h1>Frequently Asked <span>Questions</span></h1>
             <p>
               A few simple answers about how Hamsa Nomads works, what happens after you apply,
@@ -798,59 +499,17 @@
                 Start with the application. It helps us understand if the trip is the right fit before anyone commits.
               </p>
             </div>
-            <a href="./Forms/apply.html" class="button">Apply for a retreat</a>
+            <a href="/Forms/apply.html" class="button">Apply for a retreat</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-col">
-          <div class="footer-logo">HAMSA NOMADS</div>
-          <p class="footer-text">
-            Curated Jewish travel experiences for small groups, meaningful holidays, and unforgettable places.
-          </p>
-          <div class="footer-icons">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="M8 11h8"></path><path d="M8 15h5"></path></svg>
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"></path><path d="M22 6l-10 7L2 6"></path></svg>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="trips-page/trips.html">Trips</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="./Forms/apply.html">Apply</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="terms.html">Terms & Conditions</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col footer-contact">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></li>
-            <li>New York, USA</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Hamsa Nomads. All rights reserved.
-      </div>
-    </footer>
+    <div id="site-footer"></div>
 
   </div>
+
+  <script src="/assets/site-components.js"></script>
 
   <script>
     const faqItems = document.querySelectorAll(".faq-item");
