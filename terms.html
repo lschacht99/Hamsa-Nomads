@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions | Hamsa Nomads</title>
+  <meta name="description" content="Terms and Conditions for Hamsa Nomads trips, retreats, applications, payments, cancellations, and website use." />
+
+  <link rel="icon" href="favicon.ico" />
+
+  <style>
+    :root {
+      --green: #173f2a;
+      --green-soft: #23563d;
+      --yellow: #e6b84f;
+      --cream: #f7f1e6;
+      --sand: #efe2c8;
+      --ink: #1e1e1e;
+      --muted: #6e6a60;
+      --white: #fffaf0;
+      --line: rgba(23, 63, 42, 0.18);
+      --shadow: 0 24px 70px rgba(23, 63, 42, 0.16);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(230, 184, 79, 0.22), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(35, 86, 61, 0.14), transparent 24%),
+        linear-gradient(180deg, var(--cream), #fffaf0 55%, var(--sand));
+      color: var(--ink);
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-bg-line {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+      background-image:
+        radial-gradient(circle, rgba(23, 63, 42, 0.22) 1.3px, transparent 1.3px);
+      background-size: 26px 26px;
+      mask-image: linear-gradient(to bottom, transparent, black 12%, black 85%, transparent);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 241, 230, 0.82);
+      border-bottom: 1px solid rgba(23, 63, 42, 0.1);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: var(--green);
+      text-transform: uppercase;
+      font-size: 0.92rem;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green);
+      display: grid;
+      place-items: center;
+      color: var(--yellow);
+      font-size: 1rem;
+      box-shadow: 0 8px 24px rgba(23, 63, 42, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--green);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      opacity: 0.84;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--green-soft);
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 999px;
+      box-shadow: 0 10px 26px rgba(23, 63, 42, 0.18);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 78px 22px 34px;
+    }
+
+    .hero-card {
+      background: rgba(255, 250, 240, 0.72);
+      border: 1px solid rgba(23, 63, 42, 0.12);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: clamp(30px, 5vw, 58px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 2px dashed rgba(230, 184, 79, 0.45);
+      border-radius: calc(var(--radius) - 8px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 7vw, 5.4rem);
+      line-height: 0.96;
+      color: var(--green);
+      max-width: 850px;
+      letter-spacing: -0.05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 span {
+      color: var(--yellow);
+    }
+
+    .hero-text {
+      margin-top: 22px;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.18rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .updated {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(23, 63, 42, 0.08);
+      color: var(--green);
+      border: 1px solid rgba(23, 63, 42, 0.12);
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 22px 80px;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 92px;
+      background: rgba(255, 250, 240, 0.72);
+      border: 1px solid rgba(23, 63, 42, 0.12);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 18px 44px rgba(23, 63, 42, 0.09);
+    }
+
+    .toc h2 {
+      color: var(--green);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .toc a {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(23, 63, 42, 0.07);
+    }
+
+    .toc a:hover {
+      color: var(--green);
+    }
+
+    .terms {
+      background: rgba(255, 250, 240, 0.78);
+      border: 1px solid rgba(23, 63, 42, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(26px, 5vw, 58px);
+    }
+
+    .terms section {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(23, 63, 42, 0.1);
+      scroll-margin-top: 110px;
+    }
+
+    .terms section:first-child {
+      padding-top: 0;
+    }
+
+    .terms section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    h2 {
+      color: var(--green);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.45rem, 2.2vw, 2rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #35332d;
+    }
+
+    ul {
+      margin: 12px 0 14px 22px;
+      color: #35332d;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: var(--green);
+    }
+
+    .notice {
+      background: rgba(230, 184, 79, 0.16);
+      border: 1px solid rgba(230, 184, 79, 0.32);
+      border-radius: 18px;
+      padding: 18px;
+      margin: 18px 0;
+      color: #3d3523;
+    }
+
+    .contact-box {
+      background: var(--green);
+      color: var(--white);
+      border-radius: 22px;
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .contact-box p,
+    .contact-box strong,
+    .contact-box a {
+      color: var(--white);
+    }
+
+    .site-footer {
+      position: relative;
+      z-index: 1;
+      background: var(--green);
+      color: var(--white);
+      padding: 34px 22px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .footer-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      margin-bottom: 8px;
+      color: var(--yellow);
+    }
+
+    .footer-text {
+      color: rgba(255, 250, 240, 0.78);
+      max-width: 440px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+      font-size: 0.94rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 250, 240, 0.84);
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-small {
+      color: rgba(255, 250, 240, 0.68);
+      font-size: 0.86rem;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        padding: 14px 16px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 0.84rem;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .nav-cta {
+        padding: 9px 14px;
+      }
+
+      .hero {
+        padding: 34px 14px 14px;
+      }
+
+      .hero-card {
+        padding: 28px 22px;
+        border-radius: 22px;
+      }
+
+      .hero-card::before {
+        inset: 14px;
+        border-radius: 16px;
+      }
+
+      main {
+        display: block;
+        padding: 16px 14px 50px;
+      }
+
+      .toc {
+        position: relative;
+        top: 0;
+        margin-bottom: 16px;
+        padding: 18px;
+      }
+
+      .toc-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 14px;
+      }
+
+      .toc a {
+        font-size: 0.84rem;
+      }
+
+      .terms {
+        padding: 24px 18px;
+        border-radius: 22px;
+      }
+
+      .terms section {
+        padding: 24px 0;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-text {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand {
+        font-size: 0.76rem;
+      }
+
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+      }
+
+      .hero-text {
+        font-size: 0.98rem;
+      }
+
+      .toc-list {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-small {
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-bg-line"></div>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand" aria-label="Hamsa Nomads Home">
+        <span class="brand-mark">✦</span>
+        <span>Hamsa Nomads</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="trips-page/trips.html">Trips</a>
+        <a href="Forms/apply.html" class="nav-cta">Apply Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">Hamsa Nomads</div>
+      <h1>Terms <span>&amp;</span> Conditions</h1>
+      <p class="hero-text">
+        Please read these terms before applying, reserving a spot, making a payment, or joining a Hamsa Nomads trip, retreat, holiday program, or community experience.
+      </p>
+      <div class="updated">Last Updated: April 26, 2026</div>
+    </div>
+  </section>
+
+  <main>
+    <aside class="toc">
+      <h2>On this page</h2>
+      <div class="toc-list">
+        <a href="#about">About</a>
+        <a href="#applications">Applications</a>
+        <a href="#payments">Payments</a>
+        <a href="#cancellations">Cancellations</a>
+        <a href="#changes">Changes</a>
+        <a href="#lodging">Lodging</a>
+        <a href="#meals">Meals & Kashrut</a>
+        <a href="#safety">Health & Safety</a>
+        <a href="#conduct">Conduct</a>
+        <a href="#media">Media</a>
+        <a href="#liability">Liability</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </aside>
+
+    <article class="terms">
+      <section id="intro">
+        <p>
+          These Terms &amp; Conditions govern your use of <strong>HamsaNomads.com</strong> and your participation in any trip, retreat, Shabbat, holiday program, gathering, or related experience organized by <strong>Hamsa Nomads</strong>.
+        </p>
+        <p>
+          By using our website, submitting an application, making a payment, reserving a spot, or attending a Hamsa Nomads experience, you agree to these Terms &amp; Conditions.
+        </p>
+        <p>
+          For questions, contact us at <strong><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></strong>.
+        </p>
+      </section>
+
+      <section id="about">
+        <h2>1. About Hamsa Nomads</h2>
+        <p>
+          Hamsa Nomads creates small, curated travel experiences, retreats, holiday programs, and community-based gatherings. Our experiences may include lodging, meals, group programming, local activities, cultural experiences, outdoor activities, transportation coordination, and other trip-related elements, depending on the specific event.
+        </p>
+        <p>
+          Each trip or retreat is different. The exact details, inclusions, pricing, schedule, location, accommodations, and expectations will be described on the relevant event page, application, confirmation message, invoice, or trip communication.
+        </p>
+      </section>
+
+      <section id="applications">
+        <h2>2. Applications &amp; Acceptance</h2>
+        <p>
+          Some Hamsa Nomads experiences are application-based and curated for group fit, logistics, space, safety, and community atmosphere.
+        </p>
+        <p>Submitting an application does <strong>not</strong> guarantee acceptance or a reserved spot. Your spot is only confirmed once:</p>
+        <ul>
+          <li>Your application has been reviewed and accepted;</li>
+          <li>You receive confirmation from Hamsa Nomads; and</li>
+          <li>Any required deposit, payment, or reservation step has been completed.</li>
+        </ul>
+        <p>
+          We reserve the right to accept, decline, or waitlist any applicant at our discretion. We may also request additional information before confirming a participant.
+        </p>
+      </section>
+
+      <section id="participant-info">
+        <h2>3. Participant Information</h2>
+        <p>
+          You agree to provide accurate, complete, and current information when applying, registering, or making a payment. This may include your name, contact information, age, emergency contact, dietary restrictions, lodging preferences, payment details, and any information needed to safely and responsibly organize the experience.
+        </p>
+        <p>
+          You are responsible for notifying us promptly if any important information changes before the trip.
+        </p>
+      </section>
+
+      <section id="eligibility">
+        <h2>4. Eligibility</h2>
+        <p>
+          Unless otherwise stated, Hamsa Nomads experiences are intended for adults. If an event allows minors, a parent or legal guardian must complete any required registration and consent forms and must remain responsible for the minor throughout the experience.
+        </p>
+        <p>
+          We may set specific eligibility requirements for certain experiences, including age range, religious observance expectations, travel documents, physical ability, or group-fit considerations.
+        </p>
+      </section>
+
+      <section id="pricing">
+        <h2>5. Pricing &amp; What Is Included</h2>
+        <p>
+          The price for each experience will be listed on the relevant event page, flyer, invoice, application, or confirmation message.
+        </p>
+
+        <p>Unless clearly stated otherwise, trip pricing may include some or all of the following:</p>
+        <ul>
+          <li>Lodging or shared accommodations;</li>
+          <li>Meals or selected meals;</li>
+          <li>Group programming;</li>
+          <li>Certain planned activities;</li>
+          <li>Access to selected venue amenities;</li>
+          <li>Basic coordination and event organization.</li>
+        </ul>
+
+        <p>Unless clearly stated in writing, pricing does <strong>not</strong> include:</p>
+        <ul>
+          <li>Flights;</li>
+          <li>Personal transportation to and from the destination;</li>
+          <li>Travel insurance;</li>
+          <li>Personal spending money;</li>
+          <li>Optional activities;</li>
+          <li>Medical costs;</li>
+          <li>Passport, visa, or travel document fees;</li>
+          <li>Baggage fees;</li>
+          <li>Rideshares, taxis, trains, parking, gas, or tolls;</li>
+          <li>Meals or snacks outside the listed program;</li>
+          <li>Any expenses not specifically listed as included.</li>
+        </ul>
+
+        <p>
+          Event details may change based on weather, availability, group size, safety, religious calendar needs, venue requirements, or other practical considerations.
+        </p>
+      </section>
+
+      <section id="payments">
+        <h2>6. Payments, Deposits &amp; Reservation Holds</h2>
+        <p>
+          Payment terms will be provided for each specific experience. This may include a deposit, partial payment schedule, payment deadline, or full payment requirement.
+        </p>
+        <p>
+          A spot is not guaranteed until the required payment has been received and confirmed. If payment is not received by the stated deadline, we may release your spot to another participant.
+        </p>
+        <p>
+          Deposits may be non-refundable, depending on the event-specific cancellation policy. This is because Hamsa Nomads may use deposits to secure venues, food, vendors, supplies, transportation, staffing, and other non-recoverable trip costs.
+        </p>
+        <p>
+          All prices are listed in U.S. dollars unless otherwise stated.
+        </p>
+      </section>
+
+      <section id="cancellations">
+        <h2>7. Cancellation by Participant</h2>
+        <p>
+          Because our experiences are small and require advance planning, participant cancellations can affect group pricing, venue commitments, lodging assignments, food planning, and overall logistics.
+        </p>
+
+        <div class="notice">
+          <p><strong>Unless a different cancellation policy is clearly stated for a specific event, the following policy applies:</strong></p>
+          <ul>
+            <li><strong>Deposits:</strong> Deposits are non-refundable once your spot has been accepted and reserved.</li>
+            <li><strong>More than 45 days before the event:</strong> You may be eligible for a partial refund, minus the deposit and any non-recoverable costs already paid on your behalf.</li>
+            <li><strong>30–45 days before the event:</strong> Refunds may be limited and are not guaranteed. We may offer a partial credit or refund only if we are able to replace your spot or recover costs.</li>
+            <li><strong>Less than 30 days before the event:</strong> Payments are generally non-refundable, unless we are able to replace your spot or make other arrangements at our discretion.</li>
+            <li><strong>No-shows or early departures:</strong> No refund or credit will be provided for failure to attend, late arrival, or leaving early.</li>
+          </ul>
+        </div>
+
+        <p>
+          If you need to cancel, you must notify us in writing at <strong><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></strong>. The cancellation date will be the date we receive your written notice.
+        </p>
+        <p>
+          Any refund, credit, transfer, or exception is at the discretion of Hamsa Nomads unless otherwise required by law or stated in writing for a specific event.
+        </p>
+      </section>
+
+      <section id="changes">
+        <h2>8. Cancellation, Postponement, or Changes by Hamsa Nomads</h2>
+        <p>
+          Hamsa Nomads may cancel, postpone, relocate, reschedule, or modify an experience if necessary due to circumstances including, but not limited to:
+        </p>
+        <ul>
+          <li>Low enrollment;</li>
+          <li>Venue cancellation or venue restrictions;</li>
+          <li>Weather or unsafe conditions;</li>
+          <li>Illness, emergency, or staffing issues;</li>
+          <li>Transportation disruptions;</li>
+          <li>Security or safety concerns;</li>
+          <li>Government restrictions;</li>
+          <li>Force majeure events;</li>
+          <li>Religious calendar or logistical needs;</li>
+          <li>Circumstances outside our reasonable control.</li>
+        </ul>
+        <p>
+          If Hamsa Nomads cancels an event for reasons within our control, we will explain the available options, which may include a refund, transfer, or credit, depending on the situation and any non-recoverable costs.
+        </p>
+        <p>
+          Hamsa Nomads is not responsible for participant costs outside the amount paid directly to Hamsa Nomads, including flights, travel arrangements, hotels booked separately, missed work, visa costs, insurance, or other personal expenses.
+        </p>
+        <p>
+          We strongly recommend that participants purchase travel insurance when making travel arrangements.
+        </p>
+      </section>
+
+      <section id="transfers">
+        <h2>9. Transfers &amp; Substitutions</h2>
+        <p>
+          You may not transfer your spot to another person without written approval from Hamsa Nomads. Because our experiences are curated and may be application-based, all substitute participants must be reviewed and approved before attending.
+        </p>
+        <p>
+          If you can no longer attend, we may, at our discretion, allow your payment to be transferred to another approved participant, another experience, or a future credit. Transfer fees or cost differences may apply.
+        </p>
+      </section>
+
+      <section id="travel">
+        <h2>10. Travel Documents &amp; Personal Travel Responsibility</h2>
+        <p>
+          You are responsible for ensuring that you have all required travel documents, identification, visas, passports, permits, insurance, vaccines, or other requirements needed to participate in the experience.
+        </p>
+        <p>
+          You are also responsible for arranging your own transportation unless transportation is specifically listed as included.
+        </p>
+        <p>
+          Hamsa Nomads is not responsible if you are unable to attend because of missing documents, denied entry, travel delays, missed transportation, immigration issues, or failure to meet travel requirements.
+        </p>
+      </section>
+
+      <section id="lodging">
+        <h2>11. Lodging &amp; Room Assignments</h2>
+        <p>
+          Accommodations may include shared rooms, private rooms, dorm-style arrangements, camping, glamping, rental homes, hotels, retreat centers, or other lodging types depending on the experience.
+        </p>
+        <p>
+          Room assignments are based on availability, group needs, participant preferences, pricing tier, and event logistics. We will try to accommodate reasonable rooming requests, but we cannot guarantee specific rooms, roommates, beds, or sleeping arrangements unless confirmed in writing.
+        </p>
+        <p>
+          Participants are expected to treat all lodging spaces, shared spaces, and venue property respectfully. You may be responsible for any damage, excessive cleaning fees, missing items, fines, or charges caused by you or your guests.
+        </p>
+      </section>
+
+      <section id="meals">
+        <h2>12. Meals, Kashrut &amp; Dietary Needs</h2>
+        <p>
+          Hamsa Nomads may provide meals, coordinate food, or arrange access to food depending on the specific event.
+        </p>
+        <p>
+          For Jewish holiday or Shabbat experiences, we aim to create a respectful environment that aligns with the stated religious and communal expectations of that experience. Kashrut standards, supervision level, meal style, and kitchen arrangements may vary by event and will be communicated when relevant.
+        </p>
+        <p>
+          You are responsible for telling us about dietary restrictions, allergies, or food needs during the application or registration process. We will make reasonable efforts to accommodate dietary needs, but we cannot guarantee that every restriction, allergy, or preference can be fully accommodated.
+        </p>
+        <p>
+          Unless explicitly stated, Hamsa Nomads cannot guarantee an allergen-free environment. Participants with severe allergies or medical dietary needs should contact us before registering and should bring any necessary medication or emergency supplies.
+        </p>
+      </section>
+
+      <section id="safety">
+        <h2>13. Health, Safety &amp; Assumption of Risk</h2>
+        <p>
+          Participation in travel, retreats, group lodging, outdoor activities, transportation, hiking, swimming, boating, biking, cooking, shared meals, and other activities involves inherent risks.
+        </p>
+        <p>By participating, you understand and accept that risks may include, but are not limited to:</p>
+        <ul>
+          <li>Illness or injury;</li>
+          <li>Slips, falls, or accidents;</li>
+          <li>Food-related reactions;</li>
+          <li>Weather-related issues;</li>
+          <li>Transportation delays or accidents;</li>
+          <li>Outdoor activity risks;</li>
+          <li>Interaction with animals, water, fire pits, pools, hot tubs, or natural environments;</li>
+          <li>Property damage or loss;</li>
+          <li>Other risks associated with travel and group events.</li>
+        </ul>
+        <p>
+          You are responsible for determining whether you are physically, medically, and personally able to participate. You should consult a medical professional before attending if you have any concerns.
+        </p>
+        <p>
+          You agree to follow safety instructions, venue rules, local laws, and reasonable directions from Hamsa Nomads or venue staff.
+        </p>
+      </section>
+
+      <section id="medical">
+        <h2>14. Medical Conditions &amp; Emergencies</h2>
+        <p>
+          You are responsible for disclosing any medical condition, allergy, accessibility need, or other concern that may affect your ability to participate safely or that may require special planning.
+        </p>
+        <p>
+          In an emergency, Hamsa Nomads may attempt to contact emergency services, your emergency contact, or medical personnel. However, Hamsa Nomads is not a medical provider and cannot guarantee medical assistance, treatment, or emergency response.
+        </p>
+        <p>
+          You are responsible for your own medical costs, medications, insurance, and emergency needs.
+        </p>
+      </section>
+
+      <section id="conduct">
+        <h2>15. Conduct &amp; Community Standards</h2>
+        <p>
+          Hamsa Nomads is built around small-group community, respect, trust, and shared experience. Participants are expected to behave respectfully toward other participants, organizers, hosts, venue staff, neighbors, and local communities.
+        </p>
+        <p>
+          You agree not to engage in behavior that is unsafe, disruptive, discriminatory, harassing, threatening, illegal, destructive, or harmful to the group experience.
+        </p>
+        <p>
+          We may remove a participant from an experience without refund if we believe their behavior creates a safety concern, violates these Terms, damages the community environment, violates venue rules, or negatively affects other participants.
+        </p>
+        <p>
+          Participants are responsible for their own choices, actions, belongings, and interactions.
+        </p>
+      </section>
+
+      <section id="alcohol">
+        <h2>16. Alcohol, Substances &amp; Local Laws</h2>
+        <p>
+          Alcohol may be present at certain experiences, depending on the event. Participants must comply with all applicable laws and must drink responsibly.
+        </p>
+        <p>
+          Illegal drugs, illegal conduct, underage drinking, unsafe intoxication, or behavior that endangers others may result in removal from the experience without refund.
+        </p>
+        <p>
+          Hamsa Nomads reserves the right to set event-specific rules regarding alcohol, smoking, vaping, cannabis, or other substances.
+        </p>
+      </section>
+
+      <section id="belongings">
+        <h2>17. Personal Belongings</h2>
+        <p>
+          You are responsible for your personal belongings, valuables, luggage, electronics, documents, and money. Hamsa Nomads is not responsible for lost, stolen, damaged, or misplaced personal items.
+        </p>
+      </section>
+
+      <section id="media">
+        <h2>18. Photos, Videos &amp; Media</h2>
+        <p>
+          Hamsa Nomads may take photos or videos during experiences for marketing, social media, website, documentation, or promotional use.
+        </p>
+        <p>
+          By attending, you give Hamsa Nomads permission to use photos or videos in which you may appear, unless you notify us in writing before the event that you do not want to be photographed or filmed for promotional use.
+        </p>
+        <p>
+          We will try to respect reasonable requests not to be featured. However, because events are group-based, you may still appear incidentally in crowd or background images.
+        </p>
+        <p>
+          Participants may not use photos, videos, or personal information of other participants in a way that is disrespectful, invasive, commercial, or harmful.
+        </p>
+      </section>
+
+      <section id="website">
+        <h2>19. Website Use</h2>
+        <p>
+          You may use HamsaNomads.com for lawful, personal, and informational purposes. You agree not to misuse the website, attempt to interfere with its function, submit false information, access restricted systems, copy protected materials, or use the website for fraudulent or harmful purposes.
+        </p>
+        <p>
+          We may update, remove, or change website content at any time without notice.
+        </p>
+      </section>
+
+      <section id="ip">
+        <h2>20. Intellectual Property</h2>
+        <p>
+          All content on HamsaNomads.com, including text, photos, graphics, logos, branding, layouts, designs, trip descriptions, and other materials, belongs to Hamsa Nomads or is used with permission, unless otherwise stated.
+        </p>
+        <p>
+          You may not copy, reproduce, modify, distribute, sell, or use our content for commercial purposes without written permission.
+        </p>
+      </section>
+
+      <section id="third-party">
+        <h2>21. Third-Party Services, Links &amp; Vendors</h2>
+        <p>
+          Hamsa Nomads may use or link to third-party services, including payment processors, forms, maps, booking platforms, transportation providers, venues, activity providers, restaurants, or other vendors.
+        </p>
+        <p>
+          We are not responsible for the policies, actions, content, fees, errors, delays, cancellations, or services of third parties. Your use of third-party services may be subject to their own terms and privacy policies.
+        </p>
+      </section>
+
+      <section id="processing">
+        <h2>22. Payments &amp; Payment Processing</h2>
+        <p>
+          Payments may be processed through third-party payment platforms. Hamsa Nomads does not control the full operation of these payment platforms and is not responsible for processing errors, platform outages, bank delays, card issues, chargebacks, or third-party fees.
+        </p>
+        <p>
+          You agree not to make false payment claims or improper chargebacks. If there is a payment issue, contact us first so we can try to resolve it directly.
+        </p>
+      </section>
+
+      <section id="privacy">
+        <h2>23. Privacy</h2>
+        <p>
+          Your use of HamsaNomads.com and submission of personal information is also governed by our Privacy Policy.
+        </p>
+        <p>
+          We may collect information needed to process applications, coordinate trips, communicate with participants, manage payments, plan meals and lodging, and operate our website.
+        </p>
+        <p>
+          Please review our Privacy Policy for more information about how we collect, use, and protect personal information.
+        </p>
+      </section>
+
+      <section id="accessibility">
+        <h2>24. Accessibility &amp; Special Requests</h2>
+        <p>
+          We try to make our experiences welcoming and accessible where reasonably possible. However, not every destination, venue, activity, lodging setup, or transportation option will be accessible for every participant.
+        </p>
+        <p>
+          If you have an accessibility need, mobility concern, medical requirement, religious requirement, or other special request, contact us before registering. We will make reasonable efforts to help, but we cannot guarantee that every request can be accommodated.
+        </p>
+      </section>
+
+      <section id="disclaimers">
+        <h2>25. Disclaimers</h2>
+        <p>
+          Hamsa Nomads makes reasonable efforts to provide accurate information, thoughtful planning, and meaningful experiences. However, travel and group events involve changing conditions.
+        </p>
+        <p>
+          We do not guarantee that every itinerary item, activity, meal, venue amenity, roommate assignment, schedule, or experience detail will happen exactly as described.
+        </p>
+        <p>
+          Schedules, locations, activities, pricing, availability, and details may change when necessary.
+        </p>
+      </section>
+
+      <section id="liability">
+        <h2>26. Limitation of Liability</h2>
+        <p>
+          To the fullest extent permitted by law, Hamsa Nomads, its owners, organizers, volunteers, contractors, partners, and representatives are not liable for indirect, incidental, consequential, special, punitive, or unexpected damages arising from your use of the website or participation in an experience.
+        </p>
+        <p>
+          This includes, but is not limited to, lost travel costs, missed flights, lost income, emotional distress, personal inconvenience, lost belongings, itinerary changes, weather disruptions, third-party cancellations, or circumstances outside our reasonable control.
+        </p>
+        <p>
+          Nothing in these Terms is intended to limit liability where such limitation is not permitted by law.
+        </p>
+      </section>
+
+      <section id="indemnification">
+        <h2>27. Indemnification</h2>
+        <p>
+          You agree to be responsible for your own actions and to indemnify and hold harmless Hamsa Nomads, its owners, organizers, volunteers, contractors, partners, and representatives from claims, damages, losses, liabilities, costs, or expenses arising from:
+        </p>
+        <ul>
+          <li>Your violation of these Terms;</li>
+          <li>Your behavior during an experience;</li>
+          <li>Damage you cause to property;</li>
+          <li>Injury or harm caused by your actions;</li>
+          <li>Your violation of law or venue rules;</li>
+          <li>False or incomplete information you provide;</li>
+          <li>Claims brought by another participant or third party because of your conduct.</li>
+        </ul>
+      </section>
+
+      <section id="force-majeure">
+        <h2>28. Force Majeure</h2>
+        <p>
+          Hamsa Nomads is not responsible for failure or delay in performance caused by events beyond our reasonable control, including but not limited to weather, natural disasters, fire, flood, illness, pandemics, government restrictions, war, terrorism, civil unrest, transportation disruptions, venue closures, labor issues, utility failures, or other emergencies.
+        </p>
+        <p>
+          In these situations, refunds, credits, or rescheduling options may depend on recoverable costs, vendor policies, venue policies, and the specific circumstances.
+        </p>
+      </section>
+
+      <section id="law">
+        <h2>29. Governing Law</h2>
+        <p>
+          These Terms are governed by the laws of the State of <strong>New York</strong>, without regard to conflict-of-law principles.
+        </p>
+        <p>
+          Any disputes will be handled in the courts located in <strong>New York, USA</strong>, unless otherwise required by law.
+        </p>
+      </section>
+
+      <section id="updates">
+        <h2>30. Changes to These Terms</h2>
+        <p>
+          We may update these Terms &amp; Conditions from time to time. The updated version will be posted on HamsaNomads.com with a revised “Last Updated” date.
+        </p>
+        <p>
+          Your continued use of the website, application submission, payment, or participation after changes are posted means you accept the updated Terms.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>31. Contact</h2>
+        <div class="contact-box">
+          <p><strong>Hamsa Nomads</strong></p>
+          <p>Email: <a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></p>
+          <p>Website: HamsaNomads.com</p>
+          <p>Location: New York, USA</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-title">Hamsa Nomads</div>
+        <p class="footer-text">
+          Small curated trips, meaningful gatherings, and travel experiences built around connection, discovery, and community.
+        </p>
+        <p class="footer-small">© 2026 Hamsa Nomads. All rights reserved.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="trips-page/trips.html">Trips</a>
+        <a href="Forms/apply.html">Apply</a>
+      </div>
+
+      <div class="footer-links">
+        <a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
