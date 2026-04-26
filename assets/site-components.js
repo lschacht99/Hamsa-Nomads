@@ -7,7 +7,7 @@
   On hamsanomads.com, use:
   <script src="/assets/site-components.js"></script>
 
-  If a folder page still uses relative loading, you can use:
+  If testing from a subfolder, you may use:
   <script src="../assets/site-components.js" data-base=".."></script>
 */
 
@@ -21,8 +21,21 @@ function hnPath(path) {
 }
 
 /* =========================================================
-   GLOBAL TRIP-STYLE DRAWING LINE BACKGROUND
-   Extracted from trips.html.
+   REMOVE OLD BACKGROUND LINES
+   This prevents the previous route-line design from showing.
+   ========================================================= */
+
+function removeOldBackgroundLines() {
+  document
+    .querySelectorAll(
+      "#hnGlobalRouteOverlay, .hn-global-route-overlay, #hnTripLineOverlay, .hn-trip-line-overlay, .line-overlay"
+    )
+    .forEach((el) => el.remove());
+}
+
+/* =========================================================
+   GLOBAL TRIPS.HTML-STYLE DRAWING LINE
+   Extracted from the original trips.html background line.
    ========================================================= */
 
 function insertGlobalTripLine() {
@@ -36,16 +49,19 @@ function insertGlobalTripLine() {
           class="hn-trip-path-main back"
           d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
         />
+
         <path
           id="hnTripLineFront"
           class="hn-trip-path-main front"
           d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
         />
+
         <path
           id="hnTripSliceBack"
           class="hn-trip-path-slice back"
           d="M 1010 1580 C 1080 1510, 1175 1515, 1230 1600 C 1170 1655, 1080 1665, 1010 1580 Z"
         />
+
         <path
           id="hnTripSliceFront"
           class="hn-trip-path-slice front"
@@ -67,6 +83,18 @@ function insertGlobalTripLine() {
     document.getElementById("hnTripSliceFront")
   ].filter(Boolean);
 
+  drawPaths.forEach((path) => {
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+  });
+
+  slicePaths.forEach((path) => {
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+  });
+
   function updateTripLine() {
     const maxScroll = Math.max(
       1,
@@ -77,7 +105,6 @@ function insertGlobalTripLine() {
 
     drawPaths.forEach((path) => {
       const len = path.getTotalLength();
-      path.style.strokeDasharray = len;
       path.style.strokeDashoffset = len * (1 - Math.min(progress * 1.06, 1));
     });
 
@@ -85,7 +112,6 @@ function insertGlobalTripLine() {
 
     slicePaths.forEach((path) => {
       const len = path.getTotalLength();
-      path.style.strokeDasharray = len;
       path.style.strokeDashoffset = len * (1 - sliceProgress);
     });
   }
@@ -333,6 +359,7 @@ function markActiveNav() {
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  removeOldBackgroundLines();
   insertGlobalTripLine();
   insertSiteHeader();
   insertSiteFooter();
