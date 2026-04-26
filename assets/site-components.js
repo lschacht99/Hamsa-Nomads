@@ -1,4 +1,111 @@
-const BASE = "";
+/* =========================================================
+   HAMSA NOMADS — SHARED HEADER / FOOTER / SHARE / ROUTE LINE
+   File: assets/site-components.js
+   ========================================================= */
+
+/*
+  For hamsanomads.com, keep data-base empty or omitted.
+
+  If one day you use GitHub Pages in a subfolder, load the script like:
+  <script src="/Hamsa-Nomads/assets/site-components.js" data-base="/Hamsa-Nomads"></script>
+*/
+
+const HN_CURRENT_SCRIPT = document.currentScript;
+const BASE = HN_CURRENT_SCRIPT?.dataset?.base
+  ? HN_CURRENT_SCRIPT.dataset.base.replace(/\/$/, "")
+  : "";
+
+function hnPath(path) {
+  return `${BASE}${path}`;
+}
+
+/* =========================================================
+   GLOBAL ROUTE LINE BACKGROUND
+   ========================================================= */
+
+function insertGlobalRouteLine() {
+  if (document.getElementById("hnGlobalRouteOverlay")) return;
+
+  const routeHTML = `
+    <div class="hn-global-route-overlay" id="hnGlobalRouteOverlay" aria-hidden="true">
+      <svg viewBox="0 0 1440 5200" preserveAspectRatio="none">
+        <path class="hn-global-route-line back hn-global-route-draw" d="M220 260 C360 250, 420 320, 610 305 C820 288, 980 295, 1110 310 C1240 325, 1290 410, 1180 470 C1050 540, 860 500, 690 495 C520 490, 340 500, 215 560" />
+        <path class="hn-global-route-line front hn-global-route-draw" d="M220 260 C360 250, 420 320, 610 305 C820 288, 980 295, 1110 310 C1240 325, 1290 410, 1180 470 C1050 540, 860 500, 690 495 C520 490, 340 500, 215 560" />
+
+        <path class="hn-global-route-line back hn-global-route-draw" d="M210 1120 C310 1010, 520 980, 760 1005 C980 1030, 1100 1060, 1210 1050 C1310 1042, 1360 1140, 1280 1260 C1195 1390, 1050 1380, 915 1365 C760 1347, 570 1335, 380 1350 C255 1360, 165 1275, 170 1180 C174 1160, 182 1140, 210 1120" />
+        <path class="hn-global-route-line front hn-global-route-draw" d="M210 1120 C310 1010, 520 980, 760 1005 C980 1030, 1100 1060, 1210 1050 C1310 1042, 1360 1140, 1280 1260 C1195 1390, 1050 1380, 915 1365 C760 1347, 570 1335, 380 1350 C255 1360, 165 1275, 170 1180 C174 1160, 182 1140, 210 1120" />
+
+        <path class="hn-global-route-line back hn-global-route-draw" d="M240 1980 C390 1880, 650 1910, 835 1980 C980 2035, 1110 2088, 1195 2080 C1290 2070, 1365 2150, 1315 2300 C1260 2460, 1100 2525, 900 2515 C720 2505, 605 2395, 485 2390 C365 2385, 225 2470, 160 2335 C110 2228, 145 2055, 240 1980" />
+        <path class="hn-global-route-line front hn-global-route-draw" d="M240 1980 C390 1880, 650 1910, 835 1980 C980 2035, 1110 2088, 1195 2080 C1290 2070, 1365 2150, 1315 2300 C1260 2460, 1100 2525, 900 2515 C720 2505, 605 2395, 485 2390 C365 2385, 225 2470, 160 2335 C110 2228, 145 2055, 240 1980" />
+
+        <path class="hn-global-route-line back hn-global-route-draw" d="M95 3100 C220 3010, 380 3140, 560 3130 C700 3122, 740 3055, 770 2935 C790 2855, 860 2780, 980 2805 C1115 2835, 1235 2945, 1320 3000 C1385 3045, 1405 3170, 1300 3270 C1195 3370, 1020 3390, 850 3360 C690 3332, 520 3360, 320 3400 C210 3420, 130 3340, 90 3210 C75 3160, 70 3130, 95 3100" />
+        <path class="hn-global-route-line front hn-global-route-draw" d="M95 3100 C220 3010, 380 3140, 560 3130 C700 3122, 740 3055, 770 2935 C790 2855, 860 2780, 980 2805 C1115 2835, 1235 2945, 1320 3000 C1385 3045, 1405 3170, 1300 3270 C1195 3370, 1020 3390, 850 3360 C690 3332, 520 3360, 320 3400 C210 3420, 130 3340, 90 3210 C75 3160, 70 3130, 95 3100" />
+
+        <path class="hn-global-route-line back hn-global-route-draw" d="M235 3960 C420 3890, 640 3915, 835 3880 C990 3852, 1110 3895, 1220 3930 C1325 3965, 1360 4090, 1268 4170 C1178 4250, 1000 4215, 840 4230 C665 4247, 505 4295, 312 4275 C165 4260, 90 4195, 78 4098 C68 4020, 112 3942, 235 3960" />
+        <path class="hn-global-route-line front hn-global-route-draw" d="M235 3960 C420 3890, 640 3915, 835 3880 C990 3852, 1110 3895, 1220 3930 C1325 3965, 1360 4090, 1268 4170 C1178 4250, 1000 4215, 840 4230 C665 4247, 505 4295, 312 4275 C165 4260, 90 4195, 78 4098 C68 4020, 112 3942, 235 3960" />
+
+        <path class="hn-global-route-line back hn-global-route-draw" d="M230 4680 C410 4705, 645 4750, 835 4840 C980 4908, 1120 4960, 1270 5010 C1360 5040, 1400 5080, 1415 5125" />
+        <path class="hn-global-route-line front hn-global-route-draw" d="M230 4680 C410 4705, 645 4750, 835 4840 C980 4908, 1120 4960, 1270 5010 C1360 5040, 1400 5080, 1415 5125" />
+
+        <circle class="hn-global-route-dot" cx="1110" cy="310" r="7" />
+        <circle class="hn-global-route-dot" cx="1210" cy="1050" r="7" />
+        <circle class="hn-global-route-dot" cx="1195" cy="2080" r="7" />
+        <circle class="hn-global-route-dot" cx="1320" cy="3000" r="7" />
+        <circle class="hn-global-route-dot" cx="1220" cy="3930" r="7" />
+      </svg>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("afterbegin", routeHTML);
+
+  const drawPaths = Array.from(document.querySelectorAll(".hn-global-route-draw"));
+  const dots = Array.from(document.querySelectorAll(".hn-global-route-dot"));
+
+  drawPaths.forEach((path) => {
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+  });
+
+  function updateGlobalRouteLine() {
+    const maxScroll = Math.max(
+      1,
+      document.documentElement.scrollHeight - window.innerHeight
+    );
+
+    const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+
+    drawPaths.forEach((path, index) => {
+      const len = path.getTotalLength();
+
+      /*
+        The back/front paths come in pairs.
+        This keeps each pair drawing together instead of slightly offset.
+      */
+      const pairIndex = Math.floor(index / 2);
+      const stagger = pairIndex * 0.075;
+      const localProgress = Math.max(
+        0,
+        Math.min(1, (progress - stagger) / 0.74)
+      );
+
+      path.style.strokeDashoffset = len * (1 - localProgress);
+    });
+
+    dots.forEach((dot, index) => {
+      const threshold = 0.14 + index * 0.145;
+      dot.classList.toggle("is-visible", progress > threshold);
+    });
+  }
+
+  window.addEventListener("scroll", updateGlobalRouteLine, { passive: true });
+  window.addEventListener("resize", updateGlobalRouteLine);
+  updateGlobalRouteLine();
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 function insertSiteHeader() {
   const headerTarget = document.getElementById("site-header");
@@ -7,10 +114,10 @@ function insertSiteHeader() {
   headerTarget.innerHTML = `
     <header class="hn-shared-header">
       <div class="hn-shared-container hn-shared-nav">
-        <a href="${BASE}/index.html" class="hn-shared-brand">
+        <a href="${hnPath("/index.html")}" class="hn-shared-brand">
           <img
             class="hn-shared-brand-logo"
-            src="${BASE}/logo/logo-hamsa-nomads.png"
+            src="${hnPath("/logo/logo-hamsa-nomads.png")}"
             alt="Hamsa Nomads logo"
           />
 
@@ -21,12 +128,12 @@ function insertSiteHeader() {
         </a>
 
         <nav class="hn-shared-nav-links" aria-label="Main navigation">
-          <a href="${BASE}/index.html#experience" data-nav="experience">Experience</a>
-          <a href="${BASE}/index.html#gallery" data-nav="gallery">Gallery</a>
-          <a href="${BASE}/trips-page/trips.html" data-nav="trips">Upcoming trips</a>
-          <a href="${BASE}/faq.html" data-nav="faq">FAQ</a>
-          <a href="${BASE}/about-us/about-us.html" data-nav="about">About us</a>
-          <a href="${BASE}/Forms/apply.html" class="hn-shared-button" data-nav="apply">Join the retreat</a>
+          <a href="${hnPath("/index.html#experience")}" data-nav="experience">Experience</a>
+          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">Gallery</a>
+          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">Upcoming trips</a>
+          <a href="${hnPath("/faq.html")}" data-nav="faq">FAQ</a>
+          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">About us</a>
+          <a href="${hnPath("/Forms/apply.html")}" class="hn-shared-button" data-nav="apply">Join the retreat</a>
         </nav>
       </div>
     </header>
@@ -34,6 +141,10 @@ function insertSiteHeader() {
 
   markActiveNav();
 }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 function insertSiteFooter() {
   const footerTarget = document.getElementById("site-footer");
@@ -46,7 +157,7 @@ function insertSiteFooter() {
           <div class="hn-shared-footer-logo-row">
             <img
               class="hn-shared-footer-logo-img"
-              src="${BASE}/logo/logo-hamsa-nomads.png"
+              src="${hnPath("/logo/logo-hamsa-nomads.png")}"
               alt="Hamsa Nomads logo"
             />
 
@@ -61,7 +172,7 @@ function insertSiteFooter() {
             beautiful places, and warm community.
           </p>
 
-          <a class="hn-shared-footer-cta" href="${BASE}/Forms/apply.html">
+          <a class="hn-shared-footer-cta" href="${hnPath("/Forms/apply.html")}">
             Join us for Shavuos
           </a>
         </div>
@@ -69,18 +180,18 @@ function insertSiteFooter() {
         <div class="hn-shared-footer-col">
           <h4>Explore</h4>
           <ul>
-            <li><a href="${BASE}/index.html#experience">Experience</a></li>
-            <li><a href="${BASE}/index.html#gallery">Gallery</a></li>
-            <li><a href="${BASE}/trips-page/trips.html">Trips</a></li>
-            <li><a href="${BASE}/about-us/about-us.html">About us</a></li>
+            <li><a href="${hnPath("/index.html#experience")}">Experience</a></li>
+            <li><a href="${hnPath("/index.html#gallery")}">Gallery</a></li>
+            <li><a href="${hnPath("/trips-page/trips.html")}">Trips</a></li>
+            <li><a href="${hnPath("/about-us/about-us.html")}">About us</a></li>
           </ul>
         </div>
 
         <div class="hn-shared-footer-col">
           <h4>Retreat</h4>
           <ul>
-            <li><a href="${BASE}/index.html#pricing">Pricing</a></li>
-            <li><a href="${BASE}/Forms/apply.html">Apply</a></li>
+            <li><a href="${hnPath("/index.html#pricing")}">Pricing</a></li>
+            <li><a href="${hnPath("/Forms/apply.html")}">Apply</a></li>
             <li>Shavuos in Vermont</li>
             <li>Private home</li>
           </ul>
@@ -89,9 +200,9 @@ function insertSiteFooter() {
         <div class="hn-shared-footer-col">
           <h4>Info</h4>
           <ul>
-            <li><a href="${BASE}/faq.html">FAQ</a></li>
-            <li><a href="${BASE}/terms.html">Terms</a></li>
-            <li><a href="${BASE}/privacy.html">Privacy</a></li>
+            <li><a href="${hnPath("/faq.html")}">FAQ</a></li>
+            <li><a href="${hnPath("/terms.html")}">Terms</a></li>
+            <li><a href="${hnPath("/privacy.html")}">Privacy</a></li>
           </ul>
         </div>
 
@@ -112,6 +223,10 @@ function insertSiteFooter() {
     </footer>
   `;
 }
+
+/* =========================================================
+   FLOATING SHARE BUTTON
+   ========================================================= */
 
 function insertFloatingShare() {
   if (document.getElementById("hnSharedFloatingShare")) return;
@@ -200,6 +315,10 @@ function insertFloatingShare() {
   });
 }
 
+/* =========================================================
+   ACTIVE NAV
+   ========================================================= */
+
 function markActiveNav() {
   const path = window.location.pathname;
 
@@ -217,7 +336,12 @@ function markActiveNav() {
   if (activeLink) activeLink.classList.add("is-active");
 }
 
+/* =========================================================
+   INIT
+   ========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
+  insertGlobalRouteLine();
   insertSiteHeader();
   insertSiteFooter();
   insertFloatingShare();
