@@ -196,62 +196,36 @@
       color: var(--green);
     }
 
-    /* INVITATION HERO */
-    .hero-invitation {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.03fr 0.97fr;
-      gap: 24px;
-      margin-bottom: 34px;
-      align-items: stretch;
-    }
-
-    .hero-invitation-main {
+    .hero {
       position: relative;
       overflow: hidden;
-      border-radius: 42px;
-      padding: clamp(30px, 5vw, 48px);
-      min-height: 560px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      border-radius: 40px;
+      padding: 40px 32px 34px;
+      margin-bottom: 30px;
       background:
-        linear-gradient(145deg, rgba(255,255,255,0.38), rgba(255,255,255,0.08)),
-        radial-gradient(circle at 20% 12%, rgba(255,255,255,0.30), transparent 32%),
-        radial-gradient(circle at 82% 85%, rgba(180,135,61,0.16), transparent 34%);
-      border: 1px solid rgba(255,255,255,0.40);
-      box-shadow:
-        0 26px 74px rgba(28, 45, 34, 0.13),
-        inset 0 1px 0 rgba(255,255,255,0.28);
+        linear-gradient(145deg, rgba(255,255,255,0.36), rgba(255,255,255,0.08)),
+        radial-gradient(circle at 20% 12%, rgba(255,255,255,0.28), transparent 32%);
+      border: 1px solid rgba(255,255,255,0.38);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(34px) saturate(185%);
       -webkit-backdrop-filter: blur(34px) saturate(185%);
     }
 
-    .hero-invitation-main::before {
+    .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(120deg, rgba(255,255,255,0.24), transparent 34%, transparent 72%, rgba(255,255,255,0.12));
+        linear-gradient(120deg, rgba(255,255,255,0.22), transparent 35%, transparent 70%, rgba(255,255,255,0.12));
       pointer-events: none;
     }
 
-    .hero-invitation-main::after {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      right: -110px;
-      bottom: -120px;
-      border-radius: 999px;
-      background: rgba(22, 63, 49, 0.08);
-      pointer-events: none;
-    }
-
-    .hero-copy {
+    .hero-grid {
       position: relative;
-      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
     }
 
     .eyebrow {
@@ -260,43 +234,37 @@
       letter-spacing: 0.16em;
       font-size: 0.76rem;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .hero-copy h1,
-    .hero-invitation h1 {
-      margin: 0 0 22px;
+    h1 {
+      margin: 0 0 18px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3rem, 6.8vw, 6.2rem);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
+      font-size: clamp(2.3rem, 4.5vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
       font-weight: 500;
       color: var(--green);
-      max-width: 8ch;
     }
 
     .hero-copy p {
       margin: 0;
-      max-width: 58ch;
+      max-width: 60ch;
       color: #4d4a45;
       line-height: 1.9;
       font-size: 1.04rem;
     }
 
     .hero-note {
-      position: relative;
-      z-index: 2;
+      align-self: end;
       padding: 22px 20px 20px;
       border-radius: 28px;
       background:
         linear-gradient(145deg, rgba(255,255,255,0.30), rgba(255,255,255,0.10));
       border: 1px solid rgba(255,255,255,0.34);
-      box-shadow:
-        0 14px 38px rgba(28,45,34,0.08),
-        inset 0 1px 0 rgba(255,255,255,0.22);
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(26px) saturate(180%);
       -webkit-backdrop-filter: blur(26px) saturate(180%);
-      max-width: 420px;
     }
 
     .hero-note strong {
@@ -316,230 +284,6 @@
       display: block;
     }
 
-    .invitation-panel {
-      display: grid;
-      gap: 18px;
-    }
-
-    .invitation-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 42px;
-      min-height: 430px;
-      padding: clamp(28px, 4vw, 40px);
-      display: flex;
-      flex-direction: column;
-      background:
-        linear-gradient(145deg, rgba(22, 63, 49, 0.96), rgba(35, 79, 63, 0.84)),
-        radial-gradient(circle at 18% 8%, rgba(255,255,255,0.18), transparent 34%),
-        radial-gradient(circle at 82% 20%, rgba(180,135,61,0.30), transparent 34%);
-      color: #fff8ef;
-      border: 1px solid rgba(255,255,255,0.26);
-      box-shadow:
-        0 28px 80px rgba(22, 63, 49, 0.24),
-        inset 0 1px 0 rgba(255,255,255,0.20);
-      backdrop-filter: blur(30px) saturate(170%);
-      -webkit-backdrop-filter: blur(30px) saturate(170%);
-    }
-
-    .invitation-card::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 31px;
-      pointer-events: none;
-    }
-
-    .invitation-card::after {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      right: -120px;
-      bottom: -120px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      pointer-events: none;
-    }
-
-    .invitation-kicker {
-      position: relative;
-      z-index: 2;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(255,248,239,0.78);
-      margin-bottom: 22px;
-    }
-
-    .invitation-topline {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 26px;
-    }
-
-    .invitation-mark {
-      width: 58px;
-      height: 58px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.12em;
-      color: #fff8ef;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.24), rgba(255,255,255,0.08));
-      border: 1px solid rgba(255,255,255,0.30);
-      box-shadow:
-        0 18px 34px rgba(0,0,0,0.10),
-        inset 0 1px 0 rgba(255,255,255,0.22);
-      backdrop-filter: blur(18px) saturate(170%);
-      -webkit-backdrop-filter: blur(18px) saturate(170%);
-    }
-
-    .invitation-date {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: rgba(255,248,239,0.78);
-      font-size: 0.78rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .invitation-card h2 {
-      position: relative;
-      z-index: 2;
-      margin: 0 0 16px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      line-height: 0.92;
-      letter-spacing: -0.06em;
-      font-weight: 500;
-      color: #fff8ef;
-      max-width: 8ch;
-    }
-
-    .invitation-lead {
-      position: relative;
-      z-index: 2;
-      margin: 0;
-      max-width: 38ch;
-      color: rgba(255,248,239,0.82);
-      font-size: 1.02rem;
-      line-height: 1.85;
-    }
-
-    .invitation-details {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      gap: 10px;
-      margin-top: auto;
-      padding-top: 30px;
-    }
-
-    .invitation-details div {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 14px;
-      padding: 13px 14px;
-      border-radius: 18px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
-      border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(18px) saturate(165%);
-      -webkit-backdrop-filter: blur(18px) saturate(165%);
-    }
-
-    .invitation-details span {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,248,239,0.58);
-      font-weight: 700;
-    }
-
-    .invitation-details strong {
-      font-size: 0.94rem;
-      color: rgba(255,248,239,0.90);
-      line-height: 1.45;
-      font-weight: 600;
-    }
-
-    .invitation-mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .invitation-mini-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 30px;
-      padding: 24px 22px;
-      min-height: 172px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.30), rgba(255,255,255,0.08)),
-        radial-gradient(circle at 16% 8%, rgba(255,255,255,0.26), transparent 34%);
-      border: 1px solid rgba(255,255,255,0.34);
-      box-shadow:
-        0 18px 48px rgba(28,45,34,0.09),
-        inset 0 1px 0 rgba(255,255,255,0.24);
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
-    }
-
-    .invitation-mini-card::before {
-      content: "";
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      right: -68px;
-      top: -68px;
-      border-radius: 999px;
-      background: rgba(180,135,61,0.12);
-      pointer-events: none;
-    }
-
-    .invitation-mini-card span {
-      position: relative;
-      z-index: 2;
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 14px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(22,63,49,0.08);
-      color: var(--green);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      font-weight: 700;
-    }
-
-    .invitation-mini-card p {
-      position: relative;
-      z-index: 2;
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 0.94rem;
-    }
-
-    /* FORM */
     .form-shell {
       position: relative;
       overflow: hidden;
@@ -793,7 +537,6 @@
       display: none !important;
     }
 
-    /* FOOTER */
     .footer {
       background: linear-gradient(180deg, #1c3b2f, #0f2a22);
       color: #e8e6df;
@@ -880,7 +623,6 @@
       color: #a9a49a;
     }
 
-    /* SUCCESS MODAL */
     .success-modal {
       position: fixed;
       inset: 0;
@@ -939,7 +681,6 @@
       box-shadow: 0 16px 34px rgba(22, 63, 49, 0.18);
     }
 
-    /* RESPONSIVE */
     @media (max-width: 1080px) {
       .footer-container {
         grid-template-columns: 1fr 1fr;
@@ -947,22 +688,9 @@
     }
 
     @media (max-width: 920px) {
-      .hero-invitation,
+      .hero-grid,
       .grid.two {
         grid-template-columns: 1fr;
-      }
-
-      .hero-invitation-main {
-        min-height: auto;
-        gap: 34px;
-      }
-
-      .hero-note {
-        max-width: 100%;
-      }
-
-      .invitation-card {
-        min-height: auto;
       }
     }
 
@@ -1047,74 +775,15 @@
         padding-top: 14px;
       }
 
-      .hero-invitation {
-        gap: 16px;
-        margin-bottom: 24px;
-      }
-
-      .hero-invitation-main,
-      .invitation-card {
-        border-radius: 32px;
-      }
-
-      .hero-invitation-main {
-        padding: 30px 22px;
-      }
-
-      .hero-copy h1,
-      .hero-invitation h1 {
-        font-size: clamp(2.7rem, 14vw, 4rem);
-        max-width: 9ch;
-      }
-
-      .hero-copy p,
-      .invitation-lead {
-        font-size: 0.96rem;
-        line-height: 1.75;
-      }
-
-      .invitation-card {
-        padding: 28px 22px;
-      }
-
-      .invitation-card::before {
-        inset: 12px;
-        border-radius: 24px;
-      }
-
-      .invitation-topline {
-        align-items: flex-start;
-      }
-
-      .invitation-mark {
-        width: 50px;
-        height: 50px;
-      }
-
-      .invitation-card h2 {
-        font-size: clamp(2.35rem, 13vw, 3.7rem);
-        max-width: 10ch;
-      }
-
-      .invitation-details div {
-        grid-template-columns: 1fr;
-        gap: 5px;
-        padding: 12px 13px;
-      }
-
-      .invitation-mini-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      .invitation-mini-card {
-        min-height: auto;
-        padding: 22px 20px;
-        border-radius: 26px;
+      .hero,
+      .form-shell {
+        padding-left: 18px;
+        padding-right: 18px;
       }
 
       .form-shell {
-        padding: 24px 18px;
+        padding-top: 24px;
+        padding-bottom: 24px;
       }
 
       form {
@@ -1196,13 +865,11 @@
       </div>
     </header>
 
-    <section class="hero-invitation">
-      <div class="hero-invitation-main">
+    <section class="hero">
+      <div class="hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">A Shavuot mountain escape</div>
-
           <h1>Apply for your place.</h1>
-
           <p>
             Join us for a warm and thoughtfully curated Shavuot experience in Vermont —
             with mountain air, spa time, a swimming pool, fitness space, a gaming room,
@@ -1216,64 +883,6 @@
             This retreat is designed to feel spacious, welcoming, and memorable —
             with comfort, nature, thoughtful details, and a lovely group experience from beginning to end.
           </span>
-        </div>
-      </div>
-
-      <div class="invitation-panel">
-        <div class="invitation-card">
-          <div class="invitation-kicker">Private retreat application</div>
-
-          <div class="invitation-topline">
-            <div class="invitation-mark">HN</div>
-            <div class="invitation-date">Shavuot 2026</div>
-          </div>
-
-          <h2>Shavuot in Vermont</h2>
-
-          <p class="invitation-lead">
-            A small curated mountain escape for Shavuot — warm meals, nature, connection,
-            and a holiday that feels spacious, beautiful, and real.
-          </p>
-
-          <div class="invitation-details">
-            <div>
-              <span>Setting</span>
-              <strong>Private Vermont home</strong>
-            </div>
-
-            <div>
-              <span>Vibe</span>
-              <strong>Restful, social, thoughtful</strong>
-            </div>
-
-            <div>
-              <span>Built around</span>
-              <strong>Shavuot, kosher food, community</strong>
-            </div>
-
-            <div>
-              <span>Group</span>
-              <strong>Small, curated, intentional</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="invitation-mini-grid">
-          <div class="invitation-mini-card">
-            <span>What this is</span>
-            <p>
-              Not a hotel program. Not a huge crowd. A hosted holiday experience with the feeling
-              of being invited somewhere special.
-            </p>
-          </div>
-
-          <div class="invitation-mini-card">
-            <span>Why this form</span>
-            <p>
-              This helps us understand who is coming, what kind of stay fits you,
-              and how to make the group feel warm and well matched.
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -1373,6 +982,7 @@
           </div>
         </div>
 
+        
         <div class="section">
           <h2>Davening & minyan</h2>
           <p class="section-intro">
