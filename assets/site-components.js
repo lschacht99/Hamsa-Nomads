@@ -1,40 +1,27 @@
-const BASE = document.currentScript?.dataset.base || "";
-
-/* Links use BASE because pages inside folders need ../ */
-function withBase(path) {
-  return `${BASE}${path}`;
-}
-
-/* Logo uses the full public URL so mobile does not break the path */
-const LOGO_SRC = "https://www.hamsanomads.com/logo/logo-hamsa-nomads.png?v=3";
+const BASE = "";
 
 function insertSiteHeader() {
   const headerTarget = document.getElementById("site-header");
   if (!headerTarget) return;
 
   headerTarget.innerHTML = `
-    <header class="hn-shared-header">
-      <div class="hn-shared-container hn-shared-nav">
-        <a href="${withBase("index.html")}" class="hn-shared-brand" aria-label="Hamsa Nomads home">
-          <img
-            class="hn-shared-brand-logo"
-            src="${LOGO_SRC}"
-            alt="Hamsa Nomads logo"
-            loading="eager"
-          />
-          <div class="hn-shared-brand-text">
-            <div class="hn-shared-brand-name">Hamsa Nomads</div>
-            <div class="hn-shared-brand-sub">Kosher travel</div>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="${BASE}/index.html" class="brand">
+          <img class="brand-logo" src="${BASE}/logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo" />
+          <div class="brand-text">
+            <div class="brand-name">Hamsa Nomads</div>
+            <div class="brand-sub">Kosher travel</div>
           </div>
         </a>
 
-        <nav class="hn-shared-nav-links" aria-label="Main navigation">
-          <a href="${withBase("index.html#experience")}" data-nav="experience">Experience</a>
-          <a href="${withBase("index.html#gallery")}" data-nav="gallery">Gallery</a>
-          <a href="${withBase("trips-page/trips.html")}" data-nav="trips">Upcoming trips</a>
-          <a href="${withBase("faq.html")}" data-nav="faq">FAQ</a>
-          <a href="${withBase("about-us/about-us.html")}" data-nav="about">About us</a>
-          <a href="${withBase("Forms/apply.html")}" class="hn-shared-button" data-nav="apply">Join the retreat</a>
+        <nav class="nav-links">
+          <a href="${BASE}/index.html#experience" data-nav="experience">Experience</a>
+          <a href="${BASE}/index.html#gallery" data-nav="gallery">Gallery</a>
+          <a href="${BASE}/trips-page/trips.html" data-nav="trips">Upcoming trips</a>
+          <a href="${BASE}/faq.html" data-nav="faq">FAQ</a>
+          <a href="${BASE}/about-us/about-us.html" data-nav="about">About us</a>
+          <a href="${BASE}/Forms/apply.html" class="button" data-nav="apply">Join the retreat</a>
         </nav>
       </div>
     </header>
@@ -48,113 +35,150 @@ function insertSiteFooter() {
   if (!footerTarget) return;
 
   footerTarget.innerHTML = `
-    <footer class="hn-shared-footer">
-      <div class="hn-shared-footer-container">
-
-        <div class="hn-shared-footer-brand">
-          <div class="hn-shared-footer-logo-row">
-            <img
-              src="${LOGO_SRC}"
-              alt="Hamsa Nomads logo"
-              class="hn-shared-footer-logo-img"
-              loading="lazy"
-            />
-            <div>
-              <h2 class="hn-shared-footer-logo">Hamsa Nomads</h2>
-              <p class="hn-shared-footer-tagline">Curated kosher travel experiences</p>
-            </div>
-          </div>
-
-          <p class="hn-shared-footer-text">
-            Meaningful Jewish travel, beautiful places, warm community, and small curated retreats built around connection.
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col footer-brand">
+          <h2 class="footer-logo">HAMSA NOMADS</h2>
+          <p class="footer-text">
+            Curated kosher travel experiences for meaningful Jewish connection, beautiful places, and warm community.
           </p>
-
-          <a href="${withBase("Forms/apply.html")}" class="hn-shared-footer-cta">
-            Join the Shavuos retreat
-          </a>
         </div>
 
-        <div class="hn-shared-footer-col">
-          <h4>Retreat</h4>
-          <ul>
-            <li><a href="${withBase("index.html#experience")}">Experience</a></li>
-            <li><a href="${withBase("index.html#gallery")}">The house</a></li>
-            <li><a href="${withBase("index.html#details")}">Weekend rhythm</a></li>
-            <li><a href="${withBase("index.html#pricing")}">Pricing</a></li>
-          </ul>
-        </div>
-
-        <div class="hn-shared-footer-col">
+        <div class="footer-col">
           <h4>Explore</h4>
           <ul>
-            <li><a href="${withBase("trips-page/trips.html")}">Upcoming trips</a></li>
-            <li><a href="${withBase("about-us/about-us.html")}">About us</a></li>
-            <li><a href="${withBase("faq.html")}">FAQ</a></li>
-            <li><a href="${withBase("Forms/apply.html")}">Apply</a></li>
+            <li><a href="${BASE}/index.html#experience">Experience</a></li>
+            <li><a href="${BASE}/trips-page/trips.html">Trips</a></li>
+            <li><a href="${BASE}/about-us/about-us.html">About us</a></li>
+            <li><a href="${BASE}/index.html#pricing">Pricing</a></li>
           </ul>
         </div>
 
-        <div class="hn-shared-footer-col">
-          <h4>Legal</h4>
+        <div class="footer-col">
+          <h4>Info</h4>
           <ul>
-            <li><a href="${withBase("terms.html")}">Terms & Conditions</a></li>
-            <li><a href="${withBase("privacy.html")}">Privacy Policy</a></li>
-            <li>New York, USA</li>
-          </ul>
-        </div>
-
-        <div class="hn-shared-footer-col hn-shared-footer-contact">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></li>
-            <li><a href="tel:+13479888869">347-988-8869</a></li>
+            <li><a href="${BASE}/faq.html">FAQ</a></li>
+            <li><a href="${BASE}/terms.html">Terms</a></li>
+            <li><a href="${BASE}/privacy.html">Privacy</a></li>
             <li>Shavuos in Vermont</li>
           </ul>
         </div>
 
+        <div class="footer-col footer-contact">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a></li>
+            <li>Text: 347-988-8869</li>
+            <li>New York, USA</li>
+            <li><a href="${BASE}/Forms/apply.html">Join us for Shavuos</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="hn-shared-footer-bottom">
-        <span>© 2026 Hamsa Nomads. All rights reserved.</span>
-        <span>Small curated kosher travel experiences.</span>
+      <div class="footer-bottom">
+        © 2026 Hamsa Nomads — All rights reserved
       </div>
     </footer>
   `;
+}
+
+function insertFloatingShare() {
+  if (document.getElementById("globalFloatingShare")) return;
+
+  const shareHTML = `
+    <div class="floating-share" id="globalFloatingShare">
+      <button class="share-main-btn" id="globalShareBtn" type="button" aria-label="Share this page">
+        Share around you
+      </button>
+
+      <div class="share-options" id="globalShareOptions">
+        <a id="globalWhatsappShare" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="globalFacebookShare" target="_blank" rel="noopener">Facebook</a>
+        <a id="globalEmailShare">Email</a>
+        <button id="globalCopyLinkBtn" type="button">Copy link</button>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", shareHTML);
+
+  const shareBtn = document.getElementById("globalShareBtn");
+  const shareOptions = document.getElementById("globalShareOptions");
+  const copyLinkBtn = document.getElementById("globalCopyLinkBtn");
+
+  const pageUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+
+  document.getElementById("globalWhatsappShare").href =
+    `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+
+  document.getElementById("globalFacebookShare").href =
+    `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+  document.getElementById("globalEmailShare").href =
+    `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+  shareBtn.addEventListener("click", async () => {
+    const canUseNativeShare =
+      navigator.share &&
+      window.matchMedia("(max-width: 760px)").matches;
+
+    if (canUseNativeShare) {
+      try {
+        await navigator.share({
+          title: document.title || "Hamsa Nomads",
+          url: window.location.href
+        });
+        return;
+      } catch (error) {
+        // If native share is cancelled or unavailable, open the custom menu.
+      }
+    }
+
+    shareOptions.classList.toggle("open");
+  });
+
+  copyLinkBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      copyLinkBtn.textContent = "Copied!";
+      setTimeout(() => {
+        copyLinkBtn.textContent = "Copy link";
+      }, 1600);
+    } catch (err) {
+      copyLinkBtn.textContent = "Copy manually";
+      setTimeout(() => {
+        copyLinkBtn.textContent = "Copy link";
+      }, 1600);
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".floating-share")) {
+      shareOptions.classList.remove("open");
+    }
+  });
 }
 
 function markActiveNav() {
   const path = window.location.pathname;
 
   const navMap = [
-    { key: "faq", match: "faq.html" },
-    { key: "trips", match: "trips-page/trips.html" },
-    { key: "about", match: "about-us/about-us.html" },
-    { key: "apply", match: "Forms/apply.html" }
+    { key: "faq", match: "/faq.html" },
+    { key: "trips", match: "/trips-page/trips.html" },
+    { key: "about", match: "/about-us/about-us.html" },
+    { key: "apply", match: "/Forms/apply.html" }
   ];
 
-  const normalizedPath = path.replace(/^\/+/, "");
-  const active = navMap.find(item => normalizedPath.endsWith(item.match));
-
+  const active = navMap.find(item => path.endsWith(item.match));
   if (!active) return;
 
   const activeLink = document.querySelector(`[data-nav="${active.key}"]`);
-  if (activeLink) activeLink.classList.add("is-active");
-}
-function updateHeaderHeight() {
-  const header = document.getElementById("site-header");
-  if (!header) return;
-
-  const height = header.offsetHeight || 86;
-  document.documentElement.style.setProperty("--hn-header-height", `${height}px`);
+  if (activeLink) activeLink.classList.add("active");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   insertSiteHeader();
   insertSiteFooter();
-
-  requestAnimationFrame(updateHeaderHeight);
-  setTimeout(updateHeaderHeight, 250);
+  insertFloatingShare();
 });
-
-window.addEventListener("resize", updateHeaderHeight);
-window.addEventListener("load", updateHeaderHeight);
