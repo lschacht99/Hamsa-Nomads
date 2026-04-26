@@ -962,7 +962,97 @@
       .hero-note span {
         font-size: 0.76rem;
       }
+.agreement-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 16px;
+  margin: 14px 0 6px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid rgba(39, 69, 55, 0.16);
+  box-shadow: 0 12px 28px rgba(31, 28, 20, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition: 0.22s ease;
+}
 
+.agreement-card:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(184, 139, 47, 0.34);
+}
+
+.agreement-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-check {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  border-radius: 7px;
+  border: 1.5px solid rgba(39, 69, 55, 0.42);
+  background: rgba(255, 255, 255, 0.65);
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  transition: 0.2s ease;
+}
+
+.custom-check::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg) scale(0);
+  margin-top: -2px;
+  transition: 0.18s ease;
+}
+
+.agreement-card input:checked + .custom-check {
+  background: var(--forest, #274537);
+  border-color: var(--forest, #274537);
+  box-shadow: 0 8px 18px rgba(39, 69, 55, 0.22);
+}
+
+.agreement-card input:checked + .custom-check::after {
+  transform: rotate(-45deg) scale(1);
+}
+
+.agreement-text {
+  display: grid;
+  gap: 3px;
+  color: var(--ink, #1c211d);
+  line-height: 1.35;
+}
+
+.agreement-text strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest, #274537);
+}
+
+.agreement-text small {
+  font-size: 0.86rem;
+  color: var(--muted, #5f655d);
+}
+
+.agreement-text a {
+  color: var(--forest, #274537);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(184, 139, 47, 0.65);
+  text-underline-offset: 3px;
+}
+
+.agreement-text a:hover {
+  color: var(--gold, #b88b2f);
+}
       .footer {
         padding: 24px 14px 16px;
       }
@@ -971,6 +1061,7 @@
         grid-template-columns: 1fr;
         gap: 16px;
       }
+      
     }
   </style>
 </head>
@@ -1289,17 +1380,21 @@
             <label for="heard_other">If other, please specify <span class="optional">(optional)</span></label>
             <input type="text" id="heard_other" name="heard_other" />
           </div>
-
-        <label class="terms-check">
+<label class="agreement-card">
   <input type="checkbox" name="termsAccepted" required>
-  <span>
-    I have read and agree to the
-    <a href="../terms.html" target="_blank">Terms & Conditions</a>
-    and
-    <a href="../privacy.html" target="_blank">Privacy Policy</a>.
+
+  <span class="custom-check" aria-hidden="true"></span>
+
+  <span class="agreement-text">
+    <strong>I agree to the retreat policies.</strong>
+    <small>
+      I have read and agree to the
+      <a href="../terms.html" target="_blank">Terms & Conditions</a>
+      and
+      <a href="../privacy.html" target="_blank">Privacy Policy</a>.
+    </small>
   </span>
 </label>
-          
         <div class="submit-wrap">
           <button type="submit" class="submit-btn" id="submitBtn">Send my application</button>
           <div id="formStatus" class="status" role="status" aria-live="polite"></div>
