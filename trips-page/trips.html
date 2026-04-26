@@ -4,9 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Hamsa Nomads — Shavuos in Vermont</title>
+  <title>Hamsa Nomads — Upcoming Trips</title>
+  <meta name="description" content="Upcoming Hamsa Nomads trips, city weekends, holiday retreats, playful escapes, and kosher travel experiences with community." />
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+  <meta property="og:title" content="Hamsa Nomads — Upcoming Trips" />
+  <meta property="og:description" content="Discover upcoming Hamsa Nomads trips and join the interest list for future kosher travel experiences." />
+  <meta property="og:image" content="https://www.hamsanomads.com/Image/trips/boston.png" />
+  <meta property="og:url" content="https://www.hamsanomads.com/trips-page/trips.html" />
+  <meta property="og:type" content="website" />
 
   <style>
     :root {
@@ -16,16 +23,22 @@
       --muted: #5f655d;
       --forest: #274537;
       --gold: #b88b2f;
+      --soft-gold: #d5b25c;
       --line: rgba(16, 14, 11, 0.22);
       --shadow: 0 16px 50px rgba(31, 28, 20, 0.08);
       --radius: 24px;
       --container: 1280px;
       --border: rgba(39, 69, 55, 0.12);
+      --cream: #faf7f0;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -33,6 +46,7 @@
       color: var(--ink);
       background:
         radial-gradient(circle at top left, rgba(255,255,255,0.72), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
         linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
       line-height: 1.55;
       overflow-x: hidden;
@@ -45,13 +59,46 @@
       margin: 0;
     }
 
-    p { margin: 0; }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
     .site-shell {
       position: relative;
       isolation: isolate;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glass {
+      background: var(--paper);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.48);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.45);
+      border-radius: var(--radius);
     }
 
     .line-overlay {
@@ -69,8 +116,7 @@
     }
 
     .path-main,
-    .path-slice,
-    .path-hamsa {
+    .path-slice {
       fill: none;
       stroke: var(--line);
       stroke-linecap: round;
@@ -78,29 +124,20 @@
       vector-effect: non-scaling-stroke;
     }
 
-    .path-main.back,
-    .path-hamsa.back { stroke-width: 3.2; }
-
-    .path-main.front,
-    .path-hamsa.front { stroke-width: 1.5; }
-
-    .path-slice.back { stroke-width: 3; }
-    .path-slice.front { stroke-width: 1.3; }
-
-    .container {
-      width: min(calc(100% - 32px), var(--container));
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+    .path-main.back {
+      stroke-width: 3.2;
     }
 
-    .glass {
-      background: var(--paper);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.48);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.45);
-      border-radius: var(--radius);
+    .path-main.front {
+      stroke-width: 1.5;
+    }
+
+    .path-slice.back {
+      stroke-width: 3;
+    }
+
+    .path-slice.front {
+      stroke-width: 1.3;
     }
 
     .site-header {
@@ -195,6 +232,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
       white-space: nowrap;
       flex-shrink: 0;
+      cursor: pointer;
     }
 
     .button:hover,
@@ -216,95 +254,100 @@
       box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
     }
 
-    .hero {
-      padding: 26px 0 24px;
+    .trips-hero {
+      position: relative;
+      z-index: 2;
+      padding: 34px 0 24px;
     }
 
-    .hero-wrap {
+    .trips-hero-wrap {
       position: relative;
-      min-height: min(86vh, 980px);
+      min-height: min(78vh, 820px);
       overflow: hidden;
       border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.86)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
+      color: #fffdf8;
       box-shadow: var(--shadow);
-      background: #e8e0d2;
-      z-index: 2;
+      border: 1px solid rgba(255,255,255,0.22);
     }
 
-    .hero-media {
+    .trips-hero-bg {
       position: absolute;
       inset: 0;
+      opacity: 0.32;
+      background:
+        linear-gradient(90deg, rgba(21, 17, 12, 0.52), rgba(21, 17, 12, 0.12)),
+        url("../Image/trips/boston.png");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+
+    .trips-hero-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .trips-hero-line svg {
       width: 100%;
       height: 100%;
-      object-fit: cover;
     }
 
-    .hero-scrim {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(21, 17, 12, 0.56) 0%, rgba(21, 17, 12, 0.28) 38%, rgba(21, 17, 12, 0.08) 100%),
-        linear-gradient(180deg, rgba(20,15,10,0.08) 0%, rgba(20,15,10,0.18) 100%);
+    .trips-hero-line path {
+      fill: none;
+      stroke: rgba(255,255,255,0.28);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 9 13;
     }
 
-    .hero-inner {
+    .trips-hero-inner {
       position: relative;
       z-index: 2;
       min-height: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: clamp(28px, 4vw, 56px);
-    }
-
-    .hero-topbar {
-      display: flex;
-      justify-content: flex-end;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: end;
+      padding: clamp(28px, 5vw, 64px);
     }
 
     .hero-copy {
-      max-width: 740px;
-      color: #fffdf8;
       display: flex;
       flex-direction: column;
       gap: 18px;
-      padding-top: 46px;
+      max-width: 760px;
     }
 
     .eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       opacity: 0.92;
+      font-weight: 700;
     }
 
-    .hero h1 {
-      font-size: clamp(3.2rem, 9vw, 7.4rem);
-      line-height: 0.93;
+    .trips-hero h1 {
+      font-size: clamp(3.1rem, 8vw, 7.2rem);
+      line-height: 0.92;
       text-shadow: 0 8px 28px rgba(0,0,0,0.18);
       max-width: 9ch;
     }
 
-    .hero h1 .gold {
+    .trips-hero h1 .gold {
       color: #e0ae43;
     }
 
-    .hero-kicker {
-      width: fit-content;
-      padding: 12px 18px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(12px);
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      font-size: 0.86rem;
-    }
-
     .hero-lead {
-      max-width: 32ch;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      line-height: 1.35;
-      color: rgba(255,251,245,0.96);
+      max-width: 34ch;
+      font-size: clamp(1.08rem, 2vw, 1.45rem);
+      line-height: 1.42;
+      color: rgba(255,251,245,0.94);
       text-shadow: 0 5px 18px rgba(0,0,0,0.18);
     }
 
@@ -313,55 +356,59 @@
       gap: 12px;
       flex-wrap: wrap;
       align-items: center;
+      margin-top: 4px;
     }
 
-    .hero .button {
+    .hero-actions .button {
       min-height: 56px;
       padding: 0 30px;
       font-size: 1rem;
     }
 
-    .hero-bottom-card {
-      margin-top: 20px;
-      width: min(860px, 100%);
-      padding: 24px 26px;
+    .hero-side-card {
+      align-self: end;
+      padding: 26px;
+      border-radius: 28px;
       background: rgba(252, 247, 239, 0.78);
       color: var(--ink);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 22px;
-      align-items: center;
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.14);
     }
 
-    .hero-bottom-card h2 {
-      font-size: clamp(2rem, 4vw, 3.6rem);
+    .hero-side-card h2 {
       color: var(--forest);
-      margin-bottom: 10px;
+      font-size: clamp(1.75rem, 3vw, 2.6rem);
+      margin-bottom: 12px;
     }
 
-    .hero-bottom-card p {
+    .hero-side-card p {
       color: var(--muted);
-      font-size: 1.04rem;
-      max-width: 48ch;
+      font-size: 1.02rem;
+      line-height: 1.7;
     }
 
     .quick-facts {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 10px;
-      font-size: 0.96rem;
+      margin-top: 18px;
+      font-size: 0.94rem;
       color: var(--forest);
     }
 
     .quick-facts div {
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.56);
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.58);
       border: 1px solid rgba(39,69,55,0.09);
     }
 
-    .section {
-      padding: 34px 0;
+    .page-intro {
+      position: relative;
+      z-index: 2;
+      padding: 38px 0 14px;
     }
 
     .section-header {
@@ -369,7 +416,7 @@
       align-items: end;
       justify-content: space-between;
       gap: 20px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
       padding: 14px 4px;
     }
 
@@ -379,321 +426,107 @@
     }
 
     .section-header p {
-      max-width: 52ch;
+      max-width: 56ch;
       color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
     }
 
-    .value-grid,
-    .gallery-grid {
+    .intro-grid {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 18px;
     }
 
-    .value-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .gallery-grid { grid-template-columns: 1.15fr 0.85fr 0.85fr; }
-
-    .card {
+    .intro-card {
       padding: 24px;
-      position: relative;
-      z-index: 2;
     }
 
-    .card h3 {
+    .intro-card h3 {
       font-size: 1.45rem;
       color: var(--forest);
       margin-bottom: 10px;
     }
 
-    .card p,
-    .footer-text,
-    li {
+    .intro-card p {
       color: var(--muted);
-    }
-
-    .gallery-card {
-      padding: 10px;
-      overflow: hidden;
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 18px;
-      min-height: 250px;
-    }
-
-    .gallery-card.tall { grid-row: span 2; }
-
-    .liquid-info {
-      padding: 26px;
-      background:
-        linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.90)),
-        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
-      color: #fff;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      border: 1px solid rgba(255,255,255,0.20);
-      box-shadow:
-        0 22px 60px rgba(20, 45, 35, 0.22),
-        inset 0 1px 0 rgba(255,255,255,0.22);
-    }
-
-    .liquid-item {
-      padding: 20px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .liquid-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.14);
-      color: #e0ae43;
-      margin-bottom: 14px;
-    }
-
-    .liquid-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .liquid-item h3 {
-      color: #fff;
-      margin-bottom: 8px;
-      font-size: 1.2rem;
-    }
-
-    .liquid-item p {
-      color: rgba(255,255,255,0.78);
-      font-size: 0.94rem;
-    }
-
-    .promise-bar {
-      margin-top: 18px;
-      padding: 22px 26px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .promise-bar .big-line {
-      font-size: clamp(1.4rem, 3vw, 2.1rem);
-      color: var(--forest);
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-style: italic;
-    }
-
-    /* =========================
-    Hamsa Nomads — Upcoming Trips Section + Popup Form
-    ========================= */
-
-    :root {
-      --hn-bg: #f7f3ec;
-      --hn-card: rgba(255, 255, 255, 0.52);
-      --hn-card-border: rgba(255, 255, 255, 0.42);
-      --hn-text: #1f2a22;
-      --hn-muted: #5d6a61;
-      --hn-green: #264734;
-      --hn-gold: #d5b25c;
-      --hn-line: rgba(31, 42, 34, 0.16);
-      --hn-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
-    }
-
-    .hn-upcoming-section {
-      position: relative;
-      overflow: hidden;
-      padding: 110px 20px 90px;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
-        var(--hn-bg);
-    }
-
-    .hn-upcoming-inner {
-      position: relative;
-      max-width: 1280px;
-      margin: 0 auto;
-      z-index: 2;
-    }
-
-    .hn-upcoming-header {
-      max-width: 760px;
-      margin-bottom: 34px;
-    }
-
-    .hn-overline {
-      display: inline-block;
-      margin-bottom: 12px;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--hn-green);
-      opacity: 0.75;
-      font-weight: 700;
-    }
-
-    .hn-upcoming-title {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 4.25rem);
-      line-height: 1.02;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      color: var(--hn-text);
-    }
-
-    .hn-upcoming-subtitle {
-      margin: 18px 0 0;
-      font-size: clamp(1rem, 1.35vw, 1.14rem);
       line-height: 1.7;
-      color: var(--hn-muted);
-      max-width: 700px;
     }
 
-    .hn-upcoming-line {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
+    .trips-section {
+      position: relative;
+      z-index: 2;
+      padding: 44px 0 70px;
     }
 
-    .hn-upcoming-line svg {
-      width: 100%;
-      height: 100%;
-      display: block;
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
     }
 
-    .hn-upcoming-line path {
-      fill: none;
-      stroke: var(--hn-line);
-      stroke-width: 2.1;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 8 12;
-    }
-
-    .hn-slider-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .hn-slider-hint {
-      font-size: 0.95rem;
-      color: var(--hn-muted);
-    }
-
-    .hn-slider-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .hn-slider-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 1px solid rgba(38, 71, 52, 0.15);
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-      color: var(--hn-green);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.22s ease;
-    }
-
-    .hn-slider-btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.72);
-    }
-
-    .hn-slider-btn:disabled {
-      opacity: 0.45;
-      cursor: default;
-      transform: none;
-    }
-
-    .hn-trip-slider {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 10px 12vw 18px 2px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .hn-trip-slider::-webkit-scrollbar {
-      display: none;
-    }
-
-    .hn-trip-slide {
-      scroll-snap-align: start;
-      flex: 0 0 min(86vw, 430px);
-    }
-
-    .hn-trip-card {
+    .bento-card {
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 650px;
-      border-radius: 28px;
       overflow: hidden;
-      background: var(--hn-card);
-      border: 1px solid var(--hn-card-border);
-      box-shadow: var(--hn-shadow);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      box-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      min-height: 100%;
     }
 
-    .hn-trip-image {
+    .bento-featured {
+      grid-column: span 2;
+      min-height: 690px;
+    }
+
+    .bento-medium {
+      min-height: 690px;
+    }
+
+    .bento-wide {
+      grid-column: 1 / -1;
+    }
+
+    .bento-image {
       position: relative;
-      min-height: 290px;
-      background:
-        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
-        var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
+      min-height: 320px;
       background-size: cover;
       background-position: center;
       overflow: hidden;
     }
 
-    .hn-trip-image::after {
+    .bento-featured .bento-image {
+      min-height: 360px;
+    }
+
+    .bento-image.small {
+      min-height: 250px;
+    }
+
+    .bento-image::after {
       content: "";
       position: absolute;
       inset: auto 0 0;
-      height: 44%;
+      height: 45%;
       background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.22));
     }
 
-    .hn-trip-badge {
+    .bento-badge {
       position: absolute;
       top: 18px;
       left: 18px;
       z-index: 2;
       padding: 8px 13px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.7);
-      color: var(--hn-green);
-      font-size: 0.78rem;
+      background: rgba(255,255,255,0.74);
+      color: var(--forest);
+      font-size: 0.76rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -701,75 +534,59 @@
       -webkit-backdrop-filter: blur(12px);
     }
 
-    .hn-image-note {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      z-index: 2;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      color: var(--hn-text);
-      font-size: 0.82rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .hn-trip-body {
+    .bento-content {
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 26px 24px 24px;
+      padding: 26px;
     }
 
-    .hn-trip-meta {
+    .bento-meta {
       font-size: 0.92rem;
-      color: var(--hn-muted);
+      color: var(--muted);
       margin-bottom: 12px;
     }
 
-    .hn-trip-name {
-      margin: 0 0 12px;
-      font-size: clamp(1.55rem, 2.4vw, 2rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--hn-text);
-      font-weight: 600;
+    .bento-title {
+      font-size: clamp(1.55rem, 2vw, 2.3rem);
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 12px;
     }
 
-    .hn-trip-copy {
-      margin: 0 0 20px;
-      color: var(--hn-muted);
+    .bento-text {
+      color: var(--muted);
       line-height: 1.7;
       font-size: 1rem;
+      margin-bottom: 18px;
     }
 
-    .hn-trip-bullets {
+    .bento-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 26px;
+      margin: 0 0 24px;
       display: grid;
       gap: 10px;
     }
 
-    .hn-trip-bullets li {
+    .bento-list li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      color: var(--hn-text);
+      color: var(--ink);
       font-size: 0.96rem;
       line-height: 1.55;
     }
 
-    .hn-trip-bullets li::before {
+    .bento-list li::before {
       content: "•";
-      color: var(--hn-gold);
+      color: var(--soft-gold);
       font-size: 1.15rem;
       line-height: 1;
       margin-top: 2px;
     }
 
-    .hn-trip-footer {
+    .bento-footer {
       margin-top: auto;
       display: flex;
       align-items: center;
@@ -778,29 +595,29 @@
       flex-wrap: wrap;
     }
 
-    .hn-trip-status {
+    .bento-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--hn-green);
+      color: var(--forest);
       font-size: 0.88rem;
       font-weight: 600;
     }
 
-    .hn-trip-status-dot {
+    .bento-status-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: var(--hn-gold);
+      background: var(--soft-gold);
     }
 
-    .hn-trip-cta,
-    .hn-popup-submit {
+    .trip-cta,
+    .popup-submit {
       appearance: none;
       border: 0;
       border-radius: 999px;
       padding: 13px 18px;
-      background: var(--hn-green);
+      background: var(--forest);
       color: #fff;
       font-size: 0.95rem;
       font-weight: 600;
@@ -809,35 +626,61 @@
       box-shadow: 0 16px 28px rgba(38, 71, 52, 0.20);
     }
 
-    .hn-trip-cta:hover,
-    .hn-popup-submit:hover {
+    .trip-cta:hover,
+    .popup-submit:hover {
       transform: translateY(-2px);
       box-shadow: 0 18px 34px rgba(38, 71, 52, 0.26);
     }
 
-    .hn-slider-dots {
+    .bento-cta-card {
+      background:
+        linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.90)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow:
+        0 22px 60px rgba(20, 45, 35, 0.22),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+
+    .bento-cta-card .bento-meta,
+    .bento-cta-card .bento-text {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .bento-cta-card .bento-title {
+      color: #fff;
+    }
+
+    .bento-cta-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      padding: 28px;
+      min-height: 220px;
+    }
+
+    .bento-cta-actions {
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 22px;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .hn-slider-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      border: 0;
-      background: rgba(38, 71, 52, 0.22);
-      cursor: pointer;
-      transition: 0.2s ease;
+    .bento-cta-card .button {
+      background: rgba(255,255,255,0.92);
+      color: var(--forest);
+      border-color: rgba(255,255,255,0.30);
     }
 
-    .hn-slider-dot.is-active {
-      width: 28px;
-      background: var(--hn-green);
+    .bento-cta-card .button-secondary {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-color: rgba(255,255,255,0.24);
     }
 
-    .hn-popup-overlay {
+    .popup-overlay {
       position: fixed;
       inset: 0;
       z-index: 9998;
@@ -850,11 +693,11 @@
       -webkit-backdrop-filter: blur(12px);
     }
 
-    .hn-popup-overlay.is-open {
+    .popup-overlay.is-open {
       display: flex;
     }
 
-    .hn-popup-bubble {
+    .popup-bubble {
       position: relative;
       width: min(100%, 480px);
       border-radius: 34px;
@@ -866,9 +709,11 @@
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
       overflow: hidden;
+      max-height: calc(100vh - 44px);
+      overflow-y: auto;
     }
 
-    .hn-popup-bubble::before {
+    .popup-bubble::before {
       content: "";
       position: absolute;
       width: 190px;
@@ -879,7 +724,7 @@
       background: rgba(213,178,92,0.18);
     }
 
-    .hn-popup-close {
+    .popup-close {
       position: absolute;
       top: 18px;
       right: 18px;
@@ -889,89 +734,175 @@
       border: 1px solid rgba(38, 71, 52, 0.12);
       background: rgba(255,255,255,0.58);
       cursor: pointer;
-      color: var(--hn-green);
+      color: var(--forest);
       font-size: 1.3rem;
       line-height: 1;
       z-index: 3;
     }
 
-    .hn-popup-content {
+    .popup-content {
       position: relative;
       z-index: 2;
     }
 
-    .hn-popup-kicker {
+    .popup-kicker {
       font-size: 0.78rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--hn-green);
+      color: var(--forest);
       font-weight: 700;
       margin-bottom: 10px;
     }
 
-    .hn-popup-title {
+    .popup-title {
       margin: 0;
       font-size: clamp(1.8rem, 5vw, 2.35rem);
       line-height: 1.05;
       letter-spacing: -0.03em;
-      color: var(--hn-text);
+      color: var(--ink);
     }
 
-    .hn-popup-subtitle {
+    .popup-subtitle {
       margin: 12px 0 22px;
-      color: var(--hn-muted);
+      color: var(--muted);
       line-height: 1.6;
     }
 
-    .hn-popup-form {
+    .popup-form {
       display: grid;
       gap: 13px;
     }
 
-    .hn-popup-row {
+    .popup-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 13px;
     }
 
-    .hn-popup-form input {
+    .popup-form input,
+    .popup-form textarea {
       width: 100%;
       box-sizing: border-box;
       border: 1px solid rgba(38, 71, 52, 0.14);
       border-radius: 16px;
       padding: 14px 15px;
       background: rgba(255,255,255,0.62);
-      color: var(--hn-text);
+      color: var(--ink);
       font-size: 1rem;
       outline: none;
+      font-family: inherit;
     }
 
-    .hn-popup-form input:focus {
+    .popup-form textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.5;
+    }
+
+    .popup-form input:focus,
+    .popup-form textarea:focus {
       border-color: rgba(38, 71, 52, 0.42);
       box-shadow: 0 0 0 4px rgba(38, 71, 52, 0.08);
     }
 
-    .hn-popup-submit {
+    .popup-submit {
       margin-top: 4px;
       width: 100%;
     }
 
-    .hn-popup-message {
+    .popup-submit:disabled {
+      opacity: 0.72;
+      cursor: wait;
+      transform: none;
+    }
+
+    .popup-message {
       min-height: 22px;
       font-size: 0.92rem;
-      color: var(--hn-green);
+      color: var(--forest);
       text-align: center;
     }
 
-    .hn-popup-message.error {
+    .popup-message.error {
       color: #8b2f25;
+    }
+
+    .floating-share {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 9999;
+      font-family: inherit;
+    }
+
+    .share-main-btn {
+      border: 1px solid rgba(30, 30, 30, 0.18);
+      background: rgba(255, 255, 255, 0.52);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      color: #1f1f1f;
+      padding: 13px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+      transition: all 0.25s ease;
+    }
+
+    .share-main-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .share-options {
+      position: absolute;
+      right: 0;
+      bottom: 58px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      width: 155px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(30, 30, 30, 0.12);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    }
+
+    .share-options.open {
+      display: flex;
+    }
+
+    .share-options a,
+    .share-options button {
+      width: 100%;
+      border: none;
+      background: rgba(255, 255, 255, 0.42);
+      color: #1f1f1f;
+      text-decoration: none;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .share-options a:hover,
+    .share-options button:hover {
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateX(-2px);
     }
 
     .footer {
       background: linear-gradient(180deg, #1c3b2f, #0f2a22);
       color: #e8e6df;
       padding: 60px 20px 30px;
-      margin-top: 40px;
+      margin-top: 20px;
       position: relative;
       z-index: 2;
     }
@@ -1052,112 +983,44 @@
       color: #a9a49a;
     }
 
-    .floating-share {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 9999;
-      font-family: inherit;
-    }
-
-    .share-main-btn {
-      border: 1px solid rgba(30, 30, 30, 0.18);
-      background: rgba(255, 255, 255, 0.52);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      color: #1f1f1f;
-      padding: 13px 18px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 14px;
-      letter-spacing: 0.03em;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
-      transition: all 0.25s ease;
-    }
-
-    .share-main-btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.72);
-    }
-
-    .share-options {
-      position: absolute;
-      right: 0;
-      bottom: 58px;
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      width: 155px;
-      padding: 12px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.58);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      border: 1px solid rgba(30, 30, 30, 0.12);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-    }
-
-    .share-options.open {
-      display: flex;
-    }
-
-    .share-options a,
-    .share-options button {
-      width: 100%;
-      border: none;
-      background: rgba(255, 255, 255, 0.42);
-      color: #1f1f1f;
-      text-decoration: none;
-      text-align: left;
-      padding: 10px 12px;
-      border-radius: 14px;
-      font-size: 13px;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.2s ease;
-    }
-
-    .share-options a:hover,
-    .share-options button:hover {
-      background: rgba(255, 255, 255, 0.75);
-      transform: translateX(-2px);
-    }
-
-    @media (min-width: 900px) {
-      .hn-trip-slide {
-        flex: 0 0 min(58vw, 500px);
+    @media (max-width: 1100px) {
+      .bento-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .hn-trip-slider {
-        padding-right: 16vw;
+      .bento-featured {
+        grid-column: 1 / -1;
+        min-height: 640px;
       }
-    }
 
-    @media (min-width: 1200px) {
-      .hn-trip-slide {
-        flex: 0 0 min(48vw, 520px);
+      .bento-medium {
+        min-height: 620px;
+      }
+
+      .bento-cta-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-cta-actions {
+        justify-content: flex-start;
       }
     }
 
     @media (max-width: 1080px) {
-      .value-grid,
-      .gallery-grid,
-      .hero-bottom-card,
-      .liquid-info,
+      .trips-hero-inner,
       .footer-container {
         grid-template-columns: 1fr 1fr;
       }
 
-      .gallery-grid > :first-child,
-      .hero-bottom-card > :first-child {
-        grid-column: 1 / -1;
+      .intro-grid {
+        grid-template-columns: 1fr;
       }
-
-      .gallery-card.tall { grid-row: span 1; }
     }
 
     @media (max-width: 980px) {
-      .nav { gap: 18px; }
+      .nav {
+        gap: 18px;
+      }
 
       .brand-logo {
         width: 46px;
@@ -1188,7 +1051,9 @@
         padding: 12px 0;
       }
 
-      .brand { justify-content: flex-start; }
+      .brand {
+        justify-content: flex-start;
+      }
 
       .nav-links {
         width: 100%;
@@ -1197,14 +1062,20 @@
         flex-wrap: wrap;
       }
 
-      .hero-wrap { min-height: 760px; }
-      .hero-copy { padding-top: 22px; }
+      .trips-hero-wrap {
+        min-height: 790px;
+      }
 
-      .hero-bottom-card,
-      .value-grid,
-      .gallery-grid,
-      .liquid-info,
+      .trips-hero-inner,
       .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side-card {
+        align-self: stretch;
+      }
+
+      .quick-facts {
         grid-template-columns: 1fr;
       }
 
@@ -1212,54 +1083,46 @@
         flex-direction: column;
         align-items: flex-start;
       }
-    }
 
-    @media (max-width: 699px) {
-      .hn-upcoming-section {
-        padding: 86px 16px 72px;
+      .bento-grid {
+        grid-template-columns: 1fr;
       }
 
-      .hn-slider-topbar {
-        align-items: flex-start;
-        flex-direction: column;
+      .bento-featured,
+      .bento-medium,
+      .bento-wide {
+        grid-column: auto;
+        min-height: auto;
       }
 
-      .hn-trip-card {
-        min-height: 620px;
-      }
-
-      .hn-trip-body {
-        padding: 22px 20px 22px;
-      }
-
-      .hn-trip-image {
+      .bento-image,
+      .bento-featured .bento-image {
         min-height: 250px;
       }
 
-      .hn-trip-slider {
-        gap: 18px;
-        padding-right: 14vw;
+      .bento-content {
+        padding: 22px 20px;
       }
 
-      .hn-trip-slide {
-        flex: 0 0 min(88vw, 390px);
-      }
-
-      .hn-trip-footer {
+      .bento-footer {
         flex-direction: column;
         align-items: stretch;
       }
 
-      .hn-trip-cta {
+      .trip-cta {
         width: 100%;
         text-align: center;
       }
 
-      .hn-popup-row {
+      .bento-cta-inner {
+        padding: 24px 20px;
+      }
+
+      .popup-row {
         grid-template-columns: 1fr;
       }
 
-      .hn-popup-bubble {
+      .popup-bubble {
         padding: 28px 22px 24px;
       }
 
@@ -1278,261 +1141,324 @@
 
 <body>
   <div class="site-shell">
+
     <div class="line-overlay" aria-hidden="true">
-      <svg viewBox="0 0 1440 5200" preserveAspectRatio="none">
-        <path class="path-hamsa back" id="hamsaBack" d="M820 86 C820 150, 820 210, 818 278 C816 346, 804 376, 786 376 C766 375, 760 338, 759 277 C759 207, 760 139, 760 81 C760 18, 784 -16, 822 -16 C859 -16, 883 19, 883 83 C884 140, 884 208, 884 280 C884 339, 878 374, 860 375 C842 375, 830 346, 828 279 C826 210, 826 148, 826 89" />
-        <path class="path-hamsa front" id="hamsaFront" d="M821 86 C821 150, 821 210, 819 278 C817 346, 805 376, 787 376 C767 375, 761 338, 760 277 C760 207, 761 139, 761 81 C761 18, 785 -16, 823 -16 C860 -16, 884 19, 884 83 C885 140, 885 208, 885 280 C885 339, 879 374, 861 375 C843 375, 831 346, 829 279 C827 210, 827 148, 827 89" />
-        <path class="path-main back" id="lineBack" d="M667 330 C625 306, 578 304, 547 323 C519 341, 511 367, 522 392 C535 421, 568 428, 589 447 C611 465, 619 500, 605 526 C587 557, 552 560, 529 583 C505 607, 496 652, 505 695 C518 762, 525 832, 546 895 C563 946, 596 982, 644 985 C694 986, 750 968, 791 972 C835 976, 874 1001, 879 1038 C886 1086, 841 1123, 824 1165 C810 1198, 821 1244, 855 1264 C898 1289, 951 1285, 989 1310 C1035 1340, 1054 1390, 1040 1439 C1024 1491, 987 1535, 966 1584 C943 1637, 938 1699, 964 1747 C994 1803, 1057 1836, 1123 1843 C1190 1851, 1262 1838, 1308 1870 C1358 1905, 1365 1972, 1328 2017 C1288 2067, 1216 2077, 1148 2088 C1075 2099, 1009 2122, 981 2173 C951 2227, 967 2294, 1022 2330 C1077 2367, 1159 2370, 1236 2382 C1302 2392, 1360 2422, 1379 2472 C1403 2537, 1368 2608, 1304 2645 C1243 2681, 1164 2686, 1098 2725 C1046 2756, 1008 2808, 1006 2860 C1004 2917, 1047 2964, 1104 2988 C1163 3014, 1232 3017, 1281 3047 C1341 3083, 1367 3144, 1349 3206 C1328 3279, 1263 3328, 1188 3350 C1115 3371, 1035 3370, 980 3406 C928 3440, 904 3496, 916 3553 C931 3622, 984 3675, 1032 3726 C1081 3779, 1124 3841, 1121 3908 C1117 3986, 1058 4050, 977 4075 C894 4102, 802 4088, 725 4116 C646 4144, 588 4201, 585 4268 C582 4339, 638 4401, 718 4429 C803 4459, 900 4454, 985 4485 C1076 4518, 1149 4583, 1169 4657 C1190 4737, 1155 4811, 1088 4857 C1017 4906, 922 4924, 846 4962" />
-        <path class="path-main front" id="lineFront" d="M668 330 C626 307, 579 305, 548 324 C520 342, 512 367, 523 393 C536 422, 568 429, 590 447 C612 466, 620 500, 606 526 C588 558, 553 561, 530 584 C506 608, 497 652, 506 696 C519 763, 526 833, 547 896 C564 947, 597 983, 645 986 C695 987, 751 968, 792 973 C836 977, 875 1001, 880 1039 C887 1087, 842 1124, 825 1165 C811 1199, 822 1244, 856 1265 C899 1290, 952 1286, 990 1311 C1036 1341, 1055 1390, 1041 1440 C1025 1492, 988 1536, 967 1584 C944 1638, 939 1700, 965 1748 C995 1804, 1058 1837, 1124 1844 C1191 1851, 1263 1839, 1309 1871 C1359 1906, 1366 1973, 1329 2018 C1289 2068, 1217 2078, 1149 2089 C1076 2100, 1010 2123, 982 2174 C952 2228, 968 2295, 1023 2331 C1078 2368, 1160 2371, 1237 2383 C1303 2393, 1361 2422, 1380 2473 C1404 2538, 1369 2609, 1305 2646 C1244 2682, 1165 2687, 1099 2726 C1047 2757, 1009 2809, 1007 2861 C1005 2918, 1048 2965, 1105 2989 C1164 3015, 1233 3018, 1282 3048 C1342 3084, 1368 3145, 1350 3207 C1329 3280, 1264 3329, 1189 3351 C1116 3372, 1036 3371, 981 3407 C929 3441, 905 3497, 917 3554 C932 3623, 985 3676, 1033 3727 C1082 3780, 1125 3842, 1122 3909 C1118 3987, 1059 4051, 978 4076 C895 4103, 803 4089, 726 4117 C647 4145, 589 4202, 586 4269 C583 4340, 639 4402, 719 4430 C804 4460, 901 4455, 986 4486 C1077 4519, 1150 4584, 1170 4658 C1191 4738, 1156 4812, 1089 4858 C1018 4907, 923 4925, 847 4963" />
-        <path class="path-slice back" id="sliceBack" d="M846 4963 C906 4918, 987 4888, 1073 4898 C1158 4908, 1228 4947, 1278 5005" />
-        <path class="path-slice front" id="sliceFront" d="M847 4963 C907 4919, 988 4889, 1074 4899 C1159 4909, 1229 4948, 1279 5006" />
+      <svg viewBox="0 0 1400 1800" preserveAspectRatio="none">
+        <path
+          id="lineBack"
+          class="path-main back"
+          d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
+        />
+        <path
+          id="lineFront"
+          class="path-main front"
+          d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
+        />
+
+        <path
+          id="sliceBack"
+          class="path-slice back"
+          d="M 1010 1580 C 1080 1510, 1175 1515, 1230 1600 C 1170 1655, 1080 1665, 1010 1580 Z"
+        />
+        <path
+          id="sliceFront"
+          class="path-slice front"
+          d="M 1010 1580 C 1080 1510, 1175 1515, 1230 1600 C 1170 1655, 1080 1665, 1010 1580 Z"
+        />
       </svg>
     </div>
 
     <header class="site-header">
       <div class="container nav">
-        <a href="#top" class="brand">
-          <img class="brand-logo" src="./logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo" />
+        <a class="brand" href="../index.html" aria-label="Hamsa Nomads home">
+          <img class="brand-logo" src="../logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
           <div class="brand-text">
             <div class="brand-name">Hamsa Nomads</div>
-            <div class="brand-sub">Kosher travel</div>
+            <div class="brand-sub">Kosher travel experiences</div>
           </div>
         </a>
 
-        <nav class="nav-links">
-          <a href="#experience">Experience</a>
-          <a href="#gallery">Gallery</a>
-          <a href="trips-page/trips.html">Upcoming trips</a>
-          <a href="about-us/about-us.html">About us</a>
-          <a href="Forms/apply.html" class="button">Apply Now</a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="../about-us/about-us.html">About</a>
+          <a href="trips.html">Trips</a>
+          <a href="../Forms/apply.html">Apply</a>
+          <a class="button" href="../Forms/apply.html">Apply Now</a>
         </nav>
       </div>
     </header>
 
-    <main id="top">
-      <section class="hero">
+    <main>
+
+      <section class="trips-hero">
         <div class="container">
-          <div class="hero-wrap">
-            <img class="hero-media" src="Image/hero.jpg" alt="Shavuos in Vermont retreat hero image" />
-            <div class="hero-scrim"></div>
+          <div class="trips-hero-wrap">
+            <div class="trips-hero-bg"></div>
 
-            <div class="hero-inner">
-              <div class="hero-topbar">
-                <a href="Forms/apply.html" class="button">Apply Now</a>
-              </div>
+            <div class="trips-hero-line" aria-hidden="true">
+              <svg viewBox="0 0 1400 820" preserveAspectRatio="none">
+                <path d="M -60 170 C 120 90, 220 260, 370 210 S 650 90, 820 260 S 1040 470, 1240 350 S 1490 250, 1450 560" />
+                <path d="M -80 640 C 140 560, 280 750, 470 675 S 760 520, 960 650 S 1220 790, 1490 670" />
+              </svg>
+            </div>
 
+            <div class="trips-hero-inner">
               <div class="hero-copy">
-                <h1>Shavuos <span class="gold">in Vermont</span></h1>
-                <div class="eyebrow">May 21 - May 24</div>
-                <div class="hero-kicker">A mountain retreat experience</div>
-                <p class="hero-lead">A thoughtful 4-day Shavuos experience for Jewish young adults and couples in a private Vermont home surrounded by nature.</p>
+                <div class="eyebrow">Upcoming Trips</div>
+                <h1>Where the line goes <span class="gold">next</span></h1>
+                <p class="hero-lead">
+                  A growing map of Hamsa Nomads experiences — city weekends, playful escapes,
+                  holiday retreats, and Jewish travel with soul.
+                </p>
+
                 <div class="hero-actions">
-                  <a href="Forms/apply.html" class="button">Apply Now</a>
-                  <a href="#gallery" class="button-secondary">View the House</a>
+                  <a class="button" href="#trip-list">See the trips</a>
+                  <button class="button-secondary" type="button" onclick="openTripPopup('General Trips Interest')">
+                    Join interest list
+                  </button>
                 </div>
               </div>
 
-              <div class="hero-bottom-card glass">
-                <div>
-                  <h2>A different kind of Shavuos.</h2>
-                  <p>Slow down, connect, and experience Yom Tov in a warm, welcoming environment with beautiful shared spaces, mountain air, and a naturally social atmosphere.</p>
-                </div>
+              <aside class="hero-side-card">
+                <h2>Not a program. A shared adventure.</h2>
+                <p>
+                  Each trip is built around place, timing, community, and a little unexpected magic —
+                  the kind of weekend that feels curated without feeling stiff.
+                </p>
+
                 <div class="quick-facts">
-                  <div>Private home</div>
-                  <div>Mountain views</div>
-                  <div>Camping options</div>
-                  <div>Hot tub</div>
-                  <div>Game room</div>
-                  <div>Kosher food</div>
+                  <div>City weekends</div>
+                  <div>Holiday retreats</div>
+                  <div>Kosher-minded</div>
+                  <div>Small group energy</div>
                 </div>
-              </div>
+              </aside>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="experience" class="section">
+      <section class="page-intro">
         <div class="container">
           <div class="section-header">
-            <div>
-              <div class="eyebrow" style="color: var(--gold);">What is included</div>
-              <h2>The retreat experience</h2>
-            </div>
-            <p>A warm Shavuos retreat with meaningful programming, relaxed social time, meals together, and space to enjoy the Vermont setting.</p>
-          </div>
-
-          <div class="value-grid">
-            <article class="card glass">
-              <h3>Thursday night learning</h3>
-              <p>Arrive, settle in, meet the group, and ease into the retreat with a relaxed learning night and warm opening atmosphere.</p>
-            </article>
-
-            <article class="card glass">
-              <h3>Shabbos & Yom Tov meals</h3>
-              <p>Shared kosher meals, meaningful conversation, singing, divrei Torah, and a calm Shabbos and Yom Tov atmosphere.</p>
-            </article>
-
-            <article class="card glass">
-              <h3>Games & connection</h3>
-              <p>Board games, casual hangouts, discussion groups, and unstructured time to connect naturally with other guests.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="gallery" class="section">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow" style="color: var(--gold);">The place</div>
-              <h2>A private Vermont home surrounded by nature.</h2>
-            </div>
-            <p>Beautiful shared spaces, mountain views, cozy gathering areas, and room to breathe — the setting is part of what makes this Shavuos feel slower, softer, and more memorable.</p>
-          </div>
-
-          <div class="gallery-grid">
-            <article class="gallery-card glass tall">
-              <img src="Image/dining-space.jpg" alt="Dining and gathering space" />
-            </article>
-            <article class="gallery-card glass">
-              <img src="Image/bedroom.png" alt="Bedroom at the retreat house" />
-            </article>
-            <article class="gallery-card glass">
-              <img src="Image/pool.png" alt="Pool at the retreat house" />
-            </article>
-            <article class="gallery-card glass">
-              <img src="Image/game-room.png" alt="Game room at the retreat house" />
-            </article>
-            <article class="gallery-card glass">
-              <img src="Image/exterior.png" alt="Exterior of the retreat house" />
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="details" class="section">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow" style="color: var(--gold);">More information</div>
-              <h2>Weekend rhythm</h2>
-            </div>
-            <p>The weekend is designed to feel full but not overwhelming — a balance of Yom Tov, rest, connection, and the beauty of Vermont.</p>
-          </div>
-
-          <div class="liquid-info glass">
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 3v18M5 12h14M7 7l10 10M17 7L7 17"/></svg>
-              </div>
-              <h3>Shavuos night</h3>
-              <p>Arrival, settling in, opening learning night, coffee and tea, relaxed introductions, and preparing for Shabbos together.</p>
-            </div>
-
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M18 15.5A7 7 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5z"/></svg>
-              </div>
-              <h3>Shabbos</h3>
-              <p>Meals, davening, discussions, rest, games, and time to enjoy the group in a slower, meaningful setting.</p>
-            </div>
-
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M3 20h18L12 4 3 20zM12 4l-2 16M12 4l4 16"/></svg>
-              </div>
-              <h3>Sunday hike</h3>
-              <p>A Vermont nature outing or hike, plus morning time for the hot tub, game room, conversations, and relaxing on the property.</p>
-            </div>
-
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2l2.5 7H22l-6 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2 9h7.5L12 2z"/></svg>
-              </div>
-              <h3>Included atmosphere</h3>
-              <p>Kosher food, minyan, eiruv, Shabbos and Yom Tov environment, private home, mountain views, and curated group energy.</p>
-            </div>
-          </div>
-
-          <div class="promise-bar glass">
-            <div class="big-line">Designed for a meaningful and enjoyable Yom Tov.</div>
-            <a href="Forms/apply.html" class="button">Apply Now</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="hn-upcoming-section" id="upcoming-trips">
-        <div class="hn-upcoming-line" aria-hidden="true">
-          <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
-            <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
-            <path d="M -80 540 C 130 500, 170 640, 340 620 S 630 520, 790 600 S 1030 730, 1180 660 S 1320 600, 1490 700" />
-          </svg>
-        </div>
-
-        <div class="hn-upcoming-inner">
-          <div class="hn-upcoming-header">
-            <span class="hn-overline">Upcoming Trips</span>
-            <h2 class="hn-upcoming-title">Where the line goes next</h2>
-            <p class="hn-upcoming-subtitle">
-              A growing map of Hamsa Nomads experiences — city weekends, playful escapes,
-              and holiday retreats with a soul. Slide through what’s coming next.
+            <h2>Trips with a little story inside.</h2>
+            <p>
+              A idea of what we have to offer.
             </p>
           </div>
 
-          <div class="hn-slider-topbar">
-            <div class="hn-slider-hint">Swipe or tap through the next chapters.</div>
+          <div class="intro-grid">
+            <article class="intro-card glass">
+              <h3>Curated, not crowded</h3>
+              <p>
+                The goal is not to make every trip huge. It is to create warm, memorable experiences
+                where the people, setting, and timing actually fit together.
+              </p>
+            </article>
 
-            <div class="hn-slider-controls">
-              <button class="hn-slider-btn" id="hnTripsPrev" aria-label="Previous trip">←</button>
-              <button class="hn-slider-btn" id="hnTripsNext" aria-label="Next trip">→</button>
-            </div>
-          </div>
+            <article class="intro-card glass">
+              <h3>Kosher travel</h3>
+              <p>
+                Shabbos, chag, kosher food, and Jewish connection are built into the experience.
+              </p>
+            </article>
 
-          <div class="hn-trip-slider" id="hnTripSlider">
-            <article class="hn-trip-slide">
-              <div class="hn-trip-card">
-                <div class="hn-trip-body">
-                  <h3 class="hn-trip-name">Loading trips...</h3>
-                  <p class="hn-trip-copy">Pulling the upcoming trips from the trips page.</p>
-                </div>
-              </div>
+            <article class="intro-card glass">
+              <h3>Built around experiences</h3>
+              <p>
+                Boston feels different from a farm. A Renaissance Fair feels different from Vermont.
+                Each trip has its own visual world and personality. We want to create an experience tailored for you.
+              </p>
             </article>
           </div>
-
-          <div class="hn-slider-dots" id="hnTripDots"></div>
         </div>
       </section>
 
-      <div class="hn-popup-overlay" id="hnTripPopup">
-        <div class="hn-popup-bubble">
-          <button class="hn-popup-close" type="button" id="hnPopupClose" aria-label="Close popup">×</button>
-
-          <div class="hn-popup-content">
-            <div class="hn-popup-kicker">Join the interest list</div>
-            <h3 class="hn-popup-title" id="hnPopupTitle">Upcoming Trip</h3>
-            <p class="hn-popup-subtitle" id="hnPopupSubtitle">
-              Leave your info and we’ll send details as this trip comes together.
+      <section class="trips-section" id="trip-list">
+        <div class="container">
+          <div class="section-header">
+            <h2>Upcoming possibilities</h2>
+            <p>
+              A small map of where Hamsa Nomads might go next — playful city weekends,
+              immersive escapes, and holiday experiences with meaning.
             </p>
+          </div>
 
-            <form class="hn-popup-form" id="hnTripForm">
-              <input type="hidden" name="tripInterest" id="hnTripInterest" />
+          <div class="bento-grid">
 
-              <div class="hn-popup-row">
-                <input type="text" name="name" placeholder="Name" required />
-                <input type="text" name="lastName" placeholder="Last Name" required />
+            <article class="bento-card bento-featured">
+              <div class="bento-image" style="background-image: url('../Image/trips/boston.png');">
+                <span class="bento-badge">Featured trip</span>
               </div>
 
-              <input type="email" name="email" placeholder="Email" required />
-              <input type="tel" name="phone" placeholder="Phone" required />
+              <div class="bento-content">
+                <div class="bento-meta">July 4 Weekend • Boston, Massachusetts</div>
+                <h3 class="bento-title">July 4 in Boston</h3>
+                <p class="bento-text">
+                  Fireworks, harbor air, historic streets, and a summer city weekend
+                  with Jewish warmth woven in.
+                </p>
 
-              <button class="hn-popup-submit" type="submit">Join interest list</button>
+                <ul class="bento-list">
+                  <li>Boston energy with a curated, social Hamsa Nomads feel</li>
+                  <li>Perfect for city, summer, and community</li>
+                  <li>An iconic July kickoff with classic American atmosphere</li>
+                </ul>
 
-              <div class="hn-popup-message" id="hnPopupMessage"></div>
-            </form>
+                <div class="bento-footer">
+                  <div class="bento-status">
+                    <span class="bento-status-dot"></span>
+                    Planning in progress
+                  </div>
+                  <button class="trip-cta" type="button" onclick="openTripPopup('Boston July 4')">
+                    Join the interest list
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="bento-card bento-medium">
+              <div class="bento-image small" style="background-image: url('../Image/trips/pennsylvania-renaissance.png');">
+                <span class="bento-badge">Playful August Weekend</span>
+              </div>
+
+              <div class="bento-content">
+                <div class="bento-meta">August • Pennsylvania</div>
+                <h3 class="bento-title">Renaissance Fair in Pennsylvania</h3>
+                <p class="bento-text">
+                  A quirky, costume-friendly countryside weekend built around the fair —
+                  playful, memorable, and very not ordinary.
+                </p>
+
+                <div class="bento-footer">
+                  <div class="bento-status">
+                    <span class="bento-status-dot"></span>
+                    Planning in progress
+                  </div>
+                  <button class="trip-cta" type="button" onclick="openTripPopup('Pennsylvania Renaissance Fair')">
+                    Join the Fair list
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="bento-card bento-medium">
+              <div class="bento-image small" style="background-image: url('../Image/trips/rosh-hashanah-farm.png');">
+                <span class="bento-badge">High Holiday Retreat</span>
+              </div>
+
+              <div class="bento-content">
+                <div class="bento-meta">Rosh Hashanah • Farm Retreat</div>
+                <h3 class="bento-title">Rosh Hashanah on the Farm</h3>
+                <p class="bento-text">
+                  Open fields, apples, honey, candlelit meals, nature, and a softer
+                  beginning to the new year.
+                </p>
+
+                <div class="bento-footer">
+                  <div class="bento-status">
+                    <span class="bento-status-dot"></span>
+                    Coming soon
+                  </div>
+                  <button class="trip-cta" type="button" onclick="openTripPopup('Rosh Hashanah Farm')">
+                    Join the farm list
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="bento-card bento-medium">
+              <div class="bento-image small" style="background-image: url('../Image/about-hero.jpg');">
+                <span class="bento-badge">A dream experience</span>
+              </div>
+
+              <div class="bento-content">
+                <div class="bento-meta">Potentially February 2027 • India</div>
+                <h3 class="bento-title">A trip through history and the Jewish community of India</h3>
+                <p class="bento-text">
+                  This project means a lot to us — not just to visit places, but to meet people,
+                  hear their stories, and share an experience that stayed with us deeply.
+                </p>
+
+                <ul class="bento-list">
+                  <li>From Mumbai to Pune to Kochi, discovering Jewish stories that are still alive</li>
+                  <li>Real encounters with local communities, not just a trip through landmarks</li>
+                  <li>A small curated group for an unforgettable experience through history, faith, and meeting</li>
+                </ul>
+
+                <div class="bento-footer">
+                  <div class="bento-status">
+                    <span class="bento-status-dot"></span>
+                    Potentially February 2027
+                  </div>
+                  <button class="trip-cta" type="button" onclick="openTripPopup('A trip to India')">
+                    Join the India list
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="bento-card bento-wide bento-cta-card">
+              <div class="bento-cta-inner">
+                <div>
+                  <div class="bento-meta">General interest list</div>
+                  <h3 class="bento-title">Not sure which one yet?</h3>
+                  <p class="bento-text">
+                    Join the main Hamsa Nomads interest list and we’ll let you know
+                    when future trips open, with dates, details, and first access.
+                  </p>
+                </div>
+
+                <div class="bento-cta-actions">
+                  <button class="button" type="button" onclick="openTripPopup('General Trips Interest')">
+                    Join interest list
+                  </button>
+                  <a class="button-secondary" href="../Forms/apply.html">Apply for Vermont</a>
+                </div>
+              </div>
+            </article>
+
           </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="popup-overlay" id="tripPopup">
+      <div class="popup-bubble">
+        <button class="popup-close" type="button" id="popupClose" aria-label="Close popup">×</button>
+
+        <div class="popup-content">
+          <div class="popup-kicker">Join the interest list</div>
+          <h3 class="popup-title" id="popupTitle">Upcoming Trip</h3>
+          <p class="popup-subtitle" id="popupSubtitle">
+            Leave your info and we’ll send details as this trip comes together.
+          </p>
+
+          <form class="popup-form" id="tripForm">
+            <input type="hidden" name="tripInterest" id="tripInterest" />
+
+            <div class="popup-row">
+              <input type="text" name="name" placeholder="Name" required />
+              <input type="text" name="lastName" placeholder="Last Name" required />
+            </div>
+
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="tel" name="phone" placeholder="Phone" required />
+
+            <textarea
+              name="suggestion"
+              placeholder="A suggestion, idea, or anything you’d like to share"
+              rows="4"
+            ></textarea>
+
+            <button class="popup-submit" type="submit">Join interest list</button>
+
+            <div class="popup-message" id="popupMessage"></div>
+          </form>
         </div>
       </div>
-    </main>
+    </div>
 
     <div class="floating-share">
       <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
@@ -1565,20 +1491,20 @@
         <div class="footer-col">
           <h4>Explore</h4>
           <ul>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#details">More Information</a></li>
-            <li><a href="about-us/about-us.html">About</a></li>
+            <li><a href="../index.html#experience">Experience</a></li>
+            <li><a href="../index.html#gallery">Gallery</a></li>
+            <li><a href="../index.html#details">More Information</a></li>
+            <li><a href="../about-us/about-us.html">About</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Retreat</h4>
+          <h4>Trips</h4>
           <ul>
-            <li>Shavuos in Vermont</li>
-            <li>Private home</li>
-            <li>Kosher food</li>
-            <li>Minyan & Eiruv</li>
+            <li>July 4 in Boston</li>
+            <li>Pennsylvania Renaissance Fair</li>
+            <li>Rosh Hashanah Farm Retreat</li>
+            <li>India</li>
           </ul>
         </div>
 
@@ -1587,7 +1513,7 @@
           <ul>
             <li>hamsanomads.com</li>
             <li>Text: 347-988-8869</li>
-            <li><a href="Forms/apply.html">Apply Now</a></li>
+            <li><a href="../Forms/apply.html">Apply Now</a></li>
           </ul>
         </div>
       </div>
@@ -1601,313 +1527,37 @@
   <script>
     (function () {
       const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
-      const TRIPS_PAGE_URL = "trips-page/trips.html";
 
-      const slider = document.getElementById("hnTripSlider");
-      const prevBtn = document.getElementById("hnTripsPrev");
-      const nextBtn = document.getElementById("hnTripsNext");
-      const dotsWrap = document.getElementById("hnTripDots");
-
-      const popup = document.getElementById("hnTripPopup");
-      const popupClose = document.getElementById("hnPopupClose");
-      const popupTitle = document.getElementById("hnPopupTitle");
-      const popupSubtitle = document.getElementById("hnPopupSubtitle");
-      const tripInterestInput = document.getElementById("hnTripInterest");
-      const tripForm = document.getElementById("hnTripForm");
-      const popupMessage = document.getElementById("hnPopupMessage");
+      const popup = document.getElementById('tripPopup');
+      const popupClose = document.getElementById('popupClose');
+      const popupTitle = document.getElementById('popupTitle');
+      const popupSubtitle = document.getElementById('popupSubtitle');
+      const tripInterestInput = document.getElementById('tripInterest');
+      const tripForm = document.getElementById('tripForm');
+      const popupMessage = document.getElementById('popupMessage');
 
       const tripCopy = {
         "General Trips Interest": {
           title: "Hamsa Nomads trips",
           subtitle: "Leave your info and we’ll send updates as future trips open."
+        },
+        "Boston July 4": {
+          title: "July 4 in Boston",
+          subtitle: "Leave your info and join the interest list as the Boston weekend comes together."
+        },
+        "Pennsylvania Renaissance Fair": {
+          title: "Renaissance Fair in Pennsylvania",
+          subtitle: "Join the August list for our playful countryside weekend."
+        },
+        "Rosh Hashanah Farm": {
+          title: "Rosh Hashanah on the Farm",
+          subtitle: "Be the first to hear when the High Holiday farm retreat opens."
+        },
+        "A trip to India": {
+          title: "India with Hamsa Nomads",
+          subtitle: "Join the interest list for a future trip through Jewish history, community, and real encounters across India."
         }
       };
-
-      function cleanText(text) {
-        return (text || "").replace(/\s+/g, " ").trim();
-      }
-
-      function escapeHTML(value) {
-        return String(value || "")
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#039;");
-      }
-
-      function getBackgroundImageUrl(styleValue, baseUrl) {
-        const match = String(styleValue || "").match(/url\((['"]?)(.*?)\1\)/i);
-        if (!match || !match[2]) return "";
-
-        return new URL(match[2], baseUrl).href;
-      }
-
-      function getTripNameFromOnclick(onclickValue) {
-        const match = String(onclickValue || "").match(/openTripPopup\(['"](.+?)['"]\)/);
-        return match ? match[1] : "";
-      }
-
-      function extractTripCardsFromTripsPage(html) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const baseUrl = new URL(TRIPS_PAGE_URL, window.location.href);
-
-        const cards = Array.from(
-          doc.querySelectorAll(".bento-grid .bento-card:not(.bento-cta-card)")
-        );
-
-        return cards.map((card) => {
-          const imageEl = card.querySelector(".bento-image");
-          const button = card.querySelector(".trip-cta");
-
-          const title = cleanText(card.querySelector(".bento-title")?.textContent);
-          const meta = cleanText(card.querySelector(".bento-meta")?.textContent);
-          const text = cleanText(card.querySelector(".bento-text")?.textContent);
-          const badge = cleanText(imageEl?.querySelector(".bento-badge")?.textContent) || "Upcoming trip";
-          const status = cleanText(card.querySelector(".bento-status")?.textContent);
-          const ctaText = cleanText(button?.textContent) || "Join the interest list";
-
-          const bullets = Array.from(card.querySelectorAll(".bento-list li"))
-            .map((li) => cleanText(li.textContent))
-            .filter(Boolean);
-
-          const imageStyle =
-            imageEl?.getAttribute("style") ||
-            imageEl?.style?.backgroundImage ||
-            "";
-
-          const image = getBackgroundImageUrl(imageStyle, baseUrl);
-
-          const tripInterest =
-            getTripNameFromOnclick(button?.getAttribute("onclick")) ||
-            title;
-
-          tripCopy[tripInterest] = {
-            title: title,
-            subtitle: text || "Leave your info and we’ll send details as this trip comes together."
-          };
-
-          return {
-            title,
-            meta,
-            text,
-            badge,
-            status,
-            ctaText,
-            bullets,
-            image,
-            tripInterest
-          };
-        }).filter((trip) => trip.title);
-      }
-
-      function renderTrips(trips) {
-        if (!slider || !dotsWrap) return;
-
-        if (!trips.length) {
-          slider.innerHTML = `
-            <article class="hn-trip-slide">
-              <div class="hn-trip-card">
-                <div class="hn-trip-body">
-                  <h3 class="hn-trip-name">Trips coming soon</h3>
-                  <p class="hn-trip-copy">
-                    We could not load the trips yet. Please check the trips-page/trips.html path.
-                  </p>
-                </div>
-              </div>
-            </article>
-          `;
-          dotsWrap.innerHTML = "";
-          updateUI();
-          return;
-        }
-
-        slider.innerHTML = trips.map((trip) => {
-          const imageStyle = trip.image
-            ? `--trip-image: url('${escapeHTML(trip.image)}');`
-            : "";
-
-          return `
-            <article class="hn-trip-slide">
-              <div class="hn-trip-card">
-                <div
-                  class="hn-trip-image"
-                  style="${imageStyle}"
-                >
-                  <span class="hn-trip-badge">${escapeHTML(trip.badge)}</span>
-                  <span class="hn-image-note">${escapeHTML(trip.status || "Join us")}</span>
-                </div>
-
-                <div class="hn-trip-body">
-                  <div class="hn-trip-meta">${escapeHTML(trip.meta)}</div>
-
-                  <h3 class="hn-trip-name">${escapeHTML(trip.title)}</h3>
-
-                  <p class="hn-trip-copy">
-                    ${escapeHTML(trip.text)}
-                  </p>
-
-                  ${
-                    trip.bullets.length
-                      ? `<ul class="hn-trip-bullets">
-                          ${trip.bullets.map((item) => `<li>${escapeHTML(item)}</li>`).join("")}
-                        </ul>`
-                      : ""
-                  }
-
-                  <div class="hn-trip-footer">
-                    <div class="hn-trip-status">
-                      <span class="hn-trip-status-dot"></span>
-                      ${escapeHTML(trip.status || "Planning in progress")}
-                    </div>
-
-                    <button
-                      class="hn-trip-cta"
-                      type="button"
-                      data-trip="${escapeHTML(trip.tripInterest)}"
-                    >
-                      ${escapeHTML(trip.ctaText)}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </article>
-          `;
-        }).join("");
-
-        dotsWrap.innerHTML = trips.map((trip, index) => `
-          <button
-            class="hn-slider-dot ${index === 0 ? "is-active" : ""}"
-            type="button"
-            aria-label="Go to slide ${index + 1}"
-          ></button>
-        `).join("");
-
-        updateUI();
-      }
-
-      function getSlides() {
-        return Array.from(slider.querySelectorAll(".hn-trip-slide"));
-      }
-
-      function getDots() {
-        return Array.from(dotsWrap.querySelectorAll(".hn-slider-dot"));
-      }
-
-      function getGap() {
-        const styles = window.getComputedStyle(slider);
-        return parseFloat(styles.columnGap || styles.gap || 24);
-      }
-
-      function getStep() {
-        const slides = getSlides();
-        if (!slides.length) return 0;
-
-        return slides[0].getBoundingClientRect().width + getGap();
-      }
-
-      function getActiveIndex() {
-        const slides = getSlides();
-        if (!slides.length) return 0;
-
-        const center = slider.scrollLeft + slider.clientWidth / 2;
-        let activeIndex = 0;
-        let closestDistance = Infinity;
-
-        slides.forEach((slide, index) => {
-          const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-          const distance = Math.abs(slideCenter - center);
-
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            activeIndex = index;
-          }
-        });
-
-        return activeIndex;
-      }
-
-      function updateUI() {
-        if (!slider || !prevBtn || !nextBtn || !dotsWrap) return;
-
-        const dots = getDots();
-        const activeIndex = getActiveIndex();
-
-        dots.forEach((dot, index) => {
-          dot.classList.toggle("is-active", index === activeIndex);
-        });
-
-        prevBtn.disabled = slider.scrollLeft <= 6;
-        nextBtn.disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 6;
-      }
-
-      function loadTripsFromTripsPage() {
-        if (!slider) return;
-
-        fetch(TRIPS_PAGE_URL, { cache: "no-cache" })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Could not load trips.html");
-            }
-
-            return response.text();
-          })
-          .then((html) => {
-            const trips = extractTripCardsFromTripsPage(html);
-            renderTrips(trips);
-          })
-          .catch(() => {
-            renderTrips([]);
-          });
-      }
-
-      prevBtn.addEventListener("click", () => {
-        slider.scrollBy({ left: -getStep(), behavior: "smooth" });
-      });
-
-      nextBtn.addEventListener("click", () => {
-        slider.scrollBy({ left: getStep(), behavior: "smooth" });
-      });
-
-      dotsWrap.addEventListener("click", (event) => {
-        const dot = event.target.closest(".hn-slider-dot");
-        if (!dot) return;
-
-        const dots = getDots();
-        const slides = getSlides();
-        const index = dots.indexOf(dot);
-
-        if (slides[index]) {
-          slider.scrollTo({
-            left: slides[index].offsetLeft,
-            behavior: "smooth"
-          });
-        }
-      });
-
-      let ticking = false;
-
-      slider.addEventListener("scroll", () => {
-        if (!ticking) {
-          window.requestAnimationFrame(() => {
-            updateUI();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-
-      slider.addEventListener("click", function (event) {
-        const button = event.target.closest(".hn-trip-cta");
-        if (!button) return;
-
-        const tripName = button.getAttribute("data-trip");
-        window.openTripPopup(tripName);
-      });
-
-      window.addEventListener("resize", updateUI);
-      window.addEventListener("load", updateUI);
 
       window.openTripPopup = function (tripName) {
         const selectedTrip = tripCopy[tripName] || {
@@ -1921,30 +1571,30 @@
         popupMessage.textContent = "";
         popupMessage.classList.remove("error");
 
-        popup.classList.add("is-open");
-        document.body.style.overflow = "hidden";
+        popup.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
       };
 
       function closeTripPopup() {
-        popup.classList.remove("is-open");
-        document.body.style.overflow = "";
+        popup.classList.remove('is-open');
+        document.body.style.overflow = '';
       }
 
-      popupClose.addEventListener("click", closeTripPopup);
+      popupClose.addEventListener('click', closeTripPopup);
 
-      popup.addEventListener("click", function (event) {
+      popup.addEventListener('click', function (event) {
         if (event.target === popup) {
           closeTripPopup();
         }
       });
 
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && popup.classList.contains("is-open")) {
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && popup.classList.contains('is-open')) {
           closeTripPopup();
         }
       });
 
-      tripForm.addEventListener("submit", function (event) {
+      tripForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
         if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
@@ -1953,11 +1603,11 @@
           return;
         }
 
-        const submitButton = tripForm.querySelector(".hn-popup-submit");
+        const submitButton = tripForm.querySelector('.popup-submit');
         const formData = new FormData(tripForm);
 
         formData.append("timestamp", new Date().toISOString());
-        formData.append("sourcePage", "index.html");
+        formData.append("sourcePage", "trips.html");
 
         submitButton.disabled = true;
         submitButton.textContent = "Submitting...";
@@ -1968,30 +1618,24 @@
           method: "POST",
           body: formData
         })
-          .then(function () {
-            popupMessage.textContent = "You’re on the list. We’ll send details soon.";
-            tripForm.reset();
+        .then(function () {
+          popupMessage.textContent = "You’re on the list. We’ll send details soon.";
+          tripForm.reset();
 
-            setTimeout(function () {
-              closeTripPopup();
-              submitButton.disabled = false;
-              submitButton.textContent = "Join interest list";
-            }, 1300);
-          })
-          .catch(function () {
-            popupMessage.textContent = "Something went wrong. Please try again.";
-            popupMessage.classList.add("error");
+          setTimeout(function () {
+            closeTripPopup();
             submitButton.disabled = false;
             submitButton.textContent = "Join interest list";
-          });
+          }, 1300);
+        })
+        .catch(function () {
+          popupMessage.textContent = "Something went wrong. Please try again.";
+          popupMessage.classList.add("error");
+          submitButton.disabled = false;
+          submitButton.textContent = "Join interest list";
+        });
       });
 
-      loadTripsFromTripsPage();
-    })();
-  </script>
-
-  <script>
-    (function () {
       const shareBtn = document.getElementById("shareBtn");
       const shareOptions = document.getElementById("shareOptions");
       const copyLinkBtn = document.getElementById("copyLinkBtn");
@@ -2029,14 +1673,8 @@
           shareOptions.classList.remove("open");
         }
       });
-    })();
-  </script>
 
-  <script>
-    (() => {
       const drawPaths = [
-        document.getElementById('hamsaBack'),
-        document.getElementById('hamsaFront'),
         document.getElementById('lineBack'),
         document.getElementById('lineFront')
       ].filter(Boolean);
@@ -2057,6 +1695,7 @@
         });
 
         const sliceProgress = Math.max(0, (progress - 0.82) / 0.18);
+
         slicePaths.forEach((path) => {
           const len = path.getTotalLength();
           path.style.strokeDasharray = len;
