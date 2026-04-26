@@ -840,14 +840,14 @@ You’ve made it through the application step. To secure your spot, please send 
             <textarea id="notes" name="notes" placeholder="Anything we should know?"></textarea>
           </div>
 
-          <div class="agreement-box">
-            <input id="agreeRules" name="agreeRules" type="checkbox" required>
-            <label for="agreeRules">
-              I agree to the general rules, payment terms, and cancellation policy.
-            </label>
-          </div>
-        </div>
-
+        <label class="terms-check">
+  <input type="checkbox" name="refundAccepted" required>
+  <span>
+    I understand that deposits and payments may be non-refundable according to the cancellation policy listed in the
+    <a href="../terms.html" target="_blank">Terms & Conditions</a>.
+  </span>
+</label>
+          
         <div class="submit-row">
           <button id="submitBtn" type="submit">Submit Payment Proof</button>
           <div id="status" class="status"></div>
