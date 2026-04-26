@@ -1752,6 +1752,73 @@ Hamsa Nomads — Upcoming Trips Section + Popup Form
     });
   })();
 </script>
+      <script src="data/trips-data.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  renderUpcomingTrips();
+  renderLineNext();
+});
+
+function getActiveTrips() {
+  return (window.HAMSA_TRIPS || [])
+    .filter(trip => trip.status !== "Past")
+    .sort((a, b) => (a.lineOrder || 999) - (b.lineOrder || 999));
+}
+
+function renderUpcomingTrips() {
+  const container = document.querySelector("[data-upcoming-trips]");
+  if (!container) return;
+
+  const trips = getActiveTrips();
+
+  container.innerHTML = trips.map(trip => `
+    <article class="trip-card">
+      <div class="trip-card-image" style="background-image: url('${trip.image}')"></div>
+
+      <div class="trip-card-content">
+        <div class="trip-card-meta">
+          <span>${trip.dateLabel}</span>
+          <span>${trip.status}</span>
+        </div>
+
+        <h3>${trip.title}</h3>
+        <p>${trip.shortText}</p>
+
+        <ul>
+          ${trip.highlights.map(item => `<li>${item}</li>`).join("")}
+        </ul>
+
+        <a href="${trip.ctaLink}" class="trip-card-button">
+          ${trip.ctaText}
+        </a>
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderLineNext() {
+  const container = document.querySelector("[data-line-next]");
+  if (!container) return;
+
+  const trips = getActiveTrips();
+
+  container.innerHTML = trips.map((trip, index) => `
+    <article class="line-stop ${trip.featured ? "is-featured" : ""}">
+      <div class="line-dot">
+        <span>${index + 1}</span>
+      </div>
+
+      <div class="line-stop-card">
+        <div class="line-stop-date">${trip.dateLabel}</div>
+        <h3>${trip.title}</h3>
+        <p>${trip.shortText}</p>
+        <a href="${trip.ctaLink}">${trip.ctaText}</a>
+      </div>
+    </article>
+  `).join("");
+}
+</script>
 
     </main>
 <!-- Floating Share Button -->
