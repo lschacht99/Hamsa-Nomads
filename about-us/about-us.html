@@ -7,6 +7,7 @@
   <title>About Hamsa Nomads</title>
 
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/site-components.css" />
 
   <style>
     :root {
@@ -47,6 +48,23 @@
     p { margin: 0; }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+    }
+
+    .hn-shared-header {
+      position: relative;
+      top: auto;
+      z-index: 99999;
+    }
+
+    #site-footer {
+      position: relative;
+      z-index: 2;
+    }
 
     .page {
       position: relative;
@@ -102,71 +120,6 @@
       box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.46);
       border-radius: var(--radius);
     }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(249, 246, 239, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(39, 69, 55, 0.08);
-    }
-
-    .nav {
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      flex-shrink: 0;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .brand-name {
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      line-height: 0.95;
-      white-space: nowrap;
-    }
-
-    .brand-sub {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 6px;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      margin-left: auto;
-      min-width: 0;
-    }
-
-    .nav-links a { white-space: nowrap; }
-    .nav-links a:hover { color: var(--ink); }
 
     .button,
     .button-secondary {
@@ -427,122 +380,103 @@
       color: var(--muted);
     }
 
-    .footer {
-      background: linear-gradient(180deg, #1c3b2f, #0f2a22);
-      color: #e8e6df;
-      padding: 60px 20px 30px;
-      margin-top: 40px;
-      position: relative;
-      z-index: 2;
+    .floating-share {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 9999;
+      font-family: inherit;
     }
 
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    .footer-logo {
-      font-family: Georgia, serif;
-      letter-spacing: 0.2em;
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 15px;
-    }
-
-    .footer-text {
+    .share-main-btn {
+      border: 1px solid rgba(30, 30, 30, 0.18);
+      background: rgba(255, 255, 255, 0.52);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      color: #1f1f1f;
+      padding: 13px 18px;
+      border-radius: 999px;
+      cursor: pointer;
       font-size: 14px;
-      color: #cfcac1;
-      line-height: 1.6;
-      max-width: 340px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+      transition: all 0.25s ease;
     }
 
-    .footer-icons {
-      margin-top: 20px;
+    .share-main-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .share-options {
+      position: absolute;
+      right: 0;
+      bottom: 58px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      width: 155px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(30, 30, 30, 0.12);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    }
+
+    .share-options.open {
       display: flex;
-      gap: 14px;
-      color: #cfcac1;
     }
 
-    .footer-icons svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .footer-col h4 {
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      margin: 0 0 14px;
-      color: #fff;
-      text-transform: uppercase;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .footer-col li {
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #cfcac1;
-    }
-
-    .footer-col a {
-      color: #cfcac1;
+    .share-options a,
+    .share-options button {
+      width: 100%;
+      border: none;
+      background: rgba(255, 255, 255, 0.42);
+      color: #1f1f1f;
       text-decoration: none;
-    }
-
-    .footer-col a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 40px;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 14px;
       font-size: 13px;
-      color: #a9a49a;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .share-options a:hover,
+    .share-options button:hover {
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateX(-2px);
     }
 
     @media (max-width: 1100px) {
       .hero-content,
       .intro-grid,
       .memory-grid,
-      .closing-card,
-      .footer-container {
+      .closing-card {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 760px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 14px 0;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 12px 16px;
-        flex-wrap: wrap;
-      }
-
       .section-header {
         flex-direction: column;
         align-items: flex-start;
       }
 
+      .hero-card {
+        min-height: 680px;
+      }
+
+      .hero-content {
+        padding: 24px;
+      }
+
       .hero h1 {
         max-width: 100%;
+        font-size: clamp(2.7rem, 13vw, 4.2rem);
       }
 
       .memory-card {
@@ -552,45 +486,33 @@
       .memory-sketch {
         max-width: 180px;
       }
+
+      .floating-share {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .share-main-btn {
+        padding: 12px 16px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="page">
 
-    <!-- BACKGROUND LINE -->
+<body>
+  <div id="site-header"></div>
+
+  <div class="page">
     <div class="line-overlay" aria-hidden="true">
       <svg viewBox="0 0 1440 5200" preserveAspectRatio="none">
         <path class="path-main back" id="lineBack" d="M667 330 C625 306, 578 304, 547 323 C519 341, 511 367, 522 392 C535 421, 568 428, 589 447 C611 465, 619 500, 605 526 C587 557, 552 560, 529 583 C505 607, 496 652, 505 695 C518 762, 525 832, 546 895 C563 946, 596 982, 644 985 C694 986, 750 968, 791 972 C835 976, 874 1001, 879 1038 C886 1086, 841 1123, 824 1165 C810 1198, 821 1244, 855 1264 C898 1289, 951 1285, 989 1310 C1035 1340, 1054 1390, 1040 1439 C1024 1491, 987 1535, 966 1584 C943 1637, 938 1699, 964 1747 C994 1803, 1057 1836, 1123 1843 C1190 1851, 1262 1838, 1308 1870 C1358 1905, 1365 1972, 1328 2017 C1288 2067, 1216 2077, 1148 2088 C1075 2099, 1009 2122, 981 2173 C951 2227, 967 2294, 1022 2330 C1077 2367, 1159 2370, 1236 2382 C1302 2392, 1360 2422, 1379 2472 C1403 2537, 1368 2608, 1304 2645 C1243 2681, 1164 2686, 1098 2725 C1046 2756, 1008 2808, 1006 2860 C1004 2917, 1047 2964, 1104 2988 C1163 3014, 1232 3017, 1281 3047 C1341 3083, 1367 3144, 1349 3206 C1328 3279, 1263 3328, 1188 3350 C1115 3371, 1035 3370, 980 3406 C928 3440, 904 3496, 916 3553 C931 3622, 984 3675, 1032 3726 C1081 3779, 1124 3841, 1121 3908 C1117 3986, 1058 4050, 977 4075 C894 4102, 802 4088, 725 4116 C646 4144, 588 4201, 585 4268 C582 4339, 638 4401, 718 4429 C803 4459, 900 4454, 985 4485 C1076 4518, 1149 4583, 1169 4657 C1190 4737, 1155 4811, 1088 4857 C1017 4906, 922 4924, 846 4962"/>
       </svg>
     </div>
 
-    <!-- HEADER -->
-    <header class="site-header">
-      <div class="container nav">
-        <a href="../index.html" class="brand">
-          <img src="../logo/logo-hamsa-nomads.png" class="brand-logo">
-          <div>
-            <div class="brand-name">Hamsa Nomads</div>
-            <div class="brand-sub">Kosher travel</div>
-          </div>
-        </a>
-
-        <nav class="nav-links">
-          <a href="#story">Story</a>
-          <a href="#journeys">Journeys</a>
-          <a href="#why">Why</a>
-          <a href="../index.html" class="button-secondary">Home</a>
-        </nav>
-      </div>
-    </header>
-
-    <!-- HERO WITH IMAGE -->
     <section class="hero">
       <div class="container">
         <div class="hero-card">
-
-          <!-- CHANGE IMAGE HERE -->
           <img src="../Image/about-hero.jpg" class="hero-media" alt="Hamsa Nomads story">
           <div class="hero-scrim"></div>
 
@@ -607,7 +529,7 @@
             </div>
 
             <div class="hero-note">
-              <h3> A travel that you will never forget</h3>
+              <h3>A travel that you will never forget</h3>
               <p>
                 The moments you don’t plan — we do it for you.
               </p>
@@ -617,7 +539,6 @@
       </div>
     </section>
 
-    <!-- STORY -->
     <section id="story" class="section">
       <div class="container">
         <div class="section-header">
@@ -625,42 +546,42 @@
           <p>Traveling far while trying to stay rooted.</p>
         </div>
 
-           <div class="intro-grid">
-      <div class="card glass">
-        <p>
-          Hamsa Nomads began with a simple truth we lived again and again: exploring the world while keeping our faith is a treasure.
-        </p>
+        <div class="intro-grid">
+          <div class="card glass">
+            <p>
+              Hamsa Nomads began with a simple truth we lived again and again: exploring the world while keeping our faith is a treasure.
+            </p>
 
-        <p>
-          Traveling as observant Jews is not always easy. You think about food, Shabbat, holidays, community, vessels, timing, and small details most travelers never notice. But those same challenges become part of the beauty.
-        </p>
+            <p>
+              Traveling as observant Jews is not always easy. You think about food, Shabbat, holidays, community, vessels, timing, and small details most travelers never notice. But those same challenges become part of the beauty.
+            </p>
 
-        <p>
-          Along the way, we faced unexpected meetings — the kind you cannot plan and cannot force. A few Hebrew letters in a faraway street. A stranger who remembers a Jewish connection. A local Jewish community opening its doors. A Shabbat meal appearing when we thought we would be alone.
-        </p>
+            <p>
+              Along the way, we faced unexpected meetings — the kind you cannot plan and cannot force. A few Hebrew letters in a faraway street. A stranger who remembers a Jewish connection. A local Jewish community opening its doors. A Shabbat meal appearing when we thought we would be alone.
+            </p>
 
-        <p>
-          Those encounters changed the way we look at life. They taught us that Jewish identity is not only something we carry privately; it is something that connects us to people, places, histories, and stories across the world.
-        </p>
+            <p>
+              Those encounters changed the way we look at life. They taught us that Jewish identity is not only something we carry privately; it is something that connects us to people, places, histories, and stories across the world.
+            </p>
 
-        <p>
-          We traveled through India, Sri Lanka, Vietnam, Japan, South Korea, Morocco, Israel, France, and the United States — each place shaping us differently. Some moments were practical, like figuring out how to keep kosher in unfamiliar conditions. Some were spiritual, like toveling vessels in the waves of Sri Lanka. Some were human, like finding Jewish warmth in places where we expected to find none.
-        </p>
+            <p>
+              We traveled through India, Sri Lanka, Vietnam, Japan, South Korea, Morocco, Israel, France, and the United States — each place shaping us differently. Some moments were practical, like figuring out how to keep kosher in unfamiliar conditions. Some were spiritual, like toveling vessels in the waves of Sri Lanka. Some were human, like finding Jewish warmth in places where we expected to find none.
+            </p>
 
-        <p>
-          Hamsa Nomads was born from those moments: the challenge, the wonder, the improvisation, and the feeling that Jewish life can travel with you — not as a burden, but as a source of depth.
-        </p>
-      </div>
+            <p>
+              Hamsa Nomads was born from those moments: the challenge, the wonder, the improvisation, and the feeling that Jewish life can travel with you — not as a burden, but as a source of depth.
+            </p>
+          </div>
 
-      <div class="card glass quote-card">
-        <div class="small">
-          Every trip became more than travel. It became a way to meet people, discover hidden Jewish stories, and understand what it means to stay rooted while moving through the world.
-        </div>
+          <div class="card glass quote-card">
+            <div class="small">
+              Every trip became more than travel. It became a way to meet people, discover hidden Jewish stories, and understand what it means to stay rooted while moving through the world.
+            </div>
           </div>
         </div>
       </div>
     </section>
-        <!-- JOURNEYS -->
+
     <section id="journeys" class="section">
       <div class="container">
         <div class="section-header">
@@ -674,7 +595,6 @@
         </div>
 
         <div class="memory-grid">
-
           <article class="memory-card glass">
             <div class="memory-sketch">
               <img src="../about-us/sketches/india.png" alt="Sketch of India" />
@@ -782,12 +702,10 @@
               </p>
             </div>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- WHY -->
     <section id="why" class="section">
       <div class="container">
         <div class="section-header">
@@ -817,210 +735,29 @@
         </article>
       </div>
     </section>
-<!-- Floating Share Button -->
-<div class="floating-share">
-  <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
-    Share the story 
-  </button>
 
-  <div class="share-options" id="shareOptions">
-    <a id="whatsappShare" target="_blank">WhatsApp</a>
-    <a id="facebookShare" target="_blank">Facebook</a>
-    <a id="emailShare">Email</a>
-    <button id="copyLinkBtn">Copy link</button>
-  </div>
-</div>
+    <div class="floating-share">
+      <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
+        Share the story
+      </button>
 
-<style>
-  .floating-share {
-    position: fixed;
-    right: 22px;
-    bottom: 22px;
-    z-index: 9999;
-    font-family: inherit;
-  }
-
-  .share-main-btn {
-    border: 1px solid rgba(30, 30, 30, 0.18);
-    background: rgba(255, 255, 255, 0.52);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    color: #1f1f1f;
-    padding: 13px 18px;
-    border-radius: 999px;
-    cursor: pointer;
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
-    transition: all 0.25s ease;
-  }
-
-  .share-main-btn:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .share-options {
-    position: absolute;
-    right: 0;
-    bottom: 58px;
-    display: none;
-    flex-direction: column;
-    gap: 8px;
-    width: 155px;
-    padding: 12px;
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.58);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border: 1px solid rgba(30, 30, 30, 0.12);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
-  }
-
-  .share-options.open {
-    display: flex;
-  }
-
-  .share-options a,
-  .share-options button {
-    width: 100%;
-    border: none;
-    background: rgba(255, 255, 255, 0.42);
-    color: #1f1f1f;
-    text-decoration: none;
-    text-align: left;
-    padding: 10px 12px;
-    border-radius: 14px;
-    font-size: 13px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s ease;
-  }
-
-  .share-options a:hover,
-  .share-options button:hover {
-    background: rgba(255, 255, 255, 0.75);
-    transform: translateX(-2px);
-  }
-
-  @media (max-width: 600px) {
-    .floating-share {
-      right: 16px;
-      bottom: 16px;
-    }
-
-    .share-main-btn {
-      padding: 12px 16px;
-      font-size: 13px;
-    }
-  }
-</style>
-
-<script>
-  const shareBtn = document.getElementById("shareBtn");
-  const shareOptions = document.getElementById("shareOptions");
-  const copyLinkBtn = document.getElementById("copyLinkBtn");
-
-  const pageUrl = encodeURIComponent(window.location.href);
-  const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
-
-  document.getElementById("whatsappShare").href =
-    `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
-
-  document.getElementById("facebookShare").href =
-    `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-
-  document.getElementById("emailShare").href =
-    `mailto:?subject=${pageTitle}&body=${pageUrl}`;
-
-  shareBtn.addEventListener("click", () => {
-    shareOptions.classList.toggle("open");
-  });
-
-  copyLinkBtn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      copyLinkBtn.textContent = "Copied!";
-      setTimeout(() => {
-        copyLinkBtn.textContent = "Copy link";
-      }, 1600);
-    } catch (err) {
-      alert("Copy failed. Please copy the URL manually.");
-    }
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".floating-share")) {
-      shareOptions.classList.remove("open");
-    }
-  });
-</script>
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer-container">
-
-        <div class="footer-col">
-          <h2 class="footer-logo">HAMSA NOMADS</h2>
-          <p class="footer-text">
-            Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
-            beautiful places, and warm community.
-          </p>
-
-          <div class="footer-icons" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 4.5 6.3 4.5 10S15 19 12 22M12 2C9 5 7.5 8.3 7.5 12S9 19 12 22"/>
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M4 6h16v12H4z"/>
-              <path d="M4 7l8 6 8-6"/>
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3 5.2 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L9 10.6a16 16 0 0 0 4.4 4.4l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/>
-            </svg>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="../index.html#experience">Experience</a></li>
-            <li><a href="../index.html#gallery">Gallery</a></li>
-            <li><a href="../index.html#details">More Information</a></li>
-            <li><a href="#story">About</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Retreat</h4>
-          <ul>
-            <li>Shavuos in Vermont</li>
-            <li>Private home</li>
-            <li>Kosher food</li>
-            <li>Minyan & Eiruv</li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li>hamsanomads.com</li>
-            <li>Text: 347-988-8869</li>
-            <li><a href="../Forms/apply.html">Apply Now</a></li>
-          </ul>
-        </div>
-
+      <div class="share-options" id="shareOptions">
+        <a id="whatsappShare" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="facebookShare" target="_blank" rel="noopener">Facebook</a>
+        <a id="emailShare">Email</a>
+        <button id="copyLinkBtn" type="button">Copy link</button>
       </div>
-
-      <div class="footer-bottom">
-        © 2026 Hamsa Nomads — All rights reserved
-      </div>
-    </footer>
+    </div>
   </div>
+
+  <div id="site-footer"></div>
+
+  <script src="../assets/site-components.js" data-base="../"></script>
 
   <script>
     (() => {
       const drawPaths = [
-        document.getElementById('lineBack')
+        document.getElementById("lineBack")
       ].filter(Boolean);
 
       function updateLine() {
@@ -1034,10 +771,48 @@
         });
       }
 
-      window.addEventListener('scroll', updateLine, { passive: true });
-      window.addEventListener('resize', updateLine);
+      window.addEventListener("scroll", updateLine, { passive: true });
+      window.addEventListener("resize", updateLine);
       updateLine();
     })();
+
+    const shareBtn = document.getElementById("shareBtn");
+    const shareOptions = document.getElementById("shareOptions");
+    const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+    const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+
+    document.getElementById("whatsappShare").href =
+      `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+
+    document.getElementById("facebookShare").href =
+      `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+    document.getElementById("emailShare").href =
+      `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+    shareBtn.addEventListener("click", () => {
+      shareOptions.classList.toggle("open");
+    });
+
+    copyLinkBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        copyLinkBtn.textContent = "Copied!";
+        setTimeout(() => {
+          copyLinkBtn.textContent = "Copy link";
+        }, 1600);
+      } catch (err) {
+        alert("Copy failed. Please copy the URL manually.");
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".floating-share")) {
+        shareOptions.classList.remove("open");
+      }
+    });
   </script>
 </body>
 </html>
