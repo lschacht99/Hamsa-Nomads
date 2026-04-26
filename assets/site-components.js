@@ -1,13 +1,14 @@
 /* =========================================================
-   HAMSA NOMADS — SHARED HEADER / FOOTER / SHARE / ROUTE LINE
+   HAMSA NOMADS — SHARED HEADER / FOOTER / SHARE / TRIP LINE
    File: assets/site-components.js
    ========================================================= */
 
 /*
-  For hamsanomads.com, keep data-base empty or omitted.
+  On hamsanomads.com, use:
+  <script src="/assets/site-components.js"></script>
 
-  If one day you use GitHub Pages in a subfolder, load the script like:
-  <script src="/Hamsa-Nomads/assets/site-components.js" data-base="/Hamsa-Nomads"></script>
+  If a folder page still uses relative loading, you can use:
+  <script src="../assets/site-components.js" data-base=".."></script>
 */
 
 const HN_CURRENT_SCRIPT = document.currentScript;
@@ -20,54 +21,53 @@ function hnPath(path) {
 }
 
 /* =========================================================
-   GLOBAL ROUTE LINE BACKGROUND
+   GLOBAL TRIP-STYLE DRAWING LINE BACKGROUND
+   Extracted from trips.html.
    ========================================================= */
 
-function insertGlobalRouteLine() {
-  if (document.getElementById("hnGlobalRouteOverlay")) return;
+function insertGlobalTripLine() {
+  if (document.getElementById("hnTripLineOverlay")) return;
 
-  const routeHTML = `
-    <div class="hn-global-route-overlay" id="hnGlobalRouteOverlay" aria-hidden="true">
-      <svg viewBox="0 0 1440 5200" preserveAspectRatio="none">
-        <path class="hn-global-route-line back hn-global-route-draw" d="M220 260 C360 250, 420 320, 610 305 C820 288, 980 295, 1110 310 C1240 325, 1290 410, 1180 470 C1050 540, 860 500, 690 495 C520 490, 340 500, 215 560" />
-        <path class="hn-global-route-line front hn-global-route-draw" d="M220 260 C360 250, 420 320, 610 305 C820 288, 980 295, 1110 310 C1240 325, 1290 410, 1180 470 C1050 540, 860 500, 690 495 C520 490, 340 500, 215 560" />
-
-        <path class="hn-global-route-line back hn-global-route-draw" d="M210 1120 C310 1010, 520 980, 760 1005 C980 1030, 1100 1060, 1210 1050 C1310 1042, 1360 1140, 1280 1260 C1195 1390, 1050 1380, 915 1365 C760 1347, 570 1335, 380 1350 C255 1360, 165 1275, 170 1180 C174 1160, 182 1140, 210 1120" />
-        <path class="hn-global-route-line front hn-global-route-draw" d="M210 1120 C310 1010, 520 980, 760 1005 C980 1030, 1100 1060, 1210 1050 C1310 1042, 1360 1140, 1280 1260 C1195 1390, 1050 1380, 915 1365 C760 1347, 570 1335, 380 1350 C255 1360, 165 1275, 170 1180 C174 1160, 182 1140, 210 1120" />
-
-        <path class="hn-global-route-line back hn-global-route-draw" d="M240 1980 C390 1880, 650 1910, 835 1980 C980 2035, 1110 2088, 1195 2080 C1290 2070, 1365 2150, 1315 2300 C1260 2460, 1100 2525, 900 2515 C720 2505, 605 2395, 485 2390 C365 2385, 225 2470, 160 2335 C110 2228, 145 2055, 240 1980" />
-        <path class="hn-global-route-line front hn-global-route-draw" d="M240 1980 C390 1880, 650 1910, 835 1980 C980 2035, 1110 2088, 1195 2080 C1290 2070, 1365 2150, 1315 2300 C1260 2460, 1100 2525, 900 2515 C720 2505, 605 2395, 485 2390 C365 2385, 225 2470, 160 2335 C110 2228, 145 2055, 240 1980" />
-
-        <path class="hn-global-route-line back hn-global-route-draw" d="M95 3100 C220 3010, 380 3140, 560 3130 C700 3122, 740 3055, 770 2935 C790 2855, 860 2780, 980 2805 C1115 2835, 1235 2945, 1320 3000 C1385 3045, 1405 3170, 1300 3270 C1195 3370, 1020 3390, 850 3360 C690 3332, 520 3360, 320 3400 C210 3420, 130 3340, 90 3210 C75 3160, 70 3130, 95 3100" />
-        <path class="hn-global-route-line front hn-global-route-draw" d="M95 3100 C220 3010, 380 3140, 560 3130 C700 3122, 740 3055, 770 2935 C790 2855, 860 2780, 980 2805 C1115 2835, 1235 2945, 1320 3000 C1385 3045, 1405 3170, 1300 3270 C1195 3370, 1020 3390, 850 3360 C690 3332, 520 3360, 320 3400 C210 3420, 130 3340, 90 3210 C75 3160, 70 3130, 95 3100" />
-
-        <path class="hn-global-route-line back hn-global-route-draw" d="M235 3960 C420 3890, 640 3915, 835 3880 C990 3852, 1110 3895, 1220 3930 C1325 3965, 1360 4090, 1268 4170 C1178 4250, 1000 4215, 840 4230 C665 4247, 505 4295, 312 4275 C165 4260, 90 4195, 78 4098 C68 4020, 112 3942, 235 3960" />
-        <path class="hn-global-route-line front hn-global-route-draw" d="M235 3960 C420 3890, 640 3915, 835 3880 C990 3852, 1110 3895, 1220 3930 C1325 3965, 1360 4090, 1268 4170 C1178 4250, 1000 4215, 840 4230 C665 4247, 505 4295, 312 4275 C165 4260, 90 4195, 78 4098 C68 4020, 112 3942, 235 3960" />
-
-        <path class="hn-global-route-line back hn-global-route-draw" d="M230 4680 C410 4705, 645 4750, 835 4840 C980 4908, 1120 4960, 1270 5010 C1360 5040, 1400 5080, 1415 5125" />
-        <path class="hn-global-route-line front hn-global-route-draw" d="M230 4680 C410 4705, 645 4750, 835 4840 C980 4908, 1120 4960, 1270 5010 C1360 5040, 1400 5080, 1415 5125" />
-
-        <circle class="hn-global-route-dot" cx="1110" cy="310" r="7" />
-        <circle class="hn-global-route-dot" cx="1210" cy="1050" r="7" />
-        <circle class="hn-global-route-dot" cx="1195" cy="2080" r="7" />
-        <circle class="hn-global-route-dot" cx="1320" cy="3000" r="7" />
-        <circle class="hn-global-route-dot" cx="1220" cy="3930" r="7" />
+  const lineHTML = `
+    <div class="hn-trip-line-overlay" id="hnTripLineOverlay" aria-hidden="true">
+      <svg viewBox="0 0 1400 1800" preserveAspectRatio="none">
+        <path
+          id="hnTripLineBack"
+          class="hn-trip-path-main back"
+          d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
+        />
+        <path
+          id="hnTripLineFront"
+          class="hn-trip-path-main front"
+          d="M -80 140 C 120 40, 230 250, 390 190 S 640 60, 810 250 S 1030 520, 1220 390 S 1510 300, 1450 610 C 1390 900, 1040 780, 920 1040 S 690 1350, 430 1220 S 20 1180, 150 1500 S 620 1740, 980 1580"
+        />
+        <path
+          id="hnTripSliceBack"
+          class="hn-trip-path-slice back"
+          d="M 1010 1580 C 1080 1510, 1175 1515, 1230 1600 C 1170 1655, 1080 1665, 1010 1580 Z"
+        />
+        <path
+          id="hnTripSliceFront"
+          class="hn-trip-path-slice front"
+          d="M 1010 1580 C 1080 1510, 1175 1515, 1230 1600 C 1170 1655, 1080 1665, 1010 1580 Z"
+        />
       </svg>
     </div>
   `;
 
-  document.body.insertAdjacentHTML("afterbegin", routeHTML);
+  document.body.insertAdjacentHTML("afterbegin", lineHTML);
 
-  const drawPaths = Array.from(document.querySelectorAll(".hn-global-route-draw"));
-  const dots = Array.from(document.querySelectorAll(".hn-global-route-dot"));
+  const drawPaths = [
+    document.getElementById("hnTripLineBack"),
+    document.getElementById("hnTripLineFront")
+  ].filter(Boolean);
 
-  drawPaths.forEach((path) => {
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = len;
-    path.style.strokeDashoffset = len;
-  });
+  const slicePaths = [
+    document.getElementById("hnTripSliceBack"),
+    document.getElementById("hnTripSliceFront")
+  ].filter(Boolean);
 
-  function updateGlobalRouteLine() {
+  function updateTripLine() {
     const maxScroll = Math.max(
       1,
       document.documentElement.scrollHeight - window.innerHeight
@@ -75,32 +75,24 @@ function insertGlobalRouteLine() {
 
     const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
 
-    drawPaths.forEach((path, index) => {
+    drawPaths.forEach((path) => {
       const len = path.getTotalLength();
-
-      /*
-        The back/front paths come in pairs.
-        This keeps each pair drawing together instead of slightly offset.
-      */
-      const pairIndex = Math.floor(index / 2);
-      const stagger = pairIndex * 0.075;
-      const localProgress = Math.max(
-        0,
-        Math.min(1, (progress - stagger) / 0.74)
-      );
-
-      path.style.strokeDashoffset = len * (1 - localProgress);
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len * (1 - Math.min(progress * 1.06, 1));
     });
 
-    dots.forEach((dot, index) => {
-      const threshold = 0.14 + index * 0.145;
-      dot.classList.toggle("is-visible", progress > threshold);
+    const sliceProgress = Math.max(0, (progress - 0.82) / 0.18);
+
+    slicePaths.forEach((path) => {
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len * (1 - sliceProgress);
     });
   }
 
-  window.addEventListener("scroll", updateGlobalRouteLine, { passive: true });
-  window.addEventListener("resize", updateGlobalRouteLine);
-  updateGlobalRouteLine();
+  window.addEventListener("scroll", updateTripLine, { passive: true });
+  window.addEventListener("resize", updateTripLine);
+  updateTripLine();
 }
 
 /* =========================================================
@@ -284,7 +276,7 @@ function insertFloatingShare() {
         });
         return;
       } catch (error) {
-        // If cancelled, fall back to the custom menu.
+        /* If cancelled, fall back to the custom menu. */
       }
     }
 
@@ -341,7 +333,7 @@ function markActiveNav() {
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  insertGlobalRouteLine();
+  insertGlobalTripLine();
   insertSiteHeader();
   insertSiteFooter();
   insertFloatingShare();
