@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Hamsa Nomads</title>
+  <meta name="description" content="Frequently asked questions about Hamsa Nomads curated Jewish retreats." />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root {
+      --cream: #f8f3e8;
+      --cream-soft: #fffaf0;
+      --green: #174f19;
+      --green-dark: #0f3511;
+      --gold: #d9a441;
+      --sand: #eadcc4;
+      --text: #253323;
+      --muted: #697466;
+      --line: rgba(23, 79, 25, 0.18);
+      --card: rgba(255, 250, 240, 0.82);
+      --shadow: 0 18px 45px rgba(23, 79, 25, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(217, 164, 65, 0.18), transparent 34%),
+        linear-gradient(180deg, var(--cream) 0%, #fffaf0 48%, #f3eadb 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(248, 243, 232, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--green);
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 0.94rem;
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      position: relative;
+      opacity: 0.86;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      opacity: 1;
+      color: var(--green);
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--cream-soft) !important;
+      padding: 11px 18px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(23, 79, 25, 0.18);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, 0.72);
+      color: var(--green);
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .faq-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 92px 20px 54px;
+    }
+
+    .faq-hero::before {
+      content: "";
+      position: absolute;
+      inset: 28px auto auto 50%;
+      width: 760px;
+      height: 260px;
+      transform: translateX(-50%);
+      background-image: url("data:image/svg+xml,%3Csvg width='760' height='260' viewBox='0 0 760 260' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 212C110 63 211 238 327 98C452 -52 534 239 744 42' stroke='%23174F19' stroke-width='3' stroke-linecap='round' stroke-dasharray='9 13' opacity='.22'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(920px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, 0.72);
+      color: var(--green);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 6vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      color: var(--green-dark);
+    }
+
+    .hero-gold {
+      color: var(--gold);
+    }
+
+    .hero-text {
+      width: min(680px, 100%);
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      line-height: 1.75;
+    }
+
+    /* FAQ */
+    .faq-section {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto 80px;
+    }
+
+    .faq-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: clamp(18px, 3vw, 34px);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 24px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      text-align: left;
+      font: inherit;
+      color: var(--green-dark);
+      font-weight: 800;
+      font-size: clamp(1.02rem, 2vw, 1.22rem);
+      cursor: pointer;
+    }
+
+    .faq-icon {
+      flex: 0 0 auto;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      color: var(--green);
+      background: rgba(255, 250, 240, 0.8);
+      transition: transform 0.24s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 4px 24px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .faq-answer-inner strong {
+      color: var(--green-dark);
+    }
+
+    .cta-strip {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto 90px;
+      border-radius: 32px;
+      padding: clamp(26px, 5vw, 44px);
+      background: var(--green);
+      color: var(--cream-soft);
+      display: grid;
+      grid-template-columns: 1.4fr auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 20px 45px rgba(23, 79, 25, 0.22);
+    }
+
+    .cta-strip h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .cta-strip p {
+      margin: 0;
+      color: rgba(255, 250, 240, 0.78);
+      line-height: 1.65;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--green-dark);
+      color: var(--cream-soft);
+      padding: 34px 20px;
+    }
+
+    .footer-container {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer h3,
+    .footer h4 {
+      margin: 0 0 10px;
+      color: var(--cream-soft);
+    }
+
+    .footer p,
+    .footer a {
+      color: rgba(255, 250, 240, 0.72);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-bottom {
+      width: min(1180px, 100%);
+      margin: 26px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 250, 240, 0.16);
+      color: rgba(255, 250, 240, 0.58);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 760px) {
+      .nav-wrap {
+        min-height: 64px;
+      }
+
+      .brand img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .brand-name {
+        font-size: 0.88rem;
+      }
+
+      .menu-toggle {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 64px;
+        left: 16px;
+        right: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(255, 250, 240, 0.96);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 14px 12px;
+        border-radius: 16px;
+      }
+
+      .nav-cta {
+        text-align: center;
+        margin-top: 6px;
+      }
+
+      .faq-hero {
+        padding: 58px 18px 34px;
+      }
+
+      .faq-card {
+        border-radius: 24px;
+      }
+
+      .faq-question {
+        padding: 20px 2px;
+      }
+
+      .cta-strip {
+        grid-template-columns: 1fr;
+        border-radius: 24px;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+
+      .footer {
+        padding: 28px 18px;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer p,
+      .footer a {
+        font-size: 0.86rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.78rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="/" class="brand" aria-label="Hamsa Nomads home">
+        <img src="/favicon.ico" alt="Hamsa Nomads logo" />
+        <span class="brand-name">Hamsa Nomads</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/trips-page/trips.html">Trips</a>
+        <a href="/faq.html" class="active">FAQ</a>
+        <a href="/apply.html" class="nav-cta">Apply</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="faq-hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Before you apply</div>
+        <h1>Frequently Asked <span class="hero-gold">Questions</span></h1>
+        <p class="hero-text">
+          A few simple answers about how Hamsa Nomads works, what happens after you apply,
+          and what to expect from a curated group retreat.
+        </p>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="faq-card">
+
+        <div class="faq-item open">
+          <button class="faq-question" type="button">
+            <span>Who is this for?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" style="max-height: 300px;">
+            <div class="faq-answer-inner">
+              Hamsa Nomads is for people who want a warm, meaningful, social Jewish travel experience — not just a place to sleep.
+              Each trip is built around a small curated group, shared meals, good conversation, and a real sense of community.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>What happens after I apply?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Once you submit the form, we review your application to understand who you are, what kind of experience you’re looking for,
+              and whether the retreat is the right fit. If it looks like a good match, we’ll follow up with next steps, pricing details,
+              and how to reserve your spot.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>When is my spot confirmed?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Your spot is not confirmed by applying alone. A spot is confirmed only after you are accepted and complete the required payment
+              or deposit. Until then, availability may change.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>What is included in the price?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              The price generally includes the retreat stay, group meals, Shabbos or holiday programming when relevant, and shared retreat activities.
+              Exact inclusions may vary by trip, so each retreat page or follow-up message will explain what is included for that specific experience.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Is transportation included?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Transportation is usually not included unless clearly stated for a specific trip. Guests are generally responsible for getting to and from
+              the retreat location. When possible, we may help connect guests who want to coordinate carpools.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>What is the kashrut situation?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Kashrut details depend on the specific retreat. We take kosher food seriously and will share the relevant food setup, supervision details,
+              and kitchen arrangements before payment is finalized. If you have a specific kashrut need, please mention it in your application.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Can I come with a friend?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes. You can apply with a friend or mention who you would like to come with. Each person may still need to complete their own application
+              so we have everyone’s details, preferences, and emergency or food-related information.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>What is the cancellation policy?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Cancellation policies may vary by retreat because each location has different booking rules and upfront costs. In general, payments may be
+              non-refundable once they are used to secure housing, food, or group arrangements. The exact cancellation policy will be shared before you pay.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>What should I bring?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Bring comfortable clothing, toiletries, any medications you need, weather-appropriate layers, and anything personal you need for Shabbos,
+              yom tov, or travel. A more specific packing list will be sent before the retreat.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Is this a hotel program or a curated group retreat?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              This is a curated group retreat. It is not a hotel program, not a large commercial production, and not a fully anonymous travel package.
+              The goal is a more personal experience: a smaller group, intentional atmosphere, shared meals, and a sense of traveling with people rather
+              than just booking a room.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cta-strip">
+      <div>
+        <h2>Still thinking about joining?</h2>
+        <p>
+          Start with the application. It helps us understand if the trip is the right fit before anyone commits.
+        </p>
+      </div>
+      <a href="/apply.html" class="cta-button">Apply for a retreat</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>Hamsa Nomads</h3>
+        <p>
+          Curated Jewish travel experiences for small groups, meaningful holidays, and unforgettable places.
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/trips-page/trips.html">Trips</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/apply.html">Apply</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Hamsa Nomads. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      menuToggle.textContent = navLinks.classList.contains("open") ? "×" : "☰";
+    });
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector(".faq-question");
+      const answer = item.querySelector(".faq-answer");
+
+      button.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+
+        faqItems.forEach((otherItem) => {
+          otherItem.classList.remove("open");
+          otherItem.querySelector(".faq-answer").style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add("open");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
