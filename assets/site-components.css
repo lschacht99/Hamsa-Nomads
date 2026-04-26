@@ -356,3 +356,22 @@
     font-size: 12.3px;
   }
 }
+.hn-shared-brand-logo,
+.hn-shared-footer-logo-img {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 860px) {
+  .hn-shared-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .hn-shared-brand-logo {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+  }
+}
