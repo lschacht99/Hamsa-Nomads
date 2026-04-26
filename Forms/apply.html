@@ -1290,14 +1290,16 @@
             <input type="text" id="heard_other" name="heard_other" />
           </div>
 
-          <div class="field">
-            <label class="check-item">
-              <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
-              <span>I agree to the retreat guidelines and cancellation policy.</span>
-            </label>
-          </div>
-        </div>
-
+        <label class="terms-check">
+  <input type="checkbox" name="termsAccepted" required>
+  <span>
+    I have read and agree to the
+    <a href="../terms.html" target="_blank">Terms & Conditions</a>
+    and
+    <a href="../privacy.html" target="_blank">Privacy Policy</a>.
+  </span>
+</label>
+          
         <div class="submit-wrap">
           <button type="submit" class="submit-btn" id="submitBtn">Send my application</button>
           <div id="formStatus" class="status" role="status" aria-live="polite"></div>
