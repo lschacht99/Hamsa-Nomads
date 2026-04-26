@@ -234,9 +234,23 @@ function insertSiteFooter() {
         </div>
       </div>
 
-      <div class="hn-shared-footer-bottom">
+         <div class="hn-shared-footer-bottom">
         <span>© 2026 Hamsa Nomads — All rights reserved</span>
-        <span>Small curated trips. Meaningful Jewish connection.</span>
+
+        <div class="hn-shared-footer-credit">
+          <div class="hn-shared-footer-credit-topline">
+            <span class="hn-shared-footer-credit-dot"></span>
+            <span>Website design</span>
+          </div>
+
+          <div class="hn-shared-footer-credit-main">
+            by Moshé Cohen
+          </div>
+
+          <a href="mailto:hamsanomads@gmail.com" class="hn-shared-footer-credit-link">
+            Need a website? Get in touch
+          </a>
+        </div>
       </div>
     </footer>
   `;
