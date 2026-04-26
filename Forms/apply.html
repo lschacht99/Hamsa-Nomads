@@ -26,7 +26,7 @@
       --shadow: 0 24px 60px rgba(28, 45, 34, 0.12);
       --shadow-soft: 0 10px 28px rgba(28, 45, 34, 0.08);
 
-      --line: rgba(31, 47, 39, 0.55);
+      --line: rgba(31, 47, 39, 0.24);
       --success: #245a39;
       --error: #8d3d34;
     }
@@ -46,6 +46,7 @@
       background:
         radial-gradient(circle at 15% 10%, rgba(255,255,255,0.55), transparent 28%),
         radial-gradient(circle at 85% 0%, rgba(255,255,255,0.35), transparent 24%),
+        radial-gradient(circle at 70% 64%, rgba(201,167,106,0.12), transparent 28%),
         linear-gradient(180deg, #f7f1e7 0%, #efe5d4 48%, #f5efe4 100%);
       min-height: 100vh;
       overflow-x: hidden;
@@ -75,31 +76,56 @@
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      opacity: 0.72;
+      overflow: hidden;
+      opacity: 0.9;
     }
 
     .line-overlay svg {
       width: 100%;
       height: 100%;
       display: block;
+      overflow: visible;
     }
 
-   .line-path {
-  fill: none;
-  stroke: var(--line);
-  stroke-width: 2.15;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
+    .line-path {
+      fill: none;
+      stroke: var(--line);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      transition: stroke-dashoffset 0.08s linear;
+    }
 
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 0.08s linear;
-}
+    .line-path.back {
+      stroke-width: 3.1;
+      opacity: 0.72;
+    }
 
-    .line-path.alt {
-      stroke-width: 1.2;
-      opacity: 0.6;
+    .line-path.front {
+      stroke-width: 1.35;
+      opacity: 0.9;
+    }
+
+    .line-path.alt-back {
+      stroke-width: 2.8;
+      opacity: 0.45;
+    }
+
+    .line-path.alt-front {
+      stroke-width: 1.15;
+      opacity: 0.7;
+    }
+
+    .line-path.extra-back {
+      stroke-width: 2.6;
+      opacity: 0.34;
+    }
+
+    .line-path.extra-front {
+      stroke-width: 1.05;
+      opacity: 0.54;
     }
 
     .page {
@@ -110,7 +136,6 @@
       padding: 24px 0 70px;
     }
 
-    /* HEADER */
     .site-header {
       position: sticky;
       top: 0;
@@ -202,7 +227,6 @@
       box-shadow: 0 12px 28px rgba(22, 63, 49, 0.18);
     }
 
-    /* OLD TOPBAR CLASSES KEPT SAFE IN CASE USED ELSEWHERE */
     .topbar {
       display: none;
     }
@@ -554,7 +578,6 @@
       font-size: 0.9rem;
     }
 
-    /* FOOTER */
     .footer {
       background: linear-gradient(180deg, #1c3b2f, #0f2a22);
       color: #e8e6df;
@@ -641,7 +664,6 @@
       color: #a9a49a;
     }
 
-    /* SUCCESS MODAL */
     .success-modal {
       position: fixed;
       inset: 0;
@@ -756,43 +778,135 @@
         grid-template-columns: 1fr;
       }
     }
+    @media (max-width: 760px) {
+  .footer {
+    padding: 38px 18px 24px;
+    margin-top: 42px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .footer-col {
+    width: 100%;
+  }
+
+  .footer-logo {
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    margin-bottom: 10px;
+  }
+
+  .footer-text {
+    font-size: 13.5px;
+    line-height: 1.65;
+    max-width: 100%;
+  }
+
+  .footer-icons {
+    margin-top: 16px;
+    gap: 12px;
+  }
+
+  .footer-icons svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .footer-col h4 {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+  }
+
+  .footer-col ul {
+    display: grid;
+    gap: 7px;
+  }
+
+  .footer-col li {
+    margin-bottom: 0;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+
+  .footer-bottom {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 32px 16px 22px;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .footer-container {
+    gap: 22px;
+  }
+
+  .footer-logo {
+    font-size: 14px;
+    letter-spacing: 0.14em;
+  }
+
+  .footer-text,
+  .footer-col li {
+    font-size: 13px;
+  }
+
+  .footer-col h4 {
+    font-size: 11.5px;
+  }
+
+  .footer-bottom {
+    font-size: 11.5px;
+  }
+}
   </style>
 </head>
 
 <body>
   <div class="line-overlay" aria-hidden="true">
-    <svg viewBox="0 0 1440 2200" preserveAspectRatio="none">
-      <path class="line-path"
-        d="M1135 30
-           C1045 70, 1012 130, 1058 188
-           C1102 246, 1248 224, 1272 294
-           C1294 362, 1120 386, 1048 448
-           C982 504, 988 574, 1060 622
-           C1140 676, 1252 650, 1260 730
-           C1268 810, 1115 836, 1048 892
-           C978 952, 992 1024, 1062 1066
-           C1140 1112, 1248 1088, 1264 1168
-           C1280 1248, 1165 1286, 1084 1332
-           C1002 1378, 978 1454, 1045 1496
-           C1115 1542, 1248 1518, 1266 1598
-           C1284 1680, 1142 1714, 1062 1766
-           C982 1818, 986 1892, 1078 1934
-           C1162 1974, 1264 1966, 1292 2044" />
-      <path class="line-path alt"
-        d="M165 94
-           C280 120, 338 186, 302 252
-           C262 328, 118 330, 124 404
-           C130 490, 286 508, 346 566
-           C400 618, 392 704, 316 744
-           C232 790, 124 774, 116 852
-           C108 930, 250 958, 320 1008
-           C390 1058, 398 1136, 332 1182
-           C272 1224, 152 1218, 138 1288
-           C122 1370, 266 1402, 330 1456
-           C394 1510, 392 1588, 314 1632
-           C236 1676, 120 1660, 110 1734
-           C102 1808, 196 1844, 254 1890
-           C330 1950, 334 2030, 256 2088" />
+    <svg viewBox="0 0 1400 3600" preserveAspectRatio="none">
+      <path
+        id="lineBack"
+        class="line-path back"
+        d="M -80 120 C 120 30, 230 245, 390 180 S 650 50, 810 245 S 1030 520, 1220 380 S 1510 300, 1450 650 C 1390 980, 1040 820, 920 1120 S 690 1480, 430 1320 S 20 1280, 150 1660 S 620 1940, 980 1740 S 1420 1680, 1240 2120 S 820 2350, 560 2240 S 20 2280, 180 2700 S 720 3060, 1100 2820 S 1510 2840, 1280 3320"
+      />
+      <path
+        id="lineFront"
+        class="line-path front"
+        d="M -80 120 C 120 30, 230 245, 390 180 S 650 50, 810 245 S 1030 520, 1220 380 S 1510 300, 1450 650 C 1390 980, 1040 820, 920 1120 S 690 1480, 430 1320 S 20 1280, 150 1660 S 620 1940, 980 1740 S 1420 1680, 1240 2120 S 820 2350, 560 2240 S 20 2280, 180 2700 S 720 3060, 1100 2820 S 1510 2840, 1280 3320"
+      />
+
+      <path
+        id="lineAltBack"
+        class="line-path alt-back"
+        d="M 1480 280 C 1280 190, 1110 360, 1190 560 S 1480 740, 1280 970 S 870 1090, 1020 1380 S 1450 1580, 1180 1880 S 720 2040, 930 2360 S 1420 2580, 1110 2920 S 620 3050, 780 3440"
+      />
+      <path
+        id="lineAltFront"
+        class="line-path alt-front"
+        d="M 1480 280 C 1280 190, 1110 360, 1190 560 S 1480 740, 1280 970 S 870 1090, 1020 1380 S 1450 1580, 1180 1880 S 720 2040, 930 2360 S 1420 2580, 1110 2920 S 620 3050, 780 3440"
+      />
+
+      <path
+        id="lineExtraBack"
+        class="line-path extra-back"
+        d="M 80 430 C 310 560, 130 780, 310 940 S 700 1000, 610 1280 S 190 1500, 360 1760 S 820 1810, 650 2160 S 160 2340, 390 2650 S 880 2700, 690 3120"
+      />
+      <path
+        id="lineExtraFront"
+        class="line-path extra-front"
+        d="M 80 430 C 310 560, 130 780, 310 940 S 700 1000, 610 1280 S 190 1500, 360 1760 S 820 1810, 650 2160 S 160 2340, 390 2650 S 880 2700, 690 3120"
+      />
     </svg>
   </div>
 
@@ -874,6 +988,17 @@
               <label for="phone">Phone number *</label>
               <input type="tel" id="phone" name="phone" required />
             </div>
+
+            <div class="field">
+              <label for="coming_from">Where are you coming from? *</label>
+              <input
+                type="text"
+                id="coming_from"
+                name="coming_from"
+                required
+                placeholder="City, state, or neighborhood"
+              />
+            </div>
           </div>
 
           <div class="field">
@@ -929,6 +1054,36 @@
             <div class="field hidden" id="roommate_name_wrap">
               <label for="room_with_name">Who would you like to room with?</label>
               <input type="text" id="room_with_name" name="room_with_name" />
+            </div>
+          </div>
+
+          <div class="grid two">
+            <div class="field">
+              <label>Would you be interested in inviting someone to come with you?</label>
+              <div class="radio-group inline">
+                <label class="radio-item">
+                  <input type="radio" name="bring_someone" value="Yes" />
+                  <span>Yes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="bring_someone" value="Maybe" />
+                  <span>Maybe</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="bring_someone" value="No" />
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field hidden" id="bring_someone_wrap">
+              <label for="bring_someone_name">Who would you like to invite?</label>
+              <input
+                type="text"
+                id="bring_someone_name"
+                name="bring_someone_name"
+                placeholder="Name, or a short note if you’re not sure yet"
+              />
             </div>
           </div>
         </div>
@@ -1172,7 +1327,7 @@
         <ul>
           <li>hamsanomads.com</li>
           <li>Text: 347-988-8869</li>
-    <li><a href="../index.html">Back to Home</a></li>
+          <li><a href="../index.html">Back to Home</a></li>
         </ul>
       </div>
     </div>
@@ -1200,6 +1355,7 @@
     const formStatus = document.getElementById("formStatus");
 
     const roommateNameWrap = document.getElementById("roommate_name_wrap");
+    const bringSomeoneWrap = document.getElementById("bring_someone_wrap");
     const dietaryOtherWrap = document.getElementById("dietary_other_wrap");
     const friendNameWrap = document.getElementById("friend_name_wrap");
     const heardOtherWrap = document.getElementById("heard_other_wrap");
@@ -1241,6 +1397,11 @@
         roommateNameWrap.classList.toggle("hidden", comingWithSomeone !== "Yes");
       }
 
+      const bringSomeone = selectedRadioValue("bring_someone");
+      if (bringSomeoneWrap) {
+        bringSomeoneWrap.classList.toggle("hidden", bringSomeone !== "Yes" && bringSomeone !== "Maybe");
+      }
+
       const supportDavening = selectedRadioValue("support_davening");
       const showDavening = supportDavening === "Yes" || supportDavening === "Maybe";
       if (daveningNotesWrap) daveningNotesWrap.classList.toggle("hidden", !showDavening);
@@ -1267,7 +1428,15 @@
     }
 
     function validateRequiredFields() {
-      const requiredIds = ["first_name", "last_name", "email", "phone", "reservation_type", "about_you"];
+      const requiredIds = [
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "coming_from",
+        "reservation_type",
+        "about_you"
+      ];
 
       for (const id of requiredIds) {
         const el = document.getElementById(id);
@@ -1351,50 +1520,51 @@
         openSuccessModal();
       }, 1200);
     });
-    
   </script>
+
   <script>
-  function initScrollDrawingLines() {
-    const paths = document.querySelectorAll(".line-path");
+    function initScrollDrawingLines() {
+      const paths = document.querySelectorAll(".line-path");
 
-    if (!paths.length) return;
+      if (!paths.length) return;
 
-    paths.forEach((path) => {
-      const length = path.getTotalLength();
-      path.style.strokeDasharray = length;
-      path.style.strokeDashoffset = length;
-    });
-
-    function updateLines() {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const maxScroll = Math.max(
-        1,
-        document.documentElement.scrollHeight - window.innerHeight
-      );
-
-      const progress = Math.min(1, Math.max(0, scrollTop / maxScroll));
-
-      paths.forEach((path, index) => {
+      paths.forEach((path) => {
         const length = path.getTotalLength();
-
-        /*
-          Higher number = draws more aggressively.
-          2.4 means the line finishes drawing before the user reaches the bottom.
-        */
-        const drawSpeed = index === 0 ? 3.6 : 3.2;
-        const offset = length * (1 - Math.min(progress * drawSpeed, 1));
-
-        path.style.strokeDashoffset = offset;
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length;
       });
+
+      function updateLines() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const maxScroll = Math.max(
+          1,
+          document.documentElement.scrollHeight - window.innerHeight
+        );
+
+        const progress = Math.min(1, Math.max(0, scrollTop / maxScroll));
+
+        paths.forEach((path, index) => {
+          const length = path.getTotalLength();
+
+          const drawSpeed = index === 0 ? 1.18 :
+                            index === 1 ? 1.18 :
+                            index === 2 ? 1.35 :
+                            index === 3 ? 1.35 :
+                            index === 4 ? 1.55 : 1.55;
+
+          const offset = length * (1 - Math.min(progress * drawSpeed, 1));
+
+          path.style.strokeDashoffset = offset;
+        });
+      }
+
+      window.addEventListener("scroll", updateLines, { passive: true });
+      window.addEventListener("resize", updateLines);
+
+      updateLines();
     }
 
-    window.addEventListener("scroll", updateLines, { passive: true });
-    window.addEventListener("resize", updateLines);
-
-    updateLines();
-  }
-
-  document.addEventListener("DOMContentLoaded", initScrollDrawingLines);
-</script>
+    document.addEventListener("DOMContentLoaded", initScrollDrawingLines);
+  </script>
 </body>
 </html>
