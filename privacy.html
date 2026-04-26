@@ -7,8 +7,7 @@
   <title>Privacy Policy | Hamsa Nomads</title>
   <meta name="description" content="Privacy Policy for Hamsa Nomads, including how we collect, use, store, and protect information submitted through our website, applications, forms, and trips." />
 
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="/assets/site-components.css" />
+  <link rel="icon" href="favicon.ico" />
 
   <style>
     :root {
@@ -63,6 +62,75 @@
       mask-image: linear-gradient(to bottom, transparent, black 12%, black 85%, transparent);
     }
 
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 241, 230, 0.82);
+      border-bottom: 1px solid rgba(23, 63, 42, 0.1);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: var(--green);
+      text-transform: uppercase;
+      font-size: 0.92rem;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green);
+      display: grid;
+      place-items: center;
+      color: var(--yellow);
+      font-size: 1rem;
+      box-shadow: 0 8px 24px rgba(23, 63, 42, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--green);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      opacity: 0.84;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--green-soft);
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 999px;
+      box-shadow: 0 10px 26px rgba(23, 63, 42, 0.18);
+    }
+
     .hero {
       position: relative;
       z-index: 1;
@@ -97,8 +165,6 @@
       font-weight: 800;
       font-size: 0.78rem;
       margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
     }
 
     h1 {
@@ -155,7 +221,7 @@
 
     .toc {
       position: sticky;
-      top: 110px;
+      top: 92px;
       background: rgba(255, 250, 240, 0.72);
       border: 1px solid rgba(23, 63, 42, 0.12);
       border-radius: 22px;
@@ -195,7 +261,7 @@
     .policy section {
       padding: 28px 0;
       border-bottom: 1px solid rgba(23, 63, 42, 0.1);
-      scroll-margin-top: 120px;
+      scroll-margin-top: 110px;
     }
 
     .policy section:first-child {
@@ -257,7 +323,74 @@
       color: var(--white);
     }
 
+    .site-footer {
+      position: relative;
+      z-index: 1;
+      background: var(--green);
+      color: var(--white);
+      padding: 34px 22px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .footer-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      margin-bottom: 8px;
+      color: var(--yellow);
+    }
+
+    .footer-text {
+      color: rgba(255, 250, 240, 0.78);
+      max-width: 440px;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+      font-size: 0.94rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 250, 240, 0.84);
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-small {
+      color: rgba(255, 250, 240, 0.68);
+      font-size: 0.86rem;
+      margin-top: 16px;
+    }
+
     @media (max-width: 860px) {
+      .nav {
+        padding: 14px 16px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 0.84rem;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .nav-cta {
+        padding: 9px 14px;
+      }
+
       .hero {
         padding: 34px 14px 14px;
       }
@@ -302,15 +435,49 @@
       .policy section {
         padding: 24px 0;
       }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+
+      .footer-text {
+        font-size: 0.9rem;
+      }
     }
 
     @media (max-width: 520px) {
+      .brand {
+        font-size: 0.76rem;
+      }
+
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+      }
+
       .hero-text {
         font-size: 0.98rem;
       }
 
       .toc-list {
         grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-small {
+        margin-top: 8px;
       }
     }
   </style>
@@ -319,7 +486,20 @@
 <body>
   <div class="page-bg-line"></div>
 
-  <div id="site-header"></div>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand" aria-label="Hamsa Nomads Home">
+        <span class="brand-mark">✦</span>
+        <span>Hamsa Nomads</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="trips-page/trips.html">Trips</a>
+        <a href="Forms/apply.html" class="nav-cta">Apply Now</a>
+      </div>
+    </nav>
+  </header>
 
   <section class="hero">
     <div class="hero-card">
@@ -608,8 +788,28 @@
     </article>
   </main>
 
-  <div id="site-footer"></div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-title">Hamsa Nomads</div>
+        <p class="footer-text">
+          Small curated trips, meaningful gatherings, and travel experiences built around connection, discovery, and community.
+        </p>
+        <p class="footer-small">© 2026 Hamsa Nomads. All rights reserved.</p>
+      </div>
 
-  <script src="/assets/site-components.js"></script>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="trips-page/trips.html">Trips</a>
+        <a href="Forms/apply.html">Apply</a>
+      </div>
+
+      <div class="footer-links">
+        <a href="mailto:hamsanomads@gmail.com">hamsanomads@gmail.com</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
