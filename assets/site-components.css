@@ -408,6 +408,33 @@ section,
   color: #a9a49a;
 }
 
+/* Prevent floating share button from covering footer credit */
+.hn-shared-footer {
+  padding-bottom: 92px;
+}
+
+@media (max-width: 860px) {
+  .hn-shared-footer {
+    padding-bottom: 96px;
+  }
+
+  .hn-shared-floating-share {
+    bottom: 18px;
+  }
+}
+
+@media (max-width: 860px) {
+  .hn-shared-footer {
+    padding-bottom: 110px;
+  }
+
+  .hn-shared-floating-share {
+    right: 14px;
+    bottom: 14px;
+    transform: scale(0.92);
+    transform-origin: bottom right;
+  }
+}
 /* =========================================================
    FOOTER DESIGN CREDIT
    ========================================================= */
