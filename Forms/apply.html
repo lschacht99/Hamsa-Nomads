@@ -37,10 +37,13 @@
 
     html {
       scroll-behavior: smooth;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     body {
       margin: 0;
+      width: 100%;
       color: var(--text);
       font-family: "Inter", "Segoe UI", Arial, sans-serif;
       background:
@@ -198,6 +201,7 @@
 
     .hero {
       position: relative;
+      isolation: isolate;
       overflow: hidden;
       border-radius: 34px;
       padding: clamp(30px, 5vw, 52px);
@@ -205,15 +209,17 @@
       min-height: 330px;
       display: flex;
       align-items: center;
-      background:
+      background-image:
         linear-gradient(90deg, rgba(247,241,231,0.96) 0%, rgba(247,241,231,0.84) 42%, rgba(247,241,231,0.34) 100%),
         url("../Image/vermont-hero.png");
-      background-size: cover;
-      background-position: center;
+      background-size: cover, cover;
+      background-position: center center, center center;
+      background-repeat: no-repeat, no-repeat;
       border: 1px solid rgba(255,255,255,0.42);
       box-shadow: var(--shadow);
       backdrop-filter: blur(24px) saturate(170%);
       -webkit-backdrop-filter: blur(24px) saturate(170%);
+      max-width: 100%;
     }
 
     .hero::before {
@@ -224,6 +230,7 @@
         radial-gradient(circle at 16% 14%, rgba(255,255,255,0.46), transparent 32%),
         linear-gradient(120deg, rgba(255,255,255,0.22), transparent 45%);
       pointer-events: none;
+      z-index: -1;
     }
 
     .hero::after {
@@ -236,6 +243,7 @@
       background-size: 36px 36px;
       opacity: 0.18;
       pointer-events: none;
+      z-index: -1;
     }
 
     .hero-grid {
@@ -244,7 +252,14 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: 24px;
+      width: 100%;
       max-width: 760px;
+      min-width: 0;
+    }
+
+    .hero-copy {
+      width: 100%;
+      min-width: 0;
     }
 
     .eyebrow {
@@ -267,17 +282,22 @@
       max-width: 9ch;
     }
 
+    .title-gold {
+      color: var(--gold);
+    }
+
     .hero-copy p {
       margin: 0;
       max-width: 58ch;
       color: #4d4a45;
       line-height: 1.85;
       font-size: 1.04rem;
+      overflow-wrap: break-word;
     }
 
     .hero-note {
-      width: fit-content;
-      max-width: 520px;
+      width: min(100%, 520px);
+      max-width: 100%;
       padding: 16px 18px;
       border-radius: 22px;
       background: rgba(255,255,255,0.38);
@@ -285,6 +305,7 @@
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(18px) saturate(170%);
       -webkit-backdrop-filter: blur(18px) saturate(170%);
+      min-width: 0;
     }
 
     .hero-note strong {
@@ -753,63 +774,61 @@
       }
 
       .footer {
-        padding: 34px 16px 22px;
+        padding: 28px 16px 18px;
         margin-top: 42px;
         border-radius: 28px 28px 0 0;
       }
 
       .footer-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 24px 18px;
+        grid-template-columns: 1fr;
+        gap: 18px;
       }
 
       .footer-brand {
-        grid-column: 1 / -1;
+        grid-column: auto;
+      }
+
+      .footer-col:not(.footer-brand):not(.footer-contact) {
+        display: none;
       }
 
       .footer-logo {
-        font-size: 14px;
+        font-size: 13px;
         letter-spacing: 0.15em;
         margin-bottom: 8px;
       }
 
       .footer-text {
-        font-size: 13px;
-        line-height: 1.55;
-        max-width: 100%;
+        font-size: 12.5px;
+        line-height: 1.5;
+        max-width: 36ch;
       }
 
       .footer-icons {
-        margin-top: 14px;
-        gap: 11px;
+        display: none;
       }
 
-      .footer-icons svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      .footer-col h4 {
-        font-size: 11px;
+      .footer-contact h4 {
+        font-size: 10.5px;
         letter-spacing: 0.12em;
-        margin-bottom: 9px;
+        margin-bottom: 8px;
       }
 
-      .footer-col ul {
+      .footer-contact ul {
         display: grid;
-        gap: 6px;
+        gap: 5px;
       }
 
-      .footer-col li {
+      .footer-contact li {
         margin-bottom: 0;
         font-size: 12.5px;
         line-height: 1.35;
       }
 
       .footer-bottom {
-        margin-top: 24px;
-        padding-top: 14px;
-        font-size: 11.5px;
+        margin-top: 18px;
+        padding-top: 12px;
+        font-size: 11px;
         line-height: 1.4;
       }
     }
@@ -818,17 +837,62 @@
       .page {
         width: min(100% - 16px, 1120px);
         padding-top: 14px;
+        padding-bottom: 46px;
       }
 
       .hero {
-        min-height: 310px;
-        padding: 30px 22px;
-        border-radius: 28px;
-        background:
-          linear-gradient(180deg, rgba(247,241,231,0.94) 0%, rgba(247,241,231,0.82) 58%, rgba(247,241,231,0.58) 100%),
+        min-height: 255px;
+        padding: 22px 18px;
+        border-radius: 26px;
+        align-items: flex-start;
+        background-image:
+          linear-gradient(180deg, rgba(247,241,231,0.95) 0%, rgba(247,241,231,0.82) 58%, rgba(247,241,231,0.50) 100%),
           url("../Image/apply/vermont-hero.jpg");
-        background-size: cover;
-        background-position: center;
+        background-size: cover, cover;
+        background-position: center center, center center;
+        background-repeat: no-repeat, no-repeat;
+      }
+
+      .hero-grid {
+        gap: 14px;
+        max-width: 100%;
+      }
+
+      .eyebrow {
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 10.5vw, 3rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+        max-width: 10ch;
+        margin-bottom: 11px;
+      }
+
+      .hero-copy p {
+        max-width: 100%;
+        font-size: 0.86rem;
+        line-height: 1.55;
+      }
+
+      .hero-note {
+        padding: 12px 14px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.42);
+      }
+
+      .hero-note strong {
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+        line-height: 1.3;
+      }
+
+      .hero-note span {
+        font-size: 0.78rem;
+        line-height: 1.45;
       }
 
       .form-shell {
@@ -847,17 +911,41 @@
     }
 
     @media (max-width: 420px) {
+      .hero {
+        min-height: 240px;
+        padding: 20px 16px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: clamp(1.9rem, 10vw, 2.7rem);
+        margin-bottom: 10px;
+      }
+
+      .hero-copy p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      .hero-note {
+        padding: 11px 12px;
+      }
+
+      .hero-note strong {
+        font-size: 0.86rem;
+      }
+
+      .hero-note span {
+        font-size: 0.76rem;
+      }
+
+      .footer {
+        padding: 24px 14px 16px;
+      }
+
       .footer-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 22px 14px;
-      }
-
-      .footer-col li {
-        font-size: 12px;
-      }
-
-      .footer-col h4 {
-        font-size: 10.5px;
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
     }
   </style>
@@ -902,7 +990,7 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">A Shavuot mountain escape</div>
-          <h1>Apply for your place.</h1>
+          <h1>Apply for your <span class="title-gold">place.</span></h1>
           <p>
             Join us for a warm and thoughtfully curated Shavuot experience in Vermont —
             with mountain air, kosher meals, spa time, a swimming pool, a game room,
@@ -1203,8 +1291,7 @@
       <div class="footer-col footer-brand">
         <h2 class="footer-logo">HAMSA NOMADS</h2>
         <p class="footer-text">
-          Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
-          beautiful places, and warm community.
+          Curated kosher retreats in beautiful places, built for meaningful Jewish connection and warm community.
         </p>
 
         <div class="footer-icons" aria-hidden="true">
@@ -1234,12 +1321,11 @@
         </ul>
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <ul>
           <li>hamsanomads.com</li>
           <li>Text: 347-988-8869</li>
-          <li><a href="../index.html">Home</a></li>
         </ul>
       </div>
     </div>
