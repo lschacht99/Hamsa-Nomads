@@ -923,17 +923,6 @@
               <label for="phone">Phone number *</label>
               <input type="tel" id="phone" name="phone" required />
             </div>
-
-            <div class="field">
-              <label for="coming_from">Where are you coming from? *</label>
-              <input
-                type="text"
-                id="coming_from"
-                name="coming_from"
-                required
-                placeholder="City, state, or neighborhood"
-              />
-            </div>
           </div>
 
           <div class="field">
@@ -993,49 +982,7 @@
           </div>
         </div>
 
-        <div class="section">
-          <h2>Carpool</h2>
-          <p class="section-intro">
-            We’re going to try to match people who need a ride with people who may have space in their car.
-          </p>
-
-          <div class="grid two">
-            <div class="field">
-              <label>Would you like help with carpooling?</label>
-              <div class="radio-group">
-                <label class="radio-item">
-                  <input type="radio" name="carpool_interest" value="I need a ride" />
-                  <span>I need a ride</span>
-                </label>
-
-                <label class="radio-item">
-                  <input type="radio" name="carpool_interest" value="I may have space to drive others" />
-                  <span>I may have space to drive others</span>
-                </label>
-
-                <label class="radio-item">
-                  <input type="radio" name="carpool_interest" value="Maybe, not sure yet" />
-                  <span>Maybe, not sure yet</span>
-                </label>
-
-                <label class="radio-item">
-                  <input type="radio" name="carpool_interest" value="No, I’m set" />
-                  <span>No, I’m set</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="carpool_notes">Carpool notes</label>
-              <textarea
-                id="carpool_notes"
-                name="carpool_notes"
-                placeholder="Where you’re leaving from, if you have seats, if you need a ride, or anything helpful for matching."
-              ></textarea>
-            </div>
-          </div>
-        </div>
-
+        
         <div class="section">
           <h2>Davening & minyan</h2>
           <p class="section-intro">
@@ -1129,11 +1076,6 @@
           <div class="field hidden" id="dietary_other_wrap">
             <label for="dietary_other">Please specify dietary restriction / allergy</label>
             <input type="text" id="dietary_other" name="dietary_other" />
-          </div>
-
-          <div class="field">
-            <label for="food_notes">Anything else we should know about your food preferences?</label>
-            <textarea id="food_notes" name="food_notes" placeholder="Anything helpful for us to know."></textarea>
           </div>
         </div>
 
@@ -1335,7 +1277,6 @@
         "last_name",
         "email",
         "phone",
-        "coming_from",
         "reservation_type",
         "about_you"
       ];
