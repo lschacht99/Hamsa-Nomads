@@ -357,7 +357,7 @@ function insertFloatingShare() {
       } catch (error) {
         /* If cancelled, fall back to the custom menu. */
       }
-    }
+           }
 
     shareOptions.classList.toggle("is-open");
   });
@@ -384,6 +384,32 @@ function insertFloatingShare() {
       shareOptions.classList.remove("is-open");
     }
   });
+     /* Hide floating share button when footer is visible */
+  const footer = document.querySelector(".hn-shared-footer");
+
+  if (footer && "IntersectionObserver" in window) {
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            document
+              .getElementById("hnSharedFloatingShare")
+              ?.classList.add("is-hidden-by-footer");
+          } else {
+            document
+              .getElementById("hnSharedFloatingShare")
+              ?.classList.remove("is-hidden-by-footer");
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.02
+      }
+    );
+
+    footerObserver.observe(footer);
+  }
 }
 
 /* =========================================================
