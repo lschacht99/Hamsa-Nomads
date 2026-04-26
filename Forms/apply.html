@@ -77,7 +77,7 @@
       z-index: 1;
       pointer-events: none;
       overflow: hidden;
-      opacity: 0.82;
+      opacity: 0.52;
     }
 
     .line-overlay svg {
@@ -99,13 +99,13 @@
     }
 
     .line-path.back {
-      stroke-width: 2.8;
-      opacity: 0.65;
+      stroke-width: 2.4;
+      opacity: 0.48;
     }
 
     .line-path.front {
-      stroke-width: 1.25;
-      opacity: 0.88;
+      stroke-width: 1.1;
+      opacity: 0.62;
     }
 
     .page {
@@ -199,16 +199,21 @@
     .hero {
       position: relative;
       overflow: hidden;
-      border-radius: 40px;
-      padding: 40px 32px 34px;
+      border-radius: 34px;
+      padding: clamp(30px, 5vw, 52px);
       margin-bottom: 30px;
+      min-height: 330px;
+      display: flex;
+      align-items: center;
       background:
-        linear-gradient(145deg, rgba(255,255,255,0.36), rgba(255,255,255,0.08)),
-        radial-gradient(circle at 20% 12%, rgba(255,255,255,0.28), transparent 32%);
-      border: 1px solid rgba(255,255,255,0.38);
+        linear-gradient(90deg, rgba(247,241,231,0.96) 0%, rgba(247,241,231,0.84) 42%, rgba(247,241,231,0.34) 100%),
+        url("../Image/apply/vermont-hero.jpg");
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255,255,255,0.42);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(34px) saturate(185%);
-      -webkit-backdrop-filter: blur(34px) saturate(185%);
+      backdrop-filter: blur(24px) saturate(170%);
+      -webkit-backdrop-filter: blur(24px) saturate(170%);
     }
 
     .hero::before {
@@ -216,16 +221,30 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(120deg, rgba(255,255,255,0.22), transparent 35%, transparent 70%, rgba(255,255,255,0.12));
+        radial-gradient(circle at 16% 14%, rgba(255,255,255,0.46), transparent 32%),
+        linear-gradient(120deg, rgba(255,255,255,0.22), transparent 45%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(22,63,49,0.08) 1px, transparent 1px),
+        linear-gradient(rgba(22,63,49,0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.18;
       pointer-events: none;
     }
 
     .hero-grid {
       position: relative;
+      z-index: 2;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 24px;
-      align-items: stretch;
+      max-width: 760px;
     }
 
     .eyebrow {
@@ -240,47 +259,48 @@
     h1 {
       margin: 0 0 18px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.3rem, 4.5vw, 4.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
+      font-size: clamp(2.6rem, 6.2vw, 5.2rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
       font-weight: 500;
       color: var(--green);
+      max-width: 9ch;
     }
 
     .hero-copy p {
       margin: 0;
-      max-width: 60ch;
+      max-width: 58ch;
       color: #4d4a45;
-      line-height: 1.9;
+      line-height: 1.85;
       font-size: 1.04rem;
     }
 
     .hero-note {
-      align-self: end;
-      padding: 22px 20px 20px;
-      border-radius: 28px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.30), rgba(255,255,255,0.10));
-      border: 1px solid rgba(255,255,255,0.34);
+      width: fit-content;
+      max-width: 520px;
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.38);
+      border: 1px solid rgba(255,255,255,0.42);
       box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(26px) saturate(180%);
-      -webkit-backdrop-filter: blur(26px) saturate(180%);
+      backdrop-filter: blur(18px) saturate(170%);
+      -webkit-backdrop-filter: blur(18px) saturate(170%);
     }
 
     .hero-note strong {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       color: var(--green);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.08rem;
+      font-size: 1.03rem;
       font-weight: 600;
-      line-height: 1.5;
+      line-height: 1.4;
     }
 
     .hero-note span {
       color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.85;
+      font-size: 0.92rem;
+      line-height: 1.65;
       display: block;
     }
 
@@ -356,7 +376,7 @@
     }
 
     .grid.two {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 24px;
     }
 
@@ -373,6 +393,18 @@
       line-height: 1.65;
     }
 
+    .field-help {
+      margin: -4px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+
+    .optional {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
     .tiny,
     .hint {
       font-size: 0.83rem;
@@ -383,6 +415,7 @@
     input[type="text"],
     input[type="email"],
     input[type="tel"],
+    input[type="number"],
     select,
     textarea {
       width: 100%;
@@ -428,7 +461,7 @@
     }
 
     .inline {
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: 1fr;
     }
 
     .radio-item,
@@ -540,7 +573,7 @@
     .footer {
       background: linear-gradient(180deg, #1c3b2f, #0f2a22);
       color: #e8e6df;
-      padding: 60px 20px 30px;
+      padding: 54px 20px 26px;
       margin-top: 60px;
       position: relative;
       z-index: 2;
@@ -571,7 +604,7 @@
     }
 
     .footer-icons {
-      margin-top: 20px;
+      margin-top: 18px;
       display: flex;
       gap: 14px;
       color: #cfcac1;
@@ -588,9 +621,9 @@
     }
 
     .footer-col h4 {
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.1em;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       color: #fff;
       text-transform: uppercase;
     }
@@ -602,9 +635,10 @@
     }
 
     .footer-col li {
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       font-size: 14px;
       color: #cfcac1;
+      line-height: 1.45;
     }
 
     .footer-col a {
@@ -618,7 +652,9 @@
 
     .footer-bottom {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.10);
       font-size: 13px;
       color: #a9a49a;
     }
@@ -681,15 +717,20 @@
       box-shadow: 0 16px 34px rgba(22, 63, 49, 0.18);
     }
 
+    @media (min-width: 900px) {
+      .section:first-of-type .grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     @media (max-width: 1080px) {
       .footer-container {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1.4fr 1fr 1fr;
       }
     }
 
     @media (max-width: 920px) {
-      .hero-grid,
-      .grid.two {
+      .hero-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -712,60 +753,64 @@
       }
 
       .footer {
-        padding: 38px 18px 24px;
+        padding: 34px 16px 22px;
         margin-top: 42px;
+        border-radius: 28px 28px 0 0;
       }
 
       .footer-container {
-        grid-template-columns: 1fr;
-        gap: 26px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 18px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
       }
 
       .footer-logo {
-        font-size: 15px;
-        letter-spacing: 0.16em;
-        margin-bottom: 10px;
+        font-size: 14px;
+        letter-spacing: 0.15em;
+        margin-bottom: 8px;
       }
 
       .footer-text {
-        font-size: 13.5px;
-        line-height: 1.65;
+        font-size: 13px;
+        line-height: 1.55;
         max-width: 100%;
       }
 
       .footer-icons {
-        margin-top: 16px;
-        gap: 12px;
+        margin-top: 14px;
+        gap: 11px;
       }
 
       .footer-icons svg {
-        width: 17px;
-        height: 17px;
+        width: 16px;
+        height: 16px;
       }
 
       .footer-col h4 {
-        font-size: 12px;
+        font-size: 11px;
         letter-spacing: 0.12em;
-        margin-bottom: 10px;
+        margin-bottom: 9px;
       }
 
       .footer-col ul {
         display: grid;
-        gap: 7px;
+        gap: 6px;
       }
 
       .footer-col li {
         margin-bottom: 0;
-        font-size: 13.5px;
-        line-height: 1.45;
+        font-size: 12.5px;
+        line-height: 1.35;
       }
 
       .footer-bottom {
-        margin-top: 28px;
-        padding-top: 18px;
-        border-top: 1px solid rgba(255,255,255,0.12);
-        font-size: 12px;
-        line-height: 1.5;
+        margin-top: 24px;
+        padding-top: 14px;
+        font-size: 11.5px;
+        line-height: 1.4;
       }
     }
 
@@ -775,15 +820,20 @@
         padding-top: 14px;
       }
 
-      .hero,
-      .form-shell {
-        padding-left: 18px;
-        padding-right: 18px;
+      .hero {
+        min-height: 310px;
+        padding: 30px 22px;
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(247,241,231,0.94) 0%, rgba(247,241,231,0.82) 58%, rgba(247,241,231,0.58) 100%),
+          url("../Image/apply/vermont-hero.jpg");
+        background-size: cover;
+        background-position: center;
       }
 
       .form-shell {
-        padding-top: 24px;
-        padding-bottom: 24px;
+        padding: 24px 18px;
+        border-radius: 32px;
       }
 
       form {
@@ -792,39 +842,22 @@
 
       .section {
         padding: 24px 18px;
-      }
-
-      .inline {
-        grid-template-columns: 1fr;
+        border-radius: 26px;
       }
     }
 
-    @media (max-width: 480px) {
-      .footer {
-        padding: 32px 16px 22px;
-        border-radius: 28px 28px 0 0;
-      }
-
+    @media (max-width: 420px) {
       .footer-container {
-        gap: 22px;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px 14px;
       }
 
-      .footer-logo {
-        font-size: 14px;
-        letter-spacing: 0.14em;
-      }
-
-      .footer-text,
       .footer-col li {
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .footer-col h4 {
-        font-size: 11.5px;
-      }
-
-      .footer-bottom {
-        font-size: 11.5px;
+        font-size: 10.5px;
       }
     }
   </style>
@@ -872,7 +905,7 @@
           <h1>Apply for your place.</h1>
           <p>
             Join us for a warm and thoughtfully curated Shavuot experience in Vermont —
-            with mountain air, spa time, a swimming pool, fitness space, a gaming room,
+            with mountain air, kosher meals, spa time, a swimming pool, a game room,
             and a beautiful setting to slow down, connect, celebrate, and enjoy the holiday together.
           </p>
         </div>
@@ -880,8 +913,8 @@
         <div class="hero-note">
           <strong>Peaceful. Restful. Beautifully hosted.</strong>
           <span>
-            This retreat is designed to feel spacious, welcoming, and memorable —
-            with comfort, nature, thoughtful details, and a lovely group experience from beginning to end.
+            This application helps us understand who is coming, what stay fits you best,
+            and how to create a warm, well-matched group.
           </span>
         </div>
       </div>
@@ -923,17 +956,35 @@
               <label for="phone">Phone number *</label>
               <input type="tel" id="phone" name="phone" required />
             </div>
+
+            <div class="field">
+              <label for="age">How old are you? *</label>
+              <input
+                type="number"
+                id="age"
+                name="age"
+                min="18"
+                max="120"
+                inputmode="numeric"
+                required
+                placeholder="Your age"
+              />
+            </div>
           </div>
 
           <div class="field">
             <label for="about_you">
-              Tell us about yourself, and anything you might enjoy bringing to the retreat*
+              Tell us about yourself, and anything you might enjoy bringing to the retreat *
             </label>
+            <p class="field-help">
+              A short introduction is perfect. You can mention the kind of energy you bring,
+              where you’re coming from, and if you may be able to help with rides or carpooling.
+            </p>
             <textarea
               id="about_you"
               name="about_you"
               required
-              placeholder="A short introduction is perfect — tell us about yourself, the kind of energy you bring, where you’re coming from, and if you may be able to help with rides or carpooling."
+              placeholder="Write a short introduction..."
             ></textarea>
           </div>
         </div>
@@ -956,79 +1007,74 @@
             </select>
           </div>
 
-          <div class="grid two">
-            <div class="field">
-              <label>Are you coming with someone specific?</label>
-              <div class="radio-group inline">
-                <label class="radio-item">
-                  <input type="radio" name="coming_with_someone" value="Yes" />
-                  <span>Yes</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="coming_with_someone" value="No" />
-                  <span>No</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="coming_with_someone" value="Maybe" />
-                  <span>Maybe</span>
-                </label>
-              </div>
+          <div class="field">
+            <label>Are you coming with someone specific? <span class="optional">(optional)</span></label>
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="coming_with_someone" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="coming_with_someone" value="No" />
+                <span>No</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="coming_with_someone" value="Maybe" />
+                <span>Maybe</span>
+              </label>
             </div>
+          </div>
 
-            <div class="field hidden" id="roommate_name_wrap">
-              <label for="room_with_name">Who are you coming with?</label>
-              <input type="text" id="room_with_name" name="room_with_name" />
-            </div>
+          <div class="field hidden" id="roommate_name_wrap">
+            <label for="room_with_name">Who are you coming with? <span class="optional">(optional)</span></label>
+            <input type="text" id="room_with_name" name="room_with_name" />
           </div>
         </div>
 
-        
         <div class="section">
           <h2>Davening & minyan</h2>
           <p class="section-intro">
             This helps us plan the flow of the holiday with more care.
           </p>
 
-          <div class="grid two">
-            <div class="field">
-              <label>Do you expect to attend minyan?</label>
-              <div class="radio-group inline">
-                <label class="radio-item">
-                  <input type="radio" name="attend_minyan" value="Yes" />
-                  <span>Yes</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="attend_minyan" value="No" />
-                  <span>No</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="attend_minyan" value="Not sure" />
-                  <span>Not sure</span>
-                </label>
-              </div>
+          <div class="field">
+            <label>Do you expect to attend minyan? <span class="optional">(optional)</span></label>
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="attend_minyan" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="attend_minyan" value="No" />
+                <span>No</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="attend_minyan" value="Not sure" />
+                <span>Not sure</span>
+              </label>
             </div>
+          </div>
 
-            <div class="field">
-              <label>Would you be interested in helping lead or support davening?</label>
-              <div class="radio-group inline">
-                <label class="radio-item">
-                  <input type="radio" name="support_davening" value="Yes" />
-                  <span>Yes</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="support_davening" value="Maybe" />
-                  <span>Maybe</span>
-                </label>
-                <label class="radio-item">
-                  <input type="radio" name="support_davening" value="No" />
-                  <span>No</span>
-                </label>
-              </div>
+          <div class="field">
+            <label>Would you be interested in helping lead or support davening? <span class="optional">(optional)</span></label>
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="support_davening" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="support_davening" value="Maybe" />
+                <span>Maybe</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="support_davening" value="No" />
+                <span>No</span>
+              </label>
             </div>
           </div>
 
           <div class="field hidden" id="davening_notes_wrap">
-            <label for="davening_notes">Please add any details</label>
+            <label for="davening_notes">Please add any details <span class="optional">(optional)</span></label>
             <textarea id="davening_notes" name="davening_notes" placeholder="Experience, comfort level, or anything helpful for us to know."></textarea>
           </div>
         </div>
@@ -1040,8 +1086,8 @@
           </p>
 
           <div class="field">
-            <label>Do you have any dietary restrictions or allergies?</label>
-            <div class="choices inline">
+            <label>Do you have any dietary restrictions or allergies? <span class="optional">(optional)</span></label>
+            <div class="choices">
               <label class="check-item">
                 <input type="checkbox" name="dietary_restrictions" value="None" />
                 <span>None</span>
@@ -1074,7 +1120,7 @@
           </div>
 
           <div class="field hidden" id="dietary_other_wrap">
-            <label for="dietary_other">Please specify dietary restriction / allergy</label>
+            <label for="dietary_other">Please specify dietary restriction / allergy <span class="optional">(optional)</span></label>
             <input type="text" id="dietary_other" name="dietary_other" />
           </div>
         </div>
@@ -1086,15 +1132,15 @@
           </p>
 
           <div class="field">
-            <label for="retreat_hopes">What are you hoping to get out of this retreat?</label>
+            <label for="retreat_hopes">What are you hoping to get out of this retreat? <span class="optional">(optional)</span></label>
             <textarea id="retreat_hopes" name="retreat_hopes" placeholder="Community, learning, rest, meeting people, nature, something else..."></textarea>
           </div>
 
-          <div class="field" style="margin-top: 10px;">
-            <label style="margin-bottom: 2px;">Do you wish to help during the retreat?</label>
-            <div class="tiny" style="margin-bottom: 14px;">Limited spots available.</div>
+          <div class="field">
+            <label>Would you like to help during the retreat? <span class="optional">(optional)</span></label>
+            <div class="tiny">There may be a few discounted volunteer/helper spots available.</div>
 
-            <div class="radio-group inline" style="margin-bottom: 22px;">
+            <div class="radio-group">
               <label class="radio-item">
                 <input type="radio" name="help_open" value="Yes" />
                 <span>Yes</span>
@@ -1111,7 +1157,7 @@
           </div>
 
           <div class="field">
-            <label for="heard_about">How did you hear about us?</label>
+            <label for="heard_about">How did you hear about us? <span class="optional">(optional)</span></label>
             <select id="heard_about" name="heard_about">
               <option value="">Select an option</option>
               <option value="Friend">Friend</option>
@@ -1122,34 +1168,30 @@
             </select>
           </div>
 
-          <div class="grid two">
-            <div class="field hidden" id="friend_name_wrap">
-              <label for="friend_name">If a friend referred you, who?</label>
-              <input type="text" id="friend_name" name="friend_name" />
-            </div>
-
-            <div class="field hidden" id="heard_other_wrap">
-              <label for="heard_other">If other, please specify</label>
-              <input type="text" id="heard_other" name="heard_other" />
-            </div>
+          <div class="field hidden" id="friend_name_wrap">
+            <label for="friend_name">If a friend referred you, who? <span class="optional">(optional)</span></label>
+            <input type="text" id="friend_name" name="friend_name" />
           </div>
 
-          <div class="field" style="margin-top: 10px;">
-            <label class="check-item" style="margin-top: 6px;">
+          <div class="field hidden" id="heard_other_wrap">
+            <label for="heard_other">If other, please specify <span class="optional">(optional)</span></label>
+            <input type="text" id="heard_other" name="heard_other" />
+          </div>
+
+          <div class="field">
+            <label class="check-item">
               <input type="checkbox" id="agree_rules" name="agree_rules" value="Yes" required />
-              <span>
-                I agree to the retreat guidelines and cancellation policy, and I’m excited to join this experience with you.
-              </span>
+              <span>I agree to the retreat guidelines and cancellation policy.</span>
             </label>
           </div>
         </div>
 
         <div class="submit-wrap">
-          <button type="submit" class="submit-btn" id="submitBtn">Submit application</button>
+          <button type="submit" class="submit-btn" id="submitBtn">Send my application</button>
           <div id="formStatus" class="status" role="status" aria-live="polite"></div>
           <div class="footer-note">
             By submitting, you’re sharing information that may be used for food planning,
-            general coordination, and general hosting logistics.
+            retreat coordination, and general hosting logistics.
           </div>
         </div>
       </form>
@@ -1158,7 +1200,7 @@
 
   <footer class="footer">
     <div class="footer-container">
-      <div class="footer-col">
+      <div class="footer-col footer-brand">
         <h2 class="footer-logo">HAMSA NOMADS</h2>
         <p class="footer-text">
           Thoughtfully curated kosher travel experiences for meaningful Jewish connection,
@@ -1177,7 +1219,7 @@
         <ul>
           <li><a href="../index.html#experience">Experience</a></li>
           <li><a href="../index.html#gallery">Gallery</a></li>
-          <li><a href="../index.html#details">More Information</a></li>
+          <li><a href="../index.html#details">More Info</a></li>
           <li><a href="../about-us/about-us.html">About</a></li>
         </ul>
       </div>
@@ -1197,7 +1239,7 @@
         <ul>
           <li>hamsanomads.com</li>
           <li>Text: 347-988-8869</li>
-          <li><a href="../index.html">Back to Home</a></li>
+          <li><a href="../index.html">Home</a></li>
         </ul>
       </div>
     </div>
@@ -1277,16 +1319,27 @@
         "last_name",
         "email",
         "phone",
+        "age",
         "reservation_type",
         "about_you"
       ];
+
+      const requiredLabels = {
+        first_name: "Please enter your first name.",
+        last_name: "Please enter your last name.",
+        email: "Please enter your email address.",
+        phone: "Please enter your phone number.",
+        age: "Please enter your age.",
+        reservation_type: "Please choose a stay preference.",
+        about_you: "Please write a short introduction."
+      };
 
       for (const id of requiredIds) {
         const el = document.getElementById(id);
 
         if (!el || !el.value.trim()) {
           if (el) el.focus();
-          showStatus("Please complete all required fields marked with *.", "error");
+          showStatus(requiredLabels[id] || "Please complete this required field.", "error");
           return false;
         }
       }
@@ -1295,7 +1348,7 @@
 
       if (agreeRules && !agreeRules.checked) {
         agreeRules.focus();
-        showStatus("Please agree to the rules before submitting.", "error");
+        showStatus("Please agree to the retreat guidelines and cancellation policy.", "error");
         return false;
       }
 
@@ -1354,7 +1407,7 @@
         toggleConditionalFields();
         hideStatus();
         submitBtn.disabled = false;
-        submitBtn.textContent = "Submit application";
+        submitBtn.textContent = "Send my application";
         openSuccessModal();
       }, 1200);
     });
