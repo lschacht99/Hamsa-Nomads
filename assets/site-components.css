@@ -1,5 +1,5 @@
 /* =========================================================
-   HAMSA NOMADS — SHARED HEADER / FOOTER / SHARE BUTTON
+   HAMSA NOMADS — SHARED HEADER / FOOTER / SHARE BUTTON / BACKGROUND
    File: assets/site-components.css
    ========================================================= */
 
@@ -12,13 +12,14 @@
   --hn-footer-bg-1: #1c3b2f;
   --hn-footer-bg-2: #0f2a22;
 }
+
 /* =========================================================
    GLOBAL HAMSA NOMADS BACKGROUND
-   This makes every page use the same base background.
    ========================================================= */
 
 html {
   background: #f7f3ea;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -37,10 +38,77 @@ body {
     ),
     linear-gradient(180deg, #faf7f0 0%, #f7f3ea 52%, #efe6d8 100%) !important;
   background-attachment: fixed;
-  color: #1c211d;
+  color: var(--hn-ink);
   overflow-x: hidden;
 }
-/* SHARED CONTAINER */
+
+/* =========================================================
+   GLOBAL DRAWING ROUTE LINE BACKGROUND
+   The SVG is inserted from site-components.js.
+   ========================================================= */
+
+.hn-global-route-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.46;
+}
+
+.hn-global-route-overlay svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hn-global-route-line {
+  fill: none;
+  stroke: rgba(28, 30, 25, 0.24);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.hn-global-route-line.back {
+  stroke-width: 3.1;
+  opacity: 0.34;
+}
+
+.hn-global-route-line.front {
+  stroke-width: 1.35;
+  stroke: rgba(28, 30, 25, 0.42);
+  opacity: 0.78;
+}
+
+.hn-global-route-dot {
+  fill: rgba(224, 174, 67, 0.22);
+  stroke: rgba(28, 30, 25, 0.26);
+  stroke-width: 1.2;
+  opacity: 0;
+  transform: scale(0.65);
+  transform-origin: center;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.hn-global-route-dot.is-visible {
+  opacity: 0.72;
+  transform: scale(1);
+}
+
+/* Keeps page content above the shared background line */
+.site-shell,
+main,
+section,
+#site-header,
+#site-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   SHARED CONTAINER
+   ========================================================= */
 
 .hn-shared-container {
   width: min(calc(100% - 32px), 1280px);
@@ -313,7 +381,6 @@ body {
 
 /* =========================================================
    GLOBAL FLOATING SHARE BUTTON
-   Uses hn-shared-* classes to avoid conflict with old page code.
    ========================================================= */
 
 .hn-shared-floating-share {
@@ -413,6 +480,18 @@ body {
 }
 
 @media (max-width: 860px) {
+  .hn-global-route-overlay {
+    opacity: 0.28;
+  }
+
+  .hn-global-route-line.back {
+    stroke-width: 2.25;
+  }
+
+  .hn-global-route-line.front {
+    stroke-width: 1.05;
+  }
+
   .hn-shared-nav {
     flex-direction: column;
     align-items: stretch;
