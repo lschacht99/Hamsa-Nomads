@@ -1503,36 +1503,41 @@
         </div>
       </section>
 
-      <div class="hn-popup-overlay" id="hnTripPopup">
-        <div class="hn-popup-bubble">
-          <button class="hn-popup-close" type="button" id="hnPopupClose" aria-label="Close popup">×</button>
+   <div class="popup-overlay" id="tripPopup">
+  <div class="popup-bubble">
+    <button class="popup-close" type="button" id="popupClose" aria-label="Close popup">×</button>
 
-          <div class="hn-popup-content">
-            <div class="hn-popup-kicker">Join the interest list</div>
-            <h3 class="hn-popup-title" id="hnPopupTitle">Upcoming Trip</h3>
-            <p class="hn-popup-subtitle" id="hnPopupSubtitle">
-              Leave your info and we’ll send details as this trip comes together.
-            </p>
+    <div class="popup-content">
+      <div class="popup-kicker">Join the interest list</div>
+      <h3 class="popup-title" id="popupTitle">Upcoming Trip</h3>
+      <p class="popup-subtitle" id="popupSubtitle">
+        Leave your info and we’ll send details as this trip comes together.
+      </p>
 
-            <form class="hn-popup-form" id="hnTripForm">
-              <input type="hidden" name="tripInterest" id="hnTripInterest" />
+      <form class="popup-form" id="tripForm">
+        <input type="hidden" name="tripInterest" id="tripInterest" />
 
-              <div class="hn-popup-row">
-                <input type="text" name="name" placeholder="Name" required />
-                <input type="text" name="lastName" placeholder="Last Name" required />
-              </div>
-
-              <input type="email" name="email" placeholder="Email" required />
-              <input type="tel" name="phone" placeholder="Phone" required />
-
-              <button class="hn-popup-submit" type="submit">Join interest list</button>
-
-              <div class="hn-popup-message" id="hnPopupMessage"></div>
-            </form>
-          </div>
+        <div class="popup-row">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="text" name="lastName" placeholder="Last Name" required />
         </div>
-      </div>
-    </main>
+
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="tel" name="phone" placeholder="Phone" required />
+
+        <textarea
+          name="suggestion"
+          placeholder="A suggestion, idea, or anything you’d like to share"
+          rows="4"
+        ></textarea>
+
+        <button class="popup-submit" type="submit">Join interest list</button>
+
+        <div class="popup-message" id="popupMessage"></div>
+      </form>
+    </div>
+  </div>
+</div>    </main>
 
     <div class="floating-share">
       <button class="share-main-btn" id="shareBtn" aria-label="Share this page">
