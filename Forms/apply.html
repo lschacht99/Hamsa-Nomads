@@ -375,6 +375,20 @@
       line-height: 1.75;
     }
 
+    .pricing-note {
+      display: inline-flex;
+      width: fit-content;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(22, 63, 49, 0.07);
+      border: 1px solid rgba(22, 63, 49, 0.10);
+      color: var(--green);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      font-weight: 600;
+      margin: -4px 0 0;
+    }
+
     input[type="text"],
     input[type="email"],
     input[type="tel"],
@@ -926,6 +940,11 @@
       >
         <input type="hidden" id="submitted_at" name="submitted_at" value="" />
 
+        <input type="hidden" id="bed_type" name="bed_type" value="" />
+        <input type="hidden" id="selected_price" name="selected_price" value="" />
+        <input type="hidden" id="pricing_basis" name="pricing_basis" value="" />
+        <input type="hidden" id="total_price" name="total_price" value="" />
+
         <div class="section">
           <h2>Who are you?</h2>
           <p class="section-intro">
@@ -966,37 +985,38 @@
                 placeholder="Your age"
               />
             </div>
-           <div class="field">
-  <label for="gender">Sex *</label>
-  <select id="gender" name="Sex" required>
-    <option value="">Select an option</option>
-    <option value="Male">Male</option>
-    <option value="Female">Female</option>
-  </select>
-</div> 
+
+            <div class="field">
+              <label for="gender">Sex *</label>
+              <select id="gender" name="Sex" required>
+                <option value="">Select an option</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
           </div>
 
           <div class="field">
-  <label for="coming_from">Where are you coming from? <span class="optional">(optional)</span></label>
-  <p class="field-help">
-    City, neighborhood, or general area is perfect. This may help us coordinate rides or carpools.
-  </p>
-  <input
-    type="text"
-    id="coming_from"
-    name="coming_from"
-    placeholder="Example: Brooklyn, Albany, Teaneck..."
-  />
-</div>
-          
+            <label for="coming_from">Where are you coming from? <span class="optional">(optional)</span></label>
+            <p class="field-help">
+              City, neighborhood, or general area is perfect. This may help us coordinate rides or carpools.
+            </p>
+            <input
+              type="text"
+              id="coming_from"
+              name="coming_from"
+              placeholder="Example: Brooklyn, Albany, Teaneck..."
+            />
+          </div>
+
           <div class="field">
             <label for="about_you">
               Tell us about yourself, and anything you might enjoy bringing to the retreat *
             </label>
-           <p class="field-help">
-  A short introduction is perfect. You can mention the kind of energy you bring,
-  what drew you to the retreat, and if you may be able to help with rides or carpooling.
-</p>
+            <p class="field-help">
+              A short introduction is perfect. You can mention the kind of energy you bring,
+              what drew you to the retreat, and if you may be able to help with rides or carpooling.
+            </p>
             <textarea
               id="about_you"
               name="about_you"
@@ -1014,14 +1034,73 @@
 
           <div class="field">
             <label for="reservation_type">What type of reservation are you looking for? *</label>
+
+            <p class="pricing-note">
+              Prices are per person, except the private suite.
+            </p>
+
             <select id="reservation_type" name="reservation_type" required>
               <option value="">Select an option</option>
-              <option value="Shared Full Bed - $500">$500 — Shared Full Bed - Shared Room</option>
-              <option value="Bunk Bed - $550">$550 — Bunk Bed - Shared Room</option>
-              <option value="Twin Bed - $650">$650 — Twin Bed - Shared Room</option>
-              <option value="Private Suite - $1350">$1350 — Private Suite (One Queen Bed)</option>
-              <option value="Camping Spot - $350">$350 — Camping Spot</option>
+
+              <option
+                value="Shared Full Bed - Shared Room"
+                data-bed-type="Shared Full Bed"
+                data-price="500"
+                data-pricing-basis="Per person"
+              >
+                $500/person — Shared Full Bed - Shared Room
+              </option>
+
+              <option
+                value="Bunk Bed - Shared Room"
+                data-bed-type="Bunk Bed"
+                data-price="550"
+                data-pricing-basis="Per person"
+              >
+                $550/person — Bunk Bed - Shared Room
+              </option>
+
+              <option
+                value="Twin Bed - Shared Room"
+                data-bed-type="Twin Bed"
+                data-price="650"
+                data-pricing-basis="Per person"
+              >
+                $650/person — Twin Bed - Shared Room
+              </option>
+
+              <option
+                value="Private Suite"
+                data-bed-type="Private Suite - One Queen Bed"
+                data-price="1350"
+                data-pricing-basis="Suite total"
+              >
+                $1350 — Private Suite (One Queen Bed)
+              </option>
+
+              <option
+                value="Camping Spot"
+                data-bed-type="Camping Spot"
+                data-price="350"
+                data-pricing-basis="Per person"
+              >
+                $350/person — Camping Spot
+              </option>
             </select>
+          </div>
+
+          <div class="field">
+            <label for="number_of_people">How many people? *</label>
+            <input
+              type="number"
+              id="number_of_people"
+              name="number_of_people"
+              min="1"
+              max="20"
+              inputmode="numeric"
+              required
+              value="1"
+            />
           </div>
 
           <div class="field">
@@ -1071,7 +1150,6 @@
               </label>
             </div>
           </div>
-
 
           <div class="field hidden" id="davening_notes_wrap">
             <label for="davening_notes">Please add any details <span class="optional">(optional)</span></label>
@@ -1193,6 +1271,7 @@
               <option value="No, probably not">No, probably not</option>
             </select>
           </div>
+
           <label class="agreement-card" for="termsAccepted">
             <input type="checkbox" id="termsAccepted" name="termsAccepted" value="Yes" required>
 
@@ -1251,6 +1330,14 @@
 
     const submittedAtInput = document.getElementById("submitted_at");
 
+    const reservationTypeInput = document.getElementById("reservation_type");
+    const numberOfPeopleInput = document.getElementById("number_of_people");
+
+    const bedTypeInput = document.getElementById("bed_type");
+    const selectedPriceInput = document.getElementById("selected_price");
+    const pricingBasisInput = document.getElementById("pricing_basis");
+    const totalPriceInput = document.getElementById("total_price");
+
     const successModal = document.getElementById("successModal");
     const closeSuccessModal = document.getElementById("closeSuccessModal");
 
@@ -1269,14 +1356,48 @@
       return checked ? checked.value : "";
     }
 
+    function updatePricingFields() {
+      if (!reservationTypeInput || !numberOfPeopleInput) return;
+
+      const selectedOption = reservationTypeInput.options[reservationTypeInput.selectedIndex];
+
+      if (!selectedOption || !reservationTypeInput.value) {
+        if (bedTypeInput) bedTypeInput.value = "";
+        if (selectedPriceInput) selectedPriceInput.value = "";
+        if (pricingBasisInput) pricingBasisInput.value = "";
+        if (totalPriceInput) totalPriceInput.value = "";
+        return;
+      }
+
+      const bedType = selectedOption.dataset.bedType || reservationTypeInput.value;
+      const selectedPrice = Number(selectedOption.dataset.price || 0);
+      const pricingBasis = selectedOption.dataset.pricingBasis || "";
+      const numberOfPeople = Math.max(1, Number(numberOfPeopleInput.value || 1));
+
+      if (numberOfPeopleInput.value && Number(numberOfPeopleInput.value) < 1) {
+        numberOfPeopleInput.value = 1;
+      }
+
+      const isSuite = pricingBasis === "Suite total";
+
+      const totalPrice = isSuite
+        ? selectedPrice
+        : selectedPrice * numberOfPeople;
+
+      if (bedTypeInput) bedTypeInput.value = bedType;
+      if (selectedPriceInput) selectedPriceInput.value = selectedPrice;
+      if (pricingBasisInput) pricingBasisInput.value = pricingBasis;
+      if (totalPriceInput) totalPriceInput.value = totalPrice;
+    }
+
     function toggleConditionalFields() {
       const comingWithSomeone = selectedRadioValue("coming_with_someone");
       if (roommateNameWrap) {
         roommateNameWrap.classList.toggle("hidden", comingWithSomeone !== "Yes");
       }
 
-      const supportDavening = selectedRadioValue("support_davening");
-      const showDavening = supportDavening === "Yes" || supportDavening === "Maybe";
+      const attendMinyan = selectedRadioValue("attend_minyan");
+      const showDavening = attendMinyan === "Not sure";
       if (daveningNotesWrap) daveningNotesWrap.classList.toggle("hidden", !showDavening);
 
       const dietaryOtherCheck = document.getElementById("dietary_other_check");
@@ -1297,7 +1418,9 @@
         "email",
         "phone",
         "age",
+        "gender",
         "reservation_type",
+        "number_of_people",
         "about_you"
       ];
 
@@ -1309,6 +1432,7 @@
         age: "Please enter your age.",
         gender: "Please select your sex.",
         reservation_type: "Please choose a stay preference.",
+        number_of_people: "Please enter how many people are included.",
         about_you: "Please write a short introduction."
       };
 
@@ -1320,6 +1444,14 @@
           showStatus(requiredLabels[id] || "Please complete this required field.", "error");
           return false;
         }
+      }
+
+      const numberOfPeople = Number(numberOfPeopleInput ? numberOfPeopleInput.value : 0);
+
+      if (!numberOfPeople || numberOfPeople < 1) {
+        if (numberOfPeopleInput) numberOfPeopleInput.focus();
+        showStatus("Please enter at least 1 person.", "error");
+        return false;
       }
 
       const termsAccepted = document.getElementById("termsAccepted");
@@ -1353,6 +1485,14 @@
     const heardAbout = document.getElementById("heard_about");
     if (heardAbout) heardAbout.addEventListener("change", toggleConditionalFields);
 
+    if (reservationTypeInput) {
+      reservationTypeInput.addEventListener("change", updatePricingFields);
+    }
+
+    if (numberOfPeopleInput) {
+      numberOfPeopleInput.addEventListener("input", updatePricingFields);
+    }
+
     if (closeSuccessModal) {
       closeSuccessModal.addEventListener("click", closeModal);
     }
@@ -1364,6 +1504,7 @@
     }
 
     toggleConditionalFields();
+    updatePricingFields();
 
     form.addEventListener("submit", function (event) {
       hideStatus();
@@ -1373,6 +1514,7 @@
         return;
       }
 
+      updatePricingFields();
       submittedAtInput.value = new Date().toISOString();
 
       submitBtn.disabled = true;
@@ -1383,6 +1525,7 @@
       setTimeout(() => {
         form.reset();
         toggleConditionalFields();
+        updatePricingFields();
         hideStatus();
         submitBtn.disabled = false;
         submitBtn.textContent = "Send my application";
