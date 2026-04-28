@@ -9,117 +9,376 @@
   <style>
     :root {
       --cream: #f7f3ea;
+      --cream-deep: #f2ecdf;
       --green: #174f19;
+      --green-soft: #e8efe6;
       --gold: #d6a84f;
-      --text: #1f351f;
+      --text: #233723;
+      --muted: rgba(35, 55, 35, 0.72);
+      --line: rgba(23, 79, 25, 0.12);
+      --shadow: 0 22px 70px rgba(23, 79, 25, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--cream);
+      font-family: Inter, Arial, sans-serif;
       color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(214, 168, 79, 0.14), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(23, 79, 25, 0.08), transparent 38%),
+        var(--cream);
     }
 
-    .page {
-      max-width: 1100px;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 243, 234, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      width: min(1480px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 48px 18px 70px;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.02em;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav a:hover {
+      color: var(--green);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 17px;
+      border-radius: 999px;
+      background: var(--green);
+      color: white !important;
+      font-weight: 800;
     }
 
     .hero {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 34px;
+      width: min(1480px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 42px 0 22px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+      gap: 36px;
+      align-items: end;
     }
 
     .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--gold);
+      display: inline-block;
       margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
+      max-width: 720px;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
       color: var(--green);
     }
 
-    .subtitle {
-      margin: 22px auto 0;
-      max-width: 650px;
+    .hero-copy p {
+      margin: 20px 0 0;
+      max-width: 660px;
       font-size: 18px;
-      line-height: 1.6;
-      color: rgba(31, 53, 31, 0.78);
+      line-height: 1.62;
+      color: var(--muted);
     }
 
-    .scheduler-frame-wrap {
-      background: white;
-      border-radius: 32px;
-      padding: 10px;
-      box-shadow: 0 24px 70px rgba(23, 79, 25, 0.13);
+    .hero-side {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .note {
+      padding: 15px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.70);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 40px rgba(23, 79, 25, 0.06);
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--green);
+      font-size: 14px;
+    }
+
+    .note span {
+      font-size: 13px;
+      line-height: 1.42;
+      color: var(--muted);
+    }
+
+    .scheduler-wrap {
+      width: min(1560px, calc(100% - 16px));
+      margin: 0 auto;
+      padding: 8px 0 74px;
+    }
+
+    .scheduler-shell {
+      background: rgba(255, 250, 240, 0.58);
+      border: 1px solid var(--line);
+      border-radius: 34px;
       overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .scheduler-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .scheduler-topline strong {
+      color: var(--green);
     }
 
     iframe {
-      display: block;
       width: 100%;
-      height: 1050px;
+      height: 1380px;
       border: 0;
-      border-radius: 24px;
-      background: white;
+      display: block;
+      background: transparent;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-top: 26px;
+    .site-footer {
+      border-top: 1px solid var(--line);
+      background: var(--cream-deep);
+    }
+
+    .footer-inner {
+      width: min(1480px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 26px 0 34px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: var(--green);
-      font-weight: 700;
-      text-decoration: none;
+      font-weight: 800;
     }
 
-    .back-link:hover {
-      text-decoration: underline;
+    .footer-brand img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
     }
 
-    @media (max-width: 700px) {
-      .page {
-        padding-top: 32px;
+    @media (max-width: 1050px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side {
+        max-width: 720px;
       }
 
       iframe {
-        height: 1200px;
+        height: 1540px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        min-height: auto;
+        padding: 12px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        width: 100%;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 13px;
+      }
+
+      .nav-cta {
+        padding: 10px 14px;
+      }
+
+      .hero {
+        padding: 30px 0 16px;
+      }
+
+      .hero-side {
+        grid-template-columns: 1fr;
+      }
+
+      .scheduler-wrap {
+        width: min(100%, calc(100% - 8px));
+      }
+
+      .scheduler-shell {
+        border-radius: 22px;
+      }
+
+      .scheduler-topline {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 16px;
+      }
+
+      iframe {
+        height: 1680px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="page">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <img src="/logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
+        <span>Hamsa Nomads</span>
+      </a>
+
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/trips-page/trips.html">Trips</a>
+        <a href="/Forms/apply.html">Apply</a>
+        <a href="/schedule.html" class="nav-cta">Schedule a Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
     <section class="hero">
-      <div class="eyebrow">Schedule a Call</div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">Short Intro Call</div>
 
-      <h1>Let’s find a time to talk.</h1>
+          <h1>We’d love to know more about you.</h1>
 
-      <p class="subtitle">
-        Pick a quick 10-minute slot to ask about the retreat, rooming, meals,
-        the crowd, minyan, pricing, or anything else you want to understand before joining.
-      </p>
+          <p>
+            Hamsa Nomads is a smaller curated retreat, so we like to have a short call
+            to understand who’s joining, answer your questions, and make sure the vibe feels right.
+          </p>
+        </div>
+
+        <div class="hero-side">
+          <div class="note">
+            <strong>10-minute call</strong>
+            <span>Quick, personal, and easy to schedule.</span>
+          </div>
+
+          <div class="note">
+            <strong>Ask anything</strong>
+            <span>Rooming, meals, crowd, minyan, pricing, or logistics.</span>
+          </div>
+
+          <div class="note">
+            <strong>Calendar invite</strong>
+            <span>You’ll receive the confirmed time by email.</span>
+          </div>
+
+          <div class="note">
+            <strong>Curated group</strong>
+            <span>This helps us shape the retreat thoughtfully.</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="scheduler-frame-wrap">
-      <iframe
-        src="https://script.google.com/macros/s/AKfycby6YCjUZ_IltPp3FL3AvNSann1N5nbPDZegPtBDkDA9FH1xjAYT6ft0BNO3_7Q9O9aZjg/exec"
-        loading="lazy">
-      </iframe>
-    </section>
+    <section class="scheduler-wrap">
+      <div class="scheduler-shell">
+        <div class="scheduler-topline">
+          <div><strong>Schedule a short intro call</strong> · choose a time that works for you</div>
+          <div>All times shown in New York time</div>
+        </div>
 
-    <a class="back-link" href="/">← Back to Hamsa Nomads</a>
+        <iframe
+          src="https://script.google.com/macros/s/AKfycby6YCjUZ_IltPp3FL3AvNSann1N5nbPDZegPtBDkDA9FH1xjAYT6ft0BNO3_7Q9O9aZjg/exec"
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="/logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
+        <span>Hamsa Nomads</span>
+      </div>
+
+      <div>
+        Curated kosher retreats, good people, beautiful places.
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
