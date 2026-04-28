@@ -683,89 +683,97 @@
     }
 /* ================================
    Lightweight Instagram Strip
+   No API, no embed script, fast load
 ================================ */
 
 .hn-social-strip {
-  padding: 32px 18px;
-  background: #f8f3e8;
-  color: #183b2d;
+  padding: 26px 18px;
+  background: transparent;
+  color: var(--forest);
 }
 
 .hn-social-strip-inner {
-  max-width: 980px;
+  width: min(calc(100% - 32px), 920px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 16px;
   align-items: stretch;
-  padding: 18px;
+  padding: 16px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.68);
-  border: 1px solid rgba(179, 138, 61, 0.18);
-  box-shadow: 0 14px 34px rgba(24, 59, 45, 0.08);
+  background:
+    radial-gradient(circle at top left, rgba(184, 139, 47, 0.10), transparent 34%),
+    rgba(255, 252, 246, 0.68);
+  border: 1px solid rgba(39, 69, 55, 0.12);
+  box-shadow: 0 14px 34px rgba(31, 28, 20, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .hn-social-profile {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+  min-width: 0;
 }
 
 .hn-social-avatar {
-  width: 68px;
-  height: 68px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(179, 138, 61, 0.35);
+  border: 2px solid rgba(184, 139, 47, 0.32);
   background: #f8f3e8;
   flex-shrink: 0;
 }
 
 .hn-social-copy p {
-  margin: 0 0 4px;
-  font-size: 0.68rem;
+  margin: 0 0 3px;
+  font-size: 0.66rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #b38a3d;
+  color: var(--gold);
   font-weight: 800;
 }
 
 .hn-social-copy h2 {
-  margin: 0 0 10px;
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin: 0 0 8px;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
   line-height: 1;
   letter-spacing: -0.04em;
-  color: #183b2d;
+  color: var(--forest);
 }
 
 .hn-social-copy a {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
-  padding: 0 15px;
+  min-height: 34px;
+  padding: 0 14px;
   border-radius: 999px;
-  background: #183b2d;
+  background: var(--forest);
   color: #fff;
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 750;
+  font-size: 0.84rem;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(39, 69, 55, 0.14);
 }
 
 .hn-random-social-card {
   position: relative;
   display: block;
-  min-height: 190px;
+  min-height: 150px;
   border-radius: 18px;
   overflow: hidden;
-  background: #183b2d;
+  background: var(--forest);
   text-decoration: none;
   color: #fff;
+  isolation: isolate;
 }
 
 .hn-random-social-card img {
   width: 100%;
   height: 100%;
-  min-height: 190px;
+  min-height: 150px;
   object-fit: cover;
   display: block;
   transition: transform 0.35s ease;
@@ -778,18 +786,15 @@
 .hn-random-social-overlay {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 14px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.68) 100%
-  );
+  padding: 12px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.68) 100%);
+  z-index: 2;
 }
 
 .hn-random-social-overlay span {
   display: block;
-  margin-bottom: 5px;
-  font-size: 0.62rem;
+  margin-bottom: 4px;
+  font-size: 0.58rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 800;
@@ -798,19 +803,24 @@
 
 .hn-random-social-overlay strong {
   display: block;
-  font-size: 0.95rem;
-  line-height: 1.25;
+  font-size: 0.88rem;
+  line-height: 1.22;
   font-weight: 750;
 }
 
 @media (max-width: 720px) {
+  .hn-social-strip {
+    padding: 22px 0;
+  }
+
   .hn-social-strip-inner {
     grid-template-columns: 1fr;
+    width: min(calc(100% - 32px), 560px);
   }
 
   .hn-random-social-card,
   .hn-random-social-card img {
-    min-height: 210px;
+    min-height: 180px;
   }
 }
     
@@ -1889,118 +1899,107 @@
           </div>
         </div>
       </section>
-<!-- Hamsa Nomads Instagram Section -->
-<section class="hn-instagram-section" id="instagram">
-  <div class="hn-instagram-shell">
+<!-- Lightweight Instagram Preview Section -->
+      <section class="hn-social-strip" id="instagram">
+        <div class="hn-social-strip-inner">
+          <div class="hn-social-profile">
+            <img
+              class="hn-social-avatar"
+              src="Image/hamsa-instagram-profile.jpg"
+              alt="Hamsa Nomads Instagram profile"
+              onerror="this.src='Image/hero.jpg';"
+            />
 
-    <!-- LEFT PROFILE SIDE -->
-    <aside class="hn-instagram-profile-card">
-      <img
-        class="hn-instagram-avatar"
-        src="/Image/hamsa-instagram-profile.jpg"
-        alt="Hamsa Nomads Instagram profile"
-      />
+            <div class="hn-social-copy">
+              <p>Follow the journey</p>
+              <h2>@hamsanomads</h2>
+              <a
+                href="https://www.instagram.com/hamsanomads/"
+                target="_blank"
+                rel="noopener"
+              >
+                Open Instagram
+              </a>
+            </div>
+          </div>
 
-      <p class="hn-instagram-eyebrow">Follow the journey</p>
+          <a
+            id="hn-random-social-card"
+            class="hn-random-social-card"
+            href="https://www.instagram.com/hamsanomads/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Open a Hamsa Nomads Instagram post"
+          >
+            <img
+              id="hn-random-social-image"
+              src="Image/hero.jpg"
+              alt="Hamsa Nomads Instagram preview"
+            />
 
-      <h2>@hamsanomads</h2>
-
-      <p class="hn-instagram-description">
-        Retreat moments, Jewish travel, behind-the-scenes planning, and the kind of community we’re building.
-      </p>
-
-      <div class="hn-instagram-tags">
-        <span>Kosher travel</span>
-        <span>Retreats</span>
-        <span>Community</span>
-      </div>
-
-      <a
-        class="hn-instagram-button"
-        href="https://www.instagram.com/hamsanomads/"
-        target="_blank"
-        rel="noopener"
-      >
-        Follow on Instagram
-      </a>
-    </aside>
-
-    <!-- RIGHT RANDOM POST SIDE -->
-    <div class="hn-instagram-feature-card">
-      <div class="hn-instagram-feature-header">
-        <div>
-          <p class="hn-instagram-eyebrow">From Instagram</p>
-          <h3>Small trips. Real moments. Jewish travel.</h3>
+            <div class="hn-random-social-overlay">
+              <span id="hn-random-social-label">From Instagram</span>
+              <strong id="hn-random-social-text">See our latest travel moments</strong>
+            </div>
+          </a>
         </div>
+      </section>
 
-        <button class="hn-instagram-refresh" type="button" id="hn-refresh-instagram-post">
-          Show another
-        </button>
-      </div>
+      <script>
+        const hnSocialPosts = [
+          {
+            url: "https://www.instagram.com/p/DXp7WZIEUXs/",
+            image: "Image/hero.jpg",
+            label: "Retreat moment",
+            text: "A little taste of the Hamsa Nomads vibe"
+          },
+          {
+            url: "https://www.instagram.com/p/DXprd1pkdME/",
+            image: "Image/dining-space.jpg",
+            label: "Jewish travel",
+            text: "Kosher travel, real people, beautiful places"
+          },
+          {
+            url: "https://www.instagram.com/p/DUQldoVkXji/",
+            image: "Image/game-room.png",
+            label: "Behind the scenes",
+            text: "See what we’re building next"
+          },
+          {
+            url: "https://www.instagram.com/p/DUQpZ9aEWK1/",
+            image: "Image/pool.png",
+            label: "From the road",
+            text: "Travel moments with a Jewish soul"
+          },
+          {
+            url: "https://www.instagram.com/p/DUEVDPrE4AD/",
+            image: "Image/exterior.png",
+            label: "Community",
+            text: "Small trips, real moments, warm energy"
+          }
+        ];
 
-      <div class="hn-instagram-random-wrap">
-        <div id="hn-random-instagram-post" class="hn-random-instagram-post">
-          <p class="hn-instagram-loading">Loading Instagram post...</p>
-        </div>
-      </div>
-    </div>
+        document.addEventListener("DOMContentLoaded", function () {
+          const randomPost = hnSocialPosts[Math.floor(Math.random() * hnSocialPosts.length)];
 
-  </div>
-</section>
+          const card = document.getElementById("hn-random-social-card");
+          const image = document.getElementById("hn-random-social-image");
+          const label = document.getElementById("hn-random-social-label");
+          const text = document.getElementById("hn-random-social-text");
 
-<script async src="https://www.instagram.com/embed.js"></script>
+          if (!card || !image || !label || !text || !randomPost) return;
 
-<script>
-  const hnInstagramPosts = [
-    "https://www.instagram.com/p/PASTE_POST_LINK_HERE/",
-    "https://www.instagram.com/reel/PASTE_REEL_LINK_HERE/",
-    "https://www.instagram.com/p/PASTE_POST_LINK_HERE/",
-    "https://www.instagram.com/reel/PASTE_REEL_LINK_HERE/"
-  ];
-
-  let hnLastInstagramPost = null;
-
-  function hnLoadRandomInstagramPost() {
-    const container = document.getElementById("hn-random-instagram-post");
-
-    if (!container || !hnInstagramPosts.length) return;
-
-    let randomUrl = hnInstagramPosts[Math.floor(Math.random() * hnInstagramPosts.length)];
-
-    if (hnInstagramPosts.length > 1) {
-      while (randomUrl === hnLastInstagramPost) {
-        randomUrl = hnInstagramPosts[Math.floor(Math.random() * hnInstagramPosts.length)];
-      }
-    }
-
-    hnLastInstagramPost = randomUrl;
-
-    container.innerHTML = `
-      <blockquote
-        class="instagram-media"
-        data-instgrm-permalink="${randomUrl}"
-        data-instgrm-version="14"
-        style="width:100%; max-width:660px; min-width:0; margin:0 auto;">
-      </blockquote>
-    `;
-
-    if (window.instgrm && window.instgrm.Embeds) {
-      window.instgrm.Embeds.process();
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    hnLoadRandomInstagramPost();
-
-    const refreshButton = document.getElementById("hn-refresh-instagram-post");
-
-    if (refreshButton) {
-      refreshButton.addEventListener("click", hnLoadRandomInstagramPost);
-    }
-  });
-</script>
-    
-      <section class="hn-upcoming-section" id="upcoming-trips">
+          card.href = randomPost.url;
+          image.src = randomPost.image;
+          image.onerror = function () {
+            this.onerror = null;
+            this.src = "Image/hero.jpg";
+          };
+          label.textContent = randomPost.label;
+          text.textContent = randomPost.text;
+        });
+      </script>
+          <section class="hn-upcoming-section" id="upcoming-trips">
         <div class="hn-upcoming-line" aria-hidden="true">
           <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
             <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
