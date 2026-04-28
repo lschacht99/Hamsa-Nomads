@@ -681,87 +681,237 @@
       color: var(--forest);
       font-weight: 700;
     }
-/* Instagram Section */
+/* ================================
+   Hamsa Nomads Instagram Section
+================================ */
+
 .hn-instagram-section {
-  padding: 80px 20px;
-  background: #f8f3e8;
+  padding: clamp(64px, 8vw, 110px) 20px;
+  background:
+    radial-gradient(circle at top left, rgba(194, 151, 84, 0.16), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(24, 59, 45, 0.10), transparent 36%),
+    linear-gradient(180deg, #f8f3e8 0%, #f4ecdd 100%);
   color: #183b2d;
 }
 
-.hn-instagram-inner {
-  max-width: 920px;
+.hn-instagram-shell {
+  max-width: 1240px;
   margin: 0 auto;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.hn-instagram-profile-card,
+.hn-instagram-feature-card {
+  background: rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(179, 138, 61, 0.20);
+  border-radius: 32px;
+  box-shadow: 0 24px 70px rgba(24, 59, 45, 0.11);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hn-instagram-profile-card {
+  padding: 30px;
+  position: sticky;
+  top: 24px;
+}
+
+.hn-instagram-avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 24px;
+  border: 3px solid rgba(179, 138, 61, 0.34);
+  box-shadow: 0 18px 42px rgba(24, 59, 45, 0.16);
+  background: #f8f3e8;
 }
 
 .hn-instagram-eyebrow {
-  margin: 0 0 12px;
-  font-size: 0.78rem;
+  margin: 0 0 10px;
+  font-size: 0.74rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #b38a3d;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-.hn-instagram-section h2 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.04em;
+.hn-instagram-profile-card h2 {
+  margin: 0 0 14px;
+  font-size: clamp(2rem, 4vw, 2.55rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: #183b2d;
 }
 
-.hn-instagram-text {
-  max-width: 620px;
-  margin: 18px auto 34px;
-  font-size: 1rem;
-  line-height: 1.7;
+.hn-instagram-description {
+  margin: 0 0 22px;
   color: rgba(24, 59, 45, 0.78);
+  line-height: 1.7;
+  font-size: 1rem;
 }
 
-.hn-instagram-embed-wrap {
+.hn-instagram-tags {
   display: flex;
-  justify-content: center;
-  margin: 0 auto 28px;
-  padding: 18px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.48);
-  border: 1px solid rgba(179, 138, 61, 0.22);
-  box-shadow: 0 24px 70px rgba(24, 59, 45, 0.12);
-  overflow: hidden;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
-.hn-instagram-button {
+.hn-instagram-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(24, 59, 45, 0.07);
+  border: 1px solid rgba(24, 59, 45, 0.09);
+  color: #183b2d;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.hn-instagram-button,
+.hn-instagram-refresh {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  padding: 0 24px;
+  padding: 0 22px;
   border-radius: 999px;
   background: #183b2d;
   color: #fff;
+  border: none;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 750;
   font-size: 0.95rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.hn-instagram-button:hover {
-  transform: translateY(-2px);
+.hn-instagram-button:hover,
+.hn-instagram-refresh:hover {
   background: #234f3e;
-  box-shadow: 0 14px 30px rgba(24, 59, 45, 0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(24, 59, 45, 0.18);
 }
 
+.hn-instagram-feature-card {
+  padding: clamp(20px, 3vw, 30px);
+  min-width: 0;
+}
+
+.hn-instagram-feature-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+.hn-instagram-feature-header h3 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  color: #183b2d;
+}
+
+.hn-instagram-random-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 720px;
+  padding: 18px;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.34));
+  border: 1px solid rgba(24, 59, 45, 0.08);
+  overflow: hidden;
+}
+
+.hn-random-instagram-post {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Makes Instagram embed larger and cleaner */
+.hn-random-instagram-post blockquote.instagram-media {
+  width: 100% !important;
+  max-width: 660px !important;
+  min-width: 0 !important;
+  margin: 0 auto !important;
+}
+
+.hn-instagram-loading {
+  margin: 0;
+  padding: 28px;
+  color: rgba(24, 59, 45, 0.68);
+  font-size: 1rem;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .hn-instagram-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .hn-instagram-profile-card {
+    position: static;
+  }
+
+  .hn-instagram-feature-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hn-instagram-random-wrap {
+    min-height: 650px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 640px) {
   .hn-instagram-section {
-    padding: 56px 16px;
+    padding: 58px 16px;
   }
 
-  .hn-instagram-embed-wrap {
-    padding: 10px;
-    border-radius: 22px;
+  .hn-instagram-profile-card,
+  .hn-instagram-feature-card {
+    border-radius: 24px;
+    padding: 20px;
+  }
+
+  .hn-instagram-avatar {
+    width: 92px;
+    height: 92px;
+  }
+
+  .hn-instagram-feature-header h3 {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .hn-instagram-refresh,
+  .hn-instagram-button {
+    width: 100%;
+  }
+
+  .hn-instagram-random-wrap {
+    min-height: 560px;
+    padding: 8px;
+    border-radius: 20px;
   }
 }
+    
     .hn-upcoming-section {
       position: relative;
       overflow: hidden;
@@ -1837,37 +1987,117 @@
           </div>
         </div>
       </section>
-<!-- Instagram Section -->
+<!-- Hamsa Nomads Instagram Section -->
 <section class="hn-instagram-section" id="instagram">
-  <div class="hn-instagram-inner">
-    <p class="hn-instagram-eyebrow">Follow the journey</p>
+  <div class="hn-instagram-shell">
 
-    <h2>See the Hamsa Nomads vibe</h2>
+    <!-- LEFT PROFILE SIDE -->
+    <aside class="hn-instagram-profile-card">
+      <img
+        class="hn-instagram-avatar"
+        src="/Image/hamsa-instagram-profile.jpg"
+        alt="Hamsa Nomads Instagram profile"
+      />
 
-    <p class="hn-instagram-text">
-      Retreat updates, travel moments, behind-the-scenes planning, and a little taste
-      of the community we’re building.
-    </p>
+      <p class="hn-instagram-eyebrow">Follow the journey</p>
 
-    <div class="hn-instagram-embed-wrap">
-      <blockquote
-        class="instagram-media"
-        data-instgrm-permalink="https://www.instagram.com/hamsanomads/"
-        data-instgrm-version="14">
-      </blockquote>
+      <h2>@hamsanomads</h2>
+
+      <p class="hn-instagram-description">
+        Retreat moments, Jewish travel, behind-the-scenes planning, and the kind of community we’re building.
+      </p>
+
+      <div class="hn-instagram-tags">
+        <span>Kosher travel</span>
+        <span>Retreats</span>
+        <span>Community</span>
+      </div>
+
+      <a
+        class="hn-instagram-button"
+        href="https://www.instagram.com/hamsanomads/"
+        target="_blank"
+        rel="noopener"
+      >
+        Follow on Instagram
+      </a>
+    </aside>
+
+    <!-- RIGHT RANDOM POST SIDE -->
+    <div class="hn-instagram-feature-card">
+      <div class="hn-instagram-feature-header">
+        <div>
+          <p class="hn-instagram-eyebrow">From Instagram</p>
+          <h3>Small trips. Real moments. Jewish travel.</h3>
+        </div>
+
+        <button class="hn-instagram-refresh" type="button" id="hn-refresh-instagram-post">
+          Show another
+        </button>
+      </div>
+
+      <div class="hn-instagram-random-wrap">
+        <div id="hn-random-instagram-post" class="hn-random-instagram-post">
+          <p class="hn-instagram-loading">Loading Instagram post...</p>
+        </div>
+      </div>
     </div>
 
-    <a
-      class="hn-instagram-button"
-      href="https://www.instagram.com/hamsanomads/"
-      target="_blank"
-      rel="noopener">
-      Follow us on Instagram
-    </a>
   </div>
 </section>
 
 <script async src="https://www.instagram.com/embed.js"></script>
+
+<script>
+  const hnInstagramPosts = [
+"https://www.instagram.com/p/DXp7WZIEUXs/"
+"https://www.instagram.com/p/DXprd1pkdME/"
+"https://www.instagram.com/p/DUQldoVkXji/"
+"https://www.instagram.com/p/DUQpZ9aEWK1/"
+"https://www.instagram.com/p/DUEVDPrE4AD/"
+  ];
+
+  let hnLastInstagramPost = null;
+
+  function hnLoadRandomInstagramPost() {
+    const container = document.getElementById("hn-random-instagram-post");
+
+    if (!container || !hnInstagramPosts.length) return;
+
+    let randomUrl = hnInstagramPosts[Math.floor(Math.random() * hnInstagramPosts.length)];
+
+    if (hnInstagramPosts.length > 1) {
+      while (randomUrl === hnLastInstagramPost) {
+        randomUrl = hnInstagramPosts[Math.floor(Math.random() * hnInstagramPosts.length)];
+      }
+    }
+
+    hnLastInstagramPost = randomUrl;
+
+    container.innerHTML = `
+      <blockquote
+        class="instagram-media"
+        data-instgrm-permalink="${randomUrl}"
+        data-instgrm-version="14"
+        style="width:100%; max-width:660px; min-width:0; margin:0 auto;">
+      </blockquote>
+    `;
+
+    if (window.instgrm && window.instgrm.Embeds) {
+      window.instgrm.Embeds.process();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    hnLoadRandomInstagramPost();
+
+    const refreshButton = document.getElementById("hn-refresh-instagram-post");
+
+    if (refreshButton) {
+      refreshButton.addEventListener("click", hnLoadRandomInstagramPost);
+    }
+  });
+</script>
     
       <section class="hn-upcoming-section" id="upcoming-trips">
         <div class="hn-upcoming-line" aria-hidden="true">
