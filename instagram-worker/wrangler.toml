@@ -1,3 +1,6 @@
 name = "hamsa-instagram-feed"
 main = "src/index.js"
 compatibility_date = "2026-04-28"
+
+[observability]
+enabled = true
