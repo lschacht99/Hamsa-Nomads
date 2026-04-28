@@ -107,6 +107,22 @@
       padding-top: 26px;
     }
 
+    .payment-hero-gif {
+      width: min(760px, 100%);
+      margin: 0 auto 28px;
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: 0 22px 60px rgba(34, 54, 44, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .payment-hero-gif img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     .eyebrow {
       text-transform: uppercase;
       letter-spacing: 0.18em;
@@ -647,6 +663,11 @@
         font-size: 44px;
       }
 
+      .payment-hero-gif {
+        border-radius: 24px;
+        margin-bottom: 22px;
+      }
+
       .payment-reminder {
         position: relative;
         right: auto;
@@ -666,159 +687,7 @@
     }
   </style>
 </head>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const params = new URLSearchParams(window.location.search);
 
-  const data = {
-    firstName: params.get("firstName") || "",
-    lastName: params.get("lastName") || "",
-    email: params.get("email") || "",
-    phone: params.get("phone") || "",
-    amount: params.get("amount") || params.get("totalPrice") || "",
-    reservation: params.get("reservation") || params.get("reservationType") || "",
-    bedType: params.get("bedType") || "",
-    people: params.get("people") || ""
-  };
-
-  function normalize(value) {
-    return String(value || "")
-      .toLowerCase()
-      .replace(/\$/g, "")
-      .replace(/[^a-z0-9]+/g, " ")
-      .trim();
-  }
-
-  function findFieldByLabel(labelText) {
-    const labels = Array.from(document.querySelectorAll("label"));
-
-    const label = labels.find(label =>
-      normalize(label.textContent).includes(normalize(labelText))
-    );
-
-    if (!label) return null;
-
-    const forId = label.getAttribute("for");
-
-    if (forId) {
-      const field = document.getElementById(forId);
-      if (field) return field;
-    }
-
-    const insideField = label.querySelector("input, select, textarea");
-    if (insideField) return insideField;
-
-    let parent = label.parentElement;
-
-    for (let i = 0; i < 5 && parent; i++) {
-      const field = parent.querySelector("input, select, textarea");
-      if (field) return field;
-      parent = parent.parentElement;
-    }
-
-    return null;
-  }
-
-  function findField(possibleSelectors, labelText) {
-    for (const selector of possibleSelectors) {
-      const field =
-        document.querySelector(`[name="${selector}"]`) ||
-        document.querySelector(`#${selector}`);
-
-      if (field) return field;
-    }
-
-    return findFieldByLabel(labelText);
-  }
-
-  function setValue(field, value) {
-    if (!field || !value) return;
-
-    field.value = value;
-    field.dispatchEvent(new Event("input", { bubbles: true }));
-    field.dispatchEvent(new Event("change", { bubbles: true }));
-  }
-
-  function setSelect(select, reservation, bedType, amount) {
-    if (!select) return;
-
-    const options = Array.from(select.options);
-    const wanted = normalize([reservation, bedType, amount].filter(Boolean).join(" "));
-    const wantedAmount = normalize(amount);
-
-    let match = null;
-
-    if (wanted) {
-      match = options.find(option => {
-        const optionText = normalize(option.textContent);
-        return wanted.includes(optionText) || optionText.includes(wanted);
-      });
-    }
-
-    if (!match && amount) {
-      match = options.find(option => normalize(option.textContent).includes(wantedAmount));
-    }
-
-    if (!match && bedType) {
-      const wantedBed = normalize(bedType);
-      match = options.find(option => normalize(option.textContent).includes(wantedBed));
-    }
-
-    if (!match && reservation) {
-      const wantedReservation = normalize(reservation);
-      match = options.find(option => normalize(option.textContent).includes(wantedReservation));
-    }
-
-    if (match) {
-      select.value = match.value;
-      select.dispatchEvent(new Event("input", { bubbles: true }));
-      select.dispatchEvent(new Event("change", { bubbles: true }));
-    }
-  }
-
-  const firstNameField = findField(
-    ["firstName", "first-name", "first_name", "First Name"],
-    "First Name"
-  );
-
-  const lastNameField = findField(
-    ["lastName", "last-name", "last_name", "Last Name"],
-    "Last Name"
-  );
-
-  const emailField = findField(
-    ["email", "Email", "customerEmail"],
-    "Email"
-  );
-
-  const phoneField = findField(
-    ["phone", "Phone", "customerPhone"],
-    "Phone"
-  );
-
-  const amountField = findField(
-    ["amount", "Amount", "amountToPay", "amount-to-pay", "paymentAmount", "totalPrice"],
-    "Amount to Pay"
-  );
-
-  const reservationField = findField(
-    ["reservation", "reservationType", "reservation-type", "Reservation Type"],
-    "Reservation Type"
-  );
-
-  setValue(firstNameField, data.firstName);
-  setValue(lastNameField, data.lastName);
-  setValue(emailField, data.email);
-  setValue(phoneField, data.phone);
-  setValue(amountField, data.amount);
-
-  if (reservationField && reservationField.tagName === "SELECT") {
-    setSelect(reservationField, data.reservation, data.bedType, data.amount);
-  } else {
-    setValue(reservationField, data.reservation);
-  }
-});
-</script>
 <body>
   <div id="site-header"></div>
 
@@ -844,6 +713,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <main class="page">
     <section class="hero">
+      <div class="payment-hero-gif">
+        <img src="https://www.hamsanomads.com/Image/confirm_your_spot_cream.gif" alt="Confirm your Shavuot spot">
+      </div>
+
       <div class="eyebrow">Next Step: Secure Your Shavuot Spot</div>
       <h1>You’re One Step Closer to Shavuot</h1>
       <p>
@@ -896,6 +769,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="field">
             <label for="amountPaid">Amount to Pay</label>
             <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
+            <input id="numberOfPeople" name="numberOfPeople" type="hidden">
           </div>
 
           <div class="field">
@@ -1040,20 +914,163 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentFinalPrice = 0;
     let currentDiscountStatus = "No code entered";
 
+    const HN_PREFILL_DATA = HN_getPaymentPrefillData();
+
+    let HN_isApplyingPrefill = false;
+    let HN_usingPrefillAmount = false;
+
     function formatMoney(number) {
       return "$" + Number(number || 0).toFixed(2);
+    }
+
+    function HN_getPaymentPrefillData() {
+      const params = new URLSearchParams(window.location.search);
+
+      return {
+        firstName: params.get("firstName") || "",
+        lastName: params.get("lastName") || "",
+        email: params.get("email") || "",
+        phone: params.get("phone") || "",
+        amount: params.get("amount") || params.get("totalPrice") || "",
+        reservation: params.get("reservation") || "",
+        reservationType: params.get("reservationType") || "",
+        bedType: params.get("bedType") || "",
+        people: params.get("people") || ""
+      };
+    }
+
+    function HN_cleanMoney(value) {
+      const number = Number(String(value || "").replace(/[^0-9.]/g, ""));
+      return isNaN(number) ? 0 : number;
+    }
+
+    function HN_normalize(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/\$/g, "")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+    }
+
+    function HN_setValueById(id, value) {
+      const field = document.getElementById(id);
+
+      if (!field || !value) return;
+
+      field.value = value;
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      field.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    function HN_findReservationOption(data) {
+      const options = Array.from(reservationType.options);
+
+      const reservationText = HN_normalize(
+        [
+          data.reservation,
+          data.reservationType,
+          data.bedType
+        ].filter(Boolean).join(" ")
+      );
+
+      const amountNumber = HN_cleanMoney(data.amount);
+
+      let match = null;
+
+      if (reservationText) {
+        match = options.find(option => {
+          const optionText = HN_normalize(option.textContent);
+          const optionValue = HN_normalize(option.value);
+
+          return (
+            optionText.includes(reservationText) ||
+            reservationText.includes(optionText) ||
+            optionValue.includes(reservationText) ||
+            reservationText.includes(optionValue)
+          );
+        });
+      }
+
+      if (!match && data.bedType) {
+        const bedText = HN_normalize(data.bedType);
+
+        match = options.find(option => {
+          const optionText = HN_normalize(option.textContent);
+          const optionValue = HN_normalize(option.value);
+
+          return optionText.includes(bedText) || optionValue.includes(bedText);
+        });
+      }
+
+      if (!match && data.reservationType) {
+        const reservationTypeText = HN_normalize(data.reservationType);
+
+        match = options.find(option => {
+          const optionText = HN_normalize(option.textContent);
+          const optionValue = HN_normalize(option.value);
+
+          return optionText.includes(reservationTypeText) || optionValue.includes(reservationTypeText);
+        });
+      }
+
+      if (!match && amountNumber > 0) {
+        match = options.find(option => Number(option.dataset.price || 0) === amountNumber);
+      }
+
+      return match;
+    }
+
+    function HN_applyPrefillData() {
+      const data = HN_PREFILL_DATA;
+
+      HN_setValueById("firstName", data.firstName);
+      HN_setValueById("lastName", data.lastName);
+      HN_setValueById("email", data.email);
+      HN_setValueById("phone", data.phone);
+      HN_setValueById("numberOfPeople", data.people);
+
+      const prefillAmount = HN_cleanMoney(data.amount);
+
+      if (prefillAmount > 0) {
+        HN_usingPrefillAmount = true;
+        currentOriginalPrice = prefillAmount;
+        currentFinalPrice = prefillAmount;
+        amountPaid.value = formatMoney(prefillAmount);
+      }
+
+      const matchingOption = HN_findReservationOption(data);
+
+      if (matchingOption) {
+        HN_isApplyingPrefill = true;
+        reservationType.value = matchingOption.value;
+        reservationType.dispatchEvent(new Event("change", { bubbles: true }));
+        HN_isApplyingPrefill = false;
+      }
+
+      if (prefillAmount > 0) {
+        HN_usingPrefillAmount = true;
+        currentOriginalPrice = prefillAmount;
+        currentFinalPrice = prefillAmount;
+        amountPaid.value = formatMoney(prefillAmount);
+      }
     }
 
     function calculatePrice() {
       const selectedOption = reservationType.options[reservationType.selectedIndex];
       const basePrice = Number(selectedOption.dataset.price || 0);
+      const prefillAmount = HN_cleanMoney(HN_PREFILL_DATA.amount);
       const code = discountCode.value.trim();
 
-      currentOriginalPrice = basePrice;
-      currentFinalPrice = basePrice;
+      const finalBasePrice =
+        HN_usingPrefillAmount && prefillAmount > 0
+          ? prefillAmount
+          : basePrice;
+
+      currentOriginalPrice = finalBasePrice;
+      currentFinalPrice = finalBasePrice;
       currentDiscountStatus = code.length > 0 ? "Pending verification" : "No code entered";
 
-      amountPaid.value = basePrice > 0 ? formatMoney(basePrice) : "";
+      amountPaid.value = finalBasePrice > 0 ? formatMoney(finalBasePrice) : "";
 
       if (code.length > 0) {
         discountMessage.classList.add("show");
@@ -1064,7 +1081,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    reservationType.addEventListener("change", calculatePrice);
+    reservationType.addEventListener("change", function () {
+      if (!HN_isApplyingPrefill) {
+        HN_usingPrefillAmount = false;
+      }
+
+      calculatePrice();
+    });
+
     discountCode.addEventListener("input", calculatePrice);
 
     paymentMethod.addEventListener("focus", () => {
@@ -1113,6 +1137,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    HN_applyPrefillData();
+    calculatePrice();
+
     form.addEventListener("submit", async function (event) {
       event.preventDefault();
 
@@ -1159,6 +1186,7 @@ document.addEventListener("DOMContentLoaded", function () {
           lastName: document.getElementById("lastName").value.trim(),
           email: document.getElementById("email").value.trim(),
           phone: document.getElementById("phone").value.trim(),
+          numberOfPeople: document.getElementById("numberOfPeople").value.trim(),
           reservationType: reservationType.value,
           originalPrice: formatMoney(currentOriginalPrice),
           discountCode: discountCode.value.trim(),
