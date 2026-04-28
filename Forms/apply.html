@@ -1252,26 +1252,23 @@
             <textarea id="retreat_hopes" name="retreat_hopes" placeholder="Community, learning, rest, meeting people, nature, something else..."></textarea>
           </div>
 
-          <div class="field">
-            <label>Would you like to help during the retreat? <span class="optional">(optional)</span></label>
-            <div class="tiny">Limited volunteer/helper spots available.</div>
+      <label for="helpTeam">Would you like to join the volunteer team?</label>
 
-            <div class="radio-group">
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="Yes" />
-                <span>Yes</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="Maybe" />
-                <span>Maybe</span>
-              </label>
-              <label class="radio-item">
-                <input type="radio" name="help_open" value="No" />
-                <span>No</span>
-              </label>
-            </div>
-          </div>
+<p class="field-note">
+  We’re looking for a small group of volunteers to help with setup, meals, cleanup, activities, and general retreat logistics.
+  Volunteers who are selected and complete their assigned help shifts will receive a discount refunded at the end of the trip.
+</p>
 
+<select id="helpTeam" name="helpTeam">
+  <option value="">Select an option</option>
+  <option value="Yes - interested in volunteering">Yes, I’m interested in joining the volunteer help team</option>
+  <option value="Maybe - wants more details">Maybe — I’d like more details</option>
+    <option value="Not available this time">Not available for the volunteer team this time</option>
+</select>
+
+<p class="field-note small">
+  Volunteer spots are limited and not guaranteed. If selected, we’ll confirm the expected responsibilities and discount amount with you before the retreat.
+</p>
           <div class="field">
             <label for="heard_about">How did you hear about us? <span class="optional">(optional)</span></label>
             <select id="heard_about" name="heard_about">
