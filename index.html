@@ -682,145 +682,264 @@
       font-weight: 700;
     }
 /* ================================
-   Lightweight Instagram Strip
-   No API, no embed script, fast load
+   Live Instagram Feed
+   Connected to Cloudflare Worker
 ================================ */
 
-.hn-social-strip {
-  padding: 26px 18px;
+.hn-live-instagram-section {
+  padding: 34px 0;
   background: transparent;
   color: var(--forest);
 }
 
-.hn-social-strip-inner {
-  width: min(calc(100% - 32px), 920px);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 16px;
-  align-items: stretch;
-  padding: 16px;
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at top left, rgba(184, 139, 47, 0.10), transparent 34%),
-    rgba(255, 252, 246, 0.68);
-  border: 1px solid rgba(39, 69, 55, 0.12);
-  box-shadow: 0 14px 34px rgba(31, 28, 20, 0.07);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+.hn-live-instagram-card {
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 28px;
+  overflow: hidden;
 }
 
-.hn-social-profile {
+.hn-live-instagram-header {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.hn-live-instagram-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   min-width: 0;
 }
 
-.hn-social-avatar {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
+.hn-live-instagram-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 999px;
   object-fit: cover;
-  border: 2px solid rgba(184, 139, 47, 0.32);
+  border: 2px solid rgba(184, 139, 47, 0.34);
   background: #f8f3e8;
   flex-shrink: 0;
 }
 
-.hn-social-copy p {
-  margin: 0 0 3px;
-  font-size: 0.66rem;
+.hn-live-instagram-eyebrow {
+  margin: 0 0 4px;
+  font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 800;
 }
 
-.hn-social-copy h2 {
-  margin: 0 0 8px;
-  font-size: clamp(1.35rem, 3vw, 1.9rem);
+.hn-live-instagram-profile h2 {
+  margin: 0;
+  color: var(--forest);
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--forest);
 }
 
-.hn-social-copy a {
+.hn-live-instagram-profile p:not(.hn-live-instagram-eyebrow) {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.45;
+  max-width: 540px;
+}
+
+.hn-live-instagram-follow {
   display: inline-flex;
+  justify-content: center;
   align-items: center;
-  min-height: 34px;
-  padding: 0 14px;
+  min-height: 42px;
+  padding: 0 18px;
   border-radius: 999px;
   background: var(--forest);
   color: #fff;
   text-decoration: none;
-  font-size: 0.84rem;
-  font-weight: 700;
-  box-shadow: 0 10px 22px rgba(39, 69, 55, 0.14);
+  font-size: 0.9rem;
+  font-weight: 750;
+  white-space: nowrap;
+  box-shadow: 0 12px 28px rgba(39, 69, 55, 0.18);
 }
 
-.hn-random-social-card {
+.hn-live-instagram-body {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.hn-live-instagram-featured {
   position: relative;
   display: block;
-  min-height: 150px;
-  border-radius: 18px;
+  min-height: 330px;
+  border-radius: 22px;
   overflow: hidden;
-  background: var(--forest);
-  text-decoration: none;
+  background: rgba(39, 69, 55, 0.12);
   color: #fff;
-  isolation: isolate;
+  text-decoration: none;
 }
 
-.hn-random-social-card img {
+.hn-live-instagram-featured img {
   width: 100%;
   height: 100%;
-  min-height: 150px;
+  min-height: 330px;
   object-fit: cover;
   display: block;
-  transition: transform 0.35s ease;
+  transition: transform 0.35s ease, filter 0.35s ease;
 }
 
-.hn-random-social-card:hover img {
+.hn-live-instagram-featured:hover img {
   transform: scale(1.04);
+  filter: brightness(0.88);
 }
 
-.hn-random-social-overlay {
+.hn-live-instagram-featured-overlay {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 12px;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.68) 100%);
-  z-index: 2;
+  padding: 18px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 100%);
 }
 
-.hn-random-social-overlay span {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 0.58rem;
-  letter-spacing: 0.14em;
+.hn-live-instagram-featured-overlay span {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 800;
-  opacity: 0.9;
 }
 
-.hn-random-social-overlay strong {
+.hn-live-instagram-featured-overlay strong {
   display: block;
-  font-size: 0.88rem;
-  line-height: 1.22;
-  font-weight: 750;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.25;
 }
 
-@media (max-width: 720px) {
-  .hn-social-strip {
-    padding: 22px 0;
-  }
+.hn-live-instagram-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
 
-  .hn-social-strip-inner {
+.hn-live-instagram-topline span {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.hn-live-instagram-topline button {
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(39, 69, 55, 0.14);
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--forest);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.hn-live-instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.hn-live-instagram-post {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(39, 69, 55, 0.12);
+  text-decoration: none;
+  color: #fff;
+}
+
+.hn-live-instagram-post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.hn-live-instagram-post:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.85);
+}
+
+.hn-live-instagram-type {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(24, 59, 45, 0.76);
+  color: #fff;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.hn-live-instagram-placeholder,
+.hn-live-instagram-error {
+  min-height: 230px;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 900px) {
+  .hn-live-instagram-body {
     grid-template-columns: 1fr;
-    width: min(calc(100% - 32px), 560px);
   }
 
-  .hn-random-social-card,
-  .hn-random-social-card img {
-    min-height: 180px;
+  .hn-live-instagram-featured,
+  .hn-live-instagram-featured img {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hn-live-instagram-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hn-live-instagram-profile {
+    align-items: flex-start;
+  }
+
+  .hn-live-instagram-avatar {
+    width: 58px;
+    height: 58px;
+  }
+
+  .hn-live-instagram-follow {
+    width: 100%;
+  }
+
+  .hn-live-instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hn-live-instagram-featured,
+  .hn-live-instagram-featured img {
+    min-height: 260px;
   }
 }
     
@@ -1899,107 +2018,205 @@
           </div>
         </div>
       </section>
-<!-- Lightweight Instagram Preview Section -->
-      <section class="hn-social-strip" id="instagram">
-        <div class="hn-social-strip-inner">
-          <div class="hn-social-profile">
-            <img
-              class="hn-social-avatar"
-              src="Image/hamsa-instagram-profile.jpg"
-              alt="Hamsa Nomads Instagram profile"
-              onerror="this.src='Image/hero.jpg';"
-            />
+<!-- Connected Hamsa Nomads Instagram Feed -->
+      <section class="hn-live-instagram-section" id="instagram">
+        <div class="container">
+          <div class="hn-live-instagram-card glass">
+            <div class="hn-live-instagram-header">
+              <div class="hn-live-instagram-profile">
+                <img
+                  class="hn-live-instagram-avatar"
+                  src="Image/hamsa-instagram-profile.jpg"
+                  alt="Hamsa Nomads Instagram profile"
+                  onerror="this.src='Image/hero.jpg';"
+                />
 
-            <div class="hn-social-copy">
-              <p>Follow the journey</p>
-              <h2>@hamsanomads</h2>
+                <div>
+                  <p class="hn-live-instagram-eyebrow">Follow the journey</p>
+                  <h2>@hamsanomads</h2>
+                  <p>
+                    Retreat updates, Jewish travel moments, and behind-the-scenes from Hamsa Nomads.
+                  </p>
+                </div>
+              </div>
+
               <a
+                class="hn-live-instagram-follow"
                 href="https://www.instagram.com/hamsanomads/"
                 target="_blank"
                 rel="noopener"
               >
-                Open Instagram
+                Follow
               </a>
             </div>
-          </div>
 
-          <a
-            id="hn-random-social-card"
-            class="hn-random-social-card"
-            href="https://www.instagram.com/hamsanomads/"
-            target="_blank"
-            rel="noopener"
-            aria-label="Open a Hamsa Nomads Instagram post"
-          >
-            <img
-              id="hn-random-social-image"
-              src="Image/hero.jpg"
-              alt="Hamsa Nomads Instagram preview"
-            />
+            <div class="hn-live-instagram-body">
+              <a
+                id="hnInstagramFeatured"
+                class="hn-live-instagram-featured"
+                href="https://www.instagram.com/hamsanomads/"
+                target="_blank"
+                rel="noopener"
+              >
+                <div class="hn-live-instagram-placeholder">
+                  Loading Instagram...
+                </div>
+              </a>
 
-            <div class="hn-random-social-overlay">
-              <span id="hn-random-social-label">From Instagram</span>
-              <strong id="hn-random-social-text">See our latest travel moments</strong>
+              <div>
+                <div class="hn-live-instagram-topline">
+                  <span>Latest from Instagram</span>
+                  <button type="button" id="hnInstagramRefresh">Shuffle</button>
+                </div>
+
+                <div id="hnInstagramGrid" class="hn-live-instagram-grid"></div>
+              </div>
             </div>
-          </a>
+          </div>
         </div>
       </section>
 
       <script>
-        const hnSocialPosts = [
-          {
-            url: "https://www.instagram.com/p/DXp7WZIEUXs/",
-            image: "Image/hero.jpg",
-            label: "Retreat moment",
-            text: "A little taste of the Hamsa Nomads vibe"
-          },
-          {
-            url: "https://www.instagram.com/p/DXprd1pkdME/",
-            image: "Image/dining-space.jpg",
-            label: "Jewish travel",
-            text: "Kosher travel, real people, beautiful places"
-          },
-          {
-            url: "https://www.instagram.com/p/DUQldoVkXji/",
-            image: "Image/game-room.png",
-            label: "Behind the scenes",
-            text: "See what we’re building next"
-          },
-          {
-            url: "https://www.instagram.com/p/DUQpZ9aEWK1/",
-            image: "Image/pool.png",
-            label: "From the road",
-            text: "Travel moments with a Jewish soul"
-          },
-          {
-            url: "https://www.instagram.com/p/DUEVDPrE4AD/",
-            image: "Image/exterior.png",
-            label: "Community",
-            text: "Small trips, real moments, warm energy"
+        const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
+        let hnInstagramLivePosts = [];
+
+        function hnEscapeInstagramText(value) {
+          return String(value || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+        }
+
+        function hnCleanCaption(caption, maxLength) {
+          const clean = String(caption || "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+          if (!clean) return "See this moment on Instagram.";
+
+          return clean.length > maxLength
+            ? clean.slice(0, maxLength).trim() + "..."
+            : clean;
+        }
+
+        function hnGetInstagramTypeLabel(type) {
+          if (type === "VIDEO") return "Reel";
+          if (type === "CAROUSEL_ALBUM") return "Post";
+          return "Post";
+        }
+
+        function hnPickRandomInstagramPost() {
+          if (!hnInstagramLivePosts.length) return null;
+          return hnInstagramLivePosts[
+            Math.floor(Math.random() * hnInstagramLivePosts.length)
+          ];
+        }
+
+        function hnRenderInstagramFeatured() {
+          const featured = document.getElementById("hnInstagramFeatured");
+          const post = hnPickRandomInstagramPost();
+
+          if (!featured || !post) return;
+
+          const caption = hnCleanCaption(post.caption, 115);
+          const type = hnGetInstagramTypeLabel(post.type);
+
+          featured.href = post.url || "https://www.instagram.com/hamsanomads/";
+
+          featured.innerHTML = `
+            <img
+              src="${hnEscapeInstagramText(post.image)}"
+              alt="${hnEscapeInstagramText(caption)}"
+              loading="lazy"
+              onerror="this.onerror=null; this.src='Image/hero.jpg';"
+            />
+
+            <div class="hn-live-instagram-featured-overlay">
+              <span>${hnEscapeInstagramText(type)}</span>
+              <strong>${hnEscapeInstagramText(caption)}</strong>
+            </div>
+          `;
+        }
+
+        function hnRenderInstagramGrid() {
+          const grid = document.getElementById("hnInstagramGrid");
+          if (!grid) return;
+
+          const posts = hnInstagramLivePosts.slice(0, 6);
+
+          grid.innerHTML = posts.map((post) => {
+            const caption = hnCleanCaption(post.caption, 80);
+            const type = hnGetInstagramTypeLabel(post.type);
+
+            return `
+              <a
+                class="hn-live-instagram-post"
+                href="${hnEscapeInstagramText(post.url || 'https://www.instagram.com/hamsanomads/')}"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open Hamsa Nomads Instagram post"
+              >
+                <img
+                  src="${hnEscapeInstagramText(post.image)}"
+                  alt="${hnEscapeInstagramText(caption)}"
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='Image/hero.jpg';"
+                />
+                <span class="hn-live-instagram-type">${hnEscapeInstagramText(type)}</span>
+              </a>
+            `;
+          }).join("");
+        }
+
+        async function hnLoadInstagramFeed() {
+          const featured = document.getElementById("hnInstagramFeatured");
+          const grid = document.getElementById("hnInstagramGrid");
+
+          try {
+            const response = await fetch(HN_INSTAGRAM_API_URL, { cache: "no-store" });
+
+            if (!response.ok) {
+              throw new Error("Instagram feed request failed.");
+            }
+
+            const data = await response.json();
+            hnInstagramLivePosts = Array.isArray(data.posts) ? data.posts : [];
+
+            if (!hnInstagramLivePosts.length) {
+              throw new Error("No Instagram posts found.");
+            }
+
+            hnRenderInstagramFeatured();
+            hnRenderInstagramGrid();
+          } catch (error) {
+            if (featured) {
+              featured.removeAttribute("href");
+              featured.innerHTML = `
+                <div class="hn-live-instagram-error">
+                  Instagram feed is not available right now.
+                </div>
+              `;
+            }
+
+            if (grid) {
+              grid.innerHTML = "";
+            }
           }
-        ];
+        }
 
         document.addEventListener("DOMContentLoaded", function () {
-          const randomPost = hnSocialPosts[Math.floor(Math.random() * hnSocialPosts.length)];
+          hnLoadInstagramFeed();
 
-          const card = document.getElementById("hn-random-social-card");
-          const image = document.getElementById("hn-random-social-image");
-          const label = document.getElementById("hn-random-social-label");
-          const text = document.getElementById("hn-random-social-text");
+          const refreshButton = document.getElementById("hnInstagramRefresh");
 
-          if (!card || !image || !label || !text || !randomPost) return;
-
-          card.href = randomPost.url;
-          image.src = randomPost.image;
-          image.onerror = function () {
-            this.onerror = null;
-            this.src = "Image/hero.jpg";
-          };
-          label.textContent = randomPost.label;
-          text.textContent = randomPost.text;
+          if (refreshButton) {
+            refreshButton.addEventListener("click", hnRenderInstagramFeatured);
+          }
         });
       </script>
-          <section class="hn-upcoming-section" id="upcoming-trips">
+                    <section class="hn-upcoming-section" id="upcoming-trips">
         <div class="hn-upcoming-line" aria-hidden="true">
           <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
             <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
