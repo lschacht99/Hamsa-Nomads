@@ -681,7 +681,87 @@
       color: var(--forest);
       font-weight: 700;
     }
+/* Instagram Section */
+.hn-instagram-section {
+  padding: 80px 20px;
+  background: #f8f3e8;
+  color: #183b2d;
+}
 
+.hn-instagram-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hn-instagram-eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b38a3d;
+  font-weight: 700;
+}
+
+.hn-instagram-section h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.hn-instagram-text {
+  max-width: 620px;
+  margin: 18px auto 34px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(24, 59, 45, 0.78);
+}
+
+.hn-instagram-embed-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 28px;
+  padding: 18px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(179, 138, 61, 0.22);
+  box-shadow: 0 24px 70px rgba(24, 59, 45, 0.12);
+  overflow: hidden;
+}
+
+.hn-instagram-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #183b2d;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.hn-instagram-button:hover {
+  transform: translateY(-2px);
+  background: #234f3e;
+  box-shadow: 0 14px 30px rgba(24, 59, 45, 0.22);
+}
+
+@media (max-width: 640px) {
+  .hn-instagram-section {
+    padding: 56px 16px;
+  }
+
+  .hn-instagram-embed-wrap {
+    padding: 10px;
+    border-radius: 22px;
+  }
+}
     .hn-upcoming-section {
       position: relative;
       overflow: hidden;
@@ -1757,7 +1837,38 @@
           </div>
         </div>
       </section>
+<!-- Instagram Section -->
+<section class="hn-instagram-section" id="instagram">
+  <div class="hn-instagram-inner">
+    <p class="hn-instagram-eyebrow">Follow the journey</p>
 
+    <h2>See the Hamsa Nomads vibe</h2>
+
+    <p class="hn-instagram-text">
+      Retreat updates, travel moments, behind-the-scenes planning, and a little taste
+      of the community we’re building.
+    </p>
+
+    <div class="hn-instagram-embed-wrap">
+      <blockquote
+        class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/hamsanomads/"
+        data-instgrm-version="14">
+      </blockquote>
+    </div>
+
+    <a
+      class="hn-instagram-button"
+      href="https://www.instagram.com/hamsanomads/"
+      target="_blank"
+      rel="noopener">
+      Follow us on Instagram
+    </a>
+  </div>
+</section>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+    
       <section class="hn-upcoming-section" id="upcoming-trips">
         <div class="hn-upcoming-line" aria-hidden="true">
           <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
