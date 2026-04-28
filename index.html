@@ -231,6 +231,118 @@
       font-size: 0.96rem;
     }
 
+
+
+    /* HERO EARLY BIRD COUNTDOWN */
+    .hero-earlybird {
+      width: min(640px, 100%);
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-earlybird-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: rgba(255, 253, 248, 0.9);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-earlybird-header span {
+      opacity: 0.78;
+    }
+
+    .hero-earlybird-header strong {
+      color: #e0ae43;
+      font-weight: 800;
+    }
+
+    .hero-countdown-row {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(12px, 2.4vw, 30px);
+    }
+
+    .hero-countdown-unit {
+      text-align: center;
+      min-width: 54px;
+    }
+
+    .hero-countdown-number {
+      font-family: Inter, Arial, sans-serif;
+      font-size: clamp(2rem, 5vw, 3.35rem);
+      font-weight: 800;
+      color: #e0ae43;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      text-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-countdown-label {
+      margin-top: 8px;
+      color: rgba(224, 174, 67, 0.52);
+      font-size: 0.52rem;
+      font-weight: 800;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    .hero-countdown-separator {
+      padding-top: 3px;
+      color: rgba(224, 174, 67, 0.28);
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hero-earlybird-note {
+      margin-top: 14px;
+      color: rgba(255, 251, 245, 0.78);
+      font-size: 0.92rem;
+      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (max-width: 640px) {
+      .hero-earlybird {
+        margin-top: 16px;
+        padding-top: 16px;
+      }
+
+      .hero-countdown-row {
+        gap: 10px;
+        justify-content: flex-start;
+      }
+
+      .hero-countdown-unit {
+        min-width: 43px;
+      }
+
+      .hero-countdown-number {
+        font-size: clamp(1.75rem, 9vw, 2.45rem);
+      }
+
+      .hero-countdown-label {
+        font-size: 0.46rem;
+        letter-spacing: 0.18em;
+      }
+
+      .hero-countdown-separator {
+        font-size: 1.35rem;
+        padding-top: 4px;
+      }
+
+      .hero-earlybird-header {
+        flex-wrap: wrap;
+        font-size: 0.7rem;
+        letter-spacing: 0.13em;
+      }
+    }
+
     .hero-bottom-card {
       margin-top: 18px;
       width: min(780px, 100%);
@@ -1388,6 +1500,8 @@
   </style>
 </head>
 
+<body>
+  <div class="site-shell">
     <div id="site-header"></div>
 
     <main id="top">
@@ -1408,6 +1522,43 @@
                 <div class="hero-actions">
                   <a href="Forms/apply.html" class="button">Join the retreat</a>
                   <a href="#gallery" class="button-secondary">View the House</a>
+                </div>
+
+                <div class="hero-earlybird" id="earlyBirdCountdown" aria-label="Early bird pricing countdown">
+                  <div class="hero-earlybird-header">
+                    <span>Early bird pricing</span>
+                    <strong>Ends May 3</strong>
+                  </div>
+
+                  <div class="hero-countdown-row">
+                    <div class="hero-countdown-unit">
+                      <div class="hero-countdown-number" id="early-days">00</div>
+                      <div class="hero-countdown-label">Days</div>
+                    </div>
+
+                    <div class="hero-countdown-separator">:</div>
+
+                    <div class="hero-countdown-unit">
+                      <div class="hero-countdown-number" id="early-hours">00</div>
+                      <div class="hero-countdown-label">Hours</div>
+                    </div>
+
+                    <div class="hero-countdown-separator">:</div>
+
+                    <div class="hero-countdown-unit">
+                      <div class="hero-countdown-number" id="early-minutes">00</div>
+                      <div class="hero-countdown-label">Min</div>
+                    </div>
+
+                    <div class="hero-countdown-separator">:</div>
+
+                    <div class="hero-countdown-unit">
+                      <div class="hero-countdown-number" id="early-seconds">00</div>
+                      <div class="hero-countdown-label">Sec</div>
+                    </div>
+                  </div>
+
+                  <p class="hero-earlybird-note">Apply before pricing changes.</p>
                 </div>
               </div>
 
@@ -2165,6 +2316,61 @@
       loadTripsFromTripsPage();
     })();
 
+
+
+    (function () {
+      const deadline = new Date("2026-05-03T23:59:59-04:00").getTime();
+
+      const daysEl = document.getElementById("early-days");
+      const hoursEl = document.getElementById("early-hours");
+      const minutesEl = document.getElementById("early-minutes");
+      const secondsEl = document.getElementById("early-seconds");
+      const countdownWrap = document.getElementById("earlyBirdCountdown");
+
+      if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = deadline - now;
+
+        if (distance <= 0) {
+          daysEl.textContent = "00";
+          hoursEl.textContent = "00";
+          minutesEl.textContent = "00";
+          secondsEl.textContent = "00";
+
+          if (countdownWrap) {
+            const header = countdownWrap.querySelector(".hero-earlybird-header");
+            const note = countdownWrap.querySelector(".hero-earlybird-note");
+
+            if (header) {
+              header.innerHTML = "<span>Early bird pricing</span><strong>Has ended</strong>";
+            }
+
+            if (note) {
+              note.textContent = "Applications are still open for remaining spots.";
+            }
+          }
+
+          clearInterval(timer);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        daysEl.textContent = String(days).padStart(2, "0");
+        hoursEl.textContent = String(hours).padStart(2, "0");
+        minutesEl.textContent = String(minutes).padStart(2, "0");
+        secondsEl.textContent = String(seconds).padStart(2, "0");
+      }
+
+      updateCountdown();
+      const timer = setInterval(updateCountdown, 1000);
+    })();
+
     const shareBtn = document.getElementById("shareBtn");
     const shareOptions = document.getElementById("shareOptions");
     const copyLinkBtn = document.getElementById("copyLinkBtn");
@@ -2172,33 +2378,44 @@
     const pageUrl = encodeURIComponent(window.location.href);
     const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
 
-    document.getElementById("whatsappShare").href =
-      `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+    const whatsappShare = document.getElementById("whatsappShare");
+    const facebookShare = document.getElementById("facebookShare");
+    const emailShare = document.getElementById("emailShare");
 
-    document.getElementById("facebookShare").href =
-      `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    if (whatsappShare) {
+      whatsappShare.href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+    }
 
-    document.getElementById("emailShare").href =
-      `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+    if (facebookShare) {
+      facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    }
 
-    shareBtn.addEventListener("click", () => {
-      shareOptions.classList.toggle("open");
-    });
+    if (emailShare) {
+      emailShare.href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+    }
 
-    copyLinkBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        copyLinkBtn.textContent = "Copied!";
-        setTimeout(() => {
-          copyLinkBtn.textContent = "Copy link";
-        }, 1600);
-      } catch (err) {
-        alert("Copy failed. Please copy the URL manually.");
-      }
-    });
+    if (shareBtn && shareOptions) {
+      shareBtn.addEventListener("click", () => {
+        shareOptions.classList.toggle("open");
+      });
+    }
+
+    if (copyLinkBtn) {
+      copyLinkBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyLinkBtn.textContent = "Copied!";
+          setTimeout(() => {
+            copyLinkBtn.textContent = "Copy link";
+          }, 1600);
+        } catch (err) {
+          alert("Copy failed. Please copy the URL manually.");
+        }
+      });
+    }
 
     document.addEventListener("click", (event) => {
-      if (!event.target.closest(".floating-share")) {
+      if (shareOptions && !event.target.closest(".floating-share")) {
         shareOptions.classList.remove("open");
       }
     });
