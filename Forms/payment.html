@@ -666,7 +666,159 @@
     }
   </style>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
 
+  const data = {
+    firstName: params.get("firstName") || "",
+    lastName: params.get("lastName") || "",
+    email: params.get("email") || "",
+    phone: params.get("phone") || "",
+    amount: params.get("amount") || params.get("totalPrice") || "",
+    reservation: params.get("reservation") || params.get("reservationType") || "",
+    bedType: params.get("bedType") || "",
+    people: params.get("people") || ""
+  };
+
+  function normalize(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/\$/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  }
+
+  function findFieldByLabel(labelText) {
+    const labels = Array.from(document.querySelectorAll("label"));
+
+    const label = labels.find(label =>
+      normalize(label.textContent).includes(normalize(labelText))
+    );
+
+    if (!label) return null;
+
+    const forId = label.getAttribute("for");
+
+    if (forId) {
+      const field = document.getElementById(forId);
+      if (field) return field;
+    }
+
+    const insideField = label.querySelector("input, select, textarea");
+    if (insideField) return insideField;
+
+    let parent = label.parentElement;
+
+    for (let i = 0; i < 5 && parent; i++) {
+      const field = parent.querySelector("input, select, textarea");
+      if (field) return field;
+      parent = parent.parentElement;
+    }
+
+    return null;
+  }
+
+  function findField(possibleSelectors, labelText) {
+    for (const selector of possibleSelectors) {
+      const field =
+        document.querySelector(`[name="${selector}"]`) ||
+        document.querySelector(`#${selector}`);
+
+      if (field) return field;
+    }
+
+    return findFieldByLabel(labelText);
+  }
+
+  function setValue(field, value) {
+    if (!field || !value) return;
+
+    field.value = value;
+    field.dispatchEvent(new Event("input", { bubbles: true }));
+    field.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function setSelect(select, reservation, bedType, amount) {
+    if (!select) return;
+
+    const options = Array.from(select.options);
+    const wanted = normalize([reservation, bedType, amount].filter(Boolean).join(" "));
+    const wantedAmount = normalize(amount);
+
+    let match = null;
+
+    if (wanted) {
+      match = options.find(option => {
+        const optionText = normalize(option.textContent);
+        return wanted.includes(optionText) || optionText.includes(wanted);
+      });
+    }
+
+    if (!match && amount) {
+      match = options.find(option => normalize(option.textContent).includes(wantedAmount));
+    }
+
+    if (!match && bedType) {
+      const wantedBed = normalize(bedType);
+      match = options.find(option => normalize(option.textContent).includes(wantedBed));
+    }
+
+    if (!match && reservation) {
+      const wantedReservation = normalize(reservation);
+      match = options.find(option => normalize(option.textContent).includes(wantedReservation));
+    }
+
+    if (match) {
+      select.value = match.value;
+      select.dispatchEvent(new Event("input", { bubbles: true }));
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }
+
+  const firstNameField = findField(
+    ["firstName", "first-name", "first_name", "First Name"],
+    "First Name"
+  );
+
+  const lastNameField = findField(
+    ["lastName", "last-name", "last_name", "Last Name"],
+    "Last Name"
+  );
+
+  const emailField = findField(
+    ["email", "Email", "customerEmail"],
+    "Email"
+  );
+
+  const phoneField = findField(
+    ["phone", "Phone", "customerPhone"],
+    "Phone"
+  );
+
+  const amountField = findField(
+    ["amount", "Amount", "amountToPay", "amount-to-pay", "paymentAmount", "totalPrice"],
+    "Amount to Pay"
+  );
+
+  const reservationField = findField(
+    ["reservation", "reservationType", "reservation-type", "Reservation Type"],
+    "Reservation Type"
+  );
+
+  setValue(firstNameField, data.firstName);
+  setValue(lastNameField, data.lastName);
+  setValue(emailField, data.email);
+  setValue(phoneField, data.phone);
+  setValue(amountField, data.amount);
+
+  if (reservationField && reservationField.tagName === "SELECT") {
+    setSelect(reservationField, data.reservation, data.bedType, data.amount);
+  } else {
+    setValue(reservationField, data.reservation);
+  }
+});
+</script>
 <body>
   <div id="site-header"></div>
 
