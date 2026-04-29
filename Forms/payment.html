@@ -822,10 +822,12 @@
             <textarea id="notes" name="notes" placeholder="Anything we should know?"></textarea>
           </div>
 
-
+          <div class="agreement-stack">
             <label class="agreement-card" for="termsAccepted">
               <input type="checkbox" id="termsAccepted" name="termsAccepted" value="Yes" required>
+
               <span class="custom-check" aria-hidden="true"></span>
+
               <span class="agreement-text">
                 <strong>I agree to the retreat policies.</strong>
                 <small>
@@ -1129,6 +1131,7 @@
       try {
         const fileInput = document.getElementById("proofFile");
         const file = fileInput.files[0];
+        const termsBox = document.getElementById("termsAccepted");
 
         if (!reservationType.value) {
           throw new Error("Please choose a reservation type.");
@@ -1142,12 +1145,8 @@
           throw new Error("Please upload a proof of payment screenshot.");
         }
 
-        if (!document.getElementById("refundAccepted").checked) {
-          throw new Error("Please confirm that you understand the payment and cancellation policy.");
-        }
-
-        if (!document.getElementById("termsAccepted").checked) {
-          throw new Error("Please agree to the Terms & Conditions and Privacy Policy.");
+        if (!termsBox || !termsBox.checked) {
+          throw new Error("Please agree to the retreat policies before submitting.");
         }
 
         const maxFileSize = 8 * 1024 * 1024;
@@ -1171,8 +1170,14 @@
           discountStatus: currentDiscountStatus,
           finalAmount: formatMoney(currentFinalPrice),
           paymentMethod: paymentMethod.value,
-          refundAccepted: document.getElementById("refundAccepted").checked ? "Yes" : "No",
-          termsAccepted: document.getElementById("termsAccepted").checked ? "Yes" : "No",
+
+          /*
+            Kept both fields so the backend stays compatible.
+            Both now come from the one real checkbox: termsAccepted.
+          */
+          refundAccepted: termsBox.checked ? "Yes" : "No",
+          termsAccepted: termsBox.checked ? "Yes" : "No",
+
           notes: document.getElementById("notes").value.trim(),
           fileName: file.name,
           mimeType: file.type || "application/octet-stream",
