@@ -192,11 +192,299 @@ function insertSiteHeader() {
           <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">About us</a>
           <a href="${hnPath("/Forms/apply.html")}" class="hn-shared-button" data-nav="apply">Join the retreat</a>
         </nav>
+
+        <button
+          class="hn-mobile-menu-toggle"
+          id="hnMobileMenuToggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="hnMobileDrawer"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
+
+      <div class="hn-mobile-menu-overlay" id="hnMobileMenuOverlay"></div>
+
+      <aside
+        class="hn-mobile-drawer"
+        id="hnMobileDrawer"
+        aria-hidden="true"
+      >
+        <div class="hn-mobile-drawer-top">
+          <div>
+            <div class="hn-mobile-drawer-brand">Hamsa Nomads</div>
+            <div class="hn-mobile-drawer-sub">Curated kosher travel</div>
+          </div>
+
+          <button
+            class="hn-mobile-menu-close"
+            id="hnMobileMenuClose"
+            type="button"
+            aria-label="Close navigation menu"
+          >
+            ×
+          </button>
+        </div>
+
+        <nav class="hn-mobile-drawer-links" aria-label="Mobile navigation">
+          <a href="${hnPath("/index.html#experience")}" data-nav="experience">Experience</a>
+          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">Gallery</a>
+          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">Upcoming trips</a>
+          <a href="${hnPath("/faq.html")}" data-nav="faq">FAQ</a>
+          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">About us</a>
+          <a href="${hnPath("/Forms/apply.html")}" class="hn-mobile-drawer-cta" data-nav="apply">
+            Join the retreat
+          </a>
+        </nav>
+      </aside>
     </header>
   `;
 
   markActiveNav();
+  initMobileMenu();
+}
+
+/* =========================================================
+   MOBILE SLIDE MENU
+   ========================================================= */
+
+function insertMobileMenuStyles() {
+  if (document.getElementById("hnMobileMenuStyles")) return;
+
+  const style = document.createElement("style");
+  style.id = "hnMobileMenuStyles";
+
+  style.textContent = `
+    .hn-shared-header {
+      position: relative;
+      z-index: 999;
+    }
+
+    .hn-mobile-menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(23, 79, 25, 0.18);
+      border-radius: 999px;
+      background: rgba(247, 243, 234, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0;
+      position: relative;
+      z-index: 1002;
+      box-shadow: 0 12px 28px rgba(16, 14, 11, 0.08);
+    }
+
+    .hn-mobile-menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 1.7px;
+      border-radius: 999px;
+      background: #174F19;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+
+    .hn-mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 14, 11, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    .hn-mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(86vw, 370px);
+      height: 100vh;
+      background: #f7f3ea;
+      box-shadow: -24px 0 70px rgba(16, 14, 11, 0.18);
+      transform: translateX(105%);
+      transition: transform 0.38s cubic-bezier(.2,.8,.2,1);
+      z-index: 1001;
+      padding: 26px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid rgba(23, 79, 25, 0.12);
+    }
+
+    .hn-mobile-drawer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(23, 79, 25, 0.14);
+    }
+
+    .hn-mobile-drawer-brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      color: #174F19;
+      letter-spacing: 0.02em;
+    }
+
+    .hn-mobile-drawer-sub {
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: rgba(16, 14, 11, 0.58);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hn-mobile-menu-close {
+      border: 0;
+      background: transparent;
+      font-size: 2.1rem;
+      line-height: 1;
+      color: #174F19;
+      cursor: pointer;
+      padding: 0;
+      margin-top: -4px;
+    }
+
+    .hn-mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 28px;
+    }
+
+    .hn-mobile-drawer-links a {
+      color: #174F19;
+      text-decoration: none;
+      font-size: 1.05rem;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(23, 79, 25, 0.11);
+      letter-spacing: 0.01em;
+    }
+
+    .hn-mobile-drawer-links a.is-active {
+      font-weight: 700;
+    }
+
+    .hn-mobile-drawer-cta {
+      margin-top: 22px;
+      text-align: center;
+      border: 1px solid #174F19 !important;
+      border-radius: 999px;
+      padding: 15px 18px !important;
+      background: #174F19;
+      color: #f7f3ea !important;
+      font-weight: 700;
+      box-shadow: 0 18px 34px rgba(23, 79, 25, 0.18);
+    }
+
+    body.hn-mobile-menu-is-open {
+      overflow: hidden;
+    }
+
+    body.hn-mobile-menu-is-open .hn-mobile-menu-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    body.hn-mobile-menu-is-open .hn-mobile-drawer {
+      transform: translateX(0);
+    }
+
+    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(1) {
+      transform: translateY(5.7px) rotate(45deg);
+    }
+
+    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(2),
+    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(3) {
+      opacity: 0;
+    }
+
+    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(4) {
+      transform: translateY(-5.7px) rotate(-45deg);
+    }
+
+    @media (max-width: 860px) {
+      .hn-shared-nav-links {
+        display: none !important;
+      }
+
+      .hn-mobile-menu-toggle {
+        display: flex;
+      }
+
+      .hn-shared-nav {
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 861px) {
+      .hn-mobile-menu-overlay,
+      .hn-mobile-drawer {
+        display: none;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
+function initMobileMenu() {
+  insertMobileMenuStyles();
+
+  const toggle = document.getElementById("hnMobileMenuToggle");
+  const drawer = document.getElementById("hnMobileDrawer");
+  const overlay = document.getElementById("hnMobileMenuOverlay");
+  const closeBtn = document.getElementById("hnMobileMenuClose");
+
+  if (!toggle || !drawer || !overlay || !closeBtn) return;
+
+  function openMenu() {
+    document.body.classList.add("hn-mobile-menu-is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    drawer.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMenu() {
+    document.body.classList.remove("hn-mobile-menu-is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    drawer.setAttribute("aria-hidden", "true");
+  }
+
+  toggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    if (document.body.classList.contains("hn-mobile-menu-is-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  overlay.addEventListener("click", closeMenu);
+  closeBtn.addEventListener("click", closeMenu);
+
+  drawer.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 860) closeMenu();
+  });
 }
 
 /* =========================================================
@@ -357,7 +645,7 @@ function insertFloatingShare() {
       } catch (error) {
         /* If cancelled, fall back to the custom menu. */
       }
-           }
+    }
 
     shareOptions.classList.toggle("is-open");
   });
@@ -384,7 +672,8 @@ function insertFloatingShare() {
       shareOptions.classList.remove("is-open");
     }
   });
-     /* Hide floating share button when footer is visible */
+
+  /* Hide floating share button when footer is visible */
   const footer = document.querySelector(".hn-shared-footer");
 
   if (footer && "IntersectionObserver" in window) {
@@ -429,8 +718,8 @@ function markActiveNav() {
   const active = navMap.find((item) => path.endsWith(item.match));
   if (!active) return;
 
-  const activeLink = document.querySelector(`[data-nav="${active.key}"]`);
-  if (activeLink) activeLink.classList.add("is-active");
+  const activeLinks = document.querySelectorAll(`[data-nav="${active.key}"]`);
+  activeLinks.forEach((link) => link.classList.add("is-active"));
 }
 
 /* =========================================================
