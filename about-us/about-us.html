@@ -12,15 +12,18 @@
   <style>
     :root {
       --bg: #f7f3ea;
-      --paper: rgba(255, 252, 246, 0.68);
-      --paper-strong: rgba(255, 252, 246, 0.82);
+      --paper: rgba(255, 252, 246, 0.70);
+      --paper-strong: rgba(255, 252, 246, 0.88);
       --ink: #1f231f;
       --muted: #60655e;
       --forest: #274537;
+      --forest-dark: #173c30;
       --gold: #b88b2f;
-      --line: rgba(16, 14, 11, 0.22);
-      --shadow: 0 16px 50px rgba(31, 28, 20, 0.08);
-      --radius: 26px;
+      --cream: #f7f3ea;
+      --line: rgba(16, 14, 11, 0.18);
+      --shadow: 0 20px 70px rgba(31, 28, 20, 0.10);
+      --soft-shadow: 0 14px 38px rgba(31, 28, 20, 0.08);
+      --radius: 28px;
       --container: 1220px;
     }
 
@@ -32,7 +35,8 @@
       font-family: Inter, Arial, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 34%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.82), transparent 34%),
+        radial-gradient(circle at 88% 12%, rgba(184,139,47,0.10), transparent 28%),
         linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
       line-height: 1.7;
       overflow-x: hidden;
@@ -41,7 +45,7 @@
     h1, h2, h3, .serif {
       font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       font-weight: 500;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
       margin: 0;
     }
 
@@ -70,26 +74,8 @@
       position: relative;
       isolation: isolate;
       min-height: 100vh;
+      overflow: hidden;
     }
-
-    .path-main,
-    .path-slice,
-    .path-hamsa {
-      fill: none;
-      stroke: var(--line);
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .path-main.back,
-    .path-hamsa.back { stroke-width: 3.2; }
-
-    .path-main.front,
-    .path-hamsa.front { stroke-width: 1.5; }
-
-    .path-slice.back { stroke-width: 3; }
-    .path-slice.front { stroke-width: 1.3; }
 
     .container {
       width: min(calc(100% - 32px), var(--container));
@@ -100,10 +86,10 @@
 
     .glass {
       background: var(--paper);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.5);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.46);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.52);
+      box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.46);
       border-radius: var(--radius);
     }
 
@@ -112,47 +98,127 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 24px;
+      min-height: 50px;
+      padding: 0 25px;
       border-radius: 999px;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.02em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
     .button:hover,
-    .button-secondary:hover { transform: translateY(-1px); }
+    .button-secondary:hover {
+      transform: translateY(-2px);
+    }
 
     .button {
-      background: rgba(39, 69, 55, 0.92);
+      background: rgba(39, 69, 55, 0.94);
       color: white;
-      box-shadow: 0 12px 30px rgba(39, 69, 55, 0.22);
+      box-shadow: 0 14px 34px rgba(39, 69, 55, 0.24);
       border: 1px solid rgba(39, 69, 55, 0.26);
     }
 
     .button-secondary {
-      background: rgba(255,255,255,0.62);
+      background: rgba(255,255,255,0.68);
       color: var(--ink);
       border: 1px solid rgba(39, 69, 55, 0.14);
       box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
     }
 
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section {
+      position: relative;
+      padding: clamp(42px, 7vw, 92px) 0;
+    }
+
+    .section-intro {
+      max-width: 740px;
+      margin-bottom: 34px;
+    }
+
+    .section-intro.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-size: clamp(2.25rem, 5.5vw, 4.6rem);
+      line-height: 0.98;
+      color: var(--forest);
+    }
+
+    .section-intro p {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.12rem);
+      line-height: 1.75;
+    }
+
+    /* Animation primitives */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity 0.75s cubic-bezier(.2,.7,.2,1),
+        transform 0.75s cubic-bezier(.2,.7,.2,1);
+      transition-delay: var(--delay, 0ms);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-float] {
+      animation: softFloat 7s ease-in-out infinite;
+      animation-delay: var(--float-delay, 0s);
+    }
+
+    @keyframes softFloat {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--rotate, 0deg)); }
+      50% { transform: translate3d(0, -12px, 0) rotate(var(--rotate, 0deg)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+
+      [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* Editorial hero */
     .hero {
-      padding: 26px 0 24px;
+      padding: 24px 0 34px;
     }
 
     .hero-card {
       position: relative;
+      min-height: min(820px, 82vh);
       overflow: hidden;
-      min-height: 76vh;
-      border-radius: 34px;
-      display: grid;
-      align-items: end;
+      border-radius: 38px;
       background: #e9dfd0;
       box-shadow: var(--shadow);
+      display: grid;
+      align-items: stretch;
     }
 
     .hero-media {
@@ -161,36 +227,31 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: saturate(0.96);
     }
 
     .hero-scrim {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(20, 18, 12, 0.52), rgba(20, 18, 12, 0.18) 52%, rgba(20, 18, 12, 0.04)),
-        linear-gradient(180deg, rgba(20,18,12,0.05), rgba(20,18,12,0.30));
+        linear-gradient(90deg, rgba(20, 18, 12, 0.60), rgba(20, 18, 12, 0.25) 52%, rgba(20, 18, 12, 0.08)),
+        linear-gradient(180deg, rgba(20,18,12,0.06), rgba(20,18,12,0.38));
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
-      padding: clamp(30px, 5vw, 62px);
+      z-index: 3;
+      min-height: inherit;
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 28px;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.75fr);
+      gap: clamp(24px, 4vw, 46px);
       align-items: end;
+      padding: clamp(26px, 5vw, 64px);
     }
 
     .hero-copy {
       color: #fffdf8;
-    }
-
-    .eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
+      max-width: 720px;
     }
 
     .hero .eyebrow {
@@ -199,21 +260,21 @@
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 0.94;
+      font-size: clamp(3.2rem, 7.8vw, 7rem);
+      line-height: 0.9;
       color: #fffdf8;
-      max-width: 8.8ch;
-      margin-bottom: 18px;
-      text-shadow: 0 8px 30px rgba(0,0,0,0.22);
+      max-width: 9ch;
+      margin-bottom: 20px;
+      text-shadow: 0 10px 32px rgba(0,0,0,0.24);
     }
 
     .hero-lead {
-      max-width: 38ch;
-      font-size: clamp(1.08rem, 2vw, 1.32rem);
-      line-height: 1.5;
-      color: rgba(255,251,245,0.92);
-      margin-bottom: 22px;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.22);
+      max-width: 41ch;
+      font-size: clamp(1.08rem, 2vw, 1.34rem);
+      line-height: 1.48;
+      color: rgba(255,251,245,0.93);
+      margin-bottom: 24px;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.24);
     }
 
     .hero-actions {
@@ -222,148 +283,586 @@
       flex-wrap: wrap;
     }
 
-    .hero-note {
-      padding: 24px;
-      border-radius: 22px;
-      background: rgba(255, 252, 246, 0.76);
-      border: 1px solid rgba(255,255,255,0.45);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      align-self: end;
+    .vibe-stack {
+      position: relative;
+      min-height: 440px;
+      align-self: center;
     }
 
-    .hero-note h3 {
-      font-size: 1.35rem;
+    .vibe-polaroid {
+      position: absolute;
+      width: clamp(150px, 16vw, 230px);
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 252, 246, 0.86);
+      padding: 9px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.20);
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transform: rotate(var(--rotate, 0deg));
+    }
+
+    .vibe-polaroid img,
+    .vibe-polaroid .vibe-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 17px;
+      background:
+        radial-gradient(circle at top left, rgba(244,231,199,0.8), transparent 34%),
+        linear-gradient(145deg, #f4e7c7, #d9c69b);
+    }
+
+    .vibe-polaroid span {
+      display: block;
+      padding: 8px 5px 2px;
+      font-size: 0.74rem;
       color: var(--forest);
-      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .hero-note p {
-      color: var(--muted);
+    .vibe-polaroid.one {
+      top: 8%;
+      left: 0;
+      --rotate: -8deg;
+      --float-delay: -1s;
     }
 
-    .section {
-      padding: 28px 0;
+    .vibe-polaroid.two {
+      top: 34%;
+      right: 2%;
+      --rotate: 8deg;
+      --float-delay: -3s;
     }
 
-    .section-header {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 18px;
-      padding: 12px 4px;
+    .vibe-polaroid.three {
+      bottom: 0;
+      left: 18%;
+      --rotate: -3deg;
+      --float-delay: -5s;
     }
 
-    .section-header h2 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
+    .live-badge {
+      position: absolute;
+      right: 5%;
+      top: 5%;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 252, 246, 0.86);
       color: var(--forest);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.13);
     }
 
-    .section-header p {
-      max-width: 54ch;
-      color: var(--muted);
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #d7b05b;
+      box-shadow: 0 0 0 5px rgba(215,176,91,0.18);
     }
 
-    .intro-grid {
+    /* Story flow, less blocky */
+    .story-flow {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
+      grid-template-columns: minmax(240px, 0.62fr) minmax(0, 1fr);
+      gap: clamp(26px, 5vw, 64px);
+      align-items: start;
     }
 
-    .card {
-      padding: 26px;
+    .story-sticky {
+      position: sticky;
+      top: 110px;
+      align-self: start;
     }
 
-    .card p {
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .card p + p {
-      margin-top: 16px;
-    }
-
-    .quote-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 100%;
-    }
-
-    .quote-card blockquote {
-      margin: 0;
-      font-family: "Iowan Old Style", Georgia, serif;
-      font-size: clamp(1.5rem, 2.8vw, 2.35rem);
-      line-height: 1.25;
+    .story-sticky h2 {
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 0.96;
       color: var(--forest);
     }
 
-    .quote-card .small {
+    .story-sticky p {
       margin-top: 18px;
       color: var(--muted);
-      font-size: 0.95rem;
+      max-width: 33ch;
     }
 
-    .memory-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+    .story-text {
+      position: relative;
+      padding-left: clamp(18px, 3vw, 38px);
+      border-left: 1px solid rgba(39,69,55,0.16);
     }
 
-    .memory-card {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 18px;
-      align-items: start;
-      padding: 20px;
+    .story-text::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 7px rgba(184,139,47,0.12);
     }
 
-    .memory-sketch {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 18px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.55);
-      border: 1px solid rgba(39,69,55,0.08);
-      display: grid;
-      place-items: center;
+    .story-chapter {
+      position: relative;
+      margin-bottom: clamp(34px, 5vw, 64px);
+      max-width: 740px;
     }
 
-    .memory-sketch img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 14px;
-    }
-
-    .memory-content h3 {
-      font-size: 1.35rem;
-      color: var(--forest);
-      margin-bottom: 10px;
-    }
-
-    .memory-content p {
-      color: var(--muted);
-    }
-
-    .closing-card {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
-      padding: 28px;
-    }
-
-    .closing-card h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--forest);
+    .story-chapter h3 {
+      font-size: clamp(1.65rem, 3.2vw, 2.55rem);
+      color: var(--ink);
       margin-bottom: 12px;
     }
 
-    .closing-card p {
+    .story-chapter p {
       color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.85;
+    }
+
+    .story-chapter p + p {
+      margin-top: 15px;
+    }
+
+    .margin-post {
+      position: relative;
+      float: right;
+      width: min(260px, 44vw);
+      margin: 6px -14px 16px 24px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--paper-strong);
+      padding: 9px;
+      box-shadow: 0 18px 44px rgba(31,28,20,0.12);
+      border: 1px solid rgba(255,255,255,0.55);
+      transform: rotate(3deg);
+    }
+
+    .margin-post img,
+    .margin-post .vibe-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 17px;
+      background: linear-gradient(145deg, #f4e7c7, #d9c69b);
+    }
+
+    .margin-post span {
+      display: block;
+      padding: 8px 4px 1px;
+      color: var(--forest);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    /* Team / characters */
+    .people-section {
+      background:
+        radial-gradient(circle at top left, rgba(184,139,47,0.13), transparent 30%),
+        linear-gradient(180deg, transparent, rgba(255,255,255,0.28));
+    }
+
+    .people-editorial {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(22px, 4vw, 44px);
+      align-items: stretch;
+    }
+
+    .portrait-panel {
+      position: relative;
+      min-height: 560px;
+      border-radius: 34px;
+      overflow: hidden;
+      background: #e7dece;
+      box-shadow: var(--shadow);
+    }
+
+    .portrait-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 560px;
+    }
+
+    .portrait-caption {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(255,252,246,0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.50);
+      color: var(--forest);
+      box-shadow: 0 16px 38px rgba(0,0,0,0.12);
+    }
+
+    .portrait-caption strong {
+      display: block;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .people-notes {
+      display: grid;
+      gap: 16px;
+    }
+
+    .person-note {
+      position: relative;
+      padding: clamp(22px, 3vw, 32px);
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255,252,246,0.66);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .person-note::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      right: -60px;
+      top: -60px;
+      background: rgba(184,139,47,0.10);
+      pointer-events: none;
+    }
+
+    .person-note h3 {
+      font-size: clamp(1.7rem, 3.4vw, 2.55rem);
+      color: var(--forest);
+      margin-bottom: 10px;
+    }
+
+    .person-role {
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .person-note p {
+      color: var(--muted);
+      line-height: 1.78;
+    }
+
+    .blank-line {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: 18px;
+      background:
+        repeating-linear-gradient(
+          180deg,
+          rgba(39,69,55,0.055) 0px,
+          rgba(39,69,55,0.055) 1px,
+          transparent 1px,
+          transparent 28px
+        ),
+        rgba(255,255,255,0.44);
+      color: rgba(39,69,55,0.46);
+      font-style: italic;
+      min-height: 72px;
+    }
+
+    .ava-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .paw {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(39,69,55,0.09);
+      color: var(--forest);
+      font-size: 1.5rem;
+    }
+
+    /* Inspired us */
+    .inspiration-section {
+      padding-top: clamp(46px, 7vw, 88px);
+    }
+
+    .inspiration-map {
+      position: relative;
+      min-height: 720px;
+      border-radius: 42px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(184,139,47,0.18), transparent 28%),
+        radial-gradient(circle at 75% 68%, rgba(39,69,55,0.10), transparent 30%),
+        rgba(255,252,246,0.58);
+      border: 1px solid rgba(255,255,255,0.52);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 44px);
+    }
+
+    .map-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .map-line path {
+      fill: none;
+      stroke: rgba(39,69,55,0.20);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 9 12;
+    }
+
+    .inspiration-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: minmax(98px, auto);
+      gap: 16px;
+    }
+
+    .inspire-card {
+      position: relative;
+      padding: 20px;
+      border-radius: 26px;
+      background: rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 16px 38px rgba(31,28,20,0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .inspire-card:hover {
+      transform: translateY(-4px) rotate(0deg);
+      box-shadow: 0 24px 52px rgba(31,28,20,0.13);
+    }
+
+    .inspire-card h3 {
+      font-size: 1.35rem;
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+
+    .inspire-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .inspire-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 12px;
+      opacity: 0.88;
+    }
+
+    .inspire-card.india { grid-column: 1 / span 6; grid-row: span 2; transform: rotate(-1deg); }
+    .inspire-card.srilanka { grid-column: 7 / span 6; transform: rotate(1deg); }
+    .inspire-card.france { grid-column: 7 / span 3; }
+    .inspire-card.israel { grid-column: 10 / span 3; }
+    .inspire-card.usa { grid-column: 1 / span 4; }
+    .inspire-card.morocco { grid-column: 5 / span 4; transform: rotate(-1deg); }
+    .inspire-card.vietnam { grid-column: 9 / span 4; }
+    .inspire-card.japan { grid-column: 1 / span 6; }
+    .inspire-card.korea { grid-column: 7 / span 6; transform: rotate(1deg); }
+
+    /* Ambient Instagram */
+    .ambient-instagram-section {
+      padding: clamp(40px, 7vw, 84px) 0;
+    }
+
+    .ambient-wrap {
+      position: relative;
+      min-height: 540px;
+      border-radius: 42px;
+      overflow: hidden;
+      background:
+        linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
+      color: #f7f0e2;
+      box-shadow: 0 30px 70px rgba(16, 42, 33, 0.22);
+      border: 1px solid rgba(244,231,199,0.12);
+      padding: clamp(28px, 5vw, 58px);
+    }
+
+    .ambient-copy {
+      position: relative;
+      z-index: 3;
+      max-width: 560px;
+    }
+
+    .ambient-copy h2 {
+      font-size: clamp(2.4rem, 6vw, 5.2rem);
+      line-height: 0.94;
+      color: #f7f0e2;
+      margin-bottom: 18px;
+    }
+
+    .ambient-copy p {
+      color: rgba(247,240,226,0.82);
+      font-size: 1.06rem;
+      max-width: 48ch;
+      margin-bottom: 22px;
+    }
+
+    .ambient-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ambient-follow {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 56px;
+      padding: 0 30px;
+      border-radius: 999px;
+      background: #f4e7c7;
+      color: #173c30;
+      text-decoration: none;
+      font-size: 1.04rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .ambient-follow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.22);
+    }
+
+    .ambient-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 2px solid rgba(244,231,199,0.55);
+      background: #f8f3e8;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+    }
+
+    .ambient-posts {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ambient-post {
+      position: absolute;
+      width: clamp(130px, 16vw, 230px);
+      border-radius: 26px;
+      overflow: hidden;
+      background: rgba(255,252,246,0.94);
+      padding: 8px;
+      box-shadow: 0 24px 54px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.5);
+      transform: rotate(var(--rotate, 0deg));
+      pointer-events: auto;
+      color: var(--forest);
+      transition: transform 0.25s ease;
+    }
+
+    .ambient-post:hover {
+      transform: translateY(-5px) rotate(var(--rotate, 0deg));
+    }
+
+    .ambient-post img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 19px;
+      object-fit: cover;
+      background: #f4e7c7;
+    }
+
+    .ambient-post span {
+      display: block;
+      padding: 8px 5px 2px;
+      font-size: 0.70rem;
+      font-weight: 900;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--forest);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ambient-post.p1 { right: 8%; top: 8%; --rotate: 7deg; --float-delay: -2s; }
+    .ambient-post.p2 { right: 30%; bottom: 8%; --rotate: -6deg; --float-delay: -4s; }
+    .ambient-post.p3 { right: 4%; bottom: 16%; --rotate: 3deg; --float-delay: -6s; }
+    .ambient-post.p4 { left: 48%; top: 26%; --rotate: -2deg; --float-delay: -1s; }
+
+    .instagram-error-note {
+      margin-top: 18px;
+      color: rgba(247,240,226,0.68);
+      font-size: 0.92rem;
+    }
+
+    /* Closing */
+    .closing-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: clamp(24px, 4vw, 42px);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 36%),
+        rgba(255,252,246,0.72);
+    }
+
+    .closing-panel h2 {
+      font-size: clamp(2.1rem, 5vw, 3.8rem);
+      line-height: 0.98;
+      color: var(--forest);
+      margin-bottom: 14px;
+    }
+
+    .closing-panel p {
+      color: var(--muted);
+      max-width: 740px;
+    }
+
+    .closing-panel p + p {
+      margin-top: 14px;
     }
 
     .floating-share {
@@ -411,9 +910,7 @@
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
     }
 
-    .share-options.open {
-      display: flex;
-    }
+    .share-options.open { display: flex; }
 
     .share-options a,
     .share-options button {
@@ -439,38 +936,142 @@
 
     @media (max-width: 1100px) {
       .hero-content,
-      .intro-grid,
-      .memory-grid,
-      .closing-card {
+      .story-flow,
+      .people-editorial,
+      .closing-panel {
         grid-template-columns: 1fr;
       }
+
+      .story-sticky {
+        position: relative;
+        top: auto;
+      }
+
+      .vibe-stack {
+        min-height: 340px;
+      }
+
+      .inspiration-map {
+        min-height: auto;
+      }
+
+      .inspiration-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .inspire-card,
+      .inspire-card.india,
+      .inspire-card.srilanka,
+      .inspire-card.france,
+      .inspire-card.israel,
+      .inspire-card.usa,
+      .inspire-card.morocco,
+      .inspire-card.vietnam,
+      .inspire-card.japan,
+      .inspire-card.korea {
+        grid-column: auto;
+        grid-row: auto;
+        transform: none;
+      }
+
+      .ambient-wrap {
+        min-height: 760px;
+      }
+
+      .ambient-copy {
+        max-width: 100%;
+      }
+
+      .ambient-post.p1 { right: 8%; top: 42%; }
+      .ambient-post.p2 { left: 8%; right: auto; bottom: 9%; }
+      .ambient-post.p3 { right: 8%; bottom: 7%; }
+      .ambient-post.p4 { left: 12%; top: 56%; }
     }
 
     @media (max-width: 760px) {
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
+      .container {
+        width: min(calc(100% - 24px), var(--container));
       }
 
       .hero-card {
-        min-height: 680px;
+        min-height: 760px;
+        border-radius: 28px;
       }
 
       .hero-content {
-        padding: 24px;
+        padding: 22px;
       }
 
       .hero h1 {
         max-width: 100%;
-        font-size: clamp(2.7rem, 13vw, 4.2rem);
+        font-size: clamp(2.7rem, 13vw, 4.4rem);
       }
 
-      .memory-card {
+      .hero-lead {
+        font-size: 1rem;
+      }
+
+      .vibe-stack {
+        min-height: 260px;
+      }
+
+      .vibe-polaroid {
+        width: 145px;
+      }
+
+      .vibe-polaroid.one { top: 2%; left: 0; }
+      .vibe-polaroid.two { top: 22%; right: 0; }
+      .vibe-polaroid.three { bottom: 0; left: 22%; }
+
+      .story-text {
+        padding-left: 18px;
+      }
+
+      .margin-post {
+        float: none;
+        width: 100%;
+        margin: 0 0 20px 0;
+        transform: none;
+      }
+
+      .portrait-panel,
+      .portrait-panel img {
+        min-height: 380px;
+      }
+
+      .ava-note {
         grid-template-columns: 1fr;
       }
 
-      .memory-sketch {
-        max-width: 180px;
+      .inspiration-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ambient-wrap {
+        min-height: 700px;
+        border-radius: 30px;
+        padding: 24px;
+      }
+
+      .ambient-follow {
+        width: 100%;
+      }
+
+      .ambient-post {
+        width: 138px;
+      }
+
+      .ambient-post.p1 { right: 5%; top: 48%; }
+      .ambient-post.p2 { left: 5%; bottom: 8%; }
+      .ambient-post.p3 { right: 6%; bottom: 10%; }
+      .ambient-post.p4 { display: none; }
+
+      .closing-panel {
+        align-items: stretch;
+      }
+
+      .closing-panel .button {
+        width: 100%;
       }
 
       .floating-share {
@@ -489,29 +1090,46 @@
 <body>
   <div id="site-header"></div>
 
+  <main class="page">
     <section class="hero">
       <div class="container">
         <div class="hero-card">
           <img src="../Image/about-hero.jpg" class="hero-media" alt="Hamsa Nomads story">
           <div class="hero-scrim"></div>
 
+          <div class="live-badge" data-reveal>
+            <span class="live-dot"></span>
+            Live from the journey
+          </div>
+
           <div class="hero-content">
-            <div class="hero-copy">
+            <div class="hero-copy" data-reveal>
               <div class="eyebrow">About Hamsa Nomads</div>
               <h1>Built from real Jewish travel.</h1>
               <p class="hero-lead">
-                Not imagined. Not designed from afar. Built from moments of uncertainty, connection, and meaning while traveling across the world.
+                Not imagined from a desk. Built from Shabbat meals that found us, kitchens we had to invent, strangers who became part of the story, and the feeling that Jewish life can travel beautifully.
               </p>
               <div class="hero-actions">
-                <a href="#story" class="button">Read the Story</a>
+                <a href="#story" class="button">Read the story</a>
+                <a href="#instagram-vibe" class="button-secondary">Catch the vibe</a>
               </div>
             </div>
 
-            <div class="hero-note">
-              <h3>A travel that you will never forget</h3>
-              <p>
-                The moments you don’t plan — we do it for you.
-              </p>
+            <div class="vibe-stack" aria-label="Live Instagram moments">
+              <a class="vibe-polaroid one hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 120ms;">
+                <div class="vibe-placeholder"></div>
+                <span>Travel moment</span>
+              </a>
+
+              <a class="vibe-polaroid two hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 220ms;">
+                <div class="vibe-placeholder"></div>
+                <span>Behind the scenes</span>
+              </a>
+
+              <a class="vibe-polaroid three hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 320ms;">
+                <div class="vibe-placeholder"></div>
+                <span>Nomad life</span>
+              </a>
             </div>
           </div>
         </div>
@@ -520,190 +1138,263 @@
 
     <section id="story" class="section">
       <div class="container">
-        <div class="section-header">
-          <h2>The origin</h2>
-          <p>Traveling far while trying to stay rooted.</p>
-        </div>
-
-        <div class="intro-grid">
-          <div class="card glass">
+        <div class="story-flow">
+          <aside class="story-sticky" data-reveal>
+            <div class="eyebrow">The origin</div>
+            <h2>Traveling far, staying rooted.</h2>
             <p>
-              Hamsa Nomads began with a simple truth we lived again and again: exploring the world while keeping our faith is a treasure.
+              Hamsa Nomads began from the life we were already living — moving through the world, figuring things out, and finding Jewish connection in unexpected places.
             </p>
+          </aside>
 
-            <p>
-              Traveling as observant Jews is not always easy. You think about food, Shabbat, holidays, community, vessels, timing, and small details most travelers never notice. But those same challenges become part of the beauty.
-            </p>
+          <div class="story-text">
+            <article class="story-chapter" data-reveal>
+              <h3>The truth we kept living</h3>
+              <p>
+                Hamsa Nomads began with a simple truth we lived again and again: exploring the world while keeping our faith is a treasure.
+              </p>
+              <p>
+                Traveling as observant Jews is not always easy. You think about food, Shabbat, holidays, community, vessels, timing, and small details most travelers never notice. But those same challenges become part of the beauty.
+              </p>
+            </article>
 
-            <p>
-              Along the way, we faced unexpected meetings — the kind you cannot plan and cannot force. A few Hebrew letters in a faraway street. A stranger who remembers a Jewish connection. A local Jewish community opening its doors. A Shabbat meal appearing when we thought we would be alone.
-            </p>
+            <article class="story-chapter" data-reveal>
+              <div class="margin-post hn-margin-post" data-float>
+                <div class="vibe-placeholder"></div>
+                <span>From the road</span>
+              </div>
 
-            <p>
-              Those encounters changed the way we look at life. They taught us that Jewish identity is not only something we carry privately; it is something that connects us to people, places, histories, and stories across the world.
-            </p>
+              <h3>The moments we could not plan</h3>
+              <p>
+                Along the way, we faced unexpected meetings — the kind you cannot plan and cannot force. A few Hebrew letters in a faraway street. A stranger who remembers a Jewish connection. A local Jewish community opening its doors. A Shabbat meal appearing when we thought we would be alone.
+              </p>
+              <p>
+                Those encounters changed the way we look at life. They taught us that Jewish identity is not only something we carry privately; it is something that connects us to people, places, histories, and stories across the world.
+              </p>
+            </article>
 
-            <p>
-              We traveled through India, Sri Lanka, Vietnam, Japan, South Korea, Morocco, Israel, France, and the United States — each place shaping us differently. Some moments were practical, like figuring out how to keep kosher in unfamiliar conditions. Some were spiritual, like toveling vessels in the waves of Sri Lanka. Some were human, like finding Jewish warmth in places where we expected to find none.
-            </p>
-
-            <p>
-              Hamsa Nomads was born from those moments: the challenge, the wonder, the improvisation, and the feeling that Jewish life can travel with you — not as a burden, but as a source of depth.
-            </p>
-          </div>
-
-          <div class="card glass quote-card">
-            <div class="small">
-              Every trip became more than travel. It became a way to meet people, discover hidden Jewish stories, and understand what it means to stay rooted while moving through the world.
-            </div>
+            <article class="story-chapter" data-reveal>
+              <h3>What became Hamsa Nomads</h3>
+              <p>
+                We traveled through India, Sri Lanka, Vietnam, Japan, South Korea, Morocco, Israel, France, and the United States — each place shaping us differently.
+              </p>
+              <p>
+                Some moments were practical, like figuring out how to keep kosher in unfamiliar conditions. Some were spiritual, like toveling vessels in the waves of Sri Lanka. Some were human, like finding Jewish warmth in places where we expected to find none.
+              </p>
+              <p>
+                Hamsa Nomads was born from those moments: the challenge, the wonder, the improvisation, and the feeling that Jewish life can travel with you — not as a burden, but as a source of depth.
+              </p>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="journeys" class="section">
+    <section id="people" class="section people-section">
       <div class="container">
-        <div class="section-header">
-          <div>
-            <div class="eyebrow">Journeys that shaped us</div>
-            <h2>Places, encounters, and roots</h2>
-          </div>
+        <div class="section-intro center" data-reveal>
+          <div class="eyebrow">The people behind it</div>
+          <h2>Moshe, Leah, and Ava.</h2>
           <p>
-            Hamsa Nomads grew from real places, real challenges, and real moments of Jewish connection across the world.
+            A travel brain, a creative brain, and one dog who somehow became part of the brand personality. This section is built to feel more personal and editorial, with space to add deeper stories later.
           </p>
         </div>
 
-        <div class="memory-grid">
-          <article class="memory-card glass">
-            <div class="memory-sketch">
-              <img src="../about-us/sketches/india.png" alt="Sketch of India" />
+        <div class="people-editorial">
+          <div class="portrait-panel" data-reveal>
+            <img src="../Image/about-hero.jpg" alt="Moshe, Leah, and Ava">
+            <div class="portrait-caption">
+              <strong>The Hamsa Nomads household</strong>
+              <span>Travel, Shabbat logistics, wild ideas, and a dog in the middle of everything.</span>
             </div>
-            <div class="memory-content">
+          </div>
+
+          <div class="people-notes">
+            <article class="person-note" data-reveal style="--delay: 80ms;">
+              <div class="person-role">Co-founder</div>
+              <h3>Moshe</h3>
+              <p>
+                Moshe brings the logistics, the people energy, the Jewish travel background, and the ability to turn a complicated idea into something that can actually happen.
+              </p>
+              <div class="blank-line">
+                [Blank space for Moshe’s deeper bio — background, France Jewish organization, travel story, personality, what he brings to Hamsa Nomads.]
+              </div>
+            </article>
+
+            <article class="person-note" data-reveal style="--delay: 160ms;">
+              <div class="person-role">Co-founder</div>
+              <h3>Leah</h3>
+              <p>
+                Leah brings the creative direction, the experience design, the visual world, and the constant flow of ideas that turns Hamsa Nomads into something warmer and more memorable than a standard program.
+              </p>
+              <div class="blank-line">
+                [Blank space for Leah’s deeper bio — design, engineering, travel, Jewish community, why she cares about meaningful experiences.]
+              </div>
+            </article>
+
+            <article class="person-note ava-note" data-reveal style="--delay: 240ms;">
+              <div class="paw">🐾</div>
+              <div>
+                <div class="person-role">Chief vibe officer</div>
+                <h3>Ava</h3>
+                <p>
+                  Ava is part of the story because Hamsa Nomads is not trying to feel corporate. It is personal, lived-in, and built around the real rhythm of a family that travels, hosts, and creates.
+                </p>
+                <div class="blank-line">
+                  [Blank space for Ava’s deeper bio — her personality, funny role, travel/retreat vibe, or a short dog-introduction.]
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="inspired-us" class="section inspiration-section">
+      <div class="container">
+        <div class="section-intro" data-reveal>
+          <div class="eyebrow">What inspired us</div>
+          <h2>Places, encounters, and roots.</h2>
+          <p>
+            Instead of a simple “where we went” list, this is the emotional map behind Hamsa Nomads — the places that shaped how we think about Jewish travel, hosting, and connection.
+          </p>
+        </div>
+
+        <div class="inspiration-map">
+          <svg class="map-line" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M80 120 C220 80, 280 220, 420 190 S630 70, 760 180 S910 350, 1080 240" />
+            <path d="M120 520 C250 470, 340 610, 500 560 S720 420, 880 520 S1010 610, 1140 510" />
+          </svg>
+
+          <div class="inspiration-grid">
+            <article class="inspire-card india" data-reveal>
+              <img src="../about-us/sketches/india.png" alt="Sketch of India" />
               <h3>India</h3>
               <p>
-                India became one of our deepest sources of inspiration. From Mumbai to Pune to Kochi, we discovered Jewish stories, communities, and traces of history. In the south, when we thought we would spend Shabbat alone, Hebrew letters on a street led us to a hotel owner, then to a rabbi, and finally to a Shabbat meal we never expected.
+                Mumbai, Pune, Kochi, and unexpected Shabbat warmth. India taught us how Jewish stories can appear in places you thought would feel far from home.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card srilanka" data-reveal style="--delay: 80ms;">
               <img src="../about-us/sketches/sri-lanka.png" alt="Sketch of Sri Lanka" />
-            </div>
-            <div class="memory-content">
               <h3>Sri Lanka</h3>
               <p>
-                In Sri Lanka, kashrut became something physical and unforgettable. We went to the ocean to tovel our vessels — the kashering of our kitchen tools in the waves. It was not neat or easy. The water moved, the waves pushed back, and the moment became a reminder that Jewish life while traveling is not always convenient, but it can be deeply alive.
+                Toveling vessels in the ocean turned kashrut from a checklist into a physical, unforgettable memory.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card france" data-reveal style="--delay: 120ms;">
               <img src="../about-us/sketches/france.png" alt="Sketch of France" />
-            </div>
-            <div class="memory-content">
               <h3>France</h3>
               <p>
-                France shaped part of the foundation of Hamsa Nomads through years of Jewish community involvement and event planning. Leading and organizing within a Jewish student union taught us how to bring people together, how to create belonging, and how much thoughtful details matter when building a meaningful Jewish experience.
+                Jewish student life and event organizing shaped how we think about belonging.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card israel" data-reveal style="--delay: 160ms;">
               <img src="../about-us/sketches/israel.png" alt="Sketch of Israel" />
-            </div>
-            <div class="memory-content">
               <h3>Israel</h3>
               <p>
-                Israel is where everything is rooted. It is the center of the story, the place where Jewish time, Jewish land, Jewish memory, and Jewish responsibility all become tangible. For Hamsa Nomads, Israel is not just another destination — it is where everything started.
+                The root of the story — Jewish land, memory, time, and responsibility.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card usa" data-reveal style="--delay: 200ms;">
               <img src="../about-us/sketches/usa.png" alt="Sketch of the United States" />
-            </div>
-            <div class="memory-content">
               <h3>USA</h3>
               <p>
-                The United States is where everything feels possible. It is where ideas can quickly become real, where communities can be built from scratch, and where Hamsa Nomads can grow into retreats, gatherings, Shabbatonim, and travel experiences for people looking for something warm, beautiful, and Jewish.
+                Where Hamsa Nomads can become retreats, gatherings, Shabbatonim, and new community experiments.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card morocco" data-reveal style="--delay: 240ms;">
               <img src="../about-us/sketches/morocco.png" alt="Sketch of Morocco" />
-            </div>
-            <div class="memory-content">
               <h3>Morocco & the Sahara</h3>
               <p>
-                In Morocco and the Sahara, we felt how Jewish memory can live inside music, names, and stories. Around a narguileh in the desert, an Amazigh man heard a Jewish name and answered with a memory of his own roots. Then came Moroccan Jewish music, darboukah, and the strange feeling of being both far away and deeply connected.
+                Music, names, memory, darboukah, and the feeling of being both far away and deeply connected.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card vietnam" data-reveal style="--delay: 280ms;">
               <img src="../about-us/sketches/vietnam.png" alt="Sketch of Vietnam" />
-            </div>
-            <div class="memory-content">
               <h3>Vietnam</h3>
               <p>
-                In Vietnam, we were moved by everyday creativity: children inventing games, local ways of cooking, and the challenge of adapting what we saw into our own kosher kitchen. It taught us that travel is not only about seeing places, but about learning how people live.
+                Everyday creativity, local life, and the art of adapting travel into a kosher rhythm.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card japan" data-reveal style="--delay: 320ms;">
               <img src="../about-us/sketches/japan.png" alt="Sketch of Japan" />
-            </div>
-            <div class="memory-content">
               <h3>Japan</h3>
               <p>
-                In Japan, unexpected conversations opened a window into identity, history, and the ways people relate to Jewish memory from a distance. It reminded us that Jewish presence can spark curiosity and connection in places we never expected.
+                Conversations about identity, history, and Jewish memory from a distance.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="memory-card glass">
-            <div class="memory-sketch">
+            <article class="inspire-card korea" data-reveal style="--delay: 360ms;">
               <img src="../about-us/sketches/south-korea.png" alt="Sketch of South Korea" />
-            </div>
-            <div class="memory-content">
               <h3>South Korea</h3>
               <p>
-                In South Korea, a simple visible sign of Jewish life — like a kippah — became the beginning of conversations. Sometimes the smallest details open the deepest exchanges.
+                A visible sign of Jewish life became the beginning of unexpected conversations.
               </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instagram-vibe" class="ambient-instagram-section">
+      <div class="container">
+        <div class="ambient-wrap">
+          <div class="ambient-copy" data-reveal>
+            <div class="eyebrow">The live vibe</div>
+            <h2>Not a feed. A window.</h2>
+            <p>
+              A few live moments from Instagram drift through the page so the About page feels alive — less like a brochure, more like the world Hamsa Nomads is coming from.
+            </p>
+
+            <div class="ambient-actions">
+              <img class="ambient-avatar hn-live-instagram-avatar" alt="Hamsa Nomads Instagram profile" onerror="hnHandleInstagramAvatarError(this);" />
+              <a class="ambient-follow hn-live-instagram-follow" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener">
+                Follow
+              </a>
             </div>
-          </article>
+
+            <div class="instagram-error-note" id="hnInstagramNote"></div>
+          </div>
+
+          <div class="ambient-posts" aria-label="Live Hamsa Nomads Instagram posts">
+            <a class="ambient-post p1 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+              <div class="vibe-placeholder"></div>
+              <span>Loading...</span>
+            </a>
+            <a class="ambient-post p2 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+              <div class="vibe-placeholder"></div>
+              <span>Loading...</span>
+            </a>
+            <a class="ambient-post p3 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+              <div class="vibe-placeholder"></div>
+              <span>Loading...</span>
+            </a>
+            <a class="ambient-post p4 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+              <div class="vibe-placeholder"></div>
+              <span>Loading...</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="why" class="section">
       <div class="container">
-        <div class="section-header">
+        <article class="closing-panel glass" data-reveal>
           <div>
             <div class="eyebrow">Why we built this</div>
-            <h2>From travel memories to shared experiences</h2>
-          </div>
-          <p>
-            Hamsa Nomads is our way of turning those lived moments into something others can experience too.
-          </p>
-        </div>
-
-        <article class="closing-card glass">
-          <div>
-            <h2>What we want to offer</h2>
+            <h2>From travel memories to shared experiences.</h2>
             <p>
               We want to create Jewish travel and retreat experiences that feel beautiful, grounded, and real — not generic programs, but spaces where people can connect, celebrate, rest, and feel part of something warm.
             </p>
-            <p style="margin-top: 14px;">
+            <p>
               Hamsa Nomads is built from the belief that Shabbat, Chagim, kashrut, hospitality, and Jewish togetherness can travel with us — across countries, landscapes, and moments of life.
             </p>
           </div>
@@ -714,69 +1405,241 @@
         </article>
       </div>
     </section>
+  </main>
 
   <div id="site-footer"></div>
 
   <script src="../assets/site-components.js" data-base="../"></script>
 
   <script>
-    (() => {
-      const drawPaths = [
-        document.getElementById("lineBack")
-      ].filter(Boolean);
+    const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
+    const HN_INSTAGRAM_AVATAR_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23F4E7C7'/%3E%3Cstop offset='1' stop-color='%23E7D2A2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' rx='60' fill='url(%23g)'/%3E%3Ctext x='60' y='70' text-anchor='middle' font-family='Arial, sans-serif' font-size='34' font-weight='700' fill='%23274537'%3EHN%3C/text%3E%3C/svg%3E";
+    const HN_INSTAGRAM_AVATAR_CANDIDATES = [
+      "../logo/logo-hamsa-nomads.png",
+      "../Image/logo-hamsa-nomads.png",
+      "../Image/Logo-hamsa-nomads.png",
+      "../Image/hamsa-logo.png",
+      "../Image/logo.png",
+      "../Image/hamsa-instagram-profile.jpg"
+    ];
 
-      function updateLine() {
-        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        const progress = Math.min(1, window.scrollY / maxScroll);
+    function hnHandleInstagramAvatarError(img) {
+      if (!img) return;
 
-        drawPaths.forEach((path) => {
-          const len = path.getTotalLength();
-          path.style.strokeDasharray = len;
-          path.style.strokeDashoffset = len * (1 - Math.min(progress * 1.06, 1));
+      const attempted = Number(img.dataset.avatarIndex || 0) + 1;
+      img.dataset.avatarIndex = attempted;
+
+      if (attempted < HN_INSTAGRAM_AVATAR_CANDIDATES.length) {
+        img.src = HN_INSTAGRAM_AVATAR_CANDIDATES[attempted];
+        return;
+      }
+
+      img.onerror = null;
+      img.src = HN_INSTAGRAM_AVATAR_FALLBACK;
+    }
+
+    function hnEscapeInstagramText(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function hnCleanCaption(caption, maxLength) {
+      const clean = String(caption || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (!clean) return "Hamsa Nomads";
+
+      return clean.length > maxLength
+        ? clean.slice(0, maxLength).trim() + "..."
+        : clean;
+    }
+
+    function hnShuffle(items) {
+      return [...items].sort(() => Math.random() - 0.5);
+    }
+
+    function hnPostImage(post) {
+      return post?.image || post?.thumbnail_url || post?.media_url || "../Image/hero.jpg";
+    }
+
+    function hnRenderAmbientPost(element, post) {
+      if (!element || !post) return;
+
+      const image = hnPostImage(post);
+      const caption = hnCleanCaption(post.caption, 46);
+      const url = post.url || post.permalink || "https://www.instagram.com/hamsanomads/";
+
+      element.href = url;
+      element.innerHTML = `
+        <img
+          src="${hnEscapeInstagramText(image)}"
+          alt="${hnEscapeInstagramText(caption)}"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='../Image/about-hero.jpg';"
+        />
+        <span>${hnEscapeInstagramText(caption)}</span>
+      `;
+    }
+
+    function hnRenderInstagramMoments(data) {
+      const posts = Array.isArray(data.posts) ? hnShuffle(data.posts) : [];
+
+      const avatarImages = document.querySelectorAll(".hn-live-instagram-avatar");
+      avatarImages.forEach((avatar) => {
+        avatar.dataset.avatarIndex = "-1";
+        avatar.src = data.profilePicture || HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
+      });
+
+      const followLinks = document.querySelectorAll(".hn-live-instagram-follow");
+      followLinks.forEach((link) => {
+        link.href = data.profileUrl || "https://www.instagram.com/hamsanomads/";
+      });
+
+      const vibePosts = Array.from(document.querySelectorAll(".hn-vibe-post"));
+      vibePosts.forEach((element, index) => {
+        if (posts[index]) hnRenderAmbientPost(element, posts[index]);
+      });
+
+      const marginPost = document.querySelector(".hn-margin-post");
+      if (marginPost && posts[3]) {
+        hnRenderAmbientPost(marginPost, posts[3]);
+      }
+
+      const ambientPosts = Array.from(document.querySelectorAll(".hn-ambient-post"));
+      ambientPosts.forEach((element, index) => {
+        if (posts[index + 4]) hnRenderAmbientPost(element, posts[index + 4]);
+        else if (posts[index]) hnRenderAmbientPost(element, posts[index]);
+      });
+    }
+
+    async function hnLoadInstagramFeed() {
+      const note = document.getElementById("hnInstagramNote");
+
+      try {
+        const response = await fetch(HN_INSTAGRAM_API_URL, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error("Instagram feed request failed.");
+        }
+
+        const data = await response.json();
+        hnRenderInstagramMoments(data);
+
+        if (note) {
+          note.textContent = "";
+        }
+      } catch (error) {
+        if (note) {
+          note.textContent = "Instagram moments are not available right now, but the page still works.";
+        }
+
+        const avatarImages = document.querySelectorAll(".hn-live-instagram-avatar");
+        avatarImages.forEach((avatar) => {
+          avatar.dataset.avatarIndex = "-1";
+          avatar.src = HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
+        });
+      }
+    }
+
+    function hnInitReveals() {
+      const revealItems = document.querySelectorAll("[data-reveal]");
+
+      if (!("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.14,
+        rootMargin: "0px 0px -60px 0px"
+      });
+
+      revealItems.forEach((item) => observer.observe(item));
+    }
+
+    function hnInitParallax() {
+      const heroCard = document.querySelector(".hero-card");
+      const floatingItems = document.querySelectorAll(".vibe-polaroid, .ambient-post");
+
+      if (!heroCard || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      window.addEventListener("scroll", () => {
+        const y = window.scrollY || 0;
+        floatingItems.forEach((item, index) => {
+          const strength = (index % 3) + 1;
+          item.style.setProperty("--parallax-y", `${y * strength * 0.006}px`);
+        });
+      }, { passive: true });
+    }
+
+    function hnInitShare() {
+      const shareBtn = document.getElementById("shareBtn");
+      const shareOptions = document.getElementById("shareOptions");
+      const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+
+      const whatsappShare = document.getElementById("whatsappShare");
+      const facebookShare = document.getElementById("facebookShare");
+      const emailShare = document.getElementById("emailShare");
+
+      if (whatsappShare) {
+        whatsappShare.href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+      }
+
+      if (facebookShare) {
+        facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+      }
+
+      if (emailShare) {
+        emailShare.href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+      }
+
+      if (shareBtn && shareOptions) {
+        shareBtn.addEventListener("click", () => {
+          shareOptions.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".floating-share")) {
+            shareOptions.classList.remove("open");
+          }
         });
       }
 
-      window.addEventListener("scroll", updateLine, { passive: true });
-      window.addEventListener("resize", updateLine);
-      updateLine();
-    })();
-
-    const shareBtn = document.getElementById("shareBtn");
-    const shareOptions = document.getElementById("shareOptions");
-    const copyLinkBtn = document.getElementById("copyLinkBtn");
-
-    const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
-
-    document.getElementById("whatsappShare").href =
-      `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
-
-    document.getElementById("facebookShare").href =
-      `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-
-    document.getElementById("emailShare").href =
-      `mailto:?subject=${pageTitle}&body=${pageUrl}`;
-
-    shareBtn.addEventListener("click", () => {
-      shareOptions.classList.toggle("open");
-    });
-
-    copyLinkBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        copyLinkBtn.textContent = "Copied!";
-        setTimeout(() => {
-          copyLinkBtn.textContent = "Copy link";
-        }, 1600);
-      } catch (err) {
-        alert("Copy failed. Please copy the URL manually.");
+      if (copyLinkBtn) {
+        copyLinkBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copyLinkBtn.textContent = "Copied!";
+            setTimeout(() => {
+              copyLinkBtn.textContent = "Copy link";
+            }, 1600);
+          } catch (err) {
+            alert("Copy failed. Please copy the URL manually.");
+          }
+        });
       }
-    });
+    }
 
-    document.addEventListener("click", (event) => {
-      if (!event.target.closest(".floating-share")) {
-        shareOptions.classList.remove("open");
-      }
+    document.addEventListener("DOMContentLoaded", function () {
+      hnInitReveals();
+      hnInitParallax();
+      hnInitShare();
+      hnLoadInstagramFeed();
     });
   </script>
 </body>
