@@ -172,17 +172,48 @@
       [data-reveal] { opacity: 1 !important; transform: none !important; }
     }
 
-    .hero { padding: 24px 0 34px; }
+    
+    /* LUXURY HEADER + HERO REFRESH */
+    .hn-shared-header,
+    #site-header .hn-shared-header {
+      background: rgba(250, 247, 240, 0.72) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(39, 69, 55, 0.10) !important;
+      box-shadow: 0 10px 28px rgba(31, 28, 20, 0.06) !important;
+    }
+
+    #site-header .hn-shared-header a,
+    .hn-shared-header a {
+      color: var(--forest) !important;
+    }
+
+    #site-header .hn-shared-header button,
+    #site-header .hn-shared-header .button,
+    #site-header .hn-shared-header [class*="cta"],
+    .hn-shared-header button,
+    .hn-shared-header .button,
+    .hn-shared-header [class*="cta"] {
+      background: rgba(255, 255, 255, 0.72) !important;
+      color: var(--forest) !important;
+      border: 1px solid rgba(39, 69, 55, 0.12) !important;
+      box-shadow: 0 10px 26px rgba(31, 28, 20, 0.07) !important;
+    }
+
+    .hero {
+      padding: 20px 0 38px;
+    }
 
     .hero-card {
       position: relative;
-      min-height: min(830px, 86vh);
+      min-height: min(860px, 88vh);
       overflow: hidden;
-      border-radius: 38px;
-      background: #e9dfd0;
+      border-radius: 40px;
+      background: #ece2d4;
       box-shadow: var(--shadow);
       display: grid;
       align-items: stretch;
+      isolation: isolate;
     }
 
     .hero-media {
@@ -191,15 +222,41 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(0.98);
+      object-position: center;
+      filter: saturate(0.95) brightness(1.02);
+      transform: scale(1.01);
     }
 
     .hero-scrim {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(20, 18, 12, 0.64), rgba(20, 18, 12, 0.26) 54%, rgba(20, 18, 12, 0.07)),
-        linear-gradient(180deg, rgba(20,18,12,0.07), rgba(20,18,12,0.40));
+        linear-gradient(94deg, rgba(20, 18, 12, 0.26), rgba(20, 18, 12, 0.08) 42%, rgba(20, 18, 12, 0.02) 72%),
+        linear-gradient(180deg, rgba(250, 247, 240, 0.04), rgba(20, 18, 12, 0.20));
+      z-index: 1;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -80px -80px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(248, 238, 215, 0.34) 0%, rgba(248, 238, 215, 0) 72%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      right: 60px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(215, 176, 91, 0.17) 0%, rgba(215, 176, 91, 0) 74%);
+      z-index: 1;
+      pointer-events: none;
     }
 
     .hero-content {
@@ -207,183 +264,408 @@
       z-index: 3;
       min-height: inherit;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.76fr);
-      gap: clamp(24px, 4vw, 46px);
-      align-items: end;
-      padding: clamp(26px, 5vw, 64px);
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 420px);
+      gap: clamp(28px, 5vw, 56px);
+      align-items: stretch;
+      padding: clamp(30px, 5vw, 62px);
     }
 
     .hero-copy {
-      color: #fffdf8;
+      align-self: end;
       max-width: 760px;
-      align-self: center;
+      color: #fffdf8;
+      padding-top: 8px;
     }
 
-    .hero .eyebrow { color: #e0ae43; text-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+    .hero-fact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .hero-fact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255, 252, 246, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.11);
+      color: var(--forest);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero-fact-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #d7b05b;
+      box-shadow: 0 0 0 5px rgba(215, 176, 91, 0.16);
+    }
+
+    .hero .eyebrow {
+      color: #f0c66f;
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+      margin-bottom: 14px;
+    }
 
     .hero h1 {
-      font-size: clamp(3.2rem, 7.8vw, 7rem);
-      line-height: 0.9;
+      font-size: clamp(3.25rem, 7vw, 6.65rem);
+      line-height: 0.90;
+      letter-spacing: -0.055em;
       color: #fffdf8;
-      max-width: 9.5ch;
-      margin-bottom: 20px;
-      text-shadow: 0 10px 32px rgba(0,0,0,0.25);
+      max-width: 11ch;
+      margin: 0 0 20px;
+      text-shadow: 0 12px 26px rgba(0, 0, 0, 0.17);
     }
 
-    .hero h1 span { color: #e0ae43; }
+    .hero h1 span {
+      color: #f7ecda;
+    }
 
     .hero-lead {
-      max-width: 43ch;
-      font-size: clamp(1.08rem, 2vw, 1.34rem);
-      line-height: 1.48;
-      color: rgba(255,251,245,0.94);
-      margin-bottom: 24px;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.24);
+      max-width: 42ch;
+      font-size: clamp(1.06rem, 1.85vw, 1.28rem);
+      line-height: 1.58;
+      color: rgba(255, 251, 245, 0.92);
+      margin-bottom: 22px;
+      text-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
     }
 
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 18px;
+    }
 
-    .hero-countdown {
-      width: min(650px, 100%);
-      padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, 0.24);
+    .hero-actions .button {
+      box-shadow: 0 18px 36px rgba(28, 57, 45, 0.26);
+      background: rgba(39, 69, 55, 0.95);
+    }
+
+    .hero-actions .button-secondary {
+      background: rgba(255, 252, 246, 0.78);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.10);
+      color: var(--forest);
+      border: 1px solid rgba(255, 255, 255, 0.40);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero-meta-note {
+      color: rgba(255, 251, 245, 0.76);
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-side {
+      align-self: end;
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-luxe-panel,
+    .countdown-card {
+      border-radius: 30px;
+      background: rgba(255, 252, 246, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.50);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 22px 52px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-luxe-panel {
+      padding: 22px;
+    }
+
+    .hero-panel-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .panel-kicker {
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .hero-luxe-panel h2 {
+      font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+      line-height: 0.98;
+      color: var(--forest);
+      margin: 0;
+    }
+
+    .hero-price {
+      text-align: right;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hero-price strong {
+      display: block;
+      font-size: 2.35rem;
+      line-height: 0.95;
+      color: var(--forest);
+      letter-spacing: -0.05em;
+      margin-top: 3px;
+    }
+
+    .hero-side-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-side-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid rgba(39, 69, 55, 0.09);
+      color: var(--forest);
+      font-size: 0.95rem;
+    }
+
+    .hero-side-list li:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .hero-side-list span {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.90rem;
+      text-align: right;
+    }
+
+    .countdown-card {
+      padding: 20px;
     }
 
     .countdown-header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-      color: rgba(255, 253, 248, 0.9);
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
-      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
-    .countdown-header strong { color: #e0ae43; font-weight: 900; }
-    .countdown-row { display: flex; align-items: flex-start; gap: clamp(10px, 2vw, 28px); }
-    .countdown-unit { text-align: center; min-width: 54px; }
+    .countdown-header span {
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    .countdown-header strong {
+      color: var(--gold);
+      font-size: 0.84rem;
+      letter-spacing: 0.04em;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      align-items: center;
+    }
+
+    .countdown-unit {
+      min-width: 0;
+      padding: 12px 4px;
+      text-align: center;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(39, 69, 55, 0.08);
+    }
 
     .countdown-number {
-      font-family: Inter, Arial, sans-serif;
-      font-size: clamp(2rem, 5vw, 3.35rem);
-      font-weight: 900;
-      color: #e0ae43;
+      font-size: clamp(1.4rem, 2vw, 2rem);
       line-height: 1;
-      letter-spacing: -0.045em;
-      text-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: var(--forest);
     }
 
     .countdown-label {
-      margin-top: 8px;
-      color: rgba(224, 174, 67, 0.55);
-      font-size: 0.52rem;
-      font-weight: 900;
-      letter-spacing: 0.26em;
+      margin-top: 6px;
+      font-size: 0.54rem;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      font-weight: 900;
     }
 
     .countdown-separator {
-      padding-top: 3px;
-      color: rgba(224, 174, 67, 0.28);
-      font-size: clamp(1.6rem, 3vw, 2.15rem);
-      font-weight: 900;
-      line-height: 1;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: rgba(39, 69, 55, 0.42);
     }
 
     .countdown-note {
       margin-top: 14px;
-      color: rgba(255, 251, 245, 0.78);
-      font-size: 0.92rem;
-      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+      font-size: 0.90rem;
+      line-height: 1.6;
     }
 
-    .hero-vibe-stack { position: relative; min-height: 480px; align-self: center; }
+    .hero-vibe-stack {
+      position: absolute;
+      right: clamp(20px, 4vw, 36px);
+      bottom: 26px;
+      z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      pointer-events: none;
+    }
 
-    .vibe-polaroid,
-    .ambient-post,
-    .margin-post {
-      border-radius: 24px;
-      overflow: hidden;
-      background: rgba(255, 252, 246, 0.88);
-      padding: 9px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.20);
-      border: 1px solid rgba(255,255,255,0.55);
+    .vibe-polaroid {
+      pointer-events: auto;
+      display: block;
+      width: clamp(120px, 12vw, 160px);
+      padding: 8px;
+      border-radius: 22px;
+      background: rgba(255, 252, 246, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.52);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       transform: rotate(var(--rotate, 0deg));
     }
 
-    .vibe-polaroid { position: absolute; width: clamp(150px, 16vw, 230px); }
+    .vibe-polaroid.one { --rotate: -5deg; margin-bottom: 14px; }
+    .vibe-polaroid.two { --rotate: 3deg; }
+    .vibe-polaroid.three { --rotate: -2deg; margin-bottom: 22px; }
 
     .vibe-polaroid img,
-    .vibe-polaroid .vibe-placeholder,
-    .ambient-post img,
-    .ambient-post .vibe-placeholder,
-    .margin-post img,
-    .margin-post .vibe-placeholder {
+    .vibe-polaroid .vibe-placeholder {
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 17px;
-      background: radial-gradient(circle at top left, rgba(244,231,199,0.8), transparent 34%), linear-gradient(145deg, #f4e7c7, #d9c69b);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #f4e7c7, #d9c69b);
     }
 
-    .vibe-polaroid span,
-    .ambient-post span,
-    .margin-post span {
+    .vibe-polaroid span {
       display: block;
-      padding: 8px 5px 2px;
-      font-size: 0.70rem;
+      margin-top: 8px;
       color: var(--forest);
+      font-size: 0.69rem;
       font-weight: 900;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .vibe-polaroid.one { top: 7%; left: 0; --rotate: -8deg; --float-delay: -1s; }
-    .vibe-polaroid.two { top: 33%; right: 2%; --rotate: 8deg; --float-delay: -3s; }
-    .vibe-polaroid.three { bottom: 0; left: 18%; --rotate: -3deg; --float-delay: -5s; }
+    @media (max-width: 1100px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
 
-    .hero-fact-pill {
-      position: absolute;
-      z-index: 5;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255, 252, 246, 0.88);
-      color: var(--forest);
-      font-size: 0.76rem;
-      font-weight: 900;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      box-shadow: 0 16px 34px rgba(0,0,0,0.13);
-      border: 1px solid rgba(255,255,255,0.52);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      .hero-vibe-stack {
+        position: static;
+        justify-content: flex-start;
+        margin: 0 30px 30px;
+      }
     }
 
-    .hero-fact-pill::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #d7b05b;
-      box-shadow: 0 0 0 5px rgba(215,176,91,0.18);
+    @media (max-width: 780px) {
+      .hero-card {
+        min-height: auto;
+        border-radius: 30px;
+      }
+
+      .hero-content {
+        padding: 22px;
+        gap: 18px;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+        font-size: clamp(2.8rem, 12vw, 4.6rem);
+      }
+
+      .hero-fact-row {
+        gap: 8px;
+      }
+
+      .hero-fact-pill {
+        min-height: 36px;
+        padding: 0 12px;
+        font-size: 0.72rem;
+      }
+
+      .hero-vibe-stack {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin: 0 22px 22px;
+      }
+
+      .vibe-polaroid {
+        width: 100%;
+        margin-bottom: 0 !important;
+      }
     }
 
-    .pill-one { right: 5%; top: 5%; }
-    .pill-two { right: 18%; bottom: 8%; }
-    .pill-three { left: 5%; bottom: 5%; }
+    @media (max-width: 640px) {
+      .hero-actions .button,
+      .hero-actions .button-secondary {
+        width: 100%;
+      }
 
-    .manifesto { padding-top: clamp(40px, 6vw, 78px); padding-bottom: clamp(34px, 5vw, 62px); }
+      .hero-panel-top {
+        display: block;
+      }
+
+      .hero-price {
+        text-align: left;
+        margin-top: 14px;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .countdown-separator {
+        display: none;
+      }
+
+      .hero-vibe-stack {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .manifesto {
+ padding-top: clamp(40px, 6vw, 78px); padding-bottom: clamp(34px, 5vw, 62px); }
 
     .manifesto-grid {
       display: grid;
@@ -1023,55 +1305,113 @@
     <div id="site-header"></div>
 
     <main id="top">
+      
       <section class="hero">
         <div class="container">
           <div class="hero-card">
             <img class="hero-media" src="Image/hero.jpg" alt="Shavuos in Vermont retreat hero image" />
             <div class="hero-scrim"></div>
 
-            <div class="hero-fact-pill pill-one" data-reveal>May 21–24</div>
-            <div class="hero-fact-pill pill-two" data-reveal style="--delay: 140ms;">From $350</div>
-            <div class="hero-fact-pill pill-three" data-reveal style="--delay: 220ms;">Kosher meals included</div>
-
             <div class="hero-content">
               <div class="hero-copy" data-reveal>
+                <div class="hero-fact-row" data-reveal>
+                  <div class="hero-fact-pill">May 21–24</div>
+                  <div class="hero-fact-pill">From $350</div>
+                  <div class="hero-fact-pill">Kosher meals included</div>
+                </div>
+
                 <div class="eyebrow">Shavuos retreat · Vermont</div>
                 <h1>Spend Shavuos <span>somewhere unforgettable.</span></h1>
                 <p class="hero-lead">
-                  A small, curated 4-day Shavuos retreat for Jewish young adults and professionals — kosher meals, nature, learning, games, warm people, and a private Vermont house.
+                  A small, curated 4-day Shavuos retreat for Jews in their 20s and 30s who want something warm, beautiful, observant, and real — with nature, learning, games, good people, and a private Vermont house.
                 </p>
 
                 <div class="hero-actions">
-                  <a href="Forms/apply.html" class="button">Apply for Shavuos</a>
-                  <a href="#house" class="button-secondary">See the house</a>
+                  <a class="button" href="#pricing">Apply for Shavuos</a>
+                  <a class="button-secondary" href="#house">See the house</a>
                 </div>
 
-                <div class="hero-countdown" id="earlyBirdCountdown" aria-label="Early bird pricing countdown">
-                  <div class="countdown-header"><span>Early bird pricing</span><strong>Ends May 3</strong></div>
-                  <div class="countdown-row">
-                    <div class="countdown-unit"><div class="countdown-number" id="early-days">00</div><div class="countdown-label">Days</div></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-unit"><div class="countdown-number" id="early-hours">00</div><div class="countdown-label">Hours</div></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-unit"><div class="countdown-number" id="early-minutes">00</div><div class="countdown-label">Min</div></div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-unit"><div class="countdown-number" id="early-seconds">00</div><div class="countdown-label">Sec</div></div>
+                <p class="hero-meta-note">
+                  Private Vermont house · small curated group · relaxed observant atmosphere
+                </p>
+              </div>
+
+              <div class="hero-side" data-reveal style="--delay: 120ms;">
+                <div class="hero-luxe-panel">
+                  <div class="hero-panel-top">
+                    <div>
+                      <div class="panel-kicker">Retreat snapshot</div>
+                      <h2>Light, warm, and intentionally curated.</h2>
+                    </div>
+                    <div class="hero-price">
+                      Starting at
+                      <strong>$350</strong>
+                    </div>
                   </div>
-                  <p class="countdown-note">Apply before pricing changes. Applications are reviewed so the group can stay intentional.</p>
+
+                  <ul class="hero-side-list">
+                    <li><strong>Dates</strong><span>May 21–24</span></li>
+                    <li><strong>Stay</strong><span>Private Vermont retreat house</span></li>
+                    <li><strong>Included</strong><span>Kosher meals, programming, shared spaces</span></li>
+                    <li><strong>Fit</strong><span>Designed for a small, balanced group</span></li>
+                  </ul>
+                </div>
+
+                <div class="countdown-card" id="earlyBirdCountdown">
+                  <div class="countdown-header">
+                    <span>Early bird ends soon</span>
+                    <strong>Current offer</strong>
+                  </div>
+
+                  <div class="countdown-grid">
+                    <div class="countdown-unit">
+                      <div class="countdown-number" id="early-days">00</div>
+                      <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                      <div class="countdown-number" id="early-hours">00</div>
+                      <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                      <div class="countdown-number" id="early-minutes">00</div>
+                      <div class="countdown-label">Min</div>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit">
+                      <div class="countdown-number" id="early-seconds">00</div>
+                      <div class="countdown-label">Sec</div>
+                    </div>
+                  </div>
+
+                  <p class="countdown-note">
+                    Apply before pricing changes. Applications are reviewed so the group can stay intentional.
+                  </p>
                 </div>
               </div>
+            </div>
 
-              <div class="hero-vibe-stack" aria-label="Live Instagram moments">
-                <a class="vibe-polaroid one hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 120ms;"><div class="vibe-placeholder"></div><span>Shavuos energy</span></a>
-                <a class="vibe-polaroid two hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 220ms;"><div class="vibe-placeholder"></div><span>Behind the scenes</span></a>
-                <a class="vibe-polaroid three hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 320ms;"><div class="vibe-placeholder"></div><span>Vermont mood</span></a>
-              </div>
+            <div class="hero-vibe-stack" aria-label="Live Instagram moments">
+              <a class="vibe-polaroid one hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+                <div class="vibe-placeholder"></div>
+                <span>Shavuos energy</span>
+              </a>
+              <a class="vibe-polaroid two hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+                <div class="vibe-placeholder"></div>
+                <span>Behind the scenes</span>
+              </a>
+              <a class="vibe-polaroid three hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+                <div class="vibe-placeholder"></div>
+                <span>Vermont mood</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       <section id="experience" class="section manifesto">
+
         <div class="container">
           <div class="manifesto-grid">
             <div class="manifesto-statement" data-reveal>
