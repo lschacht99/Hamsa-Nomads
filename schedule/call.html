@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Schedule a Call | Hamsa Nomads</title>
-  
-<link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
-<link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
-  <link rel="stylesheet" href="assets/site-components.css" />
+
+  <link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
+
+  <!-- Shared Hamsa Nomads header/footer assets -->
+  <link rel="stylesheet" href="/assets/site-components.css" />
 
   <style>
     :root {
       --cream: #f7f3ea;
-      --cream-deep: #f2ecdf;
       --green: #174f19;
       --green-soft: #e8efe6;
       --gold: #d6a84f;
@@ -46,84 +47,24 @@
       text-decoration: none;
     }
 
-    .site-header {
-      position: relative;
-      z-index: 20;
-      background: rgba(247, 243, 234, 0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
+    .schedule-page {
+      width: 100%;
     }
 
-    .header-inner {
-      width: min(1480px, calc(100% - 28px));
-      margin: 0 auto;
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      color: var(--green);
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
-
-    .brand img {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .brand span {
-      font-size: 26px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-size: 15px;
-      color: var(--muted);
-      flex-wrap: wrap;
-    }
-
-    .nav a:hover {
-      color: var(--green);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 18px;
-      border-radius: 999px;
-      background: var(--green);
-      color: white !important;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .hero {
+    .schedule-hero {
       width: min(1480px, calc(100% - 28px));
       margin: 0 auto;
       padding: 42px 0 22px;
     }
 
-    .hero-inner {
+    .schedule-hero-inner {
       display: grid;
       grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
       gap: 36px;
       align-items: end;
     }
 
-    .eyebrow {
+    .schedule-eyebrow {
       display: inline-block;
       margin-bottom: 14px;
       padding: 8px 12px;
@@ -136,7 +77,7 @@
       text-transform: uppercase;
     }
 
-    h1 {
+    .schedule-title {
       margin: 0;
       max-width: 720px;
       font-size: clamp(42px, 6vw, 78px);
@@ -145,7 +86,7 @@
       color: var(--green);
     }
 
-    .hero-copy p {
+    .schedule-copy p {
       margin: 20px 0 0;
       max-width: 660px;
       font-size: 18px;
@@ -153,13 +94,13 @@
       color: var(--muted);
     }
 
-    .hero-side {
+    .schedule-notes {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .note {
+    .schedule-note {
       padding: 15px 16px;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.70);
@@ -167,14 +108,14 @@
       box-shadow: 0 14px 40px rgba(23, 79, 25, 0.06);
     }
 
-    .note strong {
+    .schedule-note strong {
       display: block;
       margin-bottom: 4px;
       color: var(--green);
       font-size: 14px;
     }
 
-    .note span {
+    .schedule-note span {
       font-size: 13px;
       line-height: 1.42;
       color: var(--muted);
@@ -210,7 +151,7 @@
       color: var(--green);
     }
 
-    iframe {
+    .scheduler-frame {
       width: 100%;
       height: 1480px;
       border: 0;
@@ -219,94 +160,34 @@
       overflow: hidden;
     }
 
-    .site-footer {
-      border-top: 1px solid var(--line);
-      background: var(--cream-deep);
-    }
-
-    .footer-inner {
-      width: min(1480px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 26px 0 34px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .footer-brand img {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-    }
-
     @media (max-width: 1050px) {
-      .hero-inner {
+      .schedule-hero-inner {
         grid-template-columns: 1fr;
       }
 
-      .hero-side {
+      .schedule-notes {
         max-width: 720px;
       }
 
-      iframe {
+      .scheduler-frame {
         height: 1880px;
       }
     }
 
     @media (max-width: 720px) {
-      .header-inner {
-        min-height: auto;
-        padding: 18px 0 16px;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .brand img {
-        width: 34px;
-        height: 34px;
-      }
-
-      .brand span {
-        font-size: 25px;
-      }
-
-      .nav {
-        width: 100%;
-        gap: 14px;
-        font-size: 18px;
-      }
-
-      .nav-cta {
-        padding: 11px 20px;
-        font-size: 18px;
-      }
-
-      .hero {
+      .schedule-hero {
         padding: 30px 0 18px;
       }
 
-      h1 {
+      .schedule-title {
         font-size: clamp(40px, 11vw, 58px);
       }
 
-      .hero-copy p {
+      .schedule-copy p {
         font-size: 16px;
       }
 
-      .hero-side {
+      .schedule-notes {
         grid-template-columns: 1fr;
       }
 
@@ -326,23 +207,14 @@
         font-size: 12px;
       }
 
-      iframe {
+      .scheduler-frame {
         height: 2900px;
       }
     }
 
     @media (max-width: 420px) {
-      iframe {
+      .scheduler-frame {
         height: 3150px;
-      }
-
-      .nav {
-        font-size: 17px;
-      }
-
-      .nav-cta {
-        font-size: 17px;
-        padding: 10px 18px;
       }
     }
   </style>
@@ -351,13 +223,13 @@
 <body>
   <div id="site-header"></div>
 
-  <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="eyebrow">Short Intro Call</div>
+  <main class="schedule-page">
+    <section class="schedule-hero">
+      <div class="schedule-hero-inner">
+        <div class="schedule-copy">
+          <div class="schedule-eyebrow">Short Intro Call</div>
 
-          <h1>We’d love to know more about you.</h1>
+          <h1 class="schedule-title">We’d love to know more about you.</h1>
 
           <p>
             Hamsa Nomads is a smaller curated retreat, so we like to have a short call
@@ -365,23 +237,23 @@
           </p>
         </div>
 
-        <div class="hero-side">
-          <div class="note">
+        <div class="schedule-notes">
+          <div class="schedule-note">
             <strong>A short call</strong>
             <span>Quick, personal, and easy to schedule.</span>
           </div>
 
-          <div class="note">
+          <div class="schedule-note">
             <strong>Ask anything</strong>
             <span>Rooming, meals, crowd, minyan, pricing, or logistics.</span>
           </div>
 
-          <div class="note">
+          <div class="schedule-note">
             <strong>Calendar invite</strong>
             <span>You’ll receive the confirmed time by email.</span>
           </div>
 
-          <div class="note">
+          <div class="schedule-note">
             <strong>Curated group</strong>
             <span>This helps us shape the retreat thoughtfully.</span>
           </div>
@@ -397,6 +269,7 @@
         </div>
 
         <iframe
+          class="scheduler-frame"
           src="https://script.google.com/macros/s/AKfycby6YCjUZ_IltPp3FL3AvNSann1N5nbPDZegPtBDkDA9FH1xjAYT6ft0BNO3_7Q9O9aZjg/exec"
           loading="lazy">
         </iframe>
