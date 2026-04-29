@@ -3,25 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamsa Nomads — Rooms & Retreat</title>
+
+  <title>Rooms & Schedule — Hamsa Nomads Shavuos Retreat</title>
+  <meta name="description" content="Explore the rooms, retreat house, and weekend rhythm for the Hamsa Nomads Shavuos retreat in Vermont." />
+  <link rel="canonical" href="https://www.hamsanomads.com/Pages/Rooms-Schedule.html" />
+
   <link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
-  <link rel="stylesheet" href="assets/site-components.css" />
+  <link rel="stylesheet" href="../assets/site-components.css" />
 
   <style>
     :root {
       --bg: #f7f3ea;
-      --paper: rgba(255, 252, 246, 0.72);
-      --paper-strong: rgba(255, 252, 246, 0.90);
+      --paper: rgba(255, 252, 246, 0.74);
+      --paper-strong: rgba(255, 252, 246, 0.92);
       --ink: #1c211d;
-      --muted: #5f655d;
+      --muted: #62675f;
       --forest: #274537;
       --forest-dark: #173c30;
       --gold: #b88b2f;
+      --cream: #f7f3ea;
       --line: rgba(16, 14, 11, 0.14);
-      --shadow: 0 24px 70px rgba(31, 28, 20, 0.10);
+      --shadow: 0 22px 70px rgba(31, 28, 20, 0.10);
       --soft-shadow: 0 14px 36px rgba(31, 28, 20, 0.08);
-      --radius: 30px;
       --container: 1240px;
     }
 
@@ -33,10 +37,10 @@
       font-family: Inter, Arial, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.82), transparent 34%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.86), transparent 34%),
         radial-gradient(circle at 88% 12%, rgba(184,139,47,0.10), transparent 28%),
-        linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
-      line-height: 1.6;
+        linear-gradient(180deg, #fbf8f1 0%, var(--bg) 100%);
+      line-height: 1.62;
       overflow-x: hidden;
     }
 
@@ -54,7 +58,7 @@
     #site-header {
       position: sticky;
       top: 0;
-      z-index: 9999;
+      z-index: 99999;
     }
 
     .site-shell {
@@ -70,13 +74,8 @@
       z-index: 2;
     }
 
-    .section {
-      position: relative;
-      padding: clamp(40px, 6vw, 90px) 0;
-    }
-
     .eyebrow {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       letter-spacing: 0.17em;
       text-transform: uppercase;
       color: var(--gold);
@@ -84,13 +83,32 @@
       margin-bottom: 14px;
     }
 
-    .glass {
-      background: var(--paper);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.54);
-      box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.48);
-      border-radius: var(--radius);
+    .section {
+      position: relative;
+      padding: clamp(42px, 7vw, 92px) 0;
+    }
+
+    .section-intro {
+      max-width: 780px;
+      margin-bottom: 30px;
+    }
+
+    .section-intro.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-size: clamp(2.15rem, 5.2vw, 4.6rem);
+      line-height: 0.98;
+      color: var(--forest);
+    }
+
+    .section-intro p {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: clamp(0.98rem, 1.35vw, 1.12rem);
+      line-height: 1.75;
     }
 
     .button,
@@ -106,7 +124,7 @@
       letter-spacing: 0.02em;
       transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
       white-space: nowrap;
-      flex-shrink: 0;
+      border: 1px solid transparent;
     }
 
     .button:hover,
@@ -116,43 +134,25 @@
 
     .button {
       background: rgba(39, 69, 55, 0.96);
-      color: white;
+      color: #fff;
       box-shadow: 0 14px 34px rgba(39, 69, 55, 0.24);
-      border: 1px solid rgba(39, 69, 55, 0.26);
+      border-color: rgba(39, 69, 55, 0.24);
     }
 
     .button-secondary {
       background: rgba(255,255,255,0.72);
       color: var(--ink);
-      border: 1px solid rgba(39, 69, 55, 0.14);
+      border-color: rgba(39, 69, 55, 0.14);
       box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
-    }
-
-    .section-intro {
-      max-width: 760px;
-      margin-bottom: 28px;
-    }
-
-    .section-intro h2 {
-      font-size: clamp(2.15rem, 5vw, 4.4rem);
-      line-height: 0.98;
-      color: var(--forest);
-    }
-
-    .section-intro p {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.35vw, 1.12rem);
-      line-height: 1.75;
     }
 
     [data-reveal] {
       opacity: 0;
-      transform: translateY(22px);
+      transform: translateY(16px);
       transition:
-        opacity 0.72s cubic-bezier(.2,.7,.2,1),
-        transform 0.72s cubic-bezier(.2,.7,.2,1);
-      transition-delay: var(--delay, 0ms);
+        opacity 0.48s cubic-bezier(.2,.7,.2,1),
+        transform 0.48s cubic-bezier(.2,.7,.2,1);
+      transition-delay: min(var(--delay, 0ms), 150ms);
     }
 
     [data-reveal].is-visible {
@@ -160,84 +160,101 @@
       transform: translateY(0);
     }
 
+    .interactive-card {
+      outline: none;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background 0.24s ease;
+    }
+
+    .interactive-card:hover,
+    .interactive-card.is-front {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 70px rgba(31, 28, 20, 0.14);
+      border-color: rgba(184, 139, 47, 0.28);
+      z-index: 20;
+    }
+
+    .interactive-card:focus-visible {
+      box-shadow:
+        0 0 0 4px rgba(184,139,47,0.22),
+        0 28px 70px rgba(31,28,20,0.14);
+    }
+
+    /* LIGHTER HERO */
     .hero {
-      padding: 20px 0 24px;
+      padding: 18px 0 30px;
     }
 
-    .hero-stage {
+    .hero-shell {
       position: relative;
-      min-height: clamp(640px, 80vh, 840px);
-      border-radius: 40px;
-      overflow: hidden;
-      background: #e8e0d2;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-slides {
-      position: absolute;
-      inset: 0;
-    }
-
-    .hero-media {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.9s ease;
-      transform: scale(1.02);
-    }
-
-    .hero-media.is-active {
-      opacity: 1;
-    }
-
-    .hero-scrim {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(21, 17, 12, 0.66) 0%, rgba(21, 17, 12, 0.38) 46%, rgba(21, 17, 12, 0.16) 100%),
-        linear-gradient(180deg, rgba(20,15,10,0.06) 0%, rgba(20,15,10,0.30) 100%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      min-height: inherit;
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-      gap: clamp(22px, 4vw, 48px);
-      align-items: end;
-      padding: clamp(24px, 5vw, 56px);
+      grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+      gap: clamp(20px, 4vw, 44px);
+      align-items: stretch;
+      min-height: clamp(620px, 78vh, 790px);
+      padding: clamp(18px, 2.4vw, 28px);
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255,255,255,0.82), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(184,139,47,0.14), transparent 30%),
+        rgba(255,252,246,0.72);
+      border: 1px solid rgba(255,255,255,0.62);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 34px;
+      border: 1px solid rgba(39,69,55,0.07);
+      pointer-events: none;
+      z-index: 5;
     }
 
     .hero-copy {
-      color: #fffdf8;
-      max-width: 720px;
-    }
-
-    .hero .eyebrow {
-      color: #e0ae43;
-      text-shadow: 0 4px 16px rgba(0,0,0,0.26);
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 44px);
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 6.6rem);
-      line-height: 0.9;
-      color: #fffdf8;
-      max-width: 9.8ch;
-      margin-bottom: 18px;
-      text-shadow: 0 10px 34px rgba(0,0,0,0.25);
+      font-size: clamp(3.2rem, 7.4vw, 7rem);
+      line-height: 0.87;
+      color: var(--forest);
+      max-width: 8.6ch;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .gold {
+      color: var(--gold);
+    }
+
+    .hero-date {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
     }
 
     .hero-lead {
-      max-width: 44ch;
-      font-size: clamp(1.02rem, 1.75vw, 1.2rem);
-      line-height: 1.55;
-      color: rgba(255,251,245,0.95);
-      margin-bottom: 22px;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.23);
+      max-width: 50ch;
+      font-size: clamp(1rem, 1.45vw, 1.16rem);
+      color: var(--muted);
+      line-height: 1.72;
+      margin-bottom: 24px;
     }
 
     .hero-actions {
@@ -245,207 +262,346 @@
       gap: 12px;
       flex-wrap: wrap;
       align-items: center;
+      margin-bottom: 26px;
     }
 
-    .hero-panel {
-      display: grid;
-      gap: 14px;
-      align-self: center;
-    }
-
-    .hero-card,
-    .hero-mini-card {
-      border-radius: 28px;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.46);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.16);
-    }
-
-    .hero-card {
-      padding: 20px;
-      background: rgba(255, 252, 246, 0.80);
-    }
-
-    .hero-card h2 {
-      font-size: clamp(1.55rem, 3vw, 2.4rem);
-      line-height: 1;
-      color: var(--forest);
-      margin-bottom: 10px;
-    }
-
-    .hero-card p,
-    .hero-mini-card p {
-      color: var(--muted);
-      line-height: 1.58;
-    }
-
-    .hero-chip-grid {
+    .hero-micro-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
+      max-width: 520px;
     }
 
-    .hero-chip {
+    .hero-micro {
       padding: 13px 14px;
       border-radius: 18px;
-      background: rgba(255, 252, 246, 0.74);
-      border: 1px solid rgba(255,255,255,0.46);
+      background: rgba(255,255,255,0.54);
+      border: 1px solid rgba(39,69,55,0.09);
       color: var(--forest);
       font-size: 0.88rem;
       font-weight: 800;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 12px 30px rgba(31,28,20,0.06);
     }
 
-    .hero-mini-card {
-      padding: 18px 20px;
-      background: rgba(23, 60, 48, 0.78);
-      color: #fffdf8;
-    }
-
-    .hero-mini-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.74rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #e0ae43;
-    }
-
-    .info-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .info-pill {
-      padding: 18px;
-      border-radius: 24px;
-      background: rgba(255,252,246,0.72);
-      border: 1px solid rgba(255,255,255,0.55);
-      box-shadow: var(--soft-shadow);
-    }
-
-    .info-pill strong {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-
-    .info-pill span {
-      color: var(--forest);
-      font-weight: 780;
-      font-size: 1rem;
-      line-height: 1.35;
-      display: block;
-    }
-
-    .retreat-shell {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: clamp(20px, 4vw, 42px);
-      align-items: center;
-    }
-
-    .retreat-visual {
+    .hero-visual {
       position: relative;
-      min-height: 520px;
-      border-radius: 36px;
+      z-index: 3;
+      min-height: 100%;
+      border-radius: 34px;
       overflow: hidden;
-      background: #e5dbc8;
-      box-shadow: var(--shadow);
+      background: #e6dccd;
+      box-shadow: 0 20px 56px rgba(31,28,20,0.12);
     }
 
-    .retreat-visual img {
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
 
-    .retreat-visual-card {
+    .hero-slide.is-active {
+      opacity: 1;
+    }
+
+    .hero-visual::after {
+      content: "";
       position: absolute;
-      left: 20px;
-      bottom: 20px;
-      max-width: 300px;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(20,18,12,0.02) 0%, rgba(20,18,12,0.22) 100%);
+      pointer-events: none;
+    }
+
+    .hero-floating {
+      position: absolute;
+      z-index: 4;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .hero-glass-note {
       padding: 18px;
       border-radius: 24px;
-      background: rgba(255,252,246,0.80);
+      background: rgba(255,252,246,0.78);
       border: 1px solid rgba(255,255,255,0.55);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.16);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.15);
     }
 
-    .retreat-visual-card strong {
+    .hero-glass-note strong {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--gold);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
+      font-weight: 900;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
-    .retreat-visual-card p {
+    .hero-glass-note span {
+      display: block;
       color: var(--forest);
-      line-height: 1.45;
-      font-weight: 650;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(1.18rem, 2.4vw, 1.65rem);
+      line-height: 1.12;
     }
 
-    .retreat-copy h2 {
-      font-size: clamp(2.15rem, 5vw, 4.5rem);
-      line-height: 0.97;
+    .hero-dots {
+      display: flex;
+      gap: 8px;
+      padding: 10px;
+      border-radius: 999px;
+      background: rgba(255,252,246,0.70);
+      border: 1px solid rgba(255,255,255,0.50);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hero-dot {
+      width: 9px;
+      height: 9px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.28);
+      cursor: pointer;
+      padding: 0;
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-dot.is-active {
+      width: 26px;
+      background: var(--forest);
+    }
+
+    .sticky-jump {
+      position: sticky;
+      top: 82px;
+      z-index: 200;
+      margin: 0 auto;
+      width: min(calc(100% - 32px), 980px);
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 9px;
+      border-radius: 999px;
+      background: rgba(255,252,246,0.74);
+      border: 1px solid rgba(255,255,255,0.52);
+      box-shadow: 0 12px 34px rgba(31,28,20,0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .sticky-jump a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 13px;
+      border-radius: 999px;
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .sticky-jump a:hover,
+    .sticky-jump a.is-active {
+      background: var(--forest);
+      color: #fff;
+    }
+
+    .concept-shell {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(22px, 4vw, 46px);
+      align-items: center;
+    }
+
+    .concept-copy h2,
+    .rooms-copy h2,
+    .rhythm-copy h2,
+    .included-copy h2,
+    .cta-copy h2 {
+      font-size: clamp(2.15rem, 5.2vw, 4.55rem);
+      line-height: 0.96;
       color: var(--forest);
       margin-bottom: 18px;
     }
 
-    .retreat-copy p {
+    .concept-copy p,
+    .rooms-copy p,
+    .rhythm-copy p,
+    .included-copy p,
+    .cta-copy p {
       color: var(--muted);
-      line-height: 1.82;
-      font-size: clamp(1rem, 1.32vw, 1.08rem);
-      margin-bottom: 16px;
+      line-height: 1.78;
+      font-size: clamp(0.98rem, 1.34vw, 1.08rem);
+      margin-bottom: 15px;
     }
 
-    .retreat-pills {
+    .concept-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .concept-card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(20px, 3vw, 30px);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 34%),
+        rgba(255,252,246,0.74);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+    }
+
+    .concept-card h3 {
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+
+    .concept-card p {
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .tabs-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 12px;
+      margin-top: 24px;
     }
 
-    .retreat-pill {
-      display: inline-flex;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(39,69,55,0.08);
+    .tab-button {
+      appearance: none;
+      border: 1px solid rgba(39,69,55,0.12);
+      background: rgba(255,255,255,0.55);
       color: var(--forest);
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font: inherit;
       font-size: 0.78rem;
-      font-weight: 840;
+      font-weight: 850;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .tab-button:hover,
+    .tab-button.is-active {
+      background: var(--forest);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .note-panel {
+      margin-top: 14px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(39,69,55,0.09);
+      color: var(--muted);
+      line-height: 1.7;
+      min-height: 96px;
+    }
+
+    .note-panel p {
+      display: none;
+      animation: panelIn 0.35s ease both;
+    }
+
+    .note-panel p.is-active {
+      display: block;
+    }
+
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ROOMS */
+    .rooms-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.38fr) minmax(0, 0.62fr);
+      gap: clamp(20px, 4vw, 42px);
+      align-items: start;
+    }
+
+    .rooms-copy {
+      position: sticky;
+      top: 170px;
+      align-self: start;
+    }
+
+    .room-filter {
+      display: grid;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .room-filter button {
+      appearance: none;
+      border: 1px solid rgba(39,69,55,0.12);
+      background: rgba(255,255,255,0.55);
+      color: var(--forest);
+      min-height: 46px;
+      padding: 0 14px;
+      border-radius: 999px;
+      text-align: left;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 850;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .room-filter button:hover,
+    .room-filter button.is-active {
+      background: var(--forest);
+      color: #fff;
+      transform: translateX(4px);
     }
 
     .rooms-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
 
     .room-card {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 0;
+      grid-template-columns: minmax(210px, 0.42fr) minmax(0, 0.58fr);
       overflow: hidden;
-      border-radius: 32px;
-      background: rgba(255,252,246,0.72);
-      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 34px;
+      background: rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.58);
       box-shadow: var(--soft-shadow);
-      min-height: 330px;
+      min-height: 320px;
+      cursor: pointer;
     }
 
     .room-image {
@@ -457,63 +613,103 @@
     .room-image img {
       width: 100%;
       height: 100%;
+      min-height: inherit;
       object-fit: cover;
+      transition: transform 0.34s ease;
+    }
+
+    .room-card:hover .room-image img,
+    .room-card.is-front .room-image img {
+      transform: scale(1.035);
     }
 
     .room-body {
-      padding: 24px 22px 22px;
+      padding: clamp(20px, 3vw, 28px);
       display: flex;
       flex-direction: column;
     }
 
+    .room-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
     .room-tag {
       display: inline-flex;
-      align-self: flex-start;
-      margin-bottom: 12px;
       padding: 7px 11px;
       border-radius: 999px;
       background: rgba(39,69,55,0.08);
       color: var(--forest);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 900;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
+    .room-status {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
     .room-body h3 {
-      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
-      line-height: 1.04;
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
+      line-height: 1.02;
       color: var(--forest);
       margin-bottom: 10px;
     }
 
     .room-body p {
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.68;
       margin-bottom: 14px;
     }
 
-    .room-note {
+    .room-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
       margin-top: auto;
       padding-top: 12px;
-      border-top: 1px solid rgba(39,69,55,0.10);
-      color: var(--forest-dark);
-      font-size: 0.92rem;
-      line-height: 1.55;
-      font-weight: 560;
     }
 
-    .room-note strong {
+    .room-detail {
+      padding: 10px 11px;
+      border-radius: 16px;
+      background: rgba(39,69,55,0.06);
       color: var(--forest);
+      font-size: 0.84rem;
+      font-weight: 740;
+      line-height: 1.35;
     }
 
-    .rooms-footnote {
+    .room-expand {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(39,69,55,0.10);
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .room-card.is-expanded .room-expand {
+      display: block;
+    }
+
+    .room-footnote {
       margin-top: 14px;
       color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.7;
+      font-size: 0.95rem;
+      line-height: 1.72;
     }
 
+    /* SPACES */
     .spaces-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr 0.9fr;
@@ -539,6 +735,11 @@
       height: 100%;
       min-height: inherit;
       object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .space-card:hover img {
+      transform: scale(1.035);
     }
 
     .space-label {
@@ -557,10 +758,11 @@
       box-shadow: 0 12px 28px rgba(0,0,0,0.15);
     }
 
+    /* RHYTHM */
     .rhythm-shell {
       display: grid;
-      grid-template-columns: minmax(250px, 0.74fr) minmax(0, 1.26fr);
-      min-height: 560px;
+      grid-template-columns: minmax(270px, 0.76fr) minmax(0, 1.24fr);
+      min-height: 570px;
       border-radius: 38px;
       overflow: hidden;
       background: linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
@@ -569,7 +771,7 @@
       border: 1px solid rgba(244,231,199,0.12);
     }
 
-    .rhythm-left {
+    .rhythm-copy {
       padding: clamp(24px, 4vw, 42px);
       display: flex;
       flex-direction: column;
@@ -578,16 +780,19 @@
       background: radial-gradient(circle at top left, rgba(255,255,255,0.10), transparent 36%);
     }
 
-    .rhythm-left h2 {
-      font-size: clamp(2.1rem, 4.8vw, 4.2rem);
-      line-height: 0.96;
+    .rhythm-copy h2 {
       color: #f7f0e2;
-      margin-bottom: 16px;
     }
 
-    .rhythm-left p {
+    .rhythm-copy p {
       color: rgba(247,240,226,0.78);
-      line-height: 1.72;
+    }
+
+    .rhythm-copy .soft-note {
+      color: rgba(247,240,226,0.60);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-top: 10px;
     }
 
     .rhythm-tabs {
@@ -606,7 +811,7 @@
       padding: 0 16px;
       text-align: left;
       font: inherit;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       font-weight: 850;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -656,11 +861,6 @@
       display: block;
     }
 
-    @keyframes panelIn {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .rhythm-kicker {
       display: inline-flex;
       margin-bottom: 14px;
@@ -675,7 +875,7 @@
     }
 
     .rhythm-panel h3 {
-      font-size: clamp(1.95rem, 5vw, 4rem);
+      font-size: clamp(1.95rem, 5vw, 4.1rem);
       line-height: 0.98;
       color: #f7f0e2;
       margin-bottom: 16px;
@@ -701,10 +901,11 @@
       background: rgba(255,255,255,0.09);
       border: 1px solid rgba(255,255,255,0.11);
       color: rgba(247,240,226,0.82);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       line-height: 1.45;
     }
 
+    /* INCLUDED */
     .included-shell {
       display: grid;
       grid-template-columns: 0.88fr 1.12fr;
@@ -719,18 +920,6 @@
       box-shadow: var(--shadow);
     }
 
-    .included-copy h2 {
-      font-size: clamp(2rem, 4.8vw, 4rem);
-      line-height: 0.98;
-      color: var(--forest);
-      margin-bottom: 14px;
-    }
-
-    .included-copy p {
-      color: var(--muted);
-      line-height: 1.76;
-    }
-
     .included-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -742,6 +931,7 @@
       border-radius: 24px;
       background: rgba(255,255,255,0.52);
       border: 1px solid rgba(39,69,55,0.11);
+      cursor: pointer;
     }
 
     .included-card strong {
@@ -757,6 +947,18 @@
       line-height: 1.65;
     }
 
+    .included-card .more {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(39,69,55,0.10);
+    }
+
+    .included-card.is-expanded .more {
+      display: block;
+    }
+
+    /* CTA */
     .cta-shell {
       position: relative;
       overflow: hidden;
@@ -788,17 +990,13 @@
       align-items: center;
     }
 
-    .cta-inner h2 {
-      font-size: clamp(2rem, 4.6vw, 4rem);
-      line-height: 0.98;
+    .cta-copy h2 {
       color: #f7f0e2;
-      margin-bottom: 12px;
     }
 
-    .cta-inner p {
+    .cta-copy p {
       color: rgba(247,240,226,0.82);
-      line-height: 1.72;
-      max-width: 52ch;
+      max-width: 56ch;
     }
 
     .cta-actions {
@@ -816,19 +1014,23 @@
     }
 
     @media (max-width: 1080px) {
-      .hero-content,
-      .retreat-shell,
+      .hero-shell,
+      .concept-shell,
+      .rooms-layout,
+      .room-card,
       .rhythm-shell,
       .included-shell,
-      .cta-inner,
-      .room-card,
-      .info-strip {
+      .cta-inner {
         grid-template-columns: 1fr;
       }
 
-      .rooms-grid,
-      .included-grid {
-        grid-template-columns: 1fr;
+      .rooms-copy {
+        position: relative;
+        top: auto;
+      }
+
+      .room-filter {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .spaces-grid {
@@ -841,7 +1043,7 @@
         min-height: 420px;
       }
 
-      .rhythm-left {
+      .rhythm-copy {
         border-right: 0;
         border-bottom: 1px solid rgba(255,255,255,0.11);
       }
@@ -857,65 +1059,7 @@
       }
 
       .section {
-        padding: 30px 0;
-      }
-
-      .hero-stage {
-        min-height: 760px;
-        border-radius: 28px;
-      }
-
-      .hero-content {
-        padding: 20px;
-      }
-
-      .hero h1 {
-        max-width: 100%;
-        font-size: clamp(2.7rem, 13vw, 4.4rem);
-      }
-
-      .hero-lead {
-        font-size: 0.98rem;
-        line-height: 1.5;
-      }
-
-      .hero-chip-grid,
-      .info-strip,
-      .rhythm-mini-grid,
-      .spaces-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card,
-      .hero-mini-card,
-      .room-card,
-      .included-shell,
-      .cta-shell,
-      .rhythm-shell,
-      .retreat-visual,
-      .space-card,
-      .space-card.tall {
-        border-radius: 24px;
-      }
-
-      .retreat-visual,
-      .space-card,
-      .space-card.tall {
-        min-height: 280px;
-      }
-
-      .room-card {
-        min-height: 0;
-      }
-
-      .room-image {
-        min-height: 220px;
-      }
-
-      .room-body,
-      .included-shell,
-      .cta-shell {
-        padding: 18px;
+        padding: 34px 0;
       }
 
       .section-intro {
@@ -923,44 +1067,265 @@
       }
 
       .section-intro h2,
-      .retreat-copy h2,
+      .concept-copy h2,
+      .rooms-copy h2,
+      .rhythm-copy h2,
       .included-copy h2,
-      .cta-inner h2 {
-        font-size: clamp(1.9rem, 9vw, 2.8rem);
+      .cta-copy h2 {
+        font-size: clamp(1.95rem, 9.8vw, 3rem);
       }
 
-      .rhythm-left,
-      .rhythm-detail {
-        padding: 20px;
+      .sticky-jump {
+        top: 68px;
+        width: min(calc(100% - 18px), 980px);
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        border-radius: 999px;
+        scrollbar-width: none;
       }
 
-      .rhythm-tab:hover,
-      .rhythm-tab.is-active {
-        transform: none;
+      .sticky-jump::-webkit-scrollbar {
+        display: none;
       }
 
-      .rhythm-mini {
-        font-size: 0.84rem;
+      .sticky-jump a {
+        white-space: nowrap;
+        font-size: 0.66rem;
+        min-height: 32px;
       }
 
-      .retreat-visual-card {
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
-        max-width: none;
-        padding: 14px;
-        border-radius: 18px;
+      .hero {
+        padding: 10px 0 18px;
       }
 
+      .hero-shell {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 10px;
+        border-radius: 28px;
+      }
+
+      .hero-shell::before {
+        inset: 10px;
+        border-radius: 22px;
+      }
+
+      .hero-copy {
+        padding: 18px 12px 8px;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+        font-size: clamp(2.8rem, 13.6vw, 4.7rem);
+      }
+
+      .hero-date {
+        font-size: 0.66rem;
+        letter-spacing: 0.12em;
+        padding: 8px 11px;
+      }
+
+      .hero-lead {
+        font-size: 0.94rem;
+        line-height: 1.52;
+        margin-bottom: 18px;
+      }
+
+      .hero-actions,
       .cta-actions {
         width: 100%;
       }
 
-      .cta-actions .button,
-      .cta-actions .button-secondary,
       .hero-actions .button,
-      .hero-actions .button-secondary {
+      .hero-actions .button-secondary,
+      .cta-actions .button,
+      .cta-actions .button-secondary {
         width: 100%;
+      }
+
+      .hero-micro-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .hero-micro {
+        padding: 10px;
+        font-size: 0.74rem;
+        text-align: center;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+        border-radius: 22px;
+      }
+
+      .hero-floating {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-glass-note {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .hero-glass-note span {
+        font-size: 1.1rem;
+      }
+
+      .hero-dots {
+        width: fit-content;
+      }
+
+      .concept-stack {
+        gap: 10px;
+      }
+
+      .concept-card,
+      .included-card,
+      .note-panel {
+        border-radius: 22px;
+      }
+
+      .concept-card {
+        padding: 18px;
+      }
+
+      .tabs-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .tab-button {
+        width: 100%;
+        min-height: 40px;
+        font-size: 0.68rem;
+      }
+
+      .room-filter {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .room-filter button {
+        min-height: 40px;
+        text-align: center;
+        font-size: 0.68rem;
+      }
+
+      .rooms-grid {
+        gap: 12px;
+      }
+
+      .room-card {
+        border-radius: 24px;
+        min-height: 0;
+      }
+
+      .room-image {
+        min-height: 210px;
+      }
+
+      .room-body {
+        padding: 18px;
+      }
+
+      .room-topline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .room-details {
+        grid-template-columns: 1fr;
+      }
+
+      .spaces-grid {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+        scrollbar-width: none;
+      }
+
+      .spaces-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .space-card,
+      .space-card.tall {
+        flex: 0 0 78%;
+        min-height: 230px;
+        border-radius: 22px;
+        scroll-snap-align: start;
+      }
+
+      .rhythm-shell {
+        border-radius: 26px;
+        min-height: auto;
+      }
+
+      .rhythm-copy,
+      .rhythm-detail {
+        padding: 20px;
+      }
+
+      .rhythm-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: grid;
+        gap: 8px;
+      }
+
+      .rhythm-tab {
+        min-height: 40px;
+        padding: 0 10px;
+        font-size: 0.62rem;
+        text-align: center;
+      }
+
+      .rhythm-tab:hover,
+      .rhythm-tab.is-active,
+      .room-filter button:hover,
+      .room-filter button.is-active,
+      .tab-button:hover,
+      .tab-button.is-active {
+        transform: none;
+      }
+
+      .rhythm-panel h3 {
+        font-size: clamp(1.6rem, 8vw, 2.35rem);
+      }
+
+      .rhythm-panel p {
+        font-size: 0.92rem;
+        line-height: 1.56;
+      }
+
+      .rhythm-mini-grid {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .rhythm-mini {
+        padding: 10px 11px;
+        border-radius: 14px;
+        font-size: 0.82rem;
+      }
+
+      .included-shell,
+      .cta-shell {
+        padding: 18px;
+        border-radius: 26px;
+      }
+
+      .included-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -978,6 +1343,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="site-shell">
     <div id="site-header"></div>
@@ -985,111 +1351,118 @@
     <main id="top">
       <section class="hero">
         <div class="container">
-          <div class="hero-stage">
-            <div class="hero-slides" id="heroSlides">
-              <img class="hero-media is-active" src="Image/hero.jpg" alt="Shavuos in Vermont retreat hero image" fetchpriority="high" decoding="async" />
-              <img class="hero-media" src="Image/chill.jpg" alt="Warm retreat lounge" loading="eager" decoding="async" />
-              <img class="hero-media" src="Image/dining-space.jpg" alt="Dining and gathering space" loading="lazy" decoding="async" />
-              <img class="hero-media" src="Image/bedroom.png" alt="Retreat bedroom" loading="lazy" decoding="async" />
-              <img class="hero-media" src="Image/exterior.png" alt="Retreat house exterior" loading="lazy" decoding="async" />
-            </div>
-            <div class="hero-scrim"></div>
+          <div class="hero-shell">
+            <div class="hero-copy" data-reveal>
+              <div class="eyebrow">Rooms + retreat rhythm</div>
 
-            <div class="hero-content">
-              <div class="hero-copy" data-reveal>
-                <div class="eyebrow">Shavuos in Vermont • Rooms & Retreat</div>
-                <h1>Stay somewhere that feels like part of the weekend.</h1>
-                <p class="hero-lead">
-                  A warm, curated Shavuos retreat in a private Vermont home for Jewish young adults — with beautiful shared spaces, kosher meals, a Shabbos and Yom Tov atmosphere, and room options designed for a comfortable, meaningful stay.
+              <h1>
+                Your base for <span class="gold">Shavuos</span> in Vermont.
+              </h1>
+
+              <div class="hero-date">May 21 - May 24 • Private Vermont home</div>
+
+              <p class="hero-lead">
+                This page is about the part of the retreat people feel most: where we stay, where we gather, how the house shapes the weekend, and the rhythm we’re building around Yom Tov, rest, connection, and Vermont.
+              </p>
+
+              <div class="hero-actions">
+                <a href="../Forms/apply.html" class="button">Apply for Shavuos</a>
+                <a href="#rooms" class="button-secondary">Explore the rooms</a>
+              </div>
+
+              <div class="hero-micro-grid">
+                <div class="hero-micro interactive-card">Kosher meals included</div>
+                <div class="hero-micro interactive-card">Minyan + eiruv</div>
+                <div class="hero-micro interactive-card">Pool + hot tub</div>
+                <div class="hero-micro interactive-card">Curated group energy</div>
+              </div>
+            </div>
+
+            <div class="hero-visual" data-reveal style="--delay: 120ms;">
+              <div class="hero-slides" id="heroSlides">
+                <img class="hero-slide is-active" src="../Image/chill.jpg" alt="Warm lounge at the Vermont retreat house" fetchpriority="high" decoding="async" />
+                <img class="hero-slide" src="../Image/bedroom.png" alt="Retreat bedroom" loading="lazy" decoding="async" />
+                <img class="hero-slide" src="../Image/dining-space.jpg" alt="Dining and gathering space" loading="lazy" decoding="async" />
+                <img class="hero-slide" src="../Image/pool.png" alt="Pool at the retreat house" loading="lazy" decoding="async" />
+                <img class="hero-slide" src="../Image/game-room.png" alt="Game room at the retreat house" loading="lazy" decoding="async" />
+                <img class="hero-slide" src="../Image/exterior.png" alt="Retreat house exterior" loading="lazy" decoding="async" />
+              </div>
+
+              <div class="hero-floating">
+                <div class="hero-glass-note">
+                  <strong>The concept</strong>
+                  <span>Not just a place to sleep — the house is the retreat.</span>
+                </div>
+
+                <div class="hero-dots" id="heroDots" aria-label="Hero image controls"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="sticky-jump" aria-label="Rooms and retreat page navigation">
+        <a href="#concept">Concept</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#spaces">House</a>
+        <a href="#rhythm">Schedule</a>
+        <a href="#included">Included</a>
+        <a href="#apply">Apply</a>
+      </nav>
+
+      <section class="section" id="concept">
+        <div class="container">
+          <div class="concept-shell">
+            <div class="concept-copy" data-reveal>
+              <div class="eyebrow">The idea</div>
+              <h2>A retreat house changes the whole weekend.</h2>
+              <p>
+                A hotel program gives you a room and a schedule. This is different. The house is the center of the weekend: meals in one place, slow conversations after meals, games that start naturally, and a group that gets to actually share space.
+              </p>
+              <p>
+                We’re building the retreat around that feeling — enough structure to make Shavuos meaningful, enough softness to let people breathe, and enough shared living space to make connection feel real.
+              </p>
+
+              <div class="tabs-row">
+                <button class="tab-button is-active" type="button" data-concept-tab="house">The house</button>
+                <button class="tab-button" type="button" data-concept-tab="group">The group</button>
+                <button class="tab-button" type="button" data-concept-tab="pace">The pace</button>
+              </div>
+
+              <div class="note-panel">
+                <p class="is-active" data-concept-panel="house">
+                  The rooms matter, but the common spaces matter more. The retreat is designed around the dining room, lounge, game room, pool, and those in-between moments that make the weekend feel lived in.
                 </p>
-
-                <div class="hero-actions">
-                  <a href="Forms/apply.html" class="button">Apply for Shavuos</a>
-                  <a href="#rooms" class="button-secondary">See room options</a>
-                </div>
-              </div>
-
-              <aside class="hero-panel" data-reveal style="--delay: 140ms;">
-                <div class="hero-card">
-                  <h2>4 days. 3 nights. One curated group.</h2>
-                  <p>
-                    Not a hotel program. Not a giant crowd. A more personal retreat built around Yom Tov, rest, good people, and a house that actually invites connection.
-                  </p>
-                </div>
-
-                <div class="hero-chip-grid">
-                  <div class="hero-chip">Kosher meals</div>
-                  <div class="hero-chip">Minyan + eiruv</div>
-                  <div class="hero-chip">Pool + hot tub</div>
-                  <div class="hero-chip">Mountain views</div>
-                </div>
-
-                <div class="hero-mini-card">
-                  <strong>May 21–24 • Vermont</strong>
-                  <p>
-                    Rooming details, placement, and final availability are shared as applications are reviewed.
-                  </p>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="quick-facts">
-        <div class="container">
-          <div class="info-strip" data-reveal>
-            <div class="info-pill">
-              <strong>Atmosphere</strong>
-              <span>Shabbos and Yom Tov observant, warm, social, and intentional</span>
-            </div>
-            <div class="info-pill">
-              <strong>Food</strong>
-              <span>Kosher meals included throughout the retreat</span>
-            </div>
-            <div class="info-pill">
-              <strong>Stay</strong>
-              <span>Shared rooms, limited private options, and house-based retreat living</span>
-            </div>
-            <div class="info-pill">
-              <strong>Feeling</strong>
-              <span>Full but not overwhelming — meaningful, relaxed, and beautiful</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="retreat">
-        <div class="container">
-          <div class="retreat-shell">
-            <div class="retreat-visual" data-reveal>
-              <img src="Image/chill.jpg" alt="Cozy lounge at the retreat house" loading="lazy" decoding="async" />
-              <div class="retreat-visual-card">
-                <strong>The house mood</strong>
-                <p>Couches, conversations, coffee, games, and the kind of in-between time people actually remember.</p>
+                <p data-concept-panel="group">
+                  The application process helps us shape a group that feels warm, intentional, and comfortable. We’re not trying to fill a hotel; we’re trying to build the right room.
+                </p>
+                <p data-concept-panel="pace">
+                  The rhythm should feel full but not overwhelming — Yom Tov, rest, meals, games, fresh air, a few memorable moments, and space to actually enjoy the place.
+                </p>
               </div>
             </div>
 
-            <div class="retreat-copy" data-reveal style="--delay: 100ms;">
-              <div class="eyebrow">About the retreat</div>
-              <h2>A Shavuos that feels curated, not overproduced.</h2>
-              <p>
-                This retreat is for people who want something more personal than a standard program: a beautiful private house, a smaller group, and a weekend that feels both intentional and easy.
-              </p>
-              <p>
-                The structure is there, but the energy stays soft. There is time for meals, davening, learning, games, conversation, fresh air, and the slower rhythm that makes Yom Tov feel like Yom Tov.
-              </p>
-              <p>
-                We’re still refining the final details, so the page keeps things intentionally a little light — enough to understand the feeling, without turning the retreat into a long list of programmed blocks.
-              </p>
+            <div class="concept-stack">
+              <article class="concept-card interactive-card" data-reveal style="--delay: 80ms;">
+                <h3>Rooms are not the product.</h3>
+                <p>
+                  They are the base. The real experience is the shared house rhythm: who you meet, where you sit, what happens after meals, and how the whole place feels by the second day.
+                </p>
+              </article>
 
-              <div class="retreat-pills">
-                <span class="retreat-pill">Young adults</span>
-                <span class="retreat-pill">Private home</span>
-                <span class="retreat-pill">Curated group</span>
-                <span class="retreat-pill">Beautiful shared spaces</span>
-                <span class="retreat-pill">Jewish retreat energy</span>
-              </div>
+              <article class="concept-card interactive-card" data-reveal style="--delay: 160ms;">
+                <h3>Schedule, but with air.</h3>
+                <p>
+                  We’ll have structure, but we’re not publishing every mechanism. Some parts should stay alive, flexible, and shaped by the people who come.
+                </p>
+              </article>
+
+              <article class="concept-card interactive-card" data-reveal style="--delay: 240ms;">
+                <h3>Vermont is part of it.</h3>
+                <p>
+                  The mountain setting, slower pace, and private-home feeling are not background details. They’re part of why this retreat should feel different.
+                </p>
+              </article>
             </div>
           </div>
         </div>
@@ -1097,87 +1470,120 @@
 
       <section class="section" id="rooms">
         <div class="container">
-          <div class="section-intro" data-reveal>
-            <div class="eyebrow">Room options</div>
-            <h2>Stay options designed around comfort and flow.</h2>
-            <p>
-              We’re organizing rooming to balance comfort, affordability, and the feel of the house. Final assignments depend on availability and fit, but these are the main options we plan to offer.
-            </p>
+          <div class="rooms-layout">
+            <aside class="rooms-copy" data-reveal>
+              <div class="eyebrow">Room options</div>
+              <h2>Choose the kind of base you want for the weekend.</h2>
+              <p>
+                Rooming is still being finalized, so the categories below are meant to show the direction clearly without overpromising exact layouts. Apply first, and we’ll follow up with the most current options.
+              </p>
+
+              <div class="room-filter" aria-label="Room filters">
+                <button class="is-active" type="button" data-room-filter="all">All options</button>
+                <button type="button" data-room-filter="shared">Shared</button>
+                <button type="button" data-room-filter="private">More private</button>
+                <button type="button" data-room-filter="premium">Premium</button>
+              </div>
+
+              <p class="room-footnote">
+                Tap a room card to reveal a little more context. Final pricing and placement will be handled after application review.
+              </p>
+            </aside>
+
+            <div class="rooms-grid">
+              <article class="room-card interactive-card" data-room-type="shared" data-reveal>
+                <div class="room-image">
+                  <img src="../Image/bedroom.png" alt="Shared bedroom option" loading="lazy" decoding="async" />
+                </div>
+                <div class="room-body">
+                  <div class="room-topline">
+                    <span class="room-tag">Shared</span>
+                    <span class="room-status">Most accessible</span>
+                  </div>
+                  <h3>Shared room</h3>
+                  <p>
+                    A comfortable option for guests who want the full retreat experience at the most accessible level.
+                  </p>
+                  <div class="room-details">
+                    <div class="room-detail">Best for solo travelers</div>
+                    <div class="room-detail">Curated roommate flow</div>
+                  </div>
+                  <div class="room-expand">
+                    We’ll try to keep rooming thoughtful and comfortable. The goal is not random placement — it’s to make the house feel easy for everyone.
+                  </div>
+                </div>
+              </article>
+
+              <article class="room-card interactive-card" data-room-type="private" data-reveal style="--delay: 80ms;">
+                <div class="room-image">
+                  <img src="../Image/chill.jpg" alt="Quieter rooming option" loading="lazy" decoding="async" />
+                </div>
+                <div class="room-body">
+                  <div class="room-topline">
+                    <span class="room-tag">More private</span>
+                    <span class="room-status">Limited</span>
+                  </div>
+                  <h3>Quieter room option</h3>
+                  <p>
+                    A limited category for guests who prefer a little more quiet or personal space during the weekend.
+                  </p>
+                  <div class="room-details">
+                    <div class="room-detail">More personal space</div>
+                    <div class="room-detail">Limited availability</div>
+                  </div>
+                  <div class="room-expand">
+                    These rooms may shift based on the final layout and headcount. Request it early in the application if this matters to you.
+                  </div>
+                </div>
+              </article>
+
+              <article class="room-card interactive-card" data-room-type="premium" data-reveal style="--delay: 160ms;">
+                <div class="room-image">
+                  <img src="../Image/exterior.png" alt="Premium private suite option" loading="lazy" decoding="async" />
+                </div>
+                <div class="room-body">
+                  <div class="room-topline">
+                    <span class="room-tag">Premium</span>
+                    <span class="room-status">Very limited</span>
+                  </div>
+                  <h3>Private suite</h3>
+                  <p>
+                    A more premium stay option for someone who wants a quieter base and more privacy during the retreat.
+                  </p>
+                  <div class="room-details">
+                    <div class="room-detail">Most private category</div>
+                    <div class="room-detail">Confirmed directly</div>
+                  </div>
+                  <div class="room-expand">
+                    This category is intentionally limited. We’ll confirm the exact layout, pricing, and fit directly after applications are reviewed.
+                  </div>
+                </div>
+              </article>
+
+              <article class="room-card interactive-card" data-room-type="shared" data-reveal style="--delay: 240ms;">
+                <div class="room-image">
+                  <img src="../Image/dining-space.jpg" alt="House-based retreat living" loading="lazy" decoding="async" />
+                </div>
+                <div class="room-body">
+                  <div class="room-topline">
+                    <span class="room-tag">House flow</span>
+                    <span class="room-status">Full experience</span>
+                  </div>
+                  <h3>House-based retreat living</h3>
+                  <p>
+                    The “room” is only one part of the stay. The experience is shaped by the shared dining room, lounge, pool, game room, and group rhythm.
+                  </p>
+                  <div class="room-details">
+                    <div class="room-detail">Shared home feeling</div>
+                    <div class="room-detail">Common spaces matter</div>
+                  </div>
+                  <div class="room-expand">
+                    This is why the page is not only about beds. Hamsa Nomads is trying to create a home-for-the-weekend feeling, not a transactional room list.
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
-
-          <div class="rooms-grid">
-            <article class="room-card" data-reveal>
-              <div class="room-image">
-                <img src="Image/bedroom.png" alt="Shared bedroom option" loading="lazy" decoding="async" />
-              </div>
-              <div class="room-body">
-                <span class="room-tag">Most accessible</span>
-                <h3>Shared room</h3>
-                <p>
-                  A comfortable shared-room option for guests who want the full retreat experience in a more accessible format.
-                </p>
-                <p>
-                  Best for solo travelers who are happy with a roommate setup and want to be close to the heart of the house.
-                </p>
-                <div class="room-note"><strong>Good to know:</strong> Room pairing is curated thoughtfully — we want the stay to feel easy and comfortable, not random.</div>
-              </div>
-            </article>
-
-            <article class="room-card" data-reveal style="--delay: 80ms;">
-              <div class="room-image">
-                <img src="Image/chill.jpg" alt="Private or quieter stay area" loading="lazy" decoding="async" />
-              </div>
-              <div class="room-body">
-                <span class="room-tag">A bit more privacy</span>
-                <h3>Limited private rooms</h3>
-                <p>
-                  We expect to offer a small number of more private rooming options for guests who prefer extra quiet or more personal space.
-                </p>
-                <p>
-                  These are limited and will be shared based on the final house setup and application flow.
-                </p>
-                <div class="room-note"><strong>Good to know:</strong> Private options are limited, so they’re best requested early in the application process.</div>
-              </div>
-            </article>
-
-            <article class="room-card" data-reveal style="--delay: 160ms;">
-              <div class="room-image">
-                <img src="Image/exterior.png" alt="Private suite or premium stay option" loading="lazy" decoding="async" />
-              </div>
-              <div class="room-body">
-                <span class="room-tag">Premium option</span>
-                <h3>Private suite</h3>
-                <p>
-                  For guests who want a more premium stay, we plan to offer at least one more private suite-style option in the house.
-                </p>
-                <p>
-                  This is the most limited rooming category and works especially well for someone wanting a quieter base during the weekend.
-                </p>
-                <div class="room-note"><strong>Good to know:</strong> Exact layout, pricing, and availability are confirmed directly once applications are reviewed.</div>
-              </div>
-            </article>
-
-            <article class="room-card" data-reveal style="--delay: 240ms;">
-              <div class="room-image">
-                <img src="Image/hero.jpg" alt="Retreat property setting" loading="lazy" decoding="async" />
-              </div>
-              <div class="room-body">
-                <span class="room-tag">Retreat flow</span>
-                <h3>House-based living</h3>
-                <p>
-                  More than a room, this is a retreat built around the whole house: meals together, shared lounges, gathering spaces, and the natural social energy that comes from living the weekend in one place.
-                </p>
-                <p>
-                  The room matters, but the retreat feeling comes from the full environment.
-                </p>
-                <div class="room-note"><strong>Good to know:</strong> We’ll share final rooming details in a clearer format as the retreat setup gets finalized.</div>
-              </div>
-            </article>
-          </div>
-
-          <p class="rooms-footnote" data-reveal>
-            We’re intentionally keeping the room section honest while details are still being finalized. If you apply, we can follow up with the latest availability, pricing, and rooming options directly.
-          </p>
         </div>
       </section>
 
@@ -1185,50 +1591,53 @@
         <div class="container">
           <div class="section-intro" data-reveal>
             <div class="eyebrow">Shared spaces</div>
-            <h2>The retreat is as much about the spaces between the rooms.</h2>
+            <h2>The rooms are private moments. The house is where the retreat happens.</h2>
             <p>
-              Dining together, hanging out in the lounge, a dip in the pool, a board game in the game room, a slower moment outside — these are the spaces that give the weekend its texture.
+              The common spaces are part of the design: meals together, conversations in the lounge, games after meals, pool and hot tub time, and the slow rhythm of a private Vermont home.
             </p>
           </div>
 
           <div class="spaces-grid">
-            <article class="space-card tall" data-reveal>
-              <img src="Image/dining-space.jpg" alt="Dining and gathering space" loading="lazy" decoding="async" />
+            <a class="space-card tall interactive-card" href="../Image/dining-space.jpg" target="_blank" rel="noopener" data-reveal>
+              <img src="../Image/dining-space.jpg" alt="Dining and gathering space" loading="lazy" decoding="async" />
               <div class="space-label">Dining & gathering</div>
-            </article>
+            </a>
 
-            <article class="space-card" data-reveal style="--delay: 80ms;">
-              <img src="Image/pool.png" alt="Pool at the retreat house" loading="lazy" decoding="async" />
+            <a class="space-card interactive-card" href="../Image/pool.png" target="_blank" rel="noopener" data-reveal style="--delay: 80ms;">
+              <img src="../Image/pool.png" alt="Pool at the retreat house" loading="lazy" decoding="async" />
               <div class="space-label">Pool</div>
-            </article>
+            </a>
 
-            <article class="space-card" data-reveal style="--delay: 160ms;">
-              <img src="Image/game-room.png" alt="Game room at the retreat house" loading="lazy" decoding="async" />
+            <a class="space-card interactive-card" href="../Image/game-room.png" target="_blank" rel="noopener" data-reveal style="--delay: 160ms;">
+              <img src="../Image/game-room.png" alt="Game room at the retreat house" loading="lazy" decoding="async" />
               <div class="space-label">Game room</div>
-            </article>
+            </a>
 
-            <article class="space-card" data-reveal style="--delay: 240ms;">
-              <img src="Image/chill.jpg" alt="Warm lounge seating area" loading="lazy" decoding="async" />
+            <a class="space-card interactive-card" href="../Image/chill.jpg" target="_blank" rel="noopener" data-reveal style="--delay: 240ms;">
+              <img src="../Image/chill.jpg" alt="Warm lounge seating area" loading="lazy" decoding="async" />
               <div class="space-label">Lounge</div>
-            </article>
+            </a>
 
-            <article class="space-card" data-reveal style="--delay: 320ms;">
-              <img src="Image/exterior.png" alt="Retreat house exterior" loading="lazy" decoding="async" />
+            <a class="space-card interactive-card" href="../Image/exterior.png" target="_blank" rel="noopener" data-reveal style="--delay: 320ms;">
+              <img src="../Image/exterior.png" alt="Retreat house exterior" loading="lazy" decoding="async" />
               <div class="space-label">Mountain house setting</div>
-            </article>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="section" id="schedule">
+      <section class="section" id="rhythm">
         <div class="container">
           <div class="rhythm-shell" data-reveal>
-            <div class="rhythm-left">
+            <div class="rhythm-copy">
               <div>
                 <div class="eyebrow">Weekend rhythm</div>
-                <h2>Full, but not overwhelming.</h2>
+                <h2>Teased, not over-explained.</h2>
                 <p>
                   The weekend is designed to feel full but not overwhelming — a balance of Yom Tov, rest, connection, and the beauty of Vermont.
+                </p>
+                <p class="soft-note">
+                  Some details are still being shaped as the group comes together. The rhythm below is the direction we’re building toward.
                 </p>
               </div>
 
@@ -1251,7 +1660,7 @@
                 <span class="rhythm-kicker">Arrival + opening</span>
                 <h3>Shavuos night</h3>
                 <p>
-                  Arrival, settling in, opening learning night, coffee and tea, relaxed introductions, and preparing for Shabbos together. Enough structure to bring everyone into the weekend, but still with room for the natural social flow of the house.
+                  Arrival, settling in, opening learning night, coffee and tea, relaxed introductions, and preparing for Shabbos together. Enough structure to bring everyone into the weekend, without losing the natural social flow of the house.
                 </p>
                 <div class="rhythm-mini-grid">
                   <div class="rhythm-mini">Arrival and room settling</div>
@@ -1261,15 +1670,15 @@
               </article>
 
               <article class="rhythm-panel" data-rhythm-panel="shabbos">
-                <span class="rhythm-kicker">Meals + Yom Tov rhythm</span>
+                <span class="rhythm-kicker">Yom Tov rhythm</span>
                 <h3>Shabbos</h3>
                 <p>
-                  Meals, davening, discussions, rest, games, and time to enjoy the group in a slower, meaningful setting. We’re shaping the weekend to leave room for beautiful meals, conversation, some learning, and the kind of unhurried Yom Tov energy people often want more of.
+                  Meals, davening, discussions, rest, games, and time to enjoy the group in a slower, meaningful setting. We’re shaping a mix of hosted moments and unstructured time.
                 </p>
                 <div class="rhythm-mini-grid">
                   <div class="rhythm-mini">Davening and Yom Tov meals</div>
                   <div class="rhythm-mini">Discussion, singing, and slower social time</div>
-                  <div class="rhythm-mini">Rest, games, and hanging out in the house</div>
+                  <div class="rhythm-mini">Rest, games, and hanging out</div>
                 </div>
               </article>
 
@@ -1277,11 +1686,11 @@
                 <span class="rhythm-kicker">Lighter social energy</span>
                 <h3>Motzei Shabbos</h3>
                 <p>
-                  Motzei Shabbos is meant to open back up a more playful, social energy — with some mix of late-night food, easy gathering, and shared time that feels fun but still aligned with the retreat’s overall tone.
+                  Motzei Shabbos opens into a more playful, social energy — some late-night food, easy gathering, and shared time that feels fun while still aligned with the retreat’s overall tone.
                 </p>
                 <div class="rhythm-mini-grid">
                   <div class="rhythm-mini">A relaxed late-night restart</div>
-                  <div class="rhythm-mini">Space for conversation and group energy</div>
+                  <div class="rhythm-mini">Conversation and group energy</div>
                   <div class="rhythm-mini">A little more movement, a little less structure</div>
                 </div>
               </article>
@@ -1290,7 +1699,7 @@
                 <span class="rhythm-kicker">Fresh air + slower close</span>
                 <h3>Sunday hike</h3>
                 <p>
-                  A Vermont nature outing or hike, plus morning time for the hot tub, game room, conversations, and relaxing on the property. The feeling is less “packed itinerary” and more “one more day to actually enjoy being there.”
+                  A Vermont nature outing or hike, plus morning time for the hot tub, game room, conversations, and relaxing on the property. Less “packed itinerary,” more “one more day to actually enjoy being there.”
                 </p>
                 <div class="rhythm-mini-grid">
                   <div class="rhythm-mini">Optional nature outing</div>
@@ -1308,7 +1717,7 @@
                 <div class="rhythm-mini-grid">
                   <div class="rhythm-mini">Private home + mountain setting</div>
                   <div class="rhythm-mini">Kosher food, minyan, and eiruv</div>
-                  <div class="rhythm-mini">A curated group with warm Jewish retreat energy</div>
+                  <div class="rhythm-mini">Warm Jewish retreat energy</div>
                 </div>
               </article>
             </div>
@@ -1320,29 +1729,39 @@
         <div class="container">
           <div class="included-shell" data-reveal>
             <div class="included-copy">
-              <div class="eyebrow">What’s part of the experience</div>
+              <div class="eyebrow">What’s included</div>
               <h2>What you’re really joining.</h2>
               <p>
-                The retreat is not just a bed in a house. It’s the full environment: meals, atmosphere, setting, people, rhythm, and a weekend that is designed to feel both grounded and memorable.
+                The retreat is not just a bed in a house. It’s the environment: meals, atmosphere, setting, people, rhythm, and a weekend designed to feel both grounded and memorable.
+              </p>
+              <p>
+                Tap the cards to reveal a little more.
               </p>
             </div>
 
             <div class="included-grid">
-              <article class="included-card">
+              <article class="included-card interactive-card">
                 <strong>Kosher meals</strong>
                 <p>Shared meals throughout the retreat, built into the weekend rather than treated like an extra.</p>
+                <p class="more">Exact menus are still being shaped, but the food experience is part of the retreat rhythm.</p>
               </article>
-              <article class="included-card">
+
+              <article class="included-card interactive-card">
                 <strong>Jewish rhythm</strong>
                 <p>A Shabbos and Yom Tov environment with davening, group time, and space for meaningful observance.</p>
+                <p class="more">Public spaces are designed around a Shabbos and Yom Tov flow.</p>
               </article>
-              <article class="included-card">
+
+              <article class="included-card interactive-card">
                 <strong>Retreat house energy</strong>
                 <p>Lounge space, game room, dining space, pool, and a house that supports connection naturally.</p>
+                <p class="more">The common spaces are a major part of why this retreat is different from a standard hotel program.</p>
               </article>
-              <article class="included-card">
+
+              <article class="included-card interactive-card">
                 <strong>Curated group</strong>
                 <p>A smaller application-based group so the overall social energy feels intentional and comfortable.</p>
+                <p class="more">We review applications because the feel of the group matters.</p>
               </article>
             </div>
           </div>
@@ -1353,17 +1772,17 @@
         <div class="container">
           <div class="cta-shell" data-reveal>
             <div class="cta-inner">
-              <div>
+              <div class="cta-copy">
                 <div class="eyebrow">Interested?</div>
                 <h2>Apply now and we’ll share the latest rooming details with you.</h2>
                 <p>
-                  Since the retreat is still being finalized, the most accurate next step is to apply. We’ll follow up with availability, rooming details, and the current version of the retreat plan.
+                  Since rooming and some programming details are still being finalized, the most accurate next step is to apply. We’ll follow up with availability, rooming details, and the current version of the retreat plan.
                 </p>
               </div>
 
               <div class="cta-actions">
-                <a href="Forms/apply.html" class="button">Start application</a>
-                <a href="index.html" class="button-secondary">Back to homepage</a>
+                <a href="../Forms/apply.html" class="button">Start application</a>
+                <a href="../index.html" class="button-secondary">Back to homepage</a>
               </div>
             </div>
           </div>
@@ -1374,7 +1793,8 @@
     <div id="site-footer"></div>
   </div>
 
-  <script src="assets/site-components.js" data-base=""></script>
+  <script src="../assets/site-components.js" data-base="../"></script>
+
   <script>
     function hnInitReveals() {
       const revealItems = document.querySelectorAll("[data-reveal]");
@@ -1392,23 +1812,109 @@
           }
         });
       }, {
-        threshold: 0.14,
-        rootMargin: "0px 0px -60px 0px"
+        threshold: 0.08,
+        rootMargin: "0px 0px 60px 0px"
       });
 
       revealItems.forEach((item) => observer.observe(item));
     }
 
     function hnInitHeroCarousel() {
-      const slides = Array.from(document.querySelectorAll("#heroSlides .hero-media"));
-      if (slides.length <= 1) return;
+      const slides = Array.from(document.querySelectorAll(".hero-slide"));
+      const dotsWrap = document.getElementById("heroDots");
+      if (!slides.length || !dotsWrap) return;
 
-      let index = 0;
+      let active = 0;
+
+      dotsWrap.innerHTML = slides.map((_, index) => `
+        <button class="hero-dot ${index === 0 ? "is-active" : ""}" type="button" aria-label="Show hero image ${index + 1}"></button>
+      `).join("");
+
+      const dots = Array.from(dotsWrap.querySelectorAll(".hero-dot"));
+
+      function show(index) {
+        active = index;
+        slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === active));
+        dots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === active));
+      }
+
+      dots.forEach((dot, index) => dot.addEventListener("click", () => show(index)));
+
       window.setInterval(() => {
-        slides[index].classList.remove("is-active");
-        index = (index + 1) % slides.length;
-        slides[index].classList.add("is-active");
-      }, 5000);
+        show((active + 1) % slides.length);
+      }, 30000);
+    }
+
+    function hnInitInteractiveCards() {
+      const cards = document.querySelectorAll(".interactive-card");
+      let topLayer = 100;
+
+      cards.forEach((card) => {
+        if (card.dataset.interactiveReady === "true") return;
+        card.dataset.interactiveReady = "true";
+
+        if (!card.hasAttribute("tabindex") && card.tagName.toLowerCase() !== "a" && card.tagName.toLowerCase() !== "button") {
+          card.setAttribute("tabindex", "0");
+        }
+
+        const bringForward = () => {
+          const group = card.closest(".rooms-grid, .concept-stack, .included-grid, .spaces-grid, .hero-micro-grid") || document;
+          group.querySelectorAll(".is-front").forEach((item) => {
+            if (item !== card) item.classList.remove("is-front");
+          });
+
+          topLayer += 1;
+          card.classList.add("is-front");
+          card.style.zIndex = String(topLayer);
+        };
+
+        card.addEventListener("pointerdown", bringForward, { passive: true });
+        card.addEventListener("mouseenter", bringForward);
+        card.addEventListener("focus", bringForward);
+
+        if (card.classList.contains("room-card")) {
+          card.addEventListener("click", () => {
+            card.classList.toggle("is-expanded");
+          });
+        }
+
+        if (card.classList.contains("included-card")) {
+          card.addEventListener("click", () => {
+            card.classList.toggle("is-expanded");
+          });
+        }
+      });
+    }
+
+    function hnInitConceptTabs() {
+      const tabs = document.querySelectorAll("[data-concept-tab]");
+      const panels = document.querySelectorAll("[data-concept-panel]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const key = tab.dataset.conceptTab;
+          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          panels.forEach((panel) => panel.classList.toggle("is-active", panel.dataset.conceptPanel === key));
+        });
+      });
+    }
+
+    function hnInitRoomFilters() {
+      const filters = document.querySelectorAll("[data-room-filter]");
+      const rooms = document.querySelectorAll("[data-room-type]");
+
+      filters.forEach((filter) => {
+        filter.addEventListener("click", () => {
+          const value = filter.dataset.roomFilter;
+
+          filters.forEach((item) => item.classList.toggle("is-active", item === filter));
+
+          rooms.forEach((room) => {
+            const match = value === "all" || room.dataset.roomType === value;
+            room.style.display = match ? "" : "none";
+          });
+        });
+      });
     }
 
     function hnInitRhythmTabs() {
@@ -1418,6 +1924,7 @@
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
           const key = tab.dataset.rhythmTab;
+
           tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
           panels.forEach((panel) => {
             panel.classList.toggle("is-active", panel.dataset.rhythmPanel === key);
@@ -1426,10 +1933,38 @@
       });
     }
 
+    function hnInitJumpNav() {
+      const navLinks = Array.from(document.querySelectorAll(".sticky-jump a"));
+      const sections = navLinks
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      if (!sections.length || !("IntersectionObserver" in window)) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          navLinks.forEach((link) => {
+            link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
+          });
+        });
+      }, {
+        threshold: 0.22,
+        rootMargin: "-20% 0px -60% 0px"
+      });
+
+      sections.forEach((section) => observer.observe(section));
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       hnInitReveals();
       hnInitHeroCarousel();
+      hnInitInteractiveCards();
+      hnInitConceptTabs();
+      hnInitRoomFilters();
       hnInitRhythmTabs();
+      hnInitJumpNav();
     });
   </script>
 </body>
