@@ -74,6 +74,17 @@ async function getInstagramFeed(env) {
     "timestamp"
   ].join(",");
 
+    const profileFields = [
+    "id",
+    "username",
+    "name",
+    "profile_picture_url"
+  ].join(",");
+
+  const profileEndpoint =
+    "https://graph.instagram.com/me" +
+    `?fields=${encodeURIComponent(profileFields)}` +
+    `&access_token=${encodeURIComponent(token)}`;
   const endpoint =
     "https://graph.instagram.com/me/media" +
     `?fields=${encodeURIComponent(fields)}` +
@@ -81,8 +92,19 @@ async function getInstagramFeed(env) {
     `&access_token=${encodeURIComponent(token)}`;
 
   try {
-    const response = await fetch(endpoint);
+        const [response, profileResponse] = await Promise.all([
+      fetch(endpoint),
+      fetch(profileEndpoint)
+    ]);
+
     const rawText = await response.text();
+
+    let profileData = {};
+    try {
+      profileData = await profileResponse.json();
+    } catch {
+      profileData = {};
+    }
 
     let data;
     try {
@@ -116,8 +138,9 @@ async function getInstagramFeed(env) {
     }));
 
     return jsonResponse({
-      username: "hamsanomads",
+      username: profileData.username || "hamsanomads",
       profileUrl: "https://www.instagram.com/hamsanomads/",
+      profilePicture: profileData.profile_picture_url || null,
       count: posts.length,
       posts
     });
