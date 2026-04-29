@@ -2317,6 +2317,164 @@
       }
     }
 
+  
+    /* RHYTHM TEASER — lighter than a public schedule */
+    .rhythm-teaser-shell {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.36fr) minmax(0, 0.64fr);
+      gap: clamp(18px, 4vw, 36px);
+      align-items: stretch;
+      padding: clamp(18px, 3vw, 26px);
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 35%),
+        rgba(255,252,246,0.74);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--shadow);
+    }
+
+    .rhythm-teaser-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(16px, 3vw, 28px);
+      border-radius: 28px;
+      background: linear-gradient(140deg, #244b3e 0%, #173c30 58%, #102a21 100%);
+      color: #f7f0e2;
+      min-height: 340px;
+    }
+
+    .rhythm-teaser-copy span {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      color: #e0ae43;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rhythm-teaser-copy h3 {
+      color: #f7f0e2;
+      font-size: clamp(2rem, 4.6vw, 4rem);
+      line-height: 0.96;
+      margin-bottom: 14px;
+    }
+
+    .rhythm-teaser-copy p {
+      color: rgba(247,240,226,0.80);
+      line-height: 1.72;
+    }
+
+    .rhythm-teaser-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rhythm-teaser-card {
+      padding: 20px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(39,69,55,0.10);
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(31,28,20,0.06);
+    }
+
+    .rhythm-teaser-card strong {
+      display: inline-flex;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .rhythm-teaser-card h4 {
+      color: var(--forest);
+      font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+      line-height: 1.05;
+      margin-bottom: 9px;
+    }
+
+    .rhythm-teaser-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.62;
+    }
+
+    .rhythm-discreet-note {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: rgba(39,69,55,0.06);
+      border: 1px solid rgba(39,69,55,0.08);
+      color: var(--muted);
+      line-height: 1.58;
+    }
+
+    .rhythm-discreet-note strong {
+      color: var(--forest);
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 1080px) {
+      .rhythm-teaser-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .rhythm-teaser-copy {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .rhythm-teaser-shell {
+        padding: 10px;
+        border-radius: 26px;
+      }
+
+      .rhythm-teaser-copy {
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      .rhythm-teaser-grid {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .rhythm-teaser-card {
+        padding: 16px;
+        border-radius: 19px;
+      }
+
+      .rhythm-discreet-note {
+        display: block;
+        padding: 14px;
+        border-radius: 18px;
+        font-size: 0.9rem;
+      }
+
+      .rhythm-discreet-note strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+    }
+
   </style>
 </head>
 
@@ -2383,7 +2541,7 @@
         <a href="#house-data">House flow</a>
         <a href="#rooms">Rooms</a>
         <a href="#spaces">House</a>
-        <a href="#rhythm">Schedule</a>
+        <a href="#rhythm">Rhythm</a>
         <a href="#included">Included</a>
         <a href="#apply">Apply</a>
       </nav>
@@ -2723,101 +2881,66 @@
         </div>
       </section>
 
+
       <section class="section" id="rhythm">
         <div class="container">
-          <div class="rhythm-shell" data-reveal>
-            <div class="rhythm-copy">
-              <div>
-                <div class="eyebrow">Weekend rhythm</div>
-                <h2>Teased, not over-explained.</h2>
-                <p>
-                  The weekend is designed to feel full but not overwhelming — a balance of Yom Tov, rest, connection, and the beauty of Vermont.
-                </p>
-                <p class="soft-note">
-                  Some details are still being shaped as the group comes together. The rhythm below is the direction we’re building toward.
-                </p>
-              </div>
+          <div class="section-intro" data-reveal>
+            <div class="eyebrow">Weekend rhythm</div>
+            <h2>Not a public schedule. A feel for the weekend.</h2>
+            <p>
+              The exact program is still being shaped, and some parts should stay alive for the people who come. This section is here only to show the rhythm: how the house, rooms, meals, and shared spaces will support the retreat.
+            </p>
+          </div>
 
-              <div class="rhythm-tabs" role="tablist" aria-label="Weekend rhythm tabs">
-                <button class="rhythm-tab is-active" type="button" data-rhythm-tab="night">Shavuos night</button>
-                <button class="rhythm-tab" type="button" data-rhythm-tab="shabbos">Shabbos</button>
-                <button class="rhythm-tab" type="button" data-rhythm-tab="motzei">Motzei Shabbos</button>
-                <button class="rhythm-tab" type="button" data-rhythm-tab="sunday">Sunday hike</button>
-                <button class="rhythm-tab" type="button" data-rhythm-tab="included">Included atmosphere</button>
-              </div>
+          <div class="rhythm-teaser-shell" data-reveal>
+            <div class="rhythm-teaser-copy">
+              <span>May 21 - May 24</span>
+              <h3>Full, but not overwhelming.</h3>
+              <p>
+                A balance of Yom Tov, rest, connection, and the beauty of Vermont — with enough structure to make the weekend meaningful, and enough space to let people actually settle in.
+              </p>
             </div>
 
-            <div class="rhythm-detail">
-              <svg class="rhythm-line" viewBox="0 0 900 540" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M -40 140 C 120 70, 200 250, 350 190 S 560 80, 700 200 S 820 380, 960 270" />
-                <path d="M -20 410 C 160 350, 240 500, 420 445 S 640 300, 820 430 S 910 510, 980 450" />
-              </svg>
-
-              <article class="rhythm-panel is-active" data-rhythm-panel="night">
-                <span class="rhythm-kicker">Arrival + opening</span>
-                <h3>Shavuos night</h3>
+            <div class="rhythm-teaser-grid">
+              <article class="rhythm-teaser-card interactive-card">
+                <strong>01</strong>
+                <h4>Arrival + settling in</h4>
                 <p>
-                  Arrival, settling in, opening learning night, coffee and tea, relaxed introductions, and preparing for Shabbos together. Enough structure to bring everyone into the weekend, without losing the natural social flow of the house.
+                  Rooms, introductions, coffee and tea, opening learning energy, and the first feeling of the house becoming a shared space.
                 </p>
-                <div class="rhythm-mini-grid">
-                  <div class="rhythm-mini">Arrival and room settling</div>
-                  <div class="rhythm-mini">Opening learning + first gathering</div>
-                  <div class="rhythm-mini">Coffee, tea, and relaxed introductions</div>
-                </div>
               </article>
 
-              <article class="rhythm-panel" data-rhythm-panel="shabbos">
-                <span class="rhythm-kicker">Yom Tov rhythm</span>
-                <h3>Shabbos</h3>
+              <article class="rhythm-teaser-card interactive-card">
+                <strong>02</strong>
+                <h4>Yom Tov + Shabbos flow</h4>
                 <p>
-                  Meals, davening, discussions, rest, games, and time to enjoy the group in a slower, meaningful setting. We’re shaping a mix of hosted moments and unstructured time.
+                  Meals, davening, discussion, singing, rest, games, and time to enjoy the group in a slower, meaningful setting.
                 </p>
-                <div class="rhythm-mini-grid">
-                  <div class="rhythm-mini">Davening and Yom Tov meals</div>
-                  <div class="rhythm-mini">Discussion, singing, and slower social time</div>
-                  <div class="rhythm-mini">Rest, games, and hanging out</div>
-                </div>
               </article>
 
-              <article class="rhythm-panel" data-rhythm-panel="motzei">
-                <span class="rhythm-kicker">Lighter social energy</span>
-                <h3>Motzei Shabbos</h3>
+              <article class="rhythm-teaser-card interactive-card">
+                <strong>03</strong>
+                <h4>House moments</h4>
                 <p>
-                  Motzei Shabbos opens into a more playful, social energy — some late-night food, easy gathering, and shared time that feels fun while still aligned with the retreat’s overall tone.
+                  Pool and hot tub time, game room energy, conversations in the lounge, and the unplanned moments that make a retreat feel real.
                 </p>
-                <div class="rhythm-mini-grid">
-                  <div class="rhythm-mini">A relaxed late-night restart</div>
-                  <div class="rhythm-mini">Conversation and group energy</div>
-                  <div class="rhythm-mini">A little more movement, a little less structure</div>
-                </div>
               </article>
 
-              <article class="rhythm-panel" data-rhythm-panel="sunday">
-                <span class="rhythm-kicker">Fresh air + slower close</span>
-                <h3>Sunday hike</h3>
+              <article class="rhythm-teaser-card interactive-card">
+                <strong>04</strong>
+                <h4>Vermont reset</h4>
                 <p>
-                  A Vermont nature outing or hike, plus morning time for the hot tub, game room, conversations, and relaxing on the property. Less “packed itinerary,” more “one more day to actually enjoy being there.”
+                  Fresh air, a possible nature outing or hike, slower morning rhythm, and space to close the weekend without rushing.
                 </p>
-                <div class="rhythm-mini-grid">
-                  <div class="rhythm-mini">Optional nature outing</div>
-                  <div class="rhythm-mini">Morning house time and slower pacing</div>
-                  <div class="rhythm-mini">Good conversations before the weekend closes</div>
-                </div>
-              </article>
-
-              <article class="rhythm-panel" data-rhythm-panel="included">
-                <span class="rhythm-kicker">What ties it together</span>
-                <h3>Included atmosphere</h3>
-                <p>
-                  Kosher food, minyan, eiruv, Shabbos and Yom Tov environment, private home, mountain views, and curated group energy. These are the constants around which the rest of the weekend is being built.
-                </p>
-                <div class="rhythm-mini-grid">
-                  <div class="rhythm-mini">Private home + mountain setting</div>
-                  <div class="rhythm-mini">Kosher food, minyan, and eiruv</div>
-                  <div class="rhythm-mini">Warm Jewish retreat energy</div>
-                </div>
               </article>
             </div>
+          </div>
+
+          <div class="rhythm-discreet-note" data-reveal style="--delay: 100ms;">
+            <strong>Why we’re not listing everything here:</strong>
+            <span>
+              The public page should explain the retreat without over-documenting it. Accepted guests will receive clearer timing and logistics as the weekend gets closer.
+            </span>
           </div>
         </div>
       </section>
@@ -3016,22 +3139,6 @@
 
 
 
-    function hnInitRhythmTabs() {
-      const tabs = document.querySelectorAll("[data-rhythm-tab]");
-      const panels = document.querySelectorAll("[data-rhythm-panel]");
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const key = tab.dataset.rhythmTab;
-
-          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
-          panels.forEach((panel) => {
-            panel.classList.toggle("is-active", panel.dataset.rhythmPanel === key);
-          });
-        });
-      });
-    }
-
     function hnInitJumpNav() {
       const navLinks = Array.from(document.querySelectorAll(".sticky-jump a"));
       const sections = navLinks
@@ -3062,7 +3169,6 @@
       hnInitInteractiveCards();
       hnInitConceptTabs();
       hnInitRoomFilters();
-      hnInitRhythmTabs();
       hnInitJumpNav();
     });
   </script>
