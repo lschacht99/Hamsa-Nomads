@@ -22,7 +22,6 @@ function hnPath(path) {
 
 /* =========================================================
    REMOVE OLD BACKGROUND LINES
-   Prevents previous route-line designs from stacking.
    ========================================================= */
 
 function removeOldBackgroundLines() {
@@ -35,8 +34,6 @@ function removeOldBackgroundLines() {
 
 /* =========================================================
    GLOBAL TRIPS.HTML-STYLE DRAWING LINE
-   SAFE VERSION: fill="none" is written directly into SVG.
-   This prevents the black blob issue even if CSS fails.
    ========================================================= */
 
 function insertGlobalTripLine() {
@@ -162,6 +159,8 @@ function insertGlobalTripLine() {
 
 /* =========================================================
    HEADER
+   Visible nav stays.
+   Slide menu is additional.
    ========================================================= */
 
 function insertSiteHeader() {
@@ -169,9 +168,9 @@ function insertSiteHeader() {
   if (!headerTarget) return;
 
   headerTarget.innerHTML = `
-    <header class="hn-shared-header">
-      <div class="hn-shared-container hn-shared-nav">
-        <a href="${hnPath("/index.html")}" class="hn-shared-brand">
+    <header class="hn-shared-header hn-additional-menu-header">
+      <div class="hn-shared-container hn-shared-nav hn-additional-menu-nav">
+        <a href="${hnPath("/index.html")}" class="hn-shared-brand hn-additional-menu-brand">
           <img
             class="hn-shared-brand-logo"
             src="${hnPath("/logo/logo-hamsa-nomads.png")}"
@@ -184,61 +183,117 @@ function insertSiteHeader() {
           </div>
         </a>
 
-        <nav class="hn-shared-nav-links" aria-label="Main navigation">
+        <nav class="hn-shared-nav-links hn-visible-nav-links" aria-label="Main navigation">
           <a href="${hnPath("/index.html#experience")}" data-nav="experience">Experience</a>
           <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">Gallery</a>
-          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">Upcoming trips</a>
+          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">Trips</a>
           <a href="${hnPath("/faq.html")}" data-nav="faq">FAQ</a>
-          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">About us</a>
-          <a href="${hnPath("/Forms/apply.html")}" class="hn-shared-button" data-nav="apply">Join the retreat</a>
+          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">About</a>
         </nav>
 
-        <button
-          class="hn-mobile-menu-toggle"
-          id="hnMobileMenuToggle"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="hnMobileDrawer"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div class="hn-header-actions">
+          <a
+            href="${hnPath("/Forms/apply.html")}"
+            class="hn-shared-button hn-join-always"
+            data-nav="apply"
+          >
+            <span class="hn-join-full">Join the retreat</span>
+            <span class="hn-join-short">Join</span>
+          </a>
+
+          <button
+            class="hn-more-menu-toggle"
+            id="hnMoreMenuToggle"
+            type="button"
+            aria-label="Open more navigation"
+            aria-expanded="false"
+            aria-controls="hnMoreDrawer"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
 
-      <div class="hn-mobile-menu-overlay" id="hnMobileMenuOverlay"></div>
+      <div class="hn-more-menu-overlay" id="hnMoreMenuOverlay"></div>
 
       <aside
-        class="hn-mobile-drawer"
-        id="hnMobileDrawer"
+        class="hn-more-drawer"
+        id="hnMoreDrawer"
         aria-hidden="true"
       >
-        <div class="hn-mobile-drawer-top">
+        <div class="hn-more-drawer-top">
           <div>
-            <div class="hn-mobile-drawer-brand">Hamsa Nomads</div>
-            <div class="hn-mobile-drawer-sub">Curated kosher travel</div>
+            <div class="hn-more-drawer-brand">Hamsa Nomads</div>
+            <div class="hn-more-drawer-sub">More places to explore</div>
           </div>
 
           <button
-            class="hn-mobile-menu-close"
-            id="hnMobileMenuClose"
+            class="hn-more-menu-close"
+            id="hnMoreMenuClose"
             type="button"
-            aria-label="Close navigation menu"
+            aria-label="Close more navigation"
           >
             ×
           </button>
         </div>
 
-        <nav class="hn-mobile-drawer-links" aria-label="Mobile navigation">
-          <a href="${hnPath("/index.html#experience")}" data-nav="experience">Experience</a>
-          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">Gallery</a>
-          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">Upcoming trips</a>
-          <a href="${hnPath("/faq.html")}" data-nav="faq">FAQ</a>
-          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">About us</a>
-          <a href="${hnPath("/Forms/apply.html")}" class="hn-mobile-drawer-cta" data-nav="apply">
-            Join the retreat
+        <nav class="hn-more-drawer-links" aria-label="More navigation">
+          <a href="${hnPath("/index.html")}">
+            <span>Home</span>
+            <small>Back to the main page</small>
+          </a>
+
+          <a href="${hnPath("/index.html#pricing")}">
+            <span>Pricing</span>
+            <small>Rooming, camping, and retreat options</small>
+          </a>
+
+          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
+            <span>Upcoming trips</span>
+            <small>See what is coming next</small>
+          </a>
+
+          <a href="${hnPath("/schedule/call.html")}">
+            <span>Schedule a call</span>
+            <small>Ask questions before applying</small>
+          </a>
+
+          <a href="${hnPath("/Forms/apply.html")}" data-nav="apply">
+            <span>Apply for Shavuos</span>
+            <small>Join the retreat</small>
+          </a>
+
+          <a href="${hnPath("/Forms/payment.html")}">
+            <span>Payment page</span>
+            <small>Confirm your spot after approval</small>
+          </a>
+
+          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">
+            <span>About us</span>
+            <small>Meet the people behind Hamsa Nomads</small>
+          </a>
+
+          <a href="${hnPath("/faq.html")}" data-nav="faq">
+            <span>FAQ</span>
+            <small>Food, rooms, Shabbos, travel, and details</small>
+          </a>
+
+          <a href="${hnPath("/terms.html")}">
+            <span>Terms</span>
+            <small>Retreat policies and conditions</small>
+          </a>
+
+          <a href="${hnPath("/privacy.html")}">
+            <span>Privacy</span>
+            <small>How information is handled</small>
+          </a>
+
+          <a href="mailto:hamsanomads@gmail.com">
+            <span>Email us</span>
+            <small>hamsanomads@gmail.com</small>
           </a>
         </nav>
       </aside>
@@ -246,192 +301,391 @@ function insertSiteHeader() {
   `;
 
   markActiveNav();
-  initMobileMenu();
+  initMoreSlideMenu();
 }
 
 /* =========================================================
-   MOBILE SLIDE MENU
+   ADDITIONAL SLIDE MENU STYLES
    ========================================================= */
 
-function insertMobileMenuStyles() {
-  if (document.getElementById("hnMobileMenuStyles")) return;
+function insertMoreSlideMenuStyles() {
+  if (document.getElementById("hnMoreSlideMenuStyles")) return;
 
   const style = document.createElement("style");
-  style.id = "hnMobileMenuStyles";
+  style.id = "hnMoreSlideMenuStyles";
 
   style.textContent = `
-    .hn-shared-header {
-      position: relative;
-      z-index: 999;
+    .hn-additional-menu-header {
+      position: relative !important;
+      z-index: 99999 !important;
+      overflow: visible !important;
     }
 
-    .hn-mobile-menu-toggle {
+    .hn-additional-menu-nav {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 18px !important;
+      flex-wrap: nowrap !important;
+      overflow: visible !important;
+    }
+
+    .hn-additional-menu-brand {
+      flex: 0 0 auto !important;
+      min-width: 0 !important;
+    }
+
+    .hn-visible-nav-links {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 22px !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      white-space: nowrap !important;
+      overflow: visible !important;
+    }
+
+    .hn-visible-nav-links a {
+      white-space: nowrap !important;
+      flex: 0 0 auto !important;
+    }
+
+    .hn-header-actions {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 10px !important;
+      flex: 0 0 auto !important;
+      white-space: nowrap !important;
+    }
+
+    .hn-join-always {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      white-space: nowrap !important;
+      flex: 0 0 auto !important;
+    }
+
+    .hn-join-short {
       display: none;
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(23, 79, 25, 0.18);
-      border-radius: 999px;
-      background: rgba(247, 243, 234, 0.78);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 4px;
-      padding: 0;
-      position: relative;
-      z-index: 1002;
-      box-shadow: 0 12px 28px rgba(16, 14, 11, 0.08);
     }
 
-    .hn-mobile-menu-toggle span {
-      display: block;
-      width: 20px;
-      height: 1.7px;
-      border-radius: 999px;
-      background: #174F19;
-      transition: transform 0.28s ease, opacity 0.28s ease;
+    .hn-more-menu-toggle {
+      display: flex !important;
+      width: 44px !important;
+      height: 44px !important;
+      border: 1px solid rgba(23, 79, 25, 0.18) !important;
+      border-radius: 999px !important;
+      background: rgba(247, 243, 234, 0.82) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      cursor: pointer !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+      padding: 0 !important;
+      position: relative !important;
+      z-index: 100002 !important;
+      box-shadow: 0 12px 28px rgba(16, 14, 11, 0.08) !important;
+      flex: 0 0 auto !important;
     }
 
-    .hn-mobile-menu-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(16, 14, 11, 0.28);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
+    .hn-more-menu-toggle span {
+      display: block !important;
+      width: 19px !important;
+      height: 1.7px !important;
+      border-radius: 999px !important;
+      background: #174F19 !important;
+      transition: transform 0.28s ease, opacity 0.28s ease !important;
     }
 
-    .hn-mobile-drawer {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: min(86vw, 370px);
-      height: 100vh;
-      background: #f7f3ea;
-      box-shadow: -24px 0 70px rgba(16, 14, 11, 0.18);
-      transform: translateX(105%);
-      transition: transform 0.38s cubic-bezier(.2,.8,.2,1);
-      z-index: 1001;
-      padding: 26px 24px 32px;
-      display: flex;
-      flex-direction: column;
-      border-left: 1px solid rgba(23, 79, 25, 0.12);
+    .hn-more-menu-overlay {
+      position: fixed !important;
+      inset: 0 !important;
+      background: rgba(16, 14, 11, 0.32) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 0.3s ease !important;
+      z-index: 100000 !important;
     }
 
-    .hn-mobile-drawer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 20px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid rgba(23, 79, 25, 0.14);
+    .hn-more-drawer {
+      position: fixed !important;
+      top: 0 !important;
+      right: 0 !important;
+      width: min(88vw, 420px) !important;
+      height: 100vh !important;
+      background: #f7f3ea !important;
+      box-shadow: -24px 0 70px rgba(16, 14, 11, 0.22) !important;
+      transform: translateX(105%) !important;
+      transition: transform 0.38s cubic-bezier(.2,.8,.2,1) !important;
+      z-index: 100001 !important;
+      padding: 28px 24px 34px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      border-left: 1px solid rgba(23, 79, 25, 0.12) !important;
+      overflow-y: auto !important;
     }
 
-    .hn-mobile-drawer-brand {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.35rem;
-      color: #174F19;
-      letter-spacing: 0.02em;
+    .hn-more-drawer-top {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      gap: 20px !important;
+      padding-bottom: 22px !important;
+      border-bottom: 1px solid rgba(23, 79, 25, 0.14) !important;
     }
 
-    .hn-mobile-drawer-sub {
-      margin-top: 4px;
-      font-size: 0.82rem;
-      color: rgba(16, 14, 11, 0.58);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .hn-more-drawer-brand {
+      font-family: Georgia, "Times New Roman", serif !important;
+      font-size: 1.42rem !important;
+      color: #174F19 !important;
+      letter-spacing: 0.02em !important;
     }
 
-    .hn-mobile-menu-close {
-      border: 0;
-      background: transparent;
-      font-size: 2.1rem;
-      line-height: 1;
-      color: #174F19;
-      cursor: pointer;
-      padding: 0;
-      margin-top: -4px;
+    .hn-more-drawer-sub {
+      margin-top: 5px !important;
+      font-size: 0.78rem !important;
+      color: rgba(16, 14, 11, 0.58) !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
     }
 
-    .hn-mobile-drawer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 28px;
+    .hn-more-menu-close {
+      border: 0 !important;
+      background: transparent !important;
+      font-size: 2.1rem !important;
+      line-height: 1 !important;
+      color: #174F19 !important;
+      cursor: pointer !important;
+      padding: 0 !important;
+      margin-top: -4px !important;
     }
 
-    .hn-mobile-drawer-links a {
-      color: #174F19;
-      text-decoration: none;
-      font-size: 1.05rem;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(23, 79, 25, 0.11);
-      letter-spacing: 0.01em;
+    .hn-more-drawer-links {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0 !important;
+      margin-top: 20px !important;
     }
 
-    .hn-mobile-drawer-links a.is-active {
-      font-weight: 700;
+    .hn-more-drawer-links a {
+      color: #174F19 !important;
+      text-decoration: none !important;
+      padding: 15px 0 !important;
+      border-bottom: 1px solid rgba(23, 79, 25, 0.11) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
     }
 
-    .hn-mobile-drawer-cta {
-      margin-top: 22px;
-      text-align: center;
-      border: 1px solid #174F19 !important;
-      border-radius: 999px;
-      padding: 15px 18px !important;
-      background: #174F19;
-      color: #f7f3ea !important;
-      font-weight: 700;
-      box-shadow: 0 18px 34px rgba(23, 79, 25, 0.18);
+    .hn-more-drawer-links a span {
+      font-size: 1.02rem !important;
+      line-height: 1.2 !important;
     }
 
-    body.hn-mobile-menu-is-open {
-      overflow: hidden;
+    .hn-more-drawer-links a small {
+      font-size: 0.78rem !important;
+      line-height: 1.35 !important;
+      color: rgba(16, 14, 11, 0.58) !important;
     }
 
-    body.hn-mobile-menu-is-open .hn-mobile-menu-overlay {
-      opacity: 1;
-      pointer-events: auto;
+    .hn-more-drawer-links a.is-active span {
+      font-weight: 700 !important;
     }
 
-    body.hn-mobile-menu-is-open .hn-mobile-drawer {
-      transform: translateX(0);
+    body.hn-more-menu-is-open {
+      overflow: hidden !important;
     }
 
-    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(1) {
-      transform: translateY(5.7px) rotate(45deg);
+    body.hn-more-menu-is-open .hn-more-menu-overlay {
+      opacity: 1 !important;
+      pointer-events: auto !important;
     }
 
-    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(2),
-    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(3) {
-      opacity: 0;
+    body.hn-more-menu-is-open .hn-more-drawer {
+      transform: translateX(0) !important;
     }
 
-    body.hn-mobile-menu-is-open .hn-mobile-menu-toggle span:nth-child(4) {
-      transform: translateY(-5.7px) rotate(-45deg);
+    body.hn-more-menu-is-open .hn-more-menu-toggle span:nth-child(1) {
+      transform: translateY(5.7px) rotate(45deg) !important;
     }
 
-    @media (max-width: 860px) {
-      .hn-shared-nav-links {
+    body.hn-more-menu-is-open .hn-more-menu-toggle span:nth-child(2),
+    body.hn-more-menu-is-open .hn-more-menu-toggle span:nth-child(3) {
+      opacity: 0 !important;
+    }
+
+    body.hn-more-menu-is-open .hn-more-menu-toggle span:nth-child(4) {
+      transform: translateY(-5.7px) rotate(-45deg) !important;
+    }
+
+    @media (max-width: 1180px) {
+      .hn-additional-menu-nav {
+        gap: 13px !important;
+      }
+
+      .hn-visible-nav-links {
+        gap: 15px !important;
+      }
+
+      .hn-visible-nav-links a {
+        font-size: 0.88rem !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.86rem !important;
+        padding: 10px 14px !important;
+      }
+
+      .hn-more-menu-toggle {
+        width: 42px !important;
+        height: 42px !important;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hn-additional-menu-nav {
+        gap: 9px !important;
+      }
+
+      .hn-additional-menu-brand {
+        gap: 8px !important;
+      }
+
+      .hn-additional-menu-brand .hn-shared-brand-logo {
+        width: 40px !important;
+        height: auto !important;
+      }
+
+      .hn-additional-menu-brand .hn-shared-brand-name {
+        font-size: 1.08rem !important;
+        letter-spacing: 0.06em !important;
+      }
+
+      .hn-additional-menu-brand .hn-shared-brand-sub {
+        font-size: 0.74rem !important;
+      }
+
+      .hn-visible-nav-links {
+        gap: 10px !important;
+      }
+
+      .hn-visible-nav-links a {
+        font-size: 0.74rem !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.72rem !important;
+        padding: 8px 10px !important;
+      }
+
+      .hn-more-menu-toggle {
+        width: 38px !important;
+        height: 38px !important;
+      }
+
+      .hn-more-menu-toggle span {
+        width: 17px !important;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hn-additional-menu-nav {
+        gap: 6px !important;
+      }
+
+      .hn-additional-menu-brand {
+        gap: 5px !important;
+      }
+
+      .hn-additional-menu-brand .hn-shared-brand-logo {
+        width: 26px !important;
+      }
+
+      .hn-additional-menu-brand .hn-shared-brand-name {
+        font-size: 0.68rem !important;
+        letter-spacing: 0.04em !important;
+      }
+
+      .hn-additional-menu-brand .hn-shared-brand-sub {
         display: none !important;
       }
 
-      .hn-mobile-menu-toggle {
-        display: flex;
+      .hn-visible-nav-links {
+        gap: 6px !important;
+        justify-content: center !important;
       }
 
-      .hn-shared-nav {
-        justify-content: space-between;
+      .hn-visible-nav-links a {
+        font-size: 0.55rem !important;
+        letter-spacing: 0 !important;
+      }
+
+      .hn-join-full {
+        display: none !important;
+      }
+
+      .hn-join-short {
+        display: inline !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.56rem !important;
+        padding: 6px 7px !important;
+        min-height: 29px !important;
+      }
+
+      .hn-more-menu-toggle {
+        width: 32px !important;
+        height: 32px !important;
+        gap: 3px !important;
+      }
+
+      .hn-more-menu-toggle span {
+        width: 15px !important;
+        height: 1.5px !important;
       }
     }
 
-    @media (min-width: 861px) {
-      .hn-mobile-menu-overlay,
-      .hn-mobile-drawer {
-        display: none;
+    @media (max-width: 420px) {
+      .hn-visible-nav-links {
+        gap: 5px !important;
+      }
+
+      .hn-visible-nav-links a {
+        font-size: 0.5rem !important;
+      }
+
+      .hn-additional-menu-brand .hn-shared-brand-name {
+        font-size: 0.61rem !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.52rem !important;
+        padding: 5px 6px !important;
+      }
+
+      .hn-more-menu-toggle {
+        width: 30px !important;
+        height: 30px !important;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .hn-additional-menu-brand .hn-shared-brand-logo {
+        display: none !important;
+      }
+
+      .hn-visible-nav-links a {
+        font-size: 0.47rem !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.49rem !important;
       }
     }
   `;
@@ -439,24 +693,24 @@ function insertMobileMenuStyles() {
   document.head.appendChild(style);
 }
 
-function initMobileMenu() {
-  insertMobileMenuStyles();
+function initMoreSlideMenu() {
+  insertMoreSlideMenuStyles();
 
-  const toggle = document.getElementById("hnMobileMenuToggle");
-  const drawer = document.getElementById("hnMobileDrawer");
-  const overlay = document.getElementById("hnMobileMenuOverlay");
-  const closeBtn = document.getElementById("hnMobileMenuClose");
+  const toggle = document.getElementById("hnMoreMenuToggle");
+  const drawer = document.getElementById("hnMoreDrawer");
+  const overlay = document.getElementById("hnMoreMenuOverlay");
+  const closeBtn = document.getElementById("hnMoreMenuClose");
 
   if (!toggle || !drawer || !overlay || !closeBtn) return;
 
   function openMenu() {
-    document.body.classList.add("hn-mobile-menu-is-open");
+    document.body.classList.add("hn-more-menu-is-open");
     toggle.setAttribute("aria-expanded", "true");
     drawer.setAttribute("aria-hidden", "false");
   }
 
   function closeMenu() {
-    document.body.classList.remove("hn-mobile-menu-is-open");
+    document.body.classList.remove("hn-more-menu-is-open");
     toggle.setAttribute("aria-expanded", "false");
     drawer.setAttribute("aria-hidden", "true");
   }
@@ -464,7 +718,7 @@ function initMobileMenu() {
   toggle.addEventListener("click", (event) => {
     event.stopPropagation();
 
-    if (document.body.classList.contains("hn-mobile-menu-is-open")) {
+    if (document.body.classList.contains("hn-more-menu-is-open")) {
       closeMenu();
     } else {
       openMenu();
@@ -480,10 +734,6 @@ function initMobileMenu() {
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeMenu();
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 860) closeMenu();
   });
 }
 
@@ -673,7 +923,6 @@ function insertFloatingShare() {
     }
   });
 
-  /* Hide floating share button when footer is visible */
   const footer = document.querySelector(".hn-shared-footer");
 
   if (footer && "IntersectionObserver" in window) {
