@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamsa Nomads — Shavuos in Vermont</title>
+  <link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
+  <link rel="stylesheet" href="assets/site-components.css" />
+
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --paper: rgba(255, 252, 246, 0.68);
+      --paper-strong: rgba(255, 252, 246, 0.86);
+      --ink: #1f231f;
+      --muted: #60655e;
+      --forest: #274537;
+      --forest-dark: #173c30;
+      --gold: #b88b2f;
+      --line: rgba(16, 14, 11, 0.18);
+      --shadow: 0 20px 70px rgba(31, 28, 20, 0.10);
+      --soft-shadow: 0 14px 38px rgba(31, 28, 20, 0.08);
+      --radius: 28px;
+      --container: 1280px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.82), transparent 34%),
+        radial-gradient(circle at 88% 12%, rgba(184,139,47,0.10), transparent 28%),
+        linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .serif {
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      margin: 0;
+    }
+
+    p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    #site-header { position: sticky; top: 0; z-index: 99999; }
+    .hn-shared-header { position: relative; top: auto; z-index: 99999; }
+    #site-footer { position: relative; z-index: 2; }
+
+    .site-shell {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glass {
+      background: var(--paper);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.52);
+      box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.46);
+      border-radius: var(--radius);
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 26px;
+      border-radius: 999px;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .button:hover,
+    .button-secondary:hover { transform: translateY(-2px); }
+
+    .button {
+      background: rgba(39, 69, 55, 0.94);
+      color: white;
+      box-shadow: 0 14px 34px rgba(39, 69, 55, 0.24);
+      border: 1px solid rgba(39, 69, 55, 0.26);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,0.70);
+      color: var(--ink);
+      border: 1px solid rgba(39, 69, 55, 0.14);
+      box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .section {
+      position: relative;
+      padding: clamp(42px, 7vw, 92px) 0;
+    }
+
+    .section-intro {
+      max-width: 790px;
+      margin-bottom: 34px;
+    }
+
+    .section-intro.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-size: clamp(2.25rem, 5.5vw, 4.65rem);
+      line-height: 0.98;
+      color: var(--forest);
+    }
+
+    .section-intro p {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.13rem);
+      line-height: 1.75;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s cubic-bezier(.2,.7,.2,1), transform 0.75s cubic-bezier(.2,.7,.2,1);
+      transition-delay: var(--delay, 0ms);
+    }
+
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+    [data-float] {
+      animation: softFloat 7s ease-in-out infinite;
+      animation-delay: var(--float-delay, 0s);
+    }
+
+    @keyframes softFloat {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--rotate, 0deg)); }
+      50% { transform: translate3d(0, -12px, 0) rotate(var(--rotate, 0deg)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+      [data-reveal] { opacity: 1 !important; transform: none !important; }
+    }
+
+    .hero { padding: 24px 0 34px; }
+
+    .hero-card {
+      position: relative;
+      min-height: min(830px, 86vh);
+      overflow: hidden;
+      border-radius: 38px;
+      background: #e9dfd0;
+      box-shadow: var(--shadow);
+      display: grid;
+      align-items: stretch;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.98);
+    }
+
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(20, 18, 12, 0.64), rgba(20, 18, 12, 0.26) 54%, rgba(20, 18, 12, 0.07)),
+        linear-gradient(180deg, rgba(20,18,12,0.07), rgba(20,18,12,0.40));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      min-height: inherit;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.76fr);
+      gap: clamp(24px, 4vw, 46px);
+      align-items: end;
+      padding: clamp(26px, 5vw, 64px);
+    }
+
+    .hero-copy {
+      color: #fffdf8;
+      max-width: 760px;
+      align-self: center;
+    }
+
+    .hero .eyebrow { color: #e0ae43; text-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 7.8vw, 7rem);
+      line-height: 0.9;
+      color: #fffdf8;
+      max-width: 9.5ch;
+      margin-bottom: 20px;
+      text-shadow: 0 10px 32px rgba(0,0,0,0.25);
+    }
+
+    .hero h1 span { color: #e0ae43; }
+
+    .hero-lead {
+      max-width: 43ch;
+      font-size: clamp(1.08rem, 2vw, 1.34rem);
+      line-height: 1.48;
+      color: rgba(255,251,245,0.94);
+      margin-bottom: 24px;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.24);
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+
+    .hero-countdown {
+      width: min(650px, 100%);
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .countdown-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: rgba(255, 253, 248, 0.9);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+      flex-wrap: wrap;
+    }
+
+    .countdown-header strong { color: #e0ae43; font-weight: 900; }
+    .countdown-row { display: flex; align-items: flex-start; gap: clamp(10px, 2vw, 28px); }
+    .countdown-unit { text-align: center; min-width: 54px; }
+
+    .countdown-number {
+      font-family: Inter, Arial, sans-serif;
+      font-size: clamp(2rem, 5vw, 3.35rem);
+      font-weight: 900;
+      color: #e0ae43;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      text-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
+    }
+
+    .countdown-label {
+      margin-top: 8px;
+      color: rgba(224, 174, 67, 0.55);
+      font-size: 0.52rem;
+      font-weight: 900;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    .countdown-separator {
+      padding-top: 3px;
+      color: rgba(224, 174, 67, 0.28);
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .countdown-note {
+      margin-top: 14px;
+      color: rgba(255, 251, 245, 0.78);
+      font-size: 0.92rem;
+      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-vibe-stack { position: relative; min-height: 480px; align-self: center; }
+
+    .vibe-polaroid,
+    .ambient-post,
+    .margin-post {
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 252, 246, 0.88);
+      padding: 9px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.20);
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transform: rotate(var(--rotate, 0deg));
+    }
+
+    .vibe-polaroid { position: absolute; width: clamp(150px, 16vw, 230px); }
+
+    .vibe-polaroid img,
+    .vibe-polaroid .vibe-placeholder,
+    .ambient-post img,
+    .ambient-post .vibe-placeholder,
+    .margin-post img,
+    .margin-post .vibe-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 17px;
+      background: radial-gradient(circle at top left, rgba(244,231,199,0.8), transparent 34%), linear-gradient(145deg, #f4e7c7, #d9c69b);
+    }
+
+    .vibe-polaroid span,
+    .ambient-post span,
+    .margin-post span {
+      display: block;
+      padding: 8px 5px 2px;
+      font-size: 0.70rem;
+      color: var(--forest);
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .vibe-polaroid.one { top: 7%; left: 0; --rotate: -8deg; --float-delay: -1s; }
+    .vibe-polaroid.two { top: 33%; right: 2%; --rotate: 8deg; --float-delay: -3s; }
+    .vibe-polaroid.three { bottom: 0; left: 18%; --rotate: -3deg; --float-delay: -5s; }
+
+    .hero-fact-pill {
+      position: absolute;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 252, 246, 0.88);
+      color: var(--forest);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.13);
+      border: 1px solid rgba(255,255,255,0.52);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hero-fact-pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #d7b05b;
+      box-shadow: 0 0 0 5px rgba(215,176,91,0.18);
+    }
+
+    .pill-one { right: 5%; top: 5%; }
+    .pill-two { right: 18%; bottom: 8%; }
+    .pill-three { left: 5%; bottom: 5%; }
+
+    .manifesto { padding-top: clamp(40px, 6vw, 78px); padding-bottom: clamp(34px, 5vw, 62px); }
+
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: clamp(24px, 5vw, 64px);
+      align-items: center;
+    }
+
+    .manifesto-statement h2 {
+      font-size: clamp(2.5rem, 6vw, 5.2rem);
+      color: var(--forest);
+      line-height: 0.96;
+    }
+
+    .manifesto-statement p {
+      margin-top: 20px;
+      color: var(--muted);
+      max-width: 46ch;
+      font-size: 1.08rem;
+    }
+
+    .proof-cloud { position: relative; min-height: 430px; }
+
+    .proof-note {
+      position: absolute;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(255,252,246,0.72);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      width: min(320px, 72vw);
+    }
+
+    .proof-note h3 { color: var(--forest); font-size: 1.55rem; margin-bottom: 8px; }
+    .proof-note p { color: var(--muted); line-height: 1.62; }
+    .proof-note.a { left: 0; top: 28px; --rotate: -2deg; }
+    .proof-note.b { right: 8%; top: 130px; --rotate: 3deg; }
+    .proof-note.c { left: 16%; bottom: 12px; --rotate: -1deg; }
+
+    .timeline-wrap {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.54fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 68px);
+      align-items: start;
+    }
+
+    .timeline-sticky { position: sticky; top: 112px; align-self: start; }
+    .timeline-sticky h2 { font-size: clamp(2.3rem, 5vw, 4.65rem); line-height: 0.96; color: var(--forest); }
+    .timeline-sticky p { margin-top: 18px; color: var(--muted); max-width: 34ch; }
+
+    .timeline {
+      position: relative;
+      padding-left: clamp(18px, 3vw, 38px);
+      border-left: 1px solid rgba(39,69,55,0.16);
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 7px rgba(184,139,47,0.12);
+    }
+
+    .timeline-item { position: relative; margin-bottom: clamp(32px, 5vw, 62px); max-width: 760px; }
+
+    .timeline-time {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .timeline-item h3 { font-size: clamp(1.65rem, 3.2vw, 2.55rem); color: var(--ink); margin-bottom: 12px; }
+    .timeline-item p { color: var(--muted); font-size: 1.03rem; line-height: 1.82; }
+
+    .margin-post {
+      position: relative;
+      float: right;
+      width: min(250px, 44vw);
+      margin: 6px -14px 16px 24px;
+      transform: rotate(3deg);
+    }
+
+    .margin-post img,
+    .margin-post .vibe-placeholder { aspect-ratio: 1 / 1; }
+
+    .house-bento {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 0.85fr;
+      grid-auto-rows: minmax(220px, auto);
+      gap: 16px;
+    }
+
+    .house-card {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      min-height: 260px;
+      box-shadow: var(--soft-shadow);
+      background: #e9dfd0;
+      border: 1px solid rgba(255,255,255,0.52);
+    }
+
+    .house-card.large { grid-row: span 2; min-height: 520px; }
+
+    .house-card img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+      transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    .house-card:hover img { transform: scale(1.045); filter: brightness(0.86); }
+
+    .house-label {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      z-index: 2;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.30);
+      color: #fff;
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      font-size: 0.88rem;
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.16);
+      white-space: nowrap;
+    }
+
+    .apply-panel {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(26px, 5vw, 48px);
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at top left, rgba(242, 181, 68, 0.18), transparent 38%),
+        radial-gradient(circle at bottom right, rgba(39,69,55,0.09), transparent 34%),
+        rgba(255, 252, 246, 0.72);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      display: grid;
+      grid-template-columns: 1.22fr 0.78fr;
+      gap: clamp(22px, 4vw, 44px);
+      align-items: center;
+    }
+
+    .price-main h2 {
+      color: var(--forest);
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 0.94;
+      max-width: 740px;
+    }
+
+    .price-main p { margin-top: 16px; color: var(--muted); font-size: 1.07rem; max-width: 58ch; }
+
+    .price-side {
+      padding: 22px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.45);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+    }
+
+    .price-number {
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(3.5rem, 8vw, 5.8rem);
+      line-height: 0.88;
+      color: var(--forest);
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+
+    .price-side p { color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+
+    .included-list {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .included-list li { display: flex; gap: 9px; color: var(--ink); align-items: flex-start; }
+    .included-list li::before { content: "•"; color: var(--gold); font-weight: 900; font-size: 1.15rem; line-height: 1.1; }
+    .price-side .button { width: 100%; }
+
+    .ambient-instagram-section { padding: clamp(40px, 7vw, 84px) 0; }
+
+    .ambient-wrap {
+      position: relative;
+      min-height: 560px;
+      border-radius: 42px;
+      overflow: hidden;
+      background: linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
+      color: #f7f0e2;
+      box-shadow: 0 30px 70px rgba(16, 42, 33, 0.22);
+      border: 1px solid rgba(244,231,199,0.12);
+      padding: clamp(28px, 5vw, 58px);
+    }
+
+    .ambient-copy { position: relative; z-index: 3; max-width: 560px; }
+    .ambient-copy h2 { font-size: clamp(2.4rem, 6vw, 5.2rem); line-height: 0.94; color: #f7f0e2; margin-bottom: 18px; }
+    .ambient-copy p { color: rgba(247,240,226,0.82); font-size: 1.06rem; max-width: 48ch; margin-bottom: 22px; }
+    .ambient-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    .hn-live-instagram-follow {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 56px;
+      padding: 0 30px;
+      border-radius: 999px;
+      background: #f4e7c7;
+      color: #173c30;
+      text-decoration: none;
+      font-size: 1.04rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .hn-live-instagram-follow:hover { transform: translateY(-2px); box-shadow: 0 20px 42px rgba(0, 0, 0, 0.22); }
+
+    .hn-live-instagram-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 2px solid rgba(244,231,199,0.55);
+      background: #f8f3e8;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+    }
+
+    .ambient-posts { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+
+    .ambient-post {
+      position: absolute;
+      width: clamp(130px, 16vw, 230px);
+      pointer-events: auto;
+      color: var(--forest);
+      transition: transform 0.25s ease;
+    }
+
+    .ambient-post:hover { transform: translateY(-5px) rotate(var(--rotate, 0deg)); }
+    .ambient-post img, .ambient-post .vibe-placeholder { aspect-ratio: 1 / 1; }
+    .ambient-post.p1 { right: 8%; top: 8%; --rotate: 7deg; --float-delay: -2s; }
+    .ambient-post.p2 { right: 30%; bottom: 8%; --rotate: -6deg; --float-delay: -4s; }
+    .ambient-post.p3 { right: 4%; bottom: 16%; --rotate: 3deg; --float-delay: -6s; }
+    .ambient-post.p4 { left: 48%; top: 26%; --rotate: -2deg; --float-delay: -1s; }
+    .instagram-error-note { margin-top: 18px; color: rgba(247,240,226,0.68); font-size: 0.92rem; }
+
+    .faq-strip {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(20px, 4vw, 42px);
+      align-items: stretch;
+      padding: clamp(24px, 4vw, 42px);
+      border-radius: 36px;
+      background: radial-gradient(circle at top right, rgba(184, 139, 47, 0.13), transparent 34%), rgba(255, 252, 246, 0.66);
+      overflow: hidden;
+    }
+
+    .faq-copy h2 { font-size: clamp(2rem, 5vw, 4.15rem); line-height: 0.96; color: var(--forest); max-width: 540px; }
+    .faq-copy p { margin-top: 16px; max-width: 520px; color: var(--muted); font-size: 1rem; line-height: 1.7; }
+
+    .random-faq-box {
+      display: block;
+      background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,252,246,0.54)), radial-gradient(circle at top right, rgba(184,139,47,0.16), transparent 38%);
+      border: 1px solid rgba(39, 69, 55, 0.13);
+      border-radius: 24px;
+      padding: clamp(22px, 4vw, 34px);
+      box-shadow: 0 18px 48px rgba(31, 28, 20, 0.08);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      min-height: 230px;
+    }
+
+    .random-faq-box:hover { transform: translateY(-3px); box-shadow: 0 24px 64px rgba(31, 28, 20, 0.12); border-color: rgba(184, 139, 47, 0.3); }
+
+    .random-faq-label {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 16px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(39, 69, 55, 0.08);
+      color: var(--forest);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .random-faq-box h3 { font-size: clamp(1.45rem, 3vw, 2.35rem); line-height: 1.05; color: var(--ink); margin: 0 0 14px; }
+    .random-faq-box p { color: var(--muted); line-height: 1.72; font-size: 0.98rem; margin: 0; }
+    .random-faq-link { display: inline-flex; margin-top: 22px; color: var(--forest); font-weight: 900; }
+
+    .hn-upcoming-section {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(64px, 8vw, 96px) 0 clamp(68px, 8vw, 98px);
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%), radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%), var(--bg);
+    }
+
+    .hn-upcoming-inner {
+      position: relative;
+      max-width: var(--container);
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .hn-upcoming-header { max-width: 760px; margin-bottom: 34px; }
+
+    .hn-overline {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.75;
+      font-weight: 900;
+    }
+
+    .hn-upcoming-title {
+      margin: 0;
+      font-size: clamp(2rem, 4.6vw, 4.4rem);
+      line-height: 1.02;
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .hn-upcoming-title a {
+      display: inline;
+      background-image: linear-gradient(rgba(184,139,47,0.32), rgba(184,139,47,0.32));
+      background-repeat: no-repeat;
+      background-size: 100% 0.12em;
+      background-position: 0 92%;
+      transition: background-size 0.22s ease, color 0.22s ease;
+    }
+
+    .hn-upcoming-title a:hover { color: var(--forest); background-size: 100% 0.22em; }
+
+    .hn-upcoming-subtitle { margin: 18px 0 0; font-size: clamp(1rem, 1.35vw, 1.14rem); line-height: 1.7; color: var(--muted); max-width: 700px; }
+
+    .hn-upcoming-line { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .hn-upcoming-line svg { width: 100%; height: 100%; display: block; }
+    .hn-upcoming-line path { fill: none; stroke: rgba(31, 42, 34, 0.16); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 12; }
+
+    .hn-slider-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    .hn-slider-hint { font-size: 0.95rem; color: var(--muted); }
+    .hn-slider-controls { display: flex; align-items: center; gap: 12px; }
+
+    .hn-slider-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid rgba(38, 71, 52, 0.15);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      color: var(--forest);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .hn-slider-btn:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.72); }
+    .hn-slider-btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+
+    .hn-trip-slider {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 10px 12vw 18px 2px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .hn-trip-slider::-webkit-scrollbar { display: none; }
+    .hn-trip-slide { scroll-snap-align: start; flex: 0 0 min(86vw, 430px); }
+
+    .hn-trip-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 650px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hn-trip-image {
+      position: relative;
+      min-height: 290px;
+      background: linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)), var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hn-trip-image::after { content: ""; position: absolute; inset: auto 0 0; height: 44%; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.22)); }
+
+    .hn-trip-badge,
+    .hn-image-note {
+      position: absolute;
+      z-index: 2;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 900;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hn-trip-badge { top: 18px; left: 18px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .hn-image-note { left: 18px; bottom: 18px; color: var(--ink); font-weight: 700; }
+    .hn-trip-body { display: flex; flex-direction: column; flex: 1; padding: 26px 24px 24px; }
+    .hn-trip-meta { font-size: 0.92rem; color: var(--muted); margin-bottom: 12px; }
+    .hn-trip-name { margin: 0 0 12px; font-size: clamp(1.55rem, 2.4vw, 2rem); line-height: 1.1; color: var(--ink); }
+    .hn-trip-copy { margin: 0 0 20px; color: var(--muted); line-height: 1.7; font-size: 1rem; }
+    .hn-trip-bullets { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 10px; }
+    .hn-trip-bullets li { display: flex; align-items: flex-start; gap: 10px; color: var(--ink); font-size: 0.96rem; line-height: 1.55; }
+    .hn-trip-bullets li::before { content: "•"; color: var(--gold); font-size: 1.15rem; line-height: 1; margin-top: 2px; }
+    .hn-trip-footer { margin-top: auto; display: flex; align-items: center; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
+    .hn-trip-status { display: inline-flex; align-items: center; gap: 8px; color: var(--forest); font-size: 0.88rem; font-weight: 800; }
+    .hn-trip-status-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--gold); }
+
+    .hn-trip-cta,
+    .popup-submit {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--forest);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.22s ease;
+      box-shadow: 0 16px 28px rgba(38, 71, 52, 0.20);
+    }
+
+    .hn-trip-cta:hover,
+    .popup-submit:hover { transform: translateY(-2px); box-shadow: 0 18px 34px rgba(38, 71, 52, 0.26); }
+    .hn-slider-dots { display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
+    .hn-slider-dot { width: 10px; height: 10px; border-radius: 999px; border: 0; background: rgba(38, 71, 52, 0.22); cursor: pointer; transition: 0.2s ease; }
+    .hn-slider-dot.is-active { width: 28px; background: var(--forest); }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(22, 29, 25, 0.32);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .popup-overlay.is-open { display: flex; }
+
+    .popup-bubble {
+      position: relative;
+      width: min(100%, 480px);
+      border-radius: 34px;
+      padding: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.78), rgba(255,255,255,0.48));
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.22);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      overflow: hidden;
+      max-height: calc(100vh - 44px);
+      overflow-y: auto;
+    }
+
+    .popup-bubble::before { content: ""; position: absolute; width: 190px; height: 190px; right: -80px; top: -80px; border-radius: 999px; background: rgba(213,178,92,0.18); }
+
+    .popup-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(38, 71, 52, 0.12);
+      background: rgba(255,255,255,0.58);
+      cursor: pointer;
+      color: var(--forest);
+      font-size: 1.3rem;
+      line-height: 1;
+      z-index: 3;
+    }
+
+    .popup-content { position: relative; z-index: 2; }
+    .popup-kicker { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--forest); font-weight: 900; margin-bottom: 10px; }
+    .popup-title { margin: 0; font-size: clamp(1.8rem, 5vw, 2.35rem); line-height: 1.05; color: var(--ink); }
+    .popup-subtitle { margin: 12px 0 22px; color: var(--muted); line-height: 1.6; }
+    .popup-form { display: grid; gap: 13px; }
+    .popup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+
+    .popup-form input,
+    .popup-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(38, 71, 52, 0.14);
+      border-radius: 16px;
+      padding: 14px 15px;
+      background: rgba(255,255,255,0.62);
+      color: var(--ink);
+      font-size: 1rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .popup-form textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+    .popup-submit { margin-top: 4px; width: 100%; }
+    .popup-submit:disabled { opacity: 0.72; cursor: wait; transform: none; }
+    .popup-message { min-height: 22px; font-size: 0.92rem; color: var(--forest); text-align: center; }
+    .popup-message.error { color: #8b2f25; }
+
+    .floating-share { position: fixed; right: 22px; bottom: 22px; z-index: 9999; font-family: inherit; }
+    .share-main-btn { border: 1px solid rgba(30, 30, 30, 0.18); background: rgba(255, 255, 255, 0.52); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); color: #1f1f1f; padding: 13px 18px; border-radius: 999px; cursor: pointer; font-size: 14px; letter-spacing: 0.03em; box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16); transition: all 0.25s ease; }
+    .share-main-btn:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.72); }
+    .share-options { position: absolute; right: 0; bottom: 58px; display: none; flex-direction: column; gap: 8px; width: 155px; padding: 12px; border-radius: 22px; background: rgba(255, 255, 255, 0.58); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border: 1px solid rgba(30, 30, 30, 0.12); box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18); }
+    .share-options.open { display: flex; }
+    .share-options a, .share-options button { width: 100%; border: none; background: rgba(255, 255, 255, 0.42); color: #1f1f1f; text-decoration: none; text-align: left; padding: 10px 12px; border-radius: 14px; font-size: 13px; cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
+    .share-options a:hover, .share-options button:hover { background: rgba(255, 255, 255, 0.75); transform: translateX(-2px); }
+
+    @media (min-width: 900px) {
+      .hn-trip-slide { flex: 0 0 min(58vw, 500px); }
+      .hn-trip-slider { padding-right: 16vw; }
+    }
+
+    @media (min-width: 1200px) {
+      .hn-trip-slide { flex: 0 0 min(48vw, 520px); }
+    }
+
+    @media (max-width: 1120px) {
+      .hero-content, .manifesto-grid, .timeline-wrap, .apply-panel, .faq-strip { grid-template-columns: 1fr; }
+      .timeline-sticky { position: relative; top: auto; }
+      .proof-cloud { min-height: 460px; }
+      .house-bento { grid-template-columns: 1fr 1fr; }
+      .house-card.large { grid-column: 1 / -1; grid-row: auto; }
+      .ambient-wrap { min-height: 760px; }
+      .ambient-copy { max-width: 100%; }
+      .ambient-post.p1 { right: 8%; top: 42%; }
+      .ambient-post.p2 { left: 8%; right: auto; bottom: 9%; }
+      .ambient-post.p3 { right: 8%; bottom: 7%; }
+      .ambient-post.p4 { left: 12%; top: 56%; }
+    }
+
+    @media (max-width: 760px) {
+      .container, .hn-upcoming-inner { width: min(calc(100% - 24px), var(--container)); }
+      .hero-card { min-height: 820px; border-radius: 28px; }
+      .hero-content { padding: 22px; }
+      .hero h1 { max-width: 100%; font-size: clamp(2.7rem, 13vw, 4.4rem); }
+      .hero-lead { font-size: 1rem; }
+      .hero-actions .button, .hero-actions .button-secondary { width: 100%; }
+      .countdown-row { gap: 10px; justify-content: flex-start; }
+      .countdown-unit { min-width: 43px; }
+      .countdown-number { font-size: clamp(1.75rem, 9vw, 2.45rem); }
+      .countdown-label { font-size: 0.46rem; letter-spacing: 0.18em; }
+      .countdown-separator { font-size: 1.35rem; padding-top: 4px; }
+      .hero-vibe-stack { min-height: 270px; }
+      .vibe-polaroid { width: 145px; }
+      .vibe-polaroid.one { top: 2%; left: 0; }
+      .vibe-polaroid.two { top: 22%; right: 0; }
+      .vibe-polaroid.three { bottom: 0; left: 22%; }
+      .hero-fact-pill { display: none; }
+      .proof-cloud { min-height: auto; display: grid; gap: 14px; }
+      .proof-note { position: relative; inset: auto !important; width: 100%; }
+      .timeline { padding-left: 18px; }
+      .margin-post { float: none; width: 100%; margin: 0 0 20px 0; transform: none; }
+      .house-bento { grid-template-columns: 1fr; }
+      .house-card, .house-card.large { min-height: 290px; }
+      .apply-panel { padding: 22px; border-radius: 30px; }
+      .price-side .button, .hn-live-instagram-follow { width: 100%; }
+      .ambient-wrap { min-height: 700px; border-radius: 30px; padding: 24px; }
+      .ambient-post { width: 138px; }
+      .ambient-post.p1 { right: 5%; top: 48%; }
+      .ambient-post.p2 { left: 5%; bottom: 8%; }
+      .ambient-post.p3 { right: 6%; bottom: 10%; }
+      .ambient-post.p4 { display: none; }
+      .hn-slider-topbar { align-items: flex-start; flex-direction: column; }
+      .hn-trip-card { min-height: 620px; }
+      .hn-trip-body { padding: 22px 20px 22px; }
+      .hn-trip-image { min-height: 250px; }
+      .hn-trip-slider { gap: 18px; padding-right: 14vw; }
+      .hn-trip-slide { flex: 0 0 min(88vw, 390px); }
+      .hn-trip-footer { flex-direction: column; align-items: stretch; }
+      .hn-trip-cta { width: 100%; text-align: center; }
+      .popup-row { grid-template-columns: 1fr; }
+      .popup-bubble { padding: 28px 22px 24px; }
+      .floating-share { right: 16px; bottom: 16px; }
+      .share-main-btn { padding: 12px 16px; font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-shell">
+    <div id="site-header"></div>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-card">
+            <img class="hero-media" src="Image/hero.jpg" alt="Shavuos in Vermont retreat hero image" />
+            <div class="hero-scrim"></div>
+
+            <div class="hero-fact-pill pill-one" data-reveal>May 21–24</div>
+            <div class="hero-fact-pill pill-two" data-reveal style="--delay: 140ms;">From $350</div>
+            <div class="hero-fact-pill pill-three" data-reveal style="--delay: 220ms;">Kosher meals included</div>
+
+            <div class="hero-content">
+              <div class="hero-copy" data-reveal>
+                <div class="eyebrow">Shavuos retreat · Vermont</div>
+                <h1>Spend Shavuos <span>somewhere unforgettable.</span></h1>
+                <p class="hero-lead">
+                  A small, curated 4-day Shavuos retreat for Jewish young adults and professionals — kosher meals, nature, learning, games, warm people, and a private Vermont house.
+                </p>
+
+                <div class="hero-actions">
+                  <a href="Forms/apply.html" class="button">Apply for Shavuos</a>
+                  <a href="#house" class="button-secondary">See the house</a>
+                </div>
+
+                <div class="hero-countdown" id="earlyBirdCountdown" aria-label="Early bird pricing countdown">
+                  <div class="countdown-header"><span>Early bird pricing</span><strong>Ends May 3</strong></div>
+                  <div class="countdown-row">
+                    <div class="countdown-unit"><div class="countdown-number" id="early-days">00</div><div class="countdown-label">Days</div></div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit"><div class="countdown-number" id="early-hours">00</div><div class="countdown-label">Hours</div></div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit"><div class="countdown-number" id="early-minutes">00</div><div class="countdown-label">Min</div></div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-unit"><div class="countdown-number" id="early-seconds">00</div><div class="countdown-label">Sec</div></div>
+                  </div>
+                  <p class="countdown-note">Apply before pricing changes. Applications are reviewed so the group can stay intentional.</p>
+                </div>
+              </div>
+
+              <div class="hero-vibe-stack" aria-label="Live Instagram moments">
+                <a class="vibe-polaroid one hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 120ms;"><div class="vibe-placeholder"></div><span>Shavuos energy</span></a>
+                <a class="vibe-polaroid two hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 220ms;"><div class="vibe-placeholder"></div><span>Behind the scenes</span></a>
+                <a class="vibe-polaroid three hn-vibe-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float data-reveal style="--delay: 320ms;"><div class="vibe-placeholder"></div><span>Vermont mood</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section manifesto">
+        <div class="container">
+          <div class="manifesto-grid">
+            <div class="manifesto-statement" data-reveal>
+              <div class="eyebrow">What this is</div>
+              <h2>Not a hotel program. Not a massive event.</h2>
+              <p>A small Shavuos retreat built for people who want something warm, beautiful, observant, social, and real — with enough structure to feel cared for, and enough space to breathe.</p>
+            </div>
+
+            <div class="proof-cloud">
+              <article class="proof-note a glass" data-float data-reveal style="--delay: 100ms;"><h3>Small curated group</h3><p>We review applications so the group feels comfortable, balanced, and intentional.</p></article>
+              <article class="proof-note b glass" data-float data-reveal style="--delay: 180ms;"><h3>Shabbos & Chag observant</h3><p>Public spaces are Shabbos and Yom Tov observant, with kosher meals and a warm shared rhythm.</p></article>
+              <article class="proof-note c glass" data-float data-reveal style="--delay: 260ms;"><h3>Nature, games, learning</h3><p>Meals, fresh air, discussions, board games, learning, singing, pool and hot tub time, and connection that feels natural.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rhythm" class="section">
+        <div class="container">
+          <div class="timeline-wrap">
+            <aside class="timeline-sticky" data-reveal>
+              <div class="eyebrow">Weekend rhythm</div>
+              <h2>Full, but not overwhelming.</h2>
+              <p>The retreat is designed as a gentle arc: arrival, Shabbos/Yom Tov, late-night energy, and time to enjoy Vermont together.</p>
+            </aside>
+
+            <div class="timeline">
+              <article class="timeline-item" data-reveal>
+                <span class="timeline-time">Thursday night</span>
+                <h3>Arrive, settle in, meet the group.</h3>
+                <p>Coffee and tea, relaxed introductions, opening learning, and the first feeling that the house is becoming a shared Shavuos space.</p>
+              </article>
+
+              <article class="timeline-item" data-reveal>
+                <a class="margin-post hn-margin-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float><div class="vibe-placeholder"></div><span>Live from us</span></a>
+                <span class="timeline-time">Shabbos / Yom Tov</span>
+                <h3>Meals, davening, rest, and conversations.</h3>
+                <p>Shared kosher meals, divrei Torah, singing, women’s programming moments, fresh-air games, tabletop games, and slower time together.</p>
+              </article>
+
+              <article class="timeline-item" data-reveal>
+                <span class="timeline-time">Motzei Shabbos</span>
+                <h3>Pizza, bonfire, kumzitz, s’mores.</h3>
+                <p>A cozy night of food, fire, music, conversation, and separate pool/hot tub time blocks — still warm and social without becoming too much.</p>
+              </article>
+
+              <article class="timeline-item" data-reveal>
+                <span class="timeline-time">Sunday</span>
+                <h3>Nature outing and relaxed house time.</h3>
+                <p>A lighter day with hiking or fresh air, games, hot tub/pool time, and the kind of unstructured conversations that usually become the best part.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="house" class="section">
+        <div class="container">
+          <div class="section-intro" data-reveal>
+            <div class="eyebrow">The place</div>
+            <h2>The house is part of the experience.</h2>
+            <p>A private Vermont home with shared spaces, mountain air, cozy gathering corners, and enough room for a retreat to feel alive without feeling crowded.</p>
+          </div>
+
+          <div class="house-bento">
+            <article class="house-card large" data-reveal><img src="Image/dining-space.jpg" alt="Dining and gathering space" /><div class="house-label">Dining space</div></article>
+            <article class="house-card" data-reveal style="--delay: 80ms;"><img src="Image/bedroom.png" alt="Bedroom at the retreat house" /><div class="house-label">Rooms</div></article>
+            <article class="house-card" data-reveal style="--delay: 140ms;"><img src="Image/pool.png" alt="Pool at the retreat house" /><div class="house-label">Pool</div></article>
+            <article class="house-card" data-reveal style="--delay: 200ms;"><img src="Image/game-room.png" alt="Game room at the retreat house" /><div class="house-label">Game room</div></article>
+            <article class="house-card" data-reveal style="--delay: 260ms;"><img src="Image/exterior.png" alt="Exterior and gathering spaces" /><div class="house-label">Vermont setting</div></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="apply" class="section">
+        <div class="container">
+          <div class="apply-panel glass" data-reveal>
+            <div class="price-main">
+              <div class="eyebrow">Pricing + application</div>
+              <h2>From $350 for a curated Shavuos retreat.</h2>
+              <p>Includes the retreat house experience, kosher meals, shared programming, and a small-group environment designed to feel warm and intentional.</p>
+              <p>Pricing depends on rooming choice. Applications are reviewed before payment so the group stays comfortable and aligned.</p>
+            </div>
+
+            <aside class="price-side">
+              <div class="price-number">$350+</div>
+              <p>4 days / 3 nights · May 21–24 · Vermont</p>
+              <ul class="included-list">
+                <li>Kosher meals included</li>
+                <li>Private retreat house</li>
+                <li>Shabbos & Chag observant public spaces</li>
+                <li>Learning, games, nature, pool, hot tub, and social time</li>
+              </ul>
+              <a href="Forms/apply.html" class="button">Start the application</a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="instagram-vibe" class="ambient-instagram-section">
+        <div class="container">
+          <div class="ambient-wrap">
+            <div class="ambient-copy" data-reveal>
+              <div class="eyebrow">The live vibe</div>
+              <h2>Not a feed. A window.</h2>
+              <p>A few live moments from Instagram drift through the page so the homepage feels alive — less like a brochure, more like the world Hamsa Nomads is coming from.</p>
+              <div class="ambient-actions">
+                <img class="hn-live-instagram-avatar" src="logo/logo-hamsa-nomads.png" alt="Hamsa Nomads Instagram profile" onerror="hnHandleInstagramAvatarError(this);" />
+                <a class="hn-live-instagram-follow" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener">Follow</a>
+              </div>
+              <div class="instagram-error-note" id="hnInstagramNote"></div>
+            </div>
+
+            <div class="ambient-posts" aria-label="Live Hamsa Nomads Instagram posts">
+              <a class="ambient-post p1 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float><div class="vibe-placeholder"></div><span>Loading...</span></a>
+              <a class="ambient-post p2 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float><div class="vibe-placeholder"></div><span>Loading...</span></a>
+              <a class="ambient-post p3 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float><div class="vibe-placeholder"></div><span>Loading...</span></a>
+              <a class="ambient-post p4 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float><div class="vibe-placeholder"></div><span>Loading...</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq-preview">
+        <div class="container">
+          <div class="faq-strip glass" data-reveal>
+            <div class="faq-copy">
+              <div class="eyebrow">Questions before you join?</div>
+              <h2>One thing people usually ask.</h2>
+              <p>Hamsa Nomads is small, curated, and a little different from a regular trip. Here is one answer pulled from our FAQ page.</p>
+            </div>
+            <a href="faq.html" class="random-faq-box" id="randomFaqBox">
+              <div class="random-faq-label">From the FAQ</div>
+              <h3 id="randomFaqQuestion">Loading a question...</h3>
+              <p id="randomFaqAnswer">We’re pulling one answer from the FAQ page.</p>
+              <span class="random-faq-link">Read the full FAQ →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="hn-upcoming-section" id="upcoming-trips">
+        <div class="hn-upcoming-line" aria-hidden="true">
+          <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
+            <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
+            <path d="M -80 540 C 130 500, 170 640, 340 620 S 630 520, 790 600 S 1030 730, 1180 660 S 1320 600, 1490 700" />
+          </svg>
+        </div>
+
+        <div class="hn-upcoming-inner">
+          <div class="hn-upcoming-header" data-reveal>
+            <span class="hn-overline">Upcoming Trips</span>
+            <h2 class="hn-upcoming-title"><a href="https://www.hamsanomads.com/trips-page/trips.html">Where the line goes next</a></h2>
+            <p class="hn-upcoming-subtitle">A growing map of Hamsa Nomads experiences — city weekends, playful escapes, and holiday retreats with a soul.</p>
+          </div>
+
+          <div class="hn-slider-topbar">
+            <div class="hn-slider-hint">Swipe or tap through the next chapters.</div>
+            <div class="hn-slider-controls">
+              <button class="hn-slider-btn" id="hnTripsPrev" aria-label="Previous trip">←</button>
+              <button class="hn-slider-btn" id="hnTripsNext" aria-label="Next trip">→</button>
+            </div>
+          </div>
+
+          <div class="hn-trip-slider" id="hnTripSlider">
+            <article class="hn-trip-slide"><div class="hn-trip-card"><div class="hn-trip-body"><h3 class="hn-trip-name">Loading trips...</h3><p class="hn-trip-copy">Pulling the upcoming trips from the trips page.</p></div></div></article>
+          </div>
+
+          <div class="hn-slider-dots" id="hnTripDots"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="popup-overlay" id="tripPopup">
+      <div class="popup-bubble">
+        <button class="popup-close" type="button" id="popupClose" aria-label="Close popup">×</button>
+        <div class="popup-content">
+          <div class="popup-kicker">Join the interest list</div>
+          <h3 class="popup-title" id="popupTitle">Upcoming Trip</h3>
+          <p class="popup-subtitle" id="popupSubtitle">Leave your info and we’ll send details as this trip comes together.</p>
+          <form class="popup-form" id="tripForm">
+            <input type="hidden" name="tripInterest" id="tripInterest" />
+            <div class="popup-row"><input type="text" name="name" placeholder="Name" required /><input type="text" name="lastName" placeholder="Last Name" required /></div>
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="tel" name="phone" placeholder="Phone" required />
+            <textarea name="suggestion" placeholder="A suggestion, idea, or anything you’d like to share" rows="4"></textarea>
+            <button class="popup-submit" type="submit">Join interest list</button>
+            <div class="popup-message" id="popupMessage"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="site-footer"></div>
+  </div>
+
+  <script src="assets/site-components.js" data-base=""></script>
+
+  <script>
+    const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
+    const HN_INSTAGRAM_AVATAR_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23F4E7C7'/%3E%3Cstop offset='1' stop-color='%23E7D2A2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' rx='60' fill='url(%23g)'/%3E%3Ctext x='60' y='70' text-anchor='middle' font-family='Arial, sans-serif' font-size='34' font-weight='700' fill='%23274537'%3EHN%3C/text%3E%3C/svg%3E";
+    const HN_INSTAGRAM_AVATAR_CANDIDATES = ["logo/logo-hamsa-nomads.png", "Image/logo-hamsa-nomads.png", "Image/Logo-hamsa-nomads.png", "Image/hamsa-logo.png", "Image/logo.png", "Image/hamsa-instagram-profile.jpg"];
+
+    function hnEscapeHTML(value) {
+      return String(value || "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+    }
+
+    function hnHandleInstagramAvatarError(img) {
+      if (!img) return;
+      const attempted = Number(img.dataset.avatarIndex || 0) + 1;
+      img.dataset.avatarIndex = attempted;
+      if (attempted < HN_INSTAGRAM_AVATAR_CANDIDATES.length) {
+        img.src = HN_INSTAGRAM_AVATAR_CANDIDATES[attempted];
+        return;
+      }
+      img.onerror = null;
+      img.src = HN_INSTAGRAM_AVATAR_FALLBACK;
+    }
+
+    function hnCleanCaption(caption, maxLength) {
+      const clean = String(caption || "").replace(/\s+/g, " ").trim();
+      if (!clean) return "Hamsa Nomads";
+      return clean.length > maxLength ? clean.slice(0, maxLength).trim() + "..." : clean;
+    }
+
+    function hnShuffle(items) { return [...items].sort(() => Math.random() - 0.5); }
+    function hnPostImage(post) { return post?.image || post?.thumbnail_url || post?.media_url || "Image/hero.jpg"; }
+
+    function hnRenderAmbientPost(element, post) {
+      if (!element || !post) return;
+      const image = hnPostImage(post);
+      const caption = hnCleanCaption(post.caption, 46);
+      const url = post.url || post.permalink || "https://www.instagram.com/hamsanomads/";
+      element.href = url;
+      element.innerHTML = `
+        <img src="${hnEscapeHTML(image)}" alt="${hnEscapeHTML(caption)}" loading="lazy" onerror="this.onerror=null; this.src='Image/hero.jpg';" />
+        <span>${hnEscapeHTML(caption)}</span>
+      `;
+    }
+
+    function hnRenderInstagramMoments(data) {
+      const posts = Array.isArray(data.posts) ? hnShuffle(data.posts) : [];
+      document.querySelectorAll(".hn-live-instagram-avatar").forEach((avatar) => {
+        avatar.dataset.avatarIndex = "-1";
+        avatar.src = data.profilePicture || HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
+      });
+      document.querySelectorAll(".hn-live-instagram-follow").forEach((link) => {
+        link.href = data.profileUrl || "https://www.instagram.com/hamsanomads/";
+      });
+      Array.from(document.querySelectorAll(".hn-vibe-post")).forEach((element, index) => { if (posts[index]) hnRenderAmbientPost(element, posts[index]); });
+      const marginPost = document.querySelector(".hn-margin-post");
+      if (marginPost && posts[3]) hnRenderAmbientPost(marginPost, posts[3]);
+      Array.from(document.querySelectorAll(".hn-ambient-post")).forEach((element, index) => {
+        if (posts[index + 4]) hnRenderAmbientPost(element, posts[index + 4]);
+        else if (posts[index]) hnRenderAmbientPost(element, posts[index]);
+      });
+    }
+
+    async function hnLoadInstagramFeed() {
+      const note = document.getElementById("hnInstagramNote");
+      try {
+        const response = await fetch(HN_INSTAGRAM_API_URL, { cache: "no-store" });
+        if (!response.ok) throw new Error("Instagram feed request failed.");
+        const data = await response.json();
+        hnRenderInstagramMoments(data);
+        if (note) note.textContent = "";
+      } catch (error) {
+        if (note) note.textContent = "Instagram moments are not available right now, but the page still works.";
+        document.querySelectorAll(".hn-live-instagram-avatar").forEach((avatar) => {
+          avatar.dataset.avatarIndex = "-1";
+          avatar.src = HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
+        });
+      }
+    }
+
+    function hnInitReveals() {
+      const revealItems = document.querySelectorAll("[data-reveal]");
+      if (!("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: "0px 0px -60px 0px" });
+      revealItems.forEach((item) => observer.observe(item));
+    }
+
+    function hnInitCountdown() {
+      const deadline = new Date("2026-05-03T23:59:59-04:00").getTime();
+      const daysEl = document.getElementById("early-days");
+      const hoursEl = document.getElementById("early-hours");
+      const minutesEl = document.getElementById("early-minutes");
+      const secondsEl = document.getElementById("early-seconds");
+      const countdownWrap = document.getElementById("earlyBirdCountdown");
+      if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+      function pad(value) { return String(value).padStart(2, "0"); }
+      function updateCountdown() {
+        const distance = deadline - new Date().getTime();
+        if (distance <= 0) {
+          daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = "00";
+          if (countdownWrap) {
+            const header = countdownWrap.querySelector(".countdown-header");
+            const note = countdownWrap.querySelector(".countdown-note");
+            if (header) header.innerHTML = "<span>Early bird pricing</span><strong>Has ended</strong>";
+            if (note) note.textContent = "Applications are still open for remaining spots.";
+          }
+          clearInterval(timer);
+          return;
+        }
+        daysEl.textContent = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
+        hoursEl.textContent = pad(Math.floor((distance / (1000 * 60 * 60)) % 24));
+        minutesEl.textContent = pad(Math.floor((distance / (1000 * 60)) % 60));
+        secondsEl.textContent = pad(Math.floor((distance / 1000) % 60));
+      }
+      updateCountdown();
+      const timer = setInterval(updateCountdown, 1000);
+    }
+
+    async function loadRandomFaqFromPage() {
+      const questionEl = document.getElementById("randomFaqQuestion");
+      const answerEl = document.getElementById("randomFaqAnswer");
+      const boxEl = document.getElementById("randomFaqBox");
+      if (!questionEl || !answerEl || !boxEl) return;
+      const fallbackFaqs = [
+        { question: "Is this a hotel program?", answer: "No. Hamsa Nomads is a small, curated retreat in a private home, with shared meals, programming, and a more personal atmosphere." },
+        { question: "Are public spaces Shabbos and Yom Tov observant?", answer: "Yes. Public spaces are designed around Shabbos and Chag observance so guests can feel comfortable joining the shared rhythm." },
+        { question: "Why is there an application?", answer: "Because the retreat is small. We review applications so the group feels comfortable, balanced, and intentional." }
+      ];
+      try {
+        const response = await fetch("faq.html", { cache: "no-store" });
+        if (!response.ok) throw new Error("FAQ page could not be loaded.");
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const faqItems = Array.from(doc.querySelectorAll(".faq-item"));
+        const faqs = faqItems.map((item) => {
+          const question = item.querySelector(".faq-question span:first-child")?.textContent?.trim();
+          const answer = item.querySelector(".faq-answer-inner")?.textContent?.trim();
+          return { question, answer };
+        }).filter((faq) => faq.question && faq.answer);
+        if (!faqs.length) throw new Error("No FAQ items found.");
+        const randomFaq = faqs[Math.floor(Math.random() * faqs.length)];
+        questionEl.textContent = randomFaq.question;
+        answerEl.textContent = randomFaq.answer.length > 230 ? randomFaq.answer.slice(0, 230).trim() + "..." : randomFaq.answer;
+        boxEl.href = "faq.html";
+      } catch (error) {
+        const randomFallback = fallbackFaqs[Math.floor(Math.random() * fallbackFaqs.length)];
+        questionEl.textContent = randomFallback.question;
+        answerEl.textContent = randomFallback.answer;
+        boxEl.href = "faq.html";
+      }
+    }
+
+    function hnInitTrips() {
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
+      const TRIPS_PAGE_URL = "trips-page/trips.html";
+      const slider = document.getElementById("hnTripSlider");
+      const prevBtn = document.getElementById("hnTripsPrev");
+      const nextBtn = document.getElementById("hnTripsNext");
+      const dotsWrap = document.getElementById("hnTripDots");
+      const popup = document.getElementById("tripPopup");
+      const popupClose = document.getElementById("popupClose");
+      const popupTitle = document.getElementById("popupTitle");
+      const popupSubtitle = document.getElementById("popupSubtitle");
+      const tripInterestInput = document.getElementById("tripInterest");
+      const tripForm = document.getElementById("tripForm");
+      const popupMessage = document.getElementById("popupMessage");
+      if (!slider || !dotsWrap) return;
+
+      const tripCopy = { "General Trips Interest": { title: "Hamsa Nomads trips", subtitle: "Leave your info and we’ll send updates as future trips open." } };
+      const fallbackTrips = [{ title: "Future Hamsa Nomads trips", meta: "More dates soon", text: "City weekends, playful escapes, holiday retreats, and small Jewish travel experiences are already forming.", badge: "Upcoming", status: "Interest list open", ctaText: "Join interest list", bullets: ["Small groups", "Jewish travel rhythm", "Warm and curated"], image: "Image/hero.jpg", tripInterest: "General Trips Interest" }];
+      function cleanText(text) { return (text || "").replace(/\s+/g, " ").trim(); }
+      function getBackgroundImageUrl(styleValue, baseUrl) { const match = String(styleValue || "").match(/url\((['"]?)(.*?)\1\)/i); if (!match || !match[2]) return ""; return new URL(match[2], baseUrl).href; }
+      function getTripNameFromOnclick(onclickValue) { const match = String(onclickValue || "").match(/openTripPopup\(['"](.+?)['"]\)/); return match ? match[1] : ""; }
+      function extractTripCardsFromTripsPage(html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const baseUrl = new URL(TRIPS_PAGE_URL, window.location.href);
+        const cards = Array.from(doc.querySelectorAll(".bento-grid .bento-card:not(.bento-cta-card)"));
+        return cards.map((card) => {
+          const imageEl = card.querySelector(".bento-image");
+          const button = card.querySelector(".trip-cta");
+          const title = cleanText(card.querySelector(".bento-title")?.textContent);
+          const meta = cleanText(card.querySelector(".bento-meta")?.textContent);
+          const text = cleanText(card.querySelector(".bento-text")?.textContent);
+          const badge = cleanText(imageEl?.querySelector(".bento-badge")?.textContent) || "Upcoming trip";
+          const status = cleanText(card.querySelector(".bento-status")?.textContent);
+          const ctaText = cleanText(button?.textContent) || "Join the interest list";
+          const bullets = Array.from(card.querySelectorAll(".bento-list li")).map((li) => cleanText(li.textContent)).filter(Boolean);
+          const imageStyle = imageEl?.getAttribute("style") || imageEl?.style?.backgroundImage || "";
+          const image = getBackgroundImageUrl(imageStyle, baseUrl);
+          const tripInterest = getTripNameFromOnclick(button?.getAttribute("onclick")) || title;
+          tripCopy[tripInterest] = { title, subtitle: text || "Leave your info and we’ll send details as this trip comes together." };
+          return { title, meta, text, badge, status, ctaText, bullets, image, tripInterest };
+        }).filter((trip) => trip.title);
+      }
+      function renderTrips(trips) {
+        if (!trips.length) trips = fallbackTrips;
+        slider.innerHTML = trips.map((trip, index) => {
+          const bullets = (trip.bullets || []).slice(0, 4).map((bullet) => `<li>${hnEscapeHTML(bullet)}</li>`).join("");
+          const imageStyle = trip.image ? `style="--trip-image: url('${hnEscapeHTML(trip.image)}');"` : "";
+          return `
+            <article class="hn-trip-slide">
+              <div class="hn-trip-card">
+                <div class="hn-trip-image" ${imageStyle}>
+                  <div class="hn-trip-badge">${hnEscapeHTML(trip.badge || "Upcoming")}</div>
+                  ${trip.meta ? `<div class="hn-image-note">${hnEscapeHTML(trip.meta)}</div>` : ""}
+                </div>
+                <div class="hn-trip-body">
+                  ${trip.meta ? `<div class="hn-trip-meta">${hnEscapeHTML(trip.meta)}</div>` : ""}
+                  <h3 class="hn-trip-name">${hnEscapeHTML(trip.title)}</h3>
+                  <p class="hn-trip-copy">${hnEscapeHTML(trip.text || "")}</p>
+                  ${bullets ? `<ul class="hn-trip-bullets">${bullets}</ul>` : ""}
+                  <div class="hn-trip-footer">
+                    <span class="hn-trip-status"><span class="hn-trip-status-dot"></span>${hnEscapeHTML(trip.status || "Interest list open")}</span>
+                    <button type="button" class="hn-trip-cta" data-trip-interest="${hnEscapeHTML(trip.tripInterest || trip.title)}">${hnEscapeHTML(trip.ctaText || "Join interest list")}</button>
+                  </div>
+                </div>
+              </div>
+            </article>`;
+        }).join("");
+        dotsWrap.innerHTML = trips.map((_, index) => `<button type="button" class="hn-slider-dot ${index === 0 ? "is-active" : ""}" data-slide-index="${index}" aria-label="Go to trip ${index + 1}"></button>`).join("");
+        updateSliderButtons();
+        slider.querySelectorAll(".hn-trip-cta").forEach((button) => button.addEventListener("click", () => openTripPopup(button.dataset.tripInterest || "General Trips Interest")));
+        dotsWrap.querySelectorAll(".hn-slider-dot").forEach((dot) => dot.addEventListener("click", () => {
+          const slide = slider.children[Number(dot.dataset.slideIndex || 0)];
+          if (slide) slider.scrollTo({ left: slide.offsetLeft - slider.offsetLeft, behavior: "smooth" });
+        }));
+      }
+      function updateSliderButtons() {
+        if (!slider || !prevBtn || !nextBtn) return;
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+        prevBtn.disabled = slider.scrollLeft <= 4;
+        nextBtn.disabled = slider.scrollLeft >= maxScroll - 4;
+        const slides = Array.from(slider.children);
+        let activeIndex = 0;
+        let smallestDistance = Infinity;
+        slides.forEach((slide, index) => {
+          const distance = Math.abs(slider.scrollLeft - (slide.offsetLeft - slider.offsetLeft));
+          if (distance < smallestDistance) { smallestDistance = distance; activeIndex = index; }
+        });
+        dotsWrap.querySelectorAll(".hn-slider-dot").forEach((dot, index) => dot.classList.toggle("is-active", index === activeIndex));
+      }
+      function openTripPopup(tripInterest) {
+        if (!popup || !tripInterestInput || !popupTitle || !popupSubtitle) return;
+        const copy = tripCopy[tripInterest] || tripCopy["General Trips Interest"];
+        tripInterestInput.value = tripInterest;
+        popupTitle.textContent = copy.title || "Upcoming Trip";
+        popupSubtitle.textContent = copy.subtitle || "Leave your info and we’ll send details as this trip comes together.";
+        popupMessage.textContent = "";
+        popupMessage.classList.remove("error");
+        popup.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeTripPopup() { if (!popup) return; popup.classList.remove("is-open"); document.body.style.overflow = ""; }
+      function setupTripInteractions() {
+        if (prevBtn) prevBtn.addEventListener("click", () => slider.scrollBy({ left: -slider.clientWidth * 0.85, behavior: "smooth" }));
+        if (nextBtn) nextBtn.addEventListener("click", () => slider.scrollBy({ left: slider.clientWidth * 0.85, behavior: "smooth" }));
+        slider.addEventListener("scroll", updateSliderButtons, { passive: true });
+        window.addEventListener("resize", updateSliderButtons);
+        if (popupClose) popupClose.addEventListener("click", closeTripPopup);
+        if (popup) popup.addEventListener("click", (event) => { if (event.target === popup) closeTripPopup(); });
+        document.addEventListener("keydown", (event) => { if (event.key === "Escape" && popup && popup.classList.contains("is-open")) closeTripPopup(); });
+        if (tripForm) {
+          tripForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
+              popupMessage.textContent = "Add your Google Script link in the code first.";
+              popupMessage.classList.add("error");
+              return;
+            }
+            const submitButton = tripForm.querySelector(".popup-submit");
+            const formData = new FormData(tripForm);
+            formData.append("timestamp", new Date().toISOString());
+            formData.append("sourcePage", "index.html");
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+            popupMessage.textContent = "";
+            popupMessage.classList.remove("error");
+            fetch(GOOGLE_SCRIPT_URL, { method: "POST", body: formData })
+              .then(() => {
+                popupMessage.textContent = "You’re on the list. We’ll send details soon.";
+                tripForm.reset();
+                setTimeout(() => { closeTripPopup(); submitButton.disabled = false; submitButton.textContent = "Join interest list"; }, 1300);
+              })
+              .catch(() => {
+                popupMessage.textContent = "Something went wrong. Please try again.";
+                popupMessage.classList.add("error");
+                submitButton.disabled = false;
+                submitButton.textContent = "Join interest list";
+              });
+          });
+        }
+      }
+      async function loadTripsFromTripsPage() {
+        try {
+          const response = await fetch(TRIPS_PAGE_URL, { cache: "no-store" });
+          if (!response.ok) throw new Error("Trips page could not be loaded.");
+          const html = await response.text();
+          const trips = extractTripCardsFromTripsPage(html);
+          renderTrips(trips.length ? trips : fallbackTrips);
+        } catch (error) {
+          renderTrips(fallbackTrips);
+        }
+      }
+      setupTripInteractions();
+      loadTripsFromTripsPage();
+    }
+
+    function hnInitShare() {
+      const shareBtn = document.getElementById("shareBtn");
+      const shareOptions = document.getElementById("shareOptions");
+      const copyLinkBtn = document.getElementById("copyLinkBtn");
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+      const whatsappShare = document.getElementById("whatsappShare");
+      const facebookShare = document.getElementById("facebookShare");
+      const emailShare = document.getElementById("emailShare");
+      if (whatsappShare) whatsappShare.href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+      if (facebookShare) facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+      if (emailShare) emailShare.href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+      if (shareBtn && shareOptions) {
+        shareBtn.addEventListener("click", () => shareOptions.classList.toggle("open"));
+        document.addEventListener("click", (event) => { if (!event.target.closest(".floating-share")) shareOptions.classList.remove("open"); });
+      }
+      if (copyLinkBtn) {
+        copyLinkBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copyLinkBtn.textContent = "Copied!";
+            setTimeout(() => { copyLinkBtn.textContent = "Copy link"; }, 1600);
+          } catch (err) {
+            alert("Copy failed. Please copy the URL manually.");
+          }
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      hnInitReveals();
+      hnInitCountdown();
+      hnLoadInstagramFeed();
+      loadRandomFaqFromPage();
+      hnInitTrips();
+      hnInitShare();
+    });
+  </script>
+</body>
+</html>
