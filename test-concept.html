@@ -7,22 +7,25 @@
   <title>Hamsa Nomads — Shavuos in Vermont</title>
 
   <link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
-<link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
   <link rel="stylesheet" href="assets/site-components.css" />
 
   <style>
     :root {
       --bg: #f7f3ea;
-      --paper: rgba(255, 252, 246, 0.62);
+      --paper: rgba(255, 252, 246, 0.70);
+      --paper-strong: rgba(255, 252, 246, 0.90);
       --ink: #1c211d;
       --muted: #5f655d;
       --forest: #274537;
+      --forest-dark: #173c30;
       --gold: #b88b2f;
-      --line: rgba(16, 14, 11, 0.22);
-      --shadow: 0 16px 50px rgba(31, 28, 20, 0.08);
-      --radius: 24px;
-      --container: 1280px;
-      --border: rgba(39, 69, 55, 0.12);
+      --cream: #f7f3ea;
+      --line: rgba(16, 14, 11, 0.16);
+      --shadow: 0 22px 70px rgba(31, 28, 20, 0.10);
+      --soft-shadow: 0 14px 36px rgba(31, 28, 20, 0.08);
+      --radius: 28px;
+      --container: 1240px;
     }
 
     * { box-sizing: border-box; }
@@ -34,16 +37,17 @@
       font-family: Inter, Arial, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.72), transparent 34%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.82), transparent 34%),
+        radial-gradient(circle at 88% 12%, rgba(184,139,47,0.10), transparent 28%),
         linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
-      line-height: 1.55;
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4, .serif {
+    h1, h2, h3, .serif {
       font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       font-weight: 500;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
       margin: 0;
     }
 
@@ -51,29 +55,17 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+    }
+
     .site-shell {
       position: relative;
       isolation: isolate;
+      overflow: hidden;
     }
-
-    .path-main,
-    .path-slice,
-    .path-hamsa {
-      fill: none;
-      stroke: var(--line);
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .path-main.back,
-    .path-hamsa.back { stroke-width: 3.2; }
-
-    .path-main.front,
-    .path-hamsa.front { stroke-width: 1.5; }
-
-    .path-slice.back { stroke-width: 3; }
-    .path-slice.front { stroke-width: 1.3; }
 
     .container {
       width: min(calc(100% - 32px), var(--container));
@@ -84,10 +76,10 @@
 
     .glass {
       background: var(--paper);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.48);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.54);
+      box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.48);
       border-radius: var(--radius);
     }
 
@@ -96,48 +88,115 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 24px;
+      min-height: 50px;
+      padding: 0 25px;
       border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: 0.96rem;
+      font-weight: 750;
       letter-spacing: 0.02em;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
     .button:hover,
     .button-secondary:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .button {
-      background: rgba(39, 69, 55, 0.92);
+      background: rgba(39, 69, 55, 0.94);
       color: white;
-      box-shadow: 0 12px 30px rgba(39, 69, 55, 0.22);
+      box-shadow: 0 14px 34px rgba(39, 69, 55, 0.24);
       border: 1px solid rgba(39, 69, 55, 0.26);
     }
 
     .button-secondary {
-      background: rgba(255, 255, 255, 0.62);
+      background: rgba(255,255,255,0.70);
       color: var(--ink);
       border: 1px solid rgba(39, 69, 55, 0.14);
       box-shadow: 0 10px 24px rgba(31, 28, 20, 0.08);
     }
 
-    .hero {
-      padding: 18px 0 18px;
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 850;
+      margin-bottom: 14px;
     }
 
-    .hero-wrap {
+    .section {
       position: relative;
-      min-height: clamp(560px, 68vh, 760px);
+      padding: clamp(42px, 7vw, 86px) 0;
+    }
+
+    .section-intro {
+      max-width: 740px;
+      margin-bottom: 32px;
+    }
+
+    .section-intro.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-size: clamp(2.2rem, 5.3vw, 4.45rem);
+      line-height: 0.98;
+      color: var(--forest);
+    }
+
+    .section-intro p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      line-height: 1.75;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.72s cubic-bezier(.2,.7,.2,1),
+        transform 0.72s cubic-bezier(.2,.7,.2,1);
+      transition-delay: var(--delay, 0ms);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 18px 0 22px;
+    }
+
+    .hero-stage {
+      position: relative;
+      min-height: clamp(670px, 80vh, 850px);
       overflow: hidden;
-      border-radius: 34px;
-      box-shadow: var(--shadow);
+      border-radius: 38px;
       background: #e8e0d2;
-      z-index: 2;
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
     }
 
     .hero-media {
@@ -146,76 +205,75 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: saturate(0.96);
+      transform: scale(1.01);
+    }
+
+
+    .hero-media-stack {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.15s ease;
+      will-change: opacity;
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
     }
 
     .hero-scrim {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(21, 17, 12, 0.56) 0%, rgba(21, 17, 12, 0.28) 38%, rgba(21, 17, 12, 0.08) 100%),
-        linear-gradient(180deg, rgba(20,15,10,0.08) 0%, rgba(20,15,10,0.18) 100%);
+        linear-gradient(90deg, rgba(21, 17, 12, 0.62) 0%, rgba(21, 17, 12, 0.32) 44%, rgba(21, 17, 12, 0.10) 100%),
+        linear-gradient(180deg, rgba(20,15,10,0.08) 0%, rgba(20,15,10,0.26) 100%);
     }
 
-    .hero-inner {
+    .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       min-height: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: clamp(22px, 3vw, 42px);
-    }
-
-    .hero-topbar {
-      display: flex;
-      justify-content: flex-end;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(310px, 0.78fr);
+      gap: clamp(24px, 4vw, 50px);
+      align-items: end;
+      padding: clamp(24px, 5vw, 60px);
     }
 
     .hero-copy {
-      max-width: 660px;
       color: #fffdf8;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding-top: 24px;
+      max-width: 680px;
     }
 
-    .eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.92;
+    .hero .eyebrow {
+      color: #e0ae43;
+      text-shadow: 0 4px 16px rgba(0,0,0,0.26);
     }
 
     .hero h1 {
-      font-size: clamp(2.75rem, 6.6vw, 5.6rem);
-      line-height: 0.93;
-      text-shadow: 0 8px 28px rgba(0,0,0,0.18);
-      max-width: 9ch;
-    }
-
-    .hero h1 .gold {
-      color: #e0ae43;
-    }
-
-    .hero-kicker {
-      width: fit-content;
-      padding: 12px 18px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(12px);
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      font-size: 0.86rem;
+      font-size: clamp(3.15rem, 7.4vw, 6.9rem);
+      line-height: 0.9;
+      color: #fffdf8;
+      max-width: 9.6ch;
+      margin-bottom: 20px;
+      text-shadow: 0 10px 34px rgba(0,0,0,0.25);
     }
 
     .hero-lead {
-      max-width: 34ch;
-      font-size: clamp(1rem, 1.45vw, 1.24rem);
-      line-height: 1.38;
-      color: rgba(255,251,245,0.96);
-      text-shadow: 0 5px 18px rgba(0,0,0,0.18);
+      max-width: 42ch;
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+      line-height: 1.48;
+      color: rgba(255,251,245,0.94);
+      margin-bottom: 24px;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.23);
     }
 
     .hero-actions {
@@ -225,762 +283,836 @@
       align-items: center;
     }
 
-    .hero .button {
-      min-height: 50px;
-      padding: 0 26px;
-      font-size: 0.96rem;
+    .hero-panel {
+      align-self: center;
+      display: grid;
+      gap: 14px;
+      transform: translateZ(28px);
     }
 
-
-
-    /* HERO EARLY BIRD COUNTDOWN */
-    .hero-earlybird {
-      width: min(640px, 100%);
-      margin-top: 20px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, 0.22);
+    .hero-date-card {
+      padding: 20px;
+      border-radius: 28px;
+      background: rgba(255, 252, 246, 0.78);
+      border: 1px solid rgba(255,255,255,0.48);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 22px 56px rgba(0,0,0,0.16);
     }
 
-    .hero-earlybird-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      color: rgba(255, 253, 248, 0.9);
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
-    }
-
-    .hero-earlybird-header span {
-      opacity: 0.78;
-    }
-
-    .hero-earlybird-header strong {
-      color: #e0ae43;
-      font-weight: 800;
-    }
-
-    .hero-countdown-row {
-      display: flex;
-      align-items: flex-start;
-      gap: clamp(12px, 2.4vw, 30px);
-    }
-
-    .hero-countdown-unit {
-      text-align: center;
-      min-width: 54px;
-    }
-
-    .hero-countdown-number {
-      font-family: Inter, Arial, sans-serif;
-      font-size: clamp(2rem, 5vw, 3.35rem);
-      font-weight: 800;
-      color: #e0ae43;
+    .hero-date-card h2 {
+      font-size: clamp(1.65rem, 3vw, 2.6rem);
       line-height: 1;
-      letter-spacing: -0.045em;
-      text-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
-    }
-
-    .hero-countdown-label {
-      margin-top: 8px;
-      color: rgba(224, 174, 67, 0.52);
-      font-size: 0.52rem;
-      font-weight: 800;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-    }
-
-    .hero-countdown-separator {
-      padding-top: 3px;
-      color: rgba(224, 174, 67, 0.28);
-      font-size: clamp(1.6rem, 3vw, 2.15rem);
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .hero-earlybird-note {
-      margin-top: 14px;
-      color: rgba(255, 251, 245, 0.78);
-      font-size: 0.92rem;
-      text-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
-    }
-
-    @media (max-width: 640px) {
-      .hero-earlybird {
-        margin-top: 16px;
-        padding-top: 16px;
-      }
-
-      .hero-countdown-row {
-        gap: 10px;
-        justify-content: flex-start;
-      }
-
-      .hero-countdown-unit {
-        min-width: 43px;
-      }
-
-      .hero-countdown-number {
-        font-size: clamp(1.75rem, 9vw, 2.45rem);
-      }
-
-      .hero-countdown-label {
-        font-size: 0.46rem;
-        letter-spacing: 0.18em;
-      }
-
-      .hero-countdown-separator {
-        font-size: 1.35rem;
-        padding-top: 4px;
-      }
-
-      .hero-earlybird-header {
-        flex-wrap: wrap;
-        font-size: 0.7rem;
-        letter-spacing: 0.13em;
-      }
-    }
-
-    .hero-bottom-card {
-      margin-top: 18px;
-      width: min(780px, 100%);
-      padding: 20px 22px;
-      background: rgba(252, 247, 239, 0.78);
-      color: var(--ink);
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .hero-bottom-card h2 {
-      font-size: clamp(1.65rem, 3vw, 2.55rem);
-      color: var(--forest);
-      margin-bottom: 8px;
-    }
-
-    .hero-bottom-card p {
-      color: var(--muted);
-      font-size: 0.98rem;
-      max-width: 48ch;
-    }
-
-    .quick-facts {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 8px;
-      font-size: 0.9rem;
-      color: var(--forest);
-    }
-
-    .quick-facts div {
-      padding: 8px 10px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.56);
-      border: 1px solid rgba(39,69,55,0.09);
-    }
-
-    .section {
-      padding: 34px 0;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 18px;
-      padding: 14px 4px;
-    }
-
-    .section-header h2 {
-      font-size: clamp(2rem, 5vw, 3.3rem);
-      color: var(--forest);
-    }
-
-    .section-header p {
-      max-width: 52ch;
-      color: var(--muted);
-    }
-
-    .value-grid,
-    .gallery-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .value-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .gallery-grid { grid-template-columns: 1.15fr 0.85fr 0.85fr; }
-
-    .card {
-      padding: 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card h3 {
-      font-size: 1.45rem;
       color: var(--forest);
       margin-bottom: 10px;
     }
 
-    .card p,
-    li {
+    .hero-date-card p {
       color: var(--muted);
+      line-height: 1.55;
     }
 
-    .gallery-card {
-      padding: 10px;
-      overflow: hidden;
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 18px;
-      min-height: 250px;
-    }
-
-    .gallery-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.gallery-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery-bubble {
-  position: absolute;
-  left: 14px;
-  bottom: 14px;
-  z-index: 2;
-
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-
-  color: #fff;
-  font-size: 0.88rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  line-height: 1;
-
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22);
-
-  white-space: nowrap;
-}
-
-.gallery-bubble::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(255, 255, 255, 0.06) 100%
-  );
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .gallery-bubble {
-    left: 10px;
-    bottom: 10px;
-    padding: 0.42rem 0.75rem;
-    font-size: 0.8rem;
-  }
-}
-    .gallery-card.tall { grid-row: span 2; }
-
-    .liquid-info {
-      padding: 26px;
-      background:
-        linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.90)),
-        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
-      color: #fff;
+    .hero-chip-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      border: 1px solid rgba(255,255,255,0.20);
-      box-shadow:
-        0 22px 60px rgba(20, 45, 35, 0.22),
-        inset 0 1px 0 rgba(255,255,255,0.22);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
-    .liquid-item {
-      padding: 20px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
+    .hero-chip {
+      padding: 13px 14px;
+      border-radius: 18px;
+      background: rgba(255, 252, 246, 0.74);
+      border: 1px solid rgba(255,255,255,0.46);
+      color: var(--forest);
+      font-size: 0.88rem;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .liquid-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.14);
-      color: #e0ae43;
-      margin-bottom: 14px;
+    .hero-chip:hover,
+    .hero-chip.is-front {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(0,0,0,0.15);
+      z-index: 20;
     }
 
-    .liquid-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .countdown-card {
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(23, 60, 48, 0.74);
+      color: #fffdf8;
+      border: 1px solid rgba(255,255,255,0.17);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
     }
 
-    .liquid-item h3 {
-      color: #fff;
-      margin-bottom: 8px;
-      font-size: 1.2rem;
+    .countdown-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
-    .liquid-item p {
-      color: rgba(255,255,255,0.78);
-      font-size: 0.94rem;
-    }
-
-
-    .home-faq-preview {
-      position: relative;
-      z-index: 2;
-      padding: 24px 0 44px;
-    }
-
-    .home-faq-card {
-      padding: clamp(24px, 4vw, 42px);
-      overflow: hidden;
-      position: relative;
-      background:
-        radial-gradient(circle at top right, rgba(184, 139, 47, 0.13), transparent 34%),
-        rgba(255, 252, 246, 0.62);
-    }
-
-    .home-faq-card::before {
-      content: "";
-      position: absolute;
-      right: -100px;
-      top: -110px;
-      width: 300px;
-      height: 300px;
-      border-radius: 999px;
-      background: rgba(184, 139, 47, 0.12);
-      pointer-events: none;
-    }
-
-    .home-faq-kicker {
-      position: relative;
-      z-index: 2;
-      font-size: 0.78rem;
+    .countdown-top span {
+      font-size: 0.70rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
+      color: rgba(255,255,255,0.72);
+      font-weight: 900;
+    }
+
+    .countdown-top strong {
+      color: #e0ae43;
+      font-size: 0.88rem;
+    }
+
+    .countdown-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .countdown-unit {
+      text-align: center;
+      padding: 8px 6px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .countdown-number {
+      display: block;
+      font-size: clamp(1.4rem, 3vw, 2.05rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #e0ae43;
+      letter-spacing: -0.04em;
+    }
+
+    .countdown-label {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+      font-weight: 850;
+    }
+
+    .motion-marquee {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,252,246,0.13);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+
+    .marquee-item {
+      padding: 13px 24px;
+      color: rgba(255,253,248,0.88);
+      font-size: 0.77rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .marquee-item::after {
+      content: "•";
+      color: #e0ae43;
+      margin-left: 24px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* POSITIONING */
+    .promise-section {
+      padding: clamp(44px, 7vw, 88px) 0 clamp(28px, 5vw, 64px);
+    }
+
+    .promise-shell {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(22px, 4vw, 46px);
+      align-items: center;
+    }
+
+    .promise-copy h2 {
+      font-size: clamp(2.4rem, 5.6vw, 5.1rem);
+      line-height: 0.95;
+      color: var(--forest);
       margin-bottom: 18px;
     }
 
-    .home-faq-layout {
+    .promise-copy p {
+      color: var(--muted);
+      font-size: 1.07rem;
+      line-height: 1.78;
+      max-width: 46ch;
+    }
+
+    .promise-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .promise-pill {
+      display: inline-flex;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .promise-cards {
+      display: grid;
+      gap: 13px;
+    }
+
+    .promise-card {
+      position: relative;
+      padding: clamp(20px, 3vw, 28px);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 34%),
+        rgba(255,252,246,0.72);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--soft-shadow);
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .promise-card:hover,
+    .promise-card.is-front {
+      z-index: 20;
+      transform: translateY(-6px) scale(1.012);
+      box-shadow: 0 26px 64px rgba(31,28,20,0.14);
+      border-color: rgba(184,139,47,0.26);
+    }
+
+    .promise-card h3 {
+      font-size: clamp(1.45rem, 2.6vw, 2.05rem);
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+
+    .promise-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* RHYTHM TABS */
+    .rhythm-section {
+      padding-top: clamp(42px, 7vw, 86px);
+    }
+
+    .rhythm-shell {
+      border-radius: 38px;
+      overflow: hidden;
+      background:
+        linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
+      color: #f7f0e2;
+      box-shadow: 0 30px 70px rgba(16,42,33,0.22);
+      border: 1px solid rgba(244,231,199,0.12);
+      display: grid;
+      grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.25fr);
+      min-height: 520px;
+    }
+
+    .rhythm-left {
+      padding: clamp(26px, 4vw, 46px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(255,255,255,0.11);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.10), transparent 36%);
+    }
+
+    .rhythm-left h2 {
+      font-size: clamp(2.25rem, 4.8vw, 4.35rem);
+      line-height: 0.96;
+      color: #f7f0e2;
+      margin-bottom: 16px;
+    }
+
+    .rhythm-left p {
+      color: rgba(247,240,226,0.78);
+      line-height: 1.72;
+    }
+
+    .rhythm-tabs {
+      display: grid;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .rhythm-tab {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
+      color: rgba(247,240,226,0.76);
+      min-height: 48px;
+      border-radius: 999px;
+      padding: 0 16px;
+      text-align: left;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+    }
+
+    .rhythm-tab:hover,
+    .rhythm-tab.is-active {
+      background: #f4e7c7;
+      color: #173c30;
+      transform: translateX(5px);
+    }
+
+    .rhythm-detail {
+      position: relative;
+      display: grid;
+      align-items: center;
+      padding: clamp(26px, 5vw, 58px);
+      overflow: hidden;
+    }
+
+    .rhythm-line {
+      position: absolute;
+      inset: 0;
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    .rhythm-line path {
+      fill: none;
+      stroke: rgba(244,231,199,0.35);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 9 12;
+    }
+
+    .rhythm-panel {
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: 0.88fr 1.12fr;
-      gap: clamp(20px, 4vw, 42px);
-      align-items: stretch;
+      display: none;
+      max-width: 720px;
+      animation: panelIn 0.42s ease both;
     }
 
-    .home-faq-copy h2 {
-      font-size: clamp(2rem, 5vw, 4.15rem);
+    .rhythm-panel.is-active {
+      display: block;
+    }
+
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rhythm-kicker {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      color: #e0ae43;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .rhythm-panel h3 {
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      line-height: 0.98;
+      color: #f7f0e2;
+      margin-bottom: 16px;
+    }
+
+    .rhythm-panel p {
+      color: rgba(247,240,226,0.82);
+      font-size: clamp(1rem, 1.35vw, 1.14rem);
+      line-height: 1.78;
+      max-width: 56ch;
+    }
+
+    .rhythm-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .rhythm-mini {
+      padding: 13px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.11);
+      color: rgba(247,240,226,0.80);
+      font-size: 0.88rem;
+    }
+
+    /* HOUSE */
+    .house-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 14px;
+    }
+
+    .house-card {
+      position: relative;
+      min-height: 230px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #d9ccb6;
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .house-card.tall {
+      grid-row: span 2;
+      min-height: 520px;
+    }
+
+    .house-card:hover,
+    .house-card.is-front {
+      z-index: 20;
+      transform: translateY(-6px) scale(1.012);
+      box-shadow: 0 28px 70px rgba(31,28,20,0.17);
+    }
+
+    .house-card img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+      transition: transform 0.34s ease, filter 0.34s ease;
+    }
+
+    .house-card:hover img,
+    .house-card.is-front img {
+      transform: scale(1.035);
+      filter: brightness(0.94);
+    }
+
+    .house-label {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 750;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    }
+
+    /* PRICING */
+    .conversion-card {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(20px, 4vw, 42px);
+      align-items: center;
+      padding: clamp(24px, 4vw, 44px);
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at top left, rgba(242,181,68,0.15), transparent 36%),
+        rgba(255,252,246,0.74);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--shadow);
+    }
+
+    .conversion-copy h2 {
+      font-size: clamp(2.25rem, 5.3vw, 4.5rem);
       line-height: 0.96;
       color: var(--forest);
-      max-width: 520px;
+      margin-bottom: 16px;
     }
 
-    .home-faq-copy p {
-      margin-top: 16px;
-      max-width: 520px;
+    .conversion-copy p {
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
+      max-width: 62ch;
+      line-height: 1.76;
+    }
+
+    .price-panel {
+      padding: 22px;
+      border-radius: 30px;
+      background: rgba(39,69,55,0.94);
+      color: #fff;
+      box-shadow: 0 22px 56px rgba(39,69,55,0.22);
+    }
+
+    .price-number {
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      color: #f4e7c7;
+      margin-bottom: 12px;
+    }
+
+    .price-panel p {
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 18px;
+    }
+
+    .included-list {
+      display: grid;
+      gap: 9px;
+      margin: 0 0 20px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .included-list li {
+      color: rgba(255,255,255,0.84);
+      font-size: 0.96rem;
+    }
+
+    .included-list li::before {
+      content: "✓";
+      color: #e0ae43;
+      margin-right: 8px;
+      font-weight: 900;
+    }
+
+    /* FAQ */
+    .faq-strip {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 18px;
+      align-items: stretch;
+      padding: clamp(22px, 4vw, 36px);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 34%),
+        rgba(255,252,246,0.70);
+    }
+
+    .faq-strip h2 {
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 1;
+      color: var(--forest);
     }
 
     .random-faq-box {
       display: block;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,252,246,0.54)),
-        radial-gradient(circle at top right, rgba(184,139,47,0.16), transparent 38%);
-      border: 1px solid rgba(39, 69, 55, 0.13);
-      border-radius: 24px;
-      padding: clamp(22px, 4vw, 34px);
-      box-shadow: 0 18px 48px rgba(31, 28, 20, 0.08);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-      min-height: 250px;
+      padding: 22px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(39,69,55,0.12);
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
     }
 
-    .random-faq-box:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 64px rgba(31, 28, 20, 0.12);
-      border-color: rgba(184, 139, 47, 0.3);
+    .random-faq-box:hover,
+    .random-faq-box.is-front {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 58px rgba(31,28,20,0.13);
     }
 
     .random-faq-label {
       display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      margin-bottom: 16px;
-      padding: 7px 12px;
+      margin-bottom: 12px;
+      padding: 7px 11px;
       border-radius: 999px;
-      background: rgba(39, 69, 55, 0.08);
+      background: rgba(39,69,55,0.08);
       color: var(--forest);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.11em;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     .random-faq-box h3 {
-      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-      font-size: clamp(1.45rem, 3vw, 2.35rem);
-      line-height: 1.05;
+      font-size: clamp(1.35rem, 2.6vw, 2.15rem);
+      line-height: 1.07;
       color: var(--ink);
-      margin: 0 0 14px;
-      letter-spacing: -0.03em;
+      margin-bottom: 12px;
     }
 
     .random-faq-box p {
       color: var(--muted);
-      line-height: 1.72;
-      font-size: 0.98rem;
-      margin: 0;
+      line-height: 1.7;
     }
 
     .random-faq-link {
       display: inline-flex;
-      margin-top: 22px;
+      margin-top: 18px;
       color: var(--forest);
-      font-weight: 700;
+      font-weight: 850;
     }
-/* ================================
-   Live Instagram Feed
-   Connected to Cloudflare Worker
-================================ */
 
-.hn-live-instagram-section {
-  padding: 38px 0;
-  background: transparent;
-  color: var(--forest);
-}
+    /* INSTAGRAM */
+    .live-vibe-shell {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 18px;
+      align-items: stretch;
+      border-radius: 38px;
+      overflow: hidden;
+      background:
+        linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
+      color: #f7f0e2;
+      box-shadow: 0 30px 70px rgba(16,42,33,0.22);
+      border: 1px solid rgba(244,231,199,0.12);
+      padding: clamp(18px, 2.5vw, 28px);
+    }
 
-.hn-live-instagram-card {
-  padding: clamp(18px, 2.5vw, 28px);
-  border-radius: 32px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at top right, rgba(244, 231, 199, 0.14), transparent 32%),
-    radial-gradient(circle at bottom left, rgba(244, 231, 199, 0.09), transparent 28%),
-    linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
-  border: 1px solid rgba(244, 231, 199, 0.12);
-  box-shadow: 0 30px 70px rgba(16, 42, 33, 0.22);
-}
+    .live-vibe-copy {
+      padding: clamp(20px, 3vw, 34px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+    }
 
-.hn-live-instagram-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 22px;
-}
+    .live-vibe-copy h2 {
+      font-size: clamp(2.15rem, 5vw, 4.2rem);
+      line-height: 0.96;
+      color: #f7f0e2;
+      margin-bottom: 16px;
+    }
 
-.hn-live-instagram-profile {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  min-width: 0;
-}
+    .live-vibe-copy p {
+      color: rgba(247,240,226,0.80);
+      line-height: 1.74;
+    }
 
-.hn-live-instagram-avatar {
-  width: 68px;
-  height: 68px;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 2px solid rgba(244, 231, 199, 0.55);
-  background: #f8f3e8;
-  flex-shrink: 0;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
-}
+    .insta-profile-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
 
-.hn-live-instagram-eyebrow {
-  margin: 0 0 5px;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #d7b05b;
-  font-weight: 800;
-}
+    .hn-live-instagram-avatar {
+      width: 62px;
+      height: 62px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 2px solid rgba(244,231,199,0.55);
+      background: #f8f3e8;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+    }
 
-.hn-live-instagram-profile h2 {
-  margin: 0;
-  color: #f7f0e2;
-  font-size: clamp(1.5rem, 2.5vw, 2.15rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
+    .hn-live-instagram-follow {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: #f4e7c7;
+      color: #173c30;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.18);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
 
-.hn-live-instagram-profile p:not(.hn-live-instagram-eyebrow) {
-  margin: 7px 0 0;
-  color: rgba(247, 240, 226, 0.82);
-  font-size: 0.96rem;
-  line-height: 1.5;
-  max-width: 590px;
-}
+    .hn-live-instagram-follow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 42px rgba(0,0,0,0.22);
+    }
 
-.hn-live-instagram-follow {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 56px;
-  padding: 0 30px;
-  border-radius: 999px;
-  background: #f4e7c7;
-  color: #173c30;
-  text-decoration: none;
-  font-size: 1.04rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-}
+    .insta-board {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+      gap: 14px;
+      min-width: 0;
+    }
 
-.hn-live-instagram-follow:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.22);
-}
+    .hn-live-instagram-featured {
+      position: relative;
+      display: block;
+      min-height: 450px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(248,243,232,0.98);
+      text-decoration: none;
+      color: #fff;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.12);
+    }
 
-.hn-live-instagram-body {
-  display: grid;
-  grid-template-columns: minmax(300px, 410px) minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-}
+    .hn-live-instagram-featured img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
 
-.hn-live-instagram-featured,
-.hn-live-instagram-side {
-  background: rgba(248, 243, 232, 0.98);
-  border-radius: 24px;
-  border: 1px solid rgba(23, 60, 48, 0.08);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.08);
-}
+    .hn-live-instagram-featured:hover img {
+      transform: scale(1.035);
+      filter: brightness(0.88);
+    }
 
-.hn-live-instagram-featured {
-  position: relative;
-  display: block;
-  aspect-ratio: 4 / 5;
-  max-height: 540px;
-  overflow: hidden;
-  color: #fff;
-  text-decoration: none;
-}
+    .hn-live-instagram-featured-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 18px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.76) 100%);
+    }
 
-.hn-live-instagram-featured img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.35s ease, filter 0.35s ease;
-}
+    .hn-live-instagram-featured-overlay span {
+      display: inline-flex;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
 
-.hn-live-instagram-featured:hover img {
-  transform: scale(1.04);
-  filter: brightness(0.88);
-}
+    .hn-live-instagram-featured-overlay strong {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
 
-.hn-live-instagram-featured-overlay {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 16px;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.74) 100%);
-}
+    .insta-side {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
 
-.hn-live-instagram-featured-overlay span {
-  display: inline-flex;
-  margin-bottom: 8px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-  font-size: 0.64rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 800;
-}
+    .insta-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #f7f0e2;
+    }
 
-.hn-live-instagram-featured-overlay strong {
-  display: block;
-  font-size: clamp(0.98rem, 1.3vw, 1.14rem);
-  line-height: 1.3;
-}
+    .insta-topline span {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #d7b05b;
+      font-weight: 900;
+    }
 
-.hn-live-instagram-side {
-  min-width: 0;
-  padding: 14px;
-}
+    .insta-topline button {
+      min-height: 36px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(244,231,199,0.18);
+      background: rgba(255,255,255,0.12);
+      color: #f7f0e2;
+      cursor: pointer;
+      font-weight: 850;
+    }
 
-.hn-live-instagram-topline {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
+    .hn-live-instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 11px;
+    }
 
-.hn-live-instagram-topline span {
-  font-size: 0.74rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #b88b2f;
-  font-weight: 800;
-}
+    .hn-live-instagram-post {
+      position: relative;
+      display: block;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(248,243,232,0.18);
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
 
-.hn-live-instagram-topline button {
-  min-height: 36px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(23, 60, 48, 0.14);
-  background: rgba(255, 255, 255, 0.84);
-  color: var(--forest);
-  cursor: pointer;
-  font-weight: 800;
-}
+    .hn-live-instagram-post:hover,
+    .hn-live-instagram-post.is-front {
+      z-index: 20;
+      transform: translateY(-5px) scale(1.018);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.22);
+    }
 
-.hn-live-instagram-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
+    .hn-live-instagram-post img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
 
-.hn-live-instagram-post {
-  position: relative;
-  display: block;
-  aspect-ratio: 1 / 1;
-  border-radius: 16px;
-  overflow: hidden;
-  background: rgba(39, 69, 55, 0.08);
-  text-decoration: none;
-  color: #fff;
-}
+    .hn-live-instagram-post:hover img {
+      transform: scale(1.045);
+      filter: brightness(0.88);
+    }
 
-.hn-live-instagram-post img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
+    .hn-live-instagram-type {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: rgba(24,59,45,0.76);
+      color: #fff;
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
 
-.hn-live-instagram-post:hover img {
-  transform: scale(1.05);
-  filter: brightness(0.85);
-}
+    .hn-live-instagram-placeholder,
+    .hn-live-instagram-error {
+      min-height: 230px;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255,255,255,0.65);
+    }
 
-.hn-live-instagram-type {
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  padding: 5px 8px;
-  border-radius: 999px;
-  background: rgba(24, 59, 45, 0.76);
-  color: #fff;
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 800;
-}
-
-.hn-live-instagram-placeholder,
-.hn-live-instagram-error {
-  min-height: 230px;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  text-align: center;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.65);
-}
-
-@media (max-width: 1150px) {
-  .hn-live-instagram-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 980px) {
-  .hn-live-instagram-body {
-    grid-template-columns: 1fr;
-  }
-
-  .hn-live-instagram-featured {
-    aspect-ratio: 16 / 10;
-    max-height: none;
-  }
-
-  .hn-live-instagram-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .hn-live-instagram-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .hn-live-instagram-profile {
-    align-items: flex-start;
-  }
-
-  .hn-live-instagram-avatar {
-    width: 58px;
-    height: 58px;
-  }
-
-  .hn-live-instagram-follow {
-    width: 100%;
-  }
-
-  .hn-live-instagram-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hn-live-instagram-featured {
-    aspect-ratio: 4 / 5;
-  }
-}
-
-.hn-upcoming-section {
+    /* UPCOMING */
+    .hn-upcoming-section {
       position: relative;
       overflow: hidden;
-      padding: 90px 20px 84px;
+      padding: clamp(52px, 8vw, 92px) 20px clamp(64px, 8vw, 98px);
       background:
         radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
         radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
@@ -996,7 +1128,7 @@
 
     .hn-upcoming-header {
       max-width: 760px;
-      margin-bottom: 34px;
+      margin-bottom: 30px;
     }
 
     .hn-overline {
@@ -1007,7 +1139,7 @@
       text-transform: uppercase;
       color: var(--forest);
       opacity: 0.75;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .hn-upcoming-title {
@@ -1032,8 +1164,7 @@
       content: "→";
       font-family: Inter, Arial, sans-serif;
       font-size: 0.42em;
-      font-weight: 700;
-      letter-spacing: 0;
+      font-weight: 800;
       color: var(--gold);
       transform: translateY(0.04em);
       transition: transform 0.25s ease, opacity 0.25s ease;
@@ -1073,7 +1204,7 @@
 
     .hn-upcoming-line path {
       fill: none;
-      stroke: rgba(31, 42, 34, 0.16);
+      stroke: rgba(31,42,34,0.16);
       stroke-width: 2.1;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -1103,8 +1234,8 @@
       width: 48px;
       height: 48px;
       border-radius: 999px;
-      border: 1px solid rgba(38, 71, 52, 0.15);
-      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(38,71,52,0.15);
+      background: rgba(255,255,255,0.55);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 12px 30px rgba(0,0,0,0.06);
@@ -1116,7 +1247,7 @@
 
     .hn-slider-btn:hover {
       transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255,255,255,0.72);
     }
 
     .hn-slider-btn:disabled {
@@ -1127,7 +1258,7 @@
 
     .hn-trip-slider {
       display: flex;
-      gap: 24px;
+      gap: 22px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
@@ -1149,19 +1280,27 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 650px;
-      border-radius: 28px;
+      min-height: 630px;
+      border-radius: 30px;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.52);
-      border: 1px solid rgba(255, 255, 255, 0.42);
-      box-shadow: 0 20px 50px rgba(27, 35, 30, 0.10);
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(255,255,255,0.42);
+      box-shadow: 0 20px 50px rgba(27,35,30,0.10);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .hn-trip-card:hover,
+    .hn-trip-card.is-front {
+      z-index: 25;
+      transform: translateY(-7px) scale(1.012);
+      box-shadow: 0 30px 74px rgba(27,35,30,0.17);
     }
 
     .hn-trip-image {
       position: relative;
-      min-height: 290px;
+      min-height: 280px;
       background:
         linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
         var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
@@ -1178,42 +1317,41 @@
       background: linear-gradient(180deg, rgba(0,0,0,0), rgba(15,21,18,0.22));
     }
 
-    .hn-trip-badge {
+    .hn-trip-badge,
+    .hn-image-note {
       position: absolute;
-      top: 18px;
-      left: 18px;
       z-index: 2;
       padding: 8px 13px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.72);
       color: var(--forest);
       font-size: 0.78rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
 
+    .hn-trip-badge {
+      top: 18px;
+      left: 18px;
+    }
+
     .hn-image-note {
-      position: absolute;
       left: 18px;
       bottom: 18px;
-      z-index: 2;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
       color: var(--ink);
       font-size: 0.82rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      text-transform: none;
+      letter-spacing: 0;
     }
 
     .hn-trip-body {
       display: flex;
       flex-direction: column;
       flex: 1;
-      padding: 26px 24px 24px;
+      padding: 25px 23px 23px;
     }
 
     .hn-trip-meta {
@@ -1232,18 +1370,18 @@
     }
 
     .hn-trip-copy {
-      margin: 0 0 20px;
+      margin: 0 0 18px;
       color: var(--muted);
-      line-height: 1.7;
-      font-size: 1rem;
+      line-height: 1.68;
+      font-size: 0.98rem;
     }
 
     .hn-trip-bullets {
       list-style: none;
       padding: 0;
-      margin: 0 0 26px;
+      margin: 0 0 24px;
       display: grid;
-      gap: 10px;
+      gap: 9px;
     }
 
     .hn-trip-bullets li {
@@ -1251,8 +1389,8 @@
       align-items: flex-start;
       gap: 10px;
       color: var(--ink);
-      font-size: 0.96rem;
-      line-height: 1.55;
+      font-size: 0.94rem;
+      line-height: 1.5;
     }
 
     .hn-trip-bullets li::before {
@@ -1278,7 +1416,7 @@
       gap: 8px;
       color: var(--forest);
       font-size: 0.88rem;
-      font-weight: 600;
+      font-weight: 750;
     }
 
     .hn-trip-status-dot {
@@ -1297,16 +1435,16 @@
       background: var(--forest);
       color: #fff;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 750;
       cursor: pointer;
       transition: 0.22s ease;
-      box-shadow: 0 16px 28px rgba(38, 71, 52, 0.20);
+      box-shadow: 0 16px 28px rgba(38,71,52,0.20);
     }
 
     .hn-trip-cta:hover,
     .popup-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 34px rgba(38, 71, 52, 0.26);
+      box-shadow: 0 18px 34px rgba(38,71,52,0.26);
     }
 
     .hn-slider-dots {
@@ -1321,150 +1459,17 @@
       height: 10px;
       border-radius: 999px;
       border: 0;
-      background: rgba(38, 71, 52, 0.22);
+      background: rgba(38,71,52,0.22);
       cursor: pointer;
       transition: 0.2s ease;
     }
-.pricing-apply-section {
-  width: min(1120px, calc(100% - 32px));
-  margin: 4rem auto;
-}
 
-.pricing-apply-card {
-  display: grid;
-  grid-template-columns: 1.35fr 0.9fr;
-  gap: 2rem;
-  align-items: center;
-
-  padding: clamp(1.4rem, 3vw, 2.25rem);
-  border-radius: 34px;
-
-  background:
-    radial-gradient(circle at top left, rgba(242, 181, 68, 0.16), transparent 38%),
-    rgba(255, 255, 255, 0.14);
-
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  box-shadow: 0 22px 70px rgba(20, 48, 31, 0.12);
-
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-}
-
-.pricing-apply-card .eyebrow {
-  margin: 0 0 0.55rem;
-  color: var(--gold, #f2b544);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.pricing-apply-main h2 {
-  margin: 0 0 1rem;
-  color: var(--green, #174f19);
-  font-size: clamp(2.1rem, 5vw, 3.45rem);
-  line-height: 0.96;
-  letter-spacing: -0.045em;
-}
-
-.pricing-apply-main p,
-.pricing-apply-side p {
-  margin: 0;
-  color: rgba(30, 52, 36, 0.76);
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-.pricing-apply-main p + p,
-.pricing-apply-side p + p {
-  margin-top: 0.65rem;
-}
-
-.pricing-apply-side {
-  padding: 1.2rem;
-  border-radius: 26px;
-  background: rgba(255, 255, 255, 0.34);
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.pricing-apply-side h3 {
-  margin: 0 0 0.55rem;
-  color: var(--green, #174f19);
-  font-size: 1.35rem;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-}
-
-.pricing-apply-note {
-  font-weight: 700;
-  color: rgba(23, 79, 25, 0.92) !important;
-}
-
-.pricing-apply-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 46px;
-  margin-top: 1rem;
-  padding: 0 1.15rem;
-  border-radius: 999px;
-
-  background: var(--green, #174f19);
-  color: #fff;
-  text-decoration: none;
-
-  font-size: 0.92rem;
-  font-weight: 700;
-  white-space: nowrap;
-
-  box-shadow: 0 12px 30px rgba(23, 79, 25, 0.18);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
-.pricing-apply-cta:hover {
-  transform: translateY(-2px);
-  background: #123f14;
-  box-shadow: 0 16px 38px rgba(23, 79, 25, 0.24);
-}
-
-@media (max-width: 760px) {
-  .pricing-apply-section {
-    width: min(100% - 24px, 560px);
-    margin: 3rem auto;
-  }
-
-  .pricing-apply-card {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1.15rem;
-    border-radius: 26px;
-  }
-
-  .pricing-apply-main h2 {
-    font-size: 2.15rem;
-  }
-
-  .pricing-apply-main p,
-  .pricing-apply-side p {
-    font-size: 0.93rem;
-  }
-
-  .pricing-apply-side {
-    padding: 1rem;
-    border-radius: 22px;
-  }
-
-  .pricing-apply-cta {
-    width: 100%;
-  }
-}
     .hn-slider-dot.is-active {
       width: 28px;
       background: var(--forest);
     }
 
+    /* Popup */
     .popup-overlay {
       position: fixed;
       inset: 0;
@@ -1473,7 +1478,7 @@
       align-items: center;
       justify-content: center;
       padding: 22px;
-      background: rgba(22, 29, 25, 0.32);
+      background: rgba(22,29,25,0.32);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -1487,8 +1492,7 @@
       width: min(100%, 480px);
       border-radius: 34px;
       padding: 30px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.78), rgba(255,255,255,0.48));
+      background: linear-gradient(145deg, rgba(255,255,255,0.78), rgba(255,255,255,0.48));
       border: 1px solid rgba(255,255,255,0.55);
       box-shadow: 0 30px 90px rgba(0,0,0,0.22);
       backdrop-filter: blur(22px);
@@ -1516,7 +1520,7 @@
       width: 38px;
       height: 38px;
       border-radius: 999px;
-      border: 1px solid rgba(38, 71, 52, 0.12);
+      border: 1px solid rgba(38,71,52,0.12);
       background: rgba(255,255,255,0.58);
       cursor: pointer;
       color: var(--forest);
@@ -1535,7 +1539,7 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--forest);
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 10px;
     }
 
@@ -1567,8 +1571,7 @@
     .popup-form input,
     .popup-form textarea {
       width: 100%;
-      box-sizing: border-box;
-      border: 1px solid rgba(38, 71, 52, 0.14);
+      border: 1px solid rgba(38,71,52,0.14);
       border-radius: 16px;
       padding: 14px 15px;
       background: rgba(255,255,255,0.62);
@@ -1586,8 +1589,8 @@
 
     .popup-form input:focus,
     .popup-form textarea:focus {
-      border-color: rgba(38, 71, 52, 0.42);
-      box-shadow: 0 0 0 4px rgba(38, 71, 52, 0.08);
+      border-color: rgba(38,71,52,0.42);
+      box-shadow: 0 0 0 4px rgba(38,71,52,0.08);
     }
 
     .popup-submit {
@@ -1612,6 +1615,7 @@
       color: #8b2f25;
     }
 
+    /* Share */
     .floating-share {
       position: fixed;
       right: 22px;
@@ -1621,8 +1625,8 @@
     }
 
     .share-main-btn {
-      border: 1px solid rgba(30, 30, 30, 0.18);
-      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(30,30,30,0.18);
+      background: rgba(255,255,255,0.52);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       color: #1f1f1f;
@@ -1631,13 +1635,13 @@
       cursor: pointer;
       font-size: 14px;
       letter-spacing: 0.03em;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.16);
       transition: all 0.25s ease;
     }
 
     .share-main-btn:hover {
       transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255,255,255,0.72);
     }
 
     .share-options {
@@ -1650,11 +1654,11 @@
       width: 155px;
       padding: 12px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.58);
+      background: rgba(255,255,255,0.58);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
-      border: 1px solid rgba(30, 30, 30, 0.12);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(30,30,30,0.12);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
     }
 
     .share-options.open {
@@ -1665,7 +1669,7 @@
     .share-options button {
       width: 100%;
       border: none;
-      background: rgba(255, 255, 255, 0.42);
+      background: rgba(255,255,255,0.42);
       color: #1f1f1f;
       text-decoration: none;
       text-align: left;
@@ -1679,9 +1683,223 @@
 
     .share-options a:hover,
     .share-options button:hover {
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255,255,255,0.75);
       transform: translateX(-2px);
     }
+
+    .interactive-card {
+      outline: none;
+    }
+
+    .interactive-card:focus-visible {
+      box-shadow:
+        0 0 0 4px rgba(184,139,47,0.22),
+        0 28px 72px rgba(31,28,20,0.16);
+    }
+
+
+    /* HOUSE MOOD / LOUNGE FEATURE */
+    .lounge-section {
+      position: relative;
+      padding: clamp(42px, 7vw, 88px) 0;
+    }
+
+    .lounge-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+      gap: clamp(18px, 3.6vw, 42px);
+      align-items: stretch;
+      padding: clamp(14px, 2vw, 20px);
+      border-radius: 40px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.13), transparent 36%),
+        rgba(255,252,246,0.70);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .lounge-shell::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 34px;
+      border: 1px solid rgba(39,69,55,0.07);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .lounge-photo-wrap {
+      position: relative;
+      min-height: clamp(420px, 52vw, 660px);
+      border-radius: 32px;
+      overflow: hidden;
+      background: #e8e0d2;
+      isolation: isolate;
+    }
+
+    .lounge-photo {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1.01);
+      transition: transform 0.55s ease, filter 0.55s ease;
+    }
+
+    .lounge-shell:hover .lounge-photo,
+    .lounge-shell.is-front .lounge-photo {
+      transform: scale(1.045);
+      filter: saturate(0.98) brightness(0.96);
+    }
+
+    .lounge-photo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(20,18,12,0.26), transparent 46%),
+        linear-gradient(180deg, transparent 52%, rgba(20,18,12,0.24));
+      pointer-events: none;
+    }
+
+    .lounge-copy {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(22px, 4vw, 42px);
+    }
+
+    .lounge-copy h2 {
+      font-size: clamp(2.15rem, 5.2vw, 4.55rem);
+      line-height: 0.96;
+      color: var(--forest);
+      margin-bottom: 18px;
+    }
+
+    .lounge-copy > p {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      line-height: 1.78;
+      max-width: 48ch;
+    }
+
+    .lounge-float-card {
+      position: absolute;
+      z-index: 4;
+      width: min(310px, calc(100% - 36px));
+      padding: 17px 18px;
+      border-radius: 24px;
+      background: rgba(255,252,246,0.78);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .lounge-float-card:hover,
+    .lounge-float-card.is-front {
+      transform: translateY(-6px) rotate(0deg);
+      box-shadow: 0 28px 66px rgba(0,0,0,0.20);
+    }
+
+    .lounge-float-card span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .lounge-float-card strong {
+      display: block;
+      color: var(--forest);
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: 1.26rem;
+      line-height: 1.16;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+
+    .lounge-float-card-one {
+      left: 22px;
+      bottom: 24px;
+      transform: rotate(-2deg);
+    }
+
+    .lounge-float-card-two {
+      right: 22px;
+      top: 24px;
+      transform: rotate(2deg);
+      width: min(260px, calc(100% - 36px));
+    }
+
+    .lounge-mini-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .lounge-mini {
+      appearance: none;
+      border: 1px solid rgba(39,69,55,0.12);
+      background: rgba(255,255,255,0.52);
+      color: var(--forest);
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+    }
+
+    .lounge-mini:hover,
+    .lounge-mini.is-active {
+      transform: translateY(-2px);
+      background: var(--forest);
+      color: #fff;
+      border-color: rgba(39,69,55,0.28);
+    }
+
+    .lounge-note-panel {
+      margin-top: 16px;
+      min-height: 96px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.48);
+      border: 1px solid rgba(39,69,55,0.09);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .lounge-note-panel p {
+      display: none;
+      animation: loungeNoteIn 0.35s ease both;
+    }
+
+    .lounge-note-panel p.is-active {
+      display: block;
+    }
+
+    @keyframes loungeNoteIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
 
     @media (min-width: 900px) {
       .hn-trip-slide {
@@ -1700,73 +1918,109 @@
     }
 
     @media (max-width: 1080px) {
-      .value-grid,
-      .gallery-grid,
-      .hero-bottom-card,
-      .liquid-info {
+      .hero-content,
+      .promise-shell,
+      .rhythm-shell,
+      .conversion-card,
+      .faq-strip,
+      .live-vibe-shell,
+      .insta-board {
+        grid-template-columns: 1fr;
+      }
+
+      .rhythm-left {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.11);
+      }
+
+      .house-grid {
         grid-template-columns: 1fr 1fr;
       }
 
-      .gallery-grid > :first-child,
-      .hero-bottom-card > :first-child {
+      .house-card.tall {
         grid-column: 1 / -1;
+        grid-row: auto;
+        min-height: 420px;
       }
-
-      .gallery-card.tall { grid-row: span 1; }
     }
 
     @media (max-width: 760px) {
-      .hero-wrap { min-height: 620px; }
-      .hero-copy { padding-top: 14px; }
+      .container {
+        width: min(calc(100% - 24px), var(--container));
+      }
+
+      .hero-stage {
+        border-radius: 28px;
+        min-height: 780px;
+      }
+
+      .hero-content {
+        padding: 22px;
+      }
 
       .hero h1 {
-        font-size: clamp(2.55rem, 14vw, 4.2rem);
+        max-width: 100%;
+        font-size: clamp(2.7rem, 13vw, 4.4rem);
       }
 
-      .hero-bottom-card {
-        padding: 18px;
+      .hero-lead {
+        font-size: 1rem;
       }
 
-      .hero-bottom-card,
-      .value-grid,
-      .gallery-grid,
-      .liquid-info {
+      .hero-panel {
+        align-self: end;
+      }
+
+      .hero-chip-grid {
         grid-template-columns: 1fr;
       }
 
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
+      .motion-marquee {
+        display: none;
       }
 
-      .pricing-note {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 22px 20px;
+      .promise-card,
+      .conversion-card,
+      .faq-strip,
+      .live-vibe-shell {
+        border-radius: 28px;
       }
 
-      .pricing-note .button {
+      .rhythm-shell {
+        border-radius: 30px;
+      }
+
+      .rhythm-mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .house-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .house-card,
+      .house-card.tall {
+        min-height: 280px;
+      }
+
+      .price-panel {
+        border-radius: 24px;
+      }
+
+      .hn-live-instagram-featured {
+        min-height: 360px;
+      }
+
+      .hn-live-instagram-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hn-live-instagram-follow {
         width: 100%;
       }
 
-      .home-faq-preview {
-        padding: 18px 0 34px;
-      }
-
-      .home-faq-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .home-faq-card {
-        border-radius: 22px;
-      }
-
-      .random-faq-box {
-        min-height: auto;
-      }
-
       .hn-upcoming-section {
-        padding: 76px 16px 64px;
+        padding-inline: 14px;
       }
 
       .hn-slider-topbar {
@@ -1775,24 +2029,7 @@
       }
 
       .hn-trip-card {
-        min-height: 620px;
-      }
-
-      .hn-trip-body {
-        padding: 22px 20px 22px;
-      }
-
-      .hn-trip-image {
-        min-height: 250px;
-      }
-
-      .hn-trip-slider {
-        gap: 18px;
-        padding-right: 14vw;
-      }
-
-      .hn-trip-slide {
-        flex: 0 0 min(88vw, 390px);
+        min-height: 600px;
       }
 
       .hn-trip-footer {
@@ -1823,6 +2060,49 @@
         font-size: 13px;
       }
     }
+  
+    @media (max-width: 1080px) {
+      .lounge-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .lounge-copy {
+        padding-top: 10px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .lounge-shell {
+        border-radius: 30px;
+        padding: 10px;
+      }
+
+      .lounge-photo-wrap {
+        min-height: 420px;
+        border-radius: 24px;
+      }
+
+      .lounge-copy {
+        padding: 20px 14px 14px;
+      }
+
+      .lounge-float-card {
+        width: calc(100% - 28px);
+        left: 14px;
+        right: auto;
+      }
+
+      .lounge-float-card-one {
+        bottom: 14px;
+      }
+
+      .lounge-float-card-two {
+        top: 14px;
+        transform: rotate(1deg);
+      }
+    }
+
+
   </style>
 </head>
 
@@ -1833,262 +2113,358 @@
     <main id="top">
       <section class="hero">
         <div class="container">
-          <div class="hero-wrap">
-            <img class="hero-media" src="Image/hero.jpg" alt="Shavuos in Vermont retreat hero image" />
+          <div class="hero-stage" id="heroStage">
+            
+            <div class="hero-media-stack" aria-hidden="true">
+              <img class="hero-media hero-slide is-active" src="Image/hero.jpg" alt="Shavuos in Vermont retreat hero image" />
+              <img class="hero-media hero-slide" src="Image/chill.jpg" alt="Warm lounge in the retreat house" />
+              <img class="hero-media hero-slide" src="Image/dining-space.jpg" alt="Dining space at the retreat house" />
+              <img class="hero-media hero-slide" src="Image/pool.png" alt="Pool at the retreat house" />
+              <img class="hero-media hero-slide" src="Image/game-room.png" alt="Game room at the retreat house" />
+              <img class="hero-media hero-slide" src="Image/bedroom.png" alt="Bedroom at the retreat house" />
+              <img class="hero-media hero-slide" src="Image/exterior.png" alt="Exterior of the retreat house" />
+            </div>
+
             <div class="hero-scrim"></div>
 
-            <div class="hero-inner">
-              <div class="hero-topbar"></div>
+            <div class="hero-content">
+              <div class="hero-copy" data-reveal>
+                <div class="eyebrow">May 21–24 • Vermont</div>
+                <h1>Spend Shavuos somewhere unforgettable.</h1>
+                <p class="hero-lead">
+                  A small, curated Shavuos retreat for Jewish young adults in a private Vermont home — kosher meals, Shabbos and Chag rhythm, mountain air, and the kind of connection that feels natural.
+                </p>
 
-              <div class="hero-copy">
-                <h1>Shavuos <span class="gold">in Vermont</span></h1>
-                <div class="eyebrow">May 21 - May 24</div>
-                <div class="hero-kicker">A mountain retreat experience</div>
-                <p class="hero-lead">A thoughtful 4-day Shavuos experience for Jewish young adults in a private Vermont home surrounded by nature.</p>
-                <div class="hero-earlybird" id="earlyBirdCountdown" aria-label="Early bird pricing countdown">
-                  <div class="hero-earlybird-header">
+                <div class="hero-actions">
+                  <a href="Forms/apply.html" class="button">Apply for Shavuos</a>
+                  <a href="#house" class="button-secondary">See the house</a>
+                </div>
+              </div>
+
+              <aside class="hero-panel" data-reveal style="--delay: 160ms;">
+                <div class="hero-date-card glass interactive-card">
+                  <h2>4 days. 3 nights. One curated group.</h2>
+                  <p>Not a hotel program. Not a giant event. A more personal Shavuos weekend built around warmth, observance, and real shared time.</p>
+                </div>
+
+                <div class="hero-chip-grid">
+                  <div class="hero-chip interactive-card">From $350</div>
+                  <div class="hero-chip interactive-card">Kosher meals</div>
+                  <div class="hero-chip interactive-card">Minyan + eiruv</div>
+                  <div class="hero-chip interactive-card">Pool + hot tub</div>
+                </div>
+
+                <div class="countdown-card" id="earlyBirdCountdown" aria-label="Early bird pricing countdown">
+                  <div class="countdown-top">
                     <span>Early bird pricing</span>
                     <strong>Ends May 3</strong>
                   </div>
 
-                  <div class="hero-countdown-row">
-                    <div class="hero-countdown-unit">
-                      <div class="hero-countdown-number" id="early-days">00</div>
-                      <div class="hero-countdown-label">Days</div>
+                  <div class="countdown-row">
+                    <div class="countdown-unit">
+                      <span class="countdown-number" id="early-days">00</span>
+                      <span class="countdown-label">Days</span>
                     </div>
-
-                    <div class="hero-countdown-separator">:</div>
-
-                    <div class="hero-countdown-unit">
-                      <div class="hero-countdown-number" id="early-hours">00</div>
-                      <div class="hero-countdown-label">Hours</div>
+                    <div class="countdown-unit">
+                      <span class="countdown-number" id="early-hours">00</span>
+                      <span class="countdown-label">Hours</span>
                     </div>
-
-                    <div class="hero-countdown-separator">:</div>
-
-                    <div class="hero-countdown-unit">
-                      <div class="hero-countdown-number" id="early-minutes">00</div>
-                      <div class="hero-countdown-label">Min</div>
+                    <div class="countdown-unit">
+                      <span class="countdown-number" id="early-minutes">00</span>
+                      <span class="countdown-label">Min</span>
                     </div>
-
-                    <div class="hero-countdown-separator">:</div>
-
-                    <div class="hero-countdown-unit">
-                      <div class="hero-countdown-number" id="early-seconds">00</div>
-                      <div class="hero-countdown-label">Sec</div>
+                    <div class="countdown-unit">
+                      <span class="countdown-number" id="early-seconds">00</span>
+                      <span class="countdown-label">Sec</span>
                     </div>
                   </div>
-
-                  <p class="hero-earlybird-note">Apply before pricing changes.</p>
                 </div>
+              </aside>
+            </div>
 
-
-                <div class="hero-actions">
-                  <a href="Forms/apply.html" class="button">Join the retreat</a>
-                  <a href="#gallery" class="button-secondary">View the House</a>
-                </div>              </div>
-
-              <div class="hero-bottom-card glass">
-                <div>
-                  <h2>A different kind of Shavuos.</h2>
-                  <p>Slow down, connect, and experience Yom Tov in a warm, welcoming environment with beautiful shared spaces, mountain air, and a naturally social atmosphere.</p>
-                </div>
-                <div class="quick-facts">
-                  <div>Private home</div>
-                  <div>Mountain views</div>
-                  <div>Camping options</div>
-                  <div>Hot tub</div>
-                  <div>Game room</div>
-                  <div>Kosher food</div>
-                </div>
+            <div class="motion-marquee" aria-hidden="true">
+              <div class="marquee-track">
+                <span class="marquee-item">Small curated group</span>
+                <span class="marquee-item">Private Vermont home</span>
+                <span class="marquee-item">Kosher meals included</span>
+                <span class="marquee-item">Shabbos & Chag observant</span>
+                <span class="marquee-item">Games • learning • nature</span>
+                <span class="marquee-item">Small curated group</span>
+                <span class="marquee-item">Private Vermont home</span>
+                <span class="marquee-item">Kosher meals included</span>
+                <span class="marquee-item">Shabbos & Chag observant</span>
+                <span class="marquee-item">Games • learning • nature</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="experience" class="section">
+      <section class="promise-section" id="experience">
         <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow" style="color: var(--gold);">What is included</div>
-              <h2>The retreat experience</h2>
-            </div>
-            <p>A warm Shavuos retreat with meaningful programming, relaxed social time, meals together, and space to enjoy the Vermont setting.</p>
-          </div>
+          <div class="promise-shell">
+            <div class="promise-copy" data-reveal>
+              <div class="eyebrow">What this is</div>
+              <h2>A retreat, not a program factory.</h2>
+              <p>
+                Hamsa Nomads is built for people who want a Shavuos that feels intentional, social, beautiful, and observant — without the pressure or heaviness of a huge organized scene.
+              </p>
 
-          <div class="value-grid">
-            <article class="card glass">
-              <h3>Thursday night learning</h3>
-              <p>Arrive, settle in, meet the group, and ease into Shavuos with coffee, tea, conversation, and late-night learning.</p>
-            </article>
-
-            <article class="card glass">
-              <h3>Shabbos & Yom Tov meals</h3>
-              <p>Shared kosher meals, meaningful conversation, singing, divrei Torah, and a calm Shabbos and Yom Tov atmosphere.</p>
-            </article>
-
-            <article class="card glass">
-              <h3>Games & connection</h3>
-              <p>Board games, casual hangouts, discussion groups, and unstructured time to connect naturally with other guests.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="gallery" class="section">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow" style="color: var(--gold);">The place</div>
-              <h2>A private Vermont home surrounded by nature.</h2>
-            </div>
-            <p>Beautiful shared spaces, mountain views, cozy gathering areas, and room to breathe — the setting is part of what makes this Shavuos feel slower, softer, and more memorable.</p>
-          </div>
-
-        <div class="gallery-grid">
-  <article class="gallery-card glass tall">
-    <img src="Image/dining-space.jpg" alt="Dining and gathering space" />
-    <div class="gallery-bubble">Dining Space</div>
-  </article>
-
-  <article class="gallery-card glass">
-    <img src="Image/bedroom.png" alt="Bedroom at the retreat house" />
-    <div class="gallery-bubble">Bedroom</div>
-  </article>
-
-  <article class="gallery-card glass">
-    <img src="Image/pool.png" alt="Pool at the retreat house" />
-    <div class="gallery-bubble">Pool</div>
-  </article>
-
-  <article class="gallery-card glass">
-    <img src="Image/game-room.png" alt="Game room at the retreat house" />
-    <div class="gallery-bubble">Game Room</div>
-  </article>
-
-  <article class="gallery-card glass">
-    <img src="Image/exterior.png" alt="Other Game Room" />
-    <div class="gallery-bubble">Other Game Room</div>
-  </article>
-</div>
-        </div>
-      </section>
-
-      <section id="details" class="section">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <div class="eyebrow" style="color: var(--gold);">More information</div>
-              <h2>Weekend rhythm</h2>
-            </div>
-            <p>The weekend is designed to feel full but not overwhelming — a balance of Yom Tov, rest, connection, and the beauty of Vermont.</p>
-          </div>
-
-          <div class="liquid-info glass">
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 3v18M5 12h14M7 7l10 10M17 7L7 17"/></svg>
+              <div class="promise-pill-row">
+                <span class="promise-pill">Young adults</span>
+                <span class="promise-pill">Curated group</span>
+                <span class="promise-pill">Nature</span>
+                <span class="promise-pill">Warm Jewish energy</span>
               </div>
-              <h3>Shavuos night</h3>
-              <p>Arrival, settling in, opening learning night, coffee and tea, relaxed introductions, and preparing for Shabbos together.</p>
             </div>
 
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M18 15.5A7 7 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5z"/></svg>
-              </div>
-              <h3>Shabbos</h3>
-              <p>Meals, davening, discussions, rest, games, and time to enjoy the group in a slower, meaningful setting.</p>
-            </div>
+            <div class="promise-cards">
+              <article class="promise-card interactive-card" data-reveal style="--delay: 80ms;">
+                <h3>Small curated group</h3>
+                <p>We review applications so the group feels comfortable, balanced, and intentional.</p>
+              </article>
 
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M3 20h18L12 4 3 20zM12 4l-2 16M12 4l4 16"/></svg>
-              </div>
-              <h3>Sunday hike</h3>
-              <p>A Vermont nature outing or hike, plus morning time for the hot tub, game room, conversations, and relaxing on the property.</p>
-            </div>
+              <article class="promise-card interactive-card" data-reveal style="--delay: 160ms;">
+                <h3>Shabbos & Chag observant</h3>
+                <p>Public spaces follow a Shabbos and Yom Tov rhythm, with kosher meals and a thoughtful environment.</p>
+              </article>
 
-            <div class="liquid-item">
-              <div class="liquid-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2l2.5 7H22l-6 4.5L18.5 21 12 16.5 5.5 21 8 13.5 2 9h7.5L12 2z"/></svg>
-              </div>
-              <h3>Included atmosphere</h3>
-              <p>Kosher food, minyan, eiruv, Shabbos and Yom Tov environment, private home, mountain views, and curated group energy.</p>
+              <article class="promise-card interactive-card" data-reveal style="--delay: 240ms;">
+                <h3>Nature, games, learning</h3>
+                <p>Meals, fresh air, discussions, board games, learning, singing, pool and hot tub time, and connection that feels natural.</p>
+              </article>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="pricing-apply-section">
-  <div class="pricing-apply-card glass">
-    <div class="pricing-apply-main">
-      <p class="eyebrow">Pricing & application</p>
 
-      <h2>Join us from $350</h2>
-
-      <p>
-        4 days, 3 nights in a private Vermont retreat house, with kosher meals,
-        shared spaces, programming, and the full Shavuos weekend experience included.
-      </p>
-
-      <p>
-        Final pricing depends on room choice and group size.
-      </p>
-    </div>
-
-    <div class="pricing-apply-side">
-      <h3>How it works</h3>
-
-      <p>
-        The short application helps us shape a small, intentional group and make sure
-        the weekend feels comfortable for everyone.
-      </p>
-
-      <p class="pricing-apply-note">
-        We follow up with details before any payment is requested.
-      </p>
-
-      <a href="Forms/apply.html" class="pricing-apply-cta">
-        Start the application
-      </a>
-    </div>
-  </div>
-</section>
-         
-      <section class="home-faq-preview" id="faq-preview">
+      <section class="lounge-section" id="lounge">
         <div class="container">
-          <div class="home-faq-card glass">
-            <div class="home-faq-kicker">Questions before you join?</div>
+          <div class="lounge-shell interactive-card" data-reveal>
+            <div class="lounge-photo-wrap">
+              <img
+                class="lounge-photo"
+                src="Image/chill.jpg"
+                alt="Warm Vermont living room lounge with wood beams and cozy seating"
+              />
 
-            <div class="home-faq-layout">
-              <div class="home-faq-copy">
-                <h2>One question people usually ask</h2>
+              <div class="lounge-float-card lounge-float-card-one interactive-card">
+                <span>Where the weekend slows down</span>
+                <strong>Couches, coffee, conversations, and the kind of in-between moments people remember.</strong>
+              </div>
+
+              <div class="lounge-float-card lounge-float-card-two interactive-card">
+                <span>House energy</span>
+                <strong>Warm, wood, light, and room to actually sit with people.</strong>
+              </div>
+            </div>
+
+            <div class="lounge-copy">
+              <div class="eyebrow">The house mood</div>
+              <h2>Not just where we sleep. Where the retreat happens.</h2>
+              <p>
+                This is the kind of space that makes the weekend feel natural: people drifting in after meals, a game starting on the table, a late conversation on the couch, coffee in hand, someone singing softly in the corner.
+              </p>
+
+              <div class="lounge-mini-grid">
+                <button class="lounge-mini is-active" type="button" data-lounge-note="talk">
+                  Conversation corners
+                </button>
+                <button class="lounge-mini" type="button" data-lounge-note="game">
+                  Tabletop games
+                </button>
+                <button class="lounge-mini" type="button" data-lounge-note="rest">
+                  Slow Shabbos energy
+                </button>
+              </div>
+
+              <div class="lounge-note-panel">
+                <p data-lounge-panel="talk" class="is-active">
+                  A retreat needs spaces where people can meet without it feeling forced. This room gives the weekend that softer rhythm.
+                </p>
+                <p data-lounge-panel="game">
+                  Not every moment needs to be programmed. Some of the best connection happens around games, snacks, and casual late-night conversations.
+                </p>
+                <p data-lounge-panel="rest">
+                  After meals, learning, and singing, people need a beautiful place to just be. That’s part of the experience.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rhythm-section" id="rhythm">
+        <div class="container">
+          <div class="rhythm-shell" data-reveal>
+            <div class="rhythm-left">
+              <div>
+                <div class="eyebrow">Weekend rhythm</div>
+                <h2>Full, but not overwhelming.</h2>
                 <p>
-                  Hamsa Nomads is small, curated, and a little different from a regular trip.
-                  Here’s one answer pulled from our FAQ page.
+                  The weekend is designed with enough structure to feel meaningful, and enough space to breathe.
                 </p>
               </div>
 
-              <a href="faq.html" class="random-faq-box" id="randomFaqBox">
-                <div class="random-faq-label">From the FAQ</div>
-                <h3 id="randomFaqQuestion">Loading a question...</h3>
-                <p id="randomFaqAnswer">
-                  We’re pulling one answer from the FAQ page.
-                </p>
-                <span class="random-faq-link">Read the full FAQ →</span>
-              </a>
+              <div class="rhythm-tabs" role="tablist" aria-label="Weekend rhythm tabs">
+                <button class="rhythm-tab is-active" type="button" data-rhythm-tab="thursday">Thursday night</button>
+                <button class="rhythm-tab" type="button" data-rhythm-tab="shabbos">Shabbos / Yom Tov</button>
+                <button class="rhythm-tab" type="button" data-rhythm-tab="motzei">Motzei Shabbos</button>
+                <button class="rhythm-tab" type="button" data-rhythm-tab="sunday">Sunday</button>
+              </div>
+            </div>
+
+            <div class="rhythm-detail">
+              <svg class="rhythm-line" viewBox="0 0 900 540" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M -40 140 C 120 70, 200 250, 350 190 S 560 80, 700 200 S 820 380, 960 270" />
+                <path d="M -20 410 C 160 350, 240 500, 420 445 S 640 300, 820 430 S 910 510, 980 450" />
+              </svg>
+
+              <article class="rhythm-panel is-active" data-rhythm-panel="thursday">
+                <span class="rhythm-kicker">Arrival + opening</span>
+                <h3>Ease in before Shabbos.</h3>
+                <p>Arrive, settle in, meet the group, and start the weekend with coffee, tea, relaxed introductions, and opening learning.</p>
+                <div class="rhythm-mini-grid">
+                  <div class="rhythm-mini">Arrival</div>
+                  <div class="rhythm-mini">Coffee + tea</div>
+                  <div class="rhythm-mini">Opening learning</div>
+                </div>
+              </article>
+
+              <article class="rhythm-panel" data-rhythm-panel="shabbos">
+                <span class="rhythm-kicker">Meals + connection</span>
+                <h3>The core of the retreat.</h3>
+                <p>Shared kosher meals, davening, discussions, rest, games, singing, divrei Torah, and slower time together in the house.</p>
+                <div class="rhythm-mini-grid">
+                  <div class="rhythm-mini">Meals</div>
+                  <div class="rhythm-mini">Davening</div>
+                  <div class="rhythm-mini">Games + rest</div>
+                </div>
+              </article>
+
+              <article class="rhythm-panel" data-rhythm-panel="motzei">
+                <span class="rhythm-kicker">After Shabbos</span>
+                <h3>A lighter, social night.</h3>
+                <p>Pizza making, bonfire or kumzitz energy, s’mores, and separate pool/hot tub time blocks woven into the night.</p>
+                <div class="rhythm-mini-grid">
+                  <div class="rhythm-mini">Pizza making</div>
+                  <div class="rhythm-mini">Bonfire / kumzitz</div>
+                  <div class="rhythm-mini">Pool + hot tub</div>
+                </div>
+              </article>
+
+              <article class="rhythm-panel" data-rhythm-panel="sunday">
+                <span class="rhythm-kicker">Nature + house time</span>
+                <h3>Fresh air and a softer pace.</h3>
+                <p>A Vermont nature outing or hike, relaxed house time, conversations, games, and space to enjoy the property before the weekend closes.</p>
+                <div class="rhythm-mini-grid">
+                  <div class="rhythm-mini">Nature outing</div>
+                  <div class="rhythm-mini">House time</div>
+                  <div class="rhythm-mini">Goodbyes</div>
+                </div>
+              </article>
             </div>
           </div>
         </div>
       </section>
-<!-- Connected Hamsa Nomads Instagram Feed -->
-      <section class="hn-live-instagram-section" id="instagram">
+
+      <section class="section" id="house">
         <div class="container">
-          <div class="hn-live-instagram-card glass">
-            <div class="hn-live-instagram-header">
-              <div class="hn-live-instagram-profile">
+          <div class="section-intro" data-reveal>
+            <div class="eyebrow">The place</div>
+            <h2>The house is part of the experience.</h2>
+            <p>
+              Beautiful shared spaces, mountain views, cozy gathering areas, and room to breathe — the setting helps the weekend feel slower, softer, and more memorable.
+            </p>
+          </div>
+
+          <div class="house-grid">
+            <article class="house-card tall interactive-card" data-reveal>
+              <img src="Image/dining-space.jpg" alt="Dining and gathering space" />
+              <div class="house-label">Dining Space</div>
+            </article>
+
+            <article class="house-card interactive-card" data-reveal style="--delay: 80ms;">
+              <img src="Image/bedroom.png" alt="Bedroom at the retreat house" />
+              <div class="house-label">Bedroom</div>
+            </article>
+
+            <article class="house-card interactive-card" data-reveal style="--delay: 160ms;">
+              <img src="Image/pool.png" alt="Pool at the retreat house" />
+              <div class="house-label">Pool</div>
+            </article>
+
+            <article class="house-card interactive-card" data-reveal style="--delay: 240ms;">
+              <img src="Image/game-room.png" alt="Game room at the retreat house" />
+              <div class="house-label">Game Room</div>
+            </article>
+
+            <article class="house-card interactive-card" data-reveal style="--delay: 320ms;">
+              <img src="Image/exterior.png" alt="Retreat house exterior" />
+              <div class="house-label">More space to gather</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="apply">
+        <div class="container">
+          <article class="conversion-card glass interactive-card" data-reveal>
+            <div class="conversion-copy">
+              <div class="eyebrow">Pricing & application</div>
+              <h2>Join us from $350.</h2>
+              <p>
+                4 days, 3 nights in a private Vermont retreat house, with kosher meals, shared spaces, programming, and the full Shavuos weekend experience included. Final pricing depends on room choice and group size.
+              </p>
+            </div>
+
+            <div class="price-panel">
+              <div class="price-number">$350+</div>
+              <p>Application first. Payment only after we follow up with the details.</p>
+              <ul class="included-list">
+                <li>Private Vermont retreat house</li>
+                <li>Kosher meals included</li>
+                <li>Shabbos and Yom Tov environment</li>
+                <li>Programming, games, nature, and shared spaces</li>
+              </ul>
+              <a href="Forms/apply.html" class="button-secondary">Start the application</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="faq-preview">
+        <div class="container">
+          <div class="faq-strip glass" data-reveal>
+            <div>
+              <div class="eyebrow">Questions before you join?</div>
+              <h2>Still wondering if this is for you?</h2>
+            </div>
+
+            <a href="faq.html" class="random-faq-box interactive-card" id="randomFaqBox">
+              <div class="random-faq-label">From the FAQ</div>
+              <h3 id="randomFaqQuestion">Loading a question...</h3>
+              <p id="randomFaqAnswer">We’re pulling one answer from the FAQ page.</p>
+              <span class="random-faq-link">Read the full FAQ →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="instagram">
+        <div class="container">
+          <div class="live-vibe-shell" data-reveal>
+            <div class="live-vibe-copy">
+              <div>
+                <div class="eyebrow">Live from Instagram</div>
+                <h2>Catch the vibe live.</h2>
+                <p>
+                  Retreat moments, Jewish travel inspiration, behind-the-scenes clips, and the latest energy from Hamsa Nomads.
+                </p>
+              </div>
+
+              <div class="insta-profile-row">
                 <img
                   class="hn-live-instagram-avatar"
                   src="logo/logo-hamsa-nomads.png"
@@ -2096,26 +2472,18 @@
                   onerror="hnHandleInstagramAvatarError(this);"
                 />
 
-                <div>
-                  <p class="hn-live-instagram-eyebrow">Live from Instagram</p>
-                  <h2>What's happening at @hamsanomads</h2>
-                  <p>
-                    Retreat moments, Jewish travel inspiration, behind-the-scenes clips, and the latest energy from Hamsa Nomads.
-                  </p>
-                </div>
+                <a
+                  class="hn-live-instagram-follow"
+                  href="https://www.instagram.com/hamsanomads/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Follow
+                </a>
               </div>
-
-              <a
-                class="hn-live-instagram-follow"
-                href="https://www.instagram.com/hamsanomads/"
-                target="_blank"
-                rel="noopener"
-              >
-                Follow
-              </a>
             </div>
 
-            <div class="hn-live-instagram-body">
+            <div class="insta-board">
               <a
                 id="hnInstagramFeatured"
                 class="hn-live-instagram-featured"
@@ -2123,13 +2491,11 @@
                 target="_blank"
                 rel="noopener"
               >
-                <div class="hn-live-instagram-placeholder">
-                  Loading Instagram...
-                </div>
+                <div class="hn-live-instagram-placeholder">Loading Instagram...</div>
               </a>
 
-              <div class="hn-live-instagram-side">
-                <div class="hn-live-instagram-topline">
+              <div class="insta-side">
+                <div class="insta-topline">
                   <span>Fresh from the feed</span>
                   <button type="button" id="hnInstagramRefresh">Shuffle</button>
                 </div>
@@ -2141,191 +2507,7 @@
         </div>
       </section>
 
-      <script>
-        const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
-        let hnInstagramLivePosts = [];
-        const HN_INSTAGRAM_AVATAR_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23F4E7C7'/%3E%3Cstop offset='1' stop-color='%23E7D2A2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' rx='60' fill='url(%23g)'/%3E%3Ctext x='60' y='70' text-anchor='middle' font-family='Arial, sans-serif' font-size='34' font-weight='700' fill='%23274537'%3EHN%3C/text%3E%3C/svg%3E";
-        const HN_INSTAGRAM_AVATAR_CANDIDATES = [
-          "logo/logo-hamsa-nomads.png",
-          "Image/logo-hamsa-nomads.png",
-          "Image/Logo-hamsa-nomads.png",
-          "Image/hamsa-logo.png",
-          "Image/logo.png",
-          "Image/hamsa-instagram-profile.jpg"
-        ];
-        let hnInstagramFeaturedId = null;
-
-        function hnHandleInstagramAvatarError(img) {
-          if (!img) return;
-          const attempted = Number(img.dataset.avatarIndex || 0) + 1;
-          img.dataset.avatarIndex = attempted;
-
-          if (attempted < HN_INSTAGRAM_AVATAR_CANDIDATES.length) {
-            img.src = HN_INSTAGRAM_AVATAR_CANDIDATES[attempted];
-            return;
-          }
-
-          img.onerror = null;
-          img.src = HN_INSTAGRAM_AVATAR_FALLBACK;
-        }
-
-
-        function hnEscapeInstagramText(value) {
-          return String(value || "")
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#039;");
-        }
-
-        function hnCleanCaption(caption, maxLength) {
-          const clean = String(caption || "")
-            .replace(/\s+/g, " ")
-            .trim();
-
-          if (!clean) return "See this moment on Instagram.";
-
-          return clean.length > maxLength
-            ? clean.slice(0, maxLength).trim() + "..."
-            : clean;
-        }
-
-        function hnGetInstagramTypeLabel(type) {
-          if (type === "VIDEO") return "Reel";
-          if (type === "CAROUSEL_ALBUM") return "Post";
-          return "Post";
-        }
-
-        function hnShuffleInstagramPosts() {
-          return [...hnInstagramLivePosts].sort(() => Math.random() - 0.5);
-        }
-
-        function hnPickRandomInstagramPost() {
-          if (!hnInstagramLivePosts.length) return null;
-          const post = hnInstagramLivePosts[
-            Math.floor(Math.random() * hnInstagramLivePosts.length)
-          ];
-          hnInstagramFeaturedId = post?.id || null;
-          return post;
-        }
-
-        function hnRenderInstagramFeatured() {
-          const featured = document.getElementById("hnInstagramFeatured");
-          const post = hnPickRandomInstagramPost();
-
-          if (!featured || !post) return;
-
-          const caption = hnCleanCaption(post.caption, 115);
-          const type = hnGetInstagramTypeLabel(post.type);
-
-          featured.href = post.url || "https://www.instagram.com/hamsanomads/";
-
-          featured.innerHTML = `
-            <img
-              src="${hnEscapeInstagramText(post.image)}"
-              alt="${hnEscapeInstagramText(caption)}"
-              loading="lazy"
-              onerror="this.onerror=null; this.src='Image/hero.jpg';"
-            />
-
-            <div class="hn-live-instagram-featured-overlay">
-              <span>${hnEscapeInstagramText(type)}</span>
-              <strong>${hnEscapeInstagramText(caption)}</strong>
-            </div>
-          `;
-        }
-
-        function hnRenderInstagramGrid() {
-          const grid = document.getElementById("hnInstagramGrid");
-          if (!grid) return;
-
-          const posts = hnShuffleInstagramPosts()
-            .filter((post) => post.id !== hnInstagramFeaturedId)
-            .slice(0, 8);
-
-          grid.innerHTML = posts.map((post) => {
-            const caption = hnCleanCaption(post.caption, 80);
-            const type = hnGetInstagramTypeLabel(post.type);
-
-            return `
-              <a
-                class="hn-live-instagram-post"
-                href="${hnEscapeInstagramText(post.url || 'https://www.instagram.com/hamsanomads/')}"
-                target="_blank"
-                rel="noopener"
-                aria-label="Open Hamsa Nomads Instagram post"
-              >
-                <img
-                  src="${hnEscapeInstagramText(post.image)}"
-                  alt="${hnEscapeInstagramText(caption)}"
-                  loading="lazy"
-                  onerror="this.onerror=null; this.src='Image/hero.jpg';"
-                />
-                <span class="hn-live-instagram-type">${hnEscapeInstagramText(type)}</span>
-              </a>
-            `;
-          }).join("");
-        }
-
-        function hnRenderInstagramFeed() {
-          hnRenderInstagramFeatured();
-          hnRenderInstagramGrid();
-        }
-
-        async function hnLoadInstagramFeed() {
-          const featured = document.getElementById("hnInstagramFeatured");
-          const grid = document.getElementById("hnInstagramGrid");
-
-          try {
-            const response = await fetch(HN_INSTAGRAM_API_URL, { cache: "no-store" });
-
-            if (!response.ok) {
-              throw new Error("Instagram feed request failed.");
-            }
-
-            const data = await response.json();
-
-            const avatar = document.querySelector(".hn-live-instagram-avatar");
-            if (avatar) {
-              avatar.dataset.avatarIndex = "-1";
-              avatar.src = data.profilePicture || HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
-            }
-
-            hnInstagramLivePosts = Array.isArray(data.posts) ? data.posts : [];
-
-            if (!hnInstagramLivePosts.length) {
-              throw new Error("No Instagram posts found.");
-            }
-
-            hnRenderInstagramFeed();
-          } catch (error) {
-            if (featured) {
-              featured.removeAttribute("href");
-              featured.innerHTML = `
-                <div class="hn-live-instagram-error">
-                  Instagram feed is not available right now.
-                </div>
-              `;
-            }
-
-            if (grid) {
-              grid.innerHTML = "";
-            }
-          }
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-          hnLoadInstagramFeed();
-
-          const refreshButton = document.getElementById("hnInstagramRefresh");
-
-          if (refreshButton) {
-            refreshButton.addEventListener("click", hnRenderInstagramFeed);
-          }
-        });
-      </script>
-                    <section class="hn-upcoming-section" id="upcoming-trips">
+      <section class="hn-upcoming-section" id="upcoming-trips">
         <div class="hn-upcoming-line" aria-hidden="true">
           <svg viewBox="0 0 1400 900" preserveAspectRatio="none">
             <path d="M -50 180 C 120 110, 170 260, 290 230 S 510 130, 660 220 S 860 360, 1030 290 S 1190 180, 1450 260" />
@@ -2334,16 +2516,16 @@
         </div>
 
         <div class="hn-upcoming-inner">
-          <div class="hn-upcoming-header">
+          <div class="hn-upcoming-header" data-reveal>
             <span class="hn-overline">Upcoming Trips</span>
             <h2 class="hn-upcoming-title">
-            <a
-              class="hn-upcoming-title-link"
-              href="https://www.hamsanomads.com/trips-page/trips.html"
-            >
-              Where the line goes next
-            </a>
-          </h2>
+              <a
+                class="hn-upcoming-title-link"
+                href="https://www.hamsanomads.com/trips-page/trips.html"
+              >
+                Where the line goes next
+              </a>
+            </h2>
             <p class="hn-upcoming-subtitle">
               A growing map of Hamsa Nomads experiences — city weekends, playful escapes,
               and holiday retreats with a soul. Slide through what’s coming next.
@@ -2417,42 +2599,261 @@
   <script src="assets/site-components.js" data-base=""></script>
 
   <script>
-    (() => {
-      const drawPaths = [
-        document.getElementById("hamsaBack"),
-        document.getElementById("hamsaFront"),
-        document.getElementById("lineBack"),
-        document.getElementById("lineFront")
-      ].filter(Boolean);
+    const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
+    let hnInstagramLivePosts = [];
+    let hnInstagramFeaturedId = null;
 
-      const slicePaths = [
-        document.getElementById("sliceBack"),
-        document.getElementById("sliceFront")
-      ].filter(Boolean);
+    const HN_INSTAGRAM_AVATAR_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23F4E7C7'/%3E%3Cstop offset='1' stop-color='%23E7D2A2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' rx='60' fill='url(%23g)'/%3E%3Ctext x='60' y='70' text-anchor='middle' font-family='Arial, sans-serif' font-size='34' font-weight='700' fill='%23274537'%3EHN%3C/text%3E%3C/svg%3E";
+    const HN_INSTAGRAM_AVATAR_CANDIDATES = [
+      "logo/logo-hamsa-nomads.png",
+      "Image/logo-hamsa-nomads.png",
+      "Image/Logo-hamsa-nomads.png",
+      "Image/hamsa-logo.png",
+      "Image/logo.png",
+      "Image/hamsa-instagram-profile.jpg"
+    ];
 
-      function updateLine() {
-        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-        const progress = Math.min(1, window.scrollY / maxScroll);
+    function hnHandleInstagramAvatarError(img) {
+      if (!img) return;
+      const attempted = Number(img.dataset.avatarIndex || 0) + 1;
+      img.dataset.avatarIndex = attempted;
 
-        drawPaths.forEach((path) => {
-          const len = path.getTotalLength();
-          path.style.strokeDasharray = len;
-          path.style.strokeDashoffset = len * (1 - Math.min(progress * 1.06, 1));
-        });
-
-        const sliceProgress = Math.max(0, (progress - 0.82) / 0.18);
-
-        slicePaths.forEach((path) => {
-          const len = path.getTotalLength();
-          path.style.strokeDasharray = len;
-          path.style.strokeDashoffset = len * (1 - sliceProgress);
-        });
+      if (attempted < HN_INSTAGRAM_AVATAR_CANDIDATES.length) {
+        img.src = HN_INSTAGRAM_AVATAR_CANDIDATES[attempted];
+        return;
       }
 
-      window.addEventListener("scroll", updateLine, { passive: true });
-      window.addEventListener("resize", updateLine);
-      updateLine();
-    })();
+      img.onerror = null;
+      img.src = HN_INSTAGRAM_AVATAR_FALLBACK;
+    }
+
+    function hnEscapeInstagramText(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function hnCleanCaption(caption, maxLength) {
+      const clean = String(caption || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (!clean) return "See this moment on Instagram.";
+
+      return clean.length > maxLength
+        ? clean.slice(0, maxLength).trim() + "..."
+        : clean;
+    }
+
+    function hnGetInstagramTypeLabel(type) {
+      if (type === "VIDEO") return "Reel";
+      if (type === "CAROUSEL_ALBUM") return "Post";
+      return "Post";
+    }
+
+    function hnShuffleInstagramPosts() {
+      return [...hnInstagramLivePosts].sort(() => Math.random() - 0.5);
+    }
+
+    function hnPickRandomInstagramPost() {
+      if (!hnInstagramLivePosts.length) return null;
+      const post = hnInstagramLivePosts[Math.floor(Math.random() * hnInstagramLivePosts.length)];
+      hnInstagramFeaturedId = post?.id || null;
+      return post;
+    }
+
+    function hnRenderInstagramFeatured() {
+      const featured = document.getElementById("hnInstagramFeatured");
+      const post = hnPickRandomInstagramPost();
+
+      if (!featured || !post) return;
+
+      const caption = hnCleanCaption(post.caption, 115);
+      const type = hnGetInstagramTypeLabel(post.type);
+
+      featured.href = post.url || "https://www.instagram.com/hamsanomads/";
+
+      featured.innerHTML = `
+        <img
+          src="${hnEscapeInstagramText(post.image)}"
+          alt="${hnEscapeInstagramText(caption)}"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='Image/hero.jpg';"
+        />
+
+        <div class="hn-live-instagram-featured-overlay">
+          <span>${hnEscapeInstagramText(type)}</span>
+          <strong>${hnEscapeInstagramText(caption)}</strong>
+        </div>
+      `;
+    }
+
+    function hnRenderInstagramGrid() {
+      const grid = document.getElementById("hnInstagramGrid");
+      if (!grid) return;
+
+      const posts = hnShuffleInstagramPosts()
+        .filter((post) => post.id !== hnInstagramFeaturedId)
+        .slice(0, 6);
+
+      grid.innerHTML = posts.map((post) => {
+        const caption = hnCleanCaption(post.caption, 80);
+        const type = hnGetInstagramTypeLabel(post.type);
+
+        return `
+          <a
+            class="hn-live-instagram-post interactive-card"
+            href="${hnEscapeInstagramText(post.url || 'https://www.instagram.com/hamsanomads/')}"
+            target="_blank"
+            rel="noopener"
+            aria-label="Open Hamsa Nomads Instagram post"
+          >
+            <img
+              src="${hnEscapeInstagramText(post.image)}"
+              alt="${hnEscapeInstagramText(caption)}"
+              loading="lazy"
+              onerror="this.onerror=null; this.src='Image/hero.jpg';"
+            />
+            <span class="hn-live-instagram-type">${hnEscapeInstagramText(type)}</span>
+          </a>
+        `;
+      }).join("");
+
+      hnInitInteractiveCards();
+    }
+
+    function hnRenderInstagramFeed() {
+      hnRenderInstagramFeatured();
+      hnRenderInstagramGrid();
+    }
+
+    async function hnLoadInstagramFeed() {
+      const featured = document.getElementById("hnInstagramFeatured");
+      const grid = document.getElementById("hnInstagramGrid");
+
+      try {
+        const response = await fetch(HN_INSTAGRAM_API_URL, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error("Instagram feed request failed.");
+        }
+
+        const data = await response.json();
+
+        const avatars = document.querySelectorAll(".hn-live-instagram-avatar");
+        avatars.forEach((avatar) => {
+          avatar.dataset.avatarIndex = "-1";
+          avatar.src = data.profilePicture || HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
+        });
+
+        const followLinks = document.querySelectorAll(".hn-live-instagram-follow");
+        followLinks.forEach((link) => {
+          link.href = data.profileUrl || "https://www.instagram.com/hamsanomads/";
+        });
+
+        hnInstagramLivePosts = Array.isArray(data.posts) ? data.posts : [];
+
+        if (!hnInstagramLivePosts.length) {
+          throw new Error("No Instagram posts found.");
+        }
+
+        hnRenderInstagramFeed();
+      } catch (error) {
+        if (featured) {
+          featured.removeAttribute("href");
+          featured.innerHTML = `
+            <div class="hn-live-instagram-error">
+              Instagram feed is not available right now.
+            </div>
+          `;
+        }
+
+        if (grid) {
+          grid.innerHTML = "";
+        }
+      }
+    }
+
+    function hnInitReveals() {
+      const revealItems = document.querySelectorAll("[data-reveal]");
+
+      if (!("IntersectionObserver" in window)) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.14,
+        rootMargin: "0px 0px -60px 0px"
+      });
+
+      revealItems.forEach((item) => observer.observe(item));
+    }
+
+    function hnInitInteractiveCards() {
+      const cards = document.querySelectorAll(".interactive-card");
+      let topLayer = 80;
+
+      cards.forEach((card) => {
+        if (card.dataset.interactiveReady === "true") return;
+        card.dataset.interactiveReady = "true";
+
+        if (!card.hasAttribute("tabindex") && card.tagName.toLowerCase() !== "a" && card.tagName.toLowerCase() !== "button") {
+          card.setAttribute("tabindex", "0");
+        }
+
+        function bringForward() {
+          const group = card.closest(".promise-cards, .house-grid, .live-vibe-shell, .hn-trip-slider, .hero-panel, .faq-strip") || document;
+          group.querySelectorAll(".is-front").forEach((item) => {
+            if (item !== card) item.classList.remove("is-front");
+          });
+
+          topLayer += 1;
+          card.classList.add("is-front");
+          card.style.zIndex = String(topLayer);
+        }
+
+        card.addEventListener("pointerdown", bringForward, { passive: true });
+        card.addEventListener("mouseenter", bringForward);
+        card.addEventListener("focus", bringForward);
+        card.addEventListener("touchstart", bringForward, { passive: true });
+      });
+    }
+
+    function hnInitHeroTilt() {
+      return;
+    });
+
+      hero.addEventListener("pointerleave", () => {
+        hero.style.transform = "";
+      });
+    }
+
+    function hnInitRhythmTabs() {
+      const tabs = document.querySelectorAll("[data-rhythm-tab]");
+      const panels = document.querySelectorAll("[data-rhythm-panel]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const key = tab.dataset.rhythmTab;
+
+          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          panels.forEach((panel) => {
+            panel.classList.toggle("is-active", panel.dataset.rhythmPanel === key);
+          });
+        });
+      });
+    }
 
     async function loadRandomFaqFromPage() {
       const questionEl = document.getElementById("randomFaqQuestion");
@@ -2512,9 +2913,7 @@
       }
     }
 
-    loadRandomFaqFromPage();
-
-    (function () {
+    function hnInitTrips() {
       const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec";
       const TRIPS_PAGE_URL = "trips-page/trips.html";
 
@@ -2530,6 +2929,8 @@
       const tripInterestInput = document.getElementById("tripInterest");
       const tripForm = document.getElementById("tripForm");
       const popupMessage = document.getElementById("popupMessage");
+
+      if (!slider || !prevBtn || !nextBtn || !dotsWrap || !popup || !tripForm) return;
 
       const tripCopy = {
         "General Trips Interest": {
@@ -2617,12 +3018,10 @@
       }
 
       function renderTrips(trips) {
-        if (!slider || !dotsWrap) return;
-
         if (!trips.length) {
           slider.innerHTML = `
             <article class="hn-trip-slide">
-              <div class="hn-trip-card">
+              <div class="hn-trip-card interactive-card">
                 <div class="hn-trip-body">
                   <h3 class="hn-trip-name">Trips coming soon</h3>
                   <p class="hn-trip-copy">
@@ -2634,6 +3033,7 @@
           `;
           dotsWrap.innerHTML = "";
           updateUI();
+          hnInitInteractiveCards();
           return;
         }
 
@@ -2644,7 +3044,7 @@
 
           return `
             <article class="hn-trip-slide">
-              <div class="hn-trip-card">
+              <div class="hn-trip-card interactive-card">
                 <div class="hn-trip-image" style="${imageStyle}">
                   <span class="hn-trip-badge">${escapeHTML(trip.badge)}</span>
                   <span class="hn-image-note">${escapeHTML(trip.status || "Join us")}</span>
@@ -2692,6 +3092,7 @@
         `).join("");
 
         updateUI();
+        hnInitInteractiveCards();
       }
 
       function getSlides() {
@@ -2735,8 +3136,6 @@
       }
 
       function updateUI() {
-        if (!slider || !prevBtn || !nextBtn || !dotsWrap) return;
-
         const dots = getDots();
         const activeIndex = getActiveIndex();
 
@@ -2749,8 +3148,6 @@
       }
 
       function loadTripsFromTripsPage() {
-        if (!slider) return;
-
         fetch(TRIPS_PAGE_URL, { cache: "no-cache" })
           .then((response) => {
             if (!response.ok) throw new Error("Could not load trips.html");
@@ -2888,11 +3285,9 @@
       });
 
       loadTripsFromTripsPage();
-    })();
+    }
 
-
-
-    (function () {
+    function hnInitCountdown() {
       const deadline = new Date("2026-05-03T23:59:59-04:00").getTime();
 
       const daysEl = document.getElementById("early-days");
@@ -2914,15 +3309,10 @@
           secondsEl.textContent = "00";
 
           if (countdownWrap) {
-            const header = countdownWrap.querySelector(".hero-earlybird-header");
-            const note = countdownWrap.querySelector(".hero-earlybird-note");
+            const header = countdownWrap.querySelector(".countdown-top");
 
             if (header) {
               header.innerHTML = "<span>Early bird pricing</span><strong>Has ended</strong>";
-            }
-
-            if (note) {
-              note.textContent = "Applications are still open for remaining spots.";
             }
           }
 
@@ -2943,54 +3333,113 @@
 
       updateCountdown();
       const timer = setInterval(updateCountdown, 1000);
-    })();
-
-    const shareBtn = document.getElementById("shareBtn");
-    const shareOptions = document.getElementById("shareOptions");
-    const copyLinkBtn = document.getElementById("copyLinkBtn");
-
-    const pageUrl = encodeURIComponent(window.location.href);
-    const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
-
-    const whatsappShare = document.getElementById("whatsappShare");
-    const facebookShare = document.getElementById("facebookShare");
-    const emailShare = document.getElementById("emailShare");
-
-    if (whatsappShare) {
-      whatsappShare.href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
     }
 
-    if (facebookShare) {
-      facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    function hnInitShare() {
+      const shareBtn = document.getElementById("shareBtn");
+      const shareOptions = document.getElementById("shareOptions");
+      const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title || "Hamsa Nomads");
+
+      const whatsappShare = document.getElementById("whatsappShare");
+      const facebookShare = document.getElementById("facebookShare");
+      const emailShare = document.getElementById("emailShare");
+
+      if (whatsappShare) {
+        whatsappShare.href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+      }
+
+      if (facebookShare) {
+        facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+      }
+
+      if (emailShare) {
+        emailShare.href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+      }
+
+      if (shareBtn && shareOptions) {
+        shareBtn.addEventListener("click", () => {
+          shareOptions.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".floating-share")) {
+            shareOptions.classList.remove("open");
+          }
+        });
+      }
+
+      if (copyLinkBtn) {
+        copyLinkBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copyLinkBtn.textContent = "Copied!";
+            setTimeout(() => {
+              copyLinkBtn.textContent = "Copy link";
+            }, 1600);
+          } catch (err) {
+            alert("Copy failed. Please copy the URL manually.");
+          }
+        });
+      }
     }
 
-    if (emailShare) {
-      emailShare.href = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
-    }
 
-    if (shareBtn && shareOptions) {
-      shareBtn.addEventListener("click", () => {
-        shareOptions.classList.toggle("open");
+    function hnInitLoungeNotes() {
+      const tabs = document.querySelectorAll("[data-lounge-note]");
+      const panels = document.querySelectorAll("[data-lounge-panel]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const key = tab.dataset.loungeNote;
+
+          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          panels.forEach((panel) => {
+            panel.classList.toggle("is-active", panel.dataset.loungePanel === key);
+          });
+        });
       });
     }
 
-    if (copyLinkBtn) {
-      copyLinkBtn.addEventListener("click", async () => {
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          copyLinkBtn.textContent = "Copied!";
-          setTimeout(() => {
-            copyLinkBtn.textContent = "Copy link";
-          }, 1600);
-        } catch (err) {
-          alert("Copy failed. Please copy the URL manually.");
-        }
-      });
+
+
+    function hnInitHeroCarousel() {
+      const slides = Array.from(document.querySelectorAll(".hero-slide"));
+      if (slides.length <= 1) return;
+
+      let active = 0;
+      const showSlide = (index) => {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("is-active", i === index);
+        });
+      };
+
+      showSlide(active);
+
+      window.setInterval(() => {
+        active = (active + 1) % slides.length;
+        showSlide(active);
+      }, 30000);
     }
 
-    document.addEventListener("click", (event) => {
-      if (shareOptions && !event.target.closest(".floating-share")) {
-        shareOptions.classList.remove("open");
+
+    document.addEventListener("DOMContentLoaded", function () {
+      hnInitReveals();
+      hnInitInteractiveCards();
+      hnInitRhythmTabs();
+      hnInitLoungeNotes();
+      hnInitHeroCarousel();
+      hnInitCountdown();
+      hnInitShare();
+      hnLoadInstagramFeed();
+      loadRandomFaqFromPage();
+      hnInitTrips();
+
+      const refreshButton = document.getElementById("hnInstagramRefresh");
+      if (refreshButton) {
+        refreshButton.addEventListener("click", hnRenderInstagramFeed);
       }
     });
   </script>
