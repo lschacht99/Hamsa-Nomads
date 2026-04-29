@@ -2145,6 +2145,178 @@
       }
     }
 
+  
+    /* HOUSE FLOW — high-level, no public floor-plan details */
+    .flow-shell {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.38fr) minmax(0, 0.62fr);
+      gap: clamp(18px, 4vw, 36px);
+      align-items: stretch;
+    }
+
+    .flow-copy {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .flow-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .flow-stat {
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+    }
+
+    .flow-stat strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .flow-stat span {
+      display: block;
+      color: var(--forest);
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .flow-note {
+      padding: 22px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 34%),
+        rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+    }
+
+    .flow-note span {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .flow-note p {
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .flow-zones {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .flow-zone {
+      position: relative;
+      overflow: hidden;
+      min-height: 210px;
+      padding: 22px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.10), transparent 36%),
+        rgba(255,252,246,0.74);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+    }
+
+    .flow-zone-number {
+      display: inline-flex;
+      margin-bottom: 20px;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .flow-zone h3 {
+      color: var(--forest);
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      line-height: 1.04;
+      margin-bottom: 9px;
+    }
+
+    .flow-zone p {
+      color: var(--muted);
+      line-height: 1.66;
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 1080px) {
+      .flow-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .flow-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+      }
+
+      .flow-stat {
+        padding: 12px 10px;
+        border-radius: 16px;
+      }
+
+      .flow-stat strong {
+        font-size: 0.52rem;
+        letter-spacing: 0.08em;
+      }
+
+      .flow-stat span {
+        font-size: 1.2rem;
+      }
+
+      .flow-note {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .flow-zones {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .flow-zone {
+        min-height: 0;
+        padding: 17px;
+        border-radius: 20px;
+      }
+
+      .flow-zone-number {
+        width: 34px;
+        height: 34px;
+        margin-bottom: 13px;
+      }
+    }
+
   </style>
 </head>
 
@@ -2208,7 +2380,7 @@
 
       <nav class="sticky-jump" aria-label="Rooms and retreat page navigation">
         <a href="#concept">Concept</a>
-        <a href="#house-data">Layout</a>
+        <a href="#house-data">House flow</a>
         <a href="#rooms">Rooms</a>
         <a href="#spaces">House</a>
         <a href="#rhythm">Schedule</a>
@@ -2276,104 +2448,81 @@
 
 
 
+
       <section class="section" id="house-data">
         <div class="container">
           <div class="section-intro" data-reveal>
-            <div class="eyebrow">House map + rooming logic</div>
-            <h2>The house is large enough to feel social, but spread out enough to breathe.</h2>
+            <div class="eyebrow">How the house works</div>
+            <h2>The layout helps us shape the weekend — without making guests study a floor plan.</h2>
             <p>
-              The retreat is built around the actual layout of the home: bedrooms across multiple areas, several living and dining spaces, a pool area, game room, gym access, and quieter corners for people to step away when they need space.
+              The house is organized in a way that supports both connection and breathing room: central gathering areas, rooming zones, activity spaces, and quieter corners. We’ll use the layout behind the scenes to make the retreat feel smooth.
             </p>
           </div>
 
-          <div class="map-dashboard" data-reveal>
-            <div class="map-dashboard-copy">
-              <div class="map-stat-grid">
-                <article class="map-stat interactive-card">
+          <div class="flow-shell" data-reveal>
+            <div class="flow-copy">
+              <div class="flow-stats">
+                <article class="flow-stat interactive-card">
                   <strong>Bedrooms</strong>
                   <span>13</span>
                 </article>
-                <article class="map-stat interactive-card">
+                <article class="flow-stat interactive-card">
                   <strong>Separate beds</strong>
                   <span>22</span>
                 </article>
-                <article class="map-stat interactive-card">
+                <article class="flow-stat interactive-card">
                   <strong>Indoor capacity</strong>
                   <span>31</span>
                 </article>
-                <article class="map-stat interactive-card">
-                  <strong>Retreat flow</strong>
-                  <span>Multi-space home</span>
-                </article>
               </div>
 
-              <div class="map-note-card interactive-card">
-                <span>Why this matters</span>
+              <div class="flow-note interactive-card">
+                <span>What this means practically</span>
                 <p>
-                  We are not just filling beds. We’re using the layout to shape the weekend: who rooms near whom, where people gather, which areas stay quieter, and how the house can support both social energy and rest.
+                  The house can host a meaningful group without everything feeling crowded in one room. Some spaces are better for meals and big group moments; others are better for games, conversations, resting, or stepping away.
                 </p>
               </div>
             </div>
 
-            <div class="map-viewer">
-              <div class="map-tabs" role="tablist" aria-label="House floor plan tabs">
-                <button class="map-tab is-active" type="button" data-map-tab="main">Main level</button>
-                <button class="map-tab" type="button" data-map-tab="upper">Bedroom levels</button>
-                <button class="map-tab" type="button" data-map-tab="lower">Lower / play spaces</button>
-                <button class="map-tab" type="button" data-map-tab="suite">Additional rooms</button>
-              </div>
+            <div class="flow-zones">
+              <article class="flow-zone interactive-card">
+                <div class="flow-zone-number">01</div>
+                <h3>Gathering core</h3>
+                <p>
+                  Dining, lounge, and shared areas create the center of the retreat — where meals, conversations, coffee, tea, and easy social moments naturally happen.
+                </p>
+              </article>
 
-              <div class="map-panels">
-                <a class="map-panel is-active" data-map-panel="main" href="/Image/floor-plan-main.png" target="_blank" rel="noopener">
-                  <img src="/Image/floor-plan-main.png" alt="Main level floor plan with pool, dining, living, and bedrooms" loading="lazy" decoding="async" />
-                  <span>Main level: dining, living, pool area, bedrooms, and gathering spaces</span>
-                </a>
+              <article class="flow-zone interactive-card">
+                <div class="flow-zone-number">02</div>
+                <h3>Rooming zones</h3>
+                <p>
+                  Bedrooms are spread through the home, which helps us think about comfort, privacy, couples/singles mix, and who should be placed near quieter or more social areas.
+                </p>
+              </article>
 
-                <a class="map-panel" data-map-panel="upper" href="/Image/floor-plan-upper.png" target="_blank" rel="noopener">
-                  <img src="/Image/floor-plan-upper.png" alt="Upper bedroom level floor plan" loading="lazy" decoding="async" />
-                  <span>Bedroom level: quieter rooming areas and bathroom access</span>
-                </a>
+              <article class="flow-zone interactive-card">
+                <div class="flow-zone-number">03</div>
+                <h3>Play + reset spaces</h3>
+                <p>
+                  The pool, game room, and activity areas give the weekend more than one rhythm — not every moment has to happen around the same table.
+                </p>
+              </article>
 
-                <a class="map-panel" data-map-panel="lower" href="/Image/floor-plan-lower.png" target="_blank" rel="noopener">
-                  <img src="/Image/floor-plan-lower.png" alt="Lower level floor plan with entertainment and utility areas" loading="lazy" decoding="async" />
-                  <span>Lower level: entertainment, storage, utility, and flexible use areas</span>
-                </a>
-
-                <a class="map-panel" data-map-panel="suite" href="/Image/floor-plan-suite.png" target="_blank" rel="noopener">
-                  <img src="/Image/floor-plan-suite.png" alt="Additional suite and bedroom floor plan" loading="lazy" decoding="async" />
-                  <span>Additional bedroom area: extra rooming flexibility for final placement</span>
-                </a>
-              </div>
+              <article class="flow-zone interactive-card">
+                <div class="flow-zone-number">04</div>
+                <h3>Quiet edges</h3>
+                <p>
+                  A good retreat needs places to be social and places to breathe. The house gives us enough separation to protect both.
+                </p>
+              </article>
             </div>
-          </div>
-
-          <div class="rooming-logic-grid" data-reveal style="--delay: 80ms;">
-            <article class="rooming-logic-card interactive-card">
-              <h3>Rooming will be curated.</h3>
-              <p>
-                The table gives us capacity, but the application process gives us context. We’ll balance comfort, singles/couples mix, group flow, and privacy needs.
-              </p>
-            </article>
-
-            <article class="rooming-logic-card interactive-card">
-              <h3>The house has zones.</h3>
-              <p>
-                Some areas are closer to the social spaces, some feel quieter, and some have better bathroom access. That helps us place people more thoughtfully.
-              </p>
-            </article>
-
-            <article class="rooming-logic-card interactive-card">
-              <h3>Capacity is not the goal.</h3>
-              <p>
-                The physical layout can sleep up to 31 indoor guests, but final retreat size may be lower if that makes the weekend feel better.
-              </p>
-            </article>
           </div>
 
           <details class="discreet-room-details" data-reveal style="--delay: 120ms;">
             <summary>
-              <span>See the detailed bedroom breakdown</span>
-              <small>For transparency, without making the page feel like a spreadsheet.</small>
+              <span>Optional: see bedroom capacity details</span>
+              <small>Kept here for transparency, but final rooming will be curated personally.</small>
             </summary>
 
             <div class="house-table-wrap compact-table">
@@ -2866,22 +3015,6 @@
     }
 
 
-    function hnInitMapTabs() {
-      const tabs = document.querySelectorAll("[data-map-tab]");
-      const panels = document.querySelectorAll("[data-map-panel]");
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const key = tab.dataset.mapTab;
-
-          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
-          panels.forEach((panel) => {
-            panel.classList.toggle("is-active", panel.dataset.mapPanel === key);
-          });
-        });
-      });
-    }
-
 
     function hnInitRhythmTabs() {
       const tabs = document.querySelectorAll("[data-rhythm-tab]");
@@ -2929,7 +3062,6 @@
       hnInitInteractiveCards();
       hnInitConceptTabs();
       hnInitRoomFilters();
-      hnInitMapTabs();
       hnInitRhythmTabs();
       hnInitJumpNav();
     });
