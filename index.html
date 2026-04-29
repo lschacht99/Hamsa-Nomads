@@ -1975,6 +1975,895 @@
         font-size: 13px;
       }
     }
+  
+
+    /* HOUSE MOOD / CHILL.JPG FEATURE */
+    .lounge-section {
+      position: relative;
+      padding: clamp(42px, 7vw, 88px) 0;
+    }
+
+    .lounge-shell {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+      gap: clamp(18px, 3.6vw, 42px);
+      align-items: stretch;
+      padding: clamp(14px, 2vw, 20px);
+      border-radius: 40px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.13), transparent 36%),
+        rgba(255,252,246,0.70);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .lounge-shell::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 34px;
+      border: 1px solid rgba(39,69,55,0.07);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .lounge-photo-wrap {
+      position: relative;
+      min-height: clamp(420px, 52vw, 660px);
+      border-radius: 32px;
+      overflow: hidden;
+      background: #e8e0d2;
+      isolation: isolate;
+    }
+
+    .lounge-photo {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1.01);
+      transition: transform 0.55s ease, filter 0.55s ease;
+    }
+
+    .lounge-shell:hover .lounge-photo,
+    .lounge-shell.is-front .lounge-photo {
+      transform: scale(1.035);
+      filter: saturate(0.98) brightness(0.96);
+    }
+
+    .lounge-photo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(20,18,12,0.24), transparent 46%),
+        linear-gradient(180deg, transparent 52%, rgba(20,18,12,0.24));
+      pointer-events: none;
+    }
+
+    .lounge-copy {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(22px, 4vw, 42px);
+    }
+
+    .lounge-copy h2 {
+      font-size: clamp(2.15rem, 5.2vw, 4.55rem);
+      line-height: 0.96;
+      color: var(--forest);
+      margin-bottom: 18px;
+    }
+
+    .lounge-copy > p {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      line-height: 1.78;
+      max-width: 48ch;
+    }
+
+    .lounge-float-card {
+      position: absolute;
+      z-index: 4;
+      width: min(310px, calc(100% - 36px));
+      padding: 17px 18px;
+      border-radius: 24px;
+      background: rgba(255,252,246,0.78);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .lounge-float-card:hover,
+    .lounge-float-card.is-front {
+      transform: translateY(-6px) rotate(0deg);
+      box-shadow: 0 28px 66px rgba(0,0,0,0.20);
+    }
+
+    .lounge-float-card span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .lounge-float-card strong {
+      display: block;
+      color: var(--forest);
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: 1.26rem;
+      line-height: 1.16;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+
+    .lounge-float-card-one {
+      left: 22px;
+      bottom: 24px;
+      transform: rotate(-2deg);
+    }
+
+    .lounge-float-card-two {
+      right: 22px;
+      top: 24px;
+      transform: rotate(2deg);
+      width: min(260px, calc(100% - 36px));
+    }
+
+    .lounge-mini-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .lounge-mini {
+      appearance: none;
+      border: 1px solid rgba(39,69,55,0.12);
+      background: rgba(255,255,255,0.52);
+      color: var(--forest);
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+    }
+
+    .lounge-mini:hover,
+    .lounge-mini.is-active {
+      transform: translateY(-2px);
+      background: var(--forest);
+      color: #fff;
+      border-color: rgba(39,69,55,0.28);
+    }
+
+    .lounge-note-panel {
+      margin-top: 16px;
+      min-height: 96px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.48);
+      border: 1px solid rgba(39,69,55,0.09);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .lounge-note-panel p {
+      display: none;
+      animation: loungeNoteIn 0.35s ease both;
+    }
+
+    .lounge-note-panel p.is-active {
+      display: block;
+    }
+
+    @keyframes loungeNoteIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1080px) {
+      .lounge-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .lounge-section {
+        padding: 30px 0;
+      }
+
+      .lounge-shell {
+        border-radius: 24px;
+        padding: 10px;
+        gap: 12px;
+      }
+
+      .lounge-shell::before {
+        inset: 10px;
+        border-radius: 20px;
+      }
+
+      .lounge-photo-wrap {
+        min-height: 290px;
+        border-radius: 18px;
+      }
+
+      .lounge-photo,
+      .lounge-shell:hover .lounge-photo,
+      .lounge-shell.is-front .lounge-photo {
+        transform: none;
+      }
+
+      .lounge-copy {
+        padding: 8px 4px 4px;
+      }
+
+      .lounge-copy h2 {
+        font-size: clamp(1.9rem, 9.5vw, 2.75rem);
+        margin-bottom: 12px;
+      }
+
+      .lounge-copy > p {
+        font-size: 0.92rem;
+        line-height: 1.52;
+      }
+
+      .lounge-float-card {
+        width: calc(100% - 24px);
+        left: 12px;
+        padding: 12px 13px;
+        border-radius: 17px;
+      }
+
+      .lounge-float-card span {
+        font-size: 0.55rem;
+        letter-spacing: 0.10em;
+        margin-bottom: 5px;
+      }
+
+      .lounge-float-card strong {
+        font-size: 1rem;
+        line-height: 1.12;
+      }
+
+      .lounge-float-card-one {
+        bottom: 12px;
+        transform: none;
+      }
+
+      .lounge-float-card-two {
+        top: 12px;
+        right: auto;
+        width: calc(100% - 24px);
+        transform: none;
+      }
+
+      .lounge-mini-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .lounge-mini {
+        min-height: 38px;
+        font-size: 0.68rem;
+        letter-spacing: 0.05em;
+      }
+
+      .lounge-mini:hover,
+      .lounge-mini.is-active {
+        transform: none;
+      }
+
+      .lounge-note-panel {
+        min-height: auto;
+        margin-top: 10px;
+        padding: 13px 14px;
+        border-radius: 17px;
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+    }
+
+    /* =========================================
+       MOBILE CLEANUP / COMPACT MODE
+       Keeps the page premium without becoming a long feed.
+    ========================================= */
+
+    @media (max-width: 760px) {
+      html {
+        scroll-padding-top: 78px;
+      }
+
+      body {
+        line-height: 1.52;
+      }
+
+      .container {
+        width: min(calc(100% - 20px), var(--container));
+      }
+
+      .section {
+        padding: 34px 0;
+      }
+
+      .section-intro {
+        margin-bottom: 20px;
+      }
+
+      .section-intro h2,
+      .promise-copy h2,
+      .conversion-copy h2,
+      .live-vibe-copy h2,
+      .hn-upcoming-title {
+        font-size: clamp(2rem, 10vw, 3.1rem);
+        line-height: 0.98;
+      }
+
+      .section-intro p,
+      .promise-copy p,
+      .conversion-copy p,
+      .live-vibe-copy p,
+      .hn-upcoming-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.58;
+      }
+
+      .hero {
+        padding: 10px 0 16px;
+      }
+
+      .hero-stage {
+        min-height: auto;
+        border-radius: 24px;
+      }
+
+      .hero-content {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 18px;
+        padding: 22px 16px 18px;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(3.05rem, 15vw, 4.9rem);
+        line-height: 0.84;
+        margin-bottom: 16px;
+      }
+
+      .hero-date-line {
+        font-size: 0.82rem;
+        letter-spacing: 0.15em;
+        margin-bottom: 14px;
+      }
+
+      .hero-kicker-pill {
+        width: 100%;
+        min-height: 46px;
+        margin-bottom: 16px;
+        padding: 0 14px;
+        font-size: 0.72rem;
+        letter-spacing: 0.10em;
+      }
+
+      .hero-lead {
+        max-width: 100%;
+        margin-bottom: 14px;
+        font-size: 0.92rem;
+        line-height: 1.48;
+      }
+
+      .hero-actions {
+        display: none;
+      }
+
+      .hero-panel {
+        width: 100%;
+        gap: 10px;
+        transform: none;
+      }
+
+      .hero-date-card {
+        padding: 15px;
+        border-radius: 20px;
+      }
+
+      .hero-date-card h2 {
+        font-size: 1.28rem;
+        margin-bottom: 0;
+      }
+
+      .hero-date-card p {
+        display: none;
+      }
+
+      .hero-chip-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .hero-chip {
+        padding: 10px 11px;
+        border-radius: 15px;
+        font-size: 0.76rem;
+        text-align: center;
+      }
+
+      .countdown-card {
+        padding: 13px;
+        border-radius: 18px;
+      }
+
+      .countdown-top {
+        margin-bottom: 9px;
+      }
+
+      .countdown-top span {
+        font-size: 0.62rem;
+      }
+
+      .countdown-top strong {
+        font-size: 0.74rem;
+      }
+
+      .countdown-row {
+        gap: 6px;
+      }
+
+      .countdown-unit {
+        padding: 7px 4px;
+        border-radius: 12px;
+      }
+
+      .countdown-number {
+        font-size: 1.25rem;
+      }
+
+      .countdown-label {
+        font-size: 0.48rem;
+      }
+
+      .hero-countdown-cta {
+        min-height: 50px;
+        font-size: 0.92rem;
+      }
+
+      .promise-section {
+        padding: 34px 0 24px;
+      }
+
+      .promise-shell {
+        gap: 20px;
+      }
+
+      .promise-pill-row {
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .promise-pill {
+        padding: 7px 10px;
+        font-size: 0.66rem;
+      }
+
+      .promise-cards {
+        gap: 10px;
+      }
+
+      .promise-card {
+        padding: 17px;
+        border-radius: 22px;
+      }
+
+      .promise-card h3 {
+        font-size: 1.42rem;
+      }
+
+      .promise-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .rhythm-section {
+        padding-top: 30px;
+      }
+
+      .rhythm-shell {
+        border-radius: 24px;
+        min-height: auto;
+      }
+
+      .rhythm-left {
+        padding: 20px;
+      }
+
+      .rhythm-left h2 {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .rhythm-left p {
+        font-size: 0.94rem;
+        line-height: 1.55;
+      }
+
+      .rhythm-soft-note {
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .rhythm-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .rhythm-tab {
+        min-height: 40px;
+        padding: 0 10px;
+        font-size: 0.66rem;
+        letter-spacing: 0.06em;
+        text-align: center;
+      }
+
+      .rhythm-tab:hover,
+      .rhythm-tab.is-active {
+        transform: none;
+      }
+
+      .rhythm-detail {
+        padding: 20px;
+      }
+
+      .rhythm-kicker {
+        margin-bottom: 10px;
+        font-size: 0.62rem;
+      }
+
+      .rhythm-panel h3 {
+        font-size: clamp(1.55rem, 8vw, 2.25rem);
+        line-height: 1.02;
+        margin-bottom: 12px;
+      }
+
+      .rhythm-panel p {
+        font-size: 0.92rem;
+        line-height: 1.56;
+      }
+
+      .rhythm-mini-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .rhythm-mini {
+        padding: 9px 7px;
+        border-radius: 12px;
+        font-size: 0.68rem;
+        text-align: center;
+      }
+
+      /* House images become a clean horizontal swipe instead of a long stacked feed. */
+      .house-grid {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 2px 4px 12px;
+        margin-inline: -4px;
+        scrollbar-width: none;
+      }
+
+      .house-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .house-card,
+      .house-card.tall {
+        flex: 0 0 76%;
+        min-height: 220px;
+        scroll-snap-align: start;
+        border-radius: 22px;
+      }
+
+      .house-label {
+        left: 12px;
+        bottom: 12px;
+        padding: 7px 11px;
+        font-size: 0.72rem;
+      }
+
+      .conversion-card {
+        padding: 18px;
+        gap: 18px;
+      }
+
+      .price-panel {
+        padding: 18px;
+      }
+
+      .price-panel-lead {
+        font-size: 1.55rem;
+      }
+
+      .included-list {
+        gap: 7px;
+      }
+
+      .included-list li {
+        font-size: 0.88rem;
+        line-height: 1.38;
+      }
+
+      .faq-strip {
+        padding: 18px;
+        gap: 14px;
+      }
+
+      .faq-strip h2 {
+        font-size: clamp(1.65rem, 8vw, 2.35rem);
+      }
+
+      .random-faq-box {
+        padding: 17px;
+        border-radius: 20px;
+      }
+
+      .random-faq-box h3 {
+        font-size: 1.35rem;
+      }
+
+      .random-faq-box p {
+        font-size: 0.9rem;
+        line-height: 1.48;
+      }
+
+      /* Compact Instagram: no long feed on mobile. */
+      #instagram.section {
+        padding-top: 28px;
+        padding-bottom: 30px;
+      }
+
+      .live-vibe-shell {
+        padding: 14px;
+        border-radius: 24px;
+        gap: 12px;
+      }
+
+      .live-vibe-copy {
+        min-height: auto;
+        padding: 6px 4px 2px;
+        gap: 12px;
+      }
+
+      .live-vibe-copy h2 {
+        margin-bottom: 8px;
+      }
+
+      .live-vibe-copy p {
+        display: none;
+      }
+
+      .insta-profile-row {
+        margin-top: 10px;
+        gap: 10px;
+      }
+
+      .hn-live-instagram-avatar {
+        width: 46px;
+        height: 46px;
+      }
+
+      .hn-live-instagram-follow {
+        width: auto;
+        min-height: 44px;
+        padding: 0 22px;
+        font-size: 0.9rem;
+      }
+
+      .insta-board {
+        gap: 10px;
+      }
+
+      .hn-live-instagram-featured {
+        min-height: 0;
+        aspect-ratio: 16 / 9;
+        border-radius: 18px;
+      }
+
+      .hn-live-instagram-featured-overlay {
+        padding: 12px;
+      }
+
+      .hn-live-instagram-featured-overlay span {
+        font-size: 0.54rem;
+        margin-bottom: 5px;
+      }
+
+      .hn-live-instagram-featured-overlay strong {
+        font-size: 0.84rem;
+        line-height: 1.25;
+      }
+
+      .insta-side {
+        gap: 8px;
+      }
+
+      .insta-topline {
+        gap: 8px;
+      }
+
+      .insta-topline span {
+        font-size: 0.58rem;
+        letter-spacing: 0.11em;
+      }
+
+      .insta-topline button {
+        min-height: 32px;
+        padding: 0 11px;
+        font-size: 0.76rem;
+      }
+
+      .hn-live-instagram-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .hn-live-instagram-post {
+        border-radius: 13px;
+      }
+
+      .hn-live-instagram-post:nth-child(n + 4) {
+        display: none;
+      }
+
+      .hn-live-instagram-type {
+        top: 6px;
+        right: 6px;
+        padding: 4px 6px;
+        font-size: 0.48rem;
+      }
+
+      .hn-upcoming-section {
+        padding: 38px 10px 48px;
+      }
+
+      .hn-upcoming-header {
+        margin-bottom: 18px;
+      }
+
+      .hn-slider-topbar {
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .hn-slider-hint {
+        font-size: 0.84rem;
+      }
+
+      .hn-slider-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .hn-trip-slider {
+        gap: 14px;
+        padding: 6px 10vw 12px 0;
+      }
+
+      .hn-trip-slide {
+        flex: 0 0 82vw;
+      }
+
+      .hn-trip-card {
+        min-height: auto;
+        border-radius: 22px;
+      }
+
+      .hn-trip-image {
+        min-height: 170px;
+      }
+
+      .hn-trip-body {
+        padding: 17px;
+      }
+
+      .hn-trip-meta {
+        font-size: 0.78rem;
+        margin-bottom: 8px;
+      }
+
+      .hn-trip-name {
+        font-size: 1.4rem;
+      }
+
+      .hn-trip-copy {
+        font-size: 0.88rem;
+        line-height: 1.48;
+      }
+
+      .hn-trip-bullets {
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+
+      .hn-trip-bullets li {
+        font-size: 0.84rem;
+        line-height: 1.35;
+      }
+
+      .hn-trip-bullets li:nth-child(n + 4) {
+        display: none;
+      }
+
+      .hn-trip-status {
+        font-size: 0.8rem;
+      }
+
+      .hn-trip-cta {
+        min-height: 46px;
+        padding: 12px 16px;
+      }
+
+      .popup-bubble {
+        border-radius: 26px;
+        padding: 24px 18px 20px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-title {
+        font-size: clamp(2.8rem, 14.5vw, 4.1rem);
+      }
+
+      .hero-kicker-pill {
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-chip {
+        font-size: 0.7rem;
+      }
+
+      .rhythm-tabs {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .house-card,
+      .house-card.tall {
+        flex-basis: 82%;
+      }
+
+      .hn-live-instagram-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
   </style>
 </head>
 
@@ -2085,7 +2974,7 @@
           <div class="promise-shell">
             <div class="promise-copy" data-reveal>
               <div class="eyebrow">What this is</div>
-              <h2>A retreat, not a program factory.</h2>
+              <h2>A retreat.</h2>
               <p>
                 Hamsa Nomads is built for people who want a Shavuos that feels intentional, social, beautiful, and observant — without the pressure or heaviness of a huge organized scene.
               </p>
@@ -2113,6 +3002,59 @@
                 <h3>Nature, games, learning</h3>
                 <p>Meals, fresh air, discussions, board games, learning, singing, pool and hot tub time, and connection that feels natural.</p>
               </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="lounge-section" id="lounge">
+        <div class="container">
+          <div class="lounge-shell interactive-card" data-reveal>
+            <div class="lounge-photo-wrap">
+              <img
+                class="lounge-photo"
+                src="Image/chill.jpg"
+                alt="Warm Vermont living room lounge with wood beams and cozy seating"
+                loading="lazy"
+                decoding="async"
+              />
+
+              <div class="lounge-float-card lounge-float-card-one interactive-card">
+                <span>Where the weekend slows down</span>
+                <strong>Couches, coffee, conversations, and the in-between moments people remember.</strong>
+              </div>
+
+              <div class="lounge-float-card lounge-float-card-two interactive-card">
+                <span>House energy</span>
+                <strong>Warm, wood, light, and room to actually sit with people.</strong>
+              </div>
+            </div>
+
+            <div class="lounge-copy">
+              <div class="eyebrow">The house mood</div>
+              <h2>Not just where we sleep. Where the retreat happens.</h2>
+              <p>
+                This is the kind of space that makes the weekend feel natural: people drifting in after meals, a game starting on the table, a late conversation on the couch, coffee in hand, someone singing softly in the corner.
+              </p>
+
+              <div class="lounge-mini-grid">
+                <button class="lounge-mini is-active" type="button" data-lounge-note="talk">Conversation corners</button>
+                <button class="lounge-mini" type="button" data-lounge-note="game">Tabletop games</button>
+                <button class="lounge-mini" type="button" data-lounge-note="rest">Slow Shabbos energy</button>
+              </div>
+
+              <div class="lounge-note-panel">
+                <p data-lounge-panel="talk" class="is-active">
+                  A retreat needs spaces where people can meet without it feeling forced. This room gives the weekend that softer rhythm.
+                </p>
+                <p data-lounge-panel="game">
+                  Not every moment needs to be programmed. Some of the best connection happens around games, snacks, and casual late-night conversations.
+                </p>
+                <p data-lounge-panel="rest">
+                  After meals, learning, and singing, people need a beautiful place to just be. That’s part of the experience.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -2520,9 +3462,11 @@
       const grid = document.getElementById("hnInstagramGrid");
       if (!grid) return;
 
+      const mobileInstagramLimit = window.matchMedia("(max-width: 760px)").matches ? 3 : 6;
+
       const posts = hnShuffleInstagramPosts()
         .filter((post) => post.id !== hnInstagramFeaturedId)
-        .slice(0, 6);
+        .slice(0, mobileInstagramLimit);
 
       grid.innerHTML = posts.map((post) => {
         const caption = hnCleanCaption(post.caption, 80);
@@ -2638,7 +3582,7 @@
         }
 
         function bringForward() {
-          const group = card.closest(".promise-cards, .house-grid, .live-vibe-shell, .hn-trip-slider, .hero-panel, .faq-strip") || document;
+          const group = card.closest(".promise-cards, .house-grid, .live-vibe-shell, .hn-trip-slider, .hero-panel, .faq-strip, .lounge-shell") || document;
           group.querySelectorAll(".is-front").forEach((item) => {
             if (item !== card) item.classList.remove("is-front");
           });
@@ -2652,6 +3596,24 @@
         card.addEventListener("mouseenter", bringForward);
         card.addEventListener("focus", bringForward);
         card.addEventListener("touchstart", bringForward, { passive: true });
+      });
+    }
+
+
+
+    function hnInitLoungeNotes() {
+      const tabs = document.querySelectorAll("[data-lounge-note]");
+      const panels = document.querySelectorAll("[data-lounge-panel]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const key = tab.dataset.loungeNote;
+
+          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          panels.forEach((panel) => {
+            panel.classList.toggle("is-active", panel.dataset.loungePanel === key);
+          });
+        });
       });
     }
 
@@ -3233,6 +4195,7 @@
       hnInitInteractiveCards();
       hnInitHeroCarousel();
       hnInitRhythmTabs();
+      hnInitLoungeNotes();
       hnInitCountdown();
       hnInitShare();
       hnLoadInstagramFeed();
@@ -3243,6 +4206,13 @@
       if (refreshButton) {
         refreshButton.addEventListener("click", hnRenderInstagramFeed);
       }
+
+      const instagramMobileQuery = window.matchMedia("(max-width: 760px)");
+      instagramMobileQuery.addEventListener?.("change", () => {
+        if (hnInstagramLivePosts.length) {
+          hnRenderInstagramFeed();
+        }
+      });
     });
   </script>
 </body>
