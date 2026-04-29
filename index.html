@@ -759,16 +759,23 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-height: 44px;
-  padding: 0 18px;
+  min-height: 56px;
+  padding: 0 30px;
   border-radius: 999px;
   background: #f4e7c7;
   color: #173c30;
   text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 800;
+  font-size: 1.04rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
   white-space: nowrap;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.hn-live-instagram-follow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.22);
 }
 
 .hn-live-instagram-body {
@@ -2053,6 +2060,7 @@
               <div class="hn-live-instagram-profile">
                 <img
                   class="hn-live-instagram-avatar"
+                  src="logo/logo-hamsa-nomads.png"
                   alt="Hamsa Nomads Instagram profile"
                   onerror="hnHandleInstagramAvatarError(this);"
                 />
@@ -2107,8 +2115,9 @@
         let hnInstagramLivePosts = [];
         const HN_INSTAGRAM_AVATAR_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23F4E7C7'/%3E%3Cstop offset='1' stop-color='%23E7D2A2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' rx='60' fill='url(%23g)'/%3E%3Ctext x='60' y='70' text-anchor='middle' font-family='Arial, sans-serif' font-size='34' font-weight='700' fill='%23274537'%3EHN%3C/text%3E%3C/svg%3E";
         const HN_INSTAGRAM_AVATAR_CANDIDATES = [
-          "Image/Logo-hamsa-nomads.png",
+          "logo/logo-hamsa-nomads.png",
           "Image/logo-hamsa-nomads.png",
+          "Image/Logo-hamsa-nomads.png",
           "Image/hamsa-logo.png",
           "Image/logo.png",
           "Image/hamsa-instagram-profile.jpg"
@@ -2245,6 +2254,13 @@
             }
 
             const data = await response.json();
+
+            const avatar = document.querySelector(".hn-live-instagram-avatar");
+            if (avatar) {
+              avatar.dataset.avatarIndex = "-1";
+              avatar.src = data.profilePicture || HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
+            }
+
             hnInstagramLivePosts = Array.isArray(data.posts) ? data.posts : [];
 
             if (!hnInstagramLivePosts.length) {
