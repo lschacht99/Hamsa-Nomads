@@ -1342,6 +1342,809 @@
         transform: none !important;
       }
     }
+  
+    /* HERO V2 — lighter, stronger, more editorial */
+    .hero-shell-v2 {
+      grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
+      min-height: clamp(610px, 76vh, 760px);
+      align-items: center;
+      padding: clamp(16px, 2.4vw, 28px);
+      background:
+        radial-gradient(circle at 12% 14%, rgba(255,255,255,0.90), transparent 32%),
+        radial-gradient(circle at 90% 0%, rgba(184,139,47,0.13), transparent 31%),
+        linear-gradient(135deg, rgba(255,252,246,0.88), rgba(247,243,234,0.70));
+    }
+
+    .hero-copy-v2 {
+      align-self: stretch;
+      justify-content: center;
+      padding: clamp(20px, 4vw, 48px) clamp(12px, 2vw, 22px) clamp(20px, 4vw, 48px) clamp(20px, 4vw, 48px);
+    }
+
+    .hero-title-v2 {
+      max-width: 8.9ch;
+      font-size: clamp(3.35rem, 7.2vw, 6.9rem);
+      line-height: 0.86;
+      margin-bottom: 22px;
+      color: var(--forest);
+    }
+
+    .hero-title-v2 .gold {
+      color: var(--gold);
+    }
+
+    .hero-lead-v2 {
+      max-width: 42ch;
+      margin-bottom: 22px;
+      color: rgba(95,101,93,0.95);
+    }
+
+    .hero-date-card-v2 {
+      display: inline-grid;
+      gap: 3px;
+      margin-bottom: 24px;
+      padding: 13px 17px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(39,69,55,0.10);
+      box-shadow: 0 12px 30px rgba(31,28,20,0.06);
+    }
+
+    .hero-date-card-v2 span {
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-date-card-v2 strong {
+      color: var(--forest);
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .hero-actions-v2 {
+      margin-bottom: 0;
+    }
+
+    .hero-visual-v2 {
+      min-height: clamp(500px, 64vh, 690px);
+      border-radius: 34px;
+      transform: rotate(0.6deg);
+      box-shadow:
+        0 28px 76px rgba(31,28,20,0.16),
+        0 0 0 1px rgba(255,255,255,0.48);
+    }
+
+    .hero-visual-v2:hover {
+      transform: rotate(0deg) translateY(-3px);
+    }
+
+    .hero-visual-v2 .hero-slide {
+      object-position: center center;
+    }
+
+    .hero-image-caption-v2 {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      right: 86px;
+      z-index: 5;
+      padding: 16px 17px;
+      border-radius: 22px;
+      background: rgba(255,252,246,0.78);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.15);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hero-image-caption-v2 strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--gold);
+      font-size: 0.66rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-image-caption-v2 span {
+      display: block;
+      color: var(--forest);
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.14;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-dots-v2 {
+      position: absolute;
+      z-index: 6;
+      right: 18px;
+      bottom: 18px;
+    }
+
+    .hero-micro-grid-v2 {
+      position: absolute;
+      z-index: 6;
+      left: clamp(26px, 4vw, 56px);
+      right: auto;
+      bottom: clamp(20px, 2.5vw, 30px);
+      max-width: 480px;
+      pointer-events: auto;
+    }
+
+    .hero-micro-grid-v2 .hero-micro {
+      background: rgba(255,255,255,0.66);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-shell-v2 {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy-v2 {
+        padding: 28px 24px 10px;
+      }
+
+      .hero-title-v2 {
+        max-width: 11ch;
+      }
+
+      .hero-visual-v2 {
+        min-height: 520px;
+        transform: none;
+      }
+
+      .hero-visual-v2:hover {
+        transform: none;
+      }
+
+      .hero-micro-grid-v2 {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        max-width: none;
+        grid-column: 1 / -1;
+        padding: 0 14px 14px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-shell-v2 {
+        padding: 10px;
+        border-radius: 28px;
+      }
+
+      .hero-copy-v2 {
+        padding: 18px 12px 8px;
+      }
+
+      .hero-title-v2 {
+        font-size: clamp(3rem, 14.2vw, 4.85rem);
+        line-height: 0.86;
+        margin-bottom: 16px;
+      }
+
+      .hero-lead-v2 {
+        font-size: 0.94rem;
+        line-height: 1.52;
+        margin-bottom: 16px;
+      }
+
+      .hero-date-card-v2 {
+        width: 100%;
+        margin-bottom: 16px;
+        border-radius: 17px;
+        padding: 12px 13px;
+      }
+
+      .hero-date-card-v2 span {
+        font-size: 0.63rem;
+      }
+
+      .hero-date-card-v2 strong {
+        font-size: 0.9rem;
+      }
+
+      .hero-visual-v2 {
+        min-height: 330px;
+        border-radius: 22px;
+      }
+
+      .hero-image-caption-v2 {
+        left: 12px;
+        right: 12px;
+        bottom: 52px;
+        padding: 12px;
+        border-radius: 16px;
+      }
+
+      .hero-image-caption-v2 strong {
+        font-size: 0.55rem;
+        margin-bottom: 4px;
+      }
+
+      .hero-image-caption-v2 span {
+        font-size: 1rem;
+      }
+
+      .hero-dots-v2 {
+        left: 12px;
+        right: auto;
+        bottom: 12px;
+      }
+
+      .hero-micro-grid-v2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 0 4px 4px;
+      }
+    }
+
+  
+    /* REAL HOUSE DATA — bedrooms + floor plans */
+    .house-data-shell {
+      display: grid;
+      gap: 18px;
+    }
+
+    .house-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .house-summary-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .house-summary-card strong {
+      display: block;
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .house-summary-card span {
+      display: block;
+      color: var(--forest);
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(1.45rem, 3vw, 2.15rem);
+      line-height: 1;
+    }
+
+    .house-table-wrap {
+      overflow-x: auto;
+      border-radius: 28px;
+      background: rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .house-room-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    .house-room-table th,
+    .house-room-table td {
+      padding: 15px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(39,69,55,0.09);
+      vertical-align: top;
+    }
+
+    .house-room-table th {
+      color: var(--forest);
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 900;
+      background: rgba(39,69,55,0.06);
+    }
+
+    .house-room-table td {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .house-room-table td:first-child,
+    .house-room-table .strong-cell {
+      color: var(--forest);
+      font-weight: 780;
+    }
+
+    .house-room-table tfoot td {
+      border-bottom: 0;
+      background: rgba(184,139,47,0.08);
+      color: var(--forest);
+      font-weight: 900;
+    }
+
+    .house-room-table tr.is-highlight td {
+      background: rgba(39,69,55,0.045);
+    }
+
+    .floor-plan-shell {
+      margin-top: 28px;
+    }
+
+    .floor-plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .floor-plan-card {
+      position: relative;
+      display: block;
+      min-height: 280px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255,252,246,0.84);
+      border: 1px solid rgba(39,69,55,0.10);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .floor-plan-card img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: contain;
+      background: #fff;
+      padding: 18px;
+    }
+
+    .floor-plan-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,252,246,0.82);
+      border: 1px solid rgba(255,255,255,0.60);
+      color: var(--forest);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    }
+
+    .house-data-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 820px;
+    }
+
+    @media (max-width: 1080px) {
+      .house-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .floor-plan-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .house-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .house-summary-card {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .house-summary-card strong {
+        font-size: 0.6rem;
+        letter-spacing: 0.10em;
+      }
+
+      .house-summary-card span {
+        font-size: 1.35rem;
+      }
+
+      .house-table-wrap {
+        border-radius: 20px;
+        margin-inline: -2px;
+      }
+
+      .house-room-table th,
+      .house-room-table td {
+        padding: 12px 13px;
+        font-size: 0.86rem;
+      }
+
+      .floor-plan-card {
+        min-height: 230px;
+        border-radius: 20px;
+      }
+
+      .floor-plan-card img {
+        padding: 12px;
+      }
+    }
+
+  
+    /* MAP-FIRST HOUSE DATA SECTION */
+    .map-dashboard {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
+      gap: clamp(18px, 4vw, 36px);
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .map-dashboard-copy {
+      display: grid;
+      gap: 14px;
+    }
+
+    .map-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .map-stat {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+    }
+
+    .map-stat strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .map-stat span {
+      display: block;
+      color: var(--forest);
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(1.45rem, 3vw, 2.15rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .map-note-card {
+      padding: 22px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 34%),
+        rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+    }
+
+    .map-note-card span {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .map-note-card p {
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .map-viewer {
+      padding: 14px;
+      border-radius: 32px;
+      background: rgba(255,252,246,0.72);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .map-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .map-tab {
+      appearance: none;
+      border: 1px solid rgba(39,69,55,0.12);
+      background: rgba(255,255,255,0.58);
+      color: var(--forest);
+      min-height: 38px;
+      padding: 0 13px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .map-tab:hover,
+    .map-tab.is-active {
+      background: var(--forest);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .map-panels {
+      position: relative;
+      min-height: 420px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(39,69,55,0.08);
+    }
+
+    .map-panel {
+      position: absolute;
+      inset: 0;
+      display: none;
+      background: #fff;
+      color: var(--forest);
+    }
+
+    .map-panel.is-active {
+      display: block;
+      animation: panelIn 0.35s ease both;
+    }
+
+    .map-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .map-panel span {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display: inline-flex;
+      width: fit-content;
+      max-width: calc(100% - 28px);
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,252,246,0.84);
+      border: 1px solid rgba(255,255,255,0.62);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.10);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 850;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .rooming-logic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .rooming-logic-card {
+      padding: 20px;
+      border-radius: 26px;
+      background: rgba(255,252,246,0.72);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: var(--soft-shadow);
+      cursor: pointer;
+    }
+
+    .rooming-logic-card h3 {
+      color: var(--forest);
+      font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+      line-height: 1.05;
+      margin-bottom: 9px;
+    }
+
+    .rooming-logic-card p {
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 0.95rem;
+    }
+
+    .discreet-room-details {
+      margin-top: 16px;
+      border-radius: 26px;
+      background: rgba(255,252,246,0.58);
+      border: 1px solid rgba(39,69,55,0.10);
+      box-shadow: var(--soft-shadow);
+      overflow: hidden;
+    }
+
+    .discreet-room-details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .discreet-room-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .discreet-room-details summary span {
+      color: var(--forest);
+      font-weight: 850;
+      font-size: 1rem;
+    }
+
+    .discreet-room-details summary small {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    .discreet-room-details summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-weight: 900;
+    }
+
+    .discreet-room-details[open] summary::after {
+      content: "–";
+    }
+
+    .compact-table {
+      margin: 0 16px 16px;
+      box-shadow: none;
+      border-radius: 20px;
+    }
+
+    .compact-table .house-room-table th,
+    .compact-table .house-room-table td {
+      padding: 11px 13px;
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 1080px) {
+      .map-dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .rooming-logic-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .map-stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .map-stat {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .map-stat strong {
+        font-size: 0.58rem;
+        letter-spacing: 0.10em;
+      }
+
+      .map-stat span {
+        font-size: 1.25rem;
+      }
+
+      .map-note-card {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .map-viewer {
+        padding: 10px;
+        border-radius: 22px;
+      }
+
+      .map-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+      }
+
+      .map-tab {
+        min-height: 36px;
+        padding: 0 8px;
+        font-size: 0.58rem;
+        letter-spacing: 0.06em;
+      }
+
+      .map-tab:hover,
+      .map-tab.is-active {
+        transform: none;
+      }
+
+      .map-panels {
+        min-height: 300px;
+        border-radius: 16px;
+      }
+
+      .map-panel img {
+        padding: 10px;
+      }
+
+      .map-panel span {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        max-width: calc(100% - 20px);
+        border-radius: 14px;
+        font-size: 0.68rem;
+        line-height: 1.35;
+      }
+
+      .rooming-logic-card {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .discreet-room-details summary {
+        padding: 15px;
+        align-items: flex-start;
+      }
+
+      .discreet-room-details summary {
+        display: grid;
+        grid-template-columns: 1fr auto;
+      }
+
+      .discreet-room-details summary small {
+        grid-column: 1 / -1;
+        text-align: left;
+      }
+
+      .compact-table {
+        margin: 0 10px 10px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1352,34 +2155,30 @@
     <main id="top">
       <section class="hero">
         <div class="container">
-          <div class="hero-shell">
-            <div class="hero-copy" data-reveal>
-              <div class="eyebrow">Rooms + retreat rhythm</div>
+          <div class="hero-shell hero-shell-v2">
+            <div class="hero-copy hero-copy-v2" data-reveal>
+              <div class="eyebrow">Rooms + weekend rhythm</div>
 
-              <h1>
-                Your base for <span class="gold">Shavuos</span> in Vermont.
+              <h1 class="hero-title-v2">
+                The house is <span class="gold">part of Shavuos.</span>
               </h1>
 
-              <div class="hero-date">May 21 - May 24 • Private Vermont home</div>
-
-              <p class="hero-lead">
-                This page is about the part of the retreat people feel most: where we stay, where we gather, how the house shapes the weekend, and the rhythm we’re building around Yom Tov, rest, connection, and Vermont.
+              <p class="hero-lead hero-lead-v2">
+                Rooms, shared spaces, meals, games, and the rhythm of the weekend all happen in one private Vermont home — so the stay feels less like a program and more like a real retreat.
               </p>
 
-              <div class="hero-actions">
-                <a href="/Forms/apply.html" class="button">Apply for Shavuos</a>
-                <a href="#rooms" class="button-secondary">Explore the rooms</a>
+              <div class="hero-date-card-v2">
+                <span>May 21 - May 24</span>
+                <strong>Private Vermont retreat house</strong>
               </div>
 
-              <div class="hero-micro-grid">
-                <div class="hero-micro interactive-card">Kosher meals included</div>
-                <div class="hero-micro interactive-card">Minyan + eiruv</div>
-                <div class="hero-micro interactive-card">Pool + hot tub</div>
-                <div class="hero-micro interactive-card">Curated group energy</div>
+              <div class="hero-actions hero-actions-v2">
+                <a href="/Forms/apply.html" class="button">Apply for Shavuos</a>
+                <a href="#rooms" class="button-secondary">See rooms</a>
               </div>
             </div>
 
-            <div class="hero-visual" data-reveal style="--delay: 120ms;">
+            <div class="hero-visual hero-visual-v2" data-reveal style="--delay: 120ms;">
               <div class="hero-slides" id="heroSlides">
                 <img class="hero-slide is-active" src="/Image/chill.jpg" alt="Warm lounge at the Vermont retreat house" fetchpriority="high" decoding="async" />
                 <img class="hero-slide" src="/Image/bedroom.png" alt="Retreat bedroom" loading="lazy" decoding="async" />
@@ -1389,14 +2188,19 @@
                 <img class="hero-slide" src="/Image/exterior.png" alt="Retreat house exterior" loading="lazy" decoding="async" />
               </div>
 
-              <div class="hero-floating">
-                <div class="hero-glass-note">
-                  <strong>The concept</strong>
-                  <span>Not just a place to sleep — the house is the retreat.</span>
-                </div>
-
-                <div class="hero-dots" id="heroDots" aria-label="Hero image controls"></div>
+              <div class="hero-image-caption-v2">
+                <strong>Not just where you sleep</strong>
+                <span>where conversations, meals, and slower moments unfold.</span>
               </div>
+
+              <div class="hero-dots hero-dots-v2" id="heroDots" aria-label="Hero image controls"></div>
+            </div>
+
+            <div class="hero-micro-grid hero-micro-grid-v2" data-reveal style="--delay: 180ms;">
+              <div class="hero-micro interactive-card">Kosher meals</div>
+              <div class="hero-micro interactive-card">Minyan + eiruv</div>
+              <div class="hero-micro interactive-card">Pool + hot tub</div>
+              <div class="hero-micro interactive-card">Curated group</div>
             </div>
           </div>
         </div>
@@ -1404,6 +2208,7 @@
 
       <nav class="sticky-jump" aria-label="Rooms and retreat page navigation">
         <a href="#concept">Concept</a>
+        <a href="#house-data">Layout</a>
         <a href="#rooms">Rooms</a>
         <a href="#spaces">House</a>
         <a href="#rhythm">Schedule</a>
@@ -1469,6 +2274,148 @@
         </div>
       </section>
 
+
+
+      <section class="section" id="house-data">
+        <div class="container">
+          <div class="section-intro" data-reveal>
+            <div class="eyebrow">House map + rooming logic</div>
+            <h2>The house is large enough to feel social, but spread out enough to breathe.</h2>
+            <p>
+              The retreat is built around the actual layout of the home: bedrooms across multiple areas, several living and dining spaces, a pool area, game room, gym access, and quieter corners for people to step away when they need space.
+            </p>
+          </div>
+
+          <div class="map-dashboard" data-reveal>
+            <div class="map-dashboard-copy">
+              <div class="map-stat-grid">
+                <article class="map-stat interactive-card">
+                  <strong>Bedrooms</strong>
+                  <span>13</span>
+                </article>
+                <article class="map-stat interactive-card">
+                  <strong>Separate beds</strong>
+                  <span>22</span>
+                </article>
+                <article class="map-stat interactive-card">
+                  <strong>Indoor capacity</strong>
+                  <span>31</span>
+                </article>
+                <article class="map-stat interactive-card">
+                  <strong>Retreat flow</strong>
+                  <span>Multi-space home</span>
+                </article>
+              </div>
+
+              <div class="map-note-card interactive-card">
+                <span>Why this matters</span>
+                <p>
+                  We are not just filling beds. We’re using the layout to shape the weekend: who rooms near whom, where people gather, which areas stay quieter, and how the house can support both social energy and rest.
+                </p>
+              </div>
+            </div>
+
+            <div class="map-viewer">
+              <div class="map-tabs" role="tablist" aria-label="House floor plan tabs">
+                <button class="map-tab is-active" type="button" data-map-tab="main">Main level</button>
+                <button class="map-tab" type="button" data-map-tab="upper">Bedroom levels</button>
+                <button class="map-tab" type="button" data-map-tab="lower">Lower / play spaces</button>
+                <button class="map-tab" type="button" data-map-tab="suite">Additional rooms</button>
+              </div>
+
+              <div class="map-panels">
+                <a class="map-panel is-active" data-map-panel="main" href="/Image/floor-plan-main.png" target="_blank" rel="noopener">
+                  <img src="/Image/floor-plan-main.png" alt="Main level floor plan with pool, dining, living, and bedrooms" loading="lazy" decoding="async" />
+                  <span>Main level: dining, living, pool area, bedrooms, and gathering spaces</span>
+                </a>
+
+                <a class="map-panel" data-map-panel="upper" href="/Image/floor-plan-upper.png" target="_blank" rel="noopener">
+                  <img src="/Image/floor-plan-upper.png" alt="Upper bedroom level floor plan" loading="lazy" decoding="async" />
+                  <span>Bedroom level: quieter rooming areas and bathroom access</span>
+                </a>
+
+                <a class="map-panel" data-map-panel="lower" href="/Image/floor-plan-lower.png" target="_blank" rel="noopener">
+                  <img src="/Image/floor-plan-lower.png" alt="Lower level floor plan with entertainment and utility areas" loading="lazy" decoding="async" />
+                  <span>Lower level: entertainment, storage, utility, and flexible use areas</span>
+                </a>
+
+                <a class="map-panel" data-map-panel="suite" href="/Image/floor-plan-suite.png" target="_blank" rel="noopener">
+                  <img src="/Image/floor-plan-suite.png" alt="Additional suite and bedroom floor plan" loading="lazy" decoding="async" />
+                  <span>Additional bedroom area: extra rooming flexibility for final placement</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="rooming-logic-grid" data-reveal style="--delay: 80ms;">
+            <article class="rooming-logic-card interactive-card">
+              <h3>Rooming will be curated.</h3>
+              <p>
+                The table gives us capacity, but the application process gives us context. We’ll balance comfort, singles/couples mix, group flow, and privacy needs.
+              </p>
+            </article>
+
+            <article class="rooming-logic-card interactive-card">
+              <h3>The house has zones.</h3>
+              <p>
+                Some areas are closer to the social spaces, some feel quieter, and some have better bathroom access. That helps us place people more thoughtfully.
+              </p>
+            </article>
+
+            <article class="rooming-logic-card interactive-card">
+              <h3>Capacity is not the goal.</h3>
+              <p>
+                The physical layout can sleep up to 31 indoor guests, but final retreat size may be lower if that makes the weekend feel better.
+              </p>
+            </article>
+          </div>
+
+          <details class="discreet-room-details" data-reveal style="--delay: 120ms;">
+            <summary>
+              <span>See the detailed bedroom breakdown</span>
+              <small>For transparency, without making the page feel like a spreadsheet.</small>
+            </summary>
+
+            <div class="house-table-wrap compact-table">
+              <table class="house-room-table">
+                <thead>
+                  <tr>
+                    <th>Bedroom</th>
+                    <th>Bed setup</th>
+                    <th>Sleeps</th>
+                    <th>Bathroom</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Bedroom 1</td><td>1 full bed, 1 twin bed</td><td class="strong-cell">3</td><td>Half bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 2</td><td>1 full bed, 1 twin bed</td><td class="strong-cell">3</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 3</td><td>2 twin beds</td><td class="strong-cell">2</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 4</td><td>2 twin beds</td><td class="strong-cell">2</td><td>Half bathroom</td><td>Gym access</td></tr>
+                  <tr><td>Bedroom 5</td><td>1 bunk bed</td><td class="strong-cell">2</td><td>Full bathroom</td><td>Gym access</td></tr>
+                  <tr><td>Bedroom 6</td><td>1 bunk bed</td><td class="strong-cell">2</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 7</td><td>1 queen bed</td><td class="strong-cell">2</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 8</td><td>1 full bed, 1 twin bed</td><td class="strong-cell">3</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 9</td><td>2 twin beds</td><td class="strong-cell">2</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 10</td><td>2 twin beds</td><td class="strong-cell">2</td><td>No bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 11</td><td>1 full bed, 1 twin bed</td><td class="strong-cell">3</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 12</td><td>1 queen bed</td><td class="strong-cell">2</td><td>Full bathroom</td><td>—</td></tr>
+                  <tr><td>Bedroom 13</td><td>1 full bed, 1 twin bed</td><td class="strong-cell">3</td><td>Full bathroom</td><td>—</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Total</td>
+                    <td>22 separate beds</td>
+                    <td>31 guests</td>
+                    <td colspan="2">Final capacity may be lower for comfort and group flow.</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </details>
+        </div>
+      </section>
+
       <section class="section" id="rooms">
         <div class="container">
           <div class="rooms-layout">
@@ -1476,7 +2423,7 @@
               <div class="eyebrow">Room options</div>
               <h2>Choose the kind of base you want for the weekend.</h2>
               <p>
-                Rooming is still being finalized, so the categories below are meant to show the direction clearly without overpromising exact layouts. Apply first, and we’ll follow up with the most current options.
+                The house has 13 bedrooms and 22 separate beds, but rooming still needs to be curated around the actual group. The categories below are a simpler way to understand the options before we assign specific bedrooms.
               </p>
 
               <div class="room-filter" aria-label="Room filters">
@@ -1918,6 +2865,24 @@
       });
     }
 
+
+    function hnInitMapTabs() {
+      const tabs = document.querySelectorAll("[data-map-tab]");
+      const panels = document.querySelectorAll("[data-map-panel]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const key = tab.dataset.mapTab;
+
+          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          panels.forEach((panel) => {
+            panel.classList.toggle("is-active", panel.dataset.mapPanel === key);
+          });
+        });
+      });
+    }
+
+
     function hnInitRhythmTabs() {
       const tabs = document.querySelectorAll("[data-rhythm-tab]");
       const panels = document.querySelectorAll("[data-rhythm-panel]");
@@ -1964,6 +2929,7 @@
       hnInitInteractiveCards();
       hnInitConceptTabs();
       hnInitRoomFilters();
+      hnInitMapTabs();
       hnInitRhythmTabs();
       hnInitJumpNav();
     });
