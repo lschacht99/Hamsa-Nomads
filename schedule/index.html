@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Hamsa Nomads — Shavuos in Vermont</title>
-
-  <link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
+  <title>Schedule a Call | Hamsa Nomads</title>
+  
+<link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
 <link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
   <link rel="stylesheet" href="assets/site-components.css" />
 
@@ -27,14 +27,18 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
+      width: 100%;
+      min-height: 100%;
       font-family: Inter, Arial, sans-serif;
       color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(214, 168, 79, 0.14), transparent 32%),
         radial-gradient(circle at bottom right, rgba(23, 79, 25, 0.08), transparent 38%),
         var(--cream);
+      overflow-x: hidden;
     }
 
     a {
@@ -43,8 +47,7 @@
     }
 
     .site-header {
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 20;
       background: rgba(247, 243, 234, 0.94);
       backdrop-filter: blur(14px);
@@ -68,6 +71,7 @@
       font-weight: 800;
       color: var(--green);
       letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
     .brand img {
@@ -77,12 +81,17 @@
       display: block;
     }
 
+    .brand span {
+      font-size: 26px;
+    }
+
     .nav {
       display: flex;
       align-items: center;
       gap: 22px;
-      font-size: 14px;
+      font-size: 15px;
       color: var(--muted);
+      flex-wrap: wrap;
     }
 
     .nav a:hover {
@@ -93,11 +102,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 11px 17px;
+      padding: 11px 18px;
       border-radius: 999px;
       background: var(--green);
       color: white !important;
       font-weight: 800;
+      white-space: nowrap;
     }
 
     .hero {
@@ -202,10 +212,11 @@
 
     iframe {
       width: 100%;
-      height: 1380px;
+      height: 1480px;
       border: 0;
       display: block;
       background: transparent;
+      overflow: hidden;
     }
 
     .site-footer {
@@ -250,31 +261,49 @@
       }
 
       iframe {
-        height: 1540px;
+        height: 1880px;
       }
     }
 
     @media (max-width: 720px) {
       .header-inner {
         min-height: auto;
-        padding: 12px 0;
+        padding: 18px 0 16px;
         align-items: flex-start;
         flex-direction: column;
+        gap: 16px;
+      }
+
+      .brand img {
+        width: 34px;
+        height: 34px;
+      }
+
+      .brand span {
+        font-size: 25px;
       }
 
       .nav {
         width: 100%;
-        gap: 12px;
-        flex-wrap: wrap;
-        font-size: 13px;
+        gap: 14px;
+        font-size: 18px;
       }
 
       .nav-cta {
-        padding: 10px 14px;
+        padding: 11px 20px;
+        font-size: 18px;
       }
 
       .hero {
-        padding: 30px 0 16px;
+        padding: 30px 0 18px;
+      }
+
+      h1 {
+        font-size: clamp(40px, 11vw, 58px);
+      }
+
+      .hero-copy p {
+        font-size: 16px;
       }
 
       .hero-side {
@@ -282,7 +311,8 @@
       }
 
       .scheduler-wrap {
-        width: min(100%, calc(100% - 8px));
+        width: min(100%, calc(100% - 6px));
+        padding-bottom: 48px;
       }
 
       .scheduler-shell {
@@ -293,10 +323,26 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 14px 16px;
+        font-size: 12px;
       }
 
       iframe {
-        height: 1680px;
+        height: 2900px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      iframe {
+        height: 3150px;
+      }
+
+      .nav {
+        font-size: 17px;
+      }
+
+      .nav-cta {
+        font-size: 17px;
+        padding: 10px 18px;
       }
     }
   </style>
@@ -372,17 +418,13 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="/logo/logo-hamsa-nomads.png" alt="Hamsa Nomads logo">
-        <span>Hamsa Nomads</span>
-      </div>
+    <div id="site-footer"></div>
+  </div>
 
-      <div>
-        Curated kosher retreats, good people, beautiful places.
-      </div>
-    </div>
+  <script src="assets/site-components.js" data-base=""></script>
+
+  <script>
+
   </footer>
 </body>
 </html>
