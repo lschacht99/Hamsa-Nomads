@@ -161,7 +161,7 @@ function insertGlobalTripLine() {
    HEADER
    Desktop: full visible header.
    Mobile: clean two-line header.
-   Slide menu: extra links.
+   Hamburger: only public site pages connected to the index.
    ========================================================= */
 
 function insertSiteHeader() {
@@ -226,7 +226,7 @@ function insertSiteHeader() {
             class="hn-more-menu-toggle"
             id="hnMoreMenuToggle"
             type="button"
-            aria-label="Open more navigation"
+            aria-label="Open site menu"
             aria-expanded="false"
             aria-controls="hnMoreDrawer"
           >
@@ -248,14 +248,14 @@ function insertSiteHeader() {
         <div class="hn-more-drawer-top">
           <div>
             <div class="hn-more-drawer-brand">Hamsa Nomads</div>
-            <div class="hn-more-drawer-sub">More places to explore</div>
+            <div class="hn-more-drawer-sub">Site menu</div>
           </div>
 
           <button
             class="hn-more-menu-close"
             id="hnMoreMenuClose"
             type="button"
-            aria-label="Close more navigation"
+            aria-label="Close site menu"
           >
             ×
           </button>
@@ -264,72 +264,34 @@ function insertSiteHeader() {
         <nav class="hn-more-drawer-links" aria-label="More navigation">
           <a href="${hnPath("/index.html")}">
             <span>Home</span>
-            <small>Back to the main page</small>
-          </a>
-
-          <a href="${hnPath("/Pages/Rooms-Schedule.html")}" data-nav="rooms">
-            <span>Rooms & Schedule</span>
-            <small>See the retreat rooms, rhythm, and weekend flow</small>
-          </a>
-
-          <a href="${hnPath("/index.html#pricing")}">
-            <span>Pricing</span>
-            <small>Rooming, camping, and retreat options</small>
           </a>
 
           <a href="${hnPath("/index.html#experience")}" data-nav="experience">
             <span>Experience</span>
-            <small>The feeling and idea behind the retreat</small>
           </a>
 
           <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">
             <span>Gallery</span>
-            <small>Images and atmosphere</small>
           </a>
 
           <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
             <span>Upcoming trips</span>
-            <small>See what is coming next</small>
           </a>
 
-          <a href="${hnPath("/schedule/call.html")}">
-            <span>Schedule a call</span>
-            <small>Ask questions before applying</small>
-          </a>
-
-          <a href="${hnPath("/Forms/apply.html")}" data-nav="apply">
-            <span>Apply for Shavuos</span>
-            <small>Join the retreat</small>
-          </a>
-
-          <a href="${hnPath("/Forms/payment.html")}">
-            <span>Payment page</span>
-            <small>Confirm your spot after approval</small>
+          <a href="${hnPath("/Pages/Rooms-Schedule.html")}" data-nav="rooms">
+            <span>Rooms & Schedule</span>
           </a>
 
           <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">
             <span>About us</span>
-            <small>Meet the people behind Hamsa Nomads</small>
           </a>
 
           <a href="${hnPath("/faq.html")}" data-nav="faq">
             <span>FAQ</span>
-            <small>Food, rooms, Shabbos, travel, and details</small>
           </a>
 
-          <a href="${hnPath("/terms.html")}">
-            <span>Terms</span>
-            <small>Retreat policies and conditions</small>
-          </a>
-
-          <a href="${hnPath("/privacy.html")}">
-            <span>Privacy</span>
-            <small>How information is handled</small>
-          </a>
-
-          <a href="mailto:hamsanomads@gmail.com">
-            <span>Email us</span>
-            <small>hamsanomads@gmail.com</small>
+          <a href="${hnPath("/Forms/apply.html")}" data-nav="apply">
+            <span>Apply</span>
           </a>
         </nav>
       </aside>
@@ -470,14 +432,14 @@ function insertMoreSlideMenuStyles() {
       position: fixed !important;
       top: 0 !important;
       right: 0 !important;
-      width: min(88vw, 420px) !important;
+      width: min(82vw, 340px) !important;
       height: 100vh !important;
       background: #f7f3ea !important;
       box-shadow: -24px 0 70px rgba(16, 14, 11, 0.22) !important;
       transform: translateX(105%) !important;
       transition: transform 0.38s cubic-bezier(.2,.8,.2,1) !important;
       z-index: 100001 !important;
-      padding: 28px 24px 34px !important;
+      padding: 26px 22px 28px !important;
       display: flex !important;
       flex-direction: column !important;
       border-left: 1px solid rgba(23, 79, 25, 0.12) !important;
@@ -489,20 +451,20 @@ function insertMoreSlideMenuStyles() {
       justify-content: space-between !important;
       align-items: flex-start !important;
       gap: 20px !important;
-      padding-bottom: 22px !important;
+      padding-bottom: 18px !important;
       border-bottom: 1px solid rgba(23, 79, 25, 0.14) !important;
     }
 
     .hn-more-drawer-brand {
       font-family: Georgia, "Times New Roman", serif !important;
-      font-size: 1.42rem !important;
+      font-size: 1.22rem !important;
       color: #174F19 !important;
       letter-spacing: 0.02em !important;
     }
 
     .hn-more-drawer-sub {
       margin-top: 5px !important;
-      font-size: 0.78rem !important;
+      font-size: 0.68rem !important;
       color: rgba(16, 14, 11, 0.58) !important;
       letter-spacing: 0.08em !important;
       text-transform: uppercase !important;
@@ -523,28 +485,26 @@ function insertMoreSlideMenuStyles() {
       display: flex !important;
       flex-direction: column !important;
       gap: 0 !important;
-      margin-top: 20px !important;
+      margin-top: 16px !important;
     }
 
     .hn-more-drawer-links a {
       color: #174F19 !important;
       text-decoration: none !important;
-      padding: 15px 0 !important;
+      padding: 14px 0 !important;
       border-bottom: 1px solid rgba(23, 79, 25, 0.11) !important;
       display: flex !important;
       flex-direction: column !important;
-      gap: 4px !important;
+      gap: 0 !important;
     }
 
     .hn-more-drawer-links a span {
-      font-size: 1.02rem !important;
+      font-size: 1rem !important;
       line-height: 1.2 !important;
     }
 
     .hn-more-drawer-links a small {
-      font-size: 0.78rem !important;
-      line-height: 1.35 !important;
-      color: rgba(16, 14, 11, 0.58) !important;
+      display: none !important;
     }
 
     .hn-more-drawer-links a.is-active span {
@@ -721,6 +681,10 @@ function insertMoreSlideMenuStyles() {
       .hn-nav-short {
         display: inline !important;
       }
+
+      .hn-more-drawer {
+        width: min(84vw, 320px) !important;
+      }
     }
 
     @media (max-width: 430px) {
@@ -767,6 +731,19 @@ function insertMoreSlideMenuStyles() {
       .hn-main-nav-links a {
         font-size: 0.68rem !important;
         padding: 7px 9px !important;
+      }
+
+      .hn-more-drawer {
+        width: min(84vw, 310px) !important;
+        padding: 24px 20px 26px !important;
+      }
+
+      .hn-more-drawer-links a {
+        padding: 13px 0 !important;
+      }
+
+      .hn-more-drawer-links a span {
+        font-size: 0.96rem !important;
       }
     }
 
@@ -1040,14 +1017,13 @@ function insertFloatingShare() {
     const footerObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const share = document.getElementById("hnSharedFloatingShare");
+          if (!share) return;
+
           if (entry.isIntersecting) {
-            document
-              .getElementById("hnSharedFloatingShare")
-              ?.classList.add("is-hidden-by-footer");
+            share.classList.add("is-hidden-by-footer");
           } else {
-            document
-              .getElementById("hnSharedFloatingShare")
-              ?.classList.remove("is-hidden-by-footer");
+            share.classList.remove("is-hidden-by-footer");
           }
         });
       },
