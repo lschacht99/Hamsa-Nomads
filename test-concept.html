@@ -205,28 +205,97 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center center;
       filter: saturate(0.96);
-      transform: scale(1.01);
+      transform: none !important;
+      pointer-events: none;
     }
 
 
-    .hero-media-stack {
+    .hero-media-carousel {
       position: absolute;
       inset: 0;
-      overflow: hidden;
       z-index: 0;
+      overflow: hidden;
+      background: #e8e0d2;
     }
 
     .hero-slide {
-      position: absolute;
-      inset: 0;
       opacity: 0;
-      transition: opacity 1.15s ease;
+      transition: opacity 1.4s ease;
       will-change: opacity;
     }
 
     .hero-slide.is-active {
       opacity: 1;
+    }
+
+    .hero-stage {
+      transform: none !important;
+      transform-style: flat;
+    }
+
+    .hero-stage:hover,
+    .hero-stage:active {
+      transform: none !important;
+    }
+
+    .hero-scrim {
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 10vw, 8.6rem);
+      line-height: 0.82;
+      max-width: 8.2ch;
+      margin: 0 0 26px;
+      text-shadow: 0 10px 34px rgba(0,0,0,0.25);
+    }
+
+    .hero-title-white {
+      color: #fffdf8;
+    }
+
+    .hero-title-gold {
+      color: #e0ae43;
+    }
+
+    .hero-title-vermont {
+      display: inline-block;
+      margin-top: 0.02em;
+    }
+
+    .hero-date-line {
+      margin-bottom: 24px;
+      color: rgba(255, 253, 248, 0.95);
+      font-size: clamp(1rem, 1.7vw, 1.34rem);
+      font-weight: 850;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.24);
+    }
+
+    .hero-kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 60px;
+      margin-bottom: 24px;
+      padding: 0 30px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #fffdf8;
+      font-size: clamp(0.92rem, 1.55vw, 1.22rem);
+      font-weight: 850;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      box-shadow:
+        0 16px 38px rgba(0,0,0,0.16),
+        inset 0 1px 0 rgba(255,255,255,0.22);
+      text-shadow: 0 4px 18px rgba(0,0,0,0.22);
     }
 
     .hero-scrim {
@@ -1697,210 +1766,6 @@
         0 28px 72px rgba(31,28,20,0.16);
     }
 
-
-    /* HOUSE MOOD / LOUNGE FEATURE */
-    .lounge-section {
-      position: relative;
-      padding: clamp(42px, 7vw, 88px) 0;
-    }
-
-    .lounge-shell {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
-      gap: clamp(18px, 3.6vw, 42px);
-      align-items: stretch;
-      padding: clamp(14px, 2vw, 20px);
-      border-radius: 40px;
-      background:
-        radial-gradient(circle at top right, rgba(184,139,47,0.13), transparent 36%),
-        rgba(255,252,246,0.70);
-      border: 1px solid rgba(255,255,255,0.58);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .lounge-shell::before {
-      content: "";
-      position: absolute;
-      inset: 16px;
-      border-radius: 34px;
-      border: 1px solid rgba(39,69,55,0.07);
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    .lounge-photo-wrap {
-      position: relative;
-      min-height: clamp(420px, 52vw, 660px);
-      border-radius: 32px;
-      overflow: hidden;
-      background: #e8e0d2;
-      isolation: isolate;
-    }
-
-    .lounge-photo {
-      width: 100%;
-      height: 100%;
-      min-height: inherit;
-      object-fit: cover;
-      object-position: center center;
-      transform: scale(1.01);
-      transition: transform 0.55s ease, filter 0.55s ease;
-    }
-
-    .lounge-shell:hover .lounge-photo,
-    .lounge-shell.is-front .lounge-photo {
-      transform: scale(1.045);
-      filter: saturate(0.98) brightness(0.96);
-    }
-
-    .lounge-photo-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(90deg, rgba(20,18,12,0.26), transparent 46%),
-        linear-gradient(180deg, transparent 52%, rgba(20,18,12,0.24));
-      pointer-events: none;
-    }
-
-    .lounge-copy {
-      position: relative;
-      z-index: 4;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(22px, 4vw, 42px);
-    }
-
-    .lounge-copy h2 {
-      font-size: clamp(2.15rem, 5.2vw, 4.55rem);
-      line-height: 0.96;
-      color: var(--forest);
-      margin-bottom: 18px;
-    }
-
-    .lounge-copy > p {
-      color: var(--muted);
-      font-size: clamp(1rem, 1.35vw, 1.12rem);
-      line-height: 1.78;
-      max-width: 48ch;
-    }
-
-    .lounge-float-card {
-      position: absolute;
-      z-index: 4;
-      width: min(310px, calc(100% - 36px));
-      padding: 17px 18px;
-      border-radius: 24px;
-      background: rgba(255,252,246,0.78);
-      border: 1px solid rgba(255,255,255,0.55);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.16);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      cursor: pointer;
-    }
-
-    .lounge-float-card:hover,
-    .lounge-float-card.is-front {
-      transform: translateY(-6px) rotate(0deg);
-      box-shadow: 0 28px 66px rgba(0,0,0,0.20);
-    }
-
-    .lounge-float-card span {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--gold);
-      font-size: 0.68rem;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .lounge-float-card strong {
-      display: block;
-      color: var(--forest);
-      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-      font-size: 1.26rem;
-      line-height: 1.16;
-      letter-spacing: -0.03em;
-      font-weight: 500;
-    }
-
-    .lounge-float-card-one {
-      left: 22px;
-      bottom: 24px;
-      transform: rotate(-2deg);
-    }
-
-    .lounge-float-card-two {
-      right: 22px;
-      top: 24px;
-      transform: rotate(2deg);
-      width: min(260px, calc(100% - 36px));
-    }
-
-    .lounge-mini-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .lounge-mini {
-      appearance: none;
-      border: 1px solid rgba(39,69,55,0.12);
-      background: rgba(255,255,255,0.52);
-      color: var(--forest);
-      min-height: 42px;
-      padding: 0 14px;
-      border-radius: 999px;
-      font: inherit;
-      font-size: 0.82rem;
-      font-weight: 850;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
-    }
-
-    .lounge-mini:hover,
-    .lounge-mini.is-active {
-      transform: translateY(-2px);
-      background: var(--forest);
-      color: #fff;
-      border-color: rgba(39,69,55,0.28);
-    }
-
-    .lounge-note-panel {
-      margin-top: 16px;
-      min-height: 96px;
-      padding: 18px 20px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.48);
-      border: 1px solid rgba(39,69,55,0.09);
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .lounge-note-panel p {
-      display: none;
-      animation: loungeNoteIn 0.35s ease both;
-    }
-
-    .lounge-note-panel p.is-active {
-      display: block;
-    }
-
-    @keyframes loungeNoteIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-
     @media (min-width: 900px) {
       .hn-trip-slide {
         flex: 0 0 min(58vw, 500px);
@@ -1961,6 +1826,29 @@
       .hero h1 {
         max-width: 100%;
         font-size: clamp(2.7rem, 13vw, 4.4rem);
+      }
+
+
+      .hero-title {
+        max-width: 100%;
+        font-size: clamp(3.25rem, 15vw, 5.4rem);
+        margin-bottom: 20px;
+      }
+
+      .hero-date-line {
+        font-size: 0.92rem;
+        letter-spacing: 0.16em;
+        margin-bottom: 18px;
+      }
+
+      .hero-kicker-pill {
+        width: 100%;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 18px;
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-align: center;
       }
 
       .hero-lead {
@@ -2060,49 +1948,6 @@
         font-size: 13px;
       }
     }
-  
-    @media (max-width: 1080px) {
-      .lounge-shell {
-        grid-template-columns: 1fr;
-      }
-
-      .lounge-copy {
-        padding-top: 10px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .lounge-shell {
-        border-radius: 30px;
-        padding: 10px;
-      }
-
-      .lounge-photo-wrap {
-        min-height: 420px;
-        border-radius: 24px;
-      }
-
-      .lounge-copy {
-        padding: 20px 14px 14px;
-      }
-
-      .lounge-float-card {
-        width: calc(100% - 28px);
-        left: 14px;
-        right: auto;
-      }
-
-      .lounge-float-card-one {
-        bottom: 14px;
-      }
-
-      .lounge-float-card-two {
-        top: 14px;
-        transform: rotate(1deg);
-      }
-    }
-
-
   </style>
 </head>
 
@@ -2114,23 +1959,30 @@
       <section class="hero">
         <div class="container">
           <div class="hero-stage" id="heroStage">
-            
-            <div class="hero-media-stack" aria-hidden="true">
+            <div class="hero-media-carousel" aria-hidden="true">
               <img class="hero-media hero-slide is-active" src="Image/hero.jpg" alt="Shavuos in Vermont retreat hero image" />
-              <img class="hero-media hero-slide" src="Image/chill.jpg" alt="Warm lounge in the retreat house" />
-              <img class="hero-media hero-slide" src="Image/dining-space.jpg" alt="Dining space at the retreat house" />
+              <img class="hero-media hero-slide" src="Image/chill.jpg" alt="Warm lounge inside the Vermont retreat house" />
+              <img class="hero-media hero-slide" src="Image/dining-space.jpg" alt="Dining and gathering space at the retreat house" />
               <img class="hero-media hero-slide" src="Image/pool.png" alt="Pool at the retreat house" />
               <img class="hero-media hero-slide" src="Image/game-room.png" alt="Game room at the retreat house" />
               <img class="hero-media hero-slide" src="Image/bedroom.png" alt="Bedroom at the retreat house" />
               <img class="hero-media hero-slide" src="Image/exterior.png" alt="Exterior of the retreat house" />
             </div>
-
             <div class="hero-scrim"></div>
 
             <div class="hero-content">
               <div class="hero-copy" data-reveal>
-                <div class="eyebrow">May 21–24 • Vermont</div>
-                <h1>Spend Shavuos somewhere unforgettable.</h1>
+                <h1 class="hero-title">
+                  <span class="hero-title-white">Shavuos</span>
+                  <span class="hero-title-gold">in</span>
+                  <br />
+                  <span class="hero-title-gold hero-title-vermont">Vermont</span>
+                </h1>
+
+                <div class="hero-date-line">May 21 - May 24</div>
+
+                <div class="hero-kicker-pill">A mountain retreat experience</div>
+
                 <p class="hero-lead">
                   A small, curated Shavuos retreat for Jewish young adults in a private Vermont home — kosher meals, Shabbos and Chag rhythm, mountain air, and the kind of connection that feels natural.
                 </p>
@@ -2233,63 +2085,6 @@
                 <h3>Nature, games, learning</h3>
                 <p>Meals, fresh air, discussions, board games, learning, singing, pool and hot tub time, and connection that feels natural.</p>
               </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section class="lounge-section" id="lounge">
-        <div class="container">
-          <div class="lounge-shell interactive-card" data-reveal>
-            <div class="lounge-photo-wrap">
-              <img
-                class="lounge-photo"
-                src="Image/chill.jpg"
-                alt="Warm Vermont living room lounge with wood beams and cozy seating"
-              />
-
-              <div class="lounge-float-card lounge-float-card-one interactive-card">
-                <span>Where the weekend slows down</span>
-                <strong>Couches, coffee, conversations, and the kind of in-between moments people remember.</strong>
-              </div>
-
-              <div class="lounge-float-card lounge-float-card-two interactive-card">
-                <span>House energy</span>
-                <strong>Warm, wood, light, and room to actually sit with people.</strong>
-              </div>
-            </div>
-
-            <div class="lounge-copy">
-              <div class="eyebrow">The house mood</div>
-              <h2>Not just where we sleep. Where the retreat happens.</h2>
-              <p>
-                This is the kind of space that makes the weekend feel natural: people drifting in after meals, a game starting on the table, a late conversation on the couch, coffee in hand, someone singing softly in the corner.
-              </p>
-
-              <div class="lounge-mini-grid">
-                <button class="lounge-mini is-active" type="button" data-lounge-note="talk">
-                  Conversation corners
-                </button>
-                <button class="lounge-mini" type="button" data-lounge-note="game">
-                  Tabletop games
-                </button>
-                <button class="lounge-mini" type="button" data-lounge-note="rest">
-                  Slow Shabbos energy
-                </button>
-              </div>
-
-              <div class="lounge-note-panel">
-                <p data-lounge-panel="talk" class="is-active">
-                  A retreat needs spaces where people can meet without it feeling forced. This room gives the weekend that softer rhythm.
-                </p>
-                <p data-lounge-panel="game">
-                  Not every moment needs to be programmed. Some of the best connection happens around games, snacks, and casual late-night conversations.
-                </p>
-                <p data-lounge-panel="rest">
-                  After meals, learning, and singing, people need a beautiful place to just be. That’s part of the experience.
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -2830,13 +2625,30 @@
       });
     }
 
+
+    function hnInitHeroCarousel() {
+      const slides = Array.from(document.querySelectorAll(".hero-slide"));
+      if (slides.length <= 1) return;
+
+      let activeIndex = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("is-active", slideIndex === index);
+        });
+      }
+
+      showSlide(activeIndex);
+
+      window.setInterval(() => {
+        activeIndex = (activeIndex + 1) % slides.length;
+        showSlide(activeIndex);
+      }, 30000);
+    }
+
+
     function hnInitHeroTilt() {
       return;
-    });
-
-      hero.addEventListener("pointerleave", () => {
-        hero.style.transform = "";
-      });
     }
 
     function hnInitRhythmTabs() {
@@ -3386,51 +3198,11 @@
       }
     }
 
-
-    function hnInitLoungeNotes() {
-      const tabs = document.querySelectorAll("[data-lounge-note]");
-      const panels = document.querySelectorAll("[data-lounge-panel]");
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const key = tab.dataset.loungeNote;
-
-          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
-          panels.forEach((panel) => {
-            panel.classList.toggle("is-active", panel.dataset.loungePanel === key);
-          });
-        });
-      });
-    }
-
-
-
-    function hnInitHeroCarousel() {
-      const slides = Array.from(document.querySelectorAll(".hero-slide"));
-      if (slides.length <= 1) return;
-
-      let active = 0;
-      const showSlide = (index) => {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle("is-active", i === index);
-        });
-      };
-
-      showSlide(active);
-
-      window.setInterval(() => {
-        active = (active + 1) % slides.length;
-        showSlide(active);
-      }, 30000);
-    }
-
-
     document.addEventListener("DOMContentLoaded", function () {
       hnInitReveals();
       hnInitInteractiveCards();
-      hnInitRhythmTabs();
-      hnInitLoungeNotes();
       hnInitHeroCarousel();
+      hnInitRhythmTabs();
       hnInitCountdown();
       hnInitShare();
       hnLoadInstagramFeed();
