@@ -11,25 +11,22 @@
 
   <style>
     :root {
-      --cream: #f5efe4;
-      --cream-2: #efe6d6;
-      --paper: rgba(250, 245, 236, 0.52);
-      --paper-strong: rgba(255, 251, 245, 0.64);
-      --glass: rgba(255, 255, 255, 0.22);
-      --glass-2: rgba(255, 255, 255, 0.14);
-      --border: rgba(255, 255, 255, 0.34);
-
+      --cream: #f7f3ea;
+      --cream-deep: #eee4d4;
+      --paper: #fffaf2;
+      --paper-soft: rgba(255, 250, 242, 0.74);
       --green: #163f31;
-      --green-soft: #234f3f;
+      --green-2: #245240;
+      --green-3: #0f2f25;
       --gold: #b4873d;
-      --gold-soft: #c9a76a;
-      --text: #2b2a27;
-      --muted: #685f54;
-
-      --shadow: 0 24px 70px rgba(28, 45, 34, 0.13); 
-      --shadow-soft: 0 12px 34px rgba(28, 45, 34, 0.08);
-
-      --line: rgba(31, 47, 39, 0.24);
+      --gold-soft: #d4b574;
+      --ink: #292722;
+      --muted: #6f665b;
+      --line: rgba(22, 63, 49, 0.22);
+      --border: rgba(22, 63, 49, 0.13);
+      --white-border: rgba(255,255,255,0.55);
+      --shadow: 0 30px 90px rgba(22, 63, 49, 0.13);
+      --shadow-soft: 0 18px 44px rgba(22, 63, 49, 0.08);
       --success: #245a39;
       --error: #8d3d34;
     }
@@ -40,29 +37,21 @@
 
     html {
       scroll-behavior: smooth;
-      width: 100%;
       overflow-x: hidden;
     }
 
     body {
       margin: 0;
-      width: 100%;
-      color: var(--text);
-      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
       background:
-        radial-gradient(circle at 15% 10%, rgba(255,255,255,0.58), transparent 28%),
-        radial-gradient(circle at 85% 0%, rgba(255,255,255,0.38), transparent 24%),
-        radial-gradient(circle at 70% 62%, rgba(201,167,106,0.13), transparent 32%),
-        linear-gradient(180deg, #f7f1e7 0%, #efe5d4 48%, #f5efe4 100%);
+        radial-gradient(circle at 12% 8%, rgba(255,255,255,0.72), transparent 28%),
+        radial-gradient(circle at 86% 5%, rgba(180,135,61,0.15), transparent 24%),
+        radial-gradient(circle at 75% 62%, rgba(22,63,49,0.08), transparent 31%),
+        linear-gradient(180deg, #f8f3ea 0%, #efe5d4 48%, #f7f3ea 100%);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
-    }
-
-    a,
-    a:visited {
-      color: inherit;
-      text-decoration: none;
     }
 
     body::before {
@@ -71,16 +60,21 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
         repeating-linear-gradient(
           0deg,
-          rgba(90, 70, 40, 0.012) 0px,
-          rgba(90, 70, 40, 0.012) 1px,
+          rgba(70, 52, 31, 0.018) 0px,
+          rgba(70, 52, 31, 0.018) 1px,
           transparent 1px,
-          transparent 5px
+          transparent 6px
         );
-      opacity: 0.45;
+      opacity: 0.55;
       z-index: 0;
+    }
+
+    a,
+    a:visited {
+      color: inherit;
+      text-decoration: none;
     }
 
     .line-overlay {
@@ -89,7 +83,7 @@
       z-index: 1;
       pointer-events: none;
       overflow: hidden;
-      opacity: 0.52;
+      opacity: 0.48;
     }
 
     .line-overlay svg {
@@ -111,13 +105,13 @@
     }
 
     .line-path.back {
-      stroke-width: 2.4;
-      opacity: 0.48;
+      stroke-width: 2.3;
+      opacity: 0.34;
     }
 
     .line-path.front {
-      stroke-width: 1.1;
-      opacity: 0.62;
+      stroke-width: 1.05;
+      opacity: 0.72;
     }
 
     .page {
@@ -125,45 +119,41 @@
       z-index: 2;
       width: min(1120px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 24px 0 70px;
+      padding: 24px 0 72px;
     }
 
     .hero {
       position: relative;
-      isolation: isolate;
       overflow: hidden;
-      border-radius: 34px;
-      padding: clamp(30px, 5vw, 52px);
+      isolation: isolate;
+      min-height: 410px;
+      border-radius: 38px;
       margin-bottom: 30px;
-      min-height: 330px;
+      padding: clamp(30px, 5.5vw, 62px);
       display: flex;
       align-items: center;
-      background-color: #e9e1d3;
+      background-color: #e8dfcf;
       background-image:
         linear-gradient(
           90deg,
-          rgba(247,241,231,0.96) 0%,
-          rgba(247,241,231,0.86) 46%,
-          rgba(247,241,231,0.42) 100%
+          rgba(247,243,234,0.98) 0%,
+          rgba(247,243,234,0.90) 43%,
+          rgba(247,243,234,0.52) 72%,
+          rgba(247,243,234,0.30) 100%
         ),
         url("../Image/vermont-hero.png");
       background-size: cover, cover;
       background-position: center center, center center;
-      background-repeat: no-repeat, no-repeat;
-      border: 1px solid rgba(255,255,255,0.42);
+      border: 1px solid var(--white-border);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(24px) saturate(170%);
-      -webkit-backdrop-filter: blur(24px) saturate(170%);
-      max-width: 100%;
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 16% 14%, rgba(255,255,255,0.46), transparent 32%),
-        linear-gradient(120deg, rgba(255,255,255,0.22), transparent 45%);
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,0.50);
+      border-radius: 28px;
       pointer-events: none;
       z-index: -1;
     }
@@ -171,76 +161,74 @@
     .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(90deg, rgba(22,63,49,0.08) 1px, transparent 1px),
-        linear-gradient(rgba(22,63,49,0.05) 1px, transparent 1px);
-      background-size: 36px 36px;
-      opacity: 0.18;
-      pointer-events: none;
+      right: -90px;
+      bottom: -120px;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      border: 1px solid rgba(22,63,49,0.16);
+      box-shadow:
+        0 0 0 22px rgba(255,255,255,0.10),
+        0 0 0 46px rgba(180,135,61,0.06);
       z-index: -1;
     }
 
     .hero-grid {
-      position: relative;
-      z-index: 2;
+      width: min(760px, 100%);
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 24px;
-      width: 100%;
-      max-width: 760px;
-      min-width: 0;
-    }
-
-    .hero-copy {
-      width: 100%;
-      min-width: 0;
+      gap: 22px;
     }
 
     .eyebrow {
+      display: inline-flex;
+      width: fit-content;
       color: var(--green);
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.76rem;
-      font-weight: 700;
-      margin-bottom: 14px;
+      letter-spacing: 0.17em;
+      font-size: 0.73rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.46);
+      border: 1px solid rgba(22,63,49,0.10);
     }
 
     h1 {
-      margin: 0 0 18px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.6rem, 6.2vw, 5.2rem);
-      line-height: 0.92;
-      letter-spacing: -0.06em;
-      font-weight: 500;
+      margin: 0 0 20px;
+      max-width: 10ch;
       color: var(--green);
-      max-width: 9ch;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 6.4vw, 5.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+      font-weight: 500;
     }
 
     .title-gold {
       color: var(--gold);
+      font-style: italic;
     }
 
     .hero-copy p {
       margin: 0;
-      max-width: 58ch;
-      color: #4d4a45;
-      line-height: 1.85;
+      max-width: 62ch;
+      color: #4b4842;
       font-size: 1.04rem;
-      overflow-wrap: break-word;
+      line-height: 1.88;
     }
 
     .hero-note {
-      width: min(100%, 520px);
-      max-width: 100%;
-      padding: 16px 18px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.38);
-      border: 1px solid rgba(255,255,255,0.42);
+      width: min(540px, 100%);
+      margin-top: 8px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.60), rgba(255,255,255,0.28));
+      border: 1px solid rgba(255,255,255,0.58);
       box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(18px) saturate(170%);
-      -webkit-backdrop-filter: blur(18px) saturate(170%);
-      min-width: 0;
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
     }
 
     .hero-note strong {
@@ -248,116 +236,121 @@
       margin-bottom: 6px;
       color: var(--green);
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.03rem;
+      font-size: 1.08rem;
       font-weight: 600;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .hero-note span {
+      display: block;
       color: var(--muted);
       font-size: 0.92rem;
-      line-height: 1.65;
-      display: block;
+      line-height: 1.7;
     }
 
     .form-shell {
       position: relative;
       overflow: hidden;
       border-radius: 42px;
-      padding: 34px;
+      padding: clamp(18px, 3vw, 34px);
       background:
-        linear-gradient(145deg, rgba(255,255,255,0.34), rgba(255,255,255,0.08)),
-        radial-gradient(circle at 18% 8%, rgba(255,255,255,0.32), transparent 34%),
-        radial-gradient(circle at 90% 12%, rgba(201,167,106,0.18), transparent 32%);
-      border: 1px solid rgba(255,255,255,0.38);
-      box-shadow:
-        0 28px 80px rgba(28, 45, 34, 0.14),
-        inset 0 1px 0 rgba(255,255,255,0.32);
-      backdrop-filter: blur(34px) saturate(185%);
-      -webkit-backdrop-filter: blur(34px) saturate(185%);
+        linear-gradient(145deg, rgba(255,255,255,0.46), rgba(255,255,255,0.16)),
+        radial-gradient(circle at 16% 0%, rgba(255,255,255,0.36), transparent 34%),
+        radial-gradient(circle at 96% 5%, rgba(180,135,61,0.15), transparent 30%);
+      border: 1px solid rgba(255,255,255,0.50);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(28px) saturate(165%);
+      -webkit-backdrop-filter: blur(28px) saturate(165%);
     }
 
     form {
       display: grid;
-      gap: 44px;
+      gap: 32px;
     }
 
     .section {
       position: relative;
       overflow: hidden;
       border-radius: 32px;
-      padding: 42px 34px;
+      padding: clamp(26px, 3.4vw, 42px);
       background:
-        linear-gradient(145deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08)),
-        radial-gradient(circle at 12% 0%, rgba(255,255,255,0.24), transparent 34%);
-      border: 1px solid rgba(255,255,255,0.34);
+        linear-gradient(145deg, rgba(255,250,242,0.78), rgba(255,250,242,0.42));
+      border: 1px solid rgba(255,255,255,0.56);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.24),
-        0 18px 42px rgba(28,45,34,0.07);
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
+        inset 0 1px 0 rgba(255,255,255,0.56),
+        0 18px 42px rgba(22,63,49,0.07);
     }
 
     .section::before {
       content: "";
       position: absolute;
       top: 0;
-      left: 22px;
-      width: 150px;
+      left: 28px;
+      width: 152px;
       height: 2px;
       background: linear-gradient(90deg, var(--gold), transparent);
-      opacity: 0.95;
+      opacity: 0.9;
+    }
+
+    .section-kicker {
+      margin: 0 0 8px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.68rem;
+      font-weight: 800;
     }
 
     .section h2 {
       margin: 0 0 10px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
       color: var(--green);
-      line-height: 1.4;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.45rem, 2.3vw, 1.9rem);
+      line-height: 1.25;
+      font-weight: 500;
+      letter-spacing: -0.035em;
     }
 
     .section-intro {
-      margin: 0 0 32px;
+      margin: 0 0 30px;
+      max-width: 75ch;
       color: var(--muted);
       font-size: 0.96rem;
-      line-height: 1.85;
+      line-height: 1.82;
     }
 
     .grid {
       display: grid;
-      gap: 30px;
+      gap: 24px;
     }
 
     .grid.two {
       grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    .section > .grid + .field,
-    .section > .field + .field,
-    .section > .field + .agreement-card,
-    .section > .agreement-card + .submit-wrap {
-      margin-top: 32px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
+    }
+
+    .section > .grid + .field,
+    .section > .field + .field,
+    .section > .field + .agreement-card,
+    .section > .agreement-card + .submit-wrap,
+    .section > .price-preview + .field {
+      margin-top: 28px;
     }
 
     label {
-      font-size: 0.93rem;
-      font-weight: 600;
       color: var(--green);
-      line-height: 1.65;
+      font-size: 0.93rem;
+      font-weight: 700;
+      line-height: 1.55;
     }
 
     .field-help {
-      margin: -2px 0 2px;
+      margin: -3px 0 0;
       color: var(--muted);
       font-size: 0.86rem;
       line-height: 1.65;
@@ -365,28 +358,7 @@
 
     .optional {
       color: var(--muted);
-      font-weight: 400;
-    }
-
-    .tiny,
-    .hint {
-      font-size: 0.83rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .pricing-note {
-      display: inline-flex;
-      width: fit-content;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(22, 63, 49, 0.07);
-      border: 1px solid rgba(22, 63, 49, 0.10);
-      color: var(--green);
-      font-size: 0.78rem;
-      line-height: 1.45;
-      font-weight: 600;
-      margin: -4px 0 0;
+      font-weight: 500;
     }
 
     input[type="text"],
@@ -396,25 +368,22 @@
     select,
     textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.34);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.26), rgba(255,255,255,0.08));
-      color: var(--text);
+      border: 1px solid rgba(22,63,49,0.13);
+      background: rgba(255,255,255,0.46);
+      color: var(--ink);
       border-radius: 18px;
       padding: 15px 15px;
       font: inherit;
-      line-height: 1.7;
+      line-height: 1.65;
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.24),
-        0 10px 26px rgba(28,45,34,0.05);
-      backdrop-filter: blur(20px) saturate(175%);
-      -webkit-backdrop-filter: blur(20px) saturate(175%);
+        inset 0 1px 0 rgba(255,255,255,0.62),
+        0 10px 26px rgba(22,63,49,0.045);
       outline: none;
       transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, transform 0.18s ease;
     }
 
     textarea {
-      min-height: 130px;
+      min-height: 136px;
       resize: vertical;
       line-height: 1.75;
     }
@@ -422,19 +391,65 @@
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: rgba(201, 167, 106, 0.50);
-      background: rgba(255,255,255,0.20);
+      border-color: rgba(180,135,61,0.50);
+      background: rgba(255,255,255,0.68);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.24),
-        0 0 0 4px rgba(180, 135, 61, 0.10),
-        0 12px 28px rgba(28,45,34,0.08);
+        inset 0 1px 0 rgba(255,255,255,0.68),
+        0 0 0 4px rgba(180,135,61,0.11),
+        0 12px 28px rgba(22,63,49,0.07);
       transform: translateY(-1px);
+    }
+
+    .pricing-note {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(22,63,49,0.07);
+      border: 1px solid rgba(22,63,49,0.11);
+      color: var(--green);
+      font-size: 0.8rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .price-preview {
+      display: none;
+      margin-top: 18px;
+      padding: 17px 18px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(22,63,49,0.09), rgba(180,135,61,0.10));
+      border: 1px solid rgba(22,63,49,0.12);
+      color: var(--green);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .price-preview.show {
+      display: block;
+    }
+
+    .price-preview strong {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .price-preview span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
     }
 
     .radio-group,
     .choices {
       display: grid;
-      gap: 17px;
+      gap: 14px;
       margin-top: 2px;
     }
 
@@ -447,26 +462,23 @@
       display: flex;
       gap: 12px;
       align-items: flex-start;
-      padding: 16px 17px;
+      padding: 15px 16px;
       border-radius: 18px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.24), rgba(255,255,255,0.08));
-      border: 1px solid rgba(255,255,255,0.32);
+      background: rgba(255,255,255,0.38);
+      border: 1px solid rgba(22,63,49,0.10);
       box-shadow:
-        0 14px 32px rgba(28,45,34,0.07),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-      backdrop-filter: blur(22px) saturate(175%);
-      -webkit-backdrop-filter: blur(22px) saturate(175%);
+        0 14px 32px rgba(22,63,49,0.045),
+        inset 0 1px 0 rgba(255,255,255,0.42);
       transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
       line-height: 1.7;
+      cursor: pointer;
     }
 
     .radio-item:hover,
     .check-item:hover {
       transform: translateY(-1px);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.30), rgba(255,255,255,0.10));
-      border-color: rgba(255,255,255,0.42);
+      background: rgba(255,255,255,0.58);
+      border-color: rgba(180,135,61,0.22);
     }
 
     .radio-item input,
@@ -484,25 +496,20 @@
       margin: 4px 0 2px;
       border-radius: 22px;
       background:
-        linear-gradient(145deg, rgba(255,255,255,0.36), rgba(255,255,255,0.12)),
+        linear-gradient(145deg, rgba(255,255,255,0.58), rgba(255,255,255,0.30)),
         radial-gradient(circle at top right, rgba(180,135,61,0.12), transparent 36%);
-      border: 1px solid rgba(255,255,255,0.44);
+      border: 1px solid rgba(255,255,255,0.58);
       box-shadow:
-        0 16px 38px rgba(28, 45, 34, 0.08),
-        inset 0 1px 0 rgba(255,255,255,0.28);
-      backdrop-filter: blur(22px) saturate(170%);
-      -webkit-backdrop-filter: blur(22px) saturate(170%);
+        0 16px 38px rgba(22,63,49,0.07),
+        inset 0 1px 0 rgba(255,255,255,0.50);
       cursor: pointer;
       transition: 0.22s ease;
-      color: var(--text);
+      color: var(--ink);
     }
 
     .agreement-card:hover {
       transform: translateY(-1px);
-      border-color: rgba(180, 135, 61, 0.36);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.44), rgba(255,255,255,0.16)),
-        radial-gradient(circle at top right, rgba(180,135,61,0.16), transparent 36%);
+      border-color: rgba(180,135,61,0.28);
     }
 
     .agreement-card input {
@@ -516,13 +523,13 @@
       height: 24px;
       margin-top: 3px;
       border-radius: 9px;
-      border: 1.5px solid rgba(22, 63, 49, 0.44);
-      background: rgba(255,255,255,0.46);
+      border: 1.5px solid rgba(22,63,49,0.44);
+      background: rgba(255,255,255,0.60);
       flex-shrink: 0;
       display: grid;
       place-items: center;
       transition: 0.2s ease;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.34);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
     }
 
     .custom-check::after {
@@ -539,38 +546,31 @@
     .agreement-card input:checked + .custom-check {
       background: linear-gradient(135deg, var(--green), #1f5842);
       border-color: var(--green);
-      box-shadow: 0 9px 20px rgba(22, 63, 49, 0.24);
+      box-shadow: 0 9px 20px rgba(22,63,49,0.24);
     }
 
     .agreement-card input:checked + .custom-check::after {
       transform: rotate(-45deg) scale(1);
     }
 
-    .agreement-card:has(input:checked) {
-      border-color: rgba(22, 63, 49, 0.28);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.42), rgba(255,255,255,0.14)),
-        radial-gradient(circle at top right, rgba(22,63,49,0.10), transparent 38%);
-    }
-
     .agreement-text {
       display: grid;
       gap: 7px;
-      color: var(--text);
-      line-height: 1.35;
       min-width: 0;
+      color: var(--ink);
+      line-height: 1.35;
     }
 
     .agreement-text strong {
-      font-size: 0.97rem;
-      font-weight: 700;
       color: var(--green);
+      font-size: 0.97rem;
+      font-weight: 750;
       line-height: 1.3;
     }
 
     .agreement-text small {
-      font-size: 0.86rem;
       color: var(--muted);
+      font-size: 0.86rem;
       line-height: 1.55;
     }
 
@@ -580,13 +580,12 @@
       align-items: center;
       width: fit-content;
       color: var(--green);
-      font-weight: 750;
-      text-decoration: none;
+      font-weight: 800;
       padding: 2px 7px;
       margin: 0 2px;
       border-radius: 999px;
-      background: rgba(22, 63, 49, 0.07);
-      border: 1px solid rgba(22, 63, 49, 0.10);
+      background: rgba(22,63,49,0.07);
+      border: 1px solid rgba(22,63,49,0.10);
       transition: 0.18s ease;
     }
 
@@ -604,23 +603,26 @@
       padding-top: 12px;
     }
 
-    .submit-btn {
+    .submit-btn,
+    .modal-btn {
       border: 0;
       appearance: none;
       cursor: pointer;
       border-radius: 999px;
-      padding: 16px 26px;
+      padding: 15px 24px;
       font: inherit;
-      font-weight: 600;
+      font-size: 0.96rem;
+      font-weight: 750;
       color: #fff8ef;
       background: linear-gradient(135deg, var(--green), #1f5842);
-      box-shadow: 0 16px 34px rgba(22, 63, 49, 0.20);
+      box-shadow: 0 16px 34px rgba(22,63,49,0.20);
       transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
     }
 
-    .submit-btn:hover {
+    .submit-btn:hover,
+    .modal-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 20px 40px rgba(22, 63, 49, 0.26);
+      box-shadow: 0 20px 40px rgba(22,63,49,0.26);
     }
 
     .submit-btn:disabled {
@@ -629,16 +631,21 @@
       transform: none;
     }
 
+    .modal-btn.secondary {
+      color: var(--green);
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(22,63,49,0.12);
+      box-shadow: none;
+    }
+
     .status {
       display: none;
       padding: 13px 15px;
       border-radius: 16px;
       font-size: 0.95rem;
       line-height: 1.75;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.24);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.32);
+      border: 1px solid rgba(255,255,255,0.38);
     }
 
     .status.show {
@@ -647,21 +654,21 @@
 
     .status.success {
       color: var(--success);
-      border-color: rgba(36, 90, 57, 0.16);
-      background: rgba(36, 90, 57, 0.08);
+      border-color: rgba(36,90,57,0.16);
+      background: rgba(36,90,57,0.08);
     }
 
     .status.error {
       color: var(--error);
-      border-color: rgba(141, 61, 52, 0.16);
-      background: rgba(141, 61, 52, 0.08);
+      border-color: rgba(141,61,52,0.16);
+      background: rgba(141,61,52,0.08);
     }
 
     .footer-note {
+      max-width: 76ch;
       color: var(--muted);
       font-size: 0.88rem;
       line-height: 1.8;
-      max-width: 70ch;
     }
 
     .hidden {
@@ -676,9 +683,9 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: rgba(22, 34, 28, 0.30);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(17, 30, 24, 0.34);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .success-modal.show {
@@ -686,49 +693,84 @@
     }
 
     .success-modal-card {
-      width: min(560px, 100%);
-      border-radius: 30px;
-      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      width: min(620px, 100%);
+      border-radius: 34px;
+      padding: 34px 28px;
       background:
-        linear-gradient(145deg, rgba(255,255,255,0.32), rgba(255,255,255,0.12));
-      border: 1px solid rgba(255,255,255,0.34);
-      box-shadow: 0 24px 70px rgba(18, 34, 25, 0.18);
+        linear-gradient(145deg, rgba(255,250,242,0.96), rgba(247,243,234,0.86));
+      border: 1px solid rgba(255,255,255,0.62);
+      box-shadow: 0 28px 90px rgba(18,34,25,0.22);
       text-align: center;
-      backdrop-filter: blur(26px) saturate(180%);
-      -webkit-backdrop-filter: blur(26px) saturate(180%);
+    }
+
+    .success-modal-card::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -80px;
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      border: 1px solid rgba(180,135,61,0.22);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .success-modal-card .modal-kicker {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 9px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 800;
     }
 
     .success-modal-card h3 {
+      position: relative;
+      z-index: 1;
       margin: 0 0 12px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.8rem;
-      font-weight: 500;
       color: var(--green);
-      line-height: 1.35;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 2.7rem);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
     }
 
     .success-modal-card p {
-      margin: 0 0 20px;
+      position: relative;
+      z-index: 1;
+      max-width: 48ch;
+      margin: 0 auto 24px;
       color: var(--muted);
-      line-height: 1.9;
+      line-height: 1.85;
       font-size: 1rem;
     }
 
-    .modal-btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 13px 22px;
-      font: inherit;
-      font-weight: 600;
-      color: #fff8ef;
-      background: linear-gradient(135deg, var(--green), #1f5842);
-      box-shadow: 0 16px 34px rgba(22, 63, 49, 0.18);
+    .modal-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
     }
 
-    @media (min-width: 900px) {
-      .section:first-of-type .grid.two {
+    @media (min-width: 820px) {
+      .grid.two {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .choices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .inline {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
@@ -736,154 +778,89 @@
       .page {
         width: min(100% - 16px, 1120px);
         padding-top: 14px;
-        padding-bottom: 46px;
+        padding-bottom: 48px;
       }
 
       .hero {
-        min-height: 330px;
-        padding: 22px 18px;
-        border-radius: 26px;
+        min-height: 370px;
+        padding: 24px 18px;
+        border-radius: 28px;
         align-items: flex-start;
-        background-color: #e9e1d3;
         background-image:
           linear-gradient(
             180deg,
-            rgba(247,241,231,0.96) 0%,
-            rgba(247,241,231,0.88) 52%,
-            rgba(247,241,231,0.58) 100%
+            rgba(247,243,234,0.98) 0%,
+            rgba(247,243,234,0.91) 56%,
+            rgba(247,243,234,0.62) 100%
           ),
           url("../Image/vermont-hero.png");
-        background-size: cover, cover;
-        background-position: center center, center center;
-        background-repeat: no-repeat, no-repeat;
       }
 
-      .hero-grid {
-        gap: 14px;
-        max-width: 100%;
+      .hero::before {
+        inset: 10px;
+        border-radius: 22px;
       }
 
       .eyebrow {
         font-size: 0.62rem;
-        letter-spacing: 0.14em;
-        margin-bottom: 8px;
-      }
-
-      h1 {
-        font-size: clamp(2rem, 10.5vw, 3rem);
-        line-height: 0.98;
-        letter-spacing: -0.055em;
-        max-width: 10ch;
-        margin-bottom: 11px;
-      }
-
-      .hero-copy p {
-        max-width: 100%;
-        font-size: 0.86rem;
-        line-height: 1.55;
-      }
-
-      .hero-note {
-        padding: 12px 14px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.42);
-      }
-
-      .hero-note strong {
-        font-size: 0.9rem;
-        margin-bottom: 3px;
-        line-height: 1.3;
-      }
-
-      .hero-note span {
-        font-size: 0.78rem;
-        line-height: 1.45;
-      }
-
-      .form-shell {
-        padding: 24px 18px;
-        border-radius: 32px;
-      }
-
-      form {
-        gap: 34px;
-      }
-
-      .section {
-        padding: 30px 20px;
-        border-radius: 26px;
-      }
-
-      .section-intro {
-        margin-bottom: 26px;
-      }
-
-      .grid,
-      .grid.two {
-        gap: 24px;
-      }
-
-      .section > .grid + .field,
-      .section > .field + .field,
-      .section > .field + .agreement-card,
-      .section > .agreement-card + .submit-wrap {
-        margin-top: 26px;
-      }
-
-      .agreement-card {
-        padding: 15px 14px;
-        border-radius: 19px;
-      }
-
-      .agreement-text small {
-        font-size: 0.82rem;
-      }
-
-      .agreement-text a,
-      .agreement-text a:visited {
-        margin: 2px 1px;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .hero {
-        min-height: 315px;
-        padding: 20px 16px;
-        border-radius: 24px;
-        background-color: #e9e1d3;
-        background-image:
-          linear-gradient(
-            180deg,
-            rgba(247,241,231,0.96) 0%,
-            rgba(247,241,231,0.88) 52%,
-            rgba(247,241,231,0.58) 100%
-          ),
-          url("../Image/vermont-hero.png");
-        background-size: cover, cover;
-        background-position: center center, center center;
-        background-repeat: no-repeat, no-repeat;
-      }
-
-      h1 {
-        font-size: clamp(1.9rem, 10vw, 2.7rem);
+        letter-spacing: 0.13em;
         margin-bottom: 10px;
       }
 
+      h1 {
+        max-width: 11ch;
+        font-size: clamp(2.15rem, 11vw, 3.2rem);
+        line-height: 0.96;
+        margin-bottom: 13px;
+      }
+
       .hero-copy p {
-        font-size: 0.82rem;
-        line-height: 1.5;
+        font-size: 0.88rem;
+        line-height: 1.62;
       }
 
       .hero-note {
-        padding: 11px 12px;
+        padding: 13px 14px;
+        border-radius: 19px;
       }
 
       .hero-note strong {
-        font-size: 0.86rem;
+        font-size: 0.91rem;
       }
 
       .hero-note span {
-        font-size: 0.76rem;
+        font-size: 0.79rem;
+        line-height: 1.5;
+      }
+
+      form {
+        gap: 24px;
+      }
+
+      .form-shell {
+        border-radius: 30px;
+      }
+
+      .section {
+        border-radius: 25px;
+      }
+
+      .section-intro {
+        margin-bottom: 24px;
+      }
+
+      .success-modal-card {
+        padding: 30px 20px;
+        border-radius: 28px;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+      }
+
+      .modal-btn {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
@@ -907,24 +884,23 @@
 
   <div id="site-header"></div>
 
-  <div class="page">
+  <main class="page">
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">A Shavuot mountain escape</div>
+          <div class="eyebrow">Shavuos in Vermont</div>
           <h1>Apply for your <span class="title-gold">place.</span></h1>
           <p>
-            Join us for a warm and thoughtfully curated Shavuot experience in Vermont —
-            with mountain air, kosher meals, hot tub, a swimming pool, a game room,
-            and a beautiful setting to slow down, connect, celebrate, and enjoy the holiday together.
+            A small, curated retreat in the mountains — kosher meals, a warm Shabbos and Yom Tov rhythm,
+            meaningful conversation, fresh air, hot tub, pool, game room, and space to actually meet the people around you.
           </p>
         </div>
 
         <div class="hero-note">
-          <strong>Peaceful. Restful. Beautifully hosted.</strong>
+          <strong>Not a hotel program. Not a huge crowd.</strong>
           <span>
-            This application helps us understand who is coming, what stay fits you best,
-            and how to create a warm, well-matched group.
+            This application helps us understand who is joining, what stay fits best,
+            and how to shape a thoughtful, well-matched group for the weekend.
           </span>
         </div>
       </div>
@@ -939,16 +915,17 @@
         novalidate
       >
         <input type="hidden" id="submitted_at" name="submitted_at" value="" />
-
         <input type="hidden" id="bed_type" name="bed_type" value="" />
         <input type="hidden" id="selected_price" name="selected_price" value="" />
         <input type="hidden" id="pricing_basis" name="pricing_basis" value="" />
         <input type="hidden" id="total_price" name="total_price" value="" />
 
-        <div class="section">
+        <section class="section">
+          <p class="section-kicker">Step one</p>
           <h2>Who are you?</h2>
           <p class="section-intro">
-            We’d love a small introduction.
+            Start with a short introduction. Nothing formal — just enough for us to understand who you are
+            and what kind of energy you may bring into the group.
           </p>
 
           <div class="grid two">
@@ -999,7 +976,7 @@
           <div class="field">
             <label for="coming_from">Where are you coming from? <span class="optional">(optional)</span></label>
             <p class="field-help">
-              City, neighborhood, or general area is perfect. This may help us coordinate rides or carpools.
+              City, neighborhood, or general area is perfect. This may help with rides or carpools.
             </p>
             <input
               type="text"
@@ -1014,8 +991,8 @@
               Tell us about yourself, and anything you might enjoy bringing to the retreat *
             </label>
             <p class="field-help">
-              A short introduction is perfect. You can mention the kind of energy you bring,
-              what drew you to the retreat, and if you may be able to help with rides or carpooling.
+              You can mention what drew you to the retreat, what you are hoping for, and whether you may be able
+              to help with rides, carpooling, hosting energy, learning, music, food prep, games, or anything else.
             </p>
             <textarea
               id="about_you"
@@ -1024,19 +1001,21 @@
               placeholder="Write a short introduction..."
             ></textarea>
           </div>
-        </div>
+        </section>
 
-        <div class="section">
-          <h2>Stay preference - Early Bird Pricing</h2>
+        <section class="section">
+          <p class="section-kicker">Step two</p>
+          <h2>Stay preference</h2>
           <p class="section-intro">
-            Choose the kind of stay that feels right for you.
+            Choose the stay option that feels right. We will review the full application before confirming spots.
           </p>
 
           <div class="field">
             <label for="reservation_type">What type of reservation are you looking for? *</label>
 
             <p class="pricing-note">
-              Prices are per person, except the private suite.
+              Early Bird pricing. Prices are per person, except the private suite:
+              $1350 includes up to 2 people, then +$350 per additional person.
             </p>
 
             <select id="reservation_type" name="reservation_type" required>
@@ -1075,7 +1054,7 @@
                 data-price="1350"
                 data-pricing-basis="Suite total"
               >
-                $1350 — Private Suite (One Queen Bed)
+                $1350 — Private Suite: one queen bed, includes up to 2 people
               </option>
 
               <option
@@ -1103,6 +1082,11 @@
             />
           </div>
 
+          <div class="price-preview" id="pricePreview" aria-live="polite">
+            <strong id="pricePreviewTitle"></strong>
+            <span id="pricePreviewText"></span>
+          </div>
+
           <div class="field">
             <label>Are you coming with someone specific? <span class="optional">(optional)</span></label>
             <div class="radio-group">
@@ -1125,80 +1109,82 @@
             <label for="room_with_name">Who are you coming with? <span class="optional">(optional)</span></label>
             <input type="text" id="room_with_name" name="room_with_name" />
           </div>
-        </div>
+        </section>
 
-<div class="section">
-  <h2>Davening, minyan & learning</h2>
-  <p class="section-intro">
-    This helps us plan the rhythm of the holiday, including minyanim, davening support, and learning opportunities.
-  </p>
+        <section class="section">
+          <p class="section-kicker">Step three</p>
+          <h2>Davening, minyan & learning</h2>
+          <p class="section-intro">
+            A few details help us plan the rhythm of Shabbos and Yom Tov with care.
+          </p>
 
-  <div class="field">
-    <label>
-      Do you expect to attend minyan?
-      <span class="optional">(optional)</span>
-    </label>
+          <div class="field">
+            <label>
+              Do you expect to attend minyan?
+              <span class="optional">(optional)</span>
+            </label>
 
-    <div class="radio-group">
-      <label class="radio-item">
-        <input type="radio" name="attend_minyan" value="Yes" />
-        <span>Yes</span>
-      </label>
+            <div class="radio-group inline">
+              <label class="radio-item">
+                <input type="radio" name="attend_minyan" value="Yes" />
+                <span>Yes</span>
+              </label>
 
-      <label class="radio-item">
-        <input type="radio" name="attend_minyan" value="No" />
-        <span>No</span>
-      </label>
+              <label class="radio-item">
+                <input type="radio" name="attend_minyan" value="No" />
+                <span>No</span>
+              </label>
 
-      <label class="radio-item">
-        <input type="radio" name="attend_minyan" value="Not sure" />
-        <span>Not sure</span>
-      </label>
-    </div>
-  </div>
+              <label class="radio-item">
+                <input type="radio" name="attend_minyan" value="Not sure" />
+                <span>Not sure</span>
+              </label>
+            </div>
+          </div>
 
-  <div class="field">
-    <label>
-      Would you be open to helping with davening, minyan, or learning?
-      <span class="optional">(optional)</span>
-    </label>
+          <div class="field">
+            <label>
+              Would you be open to helping with davening, minyan, or learning?
+              <span class="optional">(optional)</span>
+            </label>
 
-    <div class="radio-group inline">
-      <label class="radio-item">
-        <input type="radio" name="support_davening" value="Yes" />
-        <span>Yes</span>
-      </label>
+            <div class="radio-group inline">
+              <label class="radio-item">
+                <input type="radio" name="support_davening" value="Yes" />
+                <span>Yes</span>
+              </label>
 
-      <label class="radio-item">
-        <input type="radio" name="support_davening" value="Maybe" />
-        <span>Maybe</span>
-      </label>
+              <label class="radio-item">
+                <input type="radio" name="support_davening" value="Maybe" />
+                <span>Maybe</span>
+              </label>
 
-      <label class="radio-item">
-        <input type="radio" name="support_davening" value="No" />
-        <span>No</span>
-      </label>
-    </div>
-  </div>
+              <label class="radio-item">
+                <input type="radio" name="support_davening" value="No" />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
 
-  <div class="field hidden" id="davening_notes_wrap">
-    <label for="davening_notes">
-      Anything helpful you want to share?
-      <span class="optional">(optional)</span>
-    </label>
+          <div class="field hidden" id="davening_notes_wrap">
+            <label for="davening_notes">
+              Anything helpful you want to share?
+              <span class="optional">(optional)</span>
+            </label>
 
-    <textarea
-      id="davening_notes"
-      name="davening_notes"
-      placeholder="For example: baal korei, leading davening, giving a short shiur, helping with learning, mashgiach experience, comfort level, or anything else useful for us to know."
-    ></textarea>
-  </div>
-</div>
+            <textarea
+              id="davening_notes"
+              name="davening_notes"
+              placeholder="For example: leading davening, baal korei, giving a short shiur, helping with learning, comfort level, or anything else useful for us to know."
+            ></textarea>
+          </div>
+        </section>
 
-        <div class="section">
+        <section class="section">
+          <p class="section-kicker">Step four</p>
           <h2>Food & logistics</h2>
           <p class="section-intro">
-            A few practical details so everything feels smooth and well prepared.
+            These details help us prepare thoughtfully and avoid surprises.
           </p>
 
           <div class="field">
@@ -1239,17 +1225,22 @@
             <label for="dietary_other">Please specify dietary restriction / allergy <span class="optional">(optional)</span></label>
             <input type="text" id="dietary_other" name="dietary_other" />
           </div>
-        </div>
+        </section>
 
-        <div class="section">
+        <section class="section">
+          <p class="section-kicker">Final step</p>
           <h2>Final notes</h2>
           <p class="section-intro">
-            A little context helps us create a more thoughtful experience.
+            A little context goes a long way in building the right group dynamic.
           </p>
 
           <div class="field">
             <label for="retreat_hopes">What are you hoping to get out of this retreat? <span class="optional">(optional)</span></label>
-            <textarea id="retreat_hopes" name="retreat_hopes" placeholder="Community, learning, rest, meeting people, nature, something else..."></textarea>
+            <textarea
+              id="retreat_hopes"
+              name="retreat_hopes"
+              placeholder="Community, learning, rest, meeting people, nature, something else..."
+            ></textarea>
           </div>
 
           <div class="field">
@@ -1280,7 +1271,7 @@
               <span class="optional">(optional)</span>
             </label>
             <p class="field-help">
-              We’re considering adding an extra overnight camping option for guests who’d like a more outdoorsy extension to the retreat.
+              We’re considering adding an extra overnight camping option for guests who want a more outdoorsy extension.
             </p>
             <select id="extra_camping_hike" name="extra_camping_hike">
               <option value="">Please select</option>
@@ -1311,23 +1302,38 @@
             <div id="formStatus" class="status" role="status" aria-live="polite"></div>
             <div class="footer-note">
               By submitting, you’re sharing information that may be used for food planning,
-              retreat coordination, and general hosting logistics.
+              retreat coordination, rooming, communication, and general hosting logistics.
             </div>
           </div>
-        </div>
+        </section>
       </form>
     </section>
-  </div>
+  </main>
 
   <div id="site-footer"></div>
 
   <div class="success-modal" id="successModal" aria-hidden="true">
     <div class="success-modal-card">
-      <h3>Congratulations!</h3>
+      <p class="modal-kicker">Application received</p>
+      <h3>Thank you for applying.</h3>
       <p>
-        We will send you a confirmation soon with the link to pay if your application is accepted.
+        We’ll review your application and get back to you soon. If we have not spoken yet,
+        please schedule a short intro call so we can get to know you, answer your questions,
+        and make sure the retreat feels like the right fit.
       </p>
-      <button type="button" class="modal-btn" id="closeSuccessModal">Close</button>
+
+      <div class="modal-actions">
+        <a
+          href="https://www.hamsanomads.com/schedule/call.html"
+          class="modal-btn"
+        >
+          Schedule a Call
+        </a>
+
+        <button type="button" class="modal-btn secondary" id="closeSuccessModal">
+          Close
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1336,6 +1342,8 @@
   <script src="../assets/site-components.js" data-base="../"></script>
 
   <script>
+    const PRIVATE_SUITE_EXTRA_PERSON_PRICE = 350;
+
     const form = document.getElementById("applyForm");
     const submitBtn = document.getElementById("submitBtn");
     const formStatus = document.getElementById("formStatus");
@@ -1356,8 +1364,18 @@
     const pricingBasisInput = document.getElementById("pricing_basis");
     const totalPriceInput = document.getElementById("total_price");
 
+    const pricePreview = document.getElementById("pricePreview");
+    const pricePreviewTitle = document.getElementById("pricePreviewTitle");
+    const pricePreviewText = document.getElementById("pricePreviewText");
+
     const successModal = document.getElementById("successModal");
     const closeSuccessModal = document.getElementById("closeSuccessModal");
+
+    function formatMoney(value) {
+      return "$" + Number(value || 0).toLocaleString("en-US", {
+        maximumFractionDigits: 0
+      });
+    }
 
     function showStatus(message, type) {
       formStatus.textContent = message;
@@ -1384,28 +1402,46 @@
         if (selectedPriceInput) selectedPriceInput.value = "";
         if (pricingBasisInput) pricingBasisInput.value = "";
         if (totalPriceInput) totalPriceInput.value = "";
+
+        if (pricePreview) pricePreview.classList.remove("show");
         return;
       }
 
       const bedType = selectedOption.dataset.bedType || reservationTypeInput.value;
       const selectedPrice = Number(selectedOption.dataset.price || 0);
       const pricingBasis = selectedOption.dataset.pricingBasis || "";
-      const numberOfPeople = Math.max(1, Number(numberOfPeopleInput.value || 1));
+      let numberOfPeople = Math.max(1, Number(numberOfPeopleInput.value || 1));
 
-      if (numberOfPeopleInput.value && Number(numberOfPeopleInput.value) < 1) {
+      if (Number(numberOfPeopleInput.value) < 1) {
         numberOfPeopleInput.value = 1;
+        numberOfPeople = 1;
       }
 
       const isSuite = pricingBasis === "Suite total";
 
       const totalPrice = isSuite
-        ? selectedPrice
+        ? selectedPrice + Math.max(0, numberOfPeople - 2) * PRIVATE_SUITE_EXTRA_PERSON_PRICE
         : selectedPrice * numberOfPeople;
 
       if (bedTypeInput) bedTypeInput.value = bedType;
       if (selectedPriceInput) selectedPriceInput.value = selectedPrice;
       if (pricingBasisInput) pricingBasisInput.value = pricingBasis;
       if (totalPriceInput) totalPriceInput.value = totalPrice;
+
+      if (pricePreview && pricePreviewTitle && pricePreviewText) {
+        pricePreview.classList.add("show");
+        pricePreviewTitle.textContent = `${formatMoney(totalPrice)} total`;
+
+        if (isSuite) {
+          const extraPeople = Math.max(0, numberOfPeople - 2);
+
+          pricePreviewText.textContent = extraPeople > 0
+            ? `Private Suite includes up to 2 people. This adds ${formatMoney(PRIVATE_SUITE_EXTRA_PERSON_PRICE)} × ${extraPeople} additional ${extraPeople === 1 ? "person" : "people"}.`
+            : "Private Suite includes up to 2 people.";
+        } else {
+          pricePreviewText.textContent = `${formatMoney(selectedPrice)} per person × ${numberOfPeople} ${numberOfPeople === 1 ? "person" : "people"}.`;
+        }
+      }
     }
 
     function toggleConditionalFields() {
@@ -1415,8 +1451,15 @@
       }
 
       const attendMinyan = selectedRadioValue("attend_minyan");
-      const showDavening = attendMinyan === "Not sure";
-      if (daveningNotesWrap) daveningNotesWrap.classList.toggle("hidden", !showDavening);
+      const supportDavening = selectedRadioValue("support_davening");
+      const showDavening =
+        attendMinyan === "Not sure" ||
+        supportDavening === "Yes" ||
+        supportDavening === "Maybe";
+
+      if (daveningNotesWrap) {
+        daveningNotesWrap.classList.toggle("hidden", !showDavening);
+      }
 
       const dietaryOtherCheck = document.getElementById("dietary_other_check");
       if (dietaryOtherWrap && dietaryOtherCheck) {
@@ -1448,7 +1491,7 @@
         email: "Please enter your email address.",
         phone: "Please enter your phone number.",
         age: "Please enter your age.",
-        gender: "Please select your sex.",
+        gender: "Please select an option.",
         reservation_type: "Please choose a stay preference.",
         number_of_people: "Please enter how many people are included.",
         about_you: "Please write a short introduction."
@@ -1457,7 +1500,7 @@
       for (const id of requiredIds) {
         const el = document.getElementById(id);
 
-        if (!el || !el.value.trim()) {
+        if (!el || !String(el.value || "").trim()) {
           if (el) el.focus();
           showStatus(requiredLabels[id] || "Please complete this required field.", "error");
           return false;
@@ -1498,10 +1541,14 @@
     });
 
     const dietaryOtherCheck = document.getElementById("dietary_other_check");
-    if (dietaryOtherCheck) dietaryOtherCheck.addEventListener("change", toggleConditionalFields);
+    if (dietaryOtherCheck) {
+      dietaryOtherCheck.addEventListener("change", toggleConditionalFields);
+    }
 
     const heardAbout = document.getElementById("heard_about");
-    if (heardAbout) heardAbout.addEventListener("change", toggleConditionalFields);
+    if (heardAbout) {
+      heardAbout.addEventListener("change", toggleConditionalFields);
+    }
 
     if (reservationTypeInput) {
       reservationTypeInput.addEventListener("change", updatePricingFields);
@@ -1524,7 +1571,7 @@
     toggleConditionalFields();
     updatePricingFields();
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", function(event) {
       hideStatus();
 
       if (!validateRequiredFields()) {
