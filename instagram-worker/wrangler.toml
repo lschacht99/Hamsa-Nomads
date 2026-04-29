@@ -1,7 +1,4 @@
 name = "hamsa-instagram-feed"
-main = "src/index.js"
-compatibility_date = "2026-04-28"
-
-[observability]
-enabled = true
+main = "instagram-worker/src/index.js"
+compatibility_date = "2026-04-29"
 npx wrangler secret put IGAAQjL9aZBIc9BZAFl5LUZA0azdMTHRLUWF4eWFGUzFDT295UTZAQM0pzbG41aWlCY1VUeXhhUnM0ZAXFjWnZAVQllVNGxDMGRBYWdUdE5VT0hkaFhCbUNRajNsXzRvWFFLdDJtZADFRMDgtVDVGUGE0ZAl9FXzVTM05pcjZATVnpiMVg3dwZDZD
