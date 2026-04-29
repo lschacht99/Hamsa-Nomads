@@ -159,8 +159,9 @@ function insertGlobalTripLine() {
 
 /* =========================================================
    HEADER
-   Visible nav stays.
-   Slide menu is additional.
+   Desktop: full visible header.
+   Mobile: clean two-line header.
+   Slide menu: extra links.
    ========================================================= */
 
 function insertSiteHeader() {
@@ -168,9 +169,10 @@ function insertSiteHeader() {
   if (!headerTarget) return;
 
   headerTarget.innerHTML = `
-    <header class="hn-shared-header hn-additional-menu-header">
-      <div class="hn-shared-container hn-shared-nav hn-additional-menu-nav">
-        <a href="${hnPath("/index.html")}" class="hn-shared-brand hn-additional-menu-brand">
+    <header class="hn-shared-header hn-main-header">
+      <div class="hn-shared-container hn-shared-nav hn-main-nav">
+        
+        <a href="${hnPath("/index.html")}" class="hn-shared-brand hn-main-brand">
           <img
             class="hn-shared-brand-logo"
             src="${hnPath("/logo/logo-hamsa-nomads.png")}"
@@ -183,12 +185,31 @@ function insertSiteHeader() {
           </div>
         </a>
 
-        <nav class="hn-shared-nav-links hn-visible-nav-links" aria-label="Main navigation">
-          <a href="${hnPath("/index.html#experience")}" data-nav="experience">Experience</a>
-          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">Gallery</a>
-          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">Trips</a>
-          <a href="${hnPath("/faq.html")}" data-nav="faq">FAQ</a>
-          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">About</a>
+        <nav class="hn-shared-nav-links hn-main-nav-links" aria-label="Main navigation">
+          <a href="${hnPath("/index.html#experience")}" data-nav="experience">
+            <span class="hn-nav-full">Experience</span>
+            <span class="hn-nav-short">Experience</span>
+          </a>
+
+          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">
+            <span class="hn-nav-full">Gallery</span>
+            <span class="hn-nav-short">Gallery</span>
+          </a>
+
+          <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
+            <span class="hn-nav-full">Upcoming trips</span>
+            <span class="hn-nav-short">Trips</span>
+          </a>
+
+          <a href="${hnPath("/faq.html")}" data-nav="faq">
+            <span class="hn-nav-full">FAQ</span>
+            <span class="hn-nav-short">FAQ</span>
+          </a>
+
+          <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">
+            <span class="hn-nav-full">About us</span>
+            <span class="hn-nav-short">About</span>
+          </a>
         </nav>
 
         <div class="hn-header-actions">
@@ -246,9 +267,24 @@ function insertSiteHeader() {
             <small>Back to the main page</small>
           </a>
 
+          <a href="${hnPath("/Pages/Rooms-Schedule.html")}" data-nav="rooms">
+            <span>Rooms & Schedule</span>
+            <small>See the retreat rooms, rhythm, and weekend flow</small>
+          </a>
+
           <a href="${hnPath("/index.html#pricing")}">
             <span>Pricing</span>
             <small>Rooming, camping, and retreat options</small>
+          </a>
+
+          <a href="${hnPath("/index.html#experience")}" data-nav="experience">
+            <span>Experience</span>
+            <small>The feeling and idea behind the retreat</small>
+          </a>
+
+          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">
+            <span>Gallery</span>
+            <small>Images and atmosphere</small>
           </a>
 
           <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
@@ -305,7 +341,7 @@ function insertSiteHeader() {
 }
 
 /* =========================================================
-   ADDITIONAL SLIDE MENU STYLES
+   HEADER + SLIDE MENU STYLES
    ========================================================= */
 
 function insertMoreSlideMenuStyles() {
@@ -315,13 +351,13 @@ function insertMoreSlideMenuStyles() {
   style.id = "hnMoreSlideMenuStyles";
 
   style.textContent = `
-    .hn-additional-menu-header {
+    .hn-main-header {
       position: relative !important;
       z-index: 99999 !important;
       overflow: visible !important;
     }
 
-    .hn-additional-menu-nav {
+    .hn-main-nav {
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
@@ -330,12 +366,25 @@ function insertMoreSlideMenuStyles() {
       overflow: visible !important;
     }
 
-    .hn-additional-menu-brand {
+    .hn-main-brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
       flex: 0 0 auto !important;
       min-width: 0 !important;
+      text-decoration: none !important;
     }
 
-    .hn-visible-nav-links {
+    .hn-main-brand .hn-shared-brand-logo {
+      flex: 0 0 auto !important;
+    }
+
+    .hn-main-brand .hn-shared-brand-name,
+    .hn-main-brand .hn-shared-brand-sub {
+      white-space: nowrap !important;
+    }
+
+    .hn-main-nav-links {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -346,9 +395,14 @@ function insertMoreSlideMenuStyles() {
       overflow: visible !important;
     }
 
-    .hn-visible-nav-links a {
+    .hn-main-nav-links a {
       white-space: nowrap !important;
       flex: 0 0 auto !important;
+      text-decoration: none !important;
+    }
+
+    .hn-nav-short {
+      display: none;
     }
 
     .hn-header-actions {
@@ -378,7 +432,7 @@ function insertMoreSlideMenuStyles() {
       height: 44px !important;
       border: 1px solid rgba(23, 79, 25, 0.18) !important;
       border-radius: 999px !important;
-      background: rgba(247, 243, 234, 0.82) !important;
+      background: rgba(247, 243, 234, 0.88) !important;
       backdrop-filter: blur(14px) !important;
       -webkit-backdrop-filter: blur(14px) !important;
       cursor: pointer !important;
@@ -389,7 +443,7 @@ function insertMoreSlideMenuStyles() {
       padding: 0 !important;
       position: relative !important;
       z-index: 100002 !important;
-      box-shadow: 0 12px 28px rgba(16, 14, 11, 0.08) !important;
+      box-shadow: 0 10px 24px rgba(16, 14, 11, 0.08) !important;
       flex: 0 0 auto !important;
     }
 
@@ -524,15 +578,15 @@ function insertMoreSlideMenuStyles() {
     }
 
     @media (max-width: 1180px) {
-      .hn-additional-menu-nav {
+      .hn-main-nav {
         gap: 13px !important;
       }
 
-      .hn-visible-nav-links {
+      .hn-main-nav-links {
         gap: 15px !important;
       }
 
-      .hn-visible-nav-links a {
+      .hn-main-nav-links a {
         font-size: 0.88rem !important;
       }
 
@@ -547,82 +601,54 @@ function insertMoreSlideMenuStyles() {
       }
     }
 
-    @media (max-width: 980px) {
-      .hn-additional-menu-nav {
+    @media (max-width: 860px) {
+      .hn-main-header {
+        background: rgba(247, 243, 234, 0.96) !important;
+        backdrop-filter: blur(18px) !important;
+        -webkit-backdrop-filter: blur(18px) !important;
+        border-bottom: 1px solid rgba(23, 79, 25, 0.08) !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+
+      .hn-main-nav {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        grid-template-rows: auto auto !important;
+        align-items: center !important;
+        gap: 9px 12px !important;
+        padding-top: 10px !important;
+        padding-bottom: 9px !important;
+        overflow: visible !important;
+      }
+
+      .hn-main-brand {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
         gap: 9px !important;
+        min-width: 0 !important;
       }
 
-      .hn-additional-menu-brand {
-        gap: 8px !important;
-      }
-
-      .hn-additional-menu-brand .hn-shared-brand-logo {
-        width: 40px !important;
+      .hn-main-brand .hn-shared-brand-logo {
+        width: 36px !important;
         height: auto !important;
       }
 
-      .hn-additional-menu-brand .hn-shared-brand-name {
+      .hn-main-brand .hn-shared-brand-name {
         font-size: 1.08rem !important;
-        letter-spacing: 0.06em !important;
+        letter-spacing: 0.08em !important;
+        line-height: 1.05 !important;
       }
 
-      .hn-additional-menu-brand .hn-shared-brand-sub {
-        font-size: 0.74rem !important;
+      .hn-main-brand .hn-shared-brand-sub {
+        font-size: 0.78rem !important;
+        line-height: 1.1 !important;
       }
 
-      .hn-visible-nav-links {
-        gap: 10px !important;
-      }
-
-      .hn-visible-nav-links a {
-        font-size: 0.74rem !important;
-      }
-
-      .hn-join-always {
-        font-size: 0.72rem !important;
-        padding: 8px 10px !important;
-      }
-
-      .hn-more-menu-toggle {
-        width: 38px !important;
-        height: 38px !important;
-      }
-
-      .hn-more-menu-toggle span {
-        width: 17px !important;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .hn-additional-menu-nav {
-        gap: 6px !important;
-      }
-
-      .hn-additional-menu-brand {
-        gap: 5px !important;
-      }
-
-      .hn-additional-menu-brand .hn-shared-brand-logo {
-        width: 26px !important;
-      }
-
-      .hn-additional-menu-brand .hn-shared-brand-name {
-        font-size: 0.68rem !important;
-        letter-spacing: 0.04em !important;
-      }
-
-      .hn-additional-menu-brand .hn-shared-brand-sub {
-        display: none !important;
-      }
-
-      .hn-visible-nav-links {
-        gap: 6px !important;
-        justify-content: center !important;
-      }
-
-      .hn-visible-nav-links a {
-        font-size: 0.55rem !important;
-        letter-spacing: 0 !important;
+      .hn-header-actions {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        gap: 8px !important;
       }
 
       .hn-join-full {
@@ -634,58 +660,142 @@ function insertMoreSlideMenuStyles() {
       }
 
       .hn-join-always {
-        font-size: 0.56rem !important;
-        padding: 6px 7px !important;
-        min-height: 29px !important;
+        font-size: 0.78rem !important;
+        padding: 8px 12px !important;
+        min-height: 36px !important;
+        border-radius: 999px !important;
+      }
+
+      .hn-more-menu-toggle {
+        width: 36px !important;
+        height: 36px !important;
+        gap: 3px !important;
+      }
+
+      .hn-more-menu-toggle span {
+        width: 16px !important;
+        height: 1.6px !important;
+      }
+
+      .hn-main-nav-links {
+        grid-column: 1 / -1 !important;
+        grid-row: 2 !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 7px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        padding: 4px 1px 1px !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+
+      .hn-main-nav-links::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      .hn-main-nav-links a {
+        font-size: 0.72rem !important;
+        line-height: 1 !important;
+        padding: 7px 10px !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(23, 79, 25, 0.13) !important;
+        background: rgba(255, 255, 255, 0.38) !important;
+        color: #174F19 !important;
+        text-decoration: none !important;
+      }
+
+      .hn-main-nav-links a.is-active {
+        background: rgba(23, 79, 25, 0.1) !important;
+        font-weight: 700 !important;
+      }
+
+      .hn-nav-full {
+        display: none !important;
+      }
+
+      .hn-nav-short {
+        display: inline !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hn-main-nav {
+        gap: 8px 9px !important;
+      }
+
+      .hn-main-brand {
+        gap: 7px !important;
+      }
+
+      .hn-main-brand .hn-shared-brand-logo {
+        width: 32px !important;
+      }
+
+      .hn-main-brand .hn-shared-brand-name {
+        font-size: 0.94rem !important;
+        letter-spacing: 0.07em !important;
+      }
+
+      .hn-main-brand .hn-shared-brand-sub {
+        font-size: 0.68rem !important;
+      }
+
+      .hn-header-actions {
+        gap: 6px !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.7rem !important;
+        padding: 7px 10px !important;
+        min-height: 34px !important;
+      }
+
+      .hn-more-menu-toggle {
+        width: 34px !important;
+        height: 34px !important;
+      }
+
+      .hn-main-nav-links {
+        gap: 6px !important;
+      }
+
+      .hn-main-nav-links a {
+        font-size: 0.68rem !important;
+        padding: 7px 9px !important;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .hn-main-brand .hn-shared-brand-logo {
+        width: 29px !important;
+      }
+
+      .hn-main-brand .hn-shared-brand-name {
+        font-size: 0.82rem !important;
+      }
+
+      .hn-main-brand .hn-shared-brand-sub {
+        display: none !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.66rem !important;
+        padding: 6px 9px !important;
       }
 
       .hn-more-menu-toggle {
         width: 32px !important;
         height: 32px !important;
-        gap: 3px !important;
       }
 
-      .hn-more-menu-toggle span {
-        width: 15px !important;
-        height: 1.5px !important;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .hn-visible-nav-links {
-        gap: 5px !important;
-      }
-
-      .hn-visible-nav-links a {
-        font-size: 0.5rem !important;
-      }
-
-      .hn-additional-menu-brand .hn-shared-brand-name {
-        font-size: 0.61rem !important;
-      }
-
-      .hn-join-always {
-        font-size: 0.52rem !important;
-        padding: 5px 6px !important;
-      }
-
-      .hn-more-menu-toggle {
-        width: 30px !important;
-        height: 30px !important;
-      }
-    }
-
-    @media (max-width: 370px) {
-      .hn-additional-menu-brand .hn-shared-brand-logo {
-        display: none !important;
-      }
-
-      .hn-visible-nav-links a {
-        font-size: 0.47rem !important;
-      }
-
-      .hn-join-always {
-        font-size: 0.49rem !important;
+      .hn-main-nav-links a {
+        font-size: 0.64rem !important;
+        padding: 6px 8px !important;
       }
     }
   `;
@@ -787,6 +897,7 @@ function insertSiteFooter() {
           <ul>
             <li><a href="${hnPath("/index.html#pricing")}">Pricing</a></li>
             <li><a href="${hnPath("/Forms/apply.html")}">Apply</a></li>
+            <li><a href="${hnPath("/Pages/Rooms-Schedule.html")}">Rooms & Schedule</a></li>
             <li>Shavuos in Vermont</li>
             <li>Private home</li>
           </ul>
@@ -961,7 +1072,8 @@ function markActiveNav() {
     { key: "faq", match: "/faq.html" },
     { key: "trips", match: "/trips-page/trips.html" },
     { key: "about", match: "/about-us/about-us.html" },
-    { key: "apply", match: "/Forms/apply.html" }
+    { key: "apply", match: "/Forms/apply.html" },
+    { key: "rooms", match: "/Pages/Rooms-Schedule.html" }
   ];
 
   const active = navMap.find((item) => path.endsWith(item.match));
