@@ -159,9 +159,8 @@ function insertGlobalTripLine() {
 
 /* =========================================================
    HEADER
-   Desktop: full visible header.
-   Mobile: clean two-line header.
-   Hamburger: only public site pages connected to the index.
+   Visible menu: Trips, About us, FAQ, Join the retreat.
+   No payment page. No room schedule page.
    ========================================================= */
 
 function insertSiteHeader() {
@@ -186,29 +185,19 @@ function insertSiteHeader() {
         </a>
 
         <nav class="hn-shared-nav-links hn-main-nav-links" aria-label="Main navigation">
-          <a href="${hnPath("/index.html#experience")}" data-nav="experience">
-            <span class="hn-nav-full">Experience</span>
-            <span class="hn-nav-short">Experience</span>
-          </a>
-
-          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">
-            <span class="hn-nav-full">Gallery</span>
-            <span class="hn-nav-short">Gallery</span>
-          </a>
-
           <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
-            <span class="hn-nav-full">Upcoming trips</span>
+            <span class="hn-nav-full">Trips</span>
             <span class="hn-nav-short">Trips</span>
-          </a>
-
-          <a href="${hnPath("/faq.html")}" data-nav="faq">
-            <span class="hn-nav-full">FAQ</span>
-            <span class="hn-nav-short">FAQ</span>
           </a>
 
           <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">
             <span class="hn-nav-full">About us</span>
             <span class="hn-nav-short">About</span>
+          </a>
+
+          <a href="${hnPath("/faq.html")}" data-nav="faq">
+            <span class="hn-nav-full">FAQ</span>
+            <span class="hn-nav-short">FAQ</span>
           </a>
         </nav>
 
@@ -262,24 +251,8 @@ function insertSiteHeader() {
         </div>
 
         <nav class="hn-more-drawer-links" aria-label="More navigation">
-          <a href="${hnPath("/index.html")}">
-            <span>Home</span>
-          </a>
-
-          <a href="${hnPath("/index.html#experience")}" data-nav="experience">
-            <span>Experience</span>
-          </a>
-
-          <a href="${hnPath("/index.html#gallery")}" data-nav="gallery">
-            <span>Gallery</span>
-          </a>
-
           <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
-            <span>Upcoming trips</span>
-          </a>
-
-          <a href="${hnPath("/Pages/Rooms-Schedule.html")}" data-nav="rooms">
-            <span>Rooms & Schedule</span>
+            <span>Trips</span>
           </a>
 
           <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">
@@ -291,7 +264,7 @@ function insertSiteHeader() {
           </a>
 
           <a href="${hnPath("/Forms/apply.html")}" data-nav="apply">
-            <span>Apply</span>
+            <span>Join the retreat</span>
           </a>
         </nav>
       </aside>
@@ -862,30 +835,18 @@ function insertSiteFooter() {
         <div class="hn-shared-footer-col">
           <h4>Explore</h4>
           <ul>
-            <li><a href="${hnPath("/index.html#experience")}">Experience</a></li>
-            <li><a href="${hnPath("/index.html#gallery")}">Gallery</a></li>
             <li><a href="${hnPath("/trips-page/trips.html")}">Trips</a></li>
             <li><a href="${hnPath("/about-us/about-us.html")}">About us</a></li>
+            <li><a href="${hnPath("/faq.html")}">FAQ</a></li>
           </ul>
         </div>
 
         <div class="hn-shared-footer-col">
           <h4>Retreat</h4>
           <ul>
-            <li><a href="${hnPath("/index.html#pricing")}">Pricing</a></li>
-            <li><a href="${hnPath("/Forms/apply.html")}">Apply</a></li>
-            <li><a href="${hnPath("/Pages/Rooms-Schedule.html")}">Rooms & Schedule</a></li>
+            <li><a href="${hnPath("/Forms/apply.html")}">Join the retreat</a></li>
             <li>Shavuos in Vermont</li>
             <li>Private home</li>
-          </ul>
-        </div>
-
-        <div class="hn-shared-footer-col">
-          <h4>Info</h4>
-          <ul>
-            <li><a href="${hnPath("/faq.html")}">FAQ</a></li>
-            <li><a href="${hnPath("/terms.html")}">Terms</a></li>
-            <li><a href="${hnPath("/privacy.html")}">Privacy</a></li>
           </ul>
         </div>
 
@@ -1045,11 +1006,10 @@ function markActiveNav() {
   const path = window.location.pathname;
 
   const navMap = [
-    { key: "faq", match: "/faq.html" },
     { key: "trips", match: "/trips-page/trips.html" },
     { key: "about", match: "/about-us/about-us.html" },
-    { key: "apply", match: "/Forms/apply.html" },
-    { key: "rooms", match: "/Pages/Rooms-Schedule.html" }
+    { key: "faq", match: "/faq.html" },
+    { key: "apply", match: "/Forms/apply.html" }
   ];
 
   const active = navMap.find((item) => path.endsWith(item.match));
