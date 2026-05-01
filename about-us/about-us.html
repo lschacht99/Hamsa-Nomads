@@ -741,7 +741,7 @@
 
     .ambient-wrap {
       position: relative;
-      min-height: 540px;
+      min-height: 620px;
       border-radius: 42px;
       overflow: hidden;
       background:
@@ -754,8 +754,8 @@
 
     .ambient-copy {
       position: relative;
-      z-index: 3;
-      max-width: 560px;
+      z-index: 4;
+      max-width: 620px;
     }
 
     .ambient-copy h2 {
@@ -859,10 +859,46 @@
       text-overflow: ellipsis;
     }
 
-    .ambient-post.p1 { right: 8%; top: 8%; --rotate: 7deg; --float-delay: -2s; }
-    .ambient-post.p2 { right: 30%; bottom: 8%; --rotate: -6deg; --float-delay: -4s; }
-    .ambient-post.p3 { right: 4%; bottom: 16%; --rotate: 3deg; --float-delay: -6s; }
-    .ambient-post.p4 { left: 48%; top: 26%; --rotate: -2deg; --float-delay: -1s; }
+    .ambient-post.p1 {
+      right: 7%;
+      top: 8%;
+      width: clamp(132px, 13.5vw, 205px);
+      --rotate: 7deg;
+      --float-delay: -2s;
+    }
+
+    .ambient-post.p2 {
+      left: 8%;
+      bottom: -2%;
+      width: clamp(132px, 13.5vw, 205px);
+      --rotate: -6deg;
+      --float-delay: -4s;
+    }
+
+    .ambient-post.p3 {
+      right: 7%;
+      bottom: -3%;
+      width: clamp(138px, 14vw, 215px);
+      --rotate: 3deg;
+      --float-delay: -6s;
+    }
+
+    .ambient-post.p4 {
+      left: 50%;
+      top: 24%;
+      width: clamp(126px, 12.5vw, 190px);
+      --rotate: -3deg;
+      --float-delay: -1s;
+    }
+
+    .ambient-post.p5 {
+      left: 43%;
+      top: 53%;
+      width: clamp(145px, 15vw, 225px);
+      --rotate: 5deg;
+      --float-delay: -5s;
+      z-index: 3;
+    }
 
     .instagram-error-note {
       margin-top: 18px;
@@ -1019,10 +1055,11 @@
         max-width: 100%;
       }
 
-      .ambient-post.p1 { right: 8%; top: 42%; }
-      .ambient-post.p2 { left: 8%; right: auto; bottom: 9%; }
+      .ambient-post.p1 { right: 8%; top: 39%; }
+      .ambient-post.p2 { left: 8%; right: auto; bottom: 8%; }
       .ambient-post.p3 { right: 8%; bottom: 7%; }
-      .ambient-post.p4 { left: 12%; top: 56%; }
+      .ambient-post.p4 { left: 12%; top: 54%; }
+      .ambient-post.p5 { left: 42%; top: 50%; }
     }
 
     @media (max-width: 760px) {
@@ -1102,10 +1139,14 @@
         width: 138px;
       }
 
-      .ambient-post.p1 { right: 5%; top: 48%; }
+      .ambient-post.p1 { right: 5%; top: 47%; }
       .ambient-post.p2 { left: 5%; bottom: 8%; }
       .ambient-post.p3 { right: 6%; bottom: 10%; }
-      .ambient-post.p4 { display: none; }
+
+      .ambient-post.p4,
+      .ambient-post.p5 {
+        display: none;
+      }
 
       .closing-panel {
         align-items: stretch;
@@ -1324,7 +1365,6 @@
                 <p>
                   Ava is our very social dog and unofficial reminder that every good gathering needs play. If people are walking around too much and not giving her attention, she has a very direct way of correcting the schedule.
                 </p>
-             \
               </div>
             </article>
           </div>
@@ -1450,15 +1490,23 @@
               <div class="vibe-placeholder"></div>
               <span>Loading...</span>
             </a>
+
             <a class="ambient-post p2 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
               <div class="vibe-placeholder"></div>
               <span>Loading...</span>
             </a>
+
             <a class="ambient-post p3 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
               <div class="vibe-placeholder"></div>
               <span>Loading...</span>
             </a>
+
             <a class="ambient-post p4 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
+              <div class="vibe-placeholder"></div>
+              <span>Loading...</span>
+            </a>
+
+            <a class="ambient-post p5 hn-ambient-post" href="https://www.instagram.com/hamsanomads/" target="_blank" rel="noopener" data-float>
               <div class="vibe-placeholder"></div>
               <span>Loading...</span>
             </a>
@@ -1506,6 +1554,7 @@
   <script>
     const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
     const HN_INSTAGRAM_AVATAR_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23F4E7C7'/%3E%3Cstop offset='1' stop-color='%23E7D2A2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' rx='60' fill='url(%23g)'/%3E%3Ctext x='60' y='70' text-anchor='middle' font-family='Arial, sans-serif' font-size='34' font-weight='700' fill='%23274537'%3EHN%3C/text%3E%3C/svg%3E";
+
     const HN_INSTAGRAM_AVATAR_CANDIDATES = [
       "../logo/logo-hamsa-nomads.png",
       "../Image/logo-hamsa-nomads.png",
@@ -1559,12 +1608,16 @@
       return post?.image || post?.thumbnail_url || post?.media_url || "../Image/about-hero.jpg";
     }
 
+    function hnPostUrl(post) {
+      return post?.url || post?.permalink || "https://www.instagram.com/hamsanomads/";
+    }
+
     function hnRenderAmbientPost(element, post) {
       if (!element || !post) return;
 
       const image = hnPostImage(post);
       const caption = hnCleanCaption(post.caption, 46);
-      const url = post.url || post.permalink || "https://www.instagram.com/hamsanomads/";
+      const url = hnPostUrl(post);
 
       element.href = url;
       element.innerHTML = `
@@ -1578,8 +1631,20 @@
       `;
     }
 
+    function hnUniqueInstagramPosts(posts) {
+      const seen = new Set();
+
+      return posts.filter((post) => {
+        const key = post?.id || post?.permalink || post?.url || post?.media_url || post?.thumbnail_url;
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
     function hnRenderInstagramMoments(data) {
-      const posts = Array.isArray(data.posts) ? hnShuffle(data.posts) : [];
+      const rawPosts = Array.isArray(data.posts) ? data.posts : [];
+      const posts = hnShuffle(hnUniqueInstagramPosts(rawPosts));
 
       const avatarImages = document.querySelectorAll(".hn-live-instagram-avatar");
       avatarImages.forEach((avatar) => {
@@ -1604,8 +1669,8 @@
 
       const ambientPosts = Array.from(document.querySelectorAll(".hn-ambient-post"));
       ambientPosts.forEach((element, index) => {
-        if (posts[index + 4]) hnRenderAmbientPost(element, posts[index + 4]);
-        else if (posts[index]) hnRenderAmbientPost(element, posts[index]);
+        const post = posts[index + 4] || posts[index] || null;
+        if (post) hnRenderAmbientPost(element, post);
       });
     }
 
@@ -1620,6 +1685,11 @@
         }
 
         const data = await response.json();
+
+        if (!data.ok || !Array.isArray(data.posts) || !data.posts.length) {
+          throw new Error("No Instagram posts found.");
+        }
+
         hnRenderInstagramMoments(data);
 
         if (note) {
