@@ -3444,6 +3444,41 @@
       return "Post";
     }
 
+    function hnNormalizeInstagramPosts(posts) {
+      const seen = new Set();
+
+      return (Array.isArray(posts) ? posts : [])
+        .map((post) => {
+          const image =
+            post.thumbnail_url ||
+            post.media_url ||
+            post.image ||
+            "";
+
+          const url =
+            post.permalink ||
+            post.url ||
+            "https://www.instagram.com/hamsanomads/";
+
+          return {
+            id: String(post.id || url || image),
+            caption: post.caption || "",
+            type: post.media_type || post.type || "IMAGE",
+            image,
+            url,
+            timestamp: post.timestamp || ""
+          };
+        })
+        .filter((post) => {
+          const key = post.id || post.url || post.image;
+
+          if (!post.image || !key || seen.has(key)) return false;
+
+          seen.add(key);
+          return true;
+        });
+    }
+
     function hnShuffleInstagramPosts() {
       return [...hnInstagramLivePosts].sort(() => Math.random() - 0.5);
     }
@@ -3527,7 +3562,7 @@
       const grid = document.getElementById("hnInstagramGrid");
 
       try {
-        const response = await fetch(HN_INSTAGRAM_API_URL, { cache: "no-store" });
+        const response = await fetch(`${HN_INSTAGRAM_API_URL}?site_cache_bust=${Date.now()}`, { cache: "no-store" });
 
         if (!response.ok) {
           throw new Error("Instagram feed request failed.");
@@ -3546,7 +3581,7 @@
           link.href = data.profileUrl || "https://www.instagram.com/hamsanomads/";
         });
 
-        hnInstagramLivePosts = Array.isArray(data.posts) ? data.posts : [];
+        hnInstagramLivePosts = hnNormalizeInstagramPosts(data.posts);
 
         if (!hnInstagramLivePosts.length) {
           throw new Error("No Instagram posts found.");
