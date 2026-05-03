@@ -919,6 +919,7 @@
         <input type="hidden" id="selected_price" name="selected_price" value="" />
         <input type="hidden" id="pricing_basis" name="pricing_basis" value="" />
         <input type="hidden" id="total_price" name="total_price" value="" />
+        <input type="hidden" id="campaign_code" name="campaign_code" value="" />
 
         <section class="section">
           <p class="section-kicker">Step one</p>
@@ -1387,6 +1388,53 @@
       formStatus.className = "status";
     }
 
+    function sendApplicationCopyToHamsaBot() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const campaignCode = params.get("hn") || "";
+
+        const campaignInput = document.getElementById("campaign_code");
+        if (campaignInput) {
+          campaignInput.value = campaignCode;
+        }
+
+        const botData = new FormData(form);
+
+        // Send campaign tracking to the private Hamsa HQ Telegram bot.
+        botData.set("campaign_code", campaignCode);
+
+        // Worker expects extra_camping_night_hike; this form uses extra_camping_hike.
+        const extraCamping = document.getElementById("extra_camping_hike");
+        if (extraCamping) {
+          botData.set("extra_camping_night_hike", extraCamping.value || "");
+        }
+
+        // Worker expects agree_rules; this form uses termsAccepted.
+        const termsAccepted = document.getElementById("termsAccepted");
+        if (termsAccepted) {
+          botData.set("agree_rules", termsAccepted.checked ? "Yes" : "No");
+        }
+
+        // Preserve multiple dietary checkbox values clearly for the bot.
+        const dietaryValues = Array.from(
+          document.querySelectorAll('input[name="dietary_restrictions"]:checked')
+        ).map(input => input.value);
+
+        if (dietaryValues.length) {
+          botData.set("dietary_restrictions", dietaryValues.join(", "));
+        }
+
+        fetch("https://hamsa-hq-telegram.hamsanomads.workers.dev/api/apply", {
+          method: "POST",
+          body: botData
+        }).catch(function () {
+          // Do not block the existing Google Sheets submission if the bot copy fails.
+        });
+      } catch (error) {
+        // Do not block the existing Google Sheets submission if the bot copy fails.
+      }
+    }
+
     function selectedRadioValue(name) {
       const checked = document.querySelector(`input[name="${name}"]:checked`);
       return checked ? checked.value : "";
@@ -1582,6 +1630,8 @@
       updatePricingFields();
       submittedAtInput.value = new Date().toISOString();
 
+      sendApplicationCopyToHamsaBot();
+
       submitBtn.disabled = true;
       submitBtn.textContent = "Submitting...";
 
@@ -1636,5 +1686,37 @@
 
     document.addEventListener("DOMContentLoaded", initScrollDrawingLines);
   </script>
+  <script>
+    (function () {
+      const BOT_TRACK_URL = "https://hamsa-hq-telegram.hamsanomads.workers.dev/api/track";
+      const params = new URLSearchParams(window.location.search);
+
+      const payload = {
+        path: window.location.pathname,
+        url: window.location.href,
+        referrer: document.referrer || "",
+        campaign_code: params.get("hn") || "",
+        utm_source: params.get("utm_source") || "",
+        utm_medium: params.get("utm_medium") || "",
+        utm_campaign: params.get("utm_campaign") || ""
+      };
+
+      const body = JSON.stringify(payload);
+
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(
+          BOT_TRACK_URL,
+          new Blob([body], { type: "application/json" })
+        );
+      } else {
+        fetch(BOT_TRACK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body
+        }).catch(function () {});
+      }
+    })();
+  </script>
+
 </body>
 </html>
