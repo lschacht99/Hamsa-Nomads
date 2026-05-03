@@ -2889,7 +2889,37 @@
 
   </style>
 </head>
+<script>
+(function () {
+  const BOT_TRACK_URL = "https://hamsa-hq-telegram.hamsanomads.workers.dev/api/track";
+  const params = new URLSearchParams(window.location.search);
 
+  const payload = {
+    path: window.location.pathname,
+    url: window.location.href,
+    referrer: document.referrer || "",
+    campaign_code: params.get("hn") || "",
+    utm_source: params.get("utm_source") || "",
+    utm_medium: params.get("utm_medium") || "",
+    utm_campaign: params.get("utm_campaign") || ""
+  };
+
+  const body = JSON.stringify(payload);
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(
+      BOT_TRACK_URL,
+      new Blob([body], { type: "application/json" })
+    );
+  } else {
+    fetch(BOT_TRACK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body
+    }).catch(function () {});
+  }
+})();
+</script>
 <body>
   <div class="site-shell">
     <div id="site-header"></div>
