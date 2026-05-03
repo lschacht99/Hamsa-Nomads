@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jewish Travel Community | Hamsa Nomads</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --warm-cream: #F6F2E7;
+      --ivory: #ECE7D8;
+      --sand: #DCC7A1;
+      --clay: #C88B6A;
+      --sage: #7F8A6A;
+      --ink: #111111;
+
+      --text: rgba(17, 17, 17, 0.85);
+      --muted: rgba(17, 17, 17, 0.62);
+      --border: rgba(17, 17, 17, 0.12);
+      --soft-border: rgba(17, 17, 17, 0.08);
+      --card: rgba(255, 255, 255, 0.42);
+      --shadow: 0 18px 60px rgba(17, 17, 17, 0.08);
+
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Montserrat", sans-serif;
+      background:
+        linear-gradient(rgba(246, 242, 231, 0.95), rgba(246, 242, 231, 0.95)),
+        repeating-linear-gradient(
+          0deg,
+          rgba(17, 17, 17, 0.015) 0px,
+          rgba(17, 17, 17, 0.015) 1px,
+          transparent 1px,
+          transparent 6px
+        );
+      background-color: var(--warm-cream);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-shell {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-shell::before,
+    .site-shell::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(6px);
+      opacity: 0.5;
+    }
+
+    .site-shell::before {
+      width: 320px;
+      height: 320px;
+      top: 80px;
+      right: -70px;
+      background: rgba(200, 139, 106, 0.15);
+    }
+
+    .site-shell::after {
+      width: 360px;
+      height: 360px;
+      left: -120px;
+      bottom: 120px;
+      background: rgba(127, 138, 106, 0.14);
+    }
+
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(246, 242, 231, 0.88);
+      border-bottom: 1px solid var(--soft-border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .brand-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--warm-cream);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: 1px solid var(--ink);
+      transition: 0.2s ease;
+    }
+
+    .header-cta:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 999px;
+    }
+
+    .hero h1 {
+      margin: 0 0 22px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      color: var(--ink);
+      max-width: 780px;
+    }
+
+    .hero-lead {
+      margin: 0 0 18px;
+      font-size: 1.16rem;
+      line-height: 1.7;
+      color: var(--text);
+      max-width: 760px;
+    }
+
+    .hero-copy p:not(.hero-lead) {
+      margin: 0 0 18px;
+      max-width: 760px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero-accent {
+      margin: 16px 0 0;
+      font-family: "Caveat", cursive;
+      font-size: 1.5rem;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--warm-cream);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(17, 17, 17, 0.04);
+    }
+
+    .hero-notes {
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.42);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .hero-card-note {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-family: "Caveat", cursive;
+      color: var(--ink);
+      font-size: 1.25rem;
+      transform: rotate(-4deg);
+    }
+
+    .hero-card .stamp {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 14px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      line-height: 1.05;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-card p {
+      margin: 0 0 16px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .mini-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .mini-points div {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+
+    .mini-points div::before {
+      content: "•";
+      color: var(--clay);
+      font-weight: 800;
+      font-size: 1.1rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .imperfect-line {
+      width: 120px;
+      height: 20px;
+      margin: 14px 0 0;
+    }
+
+    /* SECTIONS */
+    section.section {
+      position: relative;
+      z-index: 1;
+      padding: 76px 0;
+      border-top: 1px solid var(--soft-border);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 34px;
+      max-width: 820px;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      color: var(--ink);
+    }
+
+    .section-head p {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.38);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 36px rgba(17, 17, 17, 0.04);
+    }
+
+    .info-card .num {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.55rem;
+      line-height: 1;
+      color: var(--clay);
+    }
+
+    .info-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .info-card p {
+      margin: 0;
+      font-size: 0.96rem;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .manifesto-panel {
+      background: var(--ink);
+      color: var(--warm-cream);
+      border-radius: 28px;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manifesto-panel::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 180px;
+      height: 180px;
+      background: rgba(220, 199, 161, 0.12);
+      border-radius: 999px;
+    }
+
+    .manifesto-panel h3 {
+      margin: 0 0 14px;
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+    }
+
+    .manifesto-panel p {
+      margin: 0;
+      line-height: 1.85;
+      color: rgba(246, 242, 231, 0.8);
+    }
+
+    .manifesto-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .manifesto-item {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .manifesto-item h4 {
+      margin: 0 0 8px;
+      font-size: 1.04rem;
+      color: var(--ink);
+    }
+
+    .manifesto-item p {
+      margin: 0;
+      line-height: 1.72;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 22px;
+      min-height: 210px;
+    }
+
+    .feature-card .icon-wrap {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+      color: var(--ink);
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 0.93rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step-card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .step-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.03rem;
+      color: var(--ink);
+    }
+
+    .step-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 0.94rem;
+    }
+
+    /* FORM SECTION */
+    .join-section {
+      background:
+        linear-gradient(180deg, rgba(236, 231, 216, 0.34), rgba(246, 242, 231, 0.6));
+    }
+
+    .join-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
+      gap: 34px;
+      align-items: center;
+    }
+
+    .join-copy h2 {
+      margin: 0 0 18px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.2rem, 5.3vw, 4.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      color: var(--ink);
+    }
+
+    .join-copy p {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .join-copy .hand-note {
+      margin-top: 10px;
+      font-family: "Caveat", cursive;
+      font-size: 1.6rem;
+      color: var(--ink);
+    }
+
+    .form-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.46);
+      box-shadow: var(--shadow);
+    }
+
+    .form-card h3 {
+      margin: 0 0 8px;
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .form-card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .travel-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .travel-form label {
+      display: grid;
+      gap: 7px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .travel-form input,
+    .travel-form textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.7);
+      color: var(--ink);
+      font: inherit;
+      padding: 14px 14px;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    .travel-form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .travel-form input:focus,
+    .travel-form textarea:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 4px rgba(17,17,17,0.06);
+    }
+
+    .submit-btn {
+      min-height: 52px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--warm-cream);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      margin-top: 4px;
+    }
+
+    .submit-btn:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+    }
+
+    .form-meta {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0;
+      text-align: center;
+    }
+
+    .form-message {
+      display: none;
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .form-message.is-success {
+      display: block;
+      background: rgba(127, 138, 106, 0.18);
+      color: var(--ink);
+    }
+
+    .form-message.is-error {
+      display: block;
+      background: rgba(200, 139, 106, 0.18);
+      color: var(--ink);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      border-top: 1px solid var(--soft-border);
+      padding: 24px 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: grid;
+      gap: 4px;
+    }
+
+    .footer-brand strong {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+    }
+
+    .footer-brand span {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .footer-link {
+      font-size: 0.92rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1060px) {
+      .hero-grid,
+      .manifesto,
+      .join-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid,
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cards-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+      }
+
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .brand-tag {
+        display: none;
+      }
+
+      .hero {
+        padding: 48px 0 32px;
+      }
+
+      section.section {
+        padding: 58px 0;
+      }
+
+      .features-grid,
+      .steps-grid,
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      .hero-card-note {
+        position: static;
+        margin-bottom: 12px;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#" class="brand" aria-label="Hamsa Nomads home">
+          <svg class="brand-mark" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M60 15C60 15 49 20 49 37V57" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M44 28C44 28 34 30 34 48V66" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M76 28C76 28 86 30 86 48V66" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M28 57C20 58 14 65 15 73C16 80 23 85 31 84" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M92 57C100 58 106 65 105 73C104 80 97 85 89 84" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M31 84C31 84 30 101 46 103C55 104 59 98 60 96C61 98 65 104 74 103C90 101 89 84 89 84" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M26 69C26 69 40 62 53 67C59 69 64 70 73 65C79 62 86 64 94 70" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            <path d="M44 69C44 69 54 70 61 75C66 79 64 90 58 93C51 97 54 106 66 105" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+
+          <div class="brand-copy">
+            <span class="brand-name">Hamsa Nomads</span>
+            <span class="brand-tag">Find your people. Wherever you go.</span>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#why">Why this exists</a>
+          <a href="#what">What you’ll find</a>
+          <a href="#how">How it works</a>
+          <a href="#join">Join</a>
+        </nav>
+
+        <a href="#join" class="header-cta">Join the circle</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Jewish Travel Community</div>
+
+            <h1>The Jewish travel circle we wish already existed.</h1>
+
+            <p class="hero-lead">
+              Hamsa Nomads is building a safe, screened WhatsApp-based community for Jewish travelers who want real travel information, kosher tips, and actual human connection when they are on the road.
+            </p>
+
+            <p>
+              Some Israeli and Hebrew-speaking travel networks already exist — but not everyone can access them. If you do not speak Hebrew, do not have an Israeli number, or simply do not know where to start, it can feel like the information is everywhere and nowhere at once.
+            </p>
+
+            <p>
+              We want to build the bridge: a place for Jewish travelers from abroad to find the information they need to keep kosher, find community, plan Shabbat, locate synagogues, see who is around, ask practical questions, and not feel alone when they land somewhere new.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#join" class="btn btn-primary">Help build the circle</a>
+              <a href="#why" class="btn btn-secondary">Read the idea</a>
+            </div>
+
+            <div class="hero-accent">from the road, for the road.</div>
+          </div>
+
+          <div class="hero-notes">
+            <div class="hero-card">
+              <div class="hero-card-note">our signature imperfect line</div>
+              <div class="stamp">Safe • Screened • Human</div>
+
+              <h3>More than a list of kosher addresses.</h3>
+              <p>
+                This is about connection. A trusted starting point when you travel and need more than random search results or public social media comments.
+              </p>
+
+              <svg class="imperfect-line" viewBox="0 0 160 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 16C20 10 31 21 45 17C59 13 69 8 84 13C96 17 106 22 122 17C135 13 145 14 156 15" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+
+              <div class="mini-points">
+                <div>Kosher travel tips and practical local information</div>
+                <div>Shabbat options, minyan questions, synagogue leads, and community connection</div>
+                <div>A safer format than open Facebook groups or public comment threads</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="why">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-kicker">Why this exists</div>
+            <h2>Because Jewish travel information should not feel hidden.</h2>
+            <p>
+              When you travel as a Jew, the questions are different. It is not only where to go — it is where to eat, where to spend Shabbat, whether there is a minyan, whether there is a community nearby, and who you can ask when you want real answers.
+            </p>
+          </div>
+
+          <div class="cards-3">
+            <article class="info-card">
+              <div class="num">01</div>
+              <h3>The information is scattered.</h3>
+              <p>
+                Some answers live in private chats. Some live in people’s heads. Some live in Hebrew-only spaces. Some are only discoverable if you already know the right person.
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="num">02</div>
+              <h3>Travelers from abroad need their own entry point.</h3>
+              <p>
+                There is a real need for a Jewish travel community that works for English and French speakers first — and grows from there.
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="num">03</div>
+              <h3>Safety matters.</h3>
+              <p>
+                This should not be just another open group. We want a space that feels secure, intentional, useful, and built with care for the people inside it.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="manifesto">
+            <div class="manifesto-panel">
+              <h3>We want Hamsa Nomads to be the name people trust when they travel.</h3>
+              <p>
+                The goal is simple: wherever Jews go in the world, they should know they can count on Hamsa Nomads to help them find the information, people, and connections they need.
+              </p>
+            </div>
+
+            <div class="manifesto-list">
+              <div class="manifesto-item">
+                <h4>Not a public group.</h4>
+                <p>
+                  People leave their information first. Requests are reviewed. We want the space to grow carefully and stay safe.
+                </p>
+              </div>
+
+              <div class="manifesto-item">
+                <h4>Not another social feed.</h4>
+                <p>
+                  This is not about public exposure, endless noise, or throwing strangers into one giant comment section.
+                </p>
+              </div>
+
+              <div class="manifesto-item">
+                <h4>A real travel community.</h4>
+                <p>
+                  Jewish travelers should be able to ask real questions: about kosher food, Shabbat, who is around, whether they can create a minyan, and what kind of Jewish life exists locally.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="what">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-kicker">What you’ll find</div>
+            <h2>A practical network for Jewish travelers.</h2>
+            <p>
+              We are building something broader than “just go to Chabad.” Sometimes that may be part of the answer, and sometimes people need more: local community, independent leads, current traveler insight, and human connection.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M11 48C18 38 27 30 36 24C43 19 51 15 53 15" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M45 14H54V23" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="17" cy="46" r="4" stroke="currentColor" stroke-width="3"/>
+                </svg>
+              </div>
+              <h3>Kosher travel tips</h3>
+              <p>
+                Restaurants, grocery ideas, food realities on the ground, and the practical details travelers actually want to know.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M32 12V52" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M18 22H46" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M22 52H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>Shabbat connection</h3>
+              <p>
+                Questions about where to stay, who may be around, how to find a meal, and how to make Shabbat work even far from home.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M32 53C32 53 48 40 48 28C48 19.1634 40.8366 12 32 12C23.1634 12 16 19.1634 16 28C16 40 32 53 32 53Z" stroke="currentColor" stroke-width="3"/>
+                  <circle cx="32" cy="28" r="5" stroke="currentColor" stroke-width="3"/>
+                </svg>
+              </div>
+              <h3>Local Jewish information</h3>
+              <p>
+                Synagogues, communities, Jewish spaces, and the kind of location-based help that makes travel feel more possible.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M20 45C20 38.3726 25.3726 33 32 33C38.6274 33 44 38.3726 44 45" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="32" cy="23" r="7" stroke="currentColor" stroke-width="3"/>
+                  <path d="M11 48C11 41.9249 15.9249 37 22 37" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M53 48C53 41.9249 48.0751 37 42 37" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>Traveler-to-traveler community</h3>
+              <p>
+                A place to ask who is around, who has been there recently, and what the real situation is on the ground.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-kicker">How it works</div>
+            <h2>A classic structure, built with care.</h2>
+            <p>
+              We want this to grow in a way that stays safe, useful, and grounded. So people are not added blindly — the community is built intentionally.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-num">1</div>
+              <h3>Leave your info</h3>
+              <p>
+                Add your first name, last name, email, WhatsApp number, and optionally where you travel.
+              </p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num">2</div>
+              <h3>We review requests</h3>
+              <p>
+                This is not an automatic open invite. We want to know who is coming into the space.
+              </p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num">3</div>
+              <h3>We build by language</h3>
+              <p>
+                The first focus is on travelers who do not operate in Hebrew-only networks — especially English and French speakers.
+              </p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-num">4</div>
+              <h3>We grow by destination</h3>
+              <p>
+                Over time, the network can branch into places and channels based on real traveler needs and real community use.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section join-section" id="join">
+        <div class="container join-grid">
+          <div class="join-copy">
+            <div class="section-kicker">Join the list</div>
+            <h2>Help us build the Jewish travel circle.</h2>
+            <p>
+              If this is the kind of community you wish existed when you travel, leave your information. This is the first step in building a safer, more connected Jewish travel network under the Hamsa Nomads name.
+            </p>
+            <p>
+              We are starting carefully, but the vision is big: a place where Jewish travelers know they can count on us.
+            </p>
+            <div class="hand-note">find your people, wherever you go.</div>
+          </div>
+
+          <div class="form-card">
+            <h3>Leave your info</h3>
+            <p>
+              We’ll reach out before inviting anyone into the community.
+            </p>
+
+            <form id="hnTravelCommunityForm" class="travel-form">
+              <div class="form-row-2">
+                <label>
+                  First Name
+                  <input type="text" name="firstName" placeholder="First name" required>
+                </label>
+
+                <label>
+                  Last Name
+                  <input type="text" name="lastName" placeholder="Last name" required>
+                </label>
+              </div>
+
+              <label>
+                Email
+                <input type="email" name="email" placeholder="you@email.com" required>
+              </label>
+
+              <label>
+                WhatsApp Number
+                <input type="tel" name="phone" placeholder="+1 000 000 0000" required>
+              </label>
+
+              <label>
+                Optional: where do you travel?
+                <textarea name="travelInterest" placeholder="Vietnam, Mexico, Europe, Morocco, India..."></textarea>
+              </label>
+
+              <button type="submit" class="submit-btn">
+                Help Build the Community
+              </button>
+
+              <p class="form-meta">
+                No automatic public links. Requests are reviewed first.
+              </p>
+
+              <p id="hnTravelCommunityMessage" class="form-message"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <strong>Hamsa Nomads</strong>
+          <span>A Jewish travel network that connects people, places, and communities across cities and borders.</span>
+        </div>
+
+        <a class="footer-link" href="https://hamsanomads.com">hamsanomads.com</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const HN_TRAVEL_COMMUNITY_ENDPOINT = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+    const hnTravelCommunityForm = document.getElementById("hnTravelCommunityForm");
+    const hnTravelCommunityMessage = document.getElementById("hnTravelCommunityMessage");
+
+    if (hnTravelCommunityForm) {
+      hnTravelCommunityForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const submitButton = hnTravelCommunityForm.querySelector("button[type='submit']");
+        const originalButtonText = submitButton.textContent;
+
+        hnTravelCommunityMessage.className = "form-message";
+        hnTravelCommunityMessage.textContent = "";
+
+        if (
+          !HN_TRAVEL_COMMUNITY_ENDPOINT ||
+          HN_TRAVEL_COMMUNITY_ENDPOINT.includes("PASTE_YOUR")
+        ) {
+          hnTravelCommunityMessage.classList.add("is-error");
+          hnTravelCommunityMessage.textContent =
+            "The form design is ready, but the Google Apps Script link still needs to be connected.";
+          return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+
+        const formData = new FormData(hnTravelCommunityForm);
+        formData.append("source", "Hamsa Nomads Jewish Travel Community Page");
+        formData.append("timestamp", new Date().toISOString());
+
+        try {
+          await fetch(HN_TRAVEL_COMMUNITY_ENDPOINT, {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+          });
+
+          hnTravelCommunityForm.reset();
+
+          hnTravelCommunityMessage.classList.add("is-success");
+          hnTravelCommunityMessage.textContent =
+            "Thank you. We received your information and will reach out soon.";
+        } catch (error) {
+          hnTravelCommunityMessage.classList.add("is-error");
+          hnTravelCommunityMessage.textContent =
+            "Something went wrong. Please try again or contact us directly.";
+          console.error("Hamsa Nomads form error:", error);
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
