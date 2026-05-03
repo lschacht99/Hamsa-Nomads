@@ -4273,136 +4273,120 @@
       });
     });
   </script>
-  
-  <script>
-    /*
-      Hamsa HQ Link Layer
-      - Tracks page visits privately in Telegram dashboard
-      - Tracks FAQ preview clicks privately
-      - Sends a silent copy of the waiting-list popup form to the Telegram bot
-      - Preserves ?hn=... tracking when people click Apply
-      - Does NOT post anything publicly
-      - Does NOT replace your Google Sheets submission
-    */
-    (function () {
-      const WORKER_BASE = "https://hamsa-hq-telegram.hamsanomads.workers.dev";
-      const TRACK_URL = WORKER_BASE + "/api/track";
-      const WAITLIST_URL = WORKER_BASE + "/api/waitlist";
 
-      function getParams() {
-        return new URLSearchParams(window.location.search);
+  <!-- Hamsa HQ private tracking: page views + campaign persistence -->
+  <script>
+    (function () {
+      const HN_BOT_TRACK_URL = "https://hamsa-hq-telegram.hamsanomads.workers.dev/api/track";
+      const HN_TRACKING_STORAGE_KEY = "hamsa_nomads_campaign_tracking";
+      const params = new URLSearchParams(window.location.search);
+
+      function safeGetStorage(storage, key) {
+        try {
+          const raw = storage.getItem(key);
+          return raw ? JSON.parse(raw) : {};
+        } catch (error) {
+          return {};
+        }
       }
 
-      function getTrackingBase(extra) {
-        const params = getParams();
+      function safeSetStorage(storage, key, value) {
+        try {
+          storage.setItem(key, JSON.stringify(value));
+        } catch (error) {}
+      }
 
-        return Object.assign({
-          path: window.location.pathname,
-          url: window.location.href,
-          referrer: document.referrer || "",
-          campaign_code: params.get("hn") || "",
+      function getCurrentCampaignData() {
+        const fromSession = safeGetStorage(window.sessionStorage, HN_TRACKING_STORAGE_KEY);
+        const fromLocal = safeGetStorage(window.localStorage, HN_TRACKING_STORAGE_KEY);
+
+        const current = {
+          campaign_code: params.get("hn") || params.get("campaign_code") || "",
           utm_source: params.get("utm_source") || "",
           utm_medium: params.get("utm_medium") || "",
-          utm_campaign: params.get("utm_campaign") || "",
+          utm_campaign: params.get("utm_campaign") || ""
+        };
+
+        const merged = {
+          campaign_code: current.campaign_code || fromSession.campaign_code || fromLocal.campaign_code || "",
+          utm_source: current.utm_source || fromSession.utm_source || fromLocal.utm_source || "",
+          utm_medium: current.utm_medium || fromSession.utm_medium || fromLocal.utm_medium || "",
+          utm_campaign: current.utm_campaign || fromSession.utm_campaign || fromLocal.utm_campaign || ""
+        };
+
+        if (current.campaign_code || current.utm_source || current.utm_campaign) {
+          safeSetStorage(window.sessionStorage, HN_TRACKING_STORAGE_KEY, merged);
+          safeSetStorage(window.localStorage, HN_TRACKING_STORAGE_KEY, merged);
+        }
+
+        return merged;
+      }
+
+      function buildPayload(extra) {
+        const campaign = getCurrentCampaignData();
+
+        return Object.assign({
+          path: window.location.pathname || "/",
+          url: window.location.href,
+          referrer: document.referrer || "",
+          campaign_code: campaign.campaign_code || "",
+          utm_source: campaign.utm_source || "",
+          utm_medium: campaign.utm_medium || "",
+          utm_campaign: campaign.utm_campaign || "",
           language: navigator.language || "",
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
           screen_size: window.screen ? `${window.screen.width}x${window.screen.height}` : ""
         }, extra || {});
       }
 
-      function sendTrack(extra) {
-        const payload = getTrackingBase(extra);
-
-        fetch(TRACK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-          keepalive: true
-        }).catch(function () {});
+      function sendToHamsaBot(payload) {
+        try {
+          fetch(HN_BOT_TRACK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            keepalive: true
+          }).catch(function () {});
+        } catch (error) {}
       }
 
-      function preserveTrackingOnApplyLinks() {
-        const params = getParams();
-        const keysToKeep = ["hn", "utm_source", "utm_medium", "utm_campaign"];
-        const kept = new URLSearchParams();
+      function addCampaignToApplyLinks() {
+        const campaign = getCurrentCampaignData();
 
-        keysToKeep.forEach(function (key) {
-          const value = params.get(key);
-          if (value) kept.set(key, value);
-        });
+        if (!campaign.campaign_code && !campaign.utm_source && !campaign.utm_campaign) return;
 
-        if (!kept.toString()) return;
+        document.querySelectorAll('a[href]').forEach(function (link) {
+          const href = link.getAttribute("href") || "";
 
-        document.querySelectorAll('a[href*="Forms/apply.html"]').forEach(function (link) {
+          if (!href) return;
+          if (!href.includes("Forms/apply.html")) return;
+
           try {
-            const url = new URL(link.getAttribute("href"), window.location.href);
-            kept.forEach(function (value, key) {
-              url.searchParams.set(key, value);
-            });
-            link.setAttribute("href", url.pathname.replace(/^\//, "") + "?" + url.searchParams.toString());
+            const url = new URL(href, window.location.href);
+
+            if (campaign.campaign_code) url.searchParams.set("hn", campaign.campaign_code);
+            if (campaign.utm_source) url.searchParams.set("utm_source", campaign.utm_source);
+            if (campaign.utm_medium) url.searchParams.set("utm_medium", campaign.utm_medium);
+            if (campaign.utm_campaign) url.searchParams.set("utm_campaign", campaign.utm_campaign);
+
+            if (url.origin === window.location.origin) {
+              link.setAttribute("href", url.pathname + url.search + url.hash);
+            } else {
+              link.setAttribute("href", url.toString());
+            }
           } catch (error) {}
         });
       }
 
-      function trackFaqPreviewClick() {
-        const faqBox = document.getElementById("randomFaqBox");
-        if (!faqBox) return;
+      // Track this page view privately in the Telegram dashboard.
+      sendToHamsaBot(buildPayload({ event_type: "pageview" }));
 
-        faqBox.addEventListener("click", function () {
-          const question = document.getElementById("randomFaqQuestion")?.textContent?.trim() || "";
-          const answer = document.getElementById("randomFaqAnswer")?.textContent?.trim() || "";
-
-          sendTrack({
-            event_type: "faq_click",
-            click_type: "faq_preview",
-            path: "/faq.html",
-            clicked_text: question,
-            faq_question: question,
-            faq_answer: answer
-          });
-        });
+      // Keep campaign source attached when visitors continue to the application page.
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", addCampaignToApplyLinks);
+      } else {
+        addCampaignToApplyLinks();
       }
-
-      function copyWaitlistToTelegramBot() {
-        const tripForm = document.getElementById("tripForm");
-        if (!tripForm) return;
-
-        tripForm.addEventListener("submit", function () {
-          try {
-            const params = getParams();
-            const data = new FormData(tripForm);
-
-            data.append("timestamp", new Date().toISOString());
-            data.append("source_page", "index.html");
-            data.append("page_url", window.location.href);
-            data.append("referrer", document.referrer || "");
-            data.append("campaign_code", params.get("hn") || "");
-            data.append("utm_source", params.get("utm_source") || "");
-            data.append("utm_medium", params.get("utm_medium") || "");
-            data.append("utm_campaign", params.get("utm_campaign") || "");
-            data.append("language", navigator.language || "");
-            data.append("timezone", Intl.DateTimeFormat().resolvedOptions().timeZone || "");
-            data.append("screen_size", window.screen ? `${window.screen.width}x${window.screen.height}` : "");
-
-            fetch(WAITLIST_URL, {
-              method: "POST",
-              body: data,
-              keepalive: true
-            }).catch(function () {});
-          } catch (error) {}
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        preserveTrackingOnApplyLinks();
-        trackFaqPreviewClick();
-        copyWaitlistToTelegramBot();
-
-        sendTrack({
-          event_type: "pageview",
-          click_type: ""
-        });
-      });
     })();
   </script>
 </body>
