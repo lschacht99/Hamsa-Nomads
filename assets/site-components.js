@@ -159,7 +159,7 @@ function insertGlobalTripLine() {
 
 /* =========================================================
    HEADER
-   Visible menu: Trips, About us, FAQ, Join the retreat.
+   Visible menu: Trips, Community, About us, FAQ, Join the retreat.
    No payment page. No room schedule page.
    ========================================================= */
 
@@ -188,6 +188,11 @@ function insertSiteHeader() {
           <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
             <span class="hn-nav-full">Trips</span>
             <span class="hn-nav-short">Trips</span>
+          </a>
+
+          <a href="${hnPath("/trips-page/Community.html")}" data-nav="community">
+            <span class="hn-nav-full">Join the community</span>
+            <span class="hn-nav-short">Community</span>
           </a>
 
           <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">
@@ -253,6 +258,10 @@ function insertSiteHeader() {
         <nav class="hn-more-drawer-links" aria-label="More navigation">
           <a href="${hnPath("/trips-page/trips.html")}" data-nav="trips">
             <span>Trips</span>
+          </a>
+
+          <a href="${hnPath("/trips-page/Community.html")}" data-nav="community">
+            <span>Join the community</span>
           </a>
 
           <a href="${hnPath("/about-us/about-us.html")}" data-nav="about">
@@ -323,7 +332,7 @@ function insertMoreSlideMenuStyles() {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      gap: 22px !important;
+      gap: 20px !important;
       flex: 1 1 auto !important;
       min-width: 0 !important;
       white-space: nowrap !important;
@@ -516,11 +525,11 @@ function insertMoreSlideMenuStyles() {
       }
 
       .hn-main-nav-links {
-        gap: 15px !important;
+        gap: 14px !important;
       }
 
       .hn-main-nav-links a {
-        font-size: 0.88rem !important;
+        font-size: 0.86rem !important;
       }
 
       .hn-join-always {
@@ -531,6 +540,21 @@ function insertMoreSlideMenuStyles() {
       .hn-more-menu-toggle {
         width: 42px !important;
         height: 42px !important;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hn-main-nav-links {
+        gap: 11px !important;
+      }
+
+      .hn-main-nav-links a {
+        font-size: 0.8rem !important;
+      }
+
+      .hn-join-always {
+        font-size: 0.8rem !important;
+        padding: 9px 12px !important;
       }
     }
 
@@ -827,8 +851,8 @@ function insertSiteFooter() {
             beautiful places, and warm community.
           </p>
 
-          <a class="hn-shared-footer-cta" href="${hnPath("/Forms/apply.html")}">
-            Join us for Shavuos
+          <a class="hn-shared-footer-cta" href="${hnPath("/trips-page/Community.html")}">
+            Join the community
           </a>
         </div>
 
@@ -836,6 +860,7 @@ function insertSiteFooter() {
           <h4>Explore</h4>
           <ul>
             <li><a href="${hnPath("/trips-page/trips.html")}">Trips</a></li>
+            <li><a href="${hnPath("/trips-page/Community.html")}">Join the community</a></li>
             <li><a href="${hnPath("/about-us/about-us.html")}">About us</a></li>
             <li><a href="${hnPath("/faq.html")}">FAQ</a></li>
           </ul>
@@ -1007,6 +1032,7 @@ function markActiveNav() {
 
   const navMap = [
     { key: "trips", match: "/trips-page/trips.html" },
+    { key: "community", match: "/trips-page/Community.html" },
     { key: "about", match: "/about-us/about-us.html" },
     { key: "faq", match: "/faq.html" },
     { key: "apply", match: "/Forms/apply.html" }
