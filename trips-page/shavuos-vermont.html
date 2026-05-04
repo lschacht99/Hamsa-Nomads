@@ -976,8 +976,385 @@
         0 28px 72px rgba(31,28,20,0.16);
     }
 
+
+    /* LUXURY MOTION LAYER */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(184,139,47,0.10), transparent 24%),
+        radial-gradient(circle at 82% 24%, rgba(39,69,55,0.09), transparent 28%),
+        radial-gradient(circle at 50% 88%, rgba(220,199,161,0.18), transparent 32%);
+      animation: ambientDrift 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientDrift {
+      from { transform: translate3d(-1.2%, -0.8%, 0) scale(1); }
+      to { transform: translate3d(1.4%, 1%, 0) scale(1.035); }
+    }
+
+    .hero-stage::after,
+    .lounge-shell::after,
+    .pricing-card::after,
+    .community-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.13) 42%, transparent 68%);
+      transform: translateX(-130%);
+      animation: softSheen 8.5s ease-in-out infinite;
+      opacity: 0.55;
+    }
+
+    @keyframes softSheen {
+      0%, 46% { transform: translateX(-130%); }
+      62%, 100% { transform: translateX(130%); }
+    }
+
+    .hero-bg img {
+      animation: heroBreath 26s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+
+    @keyframes heroBreath {
+      from { transform: scale(1.01); filter: saturate(0.96) brightness(1); }
+      to { transform: scale(1.075); filter: saturate(1.02) brightness(0.96); }
+    }
+
+    .countdown-card,
+    .hero-info-card,
+    .lounge-float-card,
+    .house-card,
+    .info-card,
+    .pricing-card,
+    .community-card {
+      will-change: transform;
+    }
+
+    .countdown-card {
+      animation: gentleFloat 7s ease-in-out infinite;
+    }
+
+    .hero-info-card {
+      animation: gentleFloat 7s ease-in-out infinite reverse;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .button,
+    .button-secondary,
+    .button-light {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button::before,
+    .button-secondary::before,
+    .button-light::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent, rgba(255,255,255,0.28), transparent);
+      transform: translateX(-130%);
+      transition: transform 0.55s ease;
+      pointer-events: none;
+    }
+
+    .button:hover::before,
+    .button-secondary:hover::before,
+    .button-light:hover::before {
+      transform: translateX(130%);
+    }
+
+    /* PORTRAIT WALKTHROUGH FLOAT */
+    .walkthrough-peek-section {
+      position: relative;
+      z-index: 5;
+      padding: 0 0 clamp(28px, 5vw, 60px);
+      margin-top: clamp(-54px, -5vw, -28px);
+    }
+
+    .walkthrough-peek {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+      gap: clamp(20px, 4vw, 48px);
+      align-items: center;
+      padding: clamp(18px, 3.5vw, 40px);
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(244,231,199,0.55), transparent 28%),
+        radial-gradient(circle at 88% 82%, rgba(39,69,55,0.10), transparent 30%),
+        rgba(255,252,246,0.76);
+      border: 1px solid rgba(255,255,255,0.62);
+      box-shadow: 0 26px 78px rgba(31,28,20,0.13);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .walkthrough-peek::before {
+      content: "";
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      left: -180px;
+      top: -160px;
+      border-radius: 999px;
+      background: rgba(184,139,47,0.10);
+      animation: ambientOrb 16s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    .walkthrough-peek::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -150px;
+      bottom: -160px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.09);
+      animation: ambientOrb 18s ease-in-out infinite alternate-reverse;
+      z-index: -1;
+    }
+
+    @keyframes ambientOrb {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(18px, -14px, 0) scale(1.08); }
+    }
+
+    .phone-video-cluster {
+      position: relative;
+      min-height: 560px;
+      display: grid;
+      place-items: center;
+    }
+
+    .phone-video-frame {
+      position: relative;
+      z-index: 4;
+      width: min(100%, 315px);
+      padding: 12px;
+      border-radius: 38px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.86), rgba(255,255,255,0.36)),
+        rgba(255,252,246,0.78);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow:
+        0 28px 70px rgba(31,28,20,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.55);
+      transform: rotate(-2.2deg);
+      animation: phoneHover 7.5s ease-in-out infinite;
+    }
+
+    @keyframes phoneHover {
+      0%, 100% { transform: rotate(-2.2deg) translateY(0); }
+      50% { transform: rotate(-1deg) translateY(-11px); }
+    }
+
+    .phone-video-frame video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 28px;
+      background: #1c211d;
+      object-fit: cover;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16);
+    }
+
+    .walkthrough-badge {
+      position: absolute;
+      z-index: 5;
+      padding: 13px 15px;
+      border-radius: 999px;
+      background: rgba(255,252,246,0.78);
+      border: 1px solid rgba(255,255,255,0.66);
+      box-shadow: 0 18px 42px rgba(31,28,20,0.13);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .walkthrough-badge.one {
+      top: 40px;
+      left: 4px;
+      transform: rotate(-5deg);
+    }
+
+    .walkthrough-badge.two {
+      right: 0;
+      bottom: 96px;
+      transform: rotate(4deg);
+    }
+
+    .walkthrough-copy h2 {
+      font-size: clamp(2.1rem, 5vw, 4.35rem);
+      line-height: 0.98;
+      color: var(--forest);
+      margin-bottom: 14px;
+    }
+
+    .walkthrough-copy p {
+      color: var(--muted);
+      line-height: 1.76;
+      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      max-width: 56ch;
+    }
+
+    .walkthrough-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .walkthrough-points span {
+      padding: 12px 13px;
+      border-radius: 18px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-size: 0.84rem;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
+    /* COMMUNITY REQUEST POPUP */
+    .community-popup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(22,29,25,0.36);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .community-popup-overlay.is-open {
+      display: flex;
+    }
+
+    .community-popup {
+      position: relative;
+      width: min(100%, 560px);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      padding: clamp(24px, 4vw, 36px);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.18), transparent 34%),
+        rgba(255,252,246,0.82);
+      border: 1px solid rgba(255,255,255,0.64);
+      box-shadow: 0 34px 90px rgba(0,0,0,0.25);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .community-popup-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(39,69,55,0.12);
+      background: rgba(255,255,255,0.58);
+      color: var(--forest);
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .community-popup h2 {
+      color: var(--forest);
+      font-size: clamp(2rem, 5vw, 3.35rem);
+      line-height: 0.98;
+      padding-right: 42px;
+      margin-bottom: 12px;
+    }
+
+    .community-popup p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .community-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .community-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .community-form input,
+    .community-form textarea,
+    .community-form select {
+      width: 100%;
+      border: 1px solid rgba(39,69,55,0.14);
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: rgba(255,255,255,0.62);
+      color: var(--ink);
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.34);
+    }
+
+    .community-form textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .community-form input:focus,
+    .community-form textarea:focus,
+    .community-form select:focus {
+      border-color: rgba(184,139,47,0.48);
+      box-shadow: 0 0 0 4px rgba(184,139,47,0.12);
+    }
+
+    .community-popup-note {
+      margin: 4px 0 2px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(39,69,55,0.07);
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.52;
+    }
+
+    .community-status {
+      min-height: 22px;
+      color: var(--forest);
+      font-size: 0.92rem;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .community-status.error {
+      color: #8b2f25;
+    }
+
+
     @media (max-width: 1080px) {
       .hero-content,
+      .walkthrough-peek,
       .video-shell,
       .lounge-shell,
       .rhythm-shell,
@@ -1025,6 +1402,75 @@
         font-size: 0.95rem;
         line-height: 1.58;
       }
+
+      .walkthrough-peek-section {
+        margin-top: -24px;
+        padding-bottom: 28px;
+      }
+
+      .walkthrough-peek {
+        grid-template-columns: 1fr;
+        padding: 14px;
+        border-radius: 26px;
+        gap: 14px;
+      }
+
+      .phone-video-cluster {
+        min-height: 430px;
+      }
+
+      .phone-video-frame {
+        width: min(100%, 245px);
+        border-radius: 30px;
+        padding: 9px;
+      }
+
+      .phone-video-frame video {
+        border-radius: 22px;
+      }
+
+      .walkthrough-badge {
+        font-size: 0.62rem;
+        padding: 9px 10px;
+      }
+
+      .walkthrough-badge.one {
+        top: 20px;
+        left: 10px;
+      }
+
+      .walkthrough-badge.two {
+        right: 10px;
+        bottom: 50px;
+      }
+
+      .walkthrough-copy {
+        padding: 4px 4px 8px;
+      }
+
+      .walkthrough-copy h2 {
+        font-size: clamp(2rem, 10vw, 3.1rem);
+      }
+
+      .walkthrough-copy p {
+        font-size: 0.95rem;
+        line-height: 1.58;
+      }
+
+      .walkthrough-points {
+        grid-template-columns: 1fr;
+        margin-top: 16px;
+      }
+
+      .community-row {
+        grid-template-columns: 1fr;
+      }
+
+      .community-popup {
+        border-radius: 26px;
+        padding: 24px 18px 20px;
+      }
+
 
       .hero { padding: 10px 0 16px; }
       .hero-stage { min-height: auto; border-radius: 24px; }
@@ -1120,6 +1566,7 @@
         display: none;
       }
 
+      .walkthrough-peek,
       .video-shell,
       .lounge-shell,
       .rhythm-shell,
@@ -1129,6 +1576,7 @@
         border-radius: 24px;
       }
 
+      .walkthrough-peek,
       .video-shell,
       .lounge-shell {
         padding: 10px;
@@ -1318,7 +1766,7 @@
                 <div class="hero-actions">
                   <a href="../Forms/apply.html" class="button">Apply for Shavuos</a>
                   <a href="#house" class="button-secondary">Explore the house</a>
-                  <a href="Community.html" class="button-secondary">Join the travel community</a>
+                  <button class="button-secondary" type="button" data-community-popup>Request WhatsApp access</button>
                 </div>
               </div>
 
@@ -1381,22 +1829,39 @@
         </div>
       </section>
 
-      <section class="section" id="walkthrough">
+      <section class="walkthrough-peek-section" id="walkthrough">
         <div class="container">
-          <div class="video-shell glass" data-reveal>
-            <div class="video-copy">
-              <div class="eyebrow">Property walkthrough</div>
-              <h2>See the house before you apply.</h2>
-              <p>
-                Add your property walkthrough video here so guests can understand the space:
-                the rooms, dining areas, lounge, pool, hot tub, game room, and where the retreat actually happens.
-              </p>
+          <div class="walkthrough-peek" data-reveal>
+            <div class="phone-video-cluster">
+              <span class="walkthrough-badge one">Property walkthrough</span>
+              <span class="walkthrough-badge two">Portrait video</span>
+
+              <div class="phone-video-frame interactive-card">
+                <video controls playsinline preload="metadata" poster="../Image/hero.jpg">
+                  <source src="../Video/shavuos-house-walkthrough.mp4" type="video/mp4">
+                </video>
+              </div>
             </div>
 
-            <div class="video-frame interactive-card">
-              <video controls playsinline preload="metadata" poster="../Image/hero.jpg">
-                <source src="../Video/shavuos-house-walkthrough.mp4" type="video/mp4">
-              </video>
+            <div class="walkthrough-copy">
+              <div class="eyebrow">Walk through the house</div>
+              <h2>See where the weekend happens.</h2>
+              <p>
+                The video goes here as a vertical walkthrough: rooms, lounge spaces, dining areas,
+                pool, hot tub, game room, and the places where people will actually gather during the retreat.
+              </p>
+
+              <div class="walkthrough-points">
+                <span>Rooms + sleeping areas</span>
+                <span>Dining + gathering spaces</span>
+                <span>Pool + hot tub</span>
+                <span>Game room + lounge</span>
+              </div>
+
+              <div class="card-actions" style="margin-top: 24px;">
+                <a href="#house" class="button-secondary">Explore the photos</a>
+                <a href="../Forms/apply.html" class="button">Apply for Shavuos</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1672,21 +2137,84 @@
             </article>
 
             <aside class="community-card interactive-card" data-reveal style="--delay: 120ms;">
-              <div class="eyebrow">The bigger circle</div>
-              <h3>Join the travel community too.</h3>
+              <div class="eyebrow">Jewish travel network</div>
+              <h3>Request access to the WhatsApp community.</h3>
               <p>
-                Shavuos in Vermont is the first live gathering, but Hamsa Nomads is also building a Jewish travel community
-                for kosher-minded travel advice, Shabbat support, local questions, and future trips.
+                Ask kosher travel questions, share what you know, find Shabbat help, and connect with people who are also moving through the world Jewishly.
+                We review requests so the group stays useful, safe, and human.
               </p>
 
               <div class="card-actions" style="margin-top: 22px;">
-                <a href="Community.html" class="button-light">Join the community</a>
+                <button class="button-light" type="button" data-community-popup>Request WhatsApp access</button>
               </div>
             </aside>
           </div>
         </div>
       </section>
     </main>
+
+
+    <div class="community-popup-overlay" id="communityPopup" aria-hidden="true">
+      <div class="community-popup" role="dialog" aria-modal="true" aria-labelledby="communityPopupTitle">
+        <button class="community-popup-close" type="button" id="communityPopupClose" aria-label="Close community request">×</button>
+
+        <div class="eyebrow">Request access</div>
+        <h2 id="communityPopupTitle">Join the Hamsa Nomads WhatsApp community.</h2>
+        <p>
+          Tell us who you are and what kind of Jewish travel help you are looking for.
+          After you submit, you’ll be sent toward the WhatsApp request link. We review requests before approving access.
+        </p>
+
+        <form
+          class="community-form"
+          id="communityRequestForm"
+          action="https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+          method="POST"
+          target="community_iframe"
+        >
+          <input type="hidden" name="submitted_at" id="communitySubmittedAt">
+          <input type="hidden" name="source_page" value="shavuos-vermont.html">
+          <input type="hidden" name="request_type" value="WhatsApp community access">
+
+          <div class="community-row">
+            <input type="text" name="first_name" placeholder="First name *" required>
+            <input type="text" name="last_name" placeholder="Last name *" required>
+          </div>
+
+          <div class="community-row">
+            <input type="email" name="email" placeholder="Email *" required>
+            <input type="tel" name="phone" placeholder="Phone / WhatsApp number *" required>
+          </div>
+
+          <input type="text" name="city" placeholder="Where are you based? *" required>
+
+          <select name="interest" required>
+            <option value="">What are you most interested in? *</option>
+            <option value="Kosher travel questions">Kosher travel questions</option>
+            <option value="Shabbat while traveling">Shabbat while traveling</option>
+            <option value="Meeting Jewish travelers">Meeting Jewish travelers</option>
+            <option value="Future Hamsa Nomads trips">Future Hamsa Nomads trips</option>
+            <option value="Shavuos retreat + community">Shavuos retreat + community</option>
+          </select>
+
+          <textarea
+            name="about"
+            placeholder="A few words about who you are / what you want from the group *"
+            required
+          ></textarea>
+
+          <div class="community-popup-note">
+            This helps us keep the group safer and more useful. You can still request to join WhatsApp after submitting;
+            approval is handled manually.
+          </div>
+
+          <button type="submit" class="button" id="communitySubmitButton">Submit + continue to WhatsApp</button>
+          <div class="community-status" id="communityStatus" aria-live="polite"></div>
+        </form>
+
+        <iframe name="community_iframe" style="display:none;"></iframe>
+      </div>
+    </div>
 
     <div id="site-footer"></div>
   </div>
@@ -1730,7 +2258,7 @@
         }
 
         function bringForward() {
-          const group = card.closest(".lounge-shell, .house-grid, .info-grid, .pricing-grid, .hero-panel, .video-shell") || document;
+          const group = card.closest(".lounge-shell, .house-grid, .info-grid, .pricing-grid, .hero-panel, .walkthrough-peek, .phone-video-cluster") || document;
           group.querySelectorAll(".is-front").forEach((item) => {
             if (item !== card) item.classList.remove("is-front");
           });
@@ -1833,6 +2361,72 @@
       timer = setInterval(updateCountdown, 1000);
     }
 
+
+    function hnInitCommunityPopup() {
+      const WHATSAPP_JOIN_URL = "https://chat.whatsapp.com/PASTE_YOUR_WHATSAPP_INVITE_CODE_HERE";
+
+      const popup = document.getElementById("communityPopup");
+      const closeButton = document.getElementById("communityPopupClose");
+      const openButtons = document.querySelectorAll("[data-community-popup]");
+      const form = document.getElementById("communityRequestForm");
+      const submitButton = document.getElementById("communitySubmitButton");
+      const status = document.getElementById("communityStatus");
+      const submittedAt = document.getElementById("communitySubmittedAt");
+
+      if (!popup || !form) return;
+
+      function openPopup() {
+        popup.classList.add("is-open");
+        popup.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePopup() {
+        popup.classList.remove("is-open");
+        popup.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      openButtons.forEach((button) => {
+        button.addEventListener("click", openPopup);
+      });
+
+      if (closeButton) closeButton.addEventListener("click", closePopup);
+
+      popup.addEventListener("click", (event) => {
+        if (event.target === popup) closePopup();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && popup.classList.contains("is-open")) {
+          closePopup();
+        }
+      });
+
+      form.addEventListener("submit", () => {
+        if (submittedAt) submittedAt.value = new Date().toISOString();
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Submitting...";
+        }
+
+        if (status) {
+          status.classList.remove("error");
+          status.textContent = "Submitting your request...";
+        }
+
+        setTimeout(() => {
+          if (status) {
+            status.textContent = "Request received. Opening WhatsApp request link...";
+          }
+
+          window.location.href = WHATSAPP_JOIN_URL;
+        }, 1300);
+      });
+    }
+
+
     document.addEventListener("DOMContentLoaded", function () {
       function safeInit(name, fn) {
         try { fn(); }
@@ -1844,6 +2438,7 @@
       safeInit("lounge notes", hnInitLoungeNotes);
       safeInit("rhythm tabs", hnInitRhythmTabs);
       safeInit("countdown", hnInitCountdown);
+      safeInit("community popup", hnInitCommunityPopup);
     });
   </script>
 </body>
