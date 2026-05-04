@@ -851,11 +851,7 @@ function insertSiteFooter() {
             beautiful places, and warm community.
           </p>
 
-          <a class="hn-shared-footer-cta" href="${hnPath("/trips-page/Community.html")}">
-            Join the community
-          </a>
-        </div>
-
+   
         <div class="hn-shared-footer-col">
           <h4>Explore</h4>
           <ul>
