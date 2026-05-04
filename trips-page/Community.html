@@ -28,10 +28,11 @@
       --ivory: #ece7d8;
       --sand: #dcc7a1;
       --clay: #c88b6a;
+      --clay-deep: #ae7458;
       --sage: #7f8a6a;
       --ink: #111111;
-      --forest: #274537;
-      --forest-deep: #1d392d;
+      --forest: #c88b6a;
+      --forest-deep: #ae7458;
       --gold: #b88b2f;
       --paper: rgba(255, 252, 246, 0.68);
       --paper-strong: rgba(255, 252, 246, 0.9);
@@ -345,12 +346,12 @@
     }
 
     .btn-dark:hover {
-      background: var(--forest);
+      background: var(--clay-deep);
     }
 
     .btn-light {
       background: rgba(255,255,255,0.74);
-      color: var(--forest);
+      color: var(--clay-deep);
       border-color: rgba(255,255,255,0.36);
       box-shadow: 0 12px 30px rgba(31, 28, 20, 0.08);
     }
@@ -391,7 +392,7 @@
       min-height: clamp(560px, 68vh, 700px);
       background:
         radial-gradient(circle at 18% 15%, rgba(255,255,255,0.16), transparent 34%),
-        linear-gradient(135deg, rgba(39,69,55,0.96), rgba(20,44,34,0.92));
+        linear-gradient(135deg, rgba(200,139,106,0.96), rgba(174,116,88,0.92));
       color: #fffdf8;
       border: 1px solid rgba(255,255,255,0.18);
       box-shadow: var(--shadow-strong);
@@ -466,7 +467,7 @@
     }
 
     .hero-title .gold {
-      color: #e1b246;
+      color: #f0d197;
     }
 
     .hero-lead {
@@ -478,7 +479,7 @@
     }
 
     .hero-body {
-      color: rgba(255,255,255,0.76);
+      color: rgba(255,255,255,0.78);
       font-size: 1rem;
       line-height: 1.72;
       max-width: 50ch;
@@ -493,7 +494,7 @@
     }
 
     .hero-small {
-      color: rgba(255,255,255,0.72);
+      color: rgba(255,255,255,0.74);
       font-size: 0.92rem;
       line-height: 1.55;
       max-width: 42ch;
@@ -514,7 +515,7 @@
     }
 
     .hero-card h2 {
-      color: var(--forest);
+      color: var(--clay-deep);
       font-size: clamp(2rem, 3vw, 3rem);
       line-height: 0.98;
       margin-bottom: 16px;
@@ -539,9 +540,9 @@
       min-height: 40px;
       padding: 9px 13px;
       border-radius: 999px;
-      background: rgba(39, 69, 55, 0.08);
-      border: 1px solid rgba(39,69,55,0.1);
-      color: var(--forest);
+      background: rgba(200, 139, 106, 0.1);
+      border: 1px solid rgba(200, 139, 106, 0.14);
+      color: var(--clay-deep);
       font-size: 0.9rem;
       font-weight: 650;
     }
@@ -549,9 +550,9 @@
     .hero-signature {
       margin-top: 22px;
       padding-top: 15px;
-      border-top: 1px solid rgba(39,69,55,0.12);
+      border-top: 1px solid rgba(200,139,106,0.16);
       font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-      color: var(--forest);
+      color: var(--clay-deep);
       font-size: 1.08rem;
       line-height: 1.5;
       position: relative;
@@ -565,7 +566,7 @@
       width: 84px;
       height: 2px;
       border-radius: 999px;
-      background: rgba(184,139,47,0.7);
+      background: rgba(200,139,106,0.78);
       animation: underlineBreathe 4.5s ease-in-out infinite;
       transform-origin: left;
     }
@@ -599,7 +600,7 @@
     }
 
     .section-head h2 {
-      color: var(--forest);
+      color: var(--clay-deep);
       font-size: clamp(2.3rem, 5vw, 4.1rem);
       line-height: 0.98;
     }
@@ -643,7 +644,7 @@
       right: -140px;
       top: -150px;
       border-radius: 999px;
-      background: rgba(39, 69, 55, 0.08);
+      background: rgba(200, 139, 106, 0.1);
       animation: orbMove 12s ease-in-out infinite alternate;
     }
 
@@ -654,7 +655,7 @@
     }
 
     .story-copy h2 {
-      color: var(--forest);
+      color: var(--clay-deep);
       font-size: clamp(2.6rem, 5.4vw, 5rem);
       line-height: 0.93;
       max-width: 10ch;
@@ -677,9 +678,9 @@
       display: block;
       padding: 17px 18px;
       border-radius: 18px;
-      background: rgba(39, 69, 55, 0.08);
-      border: 1px solid rgba(39, 69, 55, 0.1);
-      color: var(--forest);
+      background: rgba(200, 139, 106, 0.1);
+      border: 1px solid rgba(200, 139, 106, 0.14);
+      color: var(--clay-deep);
       font-weight: 700;
       line-height: 1.4;
       transform: rotate(-0.4deg);
@@ -718,7 +719,7 @@
       right: -70px;
       bottom: -80px;
       border-radius: 999px;
-      background: rgba(184, 139, 47, 0.08);
+      background: rgba(200, 139, 106, 0.1);
       transition: transform 0.35s ease;
     }
 
@@ -729,7 +730,7 @@
     .icon {
       width: 44px;
       height: 44px;
-      color: var(--forest);
+      color: var(--clay-deep);
       margin-bottom: 16px;
       position: relative;
       z-index: 2;
@@ -755,7 +756,7 @@
     .rich-card h3 {
       position: relative;
       z-index: 2;
-      color: var(--forest);
+      color: var(--clay-deep);
       font-size: 1.42rem;
       line-height: 1.12;
       margin-bottom: 10px;
@@ -772,7 +773,7 @@
     .accent-card {
       background:
         radial-gradient(circle at top left, rgba(213,178,92,0.18), transparent 34%),
-        linear-gradient(135deg, rgba(39,69,55,0.96), rgba(23,50,39,0.94));
+        linear-gradient(135deg, rgba(200,139,106,0.96), rgba(174,116,88,0.94));
     }
 
     .accent-card h3 {
@@ -792,7 +793,7 @@
       border-radius: 30px;
       background:
         radial-gradient(circle at top left, rgba(213,178,92,0.16), transparent 34%),
-        linear-gradient(135deg, rgba(39,69,55,0.96), rgba(23,50,39,0.94));
+        linear-gradient(135deg, rgba(200,139,106,0.96), rgba(174,116,88,0.94));
       color: #fffdf8;
       padding: clamp(30px, 5vw, 54px);
       border: 1px solid rgba(255,255,255,0.16);
@@ -842,8 +843,8 @@
       display: block;
       padding: 16px 18px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
       color: rgba(255,255,255,0.88);
       font-weight: 650;
       line-height: 1.42;
@@ -874,7 +875,7 @@
     .final-cta h2 {
       font-size: clamp(2.4rem, 5.8vw, 5rem);
       line-height: 0.93;
-      color: var(--ink);
+      color: var(--clay-deep);
       max-width: 12ch;
       margin-bottom: 16px;
     }
@@ -992,25 +993,11 @@
       filter: blur(0);
     }
 
-    .rich-grid .reveal:nth-child(2) {
-      transition-delay: 0.08s;
-    }
-
-    .rich-grid .reveal:nth-child(3) {
-      transition-delay: 0.16s;
-    }
-
-    .rich-grid .reveal:nth-child(4) {
-      transition-delay: 0.24s;
-    }
-
-    .rich-grid .reveal:nth-child(5) {
-      transition-delay: 0.32s;
-    }
-
-    .rich-grid .reveal:nth-child(6) {
-      transition-delay: 0.4s;
-    }
+    .rich-grid .reveal:nth-child(2) { transition-delay: 0.08s; }
+    .rich-grid .reveal:nth-child(3) { transition-delay: 0.16s; }
+    .rich-grid .reveal:nth-child(4) { transition-delay: 0.24s; }
+    .rich-grid .reveal:nth-child(5) { transition-delay: 0.32s; }
+    .rich-grid .reveal:nth-child(6) { transition-delay: 0.4s; }
 
     @keyframes pageArrive {
       from {
@@ -1288,7 +1275,6 @@
     </div>
 
     <main>
-      <!-- HERO -->
       <section class="hero">
         <div class="container">
           <div class="hero-wrap">
@@ -1370,7 +1356,6 @@
         </div>
       </section>
 
-      <!-- RICH STORY -->
       <section class="section" id="inside">
         <div class="container">
           <div class="story-panel reveal">
@@ -1392,7 +1377,6 @@
         </div>
       </section>
 
-      <!-- WHAT YOU CAN ASK -->
       <section class="section">
         <div class="container">
           <div class="section-head reveal">
@@ -1478,7 +1462,6 @@
         </div>
       </section>
 
-      <!-- SAFE ACCESS -->
       <section class="section">
         <div class="container">
           <div class="statement reveal">
@@ -1499,7 +1482,6 @@
         </div>
       </section>
 
-      <!-- FINAL CTA -->
       <section class="section" id="join">
         <div class="container">
           <div class="final-cta reveal">
