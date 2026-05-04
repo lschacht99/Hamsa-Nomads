@@ -25,9 +25,9 @@
   <meta name="twitter:description" content="Apply for Shavuos in Vermont or request access to the Hamsa Nomads Jewish travel community." />
   <meta name="twitter:image" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
 
-  <link rel="icon" href="/favicon.ico?v=9" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico?v=9" type="image/x-icon">
-  <link rel="stylesheet" href="assets/site-components.css?v=index-v3-clearer" />
+  <link rel="icon" href="/favicon.ico?v=10" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico?v=10" type="image/x-icon">
+  <link rel="stylesheet" href="assets/site-components.css?v=index-v4-focused" />
 
   <style>
     :root {
@@ -229,6 +229,26 @@
       border: 1px solid rgba(255,255,255,0.62);
     }
 
+    .hero-shell.hero-photo-back::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(247,243,234,0.96) 0%, rgba(247,243,234,0.86) 42%, rgba(247,243,234,0.42) 100%),
+        linear-gradient(180deg, rgba(247,243,234,0.10), rgba(247,243,234,0.50)),
+        url("Image/hero.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.88;
+      pointer-events: none;
+    }
+
+    .hero-shell > * {
+      position: relative;
+      z-index: 3;
+    }
+
     .hero-shell::before {
       content: "";
       position: absolute;
@@ -236,6 +256,7 @@
       border-radius: 32px;
       border: 1px solid rgba(39,69,55,0.07);
       pointer-events: none;
+      z-index: 2;
     }
 
     .hero-copy { position: relative; z-index: 4; max-width: 780px; }
@@ -310,6 +331,74 @@
       font-size: 0.92rem;
       line-height: 1.6;
       max-width: 58ch;
+    }
+
+    .hero-countdown-card {
+      width: min(100%, 620px);
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 14px;
+      align-items: center;
+      margin: 24px 0 0;
+      padding: 15px;
+      border-radius: 24px;
+      background: rgba(23, 60, 48, 0.92);
+      color: #fffdf8;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 18px 44px rgba(39,69,55,0.20);
+    }
+
+    .countdown-copy span {
+      display: block;
+      color: rgba(255,255,255,0.68);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .countdown-copy strong {
+      display: block;
+      color: #f4e7c7;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      font-weight: 500;
+    }
+
+    .countdown-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .countdown-unit {
+      text-align: center;
+      padding: 9px 6px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .countdown-number {
+      display: block;
+      font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #e0ae43;
+      letter-spacing: -0.04em;
+    }
+
+    .countdown-label {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+      font-weight: 850;
     }
 
     .hero-visual {
@@ -1377,52 +1466,70 @@
     <main id="top">
       <section class="hero" aria-label="Hamsa Nomads main feature">
         <div class="container">
-          <div class="hero-shell">
+          <div class="hero-shell hero-photo-back">
             <div class="hero-copy" data-reveal>
               <div class="hero-kicker" id="heroKicker">Now open: Shavuos retreat</div>
               <h1 class="hero-title" id="heroTitle">Shavuos in <span>Vermont.</span></h1>
               <p class="hero-lead" id="heroLead">
-                May 21–24 in a private Vermont house — a small curated holiday retreat with meals cooked on site, learning, games, mountain air, and real community.
+                May 21–24 in a private Vermont house — a small curated holiday retreat with meals cooked on site,
+                Shabbos and Chag atmosphere, learning, games, mountain air, and real community.
               </p>
 
               <div class="hero-actions" id="heroActions">
                 <a href="Forms/apply.html" class="button">Apply for Shavuos</a>
-                <a href="#community-interest" class="button-secondary">Request WhatsApp access</a>
+                <a href="#community" class="button-secondary">Explore the travel group</a>
+              </div>
+
+              <div class="hero-countdown-card" id="retreatCountdown" aria-label="Countdown to Shavuos in Vermont">
+                <div class="countdown-copy">
+                  <span>Retreat begins</span>
+                  <strong>May 21</strong>
+                </div>
+                <div class="countdown-row">
+                  <div class="countdown-unit">
+                    <span class="countdown-number" id="count-days">00</span>
+                    <span class="countdown-label">Days</span>
+                  </div>
+                  <div class="countdown-unit">
+                    <span class="countdown-number" id="count-hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                  </div>
+                  <div class="countdown-unit">
+                    <span class="countdown-number" id="count-minutes">00</span>
+                    <span class="countdown-label">Min</span>
+                  </div>
+                  <div class="countdown-unit">
+                    <span class="countdown-number" id="count-seconds">00</span>
+                    <span class="countdown-label">Sec</span>
+                  </div>
+                </div>
               </div>
 
               <div class="hero-meta" id="heroMeta">
                 <span>May 21–24</span>
                 <span>Camping from $350</span>
                 <span>Indoor from $500</span>
-                <span>Small curated group</span>
+                <span>Meals cooked on site</span>
+                <span>Shabbos + Chag atmosphere</span>
               </div>
-
-              <div class="hero-tabs" aria-label="Homepage focus controls">
-                <button class="hero-tab is-active" type="button" data-hero-panel="retreat">Shavuos retreat</button>
-                <button class="hero-tab" type="button" data-hero-panel="community">Travel community</button>
-              </div>
-
-              <p class="hero-note" id="heroNote">
-                The retreat is the current live activity. Below, you’ll also find the Jewish travel community we are building around future trips, WhatsApp support, and cross-border connection.
-              </p>
             </div>
 
             <div class="hero-visual" data-reveal style="--delay: 120ms;">
               <div class="image-deck" aria-hidden="true">
                 <div class="deck-card deck-main interactive-card">
-                  <img id="heroDeckMain" src="Image/hero.jpg" alt="Shavuos in Vermont retreat atmosphere" loading="eager" decoding="async" />
+                  <img id="heroDeckMain" src="Image/chill.jpg" alt="Warm retreat lounge" loading="eager" decoding="async" />
                 </div>
                 <div class="deck-card deck-small interactive-card">
-                  <img id="heroDeckSmall" src="Image/chill.jpg" alt="Warm retreat lounge" loading="lazy" decoding="async" />
+                  <img id="heroDeckSmall" src="Image/dining-space.jpg" alt="Shared retreat table" loading="lazy" decoding="async" />
                 </div>
                 <div class="deck-card deck-wide interactive-card">
-                  <img id="heroDeckWide" src="Image/dining-space.jpg" alt="Shared retreat table" loading="lazy" decoding="async" />
+                  <img id="heroDeckWide" src="Image/pool.png" alt="Pool at the retreat house" loading="lazy" decoding="async" />
                 </div>
               </div>
 
               <div class="hero-info-card glass" id="heroInfoCard">
                 <span>First live gathering</span>
-                <strong>Shavuos in Vermont is one way into the Hamsa Nomads world.</strong>
+                <strong>Shavuos is the retreat. Hamsa Nomads is the community growing around it.</strong>
               </div>
             </div>
           </div>
@@ -1432,11 +1539,11 @@
       <section class="section compact" id="what-we-do">
         <div class="container">
           <div class="section-intro center" data-reveal>
-            <div class="eyebrow">What we’re building</div>
-            <h2>Retreats, travel groups, and what comes next.</h2>
+            <div class="eyebrow">What Hamsa Nomads offers</div>
+            <h2>Retreats, travel groups, and future trips.</h2>
             <p>
-              Hamsa Nomads has different entry points. The Shavuos retreat is the current live experience;
-              the WhatsApp community is the ongoing travel layer; future trips grow from the people who join.
+              The Shavuos retreat is the urgent live activity right now. Around it, we are building a Jewish travel ecosystem:
+              a WhatsApp group people can use, curated retreats, and future trips shaped by the community.
             </p>
           </div>
 
@@ -1455,9 +1562,9 @@
             <a href="#community-interest" class="activity-card interactive-card" data-reveal style="--delay: 80ms;">
               <div>
                 <span class="activity-number">02</span>
-                <h3>Jewish travel group</h3>
+                <h3>WhatsApp Travel Group</h3>
                 <p>
-                  A WhatsApp-based community for kosher-minded travel questions, Shabbat logistics, local leads, and connection.
+                  A reviewed group for kosher-minded travel questions, Shabbat logistics, local leads, and practical Jewish travel help.
                 </p>
               </div>
               <span class="activity-link">Request access →</span>
@@ -1482,13 +1589,13 @@
           <div class="community-shell" data-reveal>
             <div class="community-copy">
               <div>
-                <div class="eyebrow">The WhatsApp travel community</div>
+                <div class="eyebrow">WhatsApp Travel Community</div>
                 <h2>A Jewish travel group you can actually use.</h2>
                 <p>
-                  Separate from the retreat, this is the everyday Hamsa Nomads community: a reviewed WhatsApp space for Jewish travelers who want better information before they go and better connection when they arrive.
+                  Request access to the Hamsa Nomads WhatsApp community: a reviewed space for travel questions, kosher and Shabbat info, local leads, ride ideas, and updates about future retreats.
                 </p>
                 <p class="community-subtitle">
-                  Request access, share where you’re coming from, and we’ll use your info to review and approve people more safely.
+                  Fill out the form so we know who is requesting access. After you submit, you’ll be sent to the next access step.
                 </p>
 
                 <div class="community-feature-grid">
@@ -1511,7 +1618,7 @@
             <div class="community-access-card" id="community-interest">
               <h3>Request WhatsApp access</h3>
               <p>
-                Send your info first. We’ll receive it, then you’ll be sent to the next access step.
+                Add your details, then continue to the access page. We’ll use your information to review requests before approving entry.
               </p>
 
               <form
@@ -1583,8 +1690,8 @@
               <h2>Shavuos in Vermont</h2>
               <div class="retreat-date">May 21 – May 24</div>
               <p>
-                This is the first thing people should know right now: Hamsa Nomads is hosting a small Shavuos retreat in Vermont.
-                It is one activity inside the larger community we are building — but it is the live one.
+                Hamsa Nomads is hosting a small Shavuos retreat in Vermont. This is the live experience right now:
+                a holiday weekend designed for shared meals, Jewish atmosphere, rest, conversation, and real connection.
               </p>
               <p style="margin-top: 12px;">
                 Expect meals cooked on site, Shabbos and Yom Tov atmosphere, learning, games, house time, mountain air,
@@ -1660,11 +1767,55 @@
 
           <div class="hn-trip-slider" id="hnTripSlider">
             <article class="hn-trip-slide">
-              <div class="hn-trip-card">
-                <div class="hn-trip-image" style="--trip-image: url('Image/hero.jpg');"></div>
+              <div class="hn-trip-card interactive-card">
+                <div class="hn-trip-image" style="--trip-image: url('Image/hero.jpg');">
+                  <span class="hn-trip-badge">Current retreat</span>
+                  <span class="hn-image-note">Applications open</span>
+                </div>
                 <div class="hn-trip-body">
-                  <h3 class="hn-trip-name">Loading trips...</h3>
-                  <p class="hn-trip-copy">Pulling the upcoming trips from the trips page.</p>
+                  <div class="hn-trip-meta">May 21 – May 24</div>
+                  <h3 class="hn-trip-name">Shavuos in Vermont</h3>
+                  <p class="hn-trip-copy">A small curated holiday retreat in a private Vermont house, built around meals, learning, games, rest, and community.</p>
+                  <div class="hn-trip-footer">
+                    <div class="hn-trip-status"><span class="hn-trip-status-dot"></span>Applications open</div>
+                    <a href="Forms/apply.html" class="hn-trip-link">Apply</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="hn-trip-slide">
+              <div class="hn-trip-card interactive-card">
+                <div class="hn-trip-image" style="--trip-image: url('Image/dining-space.jpg');">
+                  <span class="hn-trip-badge">Coming next</span>
+                  <span class="hn-image-note">Interest list</span>
+                </div>
+                <div class="hn-trip-body">
+                  <div class="hn-trip-meta">Future city weekends</div>
+                  <h3 class="hn-trip-name">Jewish city weekends</h3>
+                  <p class="hn-trip-copy">Future city weekends shaped around local Jewish life, food, culture, Shabbat, and meeting the right people.</p>
+                  <div class="hn-trip-footer">
+                    <div class="hn-trip-status"><span class="hn-trip-status-dot"></span>Planning</div>
+                    <a href="trips-page/trips.html" class="hn-trip-link">See trips</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="hn-trip-slide">
+              <div class="hn-trip-card interactive-card">
+                <div class="hn-trip-image" style="--trip-image: url('Image/exterior.png');">
+                  <span class="hn-trip-badge">Future</span>
+                  <span class="hn-image-note">In development</span>
+                </div>
+                <div class="hn-trip-body">
+                  <div class="hn-trip-meta">Nature + community</div>
+                  <h3 class="hn-trip-name">Nature escapes</h3>
+                  <p class="hn-trip-copy">Small group escapes that combine nature, Jewish rhythm, fresh air, and connection that feels natural.</p>
+                  <div class="hn-trip-footer">
+                    <div class="hn-trip-status"><span class="hn-trip-status-dot"></span>In development</div>
+                    <a href="trips-page/trips.html" class="hn-trip-link">See trips</a>
+                  </div>
                 </div>
               </div>
             </article>
@@ -1750,10 +1901,10 @@
         <div class="container">
           <div class="final-cta-card glass" data-reveal>
             <div>
-              <h2>Want the link when the community opens?</h2>
+              <h2>Join the interest list.</h2>
               <p>
-                Add your info to the Hamsa Nomads list. We’ll know who is requesting access,
-                and you’ll be connected to the next step for the WhatsApp community and future trips.
+                Leave your info for the WhatsApp travel community, future trips, or both. After submitting,
+                you’ll continue to the next access step and we’ll have your details for review.
               </p>
             </div>
 
@@ -1797,7 +1948,7 @@
     <div id="site-footer"></div>
   </div>
 
-  <script src="assets/site-components.js?v=index-v3-clearer" data-base=""></script>
+  <script src="assets/site-components.js?v=index-v4-focused" data-base=""></script>
 
   <script>
     const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
@@ -1831,7 +1982,7 @@
           <a href="trips-page/trips.html" class="button-secondary">See upcoming trips</a>
         `,
         meta: ["Travel questions", "Shabbat logistics", "Local leads", "Future trips"],
-        note: "This is separate from the retreat. The travel group is the ongoing community layer; retreats are one of the activities that grow from it.",
+        note: "The travel group helps people ask better Jewish travel questions and hear about future Hamsa Nomads experiences.",
         mainImage: "Image/dining-space.jpg",
         smallImage: "Image/exterior.png",
         wideImage: "Image/game-room.png",
@@ -2163,6 +2314,45 @@
         .catch(renderFallbackTrips);
     }
 
+
+    function hnInitCountdown() {
+      const deadline = new Date("2026-05-21T00:00:00-04:00").getTime();
+      const daysEl = document.getElementById("count-days");
+      const hoursEl = document.getElementById("count-hours");
+      const minutesEl = document.getElementById("count-minutes");
+      const secondsEl = document.getElementById("count-seconds");
+      const wrap = document.getElementById("retreatCountdown");
+
+      if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+      function updateCountdown() {
+        const distance = deadline - Date.now();
+
+        if (distance <= 0) {
+          daysEl.textContent = "00";
+          hoursEl.textContent = "00";
+          minutesEl.textContent = "00";
+          secondsEl.textContent = "00";
+          const label = wrap?.querySelector(".countdown-copy strong");
+          if (label) label.textContent = "It starts today";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        daysEl.textContent = String(days).padStart(2, "0");
+        hoursEl.textContent = String(hours).padStart(2, "0");
+        minutesEl.textContent = String(minutes).padStart(2, "0");
+        secondsEl.textContent = String(seconds).padStart(2, "0");
+      }
+
+      updateCountdown();
+      window.setInterval(updateCountdown, 1000);
+    }
+
     function hnInitCommunityForms() {
       document.querySelectorAll(".community-lead-form").forEach((form) => {
         const button = form.querySelector("button[type='submit']");
@@ -2198,7 +2388,7 @@
       }
       safeInit("reveals", hnInitReveals);
       safeInit("interactive cards", hnInitInteractiveCards);
-      safeInit("hero panels", hnInitHeroPanels);
+      safeInit("countdown", hnInitCountdown);
       safeInit("community forms", hnInitCommunityForms);
       safeInit("instagram feed", hnLoadInstagramFeed);
       safeInit("FAQ preview", loadRandomFaqFromPage);
