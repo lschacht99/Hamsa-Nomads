@@ -2462,7 +2462,7 @@
           </div>
 
           <div class="access-success" id="accessSuccessMessage">
-            Request received. We’ll review it and follow up with access details if it’s a fit.
+            Request received. Redirecting you to WhatsApp...
           </div>
         </form>
 
@@ -2498,6 +2498,7 @@
       const accessSubmitButton = document.getElementById("accessSubmitBtn");
       const accessSuccessMessage = document.getElementById("accessSuccessMessage");
       const accessPageUrl = document.getElementById("accessPageUrl");
+      const WHATSAPP_ACCESS_LINK = "https://chat.whatsapp.com/ET7DARjTZ0kJbzPVXFhcjQ?mode=gi_t";
 
       if (accessPageUrl) {
         accessPageUrl.value = window.location.href;
@@ -2555,13 +2556,18 @@
             accessSubmitButton.textContent = "Submitting...";
           }
 
+          if (accessSuccessMessage) {
+            accessSuccessMessage.classList.remove("is-visible");
+          }
+
           setTimeout(() => {
             if (accessSuccessMessage) {
+              accessSuccessMessage.textContent = "Request received. Redirecting you to WhatsApp...";
               accessSuccessMessage.classList.add("is-visible");
             }
 
             if (accessSubmitButton) {
-              accessSubmitButton.textContent = "Request sent";
+              accessSubmitButton.textContent = "Redirecting...";
             }
 
             accessForm.reset();
@@ -2571,11 +2577,8 @@
             }
 
             setTimeout(() => {
-              if (accessSubmitButton) {
-                accessSubmitButton.disabled = false;
-                accessSubmitButton.textContent = "Submit request";
-              }
-            }, 2200);
+              window.location.href = WHATSAPP_ACCESS_LINK;
+            }, 900);
           }, 900);
         });
       }
