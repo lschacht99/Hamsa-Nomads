@@ -2889,7 +2889,37 @@
 
   </style>
 </head>
+<script>
+(function () {
+  const BOT_TRACK_URL = "https://hamsa-hq-telegram.hamsanomads.workers.dev/api/track";
+  const params = new URLSearchParams(window.location.search);
 
+  const payload = {
+    path: window.location.pathname,
+    url: window.location.href,
+    referrer: document.referrer || "",
+    campaign_code: params.get("hn") || "",
+    utm_source: params.get("utm_source") || "",
+    utm_medium: params.get("utm_medium") || "",
+    utm_campaign: params.get("utm_campaign") || ""
+  };
+
+  const body = JSON.stringify(payload);
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(
+      BOT_TRACK_URL,
+      new Blob([body], { type: "application/json" })
+    );
+  } else {
+    fetch(BOT_TRACK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body
+    }).catch(function () {});
+  }
+})();
+</script>
 <body>
   <div class="site-shell">
     <div id="site-header"></div>
@@ -3234,8 +3264,8 @@
 
             <a href="faq.html" class="random-faq-box interactive-card" id="randomFaqBox">
               <div class="random-faq-label">From the FAQ</div>
-              <h3 id="randomFaqQuestion">What happens after I apply?</h3>
-              <p id="randomFaqAnswer">Once you submit the form, we review your application and follow up with the next step. Your spot is confirmed only after acceptance and payment.</p>
+              <h3 id="randomFaqQuestion">Loading a question...</h3>
+              <p id="randomFaqAnswer">We’re pulling one answer from the FAQ page.</p>
               <span class="random-faq-link">Read the full FAQ →</span>
             </a>
           </div>
@@ -3281,16 +3311,7 @@
                 target="_blank"
                 rel="noopener"
               >
-                <img
-                  src="Image/hero.jpg"
-                  alt="Hamsa Nomads Instagram preview"
-                  loading="lazy"
-                  onerror="this.onerror=null; this.src='Image/social-preview-shavuos-v2.jpg';"
-                />
-                <div class="hn-live-instagram-featured-overlay">
-                  <span>Instagram</span>
-                  <strong>Follow @hamsanomads for retreat updates and behind-the-scenes moments.</strong>
-                </div>
+                <div class="hn-live-instagram-placeholder">Loading Instagram...</div>
               </a>
 
               <div class="insta-side">
@@ -3342,28 +3363,10 @@
 
           <div class="hn-trip-slider" id="hnTripSlider">
             <article class="hn-trip-slide">
-              <div class="hn-trip-card interactive-card">
-                <div class="hn-trip-image" style="--trip-image: url('Image/hero.jpg');">
-                  <span class="hn-trip-badge">Now open</span>
-                  <span class="hn-image-note">Shavuos retreat</span>
-                </div>
-
+              <div class="hn-trip-card">
                 <div class="hn-trip-body">
-                  <div class="hn-trip-meta">May 21 - May 24 • Vermont</div>
-                  <h3 class="hn-trip-name">Shavuos in Vermont</h3>
-                  <p class="hn-trip-copy">A small curated retreat in a private Vermont home with kosher meals, shared spaces, nature, games, learning, and community.</p>
-                  <ul class="hn-trip-bullets">
-                    <li>Private Vermont retreat house</li>
-                    <li>Kosher meals included</li>
-                    <li>Pool, hot tub, games, learning, and nature</li>
-                  </ul>
-                  <div class="hn-trip-footer">
-                    <div class="hn-trip-status">
-                      <span class="hn-trip-status-dot"></span>
-                      Applications open
-                    </div>
-                    <a class="hn-trip-cta" href="Forms/apply.html">Apply now</a>
-                  </div>
+                  <h3 class="hn-trip-name">Loading trips...</h3>
+                  <p class="hn-trip-copy">Pulling the upcoming trips from the trips page.</p>
                 </div>
               </div>
             </article>
@@ -3626,38 +3629,7 @@
         }
 
         if (grid) {
-          grid.innerHTML = `
-            <a
-              class="hn-live-instagram-post interactive-card"
-              href="https://www.instagram.com/hamsanomads/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Open Hamsa Nomads Instagram"
-            >
-              <img src="Image/chill.jpg" alt="Hamsa Nomads Instagram preview" loading="lazy" onerror="this.onerror=null; this.src='Image/hero.jpg';" />
-              <span class="hn-live-instagram-type">Instagram</span>
-            </a>
-            <a
-              class="hn-live-instagram-post interactive-card"
-              href="https://www.instagram.com/hamsanomads/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Open Hamsa Nomads Instagram"
-            >
-              <img src="Image/dining-space.jpg" alt="Hamsa Nomads retreat preview" loading="lazy" onerror="this.onerror=null; this.src='Image/hero.jpg';" />
-              <span class="hn-live-instagram-type">Retreat</span>
-            </a>
-            <a
-              class="hn-live-instagram-post interactive-card"
-              href="https://www.instagram.com/hamsanomads/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Open Hamsa Nomads Instagram"
-            >
-              <img src="Image/pool.png" alt="Hamsa Nomads retreat pool preview" loading="lazy" onerror="this.onerror=null; this.src='Image/hero.jpg';" />
-              <span class="hn-live-instagram-type">Vermont</span>
-            </a>
-          `;
+          grid.innerHTML = "";
         }
       }
     }
@@ -4306,48 +4278,30 @@
       }
     }
 
-    function hnSafeRun(name, fn) {
-      try {
-        if (typeof fn === "function") fn();
-      } catch (error) {
-        console.warn("Hamsa Nomads section skipped:", name, error);
-      }
-    }
-
-    function hnBootPage() {
-      hnSafeRun("reveals", hnInitReveals);
-      hnSafeRun("interactive cards", hnInitInteractiveCards);
-      hnSafeRun("hero carousel", hnInitHeroCarousel);
-      hnSafeRun("rhythm tabs", hnInitRhythmTabs);
-      hnSafeRun("lounge notes", hnInitLoungeNotes);
-      hnSafeRun("countdown", hnInitCountdown);
-      hnSafeRun("share", hnInitShare);
-      hnSafeRun("instagram feed", hnLoadInstagramFeed);
-      hnSafeRun("FAQ preview", loadRandomFaqFromPage);
-      hnSafeRun("trips", hnInitTrips);
+    document.addEventListener("DOMContentLoaded", function () {
+      hnInitReveals();
+      hnInitInteractiveCards();
+      hnInitHeroCarousel();
+      hnInitRhythmTabs();
+      hnInitLoungeNotes();
+      hnInitCountdown();
+      hnInitShare();
+      hnLoadInstagramFeed();
+      loadRandomFaqFromPage();
+      hnInitTrips();
 
       const refreshButton = document.getElementById("hnInstagramRefresh");
       if (refreshButton) {
-        refreshButton.addEventListener("click", function () {
-          hnSafeRun("instagram refresh", hnRenderInstagramFeed);
-        });
+        refreshButton.addEventListener("click", hnRenderInstagramFeed);
       }
 
       const instagramMobileQuery = window.matchMedia("(max-width: 760px)");
-      if (instagramMobileQuery && typeof instagramMobileQuery.addEventListener === "function") {
-        instagramMobileQuery.addEventListener("change", function () {
-          if (hnInstagramLivePosts.length) {
-            hnSafeRun("instagram responsive refresh", hnRenderInstagramFeed);
-          }
-        });
-      }
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", hnBootPage);
-    } else {
-      hnBootPage();
-    }
+      instagramMobileQuery.addEventListener?.("change", () => {
+        if (hnInstagramLivePosts.length) {
+          hnRenderInstagramFeed();
+        }
+      });
+    });
   </script>
 </body>
 </html>
