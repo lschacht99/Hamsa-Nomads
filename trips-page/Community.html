@@ -157,43 +157,53 @@
     .floating-travel-images {
       position: absolute;
       inset: 0;
-      z-index: 3;
+      z-index: 1;
       pointer-events: none;
       overflow: visible;
     }
 
     .floating-shot {
       position: absolute;
-      width: clamp(120px, 14vw, 185px);
-      padding: 10px 10px 26px;
+      width: clamp(96px, 10vw, 148px);
+      padding: 8px 8px 22px;
       margin: 0;
-      background: rgba(255, 252, 246, 0.88);
-      border: 1px solid rgba(255,255,255,0.58);
-      border-radius: 16px;
-      box-shadow: 0 22px 60px rgba(0,0,0,0.14);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255, 252, 246, 0.48);
+      border: 1px solid rgba(255,255,255,0.42);
+      border-radius: 15px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0.32;
+      filter: saturate(0.85) contrast(0.92);
+      pointer-events: auto;
+      cursor: pointer;
+      transition:
+        opacity 0.28s ease,
+        filter 0.28s ease,
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
     }
 
     .floating-shot::before {
       content: "";
       position: absolute;
-      top: -10px;
+      top: -9px;
       left: 50%;
       transform: translateX(-50%) rotate(-6deg);
-      width: 74px;
-      height: 22px;
+      width: 64px;
+      height: 19px;
       border-radius: 3px;
       background:
-        linear-gradient(90deg, rgba(236,231,216,0.84), rgba(255,255,255,0.56)),
+        linear-gradient(90deg, rgba(236,231,216,0.64), rgba(255,255,255,0.38)),
         repeating-linear-gradient(
           45deg,
-          rgba(17,17,17,0.035) 0px,
-          rgba(17,17,17,0.035) 1px,
+          rgba(17,17,17,0.025) 0px,
+          rgba(17,17,17,0.025) 1px,
           transparent 1px,
           transparent 7px
         );
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
 
     .floating-shot img {
@@ -204,25 +214,85 @@
       border-radius: 10px;
     }
 
+    .floating-shot:hover,
+    .floating-shot.is-active {
+      opacity: 0.96;
+      filter: saturate(1.05) contrast(1.02);
+      background: rgba(255, 252, 246, 0.92);
+      box-shadow: 0 24px 65px rgba(0,0,0,0.18);
+      z-index: 10;
+    }
+
     .shot-1 {
-      top: 120px;
-      right: -34px;
-      transform: rotate(8deg);
+      top: 118px;
+      right: max(10px, calc((100vw - var(--container)) / 2 - 82px));
+      transform: rotate(7deg);
       animation: floatPhoto1 9s ease-in-out infinite;
     }
 
     .shot-2 {
-      top: 700px;
-      left: -30px;
+      top: 760px;
+      left: max(10px, calc((100vw - var(--container)) / 2 - 86px));
       transform: rotate(-7deg);
       animation: floatPhoto2 10s ease-in-out infinite;
     }
 
     .shot-3 {
-      bottom: 220px;
-      right: 4%;
+      top: 1210px;
+      right: max(12px, calc((100vw - var(--container)) / 2 - 72px));
       transform: rotate(-5deg);
       animation: floatPhoto3 11s ease-in-out infinite;
+    }
+
+    .shot-4 {
+      top: 1630px;
+      left: max(12px, calc((100vw - var(--container)) / 2 - 70px));
+      transform: rotate(5deg);
+      animation: floatPhoto4 10.5s ease-in-out infinite;
+    }
+
+    .shot-5 {
+      bottom: 390px;
+      right: max(10px, calc((100vw - var(--container)) / 2 - 82px));
+      transform: rotate(7deg);
+      animation: floatPhoto5 12s ease-in-out infinite;
+    }
+
+    .shot-6 {
+      bottom: 150px;
+      left: max(10px, calc((100vw - var(--container)) / 2 - 84px));
+      transform: rotate(-6deg);
+      animation: floatPhoto6 11.5s ease-in-out infinite;
+    }
+
+    .shot-1:hover,
+    .shot-1.is-active {
+      transform: translateY(-8px) rotate(8deg) scale(1.04);
+    }
+
+    .shot-2:hover,
+    .shot-2.is-active {
+      transform: translateY(-8px) rotate(-6deg) scale(1.04);
+    }
+
+    .shot-3:hover,
+    .shot-3.is-active {
+      transform: translateY(-8px) rotate(-4deg) scale(1.04);
+    }
+
+    .shot-4:hover,
+    .shot-4.is-active {
+      transform: translateY(-8px) rotate(4deg) scale(1.04);
+    }
+
+    .shot-5:hover,
+    .shot-5.is-active {
+      transform: translateY(-8px) rotate(8deg) scale(1.04);
+    }
+
+    .shot-6:hover,
+    .shot-6.is-active {
+      transform: translateY(-8px) rotate(-7deg) scale(1.04);
     }
 
     .eyebrow {
@@ -859,30 +929,33 @@
     }
 
     @keyframes floatPhoto1 {
-      0%, 100% {
-        transform: translateY(0) rotate(8deg);
-      }
-      50% {
-        transform: translateY(-12px) rotate(10deg);
-      }
+      0%, 100% { transform: translateY(0) rotate(7deg); }
+      50% { transform: translateY(-10px) rotate(8deg); }
     }
 
     @keyframes floatPhoto2 {
-      0%, 100% {
-        transform: translateY(0) rotate(-7deg);
-      }
-      50% {
-        transform: translateY(-14px) rotate(-4deg);
-      }
+      0%, 100% { transform: translateY(0) rotate(-7deg); }
+      50% { transform: translateY(-12px) rotate(-5deg); }
     }
 
     @keyframes floatPhoto3 {
-      0%, 100% {
-        transform: translateY(0) rotate(-5deg);
-      }
-      50% {
-        transform: translateY(-10px) rotate(-7deg);
-      }
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-9px) rotate(-7deg); }
+    }
+
+    @keyframes floatPhoto4 {
+      0%, 100% { transform: translateY(0) rotate(5deg); }
+      50% { transform: translateY(-11px) rotate(3deg); }
+    }
+
+    @keyframes floatPhoto5 {
+      0%, 100% { transform: translateY(0) rotate(7deg); }
+      50% { transform: translateY(-10px) rotate(9deg); }
+    }
+
+    @keyframes floatPhoto6 {
+      0%, 100% { transform: translateY(0) rotate(-6deg); }
+      50% { transform: translateY(-10px) rotate(-8deg); }
     }
 
     /* RESPONSIVE */
@@ -902,18 +975,25 @@
         justify-content: flex-start;
       }
 
-      .shot-2 {
+      .shot-2,
+      .shot-4,
+      .shot-6 {
         display: none;
       }
 
       .shot-1 {
-        top: 96px;
+        top: 110px;
         right: 8px;
       }
 
       .shot-3 {
-        right: 18px;
-        bottom: 140px;
+        top: 1040px;
+        right: 12px;
+      }
+
+      .shot-5 {
+        right: 12px;
+        bottom: 190px;
       }
     }
 
@@ -1023,7 +1103,7 @@
 
     <div class="floating-travel-images" aria-hidden="true">
       <figure class="floating-shot shot-1">
-        <img src="/Image/Thailand.jpg" alt="">
+        <img src="/Image/Koh_samui.jpg" alt="">
       </figure>
 
       <figure class="floating-shot shot-2">
@@ -1031,7 +1111,19 @@
       </figure>
 
       <figure class="floating-shot shot-3">
-        <img src="/Image/Thailand.jpg" alt="">
+        <img src="/Image/Thailand_2.jpg" alt="">
+      </figure>
+
+      <figure class="floating-shot shot-4">
+        <img src="/Image/Thailand_3.jpg" alt="">
+      </figure>
+
+      <figure class="floating-shot shot-5">
+        <img src="/Image/Vietnam.jpg" alt="">
+      </figure>
+
+      <figure class="floating-shot shot-6">
+        <img src="/Image/Vietnam_2.jpg" alt="">
       </figure>
     </div>
 
@@ -1362,6 +1454,36 @@
       window.addEventListener("scroll", updateLine, { passive: true });
       window.addEventListener("resize", updateLine);
       updateLine();
+
+      const floatingShots = document.querySelectorAll(".floating-shot");
+
+      floatingShots.forEach((shot) => {
+        shot.addEventListener("click", function () {
+          floatingShots.forEach((item) => {
+            if (item !== shot) item.classList.remove("is-active");
+          });
+
+          shot.classList.toggle("is-active");
+        });
+
+        shot.addEventListener("touchstart", function () {
+          floatingShots.forEach((item) => {
+            if (item !== shot) item.classList.remove("is-active");
+          });
+
+          shot.classList.add("is-active");
+
+          setTimeout(() => {
+            shot.classList.remove("is-active");
+          }, 2200);
+        }, { passive: true });
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".floating-shot")) {
+          floatingShots.forEach((shot) => shot.classList.remove("is-active"));
+        }
+      });
     })();
   </script>
 </body>
