@@ -49,6 +49,7 @@
       --soft-shadow: 0 14px 36px rgba(31, 28, 20, 0.08);
       --radius: 28px;
       --container: 1240px;
+      --motion: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * { box-sizing: border-box; }
@@ -1588,6 +1589,331 @@
       background: var(--forest);
     }
 
+
+
+    /* WHATSAPP COMMUNITY ACCESS STRIP */
+    .community-access-section {
+      padding: clamp(22px, 4vw, 46px) 0 clamp(28px, 5vw, 62px);
+    }
+
+    .community-access-card {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.58fr);
+      gap: clamp(20px, 4vw, 42px);
+      align-items: center;
+      padding: clamp(24px, 4vw, 42px);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top right, rgba(184,139,47,0.14), transparent 34%),
+        rgba(255, 252, 246, 0.74);
+      border: 1px solid rgba(255,255,255,0.56);
+      box-shadow: var(--shadow);
+    }
+
+    .community-access-card::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -160px;
+      top: -180px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      pointer-events: none;
+    }
+
+    .community-access-copy,
+    .community-access-action {
+      position: relative;
+      z-index: 2;
+    }
+
+    .community-access-copy h2 {
+      color: var(--forest);
+      font-size: clamp(2rem, 4.8vw, 4.05rem);
+      line-height: 0.98;
+      margin-bottom: 14px;
+    }
+
+    .community-access-copy p {
+      color: var(--muted);
+      font-size: clamp(0.98rem, 1.3vw, 1.08rem);
+      line-height: 1.72;
+      max-width: 66ch;
+    }
+
+    .community-access-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .community-access-points span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      border: 1px solid rgba(39,69,55,0.10);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .community-access-action {
+      display: grid;
+      gap: 13px;
+      justify-items: stretch;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(39,69,55,0.94);
+      color: #fff;
+      box-shadow: 0 22px 56px rgba(39,69,55,0.20);
+    }
+
+    .community-access-action .button {
+      width: 100%;
+      background: #f4e7c7;
+      color: #173c30;
+      border-color: rgba(244,231,199,0.44);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.16);
+    }
+
+    .community-access-action p {
+      color: rgba(255,255,255,0.76);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    /* WHATSAPP ACCESS POPUP */
+
+    .access-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(17, 17, 17, 0.46);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .access-modal.is-open {
+      display: flex;
+    }
+
+    .access-modal-card {
+      position: relative;
+      width: min(100%, 720px);
+      max-height: min(92vh, 850px);
+      overflow: auto;
+      border-radius: 30px;
+      background:
+        linear-gradient(rgba(255, 252, 246, 0.96), rgba(255, 252, 246, 0.96)),
+        repeating-linear-gradient(
+          0deg,
+          rgba(17,17,17,0.018) 0px,
+          rgba(17,17,17,0.018) 1px,
+          transparent 1px,
+          transparent 6px
+        );
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      box-shadow: 0 34px 100px rgba(0,0,0,0.32);
+      padding: clamp(24px, 4vw, 42px);
+      transform: translateY(18px) scale(0.98);
+      opacity: 0;
+      animation: accessModalIn 0.38s var(--motion) forwards;
+    }
+
+    .access-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(17,17,17,0.12);
+      background: rgba(255,255,255,0.65);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 1.35rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .access-modal-close:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.92);
+    }
+
+    .access-modal-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--forest);
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .access-modal-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+    }
+
+    .access-modal h2 {
+      color: var(--forest);
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 0.94;
+      max-width: 12ch;
+      margin-bottom: 14px;
+    }
+
+    .access-modal-intro {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 62ch;
+      margin-bottom: 22px;
+    }
+
+    .access-trust-note {
+      margin: 0 0 22px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(39, 69, 55, 0.08);
+      border: 1px solid rgba(39, 69, 55, 0.12);
+      color: rgba(17, 17, 17, 0.72);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .access-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .access-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .access-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .access-field label {
+      color: var(--forest);
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .access-field input,
+    .access-field textarea {
+      width: 100%;
+      border: 1px solid rgba(17,17,17,0.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.72);
+      color: var(--ink);
+      font: inherit;
+      font-size: 1rem;
+      padding: 14px 15px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .access-field textarea {
+      min-height: 108px;
+      resize: vertical;
+    }
+
+    .access-field input:focus,
+    .access-field textarea:focus {
+      border-color: rgba(39, 69, 55, 0.55);
+      box-shadow: 0 0 0 4px rgba(39, 69, 55, 0.1);
+      background: rgba(255,255,255,0.95);
+    }
+
+    .access-form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .access-form-small {
+      color: rgba(17,17,17,0.54);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      max-width: 360px;
+    }
+
+    .access-submit {
+      min-width: 190px;
+      border: none;
+    }
+
+    .access-submit[disabled] {
+      cursor: wait;
+      opacity: 0.72;
+      transform: none;
+    }
+
+    .access-success {
+      display: none;
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(39, 69, 55, 0.1);
+      border: 1px solid rgba(39, 69, 55, 0.16);
+      color: var(--forest);
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .access-success.is-visible {
+      display: block;
+    }
+
+    .access-iframe {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      border: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes accessModalIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     /* Popup */
     .popup-overlay {
       position: fixed;
@@ -2859,6 +3185,68 @@
       }
     }
 
+    @media (max-width: 760px) {
+
+      .community-access-section {
+        padding: 18px 0 30px;
+      }
+
+      .community-access-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      .community-access-copy h2 {
+        font-size: clamp(1.9rem, 9vw, 2.75rem);
+      }
+
+      .community-access-copy p {
+        font-size: 0.92rem;
+        line-height: 1.55;
+      }
+
+      .community-access-points {
+        gap: 7px;
+        margin-top: 14px;
+      }
+
+      .community-access-points span {
+        min-height: 32px;
+        padding: 7px 10px;
+        font-size: 0.66rem;
+      }
+
+      .community-access-action {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .access-modal {
+        padding: 10px;
+      }
+
+      .access-modal-card {
+        border-radius: 24px;
+        padding: 24px 18px;
+      }
+
+      .access-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .access-form-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .access-submit {
+        width: 100%;
+      }
+
+    }
+
     @media (max-width: 420px) {
       .hero-title {
         font-size: clamp(2.8rem, 14.5vw, 4.1rem);
@@ -2989,6 +3377,36 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="community-access-section" id="whatsapp-community">
+        <div class="container">
+          <article class="community-access-card glass interactive-card" data-reveal>
+            <div class="community-access-copy">
+              <div class="eyebrow">Travel WhatsApp circle</div>
+              <h2>Before your next trip, ask the network.</h2>
+              <p>
+                Kosher tips, Shabbat connections, local Jewish information, and travelers who understand what you are looking for — all in one reviewed WhatsApp community.
+              </p>
+
+              <div class="community-access-points">
+                <span>Kosher travel</span>
+                <span>Shabbat help</span>
+                <span>Local contacts</span>
+                <span>Jewish travelers</span>
+              </div>
+            </div>
+
+            <div class="community-access-action">
+              <button class="button js-whatsapp-access" type="button">
+                Request WhatsApp Access
+              </button>
+              <p>
+                Fill the short safety form first. Then you’ll be redirected to WhatsApp, where final approval stays with an admin.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -3346,6 +3764,83 @@
         </div>
       </section>
     </main>
+
+
+    <div class="access-modal" id="whatsappAccessModal" aria-hidden="true">
+      <div class="access-modal-card" role="dialog" aria-modal="true" aria-labelledby="accessModalTitle">
+        <button class="access-modal-close" type="button" id="accessModalClose" aria-label="Close access request form">×</button>
+
+        <div class="access-modal-eyebrow">Reviewed access</div>
+        <h2 id="accessModalTitle">Request WhatsApp Access</h2>
+
+        <p class="access-modal-intro">
+          Tell us a little about yourself so we can keep the Hamsa Nomads travel community useful, respectful, and safe.
+        </p>
+
+        <p class="access-trust-note">
+          At Hamsa Nomads, your safety is our priority. We review access requests before sharing WhatsApp links so the community stays intentional, trusted, and helpful for Jewish travelers.
+        </p>
+
+        <form
+          class="access-form"
+          id="whatsappAccessForm"
+          action="https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+          method="POST"
+          target="accessHiddenFrame"
+        >
+          <input type="hidden" name="source" value="Hamsa Nomads WhatsApp Access Popup">
+          <input type="hidden" name="page" id="accessPageUrl">
+
+          <div class="access-form-grid">
+            <div class="access-field">
+              <label for="firstName">Name</label>
+              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required>
+            </div>
+
+            <div class="access-field">
+              <label for="lastName">Last name</label>
+              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required>
+            </div>
+
+            <div class="access-field">
+              <label for="age">Age</label>
+              <input id="age" name="age" type="number" min="1" max="120" inputmode="numeric" required>
+            </div>
+
+            <div class="access-field">
+              <label for="phone">WhatsApp number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000" required>
+            </div>
+          </div>
+
+          <div class="access-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="access-field">
+            <label for="whoAreYou">Who are you? <span style="text-transform:none; font-weight:700; letter-spacing:0;">Optional</span></label>
+            <textarea id="whoAreYou" name="whoAreYou" placeholder="A few words about you, where you’re based, or how you found Hamsa Nomads."></textarea>
+          </div>
+
+          <div class="access-form-footer">
+            <p class="access-form-small">
+              We’ll review your request before sharing access. Your details are used only for community safety and follow-up.
+            </p>
+
+            <button class="button access-submit" type="submit" id="accessSubmitBtn">
+              Submit request
+            </button>
+          </div>
+
+          <div class="access-success" id="accessSuccessMessage">
+            Request received. Redirecting you to WhatsApp...
+          </div>
+        </form>
+
+        <iframe class="access-iframe" name="accessHiddenFrame" title="Access request submission"></iframe>
+      </div>
+    </div>
 
     <div class="popup-overlay" id="tripPopup">
       <div class="popup-bubble">
@@ -4205,6 +4700,150 @@
       timer = setInterval(updateCountdown, 1000);
     }
 
+
+
+    function hnInitWhatsAppAccess() {
+      const accessModal = document.getElementById("whatsappAccessModal");
+      const accessCloseButton = document.getElementById("accessModalClose");
+      const accessForm = document.getElementById("whatsappAccessForm");
+      const accessSubmitButton = document.getElementById("accessSubmitBtn");
+      const accessSuccessMessage = document.getElementById("accessSuccessMessage");
+      const accessPageUrl = document.getElementById("accessPageUrl");
+      const WHATSAPP_ACCESS_LINK = "https://chat.whatsapp.com/ET7DARjTZ0kJbzPVXFhcjQ?mode=gi_t";
+
+      if (accessPageUrl) {
+        accessPageUrl.value = window.location.href;
+      }
+
+      function openAccessModal() {
+        if (!accessModal) return;
+        accessModal.classList.add("is-open");
+        accessModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        if (accessSuccessMessage) {
+          accessSuccessMessage.textContent = "Request received. Redirecting you to WhatsApp...";
+          accessSuccessMessage.classList.remove("is-visible");
+        }
+
+        const firstField = document.getElementById("firstName");
+        if (firstField) {
+          setTimeout(() => firstField.focus(), 80);
+        }
+      }
+
+      function closeAccessModal() {
+        if (!accessModal) return;
+        accessModal.classList.remove("is-open");
+        accessModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function isWhatsAppAccessTrigger(element) {
+        if (!element) return false;
+        if (element.id === "whatsappShare") return false;
+        if (element.closest(".share-options")) return false;
+
+        const href = element.getAttribute("href") || "";
+
+        return (
+          element.classList.contains("js-whatsapp-access") ||
+          href.includes("Community.html") ||
+          href.includes("community.html") ||
+          href.includes("chat.whatsapp.com")
+        );
+      }
+
+      function bindAccessTriggers(root = document) {
+        const triggers = root.querySelectorAll(
+          ".js-whatsapp-access, a[href*='Community.html'], a[href*='community.html'], a[href*='chat.whatsapp.com']"
+        );
+
+        triggers.forEach((trigger) => {
+          if (trigger.dataset.whatsappAccessReady === "true") return;
+          if (!isWhatsAppAccessTrigger(trigger)) return;
+
+          trigger.dataset.whatsappAccessReady = "true";
+          trigger.addEventListener("click", (event) => {
+            event.preventDefault();
+            openAccessModal();
+          });
+        });
+      }
+
+      bindAccessTriggers();
+      setTimeout(() => bindAccessTriggers(), 350);
+
+      if ("MutationObserver" in window && document.body) {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === 1) {
+                bindAccessTriggers(node);
+              }
+            });
+          });
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      }
+
+      if (accessCloseButton) {
+        accessCloseButton.addEventListener("click", closeAccessModal);
+      }
+
+      if (accessModal) {
+        accessModal.addEventListener("click", (event) => {
+          if (event.target === accessModal) {
+            closeAccessModal();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && accessModal && accessModal.classList.contains("is-open")) {
+          closeAccessModal();
+        }
+      });
+
+      if (accessForm) {
+        accessForm.addEventListener("submit", () => {
+          if (accessSubmitButton) {
+            accessSubmitButton.disabled = true;
+            accessSubmitButton.textContent = "Submitting...";
+          }
+
+          if (accessSuccessMessage) {
+            accessSuccessMessage.classList.remove("is-visible");
+          }
+
+          setTimeout(() => {
+            if (accessSuccessMessage) {
+              accessSuccessMessage.textContent = "Request received. Redirecting you to WhatsApp...";
+              accessSuccessMessage.classList.add("is-visible");
+            }
+
+            if (accessSubmitButton) {
+              accessSubmitButton.textContent = "Redirecting...";
+            }
+
+            accessForm.reset();
+
+            if (accessPageUrl) {
+              accessPageUrl.value = window.location.href;
+            }
+
+            setTimeout(() => {
+              window.location.href = WHATSAPP_ACCESS_LINK;
+            }, 900);
+          }, 900);
+        });
+      }
+    }
+
     function hnInitShare() {
       const shareBtn = document.getElementById("shareBtn");
       const shareOptions = document.getElementById("shareOptions");
@@ -4271,6 +4910,7 @@
       safeInit("rhythm tabs", hnInitRhythmTabs);
       safeInit("lounge notes", hnInitLoungeNotes);
       safeInit("countdown", hnInitCountdown);
+      safeInit("WhatsApp access", hnInitWhatsAppAccess);
       safeInit("share", hnInitShare);
       safeInit("instagram feed", hnLoadInstagramFeed);
       safeInit("FAQ preview", loadRandomFaqFromPage);
