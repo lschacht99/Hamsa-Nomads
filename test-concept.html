@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Hamsa Nomads — Jewish Travel Community & Curated Retreats</title>
-  <meta name="description" content="Hamsa Nomads is a Jewish travel community for kosher-minded travelers, Shabbat support, WhatsApp travel advice, curated retreats, and cross-border Jewish connection." />
+  <title>Hamsa Nomads — Shavuos Retreat & Jewish Travel Community</title>
+  <meta name="description" content="Join Hamsa Nomads for Shavuos in Vermont and a growing Jewish travel community for kosher-minded trips, Shabbat support, local advice, and cross-border connection." />
   <link rel="canonical" href="https://www.hamsanomads.com/" />
 
   <meta property="og:site_name" content="Hamsa Nomads" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.hamsanomads.com/" />
-  <meta property="og:title" content="Hamsa Nomads — Jewish Travel Community" />
-  <meta property="og:description" content="Jewish travel should feel less alone. Join the community, discover retreats, and connect before you go." />
+  <meta property="og:title" content="Hamsa Nomads — Shavuos in Vermont & Jewish Travel Community" />
+  <meta property="og:description" content="A Shavuos retreat in Vermont and a growing Jewish travel community. Apply for the retreat or request WhatsApp access." />
   <meta property="og:image" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
   <meta property="og:image:secure_url" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -21,18 +21,18 @@
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hamsa Nomads — Jewish Travel Community" />
-  <meta name="twitter:description" content="Jewish travel should feel less alone. Join the community, discover retreats, and connect before you go." />
+  <meta name="twitter:title" content="Hamsa Nomads — Shavuos Retreat & Jewish Travel Community" />
+  <meta name="twitter:description" content="Apply for Shavuos in Vermont or request access to the Hamsa Nomads Jewish travel community." />
   <meta name="twitter:image" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
 
-  <link rel="icon" href="/favicon.ico?v=8" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico?v=8" type="image/x-icon">
-  <link rel="stylesheet" href="assets/site-components.css?v=index-v2-clear-community" />
+  <link rel="icon" href="/favicon.ico?v=9" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico?v=9" type="image/x-icon">
+  <link rel="stylesheet" href="assets/site-components.css?v=index-v3-clearer" />
 
   <style>
     :root {
       --bg: #f7f3ea;
-      --paper: rgba(255, 252, 246, 0.76);
+      --paper: rgba(255, 252, 246, 0.78);
       --paper-strong: rgba(255, 252, 246, 0.94);
       --ink: #1c211d;
       --muted: #5f655d;
@@ -55,9 +55,9 @@
       font-family: Inter, Arial, sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.82), transparent 34%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.88), transparent 34%),
         radial-gradient(circle at 88% 12%, rgba(184,139,47,0.10), transparent 28%),
-        linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
+        linear-gradient(180deg, #fbf8f1 0%, var(--bg) 100%);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -72,11 +72,19 @@
     p { margin: 0; }
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
-    button, input, textarea { font: inherit; }
+    button, input, textarea, select { font: inherit; }
 
-    #site-header { position: sticky; top: 0; z-index: 99999; }
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+    }
 
-    .site-shell { position: relative; isolation: isolate; overflow: hidden; }
+    .site-shell {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
 
     .container {
       width: min(calc(100% - 32px), var(--container));
@@ -89,7 +97,7 @@
       background: var(--paper);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.54);
+      border: 1px solid rgba(255,255,255,0.56);
       box-shadow: var(--soft-shadow), inset 0 1px 0 rgba(255,255,255,0.48);
       border-radius: var(--radius);
     }
@@ -114,7 +122,9 @@
 
     .button:hover,
     .button-secondary:hover,
-    .button-light:hover { transform: translateY(-2px); }
+    .button-light:hover {
+      transform: translateY(-2px);
+    }
 
     .button {
       background: rgba(39, 69, 55, 0.94);
@@ -146,22 +156,36 @@
       margin-bottom: 14px;
     }
 
-    .section { position: relative; padding: clamp(46px, 7vw, 88px) 0; }
+    .section {
+      position: relative;
+      padding: clamp(34px, 5.8vw, 68px) 0;
+    }
 
-    .section-intro { max-width: 760px; margin-bottom: 32px; }
-    .section-intro.center { margin-inline: auto; text-align: center; }
+    .section.compact {
+      padding: clamp(24px, 4.8vw, 52px) 0;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .section-intro.center {
+      margin-inline: auto;
+      text-align: center;
+    }
 
     .section-intro h2 {
-      font-size: clamp(2.2rem, 5.3vw, 4.45rem);
+      font-size: clamp(2.2rem, 5.2vw, 4.3rem);
       line-height: 0.98;
       color: var(--forest);
     }
 
     .section-intro p {
-      margin-top: 16px;
+      margin-top: 14px;
       color: var(--muted);
-      font-size: clamp(1rem, 1.35vw, 1.12rem);
-      line-height: 1.75;
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      line-height: 1.7;
     }
 
     [data-reveal] {
@@ -184,23 +208,23 @@
       [data-reveal] { opacity: 1 !important; transform: none !important; }
     }
 
-    /* CLEAN HERO */
-    .hero { padding: 18px 0 22px; }
+    /* HERO */
+    .hero { padding: 16px 0 18px; }
 
     .hero-shell {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
-      gap: clamp(24px, 4vw, 54px);
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: clamp(22px, 4vw, 52px);
       align-items: center;
-      min-height: clamp(620px, 78vh, 780px);
-      padding: clamp(24px, 5vw, 58px);
+      min-height: clamp(600px, 74vh, 740px);
+      padding: clamp(24px, 5vw, 56px);
       border-radius: 40px;
       overflow: hidden;
       background:
         radial-gradient(circle at 84% 14%, rgba(184,139,47,0.16), transparent 28%),
-        radial-gradient(circle at 10% 8%, rgba(255,255,255,0.75), transparent 36%),
-        linear-gradient(135deg, rgba(255,252,246,0.92), rgba(220,199,161,0.44));
+        radial-gradient(circle at 10% 8%, rgba(255,255,255,0.80), transparent 36%),
+        linear-gradient(135deg, rgba(255,252,246,0.96), rgba(220,199,161,0.42));
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,0.62);
     }
@@ -214,24 +238,39 @@
       pointer-events: none;
     }
 
-    .hero-copy { position: relative; z-index: 2; max-width: 760px; }
+    .hero-copy { position: relative; z-index: 4; max-width: 780px; }
+
+    .hero-kicker {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      padding: 0 13px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.08);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
     .hero-title {
-      font-size: clamp(3.8rem, 8.7vw, 7.65rem);
+      font-size: clamp(3.35rem, 8vw, 7.25rem);
       line-height: 0.86;
       color: var(--forest);
-      max-width: 9.8ch;
-      margin: 0 0 24px;
+      max-width: 10.5ch;
+      margin: 0 0 22px;
     }
 
     .hero-title span { color: var(--gold); }
 
     .hero-lead {
-      max-width: 54ch;
-      font-size: clamp(1.06rem, 1.8vw, 1.28rem);
-      line-height: 1.58;
+      max-width: 56ch;
+      font-size: clamp(1.05rem, 1.65vw, 1.26rem);
+      line-height: 1.52;
       color: var(--muted);
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
     .hero-actions,
@@ -247,16 +286,16 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 20px;
     }
 
     .hero-meta span {
       display: inline-flex;
-      min-height: 38px;
+      min-height: 36px;
       align-items: center;
-      padding: 0 13px;
+      padding: 0 12px;
       border-radius: 999px;
-      background: rgba(39,69,55,0.08);
+      background: rgba(255,255,255,0.62);
       border: 1px solid rgba(39,69,55,0.10);
       color: var(--forest);
       font-size: 0.76rem;
@@ -265,170 +304,170 @@
       text-transform: uppercase;
     }
 
+    .hero-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      max-width: 58ch;
+    }
+
     .hero-visual {
       position: relative;
-      z-index: 2;
-      min-height: 540px;
+      min-height: clamp(440px, 48vw, 560px);
+      z-index: 3;
     }
 
-    .hero-photo-card {
+    .image-deck {
+      position: absolute;
+      inset: 0;
+      isolation: isolate;
+    }
+
+    .deck-card {
       position: absolute;
       overflow: hidden;
-      border-radius: 28px;
-      box-shadow: 0 28px 70px rgba(31,28,20,0.16);
-      border: 1px solid rgba(255,255,255,0.58);
-      background: #d8c9ad;
-      transition: transform 0.32s ease, box-shadow 0.32s ease, filter 0.32s ease;
+      border-radius: 30px;
+      background: #d9ccb6;
+      border: 1px solid rgba(255,255,255,0.56);
+      box-shadow: 0 20px 54px rgba(31,28,20,0.14);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, z-index 0s ease;
       cursor: pointer;
+      z-index: 1;
     }
 
-    .hero-photo-card:hover,
-    .hero-photo-card.is-front {
-      z-index: 30;
-      transform: translateY(-8px) rotate(0deg) scale(1.025);
-      box-shadow: 0 34px 86px rgba(31,28,20,0.21);
-    }
-
-    .hero-photo-card img {
+    .deck-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.45s ease, filter 0.45s ease;
+      transition: transform 0.35s ease, filter 0.35s ease;
     }
 
-    .hero-photo-card:hover img,
-    .hero-photo-card.is-front img {
-      transform: scale(1.04);
+    .deck-card:hover,
+    .deck-card.is-front {
+      z-index: 9;
+      transform: translateY(-8px) scale(1.02) rotate(0deg);
+      box-shadow: 0 28px 72px rgba(31,28,20,0.22);
+    }
+
+    .deck-card:hover img,
+    .deck-card.is-front img {
+      transform: scale(1.045);
       filter: brightness(0.96);
     }
 
-    .hero-photo-main {
-      inset: 40px 76px 76px 20px;
+    .deck-main {
+      left: 4%;
+      top: 3%;
+      width: 72%;
+      height: 72%;
       transform: rotate(-1.5deg);
     }
 
-    .hero-photo-small {
-      width: 48%;
+    .deck-small {
+      right: 2%;
+      top: 9%;
+      width: 40%;
       height: 34%;
-      right: 8px;
-      top: 18px;
-      transform: rotate(2.5deg);
+      transform: rotate(3deg);
+      z-index: 3;
     }
 
-    .hero-photo-wide {
-      width: 58%;
+    .deck-wide {
+      right: 7%;
+      bottom: 2%;
+      width: 56%;
       height: 30%;
-      right: 22px;
-      bottom: 28px;
-      transform: rotate(1.4deg);
+      transform: rotate(-2deg);
+      z-index: 4;
     }
 
-    .hero-form-card {
+    .hero-info-card {
       position: absolute;
       left: 0;
-      right: 28px;
-      bottom: 0;
-      z-index: 40;
-      padding: 18px;
-      border-radius: 26px;
+      bottom: 4%;
+      z-index: 10;
+      width: min(330px, 74%);
+      padding: 18px 19px;
+      border-radius: 24px;
       background: rgba(255,252,246,0.84);
-      border: 1px solid rgba(255,255,255,0.62);
-      box-shadow: 0 24px 64px rgba(31,28,20,0.16);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.60);
+      box-shadow: 0 24px 56px rgba(31,28,20,0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
-    .hero-form-card h2 {
+    .hero-info-card span {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-info-card strong {
+      display: block;
       color: var(--forest);
-      font-size: clamp(1.45rem, 2.4vw, 2rem);
-      line-height: 1.05;
-      margin-bottom: 8px;
+      font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size: 1.48rem;
+      line-height: 1.1;
+      font-weight: 500;
+      letter-spacing: -0.035em;
     }
 
-    .hero-form-card p {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.48;
-      margin-bottom: 13px;
+    .hero-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 20px;
     }
 
-    .quick-form {
-      display: grid;
-      gap: 10px;
-    }
-
-    .quick-form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .quick-form input,
-    .quick-form textarea {
-      width: 100%;
-      border: 1px solid rgba(39,69,55,0.14);
-      border-radius: 15px;
-      padding: 12px 13px;
-      background: rgba(255,255,255,0.68);
-      color: var(--ink);
-      outline: none;
-      font-size: 0.94rem;
-    }
-
-    .quick-form textarea {
-      min-height: 76px;
-      resize: vertical;
-      line-height: 1.48;
-    }
-
-    .quick-form input:focus,
-    .quick-form textarea:focus {
-      border-color: rgba(184,139,47,0.45);
-      box-shadow: 0 0 0 4px rgba(184,139,47,0.12);
-    }
-
-    .quick-submit {
+    .hero-tab {
       appearance: none;
-      border: 0;
-      min-height: 46px;
-      border-radius: 999px;
-      background: rgba(39,69,55,0.94);
-      color: white;
-      font-weight: 850;
-      cursor: pointer;
-      box-shadow: 0 14px 30px rgba(39,69,55,0.20);
-    }
-
-    .quick-submit:disabled { opacity: 0.68; cursor: wait; }
-
-    .quick-status {
-      min-height: 18px;
-      font-size: 0.84rem;
+      border: 1px solid rgba(39,69,55,0.14);
+      background: rgba(255,255,255,0.62);
       color: var(--forest);
-      text-align: center;
+      border-radius: 999px;
+      min-height: 40px;
+      padding: 0 14px;
+      cursor: pointer;
+      font-weight: 850;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
-    /* SHARED CARDS */
+    .hero-tab:hover,
+    .hero-tab.is-active {
+      background: var(--forest);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* CARDS */
     .activity-grid,
-    .info-grid,
+    .trust-grid,
     .steps-grid {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .activity-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .trust-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .steps-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .activity-card,
-    .info-card,
+    .trust-card,
     .step-card {
       position: relative;
       padding: clamp(22px, 3vw, 30px);
-      border-radius: 32px;
+      border-radius: 30px;
       overflow: hidden;
       background:
-        radial-gradient(circle at top right, rgba(184,139,47,0.13), transparent 34%),
+        radial-gradient(circle at top right, rgba(184,139,47,0.11), transparent 34%),
         rgba(255,252,246,0.76);
       border: 1px solid rgba(255,255,255,0.56);
       box-shadow: var(--soft-shadow);
@@ -436,17 +475,17 @@
     }
 
     .activity-card {
-      min-height: 290px;
+      min-height: 282px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .activity-card:hover,
-    .info-card:hover,
+    .trust-card:hover,
     .step-card:hover,
     .activity-card.is-front,
-    .info-card.is-front,
+    .trust-card.is-front,
     .step-card.is-front {
       z-index: 20;
       transform: translateY(-6px) scale(1.01);
@@ -465,7 +504,7 @@
     }
 
     .activity-card h3,
-    .info-card h3,
+    .trust-card h3,
     .step-card h3 {
       font-size: clamp(1.5rem, 2.6vw, 2.25rem);
       line-height: 1.04;
@@ -474,10 +513,10 @@
     }
 
     .activity-card p,
-    .info-card p,
+    .trust-card p,
     .step-card p {
       color: var(--muted);
-      line-height: 1.68;
+      line-height: 1.66;
     }
 
     .activity-link {
@@ -487,145 +526,233 @@
       font-weight: 900;
     }
 
-    /* WHATSAPP COMMUNITY */
+    /* COMMUNITY */
     .community-shell {
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: clamp(18px, 4vw, 46px);
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: clamp(18px, 4vw, 42px);
       align-items: stretch;
-      border-radius: 38px;
+      border-radius: 36px;
       overflow: hidden;
       background:
         linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
       color: #f7f0e2;
-      box-shadow: 0 30px 70px rgba(16,42,33,0.22);
+      box-shadow: 0 28px 66px rgba(16,42,33,0.20);
       border: 1px solid rgba(244,231,199,0.12);
-      padding: clamp(22px, 4vw, 42px);
+      padding: clamp(22px, 4vw, 40px);
     }
 
     .community-copy h2 {
-      font-size: clamp(2.35rem, 5.4vw, 5rem);
-      line-height: 0.95;
+      font-size: clamp(2.2rem, 5vw, 4.65rem);
+      line-height: 0.96;
       color: #f7f0e2;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .community-copy p {
       color: rgba(247,240,226,0.80);
-      line-height: 1.75;
-      font-size: clamp(1rem, 1.35vw, 1.12rem);
-      max-width: 54ch;
+      line-height: 1.72;
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      max-width: 58ch;
     }
 
-    .community-tags {
-      display: flex;
-      flex-wrap: wrap;
+    .community-subtitle {
+      margin-top: 10px;
+      color: rgba(247,240,226,0.68) !important;
+      font-size: 0.96rem !important;
+    }
+
+    .community-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
-    .community-tags span {
-      display: inline-flex;
-      min-height: 38px;
-      align-items: center;
-      padding: 0 13px;
-      border-radius: 999px;
+    .community-feature {
+      padding: 16px;
+      border-radius: 20px;
       background: rgba(255,255,255,0.10);
       border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(247,240,226,0.82);
-      font-size: 0.76rem;
-      font-weight: 850;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
     }
 
-    .community-panel {
-      display: grid;
-      gap: 14px;
-    }
-
-    .community-panel-card {
-      padding: 20px;
-      border-radius: 24px;
-      background: rgba(255,252,246,0.12);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 18px 44px rgba(0,0,0,0.10);
-      transition: transform 0.24s ease, box-shadow 0.24s ease;
-    }
-
-    .community-panel-card:hover,
-    .community-panel-card.is-front {
-      z-index: 20;
-      transform: translateY(-5px);
-      box-shadow: 0 24px 56px rgba(0,0,0,0.16);
-    }
-
-    .community-panel-card h3 {
+    .community-feature h3 {
       color: #f4e7c7;
-      font-size: clamp(1.35rem, 2.3vw, 1.95rem);
-      line-height: 1.08;
+      font-size: 1.18rem;
+      line-height: 1.12;
       margin-bottom: 8px;
     }
 
-    .community-panel-card p {
-      color: rgba(247,240,226,0.78);
-      line-height: 1.62;
+    .community-feature p {
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
-    /* RETREAT ENVIRONMENT */
+    .community-access-card {
+      position: relative;
+      background: rgba(255,252,246,0.94);
+      color: var(--ink);
+      border-radius: 28px;
+      padding: clamp(20px, 3vw, 28px);
+      border: 1px solid rgba(255,255,255,0.62);
+      box-shadow: 0 22px 54px rgba(0,0,0,0.18);
+      z-index: 5;
+    }
+
+    .community-access-card h3 {
+      color: var(--forest);
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .community-access-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .quick-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .quick-form input,
+    .quick-form textarea,
+    .quick-form select {
+      width: 100%;
+      border: 1px solid rgba(39,69,55,0.14);
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: rgba(255,255,255,0.68);
+      color: var(--ink);
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.34);
+    }
+
+    .quick-form textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .quick-form input:focus,
+    .quick-form textarea:focus,
+    .quick-form select:focus {
+      border-color: rgba(184,139,47,0.48);
+      box-shadow: 0 0 0 4px rgba(184,139,47,0.12);
+    }
+
+    .quick-form .button {
+      width: 100%;
+      border: 0;
+    }
+
+    .form-status {
+      min-height: 22px;
+      color: var(--forest);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .form-status.error { color: #8b2f25; }
+
+    .community-small-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    /* RETREAT */
     .retreat-shell {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.92fr);
       gap: clamp(18px, 4vw, 42px);
       align-items: stretch;
       padding: clamp(16px, 2.4vw, 24px);
-      border-radius: 40px;
+      border-radius: 38px;
       background:
         radial-gradient(circle at top right, rgba(184,139,47,0.14), transparent 36%),
-        rgba(255,252,246,0.72);
+        rgba(255,252,246,0.74);
       border: 1px solid rgba(255,255,255,0.58);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .retreat-photo-grid {
+    .retreat-photo-grid,
+    .environment-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      grid-template-rows: 1fr 1fr;
       gap: 12px;
-      min-height: 520px;
     }
 
-    .retreat-photo {
+    .retreat-photo-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-rows: 1fr 1fr;
+      min-height: 500px;
+      isolation: isolate;
+    }
+
+    .retreat-photo,
+    .environment-card {
       position: relative;
       border-radius: 26px;
       overflow: hidden;
       background: #d9ccb6;
-      min-height: 230px;
+      min-height: 220px;
+      box-shadow: var(--soft-shadow);
       transition: transform 0.24s ease, box-shadow 0.24s ease;
       cursor: pointer;
     }
 
     .retreat-photo:first-child { grid-row: span 2; }
 
-    .retreat-photo:hover,
-    .retreat-photo.is-front {
-      z-index: 30;
-      transform: translateY(-7px) scale(1.012);
-      box-shadow: 0 28px 68px rgba(31,28,20,0.17);
-    }
-
-    .retreat-photo img {
+    .retreat-photo img,
+    .environment-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.34s ease, filter 0.34s ease;
     }
 
+    .retreat-photo:hover,
+    .retreat-photo.is-front,
+    .environment-card:hover,
+    .environment-card.is-front {
+      z-index: 12;
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 28px 70px rgba(31,28,20,0.18);
+    }
+
     .retreat-photo:hover img,
-    .retreat-photo.is-front img {
+    .retreat-photo.is-front img,
+    .environment-card:hover img,
+    .environment-card.is-front img {
       transform: scale(1.035);
       filter: brightness(0.94);
+    }
+
+    .retreat-label,
+    .environment-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 3;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.24);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 800;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.26);
     }
 
     .retreat-copy {
@@ -636,10 +763,10 @@
     }
 
     .retreat-copy h2 {
-      font-size: clamp(2.2rem, 5.4vw, 4.9rem);
+      font-size: clamp(2.2rem, 5.2vw, 4.75rem);
       line-height: 0.96;
       color: var(--forest);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .retreat-date {
@@ -653,8 +780,8 @@
 
     .retreat-copy p {
       color: var(--muted);
-      line-height: 1.75;
-      font-size: clamp(1rem, 1.35vw, 1.12rem);
+      line-height: 1.72;
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
       max-width: 58ch;
     }
 
@@ -662,7 +789,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      margin: 24px 0;
+      margin: 22px 0;
     }
 
     .retreat-highlights span {
@@ -675,207 +802,13 @@
       line-height: 1.35;
     }
 
-    /* UPCOMING TRIPS */
-    .hn-upcoming-section {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(52px, 8vw, 92px) 20px clamp(64px, 8vw, 98px);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
-        var(--bg);
+    .environment-grid {
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
     }
 
-    .hn-upcoming-inner {
-      position: relative;
-      max-width: 1280px;
-      margin: 0 auto;
-      z-index: 2;
-    }
-
-    .hn-upcoming-header { max-width: 760px; margin-bottom: 30px; }
-
-    .hn-overline {
-      display: inline-block;
-      margin-bottom: 12px;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--forest);
-      opacity: 0.75;
-      font-weight: 800;
-    }
-
-    .hn-upcoming-title {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 4.25rem);
-      line-height: 1.02;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-    }
-
-    .hn-upcoming-title-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.18em;
-      transition: transform 0.25s ease, color 0.25s ease;
-    }
-
-    .hn-upcoming-title-link::after {
-      content: "→";
-      font-family: Inter, Arial, sans-serif;
-      font-size: 0.42em;
-      font-weight: 800;
-      color: var(--gold);
-      transform: translateY(0.04em);
-    }
-
-    .hn-upcoming-subtitle {
-      margin: 18px 0 0;
-      font-size: clamp(1rem, 1.35vw, 1.14rem);
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 700px;
-    }
-
-    .hn-trip-slider {
-      display: flex;
-      gap: 22px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 10px 12vw 18px 2px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .hn-trip-slider::-webkit-scrollbar { display: none; }
-
-    .hn-trip-slide {
-      scroll-snap-align: start;
-      flex: 0 0 min(86vw, 430px);
-    }
-
-    .hn-trip-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 560px;
-      border-radius: 30px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.52);
-      border: 1px solid rgba(255,255,255,0.42);
-      box-shadow: 0 20px 50px rgba(27,35,30,0.10);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: transform 0.24s ease, box-shadow 0.24s ease;
-    }
-
-    .hn-trip-card:hover,
-    .hn-trip-card.is-front {
-      z-index: 25;
-      transform: translateY(-7px) scale(1.012);
-      box-shadow: 0 30px 74px rgba(27,35,30,0.17);
-    }
-
-    .hn-trip-image {
-      position: relative;
-      min-height: 250px;
-      background-image:
-        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
-        var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
-    }
-
-    .hn-trip-badge,
-    .hn-image-note {
-      position: absolute;
-      z-index: 2;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      color: var(--forest);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .hn-trip-badge { top: 18px; left: 18px; }
-
-    .hn-image-note {
-      left: 18px;
-      bottom: 18px;
-      color: var(--ink);
-      font-size: 0.82rem;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    .hn-trip-body {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      padding: 25px 23px 23px;
-    }
-
-    .hn-trip-meta { font-size: 0.92rem; color: var(--muted); margin-bottom: 12px; }
-
-    .hn-trip-name {
-      margin: 0 0 12px;
-      font-size: clamp(1.55rem, 2.4vw, 2rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .hn-trip-copy {
-      margin: 0 0 18px;
-      color: var(--muted);
-      line-height: 1.68;
-      font-size: 0.98rem;
-    }
-
-    .hn-trip-footer {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .hn-trip-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--forest);
-      font-size: 0.88rem;
-      font-weight: 750;
-    }
-
-    .hn-trip-status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--gold);
-    }
-
-    .hn-trip-link {
-      display: inline-flex;
-      padding: 13px 18px;
-      border-radius: 999px;
-      background: var(--forest);
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 750;
-      box-shadow: 0 16px 28px rgba(38,71,52,0.20);
+    .environment-card.tall {
+      grid-row: span 2;
+      min-height: 500px;
     }
 
     /* FAQ */
@@ -884,7 +817,7 @@
       grid-template-columns: 0.86fr 1.14fr;
       gap: 18px;
       align-items: stretch;
-      padding: clamp(22px, 4vw, 36px);
+      padding: clamp(22px, 4vw, 34px);
       border-radius: 34px;
       background:
         radial-gradient(circle at top right, rgba(184,139,47,0.12), transparent 34%),
@@ -947,12 +880,12 @@
       grid-template-columns: 0.72fr 1.28fr;
       gap: 18px;
       align-items: stretch;
-      border-radius: 38px;
+      border-radius: 36px;
       overflow: hidden;
       background:
         linear-gradient(140deg, #244b3e 0%, #173c30 55%, #102a21 100%);
       color: #f7f0e2;
-      box-shadow: 0 30px 70px rgba(16,42,33,0.22);
+      box-shadow: 0 28px 66px rgba(16,42,33,0.20);
       border: 1px solid rgba(244,231,199,0.12);
       padding: clamp(18px, 2.5vw, 28px);
     }
@@ -1140,63 +1073,163 @@
       background: rgba(255,255,255,0.65);
     }
 
+    /* UPCOMING TRIPS */
+    .hn-upcoming-section {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(38px, 6vw, 70px) 20px clamp(44px, 6vw, 78px);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
+        var(--bg);
+    }
+
+    .hn-upcoming-inner { position: relative; max-width: 1280px; margin: 0 auto; z-index: 2; }
+    .hn-upcoming-header { max-width: 760px; margin-bottom: 24px; }
+
+    .hn-overline {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.75;
+      font-weight: 800;
+    }
+
+    .hn-upcoming-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4.15rem);
+      line-height: 1.02;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .hn-upcoming-title-link { display: inline-flex; align-items: center; gap: 0.18em; }
+    .hn-upcoming-title-link::after {
+      content: "→";
+      font-family: Inter, Arial, sans-serif;
+      font-size: 0.42em;
+      font-weight: 800;
+      color: var(--gold);
+      transform: translateY(0.04em);
+    }
+
+    .hn-upcoming-subtitle {
+      margin: 16px 0 0;
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      line-height: 1.68;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .hn-trip-slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 8px 12vw 16px 2px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .hn-trip-slider::-webkit-scrollbar { display: none; }
+    .hn-trip-slide { scroll-snap-align: start; flex: 0 0 min(86vw, 430px); }
+
+    .hn-trip-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 560px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(255,255,255,0.42);
+      box-shadow: 0 20px 50px rgba(27,35,30,0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .hn-trip-card:hover,
+    .hn-trip-card.is-front {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 30px 74px rgba(27,35,30,0.17);
+    }
+
+    .hn-trip-image {
+      position: relative;
+      min-height: 250px;
+      background:
+        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
+        var(--trip-image, url('Image/hero.jpg'));
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hn-trip-badge,
+    .hn-image-note {
+      position: absolute;
+      z-index: 2;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.76);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hn-trip-badge { top: 18px; left: 18px; }
+    .hn-image-note { left: 18px; bottom: 18px; color: var(--ink); font-size: 0.82rem; text-transform: none; letter-spacing: 0; }
+
+    .hn-trip-body { display: flex; flex-direction: column; flex: 1; padding: 25px 23px 23px; }
+    .hn-trip-meta { font-size: 0.92rem; color: var(--muted); margin-bottom: 12px; }
+    .hn-trip-name { margin: 0 0 12px; font-size: clamp(1.55rem, 2.4vw, 2rem); line-height: 1.1; color: var(--ink); font-weight: 600; }
+    .hn-trip-copy { margin: 0 0 18px; color: var(--muted); line-height: 1.68; font-size: 0.98rem; }
+
+    .hn-trip-footer { margin-top: auto; display: flex; align-items: center; gap: 12px; justify-content: space-between; flex-wrap: wrap; }
+    .hn-trip-status { display: inline-flex; align-items: center; gap: 8px; color: var(--forest); font-size: 0.88rem; font-weight: 750; }
+    .hn-trip-status-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--gold); }
+    .hn-trip-link { display: inline-flex; padding: 13px 18px; border-radius: 999px; background: var(--forest); color: #fff; font-size: 0.95rem; font-weight: 750; box-shadow: 0 16px 28px rgba(38,71,52,0.20); }
+
+    /* FINAL CTA */
     .final-cta-card {
-      padding: clamp(26px, 4vw, 46px);
-      border-radius: 38px;
+      padding: clamp(24px, 4vw, 40px);
+      border-radius: 36px;
       background:
         linear-gradient(135deg, rgba(39,69,55,0.94), rgba(18,44,34,0.90)),
         radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 36%);
       color: white;
       border: 1px solid rgba(255,255,255,0.20);
-      box-shadow:
-        0 22px 60px rgba(20, 45, 35, 0.22),
-        inset 0 1px 0 rgba(255,255,255,0.22);
+      box-shadow: 0 22px 60px rgba(20, 45, 35, 0.20), inset 0 1px 0 rgba(255,255,255,0.22);
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 28px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
       align-items: start;
     }
 
-    .final-cta-card h2 {
-      color: #f7f0e2;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .final-cta-card p {
-      color: rgba(255,255,255,0.76);
-      max-width: 720px;
-    }
-
+    .final-cta-card h2 { color: #f7f0e2; font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1; margin-bottom: 10px; }
+    .final-cta-card p { color: rgba(255,255,255,0.76); max-width: 720px; }
     .final-cta-card .quick-form input,
-    .final-cta-card .quick-form textarea {
-      background: rgba(255,255,255,0.14);
-      border-color: rgba(255,255,255,0.16);
-      color: #fffdf8;
-    }
-
+    .final-cta-card .quick-form textarea,
+    .final-cta-card .quick-form select { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.16); color: white; }
     .final-cta-card .quick-form input::placeholder,
-    .final-cta-card .quick-form textarea::placeholder {
-      color: rgba(255,255,255,0.62);
-    }
-
-    .final-cta-card .quick-submit {
-      background: #f4e7c7;
-      color: #173c30;
-    }
-
-    .final-cta-card .quick-status {
-      color: #f4e7c7;
-    }
+    .final-cta-card .quick-form textarea::placeholder { color: rgba(255,255,255,0.62); }
+    .final-cta-card .quick-form select { color: #fff; }
+    .final-cta-card .quick-form option { color: var(--ink); }
+    .final-cta-card .form-status { color: #f4e7c7; }
+    .final-cta-card .community-small-note { color: rgba(255,255,255,0.66); }
 
     .interactive-card { outline: none; }
-
-    .interactive-card:focus-visible {
-      box-shadow:
-        0 0 0 4px rgba(184,139,47,0.22),
-        0 28px 72px rgba(31,28,20,0.16);
-    }
+    .interactive-card:focus-visible { box-shadow: 0 0 0 4px rgba(184,139,47,0.22), 0 28px 72px rgba(31,28,20,0.16); }
 
     @media (min-width: 900px) {
       .hn-trip-slide { flex: 0 0 min(58vw, 500px); }
@@ -1214,98 +1247,84 @@
       .faq-strip,
       .live-vibe-shell,
       .insta-board,
-      .final-cta-card {
-        grid-template-columns: 1fr;
-      }
+      .final-cta-card { grid-template-columns: 1fr; }
 
       .activity-grid,
-      .info-grid,
-      .steps-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .retreat-photo-grid { min-height: 440px; }
-      .hero-visual { min-height: 500px; }
+      .trust-grid,
+      .steps-grid,
+      .community-feature-grid { grid-template-columns: 1fr 1fr; }
+      .environment-grid { grid-template-columns: 1fr 1fr; }
+      .environment-card.tall { grid-row: auto; grid-column: 1 / -1; min-height: 360px; }
+      .retreat-photo-grid { min-height: 420px; }
     }
 
     @media (max-width: 760px) {
       html { scroll-padding-top: 78px; }
       body { line-height: 1.52; }
       .container { width: min(calc(100% - 20px), var(--container)); }
-      .section { padding: 36px 0; }
-      .section-intro { margin-bottom: 20px; }
+      .section { padding: 30px 0; }
+      .section.compact { padding: 22px 0; }
+      .section-intro { margin-bottom: 18px; }
 
       .section-intro h2,
       .community-copy h2,
       .retreat-copy h2,
       .live-vibe-copy h2,
-      .hn-upcoming-title {
-        font-size: clamp(2rem, 10vw, 3.1rem);
-        line-height: 0.98;
-      }
+      .hn-upcoming-title { font-size: clamp(2rem, 10vw, 3.05rem); line-height: 0.98; }
 
       .section-intro p,
       .community-copy p,
       .retreat-copy p,
       .live-vibe-copy p,
-      .hn-upcoming-subtitle {
-        font-size: 0.95rem;
-        line-height: 1.58;
-      }
+      .hn-upcoming-subtitle { font-size: 0.94rem; line-height: 1.56; }
 
-      .hero { padding: 10px 0 16px; }
-      .hero-shell { min-height: auto; border-radius: 24px; padding: 24px 16px 18px; gap: 18px; }
-      .hero-shell::before { display: none; }
-      .hero-title { max-width: 100%; font-size: clamp(3rem, 14vw, 4.7rem); line-height: 0.86; margin-bottom: 16px; }
-      .hero-lead { max-width: 100%; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.48; }
+      .hero { padding: 10px 0 12px; }
+      .hero-shell { min-height: auto; border-radius: 24px; padding: 22px 16px 18px; gap: 18px; }
+      .hero-shell::before { inset: 10px; border-radius: 18px; }
+      .hero-title { max-width: 100%; font-size: clamp(2.85rem, 13vw, 4.45rem); line-height: 0.88; margin-bottom: 14px; }
+      .hero-lead { margin-bottom: 14px; font-size: 0.95rem; line-height: 1.46; }
       .hero-actions { gap: 9px; }
       .button, .button-secondary, .button-light { width: 100%; min-height: 48px; }
-      .hero-meta { gap: 7px; margin-top: 16px; }
-      .hero-meta span { font-size: 0.66rem; min-height: 32px; }
-      .hero-visual { min-height: auto; display: grid; gap: 10px; }
-      .hero-photo-card { position: relative; inset: auto; width: 100%; height: 210px; transform: none; border-radius: 18px; }
-      .hero-photo-small, .hero-photo-wide { width: 100%; height: 170px; right: auto; top: auto; bottom: auto; }
-      .hero-form-card { position: relative; left: auto; right: auto; bottom: auto; border-radius: 20px; padding: 16px; }
-      .quick-form-row { grid-template-columns: 1fr; }
+      .hero-meta { gap: 7px; margin-top: 14px; }
+      .hero-meta span { font-size: 0.64rem; min-height: 32px; }
+      .hero-note { font-size: 0.86rem; margin-top: 14px; }
+      .hero-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .hero-tab { min-height: 38px; font-size: 0.66rem; letter-spacing: 0.06em; padding: 0 8px; }
+      .hero-visual { min-height: 350px; }
+      .deck-main { left: 0; top: 3%; width: 78%; height: 64%; }
+      .deck-small { right: 0; top: 8%; width: 43%; height: 32%; }
+      .deck-wide { right: 6%; bottom: 2%; width: 64%; height: 28%; }
+      .deck-card { border-radius: 20px; }
+      .hero-info-card { width: min(300px, 82%); padding: 14px; border-radius: 18px; }
+      .hero-info-card strong { font-size: 1.2rem; }
 
       .activity-grid,
-      .info-grid,
+      .trust-grid,
       .steps-grid,
-      .retreat-highlights {
-        grid-template-columns: 1fr;
-      }
+      .community-feature-grid,
+      .retreat-highlights { grid-template-columns: 1fr; }
 
       .activity-card,
-      .info-card,
+      .trust-card,
       .step-card { min-height: auto; padding: 18px; border-radius: 22px; }
-      .activity-card h3, .info-card h3, .step-card h3 { font-size: 1.45rem; }
+      .activity-card h3,
+      .trust-card h3,
+      .step-card h3 { font-size: 1.42rem; }
 
       .community-shell { border-radius: 24px; padding: 18px; gap: 18px; }
-      .community-panel { gap: 10px; }
-      .community-panel-card { padding: 16px; border-radius: 18px; }
-      .community-panel-card h3 { font-size: 1.25rem; }
-      .community-panel-card p { font-size: 0.9rem; }
+      .community-feature { padding: 14px; border-radius: 16px; }
+      .community-access-card { border-radius: 22px; padding: 18px; }
+      .quick-row { grid-template-columns: 1fr; gap: 10px; }
 
       .retreat-shell { border-radius: 24px; padding: 10px; gap: 12px; }
-      .retreat-photo-grid {
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        min-height: auto;
-        padding-bottom: 8px;
-        scrollbar-width: none;
-      }
+      .retreat-photo-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; min-height: auto; padding-bottom: 8px; scrollbar-width: none; }
       .retreat-photo-grid::-webkit-scrollbar { display: none; }
-      .retreat-photo, .retreat-photo:first-child {
-        flex: 0 0 78%;
-        min-height: 230px;
-        grid-row: auto;
-        scroll-snap-align: start;
-        border-radius: 18px;
-      }
+      .retreat-photo, .retreat-photo:first-child { flex: 0 0 78%; min-height: 220px; grid-row: auto; scroll-snap-align: start; border-radius: 18px; }
       .retreat-copy { padding: 10px 6px 8px; }
       .retreat-date { font-size: 0.78rem; }
+      .environment-grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; }
+      .environment-grid::-webkit-scrollbar { display: none; }
+      .environment-card, .environment-card.tall { flex: 0 0 78%; min-height: 220px; grid-row: auto; grid-column: auto; scroll-snap-align: start; border-radius: 18px; }
 
       .faq-strip,
       .live-vibe-shell,
@@ -1315,7 +1334,7 @@
       .random-faq-box h3 { font-size: 1.35rem; }
       .random-faq-box p { font-size: 0.9rem; line-height: 1.48; }
 
-      #instagram.section { padding-top: 28px; padding-bottom: 30px; }
+      #instagram.section { padding-top: 24px; padding-bottom: 26px; }
       .live-vibe-copy { min-height: auto; padding: 6px 4px 2px; gap: 12px; }
       .live-vibe-copy h2 { margin-bottom: 8px; }
       .live-vibe-copy p { display: none; }
@@ -1335,8 +1354,8 @@
       .hn-live-instagram-post:nth-child(n + 4) { display: none; }
       .hn-live-instagram-type { top: 6px; right: 6px; padding: 4px 6px; font-size: 0.48rem; }
 
-      .hn-upcoming-section { padding: 38px 10px 48px; }
-      .hn-upcoming-header { margin-bottom: 18px; }
+      .hn-upcoming-section { padding: 30px 10px 40px; }
+      .hn-upcoming-header { margin-bottom: 16px; }
       .hn-trip-slider { gap: 14px; padding: 6px 10vw 12px 0; }
       .hn-trip-slide { flex: 0 0 82vw; }
       .hn-trip-card { min-height: auto; border-radius: 22px; }
@@ -1356,109 +1375,92 @@
     <div id="site-header"></div>
 
     <main id="top">
-      <section class="hero">
+      <section class="hero" aria-label="Hamsa Nomads main feature">
         <div class="container">
           <div class="hero-shell">
             <div class="hero-copy" data-reveal>
-              <div class="eyebrow">Hamsa Nomads</div>
-              <h1 class="hero-title">Jewish travel should feel <span>less alone.</span></h1>
-              <p class="hero-lead">
-                A growing Jewish travel community for kosher-minded travelers, Shabbat support,
-                local advice, future trips, and curated retreats across borders.
+              <div class="hero-kicker" id="heroKicker">Now open: Shavuos retreat</div>
+              <h1 class="hero-title" id="heroTitle">Shavuos in <span>Vermont.</span></h1>
+              <p class="hero-lead" id="heroLead">
+                May 21–24 in a private Vermont house — a small curated holiday retreat with meals cooked on site, learning, games, mountain air, and real community.
               </p>
 
-              <div class="hero-actions">
-                <a href="#community-interest" class="button">Join the interest list</a>
-                <a href="#featured-retreat" class="button-secondary">See Shavuos in Vermont</a>
+              <div class="hero-actions" id="heroActions">
+                <a href="Forms/apply.html" class="button">Apply for Shavuos</a>
+                <a href="#community-interest" class="button-secondary">Request WhatsApp access</a>
               </div>
 
-              <div class="hero-meta">
-                <span>WhatsApp community</span>
-                <span>Curated retreats</span>
-                <span>Travel tips</span>
-                <span>Cross-border Jewish network</span>
+              <div class="hero-meta" id="heroMeta">
+                <span>May 21–24</span>
+                <span>Camping from $350</span>
+                <span>Indoor from $500</span>
+                <span>Small curated group</span>
               </div>
+
+              <div class="hero-tabs" aria-label="Homepage focus controls">
+                <button class="hero-tab is-active" type="button" data-hero-panel="retreat">Shavuos retreat</button>
+                <button class="hero-tab" type="button" data-hero-panel="community">Travel community</button>
+              </div>
+
+              <p class="hero-note" id="heroNote">
+                The retreat is the current live activity. Below, you’ll also find the Jewish travel community we are building around future trips, WhatsApp support, and cross-border connection.
+              </p>
             </div>
 
             <div class="hero-visual" data-reveal style="--delay: 120ms;">
-              <div class="hero-photo-card hero-photo-main interactive-card">
-                <img src="Image/hero.jpg" alt="Hamsa Nomads travel and retreat atmosphere" loading="eager" decoding="async" />
-              </div>
-              <div class="hero-photo-card hero-photo-small interactive-card">
-                <img src="Image/chill.jpg" alt="Warm lounge and community atmosphere" loading="lazy" decoding="async" />
-              </div>
-              <div class="hero-photo-card hero-photo-wide interactive-card">
-                <img src="Image/dining-space.jpg" alt="Shared meal and gathering space" loading="lazy" decoding="async" />
+              <div class="image-deck" aria-hidden="true">
+                <div class="deck-card deck-main interactive-card">
+                  <img id="heroDeckMain" src="Image/hero.jpg" alt="Shavuos in Vermont retreat atmosphere" loading="eager" decoding="async" />
+                </div>
+                <div class="deck-card deck-small interactive-card">
+                  <img id="heroDeckSmall" src="Image/chill.jpg" alt="Warm retreat lounge" loading="lazy" decoding="async" />
+                </div>
+                <div class="deck-card deck-wide interactive-card">
+                  <img id="heroDeckWide" src="Image/dining-space.jpg" alt="Shared retreat table" loading="lazy" decoding="async" />
+                </div>
               </div>
 
-              <div class="hero-form-card glass" id="community-interest">
-                <h2>Join the community list</h2>
-                <p>
-                  Leave your info and we’ll send the WhatsApp access link or next community update.
-                </p>
-                <form
-                  class="quick-form community-lead-form"
-                  action="https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
-                  method="POST"
-                  target="community_iframe"
-                >
-                  <input type="hidden" name="submitted_at" class="submitted-at" />
-                  <input type="hidden" name="source_page" value="index.html" />
-                  <input type="hidden" name="interest_type" value="Hamsa Nomads WhatsApp Community" />
-
-                  <div class="quick-form-row">
-                    <input type="text" name="first_name" placeholder="First name *" required />
-                    <input type="text" name="last_name" placeholder="Last name *" required />
-                  </div>
-                  <div class="quick-form-row">
-                    <input type="email" name="email" placeholder="Email *" required />
-                    <input type="tel" name="phone" placeholder="Phone / WhatsApp *" required />
-                  </div>
-                  <input type="text" name="location" placeholder="City / community you’re joining from" />
-                  <button type="submit" class="quick-submit">Request access</button>
-                  <div class="quick-status" aria-live="polite"></div>
-                </form>
-                <iframe name="community_iframe" style="display:none;"></iframe>
+              <div class="hero-info-card glass" id="heroInfoCard">
+                <span>First live gathering</span>
+                <strong>Shavuos in Vermont is one way into the Hamsa Nomads world.</strong>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="what-we-do">
+      <section class="section compact" id="what-we-do">
         <div class="container">
           <div class="section-intro center" data-reveal>
             <div class="eyebrow">What we’re building</div>
-            <h2>One home for Jewish travel, retreats, and community.</h2>
+            <h2>Retreats, travel groups, and what comes next.</h2>
             <p>
-              Hamsa Nomads has three entry points: join the travel community, come to a curated retreat,
-              or follow future trips as they open.
+              Hamsa Nomads has different entry points. The Shavuos retreat is the current live experience;
+              the WhatsApp community is the ongoing travel layer; future trips grow from the people who join.
             </p>
           </div>
 
           <div class="activity-grid">
-            <a href="#community" class="activity-card interactive-card" data-reveal>
+            <a href="#featured-retreat" class="activity-card interactive-card" data-reveal>
               <div>
                 <span class="activity-number">01</span>
-                <h3>The travel community</h3>
+                <h3>Shavuos in Vermont</h3>
                 <p>
-                  A reviewed WhatsApp-based space for Jewish travelers looking for kosher food leads,
-                  Shabbat options, local contacts, and practical trip advice.
+                  Our current featured retreat: a small holiday gathering in a private Vermont house, May 21–24.
                 </p>
               </div>
-              <span class="activity-link">Explore the community →</span>
+              <span class="activity-link">See the retreat →</span>
             </a>
 
-            <a href="#featured-retreat" class="activity-card interactive-card" data-reveal style="--delay: 80ms;">
+            <a href="#community-interest" class="activity-card interactive-card" data-reveal style="--delay: 80ms;">
               <div>
                 <span class="activity-number">02</span>
-                <h3>Curated retreats</h3>
+                <h3>Jewish travel group</h3>
                 <p>
-                  Small group weekends and holidays built around shared meals, Jewish atmosphere,
-                  meaningful programming, nature, and real connection.
+                  A WhatsApp-based community for kosher-minded travel questions, Shabbat logistics, local leads, and connection.
                 </p>
               </div>
-              <span class="activity-link">Current retreat →</span>
+              <span class="activity-link">Request access →</span>
             </a>
 
             <a href="trips-page/trips.html" class="activity-card interactive-card" data-reveal style="--delay: 160ms;">
@@ -1466,88 +1468,134 @@
                 <span class="activity-number">03</span>
                 <h3>Upcoming trips</h3>
                 <p>
-                  City weekends, nature escapes, holiday retreats, and Jewish travel ideas shaped
-                  with the community as the network grows.
+                  City weekends, nature escapes, holiday retreats, and travel ideas shaped by the community as it grows.
                 </p>
               </div>
-              <span class="activity-link">See what’s next →</span>
+              <span class="activity-link">Where we go next →</span>
             </a>
           </div>
         </div>
       </section>
 
-      <section class="section" id="community">
+      <section class="section compact" id="community">
         <div class="container">
           <div class="community-shell" data-reveal>
             <div class="community-copy">
-              <div class="eyebrow">The WhatsApp community</div>
-              <h2>A Jewish travel group you can actually use.</h2>
-              <p>
-                This section is about the WhatsApp community — not the retreat. The goal is a practical Jewish travel space
-                where people can ask questions, share local knowledge, and find support before and during a trip.
-              </p>
-              <div class="community-tags">
-                <span>Kosher leads</span>
-                <span>Shabbat plans</span>
-                <span>Local contacts</span>
-                <span>Travel advice</span>
-                <span>Community updates</span>
-              </div>
-              <div class="split-actions" style="margin-top: 24px;">
-                <a href="#community-interest" class="button-light">Request WhatsApp access</a>
-                <a href="trips-page/Community.html" class="button-secondary">Community page</a>
+              <div>
+                <div class="eyebrow">The WhatsApp travel community</div>
+                <h2>A Jewish travel group you can actually use.</h2>
+                <p>
+                  Separate from the retreat, this is the everyday Hamsa Nomads community: a reviewed WhatsApp space for Jewish travelers who want better information before they go and better connection when they arrive.
+                </p>
+                <p class="community-subtitle">
+                  Request access, share where you’re coming from, and we’ll use your info to review and approve people more safely.
+                </p>
+
+                <div class="community-feature-grid">
+                  <div class="community-feature interactive-card">
+                    <h3>Ask travel questions</h3>
+                    <p>Food, neighborhoods, transportation, safety, local context, and what is worth knowing before you land.</p>
+                  </div>
+                  <div class="community-feature interactive-card">
+                    <h3>Find Shabbat help</h3>
+                    <p>Ask about meals, hosts, minyanim, communities, timing, and practical Jewish logistics.</p>
+                  </div>
+                  <div class="community-feature interactive-card">
+                    <h3>Get invited to what’s next</h3>
+                    <p>Hear about future retreats, city weekends, meetups, and trip ideas as they open.</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="community-panel">
-              <article class="community-panel-card interactive-card">
-                <h3>Ask travel questions</h3>
-                <p>Where can I eat? Where can I stay for Shabbat? Is there a local group? What should I know before I go?</p>
-              </article>
+            <div class="community-access-card" id="community-interest">
+              <h3>Request WhatsApp access</h3>
+              <p>
+                Send your info first. We’ll receive it, then you’ll be sent to the next access step.
+              </p>
 
-              <article class="community-panel-card interactive-card">
-                <h3>Share what helped</h3>
-                <p>Good tips should not disappear after one trip. Bring back the useful details and make the next traveler’s trip easier.</p>
-              </article>
+              <form
+                class="quick-form community-lead-form"
+                action="https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+                method="POST"
+                target="community_iframe"
+              >
+                <input type="hidden" name="submitted_at" class="submitted-at" />
+                <input type="hidden" name="source_page" value="index.html" />
+                <input type="hidden" name="request_type" value="WhatsApp community access" />
 
-              <article class="community-panel-card interactive-card">
-                <h3>Get invited into what’s next</h3>
-                <p>The community is also where future retreats, meetups, city weekends, and travel opportunities can start.</p>
-              </article>
+                <div class="quick-row">
+                  <input type="text" name="first_name" placeholder="First name *" required />
+                  <input type="text" name="last_name" placeholder="Last name *" required />
+                </div>
+
+                <div class="quick-row">
+                  <input type="email" name="email" placeholder="Email *" required />
+                  <input type="tel" name="phone" placeholder="Phone / WhatsApp *" required />
+                </div>
+
+                <input type="text" name="city" placeholder="Where are you based? *" required />
+
+                <select name="interest" required>
+                  <option value="">What are you most interested in? *</option>
+                  <option value="WhatsApp travel community">WhatsApp travel community</option>
+                  <option value="Shavuos retreat">Shavuos retreat</option>
+                  <option value="Future trips">Future trips</option>
+                  <option value="All of it">All of it</option>
+                </select>
+
+                <textarea name="note" placeholder="Anything we should know? Optional"></textarea>
+
+                <button type="submit" class="button">Request access</button>
+                <div class="form-status" aria-live="polite"></div>
+              </form>
+
+              <iframe name="community_iframe" style="display:none;"></iframe>
+
+              <div class="community-small-note">
+                Access is reviewed. This helps keep the community useful, safe, and intentional.
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="featured-retreat">
+      <section class="section compact" id="featured-retreat">
         <div class="container">
           <div class="retreat-shell glass" data-reveal>
             <div class="retreat-photo-grid">
               <div class="retreat-photo interactive-card">
                 <img src="Image/hero.jpg" alt="Vermont retreat setting" loading="lazy" decoding="async" />
+                <span class="retreat-label">Vermont setting</span>
               </div>
               <div class="retreat-photo interactive-card">
                 <img src="Image/dining-space.jpg" alt="Shared retreat dining space" loading="lazy" decoding="async" />
+                <span class="retreat-label">Shared meals</span>
               </div>
               <div class="retreat-photo interactive-card">
                 <img src="Image/pool.png" alt="Pool at the retreat house" loading="lazy" decoding="async" />
+                <span class="retreat-label">Pool + hot tub</span>
               </div>
             </div>
 
             <div class="retreat-copy">
-              <div class="eyebrow">Current featured retreat</div>
+              <div class="eyebrow">Current featured activity</div>
               <h2>Shavuos in Vermont</h2>
               <div class="retreat-date">May 21 – May 24</div>
               <p>
-                A small, curated holiday retreat in a private Vermont house — with Shabbos and Yom Tov meals cooked on site,
-                learning, games, mountain air, scheduled pool and hot tub access, and a group small enough to actually meet.
+                This is the first thing people should know right now: Hamsa Nomads is hosting a small Shavuos retreat in Vermont.
+                It is one activity inside the larger community we are building — but it is the live one.
+              </p>
+              <p style="margin-top: 12px;">
+                Expect meals cooked on site, Shabbos and Yom Tov atmosphere, learning, games, house time, mountain air,
+                and scheduled pool/hot tub moments including separate men’s and women’s time blocks.
               </p>
 
               <div class="retreat-highlights">
+                <span>May 21–24</span>
                 <span>Camping from $350</span>
                 <span>Indoor stays from $500</span>
-                <span>Meals cooked on site</span>
-                <span>Separate pool/hot tub time blocks planned</span>
+                <span>Apply before rooms fill</span>
               </div>
 
               <div class="card-actions">
@@ -1559,31 +1607,37 @@
         </div>
       </section>
 
-      <section class="section" id="retreat-environment">
+      <section class="section compact" id="retreat-environment">
         <div class="container">
           <div class="section-intro" data-reveal>
-            <div class="eyebrow">Retreat environment</div>
-            <h2>The atmosphere matters.</h2>
+            <div class="eyebrow">Shavuos retreat environment</div>
+            <h2>The house is part of the experience.</h2>
             <p>
-              This is the part that belongs to the retreats: meals, house rhythm, games, learning, singing, pool and hot tub timing,
-              and the kind of space where people can actually connect without everything feeling forced.
+              This section stays focused on the retreat itself: the place, the shared table, the pool, the game room,
+              and the slower holiday atmosphere we are creating in Vermont.
             </p>
           </div>
 
-          <div class="info-grid">
-            <article class="info-card interactive-card" data-reveal>
-              <h3>Shared meals</h3>
-              <p>Shabbos and holiday meals are part of the experience, with food cooked on site for the group.</p>
+          <div class="environment-grid">
+            <article class="environment-card tall interactive-card" data-reveal>
+              <img src="Image/chill.jpg" alt="Warm Vermont lounge space" loading="lazy" decoding="async" />
+              <span class="environment-label">Lounge + conversations</span>
             </article>
-
-            <article class="info-card interactive-card" data-reveal style="--delay: 80ms;">
-              <h3>Separate pool moments</h3>
-              <p>Pool and hot tub time blocks are planned so guests can enjoy the amenities comfortably.</p>
+            <article class="environment-card interactive-card" data-reveal style="--delay: 80ms;">
+              <img src="Image/game-room.png" alt="Game room at the retreat" loading="lazy" decoding="async" />
+              <span class="environment-label">Game room</span>
             </article>
-
-            <article class="info-card interactive-card" data-reveal style="--delay: 160ms;">
-              <h3>Real house time</h3>
-              <p>Games, conversations, coffee, tea, learning, rest, and the unplanned moments people remember.</p>
+            <article class="environment-card interactive-card" data-reveal style="--delay: 160ms;">
+              <img src="Image/bedroom.png" alt="Bedroom at the retreat house" loading="lazy" decoding="async" />
+              <span class="environment-label">Indoor rooms</span>
+            </article>
+            <article class="environment-card interactive-card" data-reveal style="--delay: 240ms;">
+              <img src="Image/exterior.png" alt="Exterior of retreat house" loading="lazy" decoding="async" />
+              <span class="environment-label">Outdoor space</span>
+            </article>
+            <article class="environment-card interactive-card" data-reveal style="--delay: 320ms;">
+              <img src="Image/dining-space.jpg" alt="Dining and gathering space" loading="lazy" decoding="async" />
+              <span class="environment-label">Holiday table</span>
             </article>
           </div>
         </div>
@@ -1618,7 +1672,7 @@
         </div>
       </section>
 
-      <section class="section" id="instagram">
+      <section class="section compact" id="instagram">
         <div class="container">
           <div class="live-vibe-shell" data-reveal>
             <div class="live-vibe-copy">
@@ -1674,7 +1728,7 @@
         </div>
       </section>
 
-      <section class="section" id="faq-preview">
+      <section class="section compact" id="faq-preview">
         <div class="container">
           <div class="faq-strip glass" data-reveal>
             <div>
@@ -1692,15 +1746,14 @@
         </div>
       </section>
 
-      <section class="section" id="final-cta">
+      <section class="section compact" id="final-cta">
         <div class="container">
           <div class="final-cta-card glass" data-reveal>
             <div>
-              <div class="eyebrow">Join the list</div>
-              <h2>Want in on what we’re building?</h2>
+              <h2>Want the link when the community opens?</h2>
               <p>
-                Join the interest list and we’ll send the WhatsApp community access link or the next update.
-                You can also use this if you are interested in future trips, retreats, or helping shape the network.
+                Add your info to the Hamsa Nomads list. We’ll know who is requesting access,
+                and you’ll be connected to the next step for the WhatsApp community and future trips.
               </p>
             </div>
 
@@ -1712,20 +1765,29 @@
             >
               <input type="hidden" name="submitted_at" class="submitted-at" />
               <input type="hidden" name="source_page" value="index.html footer" />
-              <input type="hidden" name="interest_type" value="Hamsa Nomads Community / Future Trips" />
+              <input type="hidden" name="request_type" value="Hamsa Nomads community list" />
 
-              <div class="quick-form-row">
+              <div class="quick-row">
                 <input type="text" name="first_name" placeholder="First name *" required />
                 <input type="text" name="last_name" placeholder="Last name *" required />
               </div>
-              <div class="quick-form-row">
+              <div class="quick-row">
                 <input type="email" name="email" placeholder="Email *" required />
                 <input type="tel" name="phone" placeholder="Phone / WhatsApp *" required />
               </div>
-              <textarea name="message" placeholder="What are you most interested in? Community, Shavuos, future trips, travel tips..."></textarea>
-              <button type="submit" class="quick-submit">Join the interest list</button>
-              <div class="quick-status" aria-live="polite"></div>
+              <input type="text" name="city" placeholder="Where are you based? *" required />
+              <select name="interest" required>
+                <option value="">Which part interests you? *</option>
+                <option value="WhatsApp travel community">WhatsApp travel community</option>
+                <option value="Shavuos retreat">Shavuos retreat</option>
+                <option value="Future trips">Future trips</option>
+                <option value="All of it">All of it</option>
+              </select>
+              <button type="submit" class="button-light">Join the interest list</button>
+              <div class="form-status" aria-live="polite"></div>
+              <div class="community-small-note">After submitting, we’ll send you toward the access page and review requests before approving entry.</div>
             </form>
+
             <iframe name="community_iframe_footer" style="display:none;"></iframe>
           </div>
         </div>
@@ -1735,12 +1797,48 @@
     <div id="site-footer"></div>
   </div>
 
-  <script src="assets/site-components.js?v=index-v2-clear-community" data-base=""></script>
+  <script src="assets/site-components.js?v=index-v3-clearer" data-base=""></script>
 
   <script>
     const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
+    const COMMUNITY_NEXT_STEP_URL = "trips-page/Community.html";
     let hnInstagramLivePosts = [];
     let hnInstagramFeaturedId = null;
+
+    const heroPanels = {
+      retreat: {
+        kicker: "Now open: Shavuos retreat",
+        title: "Shavuos in <span>Vermont.</span>",
+        lead: "May 21–24 in a private Vermont house — a small curated holiday retreat with meals cooked on site, learning, games, mountain air, and real community.",
+        actions: `
+          <a href="Forms/apply.html" class="button">Apply for Shavuos</a>
+          <a href="#community-interest" class="button-secondary">Request WhatsApp access</a>
+        `,
+        meta: ["May 21–24", "Camping from $350", "Indoor from $500", "Small curated group"],
+        note: "The retreat is the current live activity. Below, you’ll also find the Jewish travel community we are building around future trips, WhatsApp support, and cross-border connection.",
+        mainImage: "Image/hero.jpg",
+        smallImage: "Image/chill.jpg",
+        wideImage: "Image/dining-space.jpg",
+        infoKicker: "First live gathering",
+        infoText: "Shavuos in Vermont is one way into the Hamsa Nomads world."
+      },
+      community: {
+        kicker: "Jewish travel group",
+        title: "Jewish travel should feel <span>less alone.</span>",
+        lead: "A reviewed WhatsApp community for kosher-minded travelers who want better questions, better local leads, and more Jewish connection before and during the trip.",
+        actions: `
+          <a href="#community-interest" class="button">Request WhatsApp access</a>
+          <a href="trips-page/trips.html" class="button-secondary">See upcoming trips</a>
+        `,
+        meta: ["Travel questions", "Shabbat logistics", "Local leads", "Future trips"],
+        note: "This is separate from the retreat. The travel group is the ongoing community layer; retreats are one of the activities that grow from it.",
+        mainImage: "Image/dining-space.jpg",
+        smallImage: "Image/exterior.png",
+        wideImage: "Image/game-room.png",
+        infoKicker: "Community layer",
+        infoText: "Request access, share who you are, and help build a safer Jewish travel network."
+      }
+    };
 
     const HN_INSTAGRAM_AVATAR_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23F4E7C7'/%3E%3Cstop offset='1' stop-color='%23E7D2A2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='120' rx='60' fill='url(%23g)'/%3E%3Ctext x='60' y='70' text-anchor='middle' font-family='Arial, sans-serif' font-size='34' font-weight='700' fill='%23274537'%3EHN%3C/text%3E%3C/svg%3E";
     const HN_INSTAGRAM_AVATAR_CANDIDATES = [
@@ -1756,12 +1854,10 @@
       if (!img) return;
       const attempted = Number(img.dataset.avatarIndex || 0) + 1;
       img.dataset.avatarIndex = attempted;
-
       if (attempted < HN_INSTAGRAM_AVATAR_CANDIDATES.length) {
         img.src = HN_INSTAGRAM_AVATAR_CANDIDATES[attempted];
         return;
       }
-
       img.onerror = null;
       img.src = HN_INSTAGRAM_AVATAR_FALLBACK;
     }
@@ -1781,6 +1877,42 @@
       return maxLength && clean.length > maxLength ? clean.slice(0, maxLength).trim() + "..." : clean;
     }
 
+    function setHeroPanel(key) {
+      const panel = heroPanels[key];
+      if (!panel) return;
+
+      document.getElementById("heroKicker").textContent = panel.kicker;
+      document.getElementById("heroTitle").innerHTML = panel.title;
+      document.getElementById("heroLead").textContent = panel.lead;
+      document.getElementById("heroActions").innerHTML = panel.actions;
+      document.getElementById("heroMeta").innerHTML = panel.meta.map((item) => `<span>${escapeText(item)}</span>`).join("");
+      document.getElementById("heroNote").textContent = panel.note;
+      document.getElementById("heroDeckMain").src = panel.mainImage;
+      document.getElementById("heroDeckSmall").src = panel.smallImage;
+      document.getElementById("heroDeckWide").src = panel.wideImage;
+      document.getElementById("heroInfoCard").innerHTML = `<span>${escapeText(panel.infoKicker)}</span><strong>${escapeText(panel.infoText)}</strong>`;
+
+      document.querySelectorAll(".hero-tab").forEach((tab) => {
+        tab.classList.toggle("is-active", tab.dataset.heroPanel === key);
+      });
+    }
+
+    function hnInitHeroPanels() {
+      let activeKey = "retreat";
+      const tabs = document.querySelectorAll(".hero-tab");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          activeKey = tab.dataset.heroPanel;
+          setHeroPanel(activeKey);
+        });
+      });
+
+      window.setInterval(() => {
+        activeKey = activeKey === "retreat" ? "community" : "retreat";
+        setHeroPanel(activeKey);
+      }, 60000);
+    }
+
     function hnGetInstagramTypeLabel(type) {
       if (type === "VIDEO") return "Reel";
       if (type === "CAROUSEL_ALBUM") return "Post";
@@ -1789,19 +1921,11 @@
 
     function hnNormalizeInstagramPosts(posts) {
       const seen = new Set();
-
       return (Array.isArray(posts) ? posts : [])
         .map((post) => {
           const image = post.thumbnail_url || post.media_url || post.image || "";
           const url = post.permalink || post.url || "https://www.instagram.com/hamsanomads/";
-
-          return {
-            id: String(post.id || url || image),
-            caption: post.caption || "",
-            type: post.media_type || post.type || "IMAGE",
-            image,
-            url
-          };
+          return { id: String(post.id || url || image), caption: post.caption || "", type: post.media_type || post.type || "IMAGE", image, url };
         })
         .filter((post) => {
           const key = post.id || post.url || post.image;
@@ -1826,18 +1950,11 @@
       const featured = document.getElementById("hnInstagramFeatured");
       const post = hnPickRandomInstagramPost();
       if (!featured || !post) return;
-
       const caption = cleanText(post.caption, 115) || "See this moment on Instagram.";
       const type = hnGetInstagramTypeLabel(post.type);
-
       featured.href = post.url || "https://www.instagram.com/hamsanomads/";
       featured.innerHTML = `
-        <img
-          src="${escapeText(post.image)}"
-          alt="${escapeText(caption)}"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='Image/hero.jpg';"
-        />
+        <img src="${escapeText(post.image)}" alt="${escapeText(caption)}" loading="lazy" onerror="this.onerror=null; this.src='Image/hero.jpg';" />
         <div class="hn-live-instagram-featured-overlay">
           <span>${escapeText(type)}</span>
           <strong>${escapeText(caption)}</strong>
@@ -1848,35 +1965,18 @@
     function hnRenderInstagramGrid() {
       const grid = document.getElementById("hnInstagramGrid");
       if (!grid) return;
-
-      const mobileInstagramLimit = window.matchMedia("(max-width: 760px)").matches ? 3 : 6;
-      const posts = hnShuffleInstagramPosts()
-        .filter((post) => post.id !== hnInstagramFeaturedId)
-        .slice(0, mobileInstagramLimit);
-
+      const limit = window.matchMedia("(max-width: 760px)").matches ? 3 : 6;
+      const posts = hnShuffleInstagramPosts().filter((post) => post.id !== hnInstagramFeaturedId).slice(0, limit);
       grid.innerHTML = posts.map((post) => {
         const caption = cleanText(post.caption, 80) || "Instagram post";
         const type = hnGetInstagramTypeLabel(post.type);
-
         return `
-          <a
-            class="hn-live-instagram-post interactive-card"
-            href="${escapeText(post.url || 'https://www.instagram.com/hamsanomads/')}"
-            target="_blank"
-            rel="noopener"
-            aria-label="Open Hamsa Nomads Instagram post"
-          >
-            <img
-              src="${escapeText(post.image)}"
-              alt="${escapeText(caption)}"
-              loading="lazy"
-              onerror="this.onerror=null; this.src='Image/hero.jpg';"
-            />
+          <a class="hn-live-instagram-post interactive-card" href="${escapeText(post.url || 'https://www.instagram.com/hamsanomads/')}" target="_blank" rel="noopener" aria-label="Open Hamsa Nomads Instagram post">
+            <img src="${escapeText(post.image)}" alt="${escapeText(caption)}" loading="lazy" onerror="this.onerror=null; this.src='Image/hero.jpg';" />
             <span class="hn-live-instagram-type">${escapeText(type)}</span>
           </a>
         `;
       }).join("");
-
       hnInitInteractiveCards();
     }
 
@@ -1888,25 +1988,19 @@
     async function hnLoadInstagramFeed() {
       const featured = document.getElementById("hnInstagramFeatured");
       const grid = document.getElementById("hnInstagramGrid");
-
       try {
         const response = await fetch(`${HN_INSTAGRAM_API_URL}?site_cache_bust=${Date.now()}`, { cache: "no-store" });
         if (!response.ok) throw new Error("Instagram feed request failed.");
-
         const data = await response.json();
-
         document.querySelectorAll(".hn-live-instagram-avatar").forEach((avatar) => {
           avatar.dataset.avatarIndex = "-1";
           avatar.src = data.profilePicture || HN_INSTAGRAM_AVATAR_CANDIDATES[0] || HN_INSTAGRAM_AVATAR_FALLBACK;
         });
-
         document.querySelectorAll(".hn-live-instagram-follow").forEach((link) => {
           link.href = data.profileUrl || "https://www.instagram.com/hamsanomads/";
         });
-
         hnInstagramLivePosts = hnNormalizeInstagramPosts(data.posts);
         if (!hnInstagramLivePosts.length) throw new Error("No Instagram posts found.");
-
         hnRenderInstagramFeed();
       } catch (error) {
         if (featured) {
@@ -1919,12 +2013,10 @@
 
     function hnInitReveals() {
       const revealItems = document.querySelectorAll("[data-reveal]");
-
       if (!("IntersectionObserver" in window)) {
         revealItems.forEach((item) => item.classList.add("is-visible"));
         return;
       }
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -1932,37 +2024,28 @@
             observer.unobserve(entry.target);
           }
         });
-      }, {
-        threshold: 0.05,
-        rootMargin: "0px 0px 80px 0px"
-      });
-
+      }, { threshold: 0.05, rootMargin: "0px 0px 80px 0px" });
       revealItems.forEach((item) => observer.observe(item));
     }
 
     function hnInitInteractiveCards() {
       const cards = document.querySelectorAll(".interactive-card");
       let topLayer = 80;
-
       cards.forEach((card) => {
         if (card.dataset.interactiveReady === "true") return;
         card.dataset.interactiveReady = "true";
-
         if (!card.hasAttribute("tabindex") && card.tagName.toLowerCase() !== "a" && card.tagName.toLowerCase() !== "button") {
           card.setAttribute("tabindex", "0");
         }
-
         function bringForward() {
-          const group = card.closest(".activity-grid, .info-grid, .steps-grid, .community-panel, .retreat-photo-grid, .live-vibe-shell, .hn-trip-slider, .hero-visual, .faq-strip") || document;
+          const group = card.closest(".image-deck, .activity-grid, .trust-grid, .steps-grid, .community-feature-grid, .retreat-photo-grid, .environment-grid, .live-vibe-shell, .hn-trip-slider, .faq-strip") || document;
           group.querySelectorAll(".is-front").forEach((item) => {
             if (item !== card) item.classList.remove("is-front");
           });
-
           topLayer += 1;
           card.classList.add("is-front");
           card.style.zIndex = String(topLayer);
         }
-
         card.addEventListener("pointerdown", bringForward, { passive: true });
         card.addEventListener("mouseenter", bringForward);
         card.addEventListener("focus", bringForward);
@@ -1974,46 +2057,28 @@
       const questionEl = document.getElementById("randomFaqQuestion");
       const answerEl = document.getElementById("randomFaqAnswer");
       const boxEl = document.getElementById("randomFaqBox");
-
       if (!questionEl || !answerEl || !boxEl) return;
-
       const fallbackFaqs = [
-        {
-          question: "What is Hamsa Nomads?",
-          answer: "Hamsa Nomads is a Jewish travel community built around curated retreats, kosher-minded travel, Shabbat support, and real connection."
-        },
-        {
-          question: "What is the Shavuos in Vermont retreat?",
-          answer: "It is a small, curated holiday retreat in a private Vermont house with shared meals, Jewish atmosphere, learning, games, nature, rest, and community."
-        },
-        {
-          question: "Is there a WhatsApp community?",
-          answer: "Yes. Hamsa Nomads is building a WhatsApp-based Jewish travel community for advice, local contacts, kosher/Shabbat information, and connection."
-        }
+        { question: "What is Hamsa Nomads?", answer: "Hamsa Nomads is a Jewish travel community built around curated retreats, kosher-minded travel, Shabbat support, and real connection." },
+        { question: "What is the Shavuos in Vermont retreat?", answer: "It is a small, curated holiday retreat in a private Vermont house with shared meals, Jewish atmosphere, learning, games, nature, rest, and community." },
+        { question: "Is there a WhatsApp community?", answer: "Yes. Hamsa Nomads is building a WhatsApp-based Jewish travel community for advice, local contacts, kosher/Shabbat information, and connection." }
       ];
-
       try {
         const response = await fetch("faq.html", { cache: "no-store" });
         if (!response.ok) throw new Error("FAQ page could not be loaded.");
-
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
         const faqItems = Array.from(doc.querySelectorAll(".faq-item"));
-
         const faqs = faqItems.map((item) => {
           const question = item.querySelector(".faq-question span:first-child")?.textContent?.trim();
           const answer = item.querySelector(".faq-answer-inner")?.textContent?.trim();
           return { question, answer };
         }).filter((faq) => faq.question && faq.answer);
-
         if (!faqs.length) throw new Error("No FAQ items found.");
-
         const randomFaq = faqs[Math.floor(Math.random() * faqs.length)];
         questionEl.textContent = randomFaq.question;
-        answerEl.textContent = randomFaq.answer.length > 230
-          ? randomFaq.answer.slice(0, 230).trim() + "..."
-          : randomFaq.answer;
+        answerEl.textContent = randomFaq.answer.length > 230 ? randomFaq.answer.slice(0, 230).trim() + "..." : randomFaq.answer;
         boxEl.href = "faq.html";
       } catch (error) {
         const randomFallback = fallbackFaqs[Math.floor(Math.random() * fallbackFaqs.length)];
@@ -2026,32 +2091,24 @@
     function hnInitTripsPreview() {
       const slider = document.getElementById("hnTripSlider");
       if (!slider) return;
-
       const tripsPageUrl = "trips-page/trips.html";
-      const fallbackImages = ["Image/hero.jpg", "Image/chill.jpg", "Image/dining-space.jpg", "Image/exterior.png", "Image/pool.png"];
+      const fallbackImages = ["Image/hero.jpg", "Image/dining-space.jpg", "Image/exterior.png", "Image/chill.jpg", "Image/pool.png"];
 
       function cardHTML(trip, index) {
         const image = trip.image || fallbackImages[index % fallbackImages.length];
-        const imageStyle = `--trip-image: url('${escapeText(image)}');`;
-
         return `
           <article class="hn-trip-slide">
             <div class="hn-trip-card interactive-card">
-              <div class="hn-trip-image" style="${imageStyle}">
+              <div class="hn-trip-image" style="--trip-image: url('${escapeText(image)}');">
                 <span class="hn-trip-badge">${escapeText(trip.badge || "Upcoming")}</span>
                 <span class="hn-image-note">${escapeText(trip.status || "Planning in progress")}</span>
               </div>
-
               <div class="hn-trip-body">
                 <div class="hn-trip-meta">${escapeText(trip.meta || "")}</div>
                 <h3 class="hn-trip-name">${escapeText(trip.title)}</h3>
                 <p class="hn-trip-copy">${escapeText(trip.text || "")}</p>
-
                 <div class="hn-trip-footer">
-                  <div class="hn-trip-status">
-                    <span class="hn-trip-status-dot"></span>
-                    ${escapeText(trip.status || "Planning in progress")}
-                  </div>
+                  <div class="hn-trip-status"><span class="hn-trip-status-dot"></span>${escapeText(trip.status || "Planning in progress")}</div>
                   <a href="trips-page/trips.html" class="hn-trip-link">See trips</a>
                 </div>
               </div>
@@ -2062,32 +2119,10 @@
 
       function renderFallbackTrips() {
         const fallbackTrips = [
-          {
-            title: "Shavuos in Vermont",
-            meta: "May 21 – May 24",
-            text: "A small curated holiday retreat in a private Vermont house, built around meals, learning, games, rest, and community.",
-            badge: "Current retreat",
-            status: "Applications open",
-            image: "Image/hero.jpg"
-          },
-          {
-            title: "Jewish city weekends",
-            meta: "Coming next",
-            text: "Future city weekends shaped around local Jewish life, food, culture, Shabbat, and meeting the right people.",
-            badge: "Planning",
-            status: "Interest list",
-            image: "Image/dining-space.jpg"
-          },
-          {
-            title: "Nature escapes",
-            meta: "Future trips",
-            text: "Small group escapes that combine nature, Jewish rhythm, fresh air, and the kind of connection that feels natural.",
-            badge: "Future",
-            status: "In development",
-            image: "Image/exterior.png"
-          }
+          { title: "Shavuos in Vermont", meta: "May 21 – May 24", text: "A small curated holiday retreat in a private Vermont house, built around meals, learning, games, rest, and community.", badge: "Current retreat", status: "Applications open", image: "Image/hero.jpg" },
+          { title: "Jewish city weekends", meta: "Coming next", text: "Future city weekends shaped around local Jewish life, food, culture, Shabbat, and meeting the right people.", badge: "Planning", status: "Interest list", image: "Image/dining-space.jpg" },
+          { title: "Nature escapes", meta: "Future trips", text: "Small group escapes that combine nature, Jewish rhythm, fresh air, and the kind of connection that feels natural.", badge: "Future", status: "In development", image: "Image/exterior.png" }
         ];
-
         slider.innerHTML = fallbackTrips.map(cardHTML).join("");
         hnInitInteractiveCards();
       }
@@ -2097,7 +2132,6 @@
         const doc = parser.parseFromString(html, "text/html");
         const baseUrl = new URL(tripsPageUrl, window.location.href);
         const cards = Array.from(doc.querySelectorAll(".bento-grid .bento-card:not(.bento-cta-card)"));
-
         return cards.map((card, index) => {
           const imageEl = card.querySelector(".bento-image");
           const title = cleanText(card.querySelector(".bento-title")?.textContent);
@@ -2108,7 +2142,6 @@
           const imageStyle = imageEl?.getAttribute("style") || imageEl?.style?.backgroundImage || "";
           const match = String(imageStyle || "").match(/url\((['"]?)(.*?)\1\)/i);
           const image = match && match[2] ? new URL(match[2], baseUrl).href : fallbackImages[index % fallbackImages.length];
-
           return { title, meta, text, badge, status, image };
         }).filter((trip) => trip.title);
       }
@@ -2130,30 +2163,30 @@
         .catch(renderFallbackTrips);
     }
 
-    function hnInitLeadForms() {
-      const forms = document.querySelectorAll(".community-lead-form");
-
-      forms.forEach((form) => {
-        const submit = form.querySelector(".quick-submit");
-        const status = form.querySelector(".quick-status");
+    function hnInitCommunityForms() {
+      document.querySelectorAll(".community-lead-form").forEach((form) => {
+        const button = form.querySelector("button[type='submit']");
+        const status = form.querySelector(".form-status");
         const submittedAt = form.querySelector(".submitted-at");
-
         form.addEventListener("submit", () => {
           if (submittedAt) submittedAt.value = new Date().toISOString();
-          if (submit) {
-            submit.disabled = true;
-            submit.textContent = "Sending...";
+          if (button) {
+            button.disabled = true;
+            button.dataset.originalText = button.textContent;
+            button.textContent = "Sending...";
           }
-          if (status) status.textContent = "Sending your request...";
-
+          if (status) {
+            status.classList.remove("error");
+            status.textContent = "Sending your request...";
+          }
           setTimeout(() => {
-            form.reset();
-            if (submit) {
-              submit.disabled = false;
-              submit.textContent = submit.closest("#final-cta") ? "Join the interest list" : "Request access";
+            if (status) status.textContent = "Request received. Opening the next access step...";
+            if (button) {
+              button.disabled = false;
+              button.textContent = button.dataset.originalText || "Request access";
             }
-            if (status) status.textContent = "Thank you — we received your request.";
-          }, 1100);
+            window.location.href = COMMUNITY_NEXT_STEP_URL;
+          }, 1200);
         });
       });
     }
@@ -2163,17 +2196,16 @@
         try { fn(); }
         catch (error) { console.error("Hamsa page init failed:", name, error); }
       }
-
       safeInit("reveals", hnInitReveals);
       safeInit("interactive cards", hnInitInteractiveCards);
+      safeInit("hero panels", hnInitHeroPanels);
+      safeInit("community forms", hnInitCommunityForms);
       safeInit("instagram feed", hnLoadInstagramFeed);
       safeInit("FAQ preview", loadRandomFaqFromPage);
       safeInit("trips preview", hnInitTripsPreview);
-      safeInit("lead forms", hnInitLeadForms);
 
       const refreshButton = document.getElementById("hnInstagramRefresh");
       if (refreshButton) refreshButton.addEventListener("click", hnRenderInstagramFeed);
-
       const instagramMobileQuery = window.matchMedia("(max-width: 760px)");
       instagramMobileQuery.addEventListener?.("change", () => {
         if (hnInstagramLivePosts.length) hnRenderInstagramFeed();
