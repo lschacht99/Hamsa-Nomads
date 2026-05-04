@@ -850,13 +850,12 @@ function insertSiteFooter() {
             Curated kosher travel experiences for meaningful Jewish connection,
             beautiful places, and warm community.
           </p>
+        </div>
 
-   
         <div class="hn-shared-footer-col">
           <h4>Explore</h4>
           <ul>
             <li><a href="${hnPath("/trips-page/trips.html")}">Trips</a></li>
-            <li><a href="${hnPath("/trips-page/Community.html")}">Join the community</a></li>
             <li><a href="${hnPath("/about-us/about-us.html")}">About us</a></li>
             <li><a href="${hnPath("/faq.html")}">FAQ</a></li>
           </ul>
