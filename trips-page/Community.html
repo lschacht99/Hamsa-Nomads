@@ -19,7 +19,6 @@
     content="Request access to the Hamsa Nomads Jewish travel circle for kosher tips, Shabbat connections, local Jewish information, and real community on the road."
   />
   <meta property="og:image" content="https://www.hamsanomads.com/Image/Thailand.jpg" />
-  <meta property="og:url" content="https://www.hamsanomads.com/travel-community/community.html" />
   <meta property="og:type" content="website" />
 
   <style>
@@ -32,7 +31,7 @@
       --ink: #111111;
       --forest: #274537;
       --forest-deep: #1d392d;
-      --gold: #b88b2f;
+      --gold: #e1b246;
       --paper: rgba(255, 252, 246, 0.68);
       --paper-strong: rgba(255, 252, 246, 0.9);
       --muted: rgba(17, 17, 17, 0.62);
@@ -43,7 +42,6 @@
       --radius-xl: 34px;
       --radius-lg: 26px;
       --motion: cubic-bezier(0.22, 1, 0.36, 1);
-      --access-link: "https://chat.whatsapp.com/GvmUvv4h3on1JgcpH9FXA8";
     }
 
     * {
@@ -72,9 +70,7 @@
       line-height: 1.55;
     }
 
-    h1,
-    h2,
-    h3 {
+    h1, h2, h3 {
       font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       font-weight: 500;
       letter-spacing: -0.045em;
@@ -323,7 +319,7 @@
       animation: floatPhoto6 6.6s ease-in-out infinite;
     }
 
-    /* UI BASICS */
+    /* UI */
 
     .eyebrow {
       display: inline-flex;
@@ -432,22 +428,9 @@
       inset: -20%;
       background:
         radial-gradient(circle at 18% 18%, rgba(255,255,255,0.14), transparent 26%),
-        radial-gradient(circle at 82% 22%, rgba(225,178,70,0.13), transparent 24%),
+        radial-gradient(circle at 82% 22%, rgba(225,178,70,0.12), transparent 24%),
         radial-gradient(circle at 70% 84%, rgba(255,255,255,0.08), transparent 26%);
       animation: heroAtmosphere 13s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-
-    .hero-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(120deg, transparent 0 48%, rgba(255,255,255,0.07) 49%, transparent 52%),
-        linear-gradient(35deg, transparent 0 46%, rgba(225,178,70,0.08) 47%, transparent 52%);
-      background-size: 420px 420px, 520px 520px;
-      opacity: 0.45;
-      animation: mapDrift 18s linear infinite;
       pointer-events: none;
     }
 
@@ -510,7 +493,7 @@
     }
 
     .hero-title .gold {
-      color: #e1b246;
+      color: var(--gold);
     }
 
     .hero-lead {
@@ -637,6 +620,7 @@
       color: var(--forest);
       font-size: 1.08rem;
       line-height: 1.5;
+      position: relative;
     }
 
     .hero-signature::after {
@@ -713,6 +697,10 @@
         );
       border: 1px solid rgba(255,255,255,0.62);
       box-shadow: var(--shadow);
+      transition:
+        transform 0.34s var(--motion),
+        box-shadow 0.34s ease,
+        background 0.34s ease;
     }
 
     .story-panel::before {
@@ -725,6 +713,11 @@
       border-radius: 999px;
       background: rgba(39, 69, 55, 0.08);
       animation: orbMove 12s ease-in-out infinite alternate;
+    }
+
+    .story-panel:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 90px rgba(31, 28, 20, 0.15);
     }
 
     .story-copy,
@@ -796,6 +789,10 @@
       box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.45);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
+      transition:
+        transform 0.34s var(--motion),
+        box-shadow 0.34s ease,
+        background 0.34s ease;
     }
 
     .rich-card::after {
@@ -808,6 +805,11 @@
       border-radius: 999px;
       background: rgba(39, 69, 55, 0.08);
       transition: transform 0.35s ease;
+    }
+
+    .rich-card:hover {
+      transform: translateY(-8px) rotate(-0.25deg);
+      box-shadow: 0 28px 80px rgba(31, 28, 20, 0.16);
     }
 
     .rich-card:hover::after {
@@ -887,6 +889,10 @@
       grid-template-columns: 1fr 0.86fr;
       gap: 34px;
       align-items: center;
+      transition:
+        transform 0.34s var(--motion),
+        box-shadow 0.34s ease,
+        background 0.34s ease;
     }
 
     .statement::before {
@@ -897,6 +903,11 @@
         radial-gradient(circle at 86% 20%, rgba(255,255,255,0.11), transparent 26%),
         radial-gradient(circle at 16% 86%, rgba(213,178,92,0.14), transparent 30%);
       pointer-events: none;
+    }
+
+    .statement:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 90px rgba(31, 28, 20, 0.15);
     }
 
     .statement > * {
@@ -935,79 +946,27 @@
       line-height: 1.42;
     }
 
-    .rich-card,
-    .story-panel,
-    .statement,
-    .final-cta {
-      transition:
-        transform 0.34s var(--motion),
-        box-shadow 0.34s ease,
-        background 0.34s ease;
-    }
-
-    .rich-card:hover {
-      transform: translateY(-8px) rotate(-0.25deg);
-      box-shadow: 0 28px 80px rgba(31, 28, 20, 0.16);
-    }
-
-    .story-panel:hover,
-    .statement:hover,
-    .final-cta:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 90px rgba(31, 28, 20, 0.15);
-    }
-
-    /* JOURNEY MAP CTA SECTION */
+    /* JOURNEY MAP SECTION */
 
     .journey-map-section {
       position: relative;
-      z-index: 12;
-      height: 245vh;
-      background:
-        linear-gradient(rgba(220, 199, 161, 0.96), rgba(220, 199, 161, 0.96)),
-        repeating-linear-gradient(
-          0deg,
-          rgba(17, 17, 17, 0.028) 0px,
-          rgba(17, 17, 17, 0.028) 1px,
-          transparent 1px,
-          transparent 7px
-        );
-      overflow: hidden;
-      margin: 46px 0;
-      border-top: 1px solid rgba(17,17,17,0.08);
-      border-bottom: 1px solid rgba(17,17,17,0.08);
+      z-index: 2;
+      padding: 58px 0;
+      margin: 0;
+      background: transparent;
+      overflow: visible;
     }
 
-    .journey-map-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.18), transparent 28%),
-        radial-gradient(circle at 82% 24%, rgba(0,0,0,0.05), transparent 22%),
-        radial-gradient(circle at 30% 78%, rgba(255,255,255,0.1), transparent 26%),
-        linear-gradient(110deg, transparent 0 48%, rgba(17,17,17,0.035) 49%, transparent 52%);
-      background-size: auto, auto, auto, 620px 620px;
-      animation: parchmentDrift 24s linear infinite;
-      pointer-events: none;
-    }
-
+    .journey-map-section::before,
     .journey-map-section::after {
-      content: "";
-      position: absolute;
-      inset: 26px;
-      border: 1px solid rgba(17,17,17,0.08);
-      border-radius: 32px;
-      pointer-events: none;
-      opacity: 0.7;
+      display: none;
     }
 
     .journey-map-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
+      position: relative;
+      top: auto;
+      height: auto;
+      display: block;
       z-index: 2;
     }
 
@@ -1018,6 +977,19 @@
       grid-template-columns: minmax(300px, 0.88fr) minmax(0, 1.12fr);
       gap: clamp(24px, 4vw, 56px);
       align-items: center;
+      background:
+        linear-gradient(rgba(220, 199, 161, 0.92), rgba(220, 199, 161, 0.92)),
+        repeating-linear-gradient(
+          0deg,
+          rgba(17, 17, 17, 0.022) 0px,
+          rgba(17, 17, 17, 0.022) 1px,
+          transparent 1px,
+          transparent 7px
+        );
+      border: 1px solid rgba(17,17,17,0.08);
+      border-radius: 34px;
+      padding: clamp(28px, 5vw, 58px);
+      box-shadow: 0 26px 80px rgba(31, 28, 20, 0.12);
     }
 
     .journey-map-head {
@@ -1054,7 +1026,7 @@
 
     .journey-map-head h2 {
       font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-      font-size: clamp(2.8rem, 5.5vw, 5.6rem);
+      font-size: clamp(2.7rem, 5vw, 5rem);
       line-height: 0.94;
       letter-spacing: -0.05em;
       color: #111111;
@@ -1071,21 +1043,21 @@
 
     .journey-map-canvas {
       position: relative;
-      min-height: min(82vh, 760px);
-      border-radius: 32px;
+      min-height: 560px;
+      border-radius: 28px;
       background:
-        linear-gradient(rgba(245, 232, 205, 0.66), rgba(245, 232, 205, 0.66)),
+        linear-gradient(rgba(245, 232, 205, 0.74), rgba(245, 232, 205, 0.74)),
         repeating-linear-gradient(
-          90deg,
+          0deg,
           rgba(17,17,17,0.018) 0px,
           rgba(17,17,17,0.018) 1px,
           transparent 1px,
-          transparent 9px
+          transparent 8px
         );
       border: 1px solid rgba(17,17,17,0.08);
       box-shadow:
-        0 28px 90px rgba(17,17,17,0.13),
-        inset 0 1px 0 rgba(255,255,255,0.3);
+        0 22px 60px rgba(17,17,17,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.32);
       overflow: hidden;
     }
 
@@ -1094,15 +1066,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 26% 22%, rgba(255,255,255,0.12), transparent 22%),
-        radial-gradient(circle at 76% 72%, rgba(0,0,0,0.04), transparent 20%),
-        repeating-linear-gradient(
-          35deg,
-          rgba(17,17,17,0.018) 0px,
-          rgba(17,17,17,0.018) 1px,
-          transparent 1px,
-          transparent 12px
-        );
+        radial-gradient(circle at 26% 22%, rgba(255,255,255,0.14), transparent 24%),
+        radial-gradient(circle at 76% 72%, rgba(0,0,0,0.035), transparent 22%);
       pointer-events: none;
     }
 
@@ -1114,7 +1079,7 @@
       border-radius: 999px;
       background: rgba(255,249,239,0.7);
       color: rgba(17,17,17,0.64);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-weight: 800;
@@ -1134,11 +1099,11 @@
 
     .journey-compass {
       position: absolute;
-      right: 30px;
-      bottom: 26px;
-      width: 110px;
-      height: 110px;
-      opacity: 0.28;
+      right: 26px;
+      bottom: 24px;
+      width: 96px;
+      height: 96px;
+      opacity: 0.24;
       z-index: 1;
       animation: journeyCompassFloat 6s ease-in-out infinite;
     }
@@ -1280,19 +1245,19 @@
 
     .journey-treasure-card {
       position: absolute;
-      right: 26px;
-      bottom: 28px;
+      right: 22px;
+      bottom: 22px;
       z-index: 6;
-      width: min(360px, calc(100% - 32px));
-      padding: 24px;
+      width: min(340px, calc(100% - 32px));
+      padding: 22px;
       border-radius: 24px;
-      background: rgba(255,252,245,0.88);
+      background: rgba(255,252,245,0.9);
       border: 1px solid rgba(17,17,17,0.12);
       box-shadow: 0 24px 60px rgba(17,17,17,0.16);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       opacity: 0;
-      transform: translateY(30px) scale(0.96);
+      transform: translateY(24px) scale(0.96);
       transition:
         opacity 0.55s ease,
         transform 0.55s var(--motion);
@@ -1319,7 +1284,7 @@
     .journey-treasure-card h3 {
       font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
       color: #111111;
-      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
       line-height: 0.98;
       letter-spacing: -0.04em;
       margin: 0 0 12px;
@@ -1328,25 +1293,25 @@
 
     .journey-treasure-card p {
       color: rgba(17,17,17,0.68);
-      font-size: 0.96rem;
-      line-height: 1.7;
+      font-size: 0.94rem;
+      line-height: 1.65;
       margin: 0;
     }
 
     .journey-treasure-actions {
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .journey-access-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 52px;
-      padding: 0 22px;
+      min-height: 50px;
+      padding: 0 20px;
       border-radius: 999px;
       background: #111111;
       color: #f6f2e7;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       letter-spacing: 0.01em;
       box-shadow: 0 14px 32px rgba(17,17,17,0.18);
@@ -1361,7 +1326,7 @@
     .journey-treasure-note {
       margin-top: 12px !important;
       color: rgba(17,17,17,0.52) !important;
-      font-size: 0.82rem !important;
+      font-size: 0.8rem !important;
       line-height: 1.55 !important;
     }
 
@@ -1387,6 +1352,15 @@
       grid-template-columns: 1fr auto;
       gap: 28px;
       align-items: center;
+      transition:
+        transform 0.34s var(--motion),
+        box-shadow 0.34s ease,
+        background 0.34s ease;
+    }
+
+    .final-cta:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 90px rgba(31, 28, 20, 0.15);
     }
 
     .final-cta h2 {
@@ -1491,7 +1465,7 @@
       transform: translateX(-2px);
     }
 
-    /* ANIMATIONS */
+    /* REVEAL */
 
     .reveal {
       opacity: 0;
@@ -1515,6 +1489,8 @@
     .rich-grid .reveal:nth-child(4) { transition-delay: 0.24s; }
     .rich-grid .reveal:nth-child(5) { transition-delay: 0.32s; }
     .rich-grid .reveal:nth-child(6) { transition-delay: 0.4s; }
+
+    /* KEYFRAMES */
 
     @keyframes pageArrive {
       from {
@@ -1593,24 +1569,6 @@
       }
       to {
         transform: translate3d(-34px, 28px, 0) scale(1.08);
-      }
-    }
-
-    @keyframes mapDrift {
-      from {
-        background-position: 0 0, 0 0;
-      }
-      to {
-        background-position: 420px 420px, -520px 520px;
-      }
-    }
-
-    @keyframes parchmentDrift {
-      from {
-        background-position: 0 0, 0 0, 0 0, 0 0;
-      }
-      to {
-        background-position: 0 0, 0 0, 0 0, 620px 620px;
       }
     }
 
@@ -1698,17 +1656,9 @@
         display: none;
       }
 
-      .shot-1 {
-        right: 10px;
-      }
-
-      .shot-3 {
-        right: 12px;
-      }
-
-      .shot-5 {
-        right: 12px;
-      }
+      .shot-1 { right: 10px; }
+      .shot-3 { right: 12px; }
+      .shot-5 { right: 12px; }
     }
 
     @media (max-width: 1100px) {
@@ -1734,10 +1684,6 @@
 
       .journey-map-head h2 {
         max-width: 12ch;
-      }
-
-      .journey-map-canvas {
-        min-height: 620px;
       }
     }
 
@@ -1790,18 +1736,10 @@
         padding: 46px 0;
       }
 
-      .journey-map-section {
-        height: 215vh;
-        margin: 34px 0;
-      }
-
-      .journey-map-sticky {
-        align-items: flex-start;
-        padding-top: 22px;
-      }
-
       .journey-map-inner {
         width: min(calc(100% - 20px), 1280px);
+        padding: 22px;
+        border-radius: 24px;
       }
 
       .journey-map-head h2 {
@@ -1937,6 +1875,7 @@
     </div>
 
     <div class="floating-travel-images">
+      <!-- Edit the titles below whenever you want -->
       <figure class="floating-shot shot-1">
         <div class="floating-shot-inner">
           <img src="/Image/Koh_samui.jpg" alt="">
@@ -2010,7 +1949,7 @@
                 <div class="hero-actions">
                   <a
                     class="btn-dark"
-                    href="https://chat.whatsapp.com/GvmUvv4h3on1JgcpH9FXA8"
+                    href="YOUR_WHATSAPP_REQUEST_LINK"
                     target="_blank"
                     rel="noopener"
                   >
@@ -2287,7 +2226,7 @@
                 <div class="journey-treasure-actions">
                   <a
                     class="journey-access-btn"
-                    href="https://chat.whatsapp.com/GvmUvv4h3on1JgcpH9FXA8"
+                    href="YOUR_WHATSAPP_REQUEST_LINK"
                     target="_blank"
                     rel="noopener"
                   >
@@ -2318,7 +2257,7 @@
             <div class="final-actions">
               <a
                 class="btn-dark"
-                href="https://chat.whatsapp.com/GvmUvv4h3on1JgcpH9FXA8"
+                href="YOUR_WHATSAPP_REQUEST_LINK"
                 target="_blank"
                 rel="noopener"
               >
@@ -2471,9 +2410,7 @@
           });
 
           shot.classList.remove("is-active");
-
           void shot.offsetWidth;
-
           shot.classList.add("is-active");
 
           clearTimeout(shot._activeTimer);
@@ -2509,15 +2446,15 @@
         function updateJourneyMap() {
           const rect = journeySection.getBoundingClientRect();
           const viewportHeight = window.innerHeight;
-          const scrollable = Math.max(journeySection.offsetHeight - viewportHeight, 1);
 
-          let progress = 0;
+          const start = viewportHeight * 0.82;
+          const end = viewportHeight * 0.18;
 
-          if (rect.top <= 0) {
-            progress = clamp((-rect.top) / scrollable, 0, 1);
-          } else {
-            progress = 0;
-          }
+          const progress = clamp(
+            (start - rect.top) / (start - end + rect.height * 0.35),
+            0,
+            1
+          );
 
           if (rect.top < viewportHeight && rect.bottom > 0) {
             journeySection.classList.add("is-inview");
@@ -2531,7 +2468,7 @@
           });
 
           if (journeyTreasureCard) {
-            journeyTreasureCard.classList.toggle("is-active", progress >= 0.82);
+            journeyTreasureCard.classList.toggle("is-active", progress >= 0.78);
           }
 
           if (journeyBoat) {
