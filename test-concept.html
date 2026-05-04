@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,11 +9,16 @@ html = """<!DOCTYPE html>
   <link rel="canonical" href="https://www.hamsanomads.com/" />
 
   <meta property="og:site_name" content="Hamsa Nomads" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.hamsanomads.com/" />
   <meta property="og:title" content="Hamsa Nomads — Jewish Travel Community" />
   <meta property="og:description" content="Jewish travel should feel less alone. Join the community, discover retreats, and connect before you go." />
   <meta property="og:image" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
+  <meta property="og:image:secure_url" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Hamsa Nomads — Jewish Travel Community" />
@@ -23,17 +26,20 @@ html = """<!DOCTYPE html>
   <meta name="twitter:image" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
 
   <link rel="icon" href="/favicon.ico?v=8" type="image/x-icon">
-  <link rel="stylesheet" href="assets/site-components.css?v=index-community-clean-2" />
+  <link rel="shortcut icon" href="/favicon.ico?v=8" type="image/x-icon">
+  <link rel="stylesheet" href="assets/site-components.css?v=index-v2-clear-community" />
 
   <style>
     :root {
       --bg: #f7f3ea;
-      --paper: rgba(255, 252, 246, 0.74);
+      --paper: rgba(255, 252, 246, 0.76);
+      --paper-strong: rgba(255, 252, 246, 0.94);
       --ink: #1c211d;
       --muted: #5f655d;
       --forest: #274537;
       --forest-dark: #173c30;
       --gold: #b88b2f;
+      --sand: #dcc7a1;
       --cream: #f7f3ea;
       --shadow: 0 22px 70px rgba(31, 28, 20, 0.10);
       --soft-shadow: 0 14px 36px rgba(31, 28, 20, 0.08);
@@ -68,17 +74,9 @@ html = """<!DOCTYPE html>
     img { display: block; max-width: 100%; }
     button, input, textarea { font: inherit; }
 
-    #site-header {
-      position: sticky;
-      top: 0;
-      z-index: 99999;
-    }
+    #site-header { position: sticky; top: 0; z-index: 99999; }
 
-    .site-shell {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-    }
+    .site-shell { position: relative; isolation: isolate; overflow: hidden; }
 
     .container {
       width: min(calc(100% - 32px), var(--container));
@@ -116,9 +114,7 @@ html = """<!DOCTYPE html>
 
     .button:hover,
     .button-secondary:hover,
-    .button-light:hover {
-      transform: translateY(-2px);
-    }
+    .button-light:hover { transform: translateY(-2px); }
 
     .button {
       background: rgba(39, 69, 55, 0.94);
@@ -150,20 +146,10 @@ html = """<!DOCTYPE html>
       margin-bottom: 14px;
     }
 
-    .section {
-      position: relative;
-      padding: clamp(46px, 7vw, 88px) 0;
-    }
+    .section { position: relative; padding: clamp(46px, 7vw, 88px) 0; }
 
-    .section-intro {
-      max-width: 760px;
-      margin-bottom: 32px;
-    }
-
-    .section-intro.center {
-      margin-inline: auto;
-      text-align: center;
-    }
+    .section-intro { max-width: 760px; margin-bottom: 32px; }
+    .section-intro.center { margin-inline: auto; text-align: center; }
 
     .section-intro h2 {
       font-size: clamp(2.2rem, 5.3vw, 4.45rem);
@@ -187,100 +173,65 @@ html = """<!DOCTYPE html>
       transition-delay: min(var(--delay, 0ms), 140ms);
     }
 
-    [data-reveal].is-visible {
-      opacity: 1;
-      transform: translateY(0);
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+      [data-reveal] { opacity: 1 !important; transform: none !important; }
     }
 
-    .hero {
-      padding: 18px 0 22px;
-    }
+    /* CLEAN HERO */
+    .hero { padding: 18px 0 22px; }
 
-    .hero-stage {
+    .hero-shell {
       position: relative;
-      min-height: clamp(680px, 82vh, 860px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
+      gap: clamp(24px, 4vw, 54px);
+      align-items: center;
+      min-height: clamp(620px, 78vh, 780px);
+      padding: clamp(24px, 5vw, 58px);
+      border-radius: 40px;
       overflow: hidden;
-      border-radius: 38px;
-      background: #e8e0d2;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(184,139,47,0.16), transparent 28%),
+        radial-gradient(circle at 10% 8%, rgba(255,255,255,0.75), transparent 36%),
+        linear-gradient(135deg, rgba(255,252,246,0.92), rgba(220,199,161,0.44));
       box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.62);
     }
 
-    .hero-media-carousel {
+    .hero-shell::before {
+      content: "";
       position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      background: #e8e0d2;
-    }
-
-    .hero-media {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      filter: saturate(0.95);
+      inset: 20px;
+      border-radius: 32px;
+      border: 1px solid rgba(39,69,55,0.07);
       pointer-events: none;
     }
 
-    .hero-slide {
-      opacity: 0;
-      transition: opacity 1.4s ease;
-    }
-
-    .hero-slide.is-active {
-      opacity: 1;
-    }
-
-    .hero-scrim {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(90deg, rgba(20, 17, 12, 0.70) 0%, rgba(20, 17, 12, 0.42) 42%, rgba(20, 17, 12, 0.14) 100%),
-        linear-gradient(180deg, rgba(20,15,10,0.10) 0%, rgba(20,15,10,0.32) 100%);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      min-height: inherit;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
-      gap: clamp(24px, 4vw, 50px);
-      align-items: end;
-      padding: clamp(24px, 5vw, 60px);
-    }
-
-    .hero-copy {
-      color: #fffdf8;
-      max-width: 780px;
-    }
-
-    .hero .eyebrow {
-      color: #e0ae43;
-      text-shadow: 0 4px 16px rgba(0,0,0,0.26);
-    }
+    .hero-copy { position: relative; z-index: 2; max-width: 760px; }
 
     .hero-title {
-      font-size: clamp(4rem, 9.4vw, 8.1rem);
-      line-height: 0.84;
-      max-width: 9.5ch;
+      font-size: clamp(3.8rem, 8.7vw, 7.65rem);
+      line-height: 0.86;
+      color: var(--forest);
+      max-width: 9.8ch;
       margin: 0 0 24px;
-      color: #fffdf8;
-      text-shadow: 0 10px 34px rgba(0,0,0,0.26);
     }
 
-    .hero-title span { color: #e0ae43; }
+    .hero-title span { color: var(--gold); }
 
     .hero-lead {
-      max-width: 52ch;
-      font-size: clamp(1.08rem, 1.8vw, 1.32rem);
-      line-height: 1.5;
-      color: rgba(255,251,245,0.95);
-      margin-bottom: 24px;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.23);
+      max-width: 54ch;
+      font-size: clamp(1.06rem, 1.8vw, 1.28rem);
+      line-height: 1.58;
+      color: var(--muted);
+      margin-bottom: 26px;
     }
 
     .hero-actions,
@@ -305,117 +256,172 @@ html = """<!DOCTYPE html>
       align-items: center;
       padding: 0 13px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: rgba(255,253,248,0.88);
-      font-size: 0.78rem;
+      background: rgba(39,69,55,0.08);
+      border: 1px solid rgba(39,69,55,0.10);
+      color: var(--forest);
+      font-size: 0.76rem;
       font-weight: 850;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
     }
 
-    .hero-panel {
-      align-self: center;
-      display: grid;
-      gap: 14px;
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      min-height: 540px;
     }
 
-    .hero-card {
-      padding: 22px;
+    .hero-photo-card {
+      position: absolute;
+      overflow: hidden;
       border-radius: 28px;
-      background: rgba(255, 252, 246, 0.80);
-      border: 1px solid rgba(255,255,255,0.48);
+      box-shadow: 0 28px 70px rgba(31,28,20,0.16);
+      border: 1px solid rgba(255,255,255,0.58);
+      background: #d8c9ad;
+      transition: transform 0.32s ease, box-shadow 0.32s ease, filter 0.32s ease;
+      cursor: pointer;
+    }
+
+    .hero-photo-card:hover,
+    .hero-photo-card.is-front {
+      z-index: 30;
+      transform: translateY(-8px) rotate(0deg) scale(1.025);
+      box-shadow: 0 34px 86px rgba(31,28,20,0.21);
+    }
+
+    .hero-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    .hero-photo-card:hover img,
+    .hero-photo-card.is-front img {
+      transform: scale(1.04);
+      filter: brightness(0.96);
+    }
+
+    .hero-photo-main {
+      inset: 40px 76px 76px 20px;
+      transform: rotate(-1.5deg);
+    }
+
+    .hero-photo-small {
+      width: 48%;
+      height: 34%;
+      right: 8px;
+      top: 18px;
+      transform: rotate(2.5deg);
+    }
+
+    .hero-photo-wide {
+      width: 58%;
+      height: 30%;
+      right: 22px;
+      bottom: 28px;
+      transform: rotate(1.4deg);
+    }
+
+    .hero-form-card {
+      position: absolute;
+      left: 0;
+      right: 28px;
+      bottom: 0;
+      z-index: 40;
+      padding: 18px;
+      border-radius: 26px;
+      background: rgba(255,252,246,0.84);
+      border: 1px solid rgba(255,255,255,0.62);
+      box-shadow: 0 24px 64px rgba(31,28,20,0.16);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 22px 56px rgba(0,0,0,0.16);
     }
 
-    .hero-card h2 {
-      font-size: clamp(1.7rem, 3vw, 2.5rem);
-      line-height: 1;
+    .hero-form-card h2 {
       color: var(--forest);
-      margin-bottom: 10px;
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      line-height: 1.05;
+      margin-bottom: 8px;
     }
 
-    .hero-card p {
+    .hero-form-card p {
       color: var(--muted);
-      line-height: 1.6;
+      font-size: 0.94rem;
+      line-height: 1.48;
+      margin-bottom: 13px;
     }
 
-    .hero-chip-grid {
+    .quick-form {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
 
-    .hero-chip {
-      padding: 13px 14px;
-      border-radius: 18px;
-      background: rgba(255, 252, 246, 0.78);
-      border: 1px solid rgba(255,255,255,0.46);
+    .quick-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .quick-form input,
+    .quick-form textarea {
+      width: 100%;
+      border: 1px solid rgba(39,69,55,0.14);
+      border-radius: 15px;
+      padding: 12px 13px;
+      background: rgba(255,255,255,0.68);
+      color: var(--ink);
+      outline: none;
+      font-size: 0.94rem;
+    }
+
+    .quick-form textarea {
+      min-height: 76px;
+      resize: vertical;
+      line-height: 1.48;
+    }
+
+    .quick-form input:focus,
+    .quick-form textarea:focus {
+      border-color: rgba(184,139,47,0.45);
+      box-shadow: 0 0 0 4px rgba(184,139,47,0.12);
+    }
+
+    .quick-submit {
+      appearance: none;
+      border: 0;
+      min-height: 46px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.94);
+      color: white;
+      font-weight: 850;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(39,69,55,0.20);
+    }
+
+    .quick-submit:disabled { opacity: 0.68; cursor: wait; }
+
+    .quick-status {
+      min-height: 18px;
+      font-size: 0.84rem;
       color: var(--forest);
-      font-size: 0.88rem;
-      font-weight: 850;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      text-align: center;
     }
 
-    .motion-marquee {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 4;
-      overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,252,246,0.13);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 34s linear infinite;
-    }
-
-    .marquee-item {
-      padding: 13px 24px;
-      color: rgba(255,253,248,0.88);
-      font-size: 0.77rem;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
-    .marquee-item::after {
-      content: "•";
-      color: #e0ae43;
-      margin-left: 24px;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
+    /* SHARED CARDS */
     .activity-grid,
-    .trust-grid,
+    .info-grid,
     .steps-grid {
       display: grid;
       gap: 16px;
     }
 
     .activity-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .trust-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .steps-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .activity-card,
-    .trust-card,
+    .info-card,
     .step-card {
       position: relative;
       padding: clamp(22px, 3vw, 30px);
@@ -430,17 +436,17 @@ html = """<!DOCTYPE html>
     }
 
     .activity-card {
-      min-height: 300px;
+      min-height: 290px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .activity-card:hover,
-    .trust-card:hover,
+    .info-card:hover,
     .step-card:hover,
     .activity-card.is-front,
-    .trust-card.is-front,
+    .info-card.is-front,
     .step-card.is-front {
       z-index: 20;
       transform: translateY(-6px) scale(1.01);
@@ -459,7 +465,7 @@ html = """<!DOCTYPE html>
     }
 
     .activity-card h3,
-    .trust-card h3,
+    .info-card h3,
     .step-card h3 {
       font-size: clamp(1.5rem, 2.6vw, 2.25rem);
       line-height: 1.04;
@@ -468,7 +474,7 @@ html = """<!DOCTYPE html>
     }
 
     .activity-card p,
-    .trust-card p,
+    .info-card p,
     .step-card p {
       color: var(--muted);
       line-height: 1.68;
@@ -481,9 +487,10 @@ html = """<!DOCTYPE html>
       font-weight: 900;
     }
 
+    /* WHATSAPP COMMUNITY */
     .community-shell {
       display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
+      grid-template-columns: 0.95fr 1.05fr;
       gap: clamp(18px, 4vw, 46px);
       align-items: stretch;
       border-radius: 38px;
@@ -494,13 +501,6 @@ html = """<!DOCTYPE html>
       box-shadow: 0 30px 70px rgba(16,42,33,0.22);
       border: 1px solid rgba(244,231,199,0.12);
       padding: clamp(22px, 4vw, 42px);
-    }
-
-    .community-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
     }
 
     .community-copy h2 {
@@ -539,69 +539,40 @@ html = """<!DOCTYPE html>
       text-transform: uppercase;
     }
 
-    .community-map {
-      position: relative;
-      min-height: 520px;
-      border-radius: 30px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 22% 20%, rgba(244,231,199,0.16), transparent 22%),
-        radial-gradient(circle at 78% 66%, rgba(224,174,67,0.14), transparent 25%),
-        rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
+    .community-panel {
+      display: grid;
+      gap: 14px;
     }
 
-    .map-line {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.74;
-      pointer-events: none;
-    }
-
-    .map-line path {
-      fill: none;
-      stroke: rgba(244,231,199,0.40);
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 8 12;
-      animation: dashTravel 22s linear infinite;
-    }
-
-    @keyframes dashTravel {
-      to { stroke-dashoffset: -220; }
-    }
-
-    .community-note {
-      position: absolute;
-      width: min(320px, calc(100% - 36px));
-      padding: 18px;
+    .community-panel-card {
+      padding: 20px;
       border-radius: 24px;
-      background: rgba(255,252,246,0.14);
-      border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.12);
+      background: rgba(255,252,246,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.10);
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
     }
 
-    .community-note h3 {
+    .community-panel-card:hover,
+    .community-panel-card.is-front {
+      z-index: 20;
+      transform: translateY(-5px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.16);
+    }
+
+    .community-panel-card h3 {
       color: #f4e7c7;
-      font-size: 1.4rem;
+      font-size: clamp(1.35rem, 2.3vw, 1.95rem);
+      line-height: 1.08;
       margin-bottom: 8px;
     }
 
-    .community-note p {
+    .community-panel-card p {
       color: rgba(247,240,226,0.78);
-      line-height: 1.58;
-      font-size: 0.95rem;
+      line-height: 1.62;
     }
 
-    .community-note.one { left: 24px; top: 26px; }
-    .community-note.two { right: 24px; top: 42%; transform: translateY(-50%); }
-    .community-note.three { left: 54px; bottom: 26px; }
-
+    /* RETREAT ENVIRONMENT */
     .retreat-shell {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
@@ -631,9 +602,18 @@ html = """<!DOCTYPE html>
       overflow: hidden;
       background: #d9ccb6;
       min-height: 230px;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+      cursor: pointer;
     }
 
     .retreat-photo:first-child { grid-row: span 2; }
+
+    .retreat-photo:hover,
+    .retreat-photo.is-front {
+      z-index: 30;
+      transform: translateY(-7px) scale(1.012);
+      box-shadow: 0 28px 68px rgba(31,28,20,0.17);
+    }
 
     .retreat-photo img {
       width: 100%;
@@ -695,6 +675,210 @@ html = """<!DOCTYPE html>
       line-height: 1.35;
     }
 
+    /* UPCOMING TRIPS */
+    .hn-upcoming-section {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(52px, 8vw, 92px) 20px clamp(64px, 8vw, 98px);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
+        var(--bg);
+    }
+
+    .hn-upcoming-inner {
+      position: relative;
+      max-width: 1280px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    .hn-upcoming-header { max-width: 760px; margin-bottom: 30px; }
+
+    .hn-overline {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--forest);
+      opacity: 0.75;
+      font-weight: 800;
+    }
+
+    .hn-upcoming-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4.25rem);
+      line-height: 1.02;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .hn-upcoming-title-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.18em;
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .hn-upcoming-title-link::after {
+      content: "→";
+      font-family: Inter, Arial, sans-serif;
+      font-size: 0.42em;
+      font-weight: 800;
+      color: var(--gold);
+      transform: translateY(0.04em);
+    }
+
+    .hn-upcoming-subtitle {
+      margin: 18px 0 0;
+      font-size: clamp(1rem, 1.35vw, 1.14rem);
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .hn-trip-slider {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 10px 12vw 18px 2px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .hn-trip-slider::-webkit-scrollbar { display: none; }
+
+    .hn-trip-slide {
+      scroll-snap-align: start;
+      flex: 0 0 min(86vw, 430px);
+    }
+
+    .hn-trip-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 560px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.52);
+      border: 1px solid rgba(255,255,255,0.42);
+      box-shadow: 0 20px 50px rgba(27,35,30,0.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .hn-trip-card:hover,
+    .hn-trip-card.is-front {
+      z-index: 25;
+      transform: translateY(-7px) scale(1.012);
+      box-shadow: 0 30px 74px rgba(27,35,30,0.17);
+    }
+
+    .hn-trip-image {
+      position: relative;
+      min-height: 250px;
+      background-image:
+        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
+        var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hn-trip-badge,
+    .hn-image-note {
+      position: absolute;
+      z-index: 2;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hn-trip-badge { top: 18px; left: 18px; }
+
+    .hn-image-note {
+      left: 18px;
+      bottom: 18px;
+      color: var(--ink);
+      font-size: 0.82rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .hn-trip-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 25px 23px 23px;
+    }
+
+    .hn-trip-meta { font-size: 0.92rem; color: var(--muted); margin-bottom: 12px; }
+
+    .hn-trip-name {
+      margin: 0 0 12px;
+      font-size: clamp(1.55rem, 2.4vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hn-trip-copy {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 0.98rem;
+    }
+
+    .hn-trip-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .hn-trip-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--forest);
+      font-size: 0.88rem;
+      font-weight: 750;
+    }
+
+    .hn-trip-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .hn-trip-link {
+      display: inline-flex;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: var(--forest);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 750;
+      box-shadow: 0 16px 28px rgba(38,71,52,0.20);
+    }
+
+    /* FAQ */
     .faq-strip {
       display: grid;
       grid-template-columns: 0.86fr 1.14fr;
@@ -748,10 +932,7 @@ html = """<!DOCTYPE html>
       margin-bottom: 12px;
     }
 
-    .random-faq-box p {
-      color: var(--muted);
-      line-height: 1.7;
-    }
+    .random-faq-box p { color: var(--muted); line-height: 1.7; }
 
     .random-faq-link {
       display: inline-flex;
@@ -760,6 +941,7 @@ html = """<!DOCTYPE html>
       font-weight: 850;
     }
 
+    /* INSTAGRAM */
     .live-vibe-shell {
       display: grid;
       grid-template-columns: 0.72fr 1.28fr;
@@ -790,10 +972,7 @@ html = """<!DOCTYPE html>
       margin-bottom: 16px;
     }
 
-    .live-vibe-copy p {
-      color: rgba(247,240,226,0.80);
-      line-height: 1.74;
-    }
+    .live-vibe-copy p { color: rgba(247,240,226,0.80); line-height: 1.74; }
 
     .insta-profile-row {
       display: flex;
@@ -822,9 +1001,13 @@ html = """<!DOCTYPE html>
       border-radius: 999px;
       background: #f4e7c7;
       color: #173c30;
+      text-decoration: none;
       font-size: 1rem;
       font-weight: 900;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
       box-shadow: 0 16px 34px rgba(0,0,0,0.18);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
     .insta-board {
@@ -845,8 +1028,7 @@ html = """<!DOCTYPE html>
       box-shadow: 0 16px 34px rgba(0,0,0,0.12);
     }
 
-    .hn-live-instagram-featured img,
-    .hn-live-instagram-post img {
+    .hn-live-instagram-featured img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -927,6 +1109,12 @@ html = """<!DOCTYPE html>
       color: #fff;
     }
 
+    .hn-live-instagram-post img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .hn-live-instagram-type {
       position: absolute;
       top: 8px;
@@ -952,193 +1140,6 @@ html = """<!DOCTYPE html>
       background: rgba(255,255,255,0.65);
     }
 
-    .hn-upcoming-section {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(52px, 8vw, 92px) 20px clamp(64px, 8vw, 98px);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.55), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(213,178,92,0.12), transparent 30%),
-        var(--bg);
-    }
-
-    .hn-upcoming-inner {
-      position: relative;
-      max-width: 1280px;
-      margin: 0 auto;
-      z-index: 2;
-    }
-
-    .hn-upcoming-header {
-      max-width: 760px;
-      margin-bottom: 30px;
-    }
-
-    .hn-overline {
-      display: inline-block;
-      margin-bottom: 12px;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--forest);
-      opacity: 0.75;
-      font-weight: 800;
-    }
-
-    .hn-upcoming-title {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 4.25rem);
-      line-height: 1.02;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .hn-upcoming-title-link::after {
-      content: "→";
-      font-family: Inter, Arial, sans-serif;
-      font-size: 0.42em;
-      font-weight: 800;
-      color: var(--gold);
-      margin-left: 0.18em;
-    }
-
-    .hn-upcoming-subtitle {
-      margin: 18px 0 0;
-      font-size: clamp(1rem, 1.35vw, 1.14rem);
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 700px;
-    }
-
-    .hn-trip-slider {
-      display: flex;
-      gap: 22px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 10px 12vw 18px 2px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    .hn-trip-slider::-webkit-scrollbar { display: none; }
-
-    .hn-trip-slide {
-      scroll-snap-align: start;
-      flex: 0 0 min(86vw, 430px);
-    }
-
-    .hn-trip-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 560px;
-      border-radius: 30px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.52);
-      border: 1px solid rgba(255,255,255,0.42);
-      box-shadow: 0 20px 50px rgba(27,35,30,0.10);
-    }
-
-    .hn-trip-image {
-      position: relative;
-      min-height: 250px;
-      background:
-        linear-gradient(180deg, rgba(23,29,26,0.03), rgba(23,29,26,0.18)),
-        var(--trip-image, linear-gradient(135deg, #d9ccb6, #a1b7aa));
-      background-size: cover;
-      background-position: center;
-    }
-
-    .hn-trip-badge,
-    .hn-image-note {
-      position: absolute;
-      z-index: 2;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      color: var(--forest);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .hn-trip-badge { top: 18px; left: 18px; }
-
-    .hn-image-note {
-      left: 18px;
-      bottom: 18px;
-      color: var(--ink);
-      font-size: 0.82rem;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    .hn-trip-body {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      padding: 25px 23px 23px;
-    }
-
-    .hn-trip-meta {
-      font-size: 0.92rem;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .hn-trip-name {
-      margin: 0 0 12px;
-      font-size: clamp(1.55rem, 2.4vw, 2rem);
-      line-height: 1.1;
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .hn-trip-copy {
-      margin: 0 0 18px;
-      color: var(--muted);
-      line-height: 1.68;
-      font-size: 0.98rem;
-    }
-
-    .hn-trip-footer {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .hn-trip-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--forest);
-      font-size: 0.88rem;
-      font-weight: 750;
-    }
-
-    .hn-trip-status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--gold);
-    }
-
-    .hn-trip-link {
-      display: inline-flex;
-      padding: 13px 18px;
-      border-radius: 999px;
-      background: var(--forest);
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 750;
-      box-shadow: 0 16px 28px rgba(38,71,52,0.20);
-    }
-
     .final-cta-card {
       padding: clamp(26px, 4vw, 46px);
       border-radius: 38px;
@@ -1151,9 +1152,9 @@ html = """<!DOCTYPE html>
         0 22px 60px rgba(20, 45, 35, 0.22),
         inset 0 1px 0 rgba(255,255,255,0.22);
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 22px;
-      align-items: center;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: start;
     }
 
     .final-cta-card h2 {
@@ -1168,15 +1169,46 @@ html = """<!DOCTYPE html>
       max-width: 720px;
     }
 
+    .final-cta-card .quick-form input,
+    .final-cta-card .quick-form textarea {
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.16);
+      color: #fffdf8;
+    }
+
+    .final-cta-card .quick-form input::placeholder,
+    .final-cta-card .quick-form textarea::placeholder {
+      color: rgba(255,255,255,0.62);
+    }
+
+    .final-cta-card .quick-submit {
+      background: #f4e7c7;
+      color: #173c30;
+    }
+
+    .final-cta-card .quick-status {
+      color: #f4e7c7;
+    }
+
     .interactive-card { outline: none; }
+
+    .interactive-card:focus-visible {
+      box-shadow:
+        0 0 0 4px rgba(184,139,47,0.22),
+        0 28px 72px rgba(31,28,20,0.16);
+    }
 
     @media (min-width: 900px) {
       .hn-trip-slide { flex: 0 0 min(58vw, 500px); }
       .hn-trip-slider { padding-right: 16vw; }
     }
 
+    @media (min-width: 1200px) {
+      .hn-trip-slide { flex: 0 0 min(48vw, 520px); }
+    }
+
     @media (max-width: 1080px) {
-      .hero-content,
+      .hero-shell,
       .community-shell,
       .retreat-shell,
       .faq-strip,
@@ -1187,10 +1219,13 @@ html = """<!DOCTYPE html>
       }
 
       .activity-grid,
-      .trust-grid,
+      .info-grid,
       .steps-grid {
         grid-template-columns: 1fr 1fr;
       }
+
+      .retreat-photo-grid { min-height: 440px; }
+      .hero-visual { min-height: 500px; }
     }
 
     @media (max-width: 760px) {
@@ -1219,96 +1254,39 @@ html = """<!DOCTYPE html>
       }
 
       .hero { padding: 10px 0 16px; }
-      .hero-stage { min-height: auto; border-radius: 24px; }
-
-      .hero-content {
-        min-height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        gap: 18px;
-        padding: 24px 16px 18px;
-      }
-
-      .hero-title {
-        max-width: 100%;
-        font-size: clamp(3rem, 14vw, 4.7rem);
-        line-height: 0.86;
-        margin-bottom: 16px;
-      }
-
-      .hero-lead {
-        max-width: 100%;
-        margin-bottom: 14px;
-        font-size: 0.95rem;
-        line-height: 1.48;
-      }
-
+      .hero-shell { min-height: auto; border-radius: 24px; padding: 24px 16px 18px; gap: 18px; }
+      .hero-shell::before { display: none; }
+      .hero-title { max-width: 100%; font-size: clamp(3rem, 14vw, 4.7rem); line-height: 0.86; margin-bottom: 16px; }
+      .hero-lead { max-width: 100%; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.48; }
       .hero-actions { gap: 9px; }
       .button, .button-secondary, .button-light { width: 100%; min-height: 48px; }
       .hero-meta { gap: 7px; margin-top: 16px; }
       .hero-meta span { font-size: 0.66rem; min-height: 32px; }
-      .hero-panel { width: 100%; gap: 10px; }
-      .hero-card { padding: 16px; border-radius: 20px; }
-      .hero-card h2 { font-size: 1.35rem; }
-      .hero-card p { display: none; }
-
-      .hero-chip-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-      }
-
-      .hero-chip {
-        padding: 10px 11px;
-        border-radius: 15px;
-        font-size: 0.72rem;
-        text-align: center;
-      }
-
-      .motion-marquee { display: none; }
+      .hero-visual { min-height: auto; display: grid; gap: 10px; }
+      .hero-photo-card { position: relative; inset: auto; width: 100%; height: 210px; transform: none; border-radius: 18px; }
+      .hero-photo-small, .hero-photo-wide { width: 100%; height: 170px; right: auto; top: auto; bottom: auto; }
+      .hero-form-card { position: relative; left: auto; right: auto; bottom: auto; border-radius: 20px; padding: 16px; }
+      .quick-form-row { grid-template-columns: 1fr; }
 
       .activity-grid,
-      .trust-grid,
+      .info-grid,
       .steps-grid,
       .retreat-highlights {
         grid-template-columns: 1fr;
       }
 
       .activity-card,
-      .trust-card,
-      .step-card {
-        min-height: auto;
-        padding: 18px;
-        border-radius: 22px;
-      }
+      .info-card,
+      .step-card { min-height: auto; padding: 18px; border-radius: 22px; }
+      .activity-card h3, .info-card h3, .step-card h3 { font-size: 1.45rem; }
 
-      .community-shell {
-        border-radius: 24px;
-        padding: 18px;
-        gap: 18px;
-      }
+      .community-shell { border-radius: 24px; padding: 18px; gap: 18px; }
+      .community-panel { gap: 10px; }
+      .community-panel-card { padding: 16px; border-radius: 18px; }
+      .community-panel-card h3 { font-size: 1.25rem; }
+      .community-panel-card p { font-size: 0.9rem; }
 
-      .community-map {
-        min-height: 460px;
-        border-radius: 22px;
-      }
-
-      .community-note {
-        width: calc(100% - 28px);
-        padding: 14px;
-        border-radius: 18px;
-      }
-
-      .community-note.one { left: 14px; top: 14px; }
-      .community-note.two { left: 14px; right: auto; top: 50%; transform: translateY(-50%); }
-      .community-note.three { left: 14px; bottom: 14px; }
-
-      .retreat-shell {
-        border-radius: 24px;
-        padding: 10px;
-        gap: 12px;
-      }
-
+      .retreat-shell { border-radius: 24px; padding: 10px; gap: 12px; }
       .retreat-photo-grid {
         display: flex;
         gap: 12px;
@@ -1318,37 +1296,44 @@ html = """<!DOCTYPE html>
         padding-bottom: 8px;
         scrollbar-width: none;
       }
-
       .retreat-photo-grid::-webkit-scrollbar { display: none; }
-
-      .retreat-photo,
-      .retreat-photo:first-child {
+      .retreat-photo, .retreat-photo:first-child {
         flex: 0 0 78%;
         min-height: 230px;
         grid-row: auto;
         scroll-snap-align: start;
         border-radius: 18px;
       }
-
       .retreat-copy { padding: 10px 6px 8px; }
       .retreat-date { font-size: 0.78rem; }
 
       .faq-strip,
       .live-vibe-shell,
-      .final-cta-card {
-        padding: 18px;
-        border-radius: 24px;
-        gap: 14px;
-      }
+      .final-cta-card { padding: 18px; border-radius: 24px; gap: 14px; }
+      .faq-strip h2 { font-size: clamp(1.65rem, 8vw, 2.35rem); }
+      .random-faq-box { padding: 17px; border-radius: 20px; }
+      .random-faq-box h3 { font-size: 1.35rem; }
+      .random-faq-box p { font-size: 0.9rem; line-height: 1.48; }
 
+      #instagram.section { padding-top: 28px; padding-bottom: 30px; }
       .live-vibe-copy { min-height: auto; padding: 6px 4px 2px; gap: 12px; }
+      .live-vibe-copy h2 { margin-bottom: 8px; }
       .live-vibe-copy p { display: none; }
+      .insta-profile-row { margin-top: 10px; gap: 10px; }
       .hn-live-instagram-avatar { width: 46px; height: 46px; }
       .hn-live-instagram-follow { width: auto; min-height: 44px; padding: 0 22px; font-size: 0.9rem; }
+      .insta-board { gap: 10px; }
       .hn-live-instagram-featured { min-height: 0; aspect-ratio: 16 / 9; border-radius: 18px; }
+      .hn-live-instagram-featured-overlay { padding: 12px; }
+      .hn-live-instagram-featured-overlay span { font-size: 0.54rem; margin-bottom: 5px; }
+      .hn-live-instagram-featured-overlay strong { font-size: 0.84rem; line-height: 1.25; }
+      .insta-side { gap: 8px; }
+      .insta-topline span { font-size: 0.58rem; letter-spacing: 0.11em; }
+      .insta-topline button { min-height: 32px; padding: 0 11px; font-size: 0.76rem; }
       .hn-live-instagram-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
       .hn-live-instagram-post { border-radius: 13px; }
       .hn-live-instagram-post:nth-child(n + 4) { display: none; }
+      .hn-live-instagram-type { top: 6px; right: 6px; padding: 4px 6px; font-size: 0.48rem; }
 
       .hn-upcoming-section { padding: 38px 10px 48px; }
       .hn-upcoming-header { margin-bottom: 18px; }
@@ -1357,6 +1342,9 @@ html = """<!DOCTYPE html>
       .hn-trip-card { min-height: auto; border-radius: 22px; }
       .hn-trip-image { min-height: 170px; }
       .hn-trip-body { padding: 17px; }
+      .hn-trip-meta { font-size: 0.78rem; margin-bottom: 8px; }
+      .hn-trip-name { font-size: 1.4rem; }
+      .hn-trip-copy { font-size: 0.88rem; line-height: 1.48; }
       .hn-trip-footer { flex-direction: column; align-items: stretch; }
       .hn-trip-link { width: 100%; justify-content: center; min-height: 46px; padding: 12px 16px; }
     }
@@ -1370,68 +1358,67 @@ html = """<!DOCTYPE html>
     <main id="top">
       <section class="hero">
         <div class="container">
-          <div class="hero-stage" id="heroStage">
-            <div class="hero-media-carousel" aria-hidden="true">
-              <img class="hero-media hero-slide is-active" src="Image/hero.jpg" alt="Hamsa Nomads Jewish travel community" fetchpriority="high" decoding="async" />
-              <img class="hero-media hero-slide" src="Image/chill.jpg" alt="Warm community lounge" loading="lazy" decoding="async" />
-              <img class="hero-media hero-slide" src="Image/dining-space.jpg" alt="Shared Jewish retreat table" loading="lazy" decoding="async" />
-              <img class="hero-media hero-slide" src="Image/pool.png" alt="Pool at a Hamsa Nomads retreat" loading="lazy" decoding="async" />
-              <img class="hero-media hero-slide" src="Image/exterior.png" alt="Retreat house exterior" loading="lazy" decoding="async" />
-            </div>
-            <div class="hero-scrim"></div>
+          <div class="hero-shell">
+            <div class="hero-copy" data-reveal>
+              <div class="eyebrow">Hamsa Nomads</div>
+              <h1 class="hero-title">Jewish travel should feel <span>less alone.</span></h1>
+              <p class="hero-lead">
+                A growing Jewish travel community for kosher-minded travelers, Shabbat support,
+                local advice, future trips, and curated retreats across borders.
+              </p>
 
-            <div class="hero-content">
-              <div class="hero-copy" data-reveal>
-                <div class="eyebrow">Hamsa Nomads</div>
-                <h1 class="hero-title">Jewish travel should feel <span>less alone.</span></h1>
-                <p class="hero-lead">
-                  A growing travel community for young Jews who want kosher-minded trips,
-                  Shabbat support, local advice, real connections, and curated retreats across borders.
-                </p>
-
-                <div class="hero-actions">
-                  <a href="trips-page/Community.html" class="button">Join the travel community</a>
-                  <a href="#featured-retreat" class="button-secondary">See Shavuos in Vermont</a>
-                </div>
-
-                <div class="hero-meta">
-                  <span>WhatsApp network</span>
-                  <span>Curated retreats</span>
-                  <span>Kosher-minded travel</span>
-                  <span>Cross-border community</span>
-                </div>
+              <div class="hero-actions">
+                <a href="#community-interest" class="button">Join the interest list</a>
+                <a href="#featured-retreat" class="button-secondary">See Shavuos in Vermont</a>
               </div>
 
-              <aside class="hero-panel" data-reveal style="--delay: 160ms;">
-                <div class="hero-card glass interactive-card">
-                  <h2>Not just a retreat brand.</h2>
-                  <p>
-                    Hamsa Nomads is community infrastructure: a way for young Jews to find each other,
-                    ask better travel questions, and join meaningful experiences in new places.
-                  </p>
-                </div>
-
-                <div class="hero-chip-grid">
-                  <div class="hero-chip interactive-card">Ask before you go</div>
-                  <div class="hero-chip interactive-card">Connect when you arrive</div>
-                  <div class="hero-chip interactive-card">Join curated trips</div>
-                  <div class="hero-chip interactive-card">Build the network</div>
-                </div>
-              </aside>
+              <div class="hero-meta">
+                <span>WhatsApp community</span>
+                <span>Curated retreats</span>
+                <span>Travel tips</span>
+                <span>Cross-border Jewish network</span>
+              </div>
             </div>
 
-            <div class="motion-marquee" aria-hidden="true">
-              <div class="marquee-track">
-                <span class="marquee-item">Jewish travel community</span>
-                <span class="marquee-item">Kosher-minded trips</span>
-                <span class="marquee-item">Shabbat support</span>
-                <span class="marquee-item">Curated retreats</span>
-                <span class="marquee-item">Montreal • Ottawa • New York • beyond</span>
-                <span class="marquee-item">Jewish travel community</span>
-                <span class="marquee-item">Kosher-minded trips</span>
-                <span class="marquee-item">Shabbat support</span>
-                <span class="marquee-item">Curated retreats</span>
-                <span class="marquee-item">Montreal • Ottawa • New York • beyond</span>
+            <div class="hero-visual" data-reveal style="--delay: 120ms;">
+              <div class="hero-photo-card hero-photo-main interactive-card">
+                <img src="Image/hero.jpg" alt="Hamsa Nomads travel and retreat atmosphere" loading="eager" decoding="async" />
+              </div>
+              <div class="hero-photo-card hero-photo-small interactive-card">
+                <img src="Image/chill.jpg" alt="Warm lounge and community atmosphere" loading="lazy" decoding="async" />
+              </div>
+              <div class="hero-photo-card hero-photo-wide interactive-card">
+                <img src="Image/dining-space.jpg" alt="Shared meal and gathering space" loading="lazy" decoding="async" />
+              </div>
+
+              <div class="hero-form-card glass" id="community-interest">
+                <h2>Join the community list</h2>
+                <p>
+                  Leave your info and we’ll send the WhatsApp access link or next community update.
+                </p>
+                <form
+                  class="quick-form community-lead-form"
+                  action="https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+                  method="POST"
+                  target="community_iframe"
+                >
+                  <input type="hidden" name="submitted_at" class="submitted-at" />
+                  <input type="hidden" name="source_page" value="index.html" />
+                  <input type="hidden" name="interest_type" value="Hamsa Nomads WhatsApp Community" />
+
+                  <div class="quick-form-row">
+                    <input type="text" name="first_name" placeholder="First name *" required />
+                    <input type="text" name="last_name" placeholder="Last name *" required />
+                  </div>
+                  <div class="quick-form-row">
+                    <input type="email" name="email" placeholder="Email *" required />
+                    <input type="tel" name="phone" placeholder="Phone / WhatsApp *" required />
+                  </div>
+                  <input type="text" name="location" placeholder="City / community you’re joining from" />
+                  <button type="submit" class="quick-submit">Request access</button>
+                  <div class="quick-status" aria-live="polite"></div>
+                </form>
+                <iframe name="community_iframe" style="display:none;"></iframe>
               </div>
             </div>
           </div>
@@ -1441,26 +1428,25 @@ html = """<!DOCTYPE html>
       <section class="section" id="what-we-do">
         <div class="container">
           <div class="section-intro center" data-reveal>
-            <div class="eyebrow">What we do</div>
-            <h2>One brand. Three ways to enter.</h2>
+            <div class="eyebrow">What we’re building</div>
+            <h2>One home for Jewish travel, retreats, and community.</h2>
             <p>
-              Some people join through the WhatsApp community. Some come for a retreat.
-              Some follow future trips until the right one opens. All of it points to the same idea:
-              Jewish travel with more people, rhythm, and roots.
+              Hamsa Nomads has three entry points: join the travel community, come to a curated retreat,
+              or follow future trips as they open.
             </p>
           </div>
 
           <div class="activity-grid">
-            <a href="trips-page/Community.html" class="activity-card interactive-card" data-reveal>
+            <a href="#community" class="activity-card interactive-card" data-reveal>
               <div>
                 <span class="activity-number">01</span>
                 <h3>The travel community</h3>
                 <p>
-                  A WhatsApp-based network for Jewish travelers looking for advice, kosher food leads,
-                  Shabbat options, local contacts, and practical help before the trip starts.
+                  A reviewed WhatsApp-based space for Jewish travelers looking for kosher food leads,
+                  Shabbat options, local contacts, and practical trip advice.
                 </p>
               </div>
-              <span class="activity-link">Join the community →</span>
+              <span class="activity-link">Explore the community →</span>
             </a>
 
             <a href="#featured-retreat" class="activity-card interactive-card" data-reveal style="--delay: 80ms;">
@@ -1468,8 +1454,8 @@ html = """<!DOCTYPE html>
                 <span class="activity-number">02</span>
                 <h3>Curated retreats</h3>
                 <p>
-                  Small group holidays and weekends built around shared meals, Jewish atmosphere,
-                  meaningful programming, rest, nature, and real connection.
+                  Small group weekends and holidays built around shared meals, Jewish atmosphere,
+                  meaningful programming, nature, and real connection.
                 </p>
               </div>
               <span class="activity-link">Current retreat →</span>
@@ -1480,8 +1466,8 @@ html = """<!DOCTYPE html>
                 <span class="activity-number">03</span>
                 <h3>Upcoming trips</h3>
                 <p>
-                  City weekends, nature escapes, holiday retreats, and Jewish travel experiments
-                  shaped with the community as the network grows.
+                  City weekends, nature escapes, holiday retreats, and Jewish travel ideas shaped
+                  with the community as the network grows.
                 </p>
               </div>
               <span class="activity-link">See what’s next →</span>
@@ -1494,87 +1480,41 @@ html = """<!DOCTYPE html>
         <div class="container">
           <div class="community-shell" data-reveal>
             <div class="community-copy">
-              <div>
-                <div class="eyebrow">The WhatsApp community</div>
-                <h2>Ask before you go. Connect when you arrive.</h2>
-                <p>
-                  Jewish travel has questions most travel guides do not answer: where to eat, where to stay for Shabbat,
-                  who to ask, what is realistic, and whether there are other Jews nearby. Hamsa Nomads is building a reviewed,
-                  practical, community-first space for those questions.
-                </p>
-
-                <div class="community-tags">
-                  <span>Kosher food leads</span>
-                  <span>Shabbat logistics</span>
-                  <span>Local contacts</span>
-                  <span>Travel advice</span>
-                  <span>Community-first</span>
-                </div>
+              <div class="eyebrow">The WhatsApp community</div>
+              <h2>A Jewish travel group you can actually use.</h2>
+              <p>
+                This section is about the WhatsApp community — not the retreat. The goal is a practical Jewish travel space
+                where people can ask questions, share local knowledge, and find support before and during a trip.
+              </p>
+              <div class="community-tags">
+                <span>Kosher leads</span>
+                <span>Shabbat plans</span>
+                <span>Local contacts</span>
+                <span>Travel advice</span>
+                <span>Community updates</span>
               </div>
-
-              <div class="split-actions">
-                <a href="trips-page/Community.html" class="button-light">Join the WhatsApp community</a>
-                <a href="#safety" class="button-secondary">How we keep it intentional</a>
+              <div class="split-actions" style="margin-top: 24px;">
+                <a href="#community-interest" class="button-light">Request WhatsApp access</a>
+                <a href="trips-page/Community.html" class="button-secondary">Community page</a>
               </div>
             </div>
 
-            <div class="community-map" aria-label="Hamsa Nomads community map concept">
-              <svg class="map-line" viewBox="0 0 760 560" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M 44 104 C 152 54, 218 176, 322 134 S 488 34, 592 138 S 650 288, 706 252" />
-                <path d="M 70 434 C 174 352, 232 480, 350 416 S 526 272, 668 398" />
-                <path d="M 132 274 C 218 226, 286 308, 392 266 S 520 174, 632 238" />
-              </svg>
+            <div class="community-panel">
+              <article class="community-panel-card interactive-card">
+                <h3>Ask travel questions</h3>
+                <p>Where can I eat? Where can I stay for Shabbat? Is there a local group? What should I know before I go?</p>
+              </article>
 
-              <div class="community-note one interactive-card">
-                <h3>Before the trip</h3>
-                <p>Ask about food, neighborhoods, Shabbat plans, safety, transportation, and what is actually useful to know.</p>
-              </div>
+              <article class="community-panel-card interactive-card">
+                <h3>Share what helped</h3>
+                <p>Good tips should not disappear after one trip. Bring back the useful details and make the next traveler’s trip easier.</p>
+              </article>
 
-              <div class="community-note two interactive-card">
-                <h3>During the trip</h3>
-                <p>Find people, local context, last-minute ideas, and community when travel gets complicated.</p>
-              </div>
-
-              <div class="community-note three interactive-card">
-                <h3>After the trip</h3>
-                <p>Share what helped, leave better notes for the next traveler, and help the network become stronger.</p>
-              </div>
+              <article class="community-panel-card interactive-card">
+                <h3>Get invited into what’s next</h3>
+                <p>The community is also where future retreats, meetups, city weekends, and travel opportunities can start.</p>
+              </article>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="safety">
-        <div class="container">
-          <div class="section-intro" data-reveal>
-            <div class="eyebrow">Safety & trust</div>
-            <h2>A community should feel useful, not random.</h2>
-            <p>
-              Hamsa Nomads is not trying to be the biggest open chat on the internet.
-              The goal is a travel network that feels intentional, practical, and respectful enough to actually help people.
-            </p>
-          </div>
-
-          <div class="trust-grid">
-            <article class="trust-card interactive-card" data-reveal>
-              <h3>Reviewed entry</h3>
-              <p>Community access is reviewed before people are added, so the space stays more intentional and comfortable.</p>
-            </article>
-
-            <article class="trust-card interactive-card" data-reveal style="--delay: 80ms;">
-              <h3>Clear purpose</h3>
-              <p>The chats are for Jewish travel support: kosher, Shabbat, local advice, safety notes, and community connections.</p>
-            </article>
-
-            <article class="trust-card interactive-card" data-reveal style="--delay: 160ms;">
-              <h3>Better structure</h3>
-              <p>We start broad, then grow into region-specific chats as the community becomes active enough to support them.</p>
-            </article>
-
-            <article class="trust-card interactive-card" data-reveal style="--delay: 240ms;">
-              <h3>Human moderation</h3>
-              <p>The goal is to keep the space helpful, respectful, and aligned with the kind of community we want to build.</p>
-            </article>
           </div>
         </div>
       </section>
@@ -1619,34 +1559,31 @@ html = """<!DOCTYPE html>
         </div>
       </section>
 
-      <section class="section" id="how-it-works">
+      <section class="section" id="retreat-environment">
         <div class="container">
-          <div class="section-intro center" data-reveal>
-            <div class="eyebrow">How it works</div>
-            <h2>Join the network, then choose your doorway in.</h2>
+          <div class="section-intro" data-reveal>
+            <div class="eyebrow">Retreat environment</div>
+            <h2>The atmosphere matters.</h2>
             <p>
-              You do not need to wait for a big trip to be part of Hamsa Nomads. The community grows through small useful interactions,
-              real gatherings, and people bringing better information back into the network.
+              This is the part that belongs to the retreats: meals, house rhythm, games, learning, singing, pool and hot tub timing,
+              and the kind of space where people can actually connect without everything feeling forced.
             </p>
           </div>
 
-          <div class="steps-grid">
-            <article class="step-card interactive-card" data-reveal>
-              <span class="step-number">Step 01</span>
-              <h3>Request access</h3>
-              <p>Join the Hamsa Nomads travel community through the community page. Entry is reviewed so the space stays intentional.</p>
+          <div class="info-grid">
+            <article class="info-card interactive-card" data-reveal>
+              <h3>Shared meals</h3>
+              <p>Shabbos and holiday meals are part of the experience, with food cooked on site for the group.</p>
             </article>
 
-            <article class="step-card interactive-card" data-reveal style="--delay: 80ms;">
-              <span class="step-number">Step 02</span>
-              <h3>Ask, share, connect</h3>
-              <p>Use the network for practical Jewish travel questions, local leads, Shabbat planning, and community connection.</p>
+            <article class="info-card interactive-card" data-reveal style="--delay: 80ms;">
+              <h3>Separate pool moments</h3>
+              <p>Pool and hot tub time blocks are planned so guests can enjoy the amenities comfortably.</p>
             </article>
 
-            <article class="step-card interactive-card" data-reveal style="--delay: 160ms;">
-              <span class="step-number">Step 03</span>
-              <h3>Join what opens</h3>
-              <p>Apply for retreats, join interest lists for future trips, and help shape where the community goes next.</p>
+            <article class="info-card interactive-card" data-reveal style="--delay: 160ms;">
+              <h3>Real house time</h3>
+              <p>Games, conversations, coffee, tea, learning, rest, and the unplanned moments people remember.</p>
             </article>
           </div>
         </div>
@@ -1670,6 +1607,7 @@ html = """<!DOCTYPE html>
           <div class="hn-trip-slider" id="hnTripSlider">
             <article class="hn-trip-slide">
               <div class="hn-trip-card">
+                <div class="hn-trip-image" style="--trip-image: url('Image/hero.jpg');"></div>
                 <div class="hn-trip-body">
                   <h3 class="hn-trip-name">Loading trips...</h3>
                   <p class="hn-trip-copy">Pulling the upcoming trips from the trips page.</p>
@@ -1758,16 +1696,37 @@ html = """<!DOCTYPE html>
         <div class="container">
           <div class="final-cta-card glass" data-reveal>
             <div>
-              <h2>Start with the community.</h2>
+              <div class="eyebrow">Join the list</div>
+              <h2>Want in on what we’re building?</h2>
               <p>
-                Join the Hamsa Nomads travel network, then follow the retreats and trips as they open.
-                The goal is bigger than one weekend: a stronger Jewish travel ecosystem, built together.
+                Join the interest list and we’ll send the WhatsApp community access link or the next update.
+                You can also use this if you are interested in future trips, retreats, or helping shape the network.
               </p>
             </div>
-            <div class="card-actions">
-              <a href="trips-page/Community.html" class="button-light">Join the community</a>
-              <a href="trips-page/trips.html" class="button-secondary">See upcoming trips</a>
-            </div>
+
+            <form
+              class="quick-form community-lead-form"
+              action="https://script.google.com/macros/s/AKfycbwk3snIWX2JsBWfteS9Id3he28StXSSO795Uv9r-FDtajbcn_KMWh1EZg04EiaxoNWd/exec"
+              method="POST"
+              target="community_iframe_footer"
+            >
+              <input type="hidden" name="submitted_at" class="submitted-at" />
+              <input type="hidden" name="source_page" value="index.html footer" />
+              <input type="hidden" name="interest_type" value="Hamsa Nomads Community / Future Trips" />
+
+              <div class="quick-form-row">
+                <input type="text" name="first_name" placeholder="First name *" required />
+                <input type="text" name="last_name" placeholder="Last name *" required />
+              </div>
+              <div class="quick-form-row">
+                <input type="email" name="email" placeholder="Email *" required />
+                <input type="tel" name="phone" placeholder="Phone / WhatsApp *" required />
+              </div>
+              <textarea name="message" placeholder="What are you most interested in? Community, Shavuos, future trips, travel tips..."></textarea>
+              <button type="submit" class="quick-submit">Join the interest list</button>
+              <div class="quick-status" aria-live="polite"></div>
+            </form>
+            <iframe name="community_iframe_footer" style="display:none;"></iframe>
           </div>
         </div>
       </section>
@@ -1776,7 +1735,7 @@ html = """<!DOCTYPE html>
     <div id="site-footer"></div>
   </div>
 
-  <script src="assets/site-components.js?v=index-community-clean-2" data-base=""></script>
+  <script src="assets/site-components.js?v=index-v2-clear-community" data-base=""></script>
 
   <script>
     const HN_INSTAGRAM_API_URL = "https://hamsa-instagram-feed.hamsanomads.workers.dev/instagram-feed";
@@ -1994,7 +1953,7 @@ html = """<!DOCTYPE html>
         }
 
         function bringForward() {
-          const group = card.closest(".activity-grid, .trust-grid, .steps-grid, .community-map, .retreat-photo-grid, .live-vibe-shell, .hn-trip-slider, .hero-panel, .faq-strip") || document;
+          const group = card.closest(".activity-grid, .info-grid, .steps-grid, .community-panel, .retreat-photo-grid, .live-vibe-shell, .hn-trip-slider, .hero-visual, .faq-strip") || document;
           group.querySelectorAll(".is-front").forEach((item) => {
             if (item !== card) item.classList.remove("is-front");
           });
@@ -2009,26 +1968,6 @@ html = """<!DOCTYPE html>
         card.addEventListener("focus", bringForward);
         card.addEventListener("touchstart", bringForward, { passive: true });
       });
-    }
-
-    function hnInitHeroCarousel() {
-      const slides = Array.from(document.querySelectorAll(".hero-slide"));
-      if (slides.length <= 1) return;
-
-      let activeIndex = 0;
-
-      function showSlide(index) {
-        slides.forEach((slide, slideIndex) => {
-          slide.classList.toggle("is-active", slideIndex === index);
-        });
-      }
-
-      showSlide(activeIndex);
-
-      window.setInterval(() => {
-        activeIndex = (activeIndex + 1) % slides.length;
-        showSlide(activeIndex);
-      }, 24000);
     }
 
     async function loadRandomFaqFromPage() {
@@ -2089,9 +2028,11 @@ html = """<!DOCTYPE html>
       if (!slider) return;
 
       const tripsPageUrl = "trips-page/trips.html";
+      const fallbackImages = ["Image/hero.jpg", "Image/chill.jpg", "Image/dining-space.jpg", "Image/exterior.png", "Image/pool.png"];
 
-      function cardHTML(trip) {
-        const imageStyle = trip.image ? `--trip-image: url('${escapeText(trip.image)}');` : "";
+      function cardHTML(trip, index) {
+        const image = trip.image || fallbackImages[index % fallbackImages.length];
+        const imageStyle = `--trip-image: url('${escapeText(image)}');`;
 
         return `
           <article class="hn-trip-slide">
@@ -2157,7 +2098,7 @@ html = """<!DOCTYPE html>
         const baseUrl = new URL(tripsPageUrl, window.location.href);
         const cards = Array.from(doc.querySelectorAll(".bento-grid .bento-card:not(.bento-cta-card)"));
 
-        return cards.map((card) => {
+        return cards.map((card, index) => {
           const imageEl = card.querySelector(".bento-image");
           const title = cleanText(card.querySelector(".bento-title")?.textContent);
           const meta = cleanText(card.querySelector(".bento-meta")?.textContent);
@@ -2165,8 +2106,8 @@ html = """<!DOCTYPE html>
           const badge = cleanText(imageEl?.querySelector(".bento-badge")?.textContent) || "Upcoming";
           const status = cleanText(card.querySelector(".bento-status")?.textContent) || "Planning in progress";
           const imageStyle = imageEl?.getAttribute("style") || imageEl?.style?.backgroundImage || "";
-          const match = String(imageStyle || "").match(/url\\((['"]?)(.*?)\\1\\)/i);
-          const image = match && match[2] ? new URL(match[2], baseUrl).href : "";
+          const match = String(imageStyle || "").match(/url\((['"]?)(.*?)\1\)/i);
+          const image = match && match[2] ? new URL(match[2], baseUrl).href : fallbackImages[index % fallbackImages.length];
 
           return { title, meta, text, badge, status, image };
         }).filter((trip) => trip.title);
@@ -2183,11 +2124,38 @@ html = """<!DOCTYPE html>
             renderFallbackTrips();
             return;
           }
-
           slider.innerHTML = trips.map(cardHTML).join("");
           hnInitInteractiveCards();
         })
         .catch(renderFallbackTrips);
+    }
+
+    function hnInitLeadForms() {
+      const forms = document.querySelectorAll(".community-lead-form");
+
+      forms.forEach((form) => {
+        const submit = form.querySelector(".quick-submit");
+        const status = form.querySelector(".quick-status");
+        const submittedAt = form.querySelector(".submitted-at");
+
+        form.addEventListener("submit", () => {
+          if (submittedAt) submittedAt.value = new Date().toISOString();
+          if (submit) {
+            submit.disabled = true;
+            submit.textContent = "Sending...";
+          }
+          if (status) status.textContent = "Sending your request...";
+
+          setTimeout(() => {
+            form.reset();
+            if (submit) {
+              submit.disabled = false;
+              submit.textContent = submit.closest("#final-cta") ? "Join the interest list" : "Request access";
+            }
+            if (status) status.textContent = "Thank you — we received your request.";
+          }, 1100);
+        });
+      });
     }
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -2198,10 +2166,10 @@ html = """<!DOCTYPE html>
 
       safeInit("reveals", hnInitReveals);
       safeInit("interactive cards", hnInitInteractiveCards);
-      safeInit("hero carousel", hnInitHeroCarousel);
       safeInit("instagram feed", hnLoadInstagramFeed);
       safeInit("FAQ preview", loadRandomFaqFromPage);
       safeInit("trips preview", hnInitTripsPreview);
+      safeInit("lead forms", hnInitLeadForms);
 
       const refreshButton = document.getElementById("hnInstagramRefresh");
       if (refreshButton) refreshButton.addEventListener("click", hnRenderInstagramFeed);
@@ -2214,8 +2182,3 @@ html = """<!DOCTYPE html>
   </script>
 </body>
 </html>
-"""
-
-path = Path("/mnt/data/index_hamsa_nomads_clean.html")
-path.write_text(html, encoding="utf-8")
-print(path, path.stat().st_size)
