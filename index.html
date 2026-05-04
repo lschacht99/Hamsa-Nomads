@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Hamsa Nomads — Shavuos in Vermont</title>
+  <meta name="description" content="A small curated Shavuos retreat for Jewish young adults in a private Vermont home — kosher meals, mountain air, learning, games, and community." />
+  <link rel="canonical" href="https://www.hamsanomads.com/" />
+
+  <!-- Social sharing preview: WhatsApp, Facebook, iMessage, LinkedIn -->
+  <meta property="og:site_name" content="Hamsa Nomads" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.hamsanomads.com/" />
+  <meta property="og:title" content="Hamsa Nomads — Shavuos in Vermont" />
+  <meta property="og:description" content="A small curated Shavuos retreat for Jewish young adults in a private Vermont home — kosher meals, mountain air, learning, games, and community." />
+  <meta property="og:image" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
+  <meta property="og:image:secure_url" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Hamsa Nomads Shavuos retreat in Vermont" />
+  <link rel="image_src" href="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
+
+  <!-- X / Twitter sharing preview -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hamsa Nomads — Shavuos in Vermont" />
+  <meta name="twitter:description" content="A small curated Shavuos retreat for Jewish young adults in a private Vermont home." />
+  <meta name="twitter:image" content="https://www.hamsanomads.com/Image/social-preview-shavuos-v2.jpg" />
 
   <link rel="icon" href="/favicon.ico?v=5" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico?v=5" type="image/x-icon">
@@ -2921,10 +2944,10 @@
                   <div class="hero-chip interactive-card">Pool + hot tub</div>
                 </div>
 
-                <div class="countdown-card" id="earlyBirdCountdown" aria-label="Early bird pricing countdown">
+                <div class="countdown-card" id="earlyBirdCountdown" aria-label="Retreat date countdown">
                   <div class="countdown-top">
-                    <span>Early bird pricing</span>
-                    <strong>Ends May 3</strong>
+                    <span>When is it</span>
+                    <strong>May 21</strong>
                   </div>
 
                   <div class="countdown-row">
@@ -3421,6 +3444,41 @@
       return "Post";
     }
 
+    function hnNormalizeInstagramPosts(posts) {
+      const seen = new Set();
+
+      return (Array.isArray(posts) ? posts : [])
+        .map((post) => {
+          const image =
+            post.thumbnail_url ||
+            post.media_url ||
+            post.image ||
+            "";
+
+          const url =
+            post.permalink ||
+            post.url ||
+            "https://www.instagram.com/hamsanomads/";
+
+          return {
+            id: String(post.id || url || image),
+            caption: post.caption || "",
+            type: post.media_type || post.type || "IMAGE",
+            image,
+            url,
+            timestamp: post.timestamp || ""
+          };
+        })
+        .filter((post) => {
+          const key = post.id || post.url || post.image;
+
+          if (!post.image || !key || seen.has(key)) return false;
+
+          seen.add(key);
+          return true;
+        });
+    }
+
     function hnShuffleInstagramPosts() {
       return [...hnInstagramLivePosts].sort(() => Math.random() - 0.5);
     }
@@ -3504,7 +3562,7 @@
       const grid = document.getElementById("hnInstagramGrid");
 
       try {
-        const response = await fetch(HN_INSTAGRAM_API_URL, { cache: "no-store" });
+        const response = await fetch(`${HN_INSTAGRAM_API_URL}?site_cache_bust=${Date.now()}`, { cache: "no-store" });
 
         if (!response.ok) {
           throw new Error("Instagram feed request failed.");
@@ -3523,7 +3581,7 @@
           link.href = data.profileUrl || "https://www.instagram.com/hamsanomads/";
         });
 
-        hnInstagramLivePosts = Array.isArray(data.posts) ? data.posts : [];
+        hnInstagramLivePosts = hnNormalizeInstagramPosts(data.posts);
 
         if (!hnInstagramLivePosts.length) {
           throw new Error("No Instagram posts found.");
@@ -4092,7 +4150,7 @@
     }
 
     function hnInitCountdown() {
-      const deadline = new Date("2026-05-03T23:59:59-04:00").getTime();
+      const deadline = new Date("2026-05-21T00:00:00-04:00").getTime();
 
       const daysEl = document.getElementById("early-days");
       const hoursEl = document.getElementById("early-hours");
@@ -4102,25 +4160,33 @@
 
       if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
+      let timer = null;
+
+      function showStartedState() {
+        daysEl.textContent = "00";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+
+        if (countdownWrap) {
+          const header = countdownWrap.querySelector(".countdown-top");
+
+          if (header) {
+            header.innerHTML = "<span>When is it</span><strong>It starts today</strong>";
+          }
+        }
+
+        if (timer) {
+          clearInterval(timer);
+        }
+      }
+
       function updateCountdown() {
         const now = new Date().getTime();
         const distance = deadline - now;
 
         if (distance <= 0) {
-          daysEl.textContent = "00";
-          hoursEl.textContent = "00";
-          minutesEl.textContent = "00";
-          secondsEl.textContent = "00";
-
-          if (countdownWrap) {
-            const header = countdownWrap.querySelector(".countdown-top");
-
-            if (header) {
-              header.innerHTML = "<span>Early bird pricing</span><strong>Has ended</strong>";
-            }
-          }
-
-          clearInterval(timer);
+          showStartedState();
           return;
         }
 
@@ -4136,7 +4202,7 @@
       }
 
       updateCountdown();
-      const timer = setInterval(updateCountdown, 1000);
+      timer = setInterval(updateCountdown, 1000);
     }
 
     function hnInitShare() {
@@ -4191,16 +4257,24 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-      hnInitReveals();
-      hnInitInteractiveCards();
-      hnInitHeroCarousel();
-      hnInitRhythmTabs();
-      hnInitLoungeNotes();
-      hnInitCountdown();
-      hnInitShare();
-      hnLoadInstagramFeed();
-      loadRandomFaqFromPage();
-      hnInitTrips();
+      function safeInit(name, fn) {
+        try {
+          fn();
+        } catch (error) {
+          console.error("Hamsa page init failed:", name, error);
+        }
+      }
+
+      safeInit("reveals", hnInitReveals);
+      safeInit("interactive cards", hnInitInteractiveCards);
+      safeInit("hero carousel", hnInitHeroCarousel);
+      safeInit("rhythm tabs", hnInitRhythmTabs);
+      safeInit("lounge notes", hnInitLoungeNotes);
+      safeInit("countdown", hnInitCountdown);
+      safeInit("share", hnInitShare);
+      safeInit("instagram feed", hnLoadInstagramFeed);
+      safeInit("FAQ preview", loadRandomFaqFromPage);
+      safeInit("trips slider", hnInitTrips);
 
       const refreshButton = document.getElementById("hnInstagramRefresh");
       if (refreshButton) {
@@ -4215,5 +4289,6 @@
       });
     });
   </script>
+
 </body>
 </html>
