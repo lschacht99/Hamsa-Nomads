@@ -839,8 +839,8 @@
           </div>
 
           <div class="field">
-            <label for="phone">Phone *</label>
-            <input id="phone" name="phone" type="tel" required>
+            <label for="numberOfPeople">How many people? *</label>
+            <input id="numberOfPeople" name="numberOfPeople" type="number" min="1" step="1" required placeholder="Example: 2">
           </div>
 
           <div class="field full">
@@ -869,8 +869,7 @@
           <div class="field amount-field">
             <label for="amountPaid">Final Amount Due</label>
             <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
-            <input id="numberOfPeople" name="numberOfPeople" type="hidden">
-            <div class="amount-helper">Your spot is confirmed once this payment is received and verified.</div>
+            <div class="amount-helper">Your spot is confirmed once payment is received.</div>
           </div>
 
           <div class="field full payment-method-wrap">
@@ -884,16 +883,14 @@
 
             <div id="paymentReminder" class="payment-reminder">
               <strong>Before sending:</strong><br>
-              Please send payment to this number:<br>
-              <span>3479888869</span>
+              Use the payment details shown at the top of this page.
               <small>
-                Account name: <strong>Leah Schachter</strong><br>
-                Memo / note: <strong>Your full name + Shavuos</strong>
+                Please include your full name in the memo so we can match your payment quickly.
               </small>
             </div>
 
             <p class="payment-note">
-              Please send payment by Zelle or Venmo to <strong>3479888869</strong>. The account name should show as <strong>Leah Schachter</strong>. In the memo, write your <strong>full name + Shavuos</strong> so we can match the payment to your reservation.
+              Send your payment using the details above, then upload the confirmation below.
             </p>
           </div>
 
@@ -977,6 +974,7 @@
 
     const reservationType = document.getElementById("reservationType");
     const amountPaid = document.getElementById("amountPaid");
+    const numberOfPeople = document.getElementById("numberOfPeople");
     const discountCode = document.getElementById("discountCode");
     const discountMessage = document.getElementById("discountMessage");
     const discountSubnote = document.getElementById("discountSubnote");
@@ -1019,6 +1017,11 @@
     function HN_cleanMoney(value) {
       const number = Number(String(value || "").replace(/[^0-9.]/g, ""));
       return isNaN(number) ? 0 : number;
+    }
+
+    function HN_cleanPeopleCount(value) {
+      const number = parseInt(String(value || "").replace(/[^0-9]/g, ""), 10);
+      return isNaN(number) || number < 1 ? 0 : number;
     }
 
     function HN_normalize(value) {
@@ -1103,7 +1106,6 @@
       HN_setValueById("firstName", data.firstName);
       HN_setValueById("lastName", data.lastName);
       HN_setValueById("email", data.email);
-      HN_setValueById("phone", data.phone);
       HN_setValueById("numberOfPeople", data.people);
 
       const prefillAmount = HN_cleanMoney(data.amount);
@@ -1136,18 +1138,24 @@
       const selectedOption = reservationType.options[reservationType.selectedIndex];
       const basePrice = Number(selectedOption.dataset.price || 0);
       const prefillAmount = HN_cleanMoney(HN_PREFILL_DATA.amount);
+      const peopleCount = HN_cleanPeopleCount(numberOfPeople.value);
       const code = discountCode.value.trim();
 
-      const finalBasePrice =
-        HN_usingPrefillAmount && prefillAmount > 0
-          ? prefillAmount
-          : basePrice;
+      const isPrivateSuite = reservationType.value === "Private Suite — One Queen Bed";
 
-      currentOriginalPrice = finalBasePrice;
-      currentFinalPrice = finalBasePrice;
+      let calculatedTotal = 0;
+
+      if (HN_usingPrefillAmount && prefillAmount > 0) {
+        calculatedTotal = prefillAmount;
+      } else if (basePrice > 0 && peopleCount > 0) {
+        calculatedTotal = isPrivateSuite ? basePrice : basePrice * peopleCount;
+      }
+
+      currentOriginalPrice = calculatedTotal;
+      currentFinalPrice = calculatedTotal;
       currentDiscountStatus = code.length > 0 ? "Pending verification" : "No code entered";
 
-      amountPaid.value = finalBasePrice > 0 ? formatMoney(finalBasePrice) : "";
+      amountPaid.value = calculatedTotal > 0 ? formatMoney(calculatedTotal) : "";
 
       if (code.length > 0) {
         discountMessage.classList.add("show");
@@ -1163,6 +1171,16 @@
         HN_usingPrefillAmount = false;
       }
 
+      calculatePrice();
+    });
+
+    numberOfPeople.addEventListener("input", function () {
+      HN_usingPrefillAmount = false;
+      calculatePrice();
+    });
+
+    numberOfPeople.addEventListener("change", function () {
+      HN_usingPrefillAmount = false;
       calculatePrice();
     });
 
@@ -1238,6 +1256,10 @@
           throw new Error("Please choose a payment method.");
         }
 
+        if (!HN_cleanPeopleCount(numberOfPeople.value)) {
+          throw new Error("Please enter how many people this payment is for.");
+        }
+
         if (!file) {
           throw new Error("Please upload your payment confirmation.");
         }
@@ -1259,7 +1281,7 @@
           firstName: document.getElementById("firstName").value.trim(),
           lastName: document.getElementById("lastName").value.trim(),
           email: document.getElementById("email").value.trim(),
-          phone: document.getElementById("phone").value.trim(),
+          phone: "",
           numberOfPeople: document.getElementById("numberOfPeople").value.trim(),
           reservationType: reservationType.value,
           originalPrice: formatMoney(currentOriginalPrice),
