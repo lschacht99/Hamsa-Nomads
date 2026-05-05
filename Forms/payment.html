@@ -150,7 +150,7 @@
     }
 
     .payment-info {
-      max-width: 360px;
+      max-width: 520px;
       margin: 24px auto 0;
       display: grid;
       grid-template-columns: 1fr;
@@ -158,10 +158,10 @@
     }
 
     .payment-pill {
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      border-radius: 22px;
-      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      border-radius: 24px;
+      padding: 18px 20px;
       box-shadow: 0 12px 28px rgba(34, 54, 44, 0.08);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -179,7 +179,22 @@
     }
 
     .payment-pill strong {
-      font-size: 22px;
+      display: block;
+      font-size: 24px;
+      color: var(--green);
+      letter-spacing: 0.02em;
+    }
+
+    .payment-pill-details {
+      margin-top: 12px;
+      display: grid;
+      gap: 5px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(30, 42, 36, 0.72);
+    }
+
+    .payment-pill-details b {
       color: var(--green);
     }
 
@@ -285,6 +300,65 @@
       color: var(--green);
     }
 
+    .notice-card {
+      padding: 18px 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(33, 72, 58, 0.10), rgba(200, 155, 79, 0.12));
+      border: 1px solid rgba(33, 72, 58, 0.14);
+      color: rgba(30, 42, 36, 0.78);
+      line-height: 1.62;
+      font-size: 14px;
+    }
+
+    .notice-card strong {
+      color: var(--green);
+    }
+
+    .notice-card-title {
+      display: block;
+      color: var(--green);
+      font-weight: 900;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .amount-field {
+      align-self: stretch;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.48);
+      border: 1px solid rgba(33, 72, 58, 0.13);
+      box-shadow: 0 14px 34px rgba(34, 54, 44, 0.08);
+    }
+
+    .amount-field label {
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      color: rgba(33, 72, 58, 0.72);
+    }
+
+    .amount-field input[readonly] {
+      min-height: 74px;
+      border-radius: 22px;
+      text-align: right;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1;
+      color: var(--green);
+      background: rgba(255, 255, 255, 0.70);
+      border-color: rgba(200, 155, 79, 0.35);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .amount-helper {
+      text-align: right;
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(30, 42, 36, 0.64);
+    }
+
     .discount-message {
       display: none;
       width: fit-content;
@@ -323,14 +397,18 @@
       font-size: 14px;
       color: rgba(30, 42, 36, 0.72);
       margin: 6px 0 0;
-      line-height: 1.45;
+      line-height: 1.55;
+    }
+
+    .payment-note strong {
+      color: var(--green);
     }
 
     .payment-reminder {
       position: absolute;
       right: 12px;
       top: -22px;
-      max-width: 300px;
+      max-width: 340px;
       background: rgba(255, 255, 255, 0.94);
       border: 1px solid rgba(33, 72, 58, 0.18);
       box-shadow: 0 16px 38px rgba(33, 72, 58, 0.16);
@@ -357,28 +435,21 @@
       color: var(--gold);
     }
 
+    .payment-reminder small {
+      display: block;
+      margin-top: 8px;
+      color: rgba(30, 42, 36, 0.70);
+      line-height: 1.45;
+    }
+
     .payment-reminder.show {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
 
-    .notice-card {
-      padding: 16px 17px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.34);
-      border: 1px solid rgba(33, 72, 58, 0.10);
-      color: rgba(30, 42, 36, 0.74);
-      line-height: 1.62;
-      font-size: 14px;
-    }
-
-    .notice-card strong {
-      color: var(--green);
-    }
-
     .upload-box {
-      border: 1px dashed rgba(33, 72, 58, 0.35);
-      background: rgba(255, 255, 255, 0.45);
+      border: 1px dashed rgba(33, 72, 58, 0.30);
+      background: rgba(255, 255, 255, 0.46);
       border-radius: 22px;
       padding: 18px;
     }
@@ -394,8 +465,8 @@
       margin-top: 10px;
       padding: 10px 12px;
       border-radius: 16px;
-      background: rgba(33, 72, 58, 0.07);
-      color: rgba(30, 42, 36, 0.76);
+      background: rgba(33, 72, 58, 0.06);
+      color: rgba(30, 42, 36, 0.74);
       font-size: 13px;
       line-height: 1.45;
     }
@@ -679,6 +750,12 @@
         margin-top: 10px;
       }
 
+      .amount-field label,
+      .amount-field input[readonly],
+      .amount-helper {
+        text-align: left;
+      }
+
       .submit-row {
         align-items: stretch;
         flex-direction: column;
@@ -717,19 +794,23 @@
   <main class="page">
     <section class="hero">
       <div class="payment-hero-gif">
-        <img src="https://www.hamsanomads.com/Image/confirm_your_spot_cream.gif" alt="Confirm your Shavuot spot">
+        <img src="https://www.hamsanomads.com/Image/confirm_your_spot_cream.gif" alt="Confirm your Shavuos spot">
       </div>
 
-      <div class="eyebrow">Next Step: Secure Your Shavuot Spot</div>
-      <h1>You’re One Step Closer to Shavuot</h1>
+      <div class="eyebrow">Next Step: Secure Your Shavuos Spot</div>
+      <h1>You’re One Step Closer to Shavuos</h1>
       <p>
-        You’ve made it through the application step. To secure your spot, please send your payment by Zelle or Venmo, then upload your proof of payment below.
+        You’ve made it through the application step. To reserve your spot, please send your payment by Zelle or Venmo, then upload your payment confirmation below.
       </p>
 
       <div class="payment-info">
         <div class="payment-pill">
           <span>Zelle / Venmo</span>
           <strong>3479888869</strong>
+          <div class="payment-pill-details">
+            <div><b>Account name:</b> Leah Schachter</div>
+            <div><b>Memo / note:</b> Your full name + Shavuos</div>
+          </div>
         </div>
       </div>
     </section>
@@ -737,6 +818,11 @@
     <section class="form-card">
       <form id="paymentForm">
         <div class="grid">
+          <div class="notice-card">
+            <span class="notice-card-title">Application approved does not mean your spot is reserved yet.</span>
+            Your place is confirmed only after payment is received and verified. To keep room assignments and food planning fair, unpaid spots may be released as we finalize the retreat.
+          </div>
+
           <div class="field">
             <label for="firstName">First Name *</label>
             <input id="firstName" name="firstName" type="text" required>
@@ -774,16 +860,17 @@
           </div>
 
           <div class="field">
-            <label for="amountPaid">Amount to Pay</label>
-            <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
-            <input id="numberOfPeople" name="numberOfPeople" type="hidden">
-          </div>
-
-          <div class="field">
             <label for="discountCode">Discount Code</label>
             <input id="discountCode" name="discountCode" type="text" placeholder="Optional">
-            <div id="discountMessage" class="discount-message">Discount entered</div>
-            <div id="discountSubnote" class="discount-subnote">Code will be verified after submission.</div>
+            <div id="discountMessage" class="discount-message">Discount Code Applied</div>
+            <div id="discountSubnote" class="discount-subnote">We’ll verify your discount code before confirming your final balance.</div>
+          </div>
+
+          <div class="field amount-field">
+            <label for="amountPaid">Final Amount Due</label>
+            <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
+            <input id="numberOfPeople" name="numberOfPeople" type="hidden">
+            <div class="amount-helper">Your spot is confirmed once this payment is received and verified.</div>
           </div>
 
           <div class="field full payment-method-wrap">
@@ -797,29 +884,32 @@
 
             <div id="paymentReminder" class="payment-reminder">
               <strong>Before sending:</strong><br>
-              Did you send the payment to the correct number?<br>
+              Please send payment to this number:<br>
               <span>3479888869</span>
+              <small>
+                Account name: <strong>Leah Schachter</strong><br>
+                Memo / note: <strong>Your full name + Shavuos</strong>
+              </small>
             </div>
 
             <p class="payment-note">
-              Please send payment by Zelle or Venmo to <strong>3479888869</strong>.
+              Please send payment by Zelle or Venmo to <strong>3479888869</strong>. The account name should show as <strong>Leah Schachter</strong>. In the memo, write your <strong>full name + Shavuos</strong> so we can match the payment to your reservation.
             </p>
           </div>
 
           <div class="field full">
-            <label for="proofFile">Upload Screenshot / Proof of Payment *</label>
+            <label for="proofFile">Upload Payment Confirmation *</label>
             <div class="upload-box">
               <input id="proofFile" name="proofFile" type="file" accept="image/*,.pdf" required>
 
               <div class="upload-note">
-                Upload a screenshot, photo, or PDF showing the payment confirmation.
+                Screenshot, photo, or PDF accepted. Just upload something that shows the payment went through.
               </div>
 
               <div class="upload-format-note">
-                Please rename your file before uploading using this format:
-                <strong>FirstName_LastName</strong>
+                If possible, include your name in the file name so we can match it faster.
                 <br>
-                Example: <strong>Sarah_Cohen</strong>
+                Example: <strong>Sarah_Cohen_payment</strong>
               </div>
             </div>
           </div>
@@ -849,7 +939,7 @@
         </div>
 
         <div class="submit-row">
-          <button id="submitBtn" type="submit">Submit Payment Proof</button>
+          <button id="submitBtn" type="submit">Submit Payment Confirmation</button>
           <div id="status" class="status"></div>
         </div>
 
@@ -871,7 +961,7 @@
       </div>
 
       <h2>Thank you</h2>
-      <p>Your payment proof was submitted. You should receive a confirmation email shortly.</p>
+      <p>Your payment confirmation was submitted. You should receive a confirmation email shortly.</p>
       <button type="button" id="closePopupBtn">Close</button>
     </div>
   </div>
@@ -1149,7 +1239,7 @@
         }
 
         if (!file) {
-          throw new Error("Please upload a proof of payment screenshot.");
+          throw new Error("Please upload your payment confirmation.");
         }
 
         if (!termsBox || !termsBox.checked) {
@@ -1210,7 +1300,7 @@
         statusEl.classList.add("error");
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Payment Proof";
+        submitBtn.textContent = "Submit Payment Confirmation";
       }
     });
   </script>
