@@ -285,6 +285,24 @@
       resize: vertical;
     }
 
+    .notice-card {
+      padding: 18px 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(33, 72, 58, 0.10), rgba(200, 155, 79, 0.12));
+      border: 1px solid rgba(33, 72, 58, 0.14);
+      color: rgba(30, 42, 36, 0.78);
+      line-height: 1.62;
+      font-size: 14px;
+    }
+
+    .notice-card-title {
+      display: block;
+      color: var(--green);
+      font-weight: 900;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
     .room-note {
       margin-top: -8px;
       padding: 14px 16px;
@@ -298,28 +316,6 @@
 
     .room-note strong {
       color: var(--green);
-    }
-
-    .notice-card {
-      padding: 18px 18px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, rgba(33, 72, 58, 0.10), rgba(200, 155, 79, 0.12));
-      border: 1px solid rgba(33, 72, 58, 0.14);
-      color: rgba(30, 42, 36, 0.78);
-      line-height: 1.62;
-      font-size: 14px;
-    }
-
-    .notice-card strong {
-      color: var(--green);
-    }
-
-    .notice-card-title {
-      display: block;
-      color: var(--green);
-      font-weight: 900;
-      font-size: 15px;
-      margin-bottom: 5px;
     }
 
     .amount-field {
@@ -389,19 +385,11 @@
       display: block;
     }
 
-    .payment-method-wrap {
-      position: relative;
-    }
-
     .payment-note {
       font-size: 14px;
       color: rgba(30, 42, 36, 0.72);
       margin: 6px 0 0;
       line-height: 1.55;
-    }
-
-    .payment-note strong {
-      color: var(--green);
     }
 
     .payment-reminder {
@@ -789,7 +777,7 @@
       <div class="eyebrow">Next Step: Secure Your Shavuos Spot</div>
       <h1>You’re One Step Closer to Shavuos</h1>
       <p>
-        You’ve made it through the application step. To reserve your spot, please send your payment by Zelle or Venmo, then upload your payment confirmation below.
+        Your payment page is personalized from your approved application. Please send your payment by Zelle or Venmo, then upload your payment confirmation below.
       </p>
 
       <div class="payment-info">
@@ -827,24 +815,18 @@
           </div>
 
           <div class="field full">
-            <label for="reservationType">Reservation Type *</label>
-            <select id="reservationType" name="reservationType" required>
-              <option value="">Select an option</option>
-              <option value="Shared Full Bed — Shared Room" data-price="500">$500/person — Shared full bed in a shared room</option>
-              <option value="Bunk Bed — Shared Room" data-price="550">$550/person — Bunk bed in a shared room</option>
-              <option value="Twin Bed — Shared Room" data-price="650">$650/person — Twin bed in a shared room</option>
-              <option value="Private Suite — One Queen Bed" data-price="1350">$1,350/suite — Private suite with one queen bed</option>
-              <option value="Camping Spot" data-price="350">$350/person — Camping spot</option>
-            </select>
+            <label for="reservationTypeDisplay">Reservation</label>
+            <input id="reservationTypeDisplay" type="text" readonly placeholder="Loaded from your payment link">
+            <input id="reservationType" name="reservationType" type="hidden" required>
           </div>
 
           <div class="field full">
-            <label for="numberOfPeople">How many people? *</label>
-            <input id="numberOfPeople" name="numberOfPeople" type="number" min="1" step="1" required>
+            <label for="numberOfPeople">Number of People</label>
+            <input id="numberOfPeople" name="numberOfPeople" type="number" min="1" step="1" required readonly>
           </div>
 
           <div class="room-note">
-            <strong>Pricing note:</strong> All prices are per person, except the <strong>Private Suite</strong>, which is priced for the private suite and includes <strong>one queen bed</strong>.
+            <strong>Reservation note:</strong> These details come from your approved application email. If something looks wrong, reply to the email before paying.
           </div>
 
           <div class="field">
@@ -857,7 +839,7 @@
           <div class="field amount-field">
             <label for="amountPaid">Final Amount Due</label>
             <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
-            <div class="amount-helper">Calculated from your reservation type and number of people.</div>
+            <div class="amount-helper">Based on the approved details in your payment email.</div>
           </div>
 
           <div class="field full payment-method-wrap">
@@ -962,6 +944,7 @@
     const submitBtn = document.getElementById("submitBtn");
 
     const reservationType = document.getElementById("reservationType");
+    const reservationTypeDisplay = document.getElementById("reservationTypeDisplay");
     const amountPaid = document.getElementById("amountPaid");
     const numberOfPeople = document.getElementById("numberOfPeople");
     const discountCode = document.getElementById("discountCode");
@@ -980,9 +963,6 @@
 
     const HN_PREFILL_DATA = HN_getPaymentPrefillData();
 
-    let HN_isApplyingPrefill = false;
-    let HN_usingPrefillAmount = false;
-
     function formatMoney(number) {
       return "$" + Number(number || 0).toFixed(2);
     }
@@ -996,6 +976,7 @@
         email: params.get("email") || "",
         phone: params.get("phone") || "",
         amount: params.get("amount") || params.get("totalPrice") || "",
+        displayAmount: params.get("displayAmount") || "",
         reservation: params.get("reservation") || "",
         reservationType: params.get("reservationType") || "",
         bedType: params.get("bedType") || "",
@@ -1023,7 +1004,6 @@
 
     function HN_setValueById(id, value) {
       const field = document.getElementById(id);
-
       if (!field || !value) return;
 
       field.value = value;
@@ -1031,113 +1011,71 @@
       field.dispatchEvent(new Event("change", { bubbles: true }));
     }
 
-    function HN_findReservationOption(data) {
-      const options = Array.from(reservationType.options);
+    function HN_buildReservationText(data) {
+      const reservation = String(data.reservation || "").trim();
+      const reservationTypeText = String(data.reservationType || "").trim();
+      const bedTypeText = String(data.bedType || "").trim();
 
-      const reservationText = HN_normalize(
-        [
-          data.reservation,
-          data.reservationType,
-          data.bedType
-        ].filter(Boolean).join(" ")
+      if (reservation) return reservation;
+      if (reservationTypeText && bedTypeText && HN_normalize(reservationTypeText) !== HN_normalize(bedTypeText)) {
+        return reservationTypeText + " — " + bedTypeText;
+      }
+
+      return reservationTypeText || bedTypeText || "";
+    }
+
+    function HN_getBasePriceFromReservationText(data) {
+      const text = HN_normalize(
+        [data.reservation, data.reservationType, data.bedType, reservationType.value]
+          .filter(Boolean)
+          .join(" ")
       );
 
-      const amountNumber = HN_cleanMoney(data.amount);
+      if (text.includes("private") || text.includes("suite") || text.includes("queen")) return 1350;
+      if (text.includes("camp")) return 350;
+      if (text.includes("twin")) return 650;
+      if (text.includes("bunk")) return 550;
+      if (text.includes("shared full") || text.includes("full bed")) return 500;
 
-      let match = null;
+      return 0;
+    }
 
-      if (reservationText) {
-        match = options.find(option => {
-          const optionText = HN_normalize(option.textContent);
-          const optionValue = HN_normalize(option.value);
+    function HN_isPrivateSuiteReservation(data) {
+      const text = HN_normalize(
+        [data.reservation, data.reservationType, data.bedType, reservationType.value]
+          .filter(Boolean)
+          .join(" ")
+      );
 
-          return (
-            optionText.includes(reservationText) ||
-            reservationText.includes(optionText) ||
-            optionValue.includes(reservationText) ||
-            reservationText.includes(optionValue)
-          );
-        });
-      }
-
-      if (!match && data.bedType) {
-        const bedText = HN_normalize(data.bedType);
-
-        match = options.find(option => {
-          const optionText = HN_normalize(option.textContent);
-          const optionValue = HN_normalize(option.value);
-
-          return optionText.includes(bedText) || optionValue.includes(bedText);
-        });
-      }
-
-      if (!match && data.reservationType) {
-        const reservationTypeText = HN_normalize(data.reservationType);
-
-        match = options.find(option => {
-          const optionText = HN_normalize(option.textContent);
-          const optionValue = HN_normalize(option.value);
-
-          return optionText.includes(reservationTypeText) || optionValue.includes(reservationTypeText);
-        });
-      }
-
-      if (!match && amountNumber > 0) {
-        match = options.find(option => Number(option.dataset.price || 0) === amountNumber);
-      }
-
-      return match;
+      return text.includes("private") || text.includes("suite") || text.includes("queen");
     }
 
     function HN_applyPrefillData() {
       const data = HN_PREFILL_DATA;
+      const reservationText = HN_buildReservationText(data);
 
       HN_setValueById("firstName", data.firstName);
       HN_setValueById("lastName", data.lastName);
       HN_setValueById("email", data.email);
-      HN_setValueById("numberOfPeople", data.people);
-
-      const prefillAmount = HN_cleanMoney(data.amount);
-
-      if (prefillAmount > 0) {
-        HN_usingPrefillAmount = true;
-        currentOriginalPrice = prefillAmount;
-        currentFinalPrice = prefillAmount;
-        amountPaid.value = formatMoney(prefillAmount);
-      }
-
-      const matchingOption = HN_findReservationOption(data);
-
-      if (matchingOption) {
-        HN_isApplyingPrefill = true;
-        reservationType.value = matchingOption.value;
-        reservationType.dispatchEvent(new Event("change", { bubbles: true }));
-        HN_isApplyingPrefill = false;
-      }
-
-      if (prefillAmount > 0) {
-        HN_usingPrefillAmount = true;
-        currentOriginalPrice = prefillAmount;
-        currentFinalPrice = prefillAmount;
-        amountPaid.value = formatMoney(prefillAmount);
-      }
+      HN_setValueById("numberOfPeople", data.people || "1");
+      HN_setValueById("reservationType", data.reservationType || data.reservation || data.bedType);
+      HN_setValueById("reservationTypeDisplay", reservationText);
     }
 
     function calculatePrice() {
-      const selectedOption = reservationType.options[reservationType.selectedIndex];
-      const basePrice = Number(selectedOption.dataset.price || 0);
       const prefillAmount = HN_cleanMoney(HN_PREFILL_DATA.amount);
       const peopleCount = HN_cleanPeopleCount(numberOfPeople.value);
+      const basePrice = HN_getBasePriceFromReservationText(HN_PREFILL_DATA);
       const code = discountCode.value.trim();
-
-      const isPrivateSuite = reservationType.value === "Private Suite — One Queen Bed";
 
       let calculatedTotal = 0;
 
-      if (HN_usingPrefillAmount && prefillAmount > 0) {
+      if (prefillAmount > 0) {
         calculatedTotal = prefillAmount;
       } else if (basePrice > 0 && peopleCount > 0) {
-        calculatedTotal = isPrivateSuite ? basePrice : basePrice * peopleCount;
+        calculatedTotal = HN_isPrivateSuiteReservation(HN_PREFILL_DATA)
+          ? basePrice
+          : basePrice * peopleCount;
       }
 
       currentOriginalPrice = calculatedTotal;
@@ -1154,24 +1092,6 @@
         discountSubnote.classList.remove("show");
       }
     }
-
-    reservationType.addEventListener("change", function () {
-      if (!HN_isApplyingPrefill) {
-        HN_usingPrefillAmount = false;
-      }
-
-      calculatePrice();
-    });
-
-    numberOfPeople.addEventListener("input", function () {
-      HN_usingPrefillAmount = false;
-      calculatePrice();
-    });
-
-    numberOfPeople.addEventListener("change", function () {
-      HN_usingPrefillAmount = false;
-      calculatePrice();
-    });
 
     discountCode.addEventListener("input", calculatePrice);
 
@@ -1228,15 +1148,19 @@
         const termsBox = document.getElementById("termsAccepted");
 
         if (!reservationType.value) {
-          throw new Error("Please choose a reservation type.");
+          throw new Error("This payment link is missing the reservation details. Please use the personalized link from your email or contact us.");
+        }
+
+        if (!HN_cleanPeopleCount(numberOfPeople.value)) {
+          throw new Error("This payment link is missing the number of people. Please use the personalized link from your email or contact us.");
+        }
+
+        if (!currentFinalPrice || currentFinalPrice <= 0) {
+          throw new Error("This payment link is missing the final amount. Please use the personalized link from your email or contact us.");
         }
 
         if (!paymentMethod.value) {
           throw new Error("Please choose a payment method.");
-        }
-
-        if (!HN_cleanPeopleCount(numberOfPeople.value)) {
-          throw new Error("Please enter how many people this payment is for.");
         }
 
         if (!file) {
@@ -1260,8 +1184,8 @@
           firstName: document.getElementById("firstName").value.trim(),
           lastName: document.getElementById("lastName").value.trim(),
           email: document.getElementById("email").value.trim(),
-          phone: "",
-          numberOfPeople: document.getElementById("numberOfPeople").value.trim(),
+          phone: HN_PREFILL_DATA.phone || "",
+          numberOfPeople: numberOfPeople.value.trim(),
           reservationType: reservationType.value,
           originalPrice: formatMoney(currentOriginalPrice),
           discountCode: discountCode.value.trim(),
