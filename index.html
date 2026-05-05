@@ -5091,6 +5091,39 @@ Request received. Opening WhatsApp...
       });
     });
   </script>
+<!-- Hamsa HQ private visit tracking: page views only -->
+<script>
+(function () {
+  const HN_TRACK_URL = "https://hamsa-hq-telegram.hamsanomads.workers.dev/api/track";
 
+  const params = new URLSearchParams(window.location.search);
+
+  const payload = {
+    event_type: "pageview",
+    click_type: "website_visit",
+    path: window.location.pathname || "/",
+    url: window.location.href,
+    referrer: document.referrer || "",
+    campaign_code: params.get("hn") || "",
+    utm_source: params.get("utm_source") || "",
+    utm_medium: params.get("utm_medium") || "",
+    utm_campaign: params.get("utm_campaign") || "",
+    language: navigator.language || "",
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+    screen_size: window.screen ? `${window.screen.width}x${window.screen.height}` : ""
+  };
+
+  fetch(HN_TRACK_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload),
+    keepalive: true
+  }).catch(function () {
+    // Tracking should never break the website.
+  });
+})();
+</script>
 </body>
 </html>
