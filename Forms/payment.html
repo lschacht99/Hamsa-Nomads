@@ -405,25 +405,21 @@
     }
 
     .payment-reminder {
-      position: absolute;
-      right: 12px;
-      top: -22px;
-      max-width: 340px;
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid rgba(33, 72, 58, 0.18);
-      box-shadow: 0 16px 38px rgba(33, 72, 58, 0.16);
+      display: none;
+      margin-top: 12px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(33, 72, 58, 0.15);
+      box-shadow: 0 14px 32px rgba(33, 72, 58, 0.10);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 20px;
-      padding: 14px 16px;
+      padding: 15px 16px;
       color: var(--green);
       font-size: 14px;
       line-height: 1.45;
       opacity: 0;
-      transform: translateY(8px) scale(0.98);
-      pointer-events: none;
+      transform: translateY(6px);
       transition: opacity 0.25s ease, transform 0.25s ease;
-      z-index: 20;
     }
 
     .payment-reminder span {
@@ -443,8 +439,9 @@
     }
 
     .payment-reminder.show {
+      display: block;
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
 
     .upload-box {
@@ -742,14 +739,6 @@
         margin-bottom: 22px;
       }
 
-      .payment-reminder {
-        position: relative;
-        right: auto;
-        top: auto;
-        max-width: none;
-        margin-top: 10px;
-      }
-
       .amount-field label,
       .amount-field input[readonly],
       .amount-helper {
@@ -883,9 +872,10 @@
 
             <div id="paymentReminder" class="payment-reminder">
               <strong>Before sending:</strong><br>
-              Use the payment details shown at the top of this page.
+              Send payment to <span>3479888869</span>
               <small>
-                Please include your full name in the memo so we can match your payment quickly.
+                Account name: <strong>Leah Schachter</strong><br>
+                Memo / note: <strong>Your full name + Shavuos</strong>
               </small>
             </div>
 
@@ -1186,22 +1176,12 @@
 
     discountCode.addEventListener("input", calculatePrice);
 
-    paymentMethod.addEventListener("focus", () => {
-      paymentReminder.classList.add("show");
-    });
-
     paymentMethod.addEventListener("change", () => {
-      paymentReminder.classList.add("show");
-
-      setTimeout(() => {
+      if (paymentMethod.value) {
+        paymentReminder.classList.add("show");
+      } else {
         paymentReminder.classList.remove("show");
-      }, 6500);
-    });
-
-    paymentMethod.addEventListener("blur", () => {
-      setTimeout(() => {
-        paymentReminder.classList.remove("show");
-      }, 4500);
+      }
     });
 
     closePopupBtn.addEventListener("click", () => {
