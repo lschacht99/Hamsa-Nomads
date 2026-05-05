@@ -833,14 +833,9 @@
             <input id="lastName" name="lastName" type="text" required>
           </div>
 
-          <div class="field">
+          <div class="field full">
             <label for="email">Email *</label>
             <input id="email" name="email" type="email" required>
-          </div>
-
-          <div class="field">
-            <label for="numberOfPeople">How many people? *</label>
-            <input id="numberOfPeople" name="numberOfPeople" type="number" min="1" step="1" required placeholder="Example: 2">
           </div>
 
           <div class="field full">
@@ -853,6 +848,11 @@
               <option value="Private Suite — One Queen Bed" data-price="1350">$1,350/suite — Private suite with one queen bed</option>
               <option value="Camping Spot" data-price="350">$350/person — Camping spot</option>
             </select>
+          </div>
+
+          <div class="field full">
+            <label for="numberOfPeople">How many people? *</label>
+            <input id="numberOfPeople" name="numberOfPeople" type="number" min="1" step="1" required>
           </div>
 
           <div class="room-note">
@@ -869,7 +869,7 @@
           <div class="field amount-field">
             <label for="amountPaid">Final Amount Due</label>
             <input id="amountPaid" name="amountPaid" type="text" readonly placeholder="$0.00">
-            <div class="amount-helper">Your spot is confirmed once payment is received.</div>
+            <div class="amount-helper">Calculated from your reservation type and number of people.</div>
           </div>
 
           <div class="field full payment-method-wrap">
@@ -900,7 +900,7 @@
               <input id="proofFile" name="proofFile" type="file" accept="image/*,.pdf" required>
 
               <div class="upload-note">
-                Screenshot, photo, or PDF accepted. Just upload something that shows the payment went through.
+                Screenshot, photo, or PDF accepted. Upload something that shows the payment went through.
               </div>
 
               <div class="upload-format-note">
@@ -941,7 +941,7 @@
         </div>
 
         <p class="tiny">
-          Your reservation is confirmed only after we verify your payment and discount code, if used.
+          Discount codes are reviewed before final confirmation.
         </p>
       </form>
     </section>
