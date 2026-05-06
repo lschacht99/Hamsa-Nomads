@@ -5091,39 +5091,267 @@ Request received. Opening WhatsApp...
       });
     });
   </script>
-<!-- Hamsa HQ private visit tracking: page views only -->
+<!-- Hamsa HQ private visit tracking: live visitors, cities, clicks, forms, UTMs -->
 <script>
 (function () {
   const HN_TRACK_URL = "https://hamsa-hq-telegram.hamsanomads.workers.dev/api/track";
+  const HEARTBEAT_MS = 30000;
 
-  const params = new URLSearchParams(window.location.search);
+  function makeId(prefix) {
+    if (window.crypto && crypto.randomUUID) {
+      return prefix + "_" + crypto.randomUUID();
+    }
 
-  const payload = {
-    event_type: "pageview",
-    click_type: "website_visit",
-    path: window.location.pathname || "/",
-    url: window.location.href,
-    referrer: document.referrer || "",
-    campaign_code: params.get("hn") || "",
-    utm_source: params.get("utm_source") || "",
-    utm_medium: params.get("utm_medium") || "",
-    utm_campaign: params.get("utm_campaign") || "",
-    language: navigator.language || "",
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
-    screen_size: window.screen ? `${window.screen.width}x${window.screen.height}` : ""
-  };
+    return prefix + "_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2);
+  }
 
-  fetch(HN_TRACK_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload),
-    keepalive: true
-  }).catch(function () {
-    // Tracking should never break the website.
+  function getVisitorId() {
+    try {
+      let id = localStorage.getItem("hn_visitor_id");
+      if (!id) {
+        id = makeId("v");
+        localStorage.setItem("hn_visitor_id", id);
+      }
+      return id;
+    } catch (error) {
+      return makeId("v");
+    }
+  }
+
+  function getSessionId() {
+    try {
+      let id = sessionStorage.getItem("hn_session_id");
+      if (!id) {
+        id = makeId("s");
+        sessionStorage.setItem("hn_session_id", id);
+      }
+      return id;
+    } catch (error) {
+      return makeId("s");
+    }
+  }
+
+  function getParams() {
+    const params = new URLSearchParams(window.location.search);
+
+    return {
+      hn: params.get("hn") || "",
+      utm_source: params.get("utm_source") || "",
+      utm_medium: params.get("utm_medium") || "",
+      utm_campaign: params.get("utm_campaign") || "",
+      utm_content: params.get("utm_content") || "",
+      utm_term: params.get("utm_term") || ""
+    };
+  }
+
+  const visitorId = getVisitorId();
+  const sessionId = getSessionId();
+  const firstSeenAt = Date.now();
+  const params = getParams();
+
+  function getBasePayload() {
+    return {
+      site: "hamsanomads",
+      visitor_id: visitorId,
+      session_id: sessionId,
+
+      url: window.location.href,
+      path: window.location.pathname || "/",
+      title: document.title || "",
+      referrer: document.referrer || "",
+
+      campaign_code: params.hn,
+      utm_source: params.utm_source,
+      utm_medium: params.utm_medium,
+      utm_campaign: params.utm_campaign,
+      utm_content: params.utm_content,
+      utm_term: params.utm_term,
+
+      language: navigator.language || "",
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+      screen_size: window.screen ? `${window.screen.width}x${window.screen.height}` : "",
+      viewport_size: `${window.innerWidth || 0}x${window.innerHeight || 0}`,
+      user_agent: navigator.userAgent || "",
+
+      seconds_on_page: Math.round((Date.now() - firstSeenAt) / 1000),
+      page_visible: document.visibilityState === "visible"
+    };
+  }
+
+  function sendTrack(eventType, extra, useBeacon) {
+    const payload = Object.assign({}, getBasePayload(), extra || {}, {
+      event_type: eventType,
+      timestamp: new Date().toISOString()
+    });
+
+    try {
+      if (useBeacon && navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify(payload)], {
+          type: "application/json"
+        });
+
+        navigator.sendBeacon(HN_TRACK_URL, blob);
+        return;
+      }
+
+      fetch(HN_TRACK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(function () {
+        // Tracking should never break the website.
+      });
+    } catch (error) {
+      // Tracking should never break the website.
+    }
+  }
+
+  function cleanText(value) {
+    return String(value || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 160);
+  }
+
+  function getClickType(element) {
+    const href = element.getAttribute("href") || "";
+    const id = element.id || "";
+    const classes = element.className || "";
+
+    if (href.includes("Forms/apply.html")) return "apply_click";
+    if (href.includes("Forms/payment.html")) return "payment_click";
+    if (href.includes("chat.whatsapp.com")) return "whatsapp_direct_click";
+    if (element.classList.contains("js-whatsapp-access")) return "whatsapp_access_click";
+    if (href.includes("instagram.com")) return "instagram_click";
+    if (href.includes("faq.html")) return "faq_click";
+    if (href.includes("trips-page")) return "trips_click";
+    if (id === "hnInstagramRefresh") return "instagram_shuffle_click";
+    if (element.classList.contains("hn-trip-cta")) return "trip_interest_click";
+    if (classes && String(classes).includes("share")) return "share_click";
+    if (element.tagName && element.tagName.toLowerCase() === "button") return "button_click";
+    if (href) return "link_click";
+
+    return "unknown_click";
+  }
+
+  function trackClick(event) {
+    const target = event.target;
+    if (!target || !target.closest) return;
+
+    const element = target.closest("a, button, [data-hn-track]");
+    if (!element) return;
+
+    const href = element.getAttribute("href") || "";
+    const trackLabel = element.getAttribute("data-hn-track") || "";
+    const tripName = element.getAttribute("data-trip") || "";
+
+    sendTrack("click", {
+      click_type: getClickType(element),
+      target_text: cleanText(trackLabel || element.textContent || element.getAttribute("aria-label")),
+      target_href: href,
+      target_id: element.id || "",
+      target_classes: typeof element.className === "string" ? element.className.slice(0, 220) : "",
+      trip_interest: tripName
+    });
+  }
+
+  function trackFormSubmit(event) {
+    const form = event.target;
+    if (!form || !form.id) return;
+
+    if (form.id === "whatsappAccessForm") {
+      sendTrack("form_submit", {
+        form_type: "whatsapp_access",
+        click_type: "whatsapp_access_form_submit"
+      });
+    }
+
+    if (form.id === "tripForm") {
+      const tripInterest = document.getElementById("tripInterest");
+
+      sendTrack("form_submit", {
+        form_type: "trip_interest",
+        click_type: "trip_interest_form_submit",
+        trip_interest: tripInterest ? tripInterest.value : ""
+      });
+    }
+  }
+
+  const scrollDepthsSent = {};
+
+  function trackScrollDepth() {
+    const doc = document.documentElement;
+    const body = document.body;
+
+    const scrollTop = window.scrollY || doc.scrollTop || body.scrollTop || 0;
+    const scrollHeight = Math.max(
+      body.scrollHeight || 0,
+      doc.scrollHeight || 0,
+      body.offsetHeight || 0,
+      doc.offsetHeight || 0
+    );
+
+    const viewportHeight = window.innerHeight || doc.clientHeight || 0;
+    const possibleScroll = scrollHeight - viewportHeight;
+
+    if (possibleScroll <= 0) return;
+
+    const depth = Math.round((scrollTop / possibleScroll) * 100);
+    const marks = [25, 50, 75, 90];
+
+    marks.forEach(function (mark) {
+      if (depth >= mark && !scrollDepthsSent[mark]) {
+        scrollDepthsSent[mark] = true;
+
+        sendTrack("scroll_depth", {
+          scroll_depth: mark,
+          click_type: "scroll_" + mark
+        });
+      }
+    });
+  }
+
+  function sendHeartbeat() {
+    if (document.visibilityState !== "visible") return;
+
+    sendTrack("heartbeat", {
+      click_type: "live_heartbeat"
+    });
+  }
+
+  document.addEventListener("click", trackClick, true);
+  document.addEventListener("submit", trackFormSubmit, true);
+  window.addEventListener("scroll", trackScrollDepth, { passive: true });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") {
+      sendTrack("page_visible", {
+        click_type: "page_visible"
+      });
+    } else {
+      sendTrack("page_hidden", {
+        click_type: "page_hidden"
+      }, true);
+    }
   });
+
+  window.addEventListener("pagehide", function () {
+    sendTrack("page_exit", {
+      click_type: "page_exit"
+    }, true);
+  });
+
+  sendTrack("pageview", {
+    click_type: "website_visit"
+  });
+
+  setTimeout(sendHeartbeat, 4000);
+  setInterval(sendHeartbeat, HEARTBEAT_MS);
 })();
 </script>
+
 </body>
 </html>
