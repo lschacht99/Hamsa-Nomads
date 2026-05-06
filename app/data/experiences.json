@@ -1,0 +1,81 @@
+[
+  {
+    "id": "vermont-shavuos",
+    "type": "Retreat",
+    "title": "Shavuos Retreat in Vermont",
+    "location": "Vermont Mountains",
+    "date": "May 21–24",
+    "price": "Starting at $350",
+    "accent": "sage",
+    "audience": "Young adults & young professionals",
+    "short": "A small house-weekend style Shavuos retreat with learning, meals, minyan, nature, and real community.",
+    "description": "A curated Shavuos retreat in a beautiful private home in the Vermont mountains. Think indoors-first comfort, optional camping, learning that feels conversational, meals, minyan, games, nature, and a growing cross-border Jewish network.",
+    "details": [
+      { "label": "Group", "value": "Small curated group" },
+      { "label": "Vibe", "value": "Low-key, meaningful, social" },
+      { "label": "Stay", "value": "Indoor rooms + camping" },
+      { "label": "Access", "value": "Around 4 hours from NYC" }
+    ],
+    "included": [
+      "Shavuos meals and cheesecake moments",
+      "Minyan and warm holiday rhythm",
+      "Discussion-based learning and late-night conversations",
+      "Game room, pool, hot tub, nature, and flexible hangout time",
+      "A young Jewish network across cities and borders"
+    ],
+    "ctaLabel": "Apply for the Retreat",
+    "ctaUrlKey": "applyUrl"
+  },
+  {
+    "id": "whatsapp-community",
+    "type": "Community",
+    "title": "Jewish Travel WhatsApp Circle",
+    "location": "Global / Reviewed Access",
+    "date": "Open now",
+    "price": "Free to request",
+    "accent": "sand",
+    "audience": "Jewish and kosher travelers outside the +972 bubble",
+    "short": "A safer travel circle for kosher info, local life, and real community wherever you go.",
+    "description": "A reviewed-access community for travelers who need kosher travel information, local Jewish life, and practical support across cities. Built for people who travel and want reliable entry points, not random open links.",
+    "details": [
+      { "label": "Access", "value": "Reviewed" },
+      { "label": "Focus", "value": "Kosher travel + community" },
+      { "label": "Regions", "value": "North America, Europe, Israel, beyond" },
+      { "label": "Tone", "value": "Useful, safe, human" }
+    ],
+    "included": [
+      "City tips and travel notes",
+      "Kosher food and Shabbat planning help",
+      "Community entry points while traveling",
+      "A safer structure than random public groups"
+    ],
+    "ctaLabel": "Request WhatsApp Access",
+    "ctaUrl": "community.html"
+  },
+  {
+    "id": "local-shabbat",
+    "type": "Shabbat Experience",
+    "title": "Local Shabbat Table",
+    "location": "Pilot concept",
+    "date": "Coming later",
+    "price": "By host / city",
+    "accent": "clay",
+    "audience": "Travelers looking for warm local connection",
+    "short": "A future feature for vetted Shabbat meals, local hosts, and community introductions.",
+    "description": "This is a placeholder concept page for a future Hamsa Nomads service: helping travelers find meaningful, safe, reviewed Shabbat experiences through local community partners.",
+    "details": [
+      { "label": "Status", "value": "Concept" },
+      { "label": "Format", "value": "Vetted introductions" },
+      { "label": "Best for", "value": "Travelers" },
+      { "label": "Trust", "value": "Reviewed access" }
+    ],
+    "included": [
+      "Host-style Shabbat options",
+      "Local recommendations",
+      "Community-first matching",
+      "Safety and fit review before sharing private details"
+    ],
+    "ctaLabel": "Join the Community First",
+    "ctaUrl": "community.html"
+  }
+]
