@@ -1,0 +1,16 @@
+{
+  "headline": "Join the Hamsa Nomads travel circle",
+  "subheadline": "Request access to the WhatsApp community for Jewish and kosher travelers.",
+  "safetyNote": "Access is reviewed manually before invite links are shared.",
+  "fields": [
+    "First name",
+    "Last name",
+    "Age",
+    "Phone / WhatsApp",
+    "Email",
+    "Where are you based?",
+    "Tell us a little about you"
+  ],
+  "successTitle": "Request sent",
+  "successBody": "We received your request and will review it shortly."
+}
