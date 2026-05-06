@@ -1,0 +1,16 @@
+{
+  "headline": "Request access to the Hamsa Nomads travel circle",
+  "subheadline": "For Jewish and kosher travelers looking for local info, community, and safer on-the-road connection.",
+  "safetyNote": "For safety, access is reviewed before invite links are shared.",
+  "fields": [
+    "First name",
+    "Last name",
+    "Age",
+    "Phone / WhatsApp",
+    "Email",
+    "Where are you based?",
+    "Tell us a little about you"
+  ],
+  "successTitle": "Request received",
+  "successBody": "We review access so the community stays useful, safe, and human."
+}

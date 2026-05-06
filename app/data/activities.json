@@ -1,0 +1,96 @@
+[
+  {
+    "id": "vermont-ai-escape-game",
+    "title": "The Mountain House Mystery",
+    "type": "AI-built escape game",
+    "status": "future-paid",
+    "access": "paid",
+    "priceDisplay": "Paid access later",
+    "location": "Retreat house / custom venue",
+    "duration": "60\u201390 minutes",
+    "players": "4\u201312 players",
+    "difficulty": "Adaptable",
+    "accent": "sage",
+    "short": "A place-based mystery game generated around the house, rooms, paths, and group vibe.",
+    "description": "A future paid Hamsa Nomads activity layer: an AI-assisted escape game built around the real location. The app will hold the story, clue flow, hints, locked reveals, and host instructions.",
+    "launchNote": "Keep this as a coming-soon paid layer for launch. Do not block the retreat launch with payments or complex AI generation yet.",
+    "included": [
+      "Story setup based on the specific place",
+      "Host instructions and clue order",
+      "Timed hints and locked reveals",
+      "Printable clue assets later",
+      "Optional Shabbat-friendly / no-writing mode"
+    ],
+    "aiBuildInputs": [
+      "Venue name and city",
+      "Room list and outdoor areas",
+      "Number of players",
+      "Age range and group vibe",
+      "Time available",
+      "Objects available at the place",
+      "Shabbat / chag restrictions if relevant"
+    ]
+  },
+  {
+    "id": "city-secret-route-game",
+    "title": "Secret Route City Game",
+    "type": "Paid city mission",
+    "status": "future-paid",
+    "access": "paid",
+    "priceDisplay": "Paid access later",
+    "location": "City guide layer",
+    "duration": "45\u201375 minutes",
+    "players": "Solo or small group",
+    "difficulty": "Easy / medium",
+    "accent": "sand",
+    "short": "A walking-route game that turns a Jewish travel guide into a mini mission.",
+    "description": "A future paid activity that can sit on top of a city guide. Users unlock a route, follow clues, discover local context, and finish with a community or food recommendation.",
+    "launchNote": "Use this as a premium future feature after the guide library starts getting traction.",
+    "included": [
+      "Route-based clue flow",
+      "Map-style checkpoints later",
+      "Local story prompts",
+      "Final reveal or reward",
+      "Optional group version"
+    ],
+    "aiBuildInputs": [
+      "City and neighborhood",
+      "Start/end points",
+      "Stops or landmarks",
+      "Safety constraints",
+      "Religious/community notes",
+      "Desired tone: funny, mysterious, premium, family-friendly"
+    ]
+  },
+  {
+    "id": "shabbat-table-mystery-kit",
+    "title": "Shabbat Table Mystery Kit",
+    "type": "Hosted table game",
+    "status": "future-paid",
+    "access": "paid",
+    "priceDisplay": "Paid access later",
+    "location": "Retreats / Shabbat dinners",
+    "duration": "30\u201360 minutes",
+    "players": "6\u201314 players",
+    "difficulty": "Social / light logic",
+    "accent": "clay",
+    "short": "A no-writing mystery game designed for Shabbat meals and retreat tables.",
+    "description": "A future paid downloadable or app-unlocked activity for hosts. It can be customized around the group, the city, and the meal, while staying Shabbat-friendly.",
+    "launchNote": "Good second paid product after the first retreat-based activity proves demand.",
+    "included": [
+      "Character cards",
+      "No-writing clue tracking mode",
+      "Host script",
+      "Conversation prompts",
+      "Multiple endings later"
+    ],
+    "aiBuildInputs": [
+      "Meal context",
+      "Number of players",
+      "Level of observance constraints",
+      "Humor level",
+      "Preferred theme",
+      "Languages needed"
+    ]
+  }
+]

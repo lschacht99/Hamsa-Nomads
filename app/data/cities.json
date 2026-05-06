@@ -1,0 +1,142 @@
+[
+  {
+    "id": "jerusalem",
+    "name": "Jerusalem",
+    "country": "Israel",
+    "subtitle": "Culture, history & hidden gems",
+    "region": "Middle East",
+    "accent": "sand",
+    "heroLabel": "old stone streets, rooftop views, meaningful Shabbat tables",
+    "tags": ["Kosher Food", "Shabbat", "History", "Local Tips"],
+    "stats": [
+      { "label": "Guide style", "value": "Curated" },
+      { "label": "Best for", "value": "Meaning" },
+      { "label": "Community", "value": "Strong" }
+    ],
+    "description": "A grounded guide to Jerusalem through food, history, community, learning, and quieter local details beyond the obvious tourist path.",
+    "sections": [
+      {
+        "title": "Start with a neighborhood, not a checklist",
+        "body": "Choose one area and move slowly. Jerusalem is better when the day has room for wandering, conversations, and small discoveries."
+      },
+      {
+        "title": "Shabbat rhythm",
+        "body": "Plan meals, walking distance, and community contacts before the city shuts down. Leave Friday afternoon intentionally light."
+      },
+      {
+        "title": "Local note",
+        "body": "Ask people where they actually go, not only what appears on travel lists. The best recommendations often come from a friend of a friend."
+      }
+    ],
+    "places": [
+      { "type": "Food", "name": "Kosher food cluster", "note": "Build this out with your favorite restaurants and price notes." },
+      { "type": "Shabbat", "name": "Host / meal options", "note": "Add vetted hosts, shuls, or community dinner notes." },
+      { "type": "Travel", "name": "Walking-friendly plan", "note": "Add neighborhood walking routes and taxi/transport notes." }
+    ]
+  },
+  {
+    "id": "montreal",
+    "name": "Montreal",
+    "country": "Canada",
+    "subtitle": "Kosher life, winter charm & cross-border community",
+    "region": "North America",
+    "accent": "sage",
+    "heroLabel": "bagels, old streets, warm homes, French-English community",
+    "tags": ["Kosher Food", "Community", "Shabbat", "Cross-Border"],
+    "stats": [
+      { "label": "Guide style", "value": "Local" },
+      { "label": "Best for", "value": "Community" },
+      { "label": "Language", "value": "EN/FR" }
+    ],
+    "description": "A guide for travelers moving between Montreal, Ottawa, Albany, New York, and the wider Northeast Jewish network.",
+    "sections": [
+      {
+        "title": "A natural Hamsa Nomads hub",
+        "body": "Montreal works well as a bridge between French-speaking Jewish life, student networks, young professionals, and Northeast travel."
+      },
+      {
+        "title": "Food and neighborhood notes",
+        "body": "Use this section for kosher restaurants, bakeries, grocery spots, eruv notes, and what is easiest without a car."
+      },
+      {
+        "title": "Community angle",
+        "body": "Frame Montreal as part of the bigger cross-border circle, not just a destination."
+      }
+    ],
+    "places": [
+      { "type": "Food", "name": "Kosher staples", "note": "Add bakeries, restaurants, and Shabbat prep notes." },
+      { "type": "Community", "name": "Young adult networks", "note": "Add orgs, events, WhatsApp leads, and contact rules." },
+      { "type": "Transport", "name": "Cross-border travel", "note": "Add bus, train, carpool, and border notes." }
+    ]
+  },
+  {
+    "id": "nyc",
+    "name": "New York City",
+    "country": "United States",
+    "subtitle": "Young Jewish life, food, events & movement",
+    "region": "North America",
+    "accent": "clay",
+    "heroLabel": "subways, packed tables, late-night events, neighborhood energy",
+    "tags": ["Events", "Kosher Food", "Young Adults", "Shabbat"],
+    "stats": [
+      { "label": "Guide style", "value": "Dense" },
+      { "label": "Best for", "value": "Events" },
+      { "label": "Pace", "value": "Fast" }
+    ],
+    "description": "A practical city guide for young Jewish travelers looking for kosher food, Shabbat options, meetups, and real social entry points.",
+    "sections": [
+      {
+        "title": "Use neighborhoods as chapters",
+        "body": "Separate Manhattan, Brooklyn, Queens, Five Towns, and nearby suburbs so the guide does not become overwhelming."
+      },
+      {
+        "title": "Events first",
+        "body": "For NYC, a live/upcoming events section may be more valuable than a static tourist guide."
+      },
+      {
+        "title": "Trust matters",
+        "body": "Keep group links, hosts, and private community contacts reviewed rather than fully open."
+      }
+    ],
+    "places": [
+      { "type": "Events", "name": "Young adult calendar", "note": "Add live events, recurring meetups, and community organizers." },
+      { "type": "Food", "name": "Kosher map", "note": "Add restaurants by neighborhood and late-night options." },
+      { "type": "Shabbat", "name": "Meal pathways", "note": "Add official programs, hosts, and safe request process." }
+    ]
+  },
+  {
+    "id": "lisbon",
+    "name": "Lisbon",
+    "country": "Portugal",
+    "subtitle": "Jewish heritage, ocean air & slow travel",
+    "region": "Europe",
+    "accent": "sand",
+    "heroLabel": "tiles, hills, ocean light, Jewish memory, quiet routes",
+    "tags": ["Heritage", "Travel", "Food", "Slow Travel"],
+    "stats": [
+      { "label": "Guide style", "value": "Editorial" },
+      { "label": "Best for", "value": "Slow travel" },
+      { "label": "Mood", "value": "Soft" }
+    ],
+    "description": "A softer travel guide for Jewish heritage, local tips, and thoughtful wandering through Lisbon and nearby Portugal routes.",
+    "sections": [
+      {
+        "title": "Heritage without rushing",
+        "body": "Make room for context, memory, and place. This page can become a beautiful editorial guide, not just logistics."
+      },
+      {
+        "title": "Practical notes",
+        "body": "Add kosher availability, Shabbat feasibility, walking routes, and where community is accessible."
+      },
+      {
+        "title": "Nomad layer",
+        "body": "Connect Lisbon to broader Europe travel and Jewish travelers looking for community on the road."
+      }
+    ],
+    "places": [
+      { "type": "Heritage", "name": "Jewish history route", "note": "Add museums, neighborhoods, and contextual stops." },
+      { "type": "Food", "name": "Kosher planning", "note": "Add what is easy, what needs advance planning, and grocery notes." },
+      { "type": "Travel", "name": "Day trips", "note": "Add Sintra, coast, and other relevant routes." }
+    ]
+  }
+]
