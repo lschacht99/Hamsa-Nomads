@@ -5020,7 +5020,19 @@ Request received. Opening WhatsApp...
       const form = document.getElementById("heroQuickBookingForm");
       if (!form) return;
 
+      const heroAgeInput = document.getElementById("heroAge");
+      if (heroAgeInput) {
+        heroAgeInput.removeAttribute("max");
+        heroAgeInput.setAttribute("min", "18");
+        heroAgeInput.setCustomValidity("");
+      }
+
       form.addEventListener("submit", function (event) {
+        const heroAgeInput = document.getElementById("heroAge");
+        if (heroAgeInput) {
+          heroAgeInput.removeAttribute("max");
+          heroAgeInput.setCustomValidity("");
+        }
         event.preventDefault();
 
         const firstName = document.getElementById("heroFirstName")?.value?.trim() || "";
