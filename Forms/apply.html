@@ -1367,15 +1367,18 @@
       "remaining" is the number of people that can still fit in that stay option.
       Set remaining: 0 to show Sold out.
       Set remaining: null for options that should stay open, like "Not sure yet".
+      The exact number remaining is only shown publicly when 2 or fewer spots are left.
     */
     const STAY_AVAILABILITY = {
-      "Camping Spot": { remaining: 12, urgentAt: 5 },
-      "Shared Full Bed - Shared Room": { remaining: 4, urgentAt: 3 },
-      "Bunk Bed - Shared Room": { remaining: 6, urgentAt: 3 },
-      "Twin Bed - Shared Room": { remaining: 2, urgentAt: 2 },
-      "Private Suite": { remaining: 2, urgentAt: 2 },
+      "Camping Spot": { remaining: 5, urgentAt: 3 },
+      "Shared Full Bed - Shared Room": { remaining: 10, urgentAt: 5 },
+      "Bunk Bed - Shared Room": { remaining: 0, urgentAt: 3 },
+      "Twin Bed - Shared Room": { remaining: 9, urgentAt: 2 },
+      "Private Suite": { remaining: 1, urgentAt: 1 },
       "Not sure yet": { remaining: null, urgentAt: 0 }
     };
+
+    const SHOW_REMAINING_COUNT_AT = 2;
 
     const form = document.getElementById("applyForm");
     const submitBtn = document.getElementById("submitBtn");
@@ -1513,6 +1516,7 @@
       const remaining = Math.max(0, Number(availability.remaining || 0));
       const urgentAt = Math.max(0, Number(availability.urgentAt || 0));
       const people = Math.max(1, Number(requestedPeople || 1));
+      const canShowCount = remaining <= SHOW_REMAINING_COUNT_AT;
 
       if (remaining === 0) {
         return {
@@ -1525,16 +1529,20 @@
       }
 
       if (remaining < people) {
+        const countText = canShowCount
+          ? ` — only ${remaining} ${remaining === 1 ? "spot is" : "spots are"} left in this stay option.`
+          : ".";
+
         return {
           className: "sold-out",
           unavailable: true,
-          alertText: `Sold out for ${people} ${people === 1 ? "person" : "people"} — only ${remaining} ${remaining === 1 ? "spot is" : "spots are"} left in this stay option.`,
+          alertText: `Sold out for ${people} ${people === 1 ? "person" : "people"}${countText}`,
           optionText: `Sold out for ${people}`,
-          listText: `Only ${remaining} left`
+          listText: canShowCount ? `Only ${remaining} left` : "Unavailable for group size"
         };
       }
 
-      if (remaining === people) {
+      if (canShowCount && remaining === people) {
         return {
           className: "urgent",
           unavailable: false,
@@ -1544,7 +1552,7 @@
         };
       }
 
-      if (remaining <= urgentAt) {
+      if (canShowCount && remaining <= urgentAt) {
         return {
           className: "urgent",
           unavailable: false,
@@ -1557,9 +1565,9 @@
       return {
         className: "available",
         unavailable: false,
-        alertText: `${remaining} ${remaining === 1 ? "spot is" : "spots are"} currently available for this stay option.`,
-        optionText: `${remaining} available`,
-        listText: `${remaining} available`
+        alertText: "This stay option is currently available for your group size.",
+        optionText: "Available",
+        listText: "Available"
       };
     }
 
