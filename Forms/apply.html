@@ -383,7 +383,9 @@
       gap: 12px;
     }
 
+    .section > .grid + .grid,
     .section > .grid + .field,
+    .section > .grid + .price-preview,
     .section > .field + .field,
     .section > .field + .agreement-card,
     .section > .agreement-card + .submit-wrap,
@@ -463,98 +465,55 @@
       font-weight: 700;
     }
 
-    .availability-panel {
-      display: grid;
-      gap: 12px;
+    .selection-status-wrap {
+      display: none;
+      gap: 8px;
       margin-top: 14px;
     }
 
-    .availability-alert {
-      display: none;
-      padding: 13px 15px;
-      border-radius: 18px;
-      font-size: 0.88rem;
-      line-height: 1.6;
-      font-weight: 750;
-      background: rgba(255,255,255,0.46);
+    .selection-status-wrap.show {
+      display: grid;
+    }
+
+    .selection-status {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      line-height: 1.2;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       border: 1px solid rgba(22,63,49,0.12);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.55),
-        0 12px 26px rgba(22,63,49,0.05);
+      background: rgba(255,255,255,0.46);
+      color: var(--green);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.55);
     }
 
-    .availability-alert.show {
-      display: block;
-    }
-
-    .availability-alert.available {
+    .selection-status.available {
       color: var(--success);
       background: rgba(36,90,57,0.08);
       border-color: rgba(36,90,57,0.16);
     }
 
-    .availability-alert.urgent {
+    .selection-status.urgent {
       color: #805a16;
       background: rgba(180,135,61,0.12);
       border-color: rgba(180,135,61,0.24);
     }
 
-    .availability-alert.sold-out {
+    .selection-status.sold-out {
       color: var(--error);
       background: rgba(141,61,52,0.08);
       border-color: rgba(141,61,52,0.18);
     }
 
-    .availability-list {
-      display: grid;
-      gap: 9px;
-    }
-
-    .availability-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 11px 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.34);
-      border: 1px solid rgba(22,63,49,0.09);
+    .selection-status-detail {
       color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.45;
-    }
-
-    .availability-item strong {
-      color: var(--green);
       font-size: 0.84rem;
-      font-weight: 750;
-    }
-
-    .availability-pill {
-      flex: 0 0 auto;
-      border-radius: 999px;
-      padding: 5px 9px;
-      font-size: 0.68rem;
-      line-height: 1.2;
-      font-weight: 850;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      background: rgba(22,63,49,0.08);
-      color: var(--green);
-      border: 1px solid rgba(22,63,49,0.10);
-      white-space: nowrap;
-    }
-
-    .availability-item.urgent .availability-pill {
-      color: #805a16;
-      background: rgba(180,135,61,0.14);
-      border-color: rgba(180,135,61,0.22);
-    }
-
-    .availability-item.sold-out .availability-pill {
-      color: var(--error);
-      background: rgba(141,61,52,0.08);
-      border-color: rgba(141,61,52,0.18);
+      line-height: 1.55;
     }
 
     .price-preview {
@@ -1244,9 +1203,9 @@
                 </option>
               </select>
 
-              <div class="availability-panel" aria-live="polite">
-                <div id="availabilityAlert" class="availability-alert"></div>
-                <div id="availabilityList" class="availability-list"></div>
+              <div id="selectionStatusWrap" class="selection-status-wrap" aria-live="polite">
+                <div id="selectionStatus" class="selection-status"></div>
+                <div id="selectionStatusDetail" class="selection-status-detail"></div>
               </div>
             </div>
 
@@ -1398,8 +1357,9 @@
     const pricePreview = document.getElementById("pricePreview");
     const pricePreviewTitle = document.getElementById("pricePreviewTitle");
     const pricePreviewText = document.getElementById("pricePreviewText");
-    const availabilityAlert = document.getElementById("availabilityAlert");
-    const availabilityList = document.getElementById("availabilityList");
+    const selectionStatusWrap = document.getElementById("selectionStatusWrap");
+    const selectionStatus = document.getElementById("selectionStatus");
+    const selectionStatusDetail = document.getElementById("selectionStatusDetail");
 
     const successModal = document.getElementById("successModal");
     const closeSuccessModal = document.getElementById("closeSuccessModal");
@@ -1495,9 +1455,8 @@
         return {
           className: "",
           unavailable: false,
-          alertText: "",
-          optionText: "",
-          listText: "Choose option"
+          badgeText: "",
+          detailText: ""
         };
       }
 
@@ -1507,9 +1466,8 @@
         return {
           className: "available",
           unavailable: false,
-          alertText: "We’ll help you confirm the best stay option after reviewing your application.",
-          optionText: "Open",
-          listText: "Open"
+          badgeText: "Available",
+          detailText: "We’ll help you confirm the best stay option after reviewing your application."
         };
       }
 
@@ -1522,33 +1480,19 @@
         return {
           className: "sold-out",
           unavailable: true,
-          alertText: "Sold out — this stay option is currently not available.",
-          optionText: "Sold out",
-          listText: "Sold out"
+          badgeText: "Sold out",
+          detailText: "This stay option is currently not available."
         };
       }
 
       if (remaining < people) {
-        const countText = canShowCount
-          ? ` — only ${remaining} ${remaining === 1 ? "spot is" : "spots are"} left in this stay option.`
-          : ".";
-
         return {
           className: "sold-out",
           unavailable: true,
-          alertText: `Sold out for ${people} ${people === 1 ? "person" : "people"}${countText}`,
-          optionText: `Sold out for ${people}`,
-          listText: canShowCount ? `Only ${remaining} left` : "Unavailable for group size"
-        };
-      }
-
-      if (canShowCount && remaining === people) {
-        return {
-          className: "urgent",
-          unavailable: false,
-          alertText: `Last ${remaining} ${remaining === 1 ? "spot" : "spots"} available for this stay option.`,
-          optionText: remaining === 1 ? "Last spot" : `Last ${remaining} spots`,
-          listText: remaining === 1 ? "Last spot" : `Last ${remaining}`
+          badgeText: "Sold out",
+          detailText: canShowCount
+            ? `This option cannot fit ${people} ${people === 1 ? "person" : "people"}. Only ${remaining} ${remaining === 1 ? "spot is" : "spots are"} left.`
+            : `This option cannot fit ${people} ${people === 1 ? "person" : "people"}. Please choose another stay option or reduce the number of people.`
         };
       }
 
@@ -1556,18 +1500,18 @@
         return {
           className: "urgent",
           unavailable: false,
-          alertText: `Only ${remaining} ${remaining === 1 ? "spot" : "spots"} left for this stay option.`,
-          optionText: remaining === 1 ? "Only 1 left" : `Only ${remaining} left`,
-          listText: remaining === 1 ? "Only 1 left" : `Only ${remaining} left`
+          badgeText: remaining === 1 ? "Last spot" : `Only ${remaining} left`,
+          detailText: remaining === 1
+            ? "This stay option has only one spot left."
+            : `This stay option has only ${remaining} spots left.`
         };
       }
 
       return {
         className: "available",
         unavailable: false,
-        alertText: "This stay option is currently available for your group size.",
-        optionText: "Available",
-        listText: "Available"
+        badgeText: "Available",
+        detailText: "This stay option is currently available for your group size."
       };
     }
 
@@ -1581,62 +1525,28 @@
     }
 
     function updateStayAvailabilityUI() {
-      if (!reservationTypeInput || !numberOfPeopleInput) return;
+      if (!selectionStatusWrap || !selectionStatus || !selectionStatusDetail || !reservationTypeInput) return;
 
       const requestedPeople = getRequestedPeopleCount();
       const selectedValue = reservationTypeInput.value;
-      const options = Array.from(reservationTypeInput.options || []);
 
-      options.forEach((option) => {
-        if (!option.value) return;
-
-        if (!option.dataset.baseLabel) {
-          option.dataset.baseLabel = option.textContent.trim();
-        }
-
-        const status = getStayAvailabilityStatus(option.value, requestedPeople);
-        option.textContent = status.optionText
-          ? `${option.dataset.baseLabel} — ${status.optionText}`
-          : option.dataset.baseLabel;
-
-        option.disabled = status.unavailable && option.value !== selectedValue;
-      });
-
-      if (availabilityAlert) {
-        const status = getStayAvailabilityStatus(selectedValue, requestedPeople);
-
-        if (!selectedValue) {
-          availabilityAlert.className = "availability-alert";
-          availabilityAlert.textContent = "";
-        } else {
-          availabilityAlert.className = `availability-alert show ${status.className || ""}`;
-          availabilityAlert.textContent = status.alertText || "";
-        }
+      if (!selectedValue) {
+        selectionStatusWrap.className = "selection-status-wrap";
+        selectionStatus.className = "selection-status";
+        selectionStatus.textContent = "";
+        selectionStatusDetail.textContent = "";
+        return;
       }
 
-      if (availabilityList) {
-        const rows = Object.keys(STAY_AVAILABILITY)
-          .filter((value) => value !== "Not sure yet")
-          .map((value) => {
-            const status = getStayAvailabilityStatus(value, requestedPeople);
-            const label = value
-              .replace(" - Shared Room", "")
-              .replace("Private Suite", "Private Suite");
-
-            return `
-              <div class="availability-item ${status.className || ""}">
-                <strong>${label}</strong>
-                <span class="availability-pill">${status.listText}</span>
-              </div>
-            `;
-          })
-          .join("");
-
-        availabilityList.innerHTML = rows;
-      }
+      const status = getStayAvailabilityStatus(selectedValue, requestedPeople);
+      selectionStatusWrap.className = "selection-status-wrap show";
+      selectionStatus.className = `selection-status ${status.className || ""}`;
+      selectionStatus.textContent = status.badgeText || "";
+      selectionStatusDetail.textContent = status.detailText || "";
     }
 
     function updatePricingFields() {
+
       if (!reservationTypeInput || !numberOfPeopleInput) return;
 
       updateStayAvailabilityUI();
@@ -1682,7 +1592,7 @@
 
         if (availabilityStatus.unavailable) {
           pricePreviewTitle.textContent = "Sold out for this group size";
-          pricePreviewText.textContent = availabilityStatus.alertText + " Please choose another stay option or reduce the number of people.";
+          pricePreviewText.textContent = availabilityStatus.detailText + " Please choose another stay option or reduce the number of people.";
           return;
         }
 
@@ -1766,7 +1676,7 @@
       if (isSelectedStayUnavailable()) {
         const availabilityStatus = getStayAvailabilityStatus(reservationTypeInput.value, getRequestedPeopleCount());
         reservationTypeInput.focus();
-        showStatus(availabilityStatus.alertText + " Please choose another stay option before submitting.", "error");
+        showStatus(availabilityStatus.detailText + " Please choose another stay option before submitting.", "error");
         return false;
       }
 
