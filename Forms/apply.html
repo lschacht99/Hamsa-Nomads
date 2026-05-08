@@ -463,6 +463,100 @@
       font-weight: 700;
     }
 
+    .availability-panel {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .availability-alert {
+      display: none;
+      padding: 13px 15px;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      font-weight: 750;
+      background: rgba(255,255,255,0.46);
+      border: 1px solid rgba(22,63,49,0.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55),
+        0 12px 26px rgba(22,63,49,0.05);
+    }
+
+    .availability-alert.show {
+      display: block;
+    }
+
+    .availability-alert.available {
+      color: var(--success);
+      background: rgba(36,90,57,0.08);
+      border-color: rgba(36,90,57,0.16);
+    }
+
+    .availability-alert.urgent {
+      color: #805a16;
+      background: rgba(180,135,61,0.12);
+      border-color: rgba(180,135,61,0.24);
+    }
+
+    .availability-alert.sold-out {
+      color: var(--error);
+      background: rgba(141,61,52,0.08);
+      border-color: rgba(141,61,52,0.18);
+    }
+
+    .availability-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .availability-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.34);
+      border: 1px solid rgba(22,63,49,0.09);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .availability-item strong {
+      color: var(--green);
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .availability-pill {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 0.68rem;
+      line-height: 1.2;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(22,63,49,0.08);
+      color: var(--green);
+      border: 1px solid rgba(22,63,49,0.10);
+      white-space: nowrap;
+    }
+
+    .availability-item.urgent .availability-pill {
+      color: #805a16;
+      background: rgba(180,135,61,0.14);
+      border-color: rgba(180,135,61,0.22);
+    }
+
+    .availability-item.sold-out .availability-pill {
+      color: var(--error);
+      background: rgba(141,61,52,0.08);
+      border-color: rgba(141,61,52,0.18);
+    }
+
     .price-preview {
       display: none;
       margin-top: 18px;
@@ -1061,7 +1155,7 @@
               <p class="section-kicker">Your stay</p>
               <h2>Choose the kind of spot you want.</h2>
               <p class="section-intro">
-                Pick your preferred stay option now. We can confirm the final rooming details after acceptance.
+                Tell us where you’re coming from, how many people are included, and which stay option you prefer.
               </p>
             </div>
             <span class="step-badge">Step 2</span>
@@ -1080,7 +1174,87 @@
             </div>
 
             <div class="field">
-              <label for="number_of_people">How many people? *</label>
+              <label for="friend_name">Did a friend refer you? <span class="optional">(optional)</span></label>
+              <input
+                type="text"
+                id="friend_name"
+                name="friend_name"
+                placeholder="Friend’s name, if relevant"
+              />
+            </div>
+          </div>
+
+          <div class="grid two">
+            <div class="field">
+              <label for="reservation_type">Stay preference *</label>
+              <p class="pricing-note">
+                Prices are per person, except the private suite: $1400 includes up to 2 people,
+                then +$370 per additional person.
+              </p>
+
+              <select id="reservation_type" name="reservation_type" required>
+                <option value="">Select an option</option>
+                <option
+                  value="Camping Spot"
+                  data-bed-type="Camping Spot"
+                  data-price="370"
+                  data-pricing-basis="Per person"
+                >
+                  $370/person — Camping Spot
+                </option>
+                <option
+                  value="Shared Full Bed - Shared Room"
+                  data-bed-type="Shared Full Bed"
+                  data-price="550"
+                  data-pricing-basis="Per person"
+                >
+                  $550/person — Shared Full Bed - Shared Room
+                </option>
+                <option
+                  value="Bunk Bed - Shared Room"
+                  data-bed-type="Bunk Bed"
+                  data-price="600"
+                  data-pricing-basis="Per person"
+                >
+                  $600/person — Bunk Bed - Shared Room
+                </option>
+                <option
+                  value="Twin Bed - Shared Room"
+                  data-bed-type="Twin Bed"
+                  data-price="700"
+                  data-pricing-basis="Per person"
+                >
+                  $700/person — Twin Bed - Shared Room
+                </option>
+                <option
+                  value="Private Suite"
+                  data-bed-type="Private Suite - One Queen Bed"
+                  data-price="1400"
+                  data-pricing-basis="Suite total"
+                >
+                  $1400 — Private Suite: one queen bed, includes up to 2 people
+                </option>
+                <option
+                  value="Not sure yet"
+                  data-bed-type="Not sure yet"
+                  data-price="0"
+                  data-pricing-basis="To confirm"
+                >
+                  Not sure yet — help me choose
+                </option>
+              </select>
+
+              <div class="availability-panel" aria-live="polite">
+                <div id="availabilityAlert" class="availability-alert"></div>
+                <div id="availabilityList" class="availability-list"></div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="number_of_people">Number of people for this stay *</label>
+              <p class="field-help">
+                Include yourself and anyone you are applying with. This updates the estimated total below.
+              </p>
               <input
                 type="number"
                 id="number_of_people"
@@ -1094,80 +1268,11 @@
             </div>
           </div>
 
-          <div class="field">
-            <label for="reservation_type">Stay preference *</label>
-            <p class="pricing-note">
-              Prices are per person, except the private suite: $1400 includes up to 2 people,
-              then +$370 per additional person.
-            </p>
-
-            <select id="reservation_type" name="reservation_type" required>
-              <option value="">Select an option</option>
-              <option
-                value="Camping Spot"
-                data-bed-type="Camping Spot"
-                data-price="370"
-                data-pricing-basis="Per person"
-              >
-                $370/person — Camping Spot
-              </option>
-              <option
-                value="Shared Full Bed - Shared Room"
-                data-bed-type="Shared Full Bed"
-                data-price="550"
-                data-pricing-basis="Per person"
-              >
-                $550/person — Shared Full Bed - Shared Room
-              </option>
-              <option
-                value="Bunk Bed - Shared Room"
-                data-bed-type="Bunk Bed"
-                data-price="600"
-                data-pricing-basis="Per person"
-              >
-                $600/person — Bunk Bed - Shared Room
-              </option>
-              <option
-                value="Twin Bed - Shared Room"
-                data-bed-type="Twin Bed"
-                data-price="700"
-                data-pricing-basis="Per person"
-              >
-                $700/person — Twin Bed - Shared Room
-              </option>
-              <option
-                value="Private Suite"
-                data-bed-type="Private Suite - One Queen Bed"
-                data-price="1400"
-                data-pricing-basis="Suite total"
-              >
-                $1400 — Private Suite: one queen bed, includes up to 2 people
-              </option>
-              <option
-                value="Not sure yet"
-                data-bed-type="Not sure yet"
-                data-price="0"
-                data-pricing-basis="To confirm"
-              >
-                Not sure yet — help me choose
-              </option>
-            </select>
-          </div>
-
           <div class="price-preview" id="pricePreview" aria-live="polite">
             <strong id="pricePreviewTitle"></strong>
             <span id="pricePreviewText"></span>
           </div>
 
-          <div class="field">
-            <label for="friend_name">Did a friend refer you? If yes, who? <span class="optional">(optional)</span></label>
-            <input
-              type="text"
-              id="friend_name"
-              name="friend_name"
-              placeholder="Friend’s name, if relevant"
-            />
-          </div>
         </section>
 
         <section class="section">
@@ -1185,13 +1290,13 @@
           <div class="field">
             <label for="about_you">Short introduction *</label>
             <p class="field-help">
-              Who you are, what drew you to the retreat, and what kind of weekend you’re hoping for.
+              Please include who you are, what drew you to the retreat, what kind of weekend you’re hoping for, and whether you are Shomer Shabbat / what your Shabbat observance is like.
             </p>
             <textarea
               id="about_you"
               name="about_you"
               required
-              placeholder="Write a short introduction..."
+              placeholder="Example: I’m coming from..., I’m interested because..., I’m Shomer Shabbat / I keep Shabbat in this way..., and I’m hoping for..."
             ></textarea>
           </div>
 
@@ -1257,6 +1362,21 @@
   <script>
     const PRIVATE_SUITE_EXTRA_PERSON_PRICE = 370;
 
+    /*
+      Edit these numbers to control the urgency/sold-out labels on the form.
+      "remaining" is the number of people that can still fit in that stay option.
+      Set remaining: 0 to show Sold out.
+      Set remaining: null for options that should stay open, like "Not sure yet".
+    */
+    const STAY_AVAILABILITY = {
+      "Camping Spot": { remaining: 12, urgentAt: 5 },
+      "Shared Full Bed - Shared Room": { remaining: 4, urgentAt: 3 },
+      "Bunk Bed - Shared Room": { remaining: 6, urgentAt: 3 },
+      "Twin Bed - Shared Room": { remaining: 2, urgentAt: 2 },
+      "Private Suite": { remaining: 2, urgentAt: 2 },
+      "Not sure yet": { remaining: null, urgentAt: 0 }
+    };
+
     const form = document.getElementById("applyForm");
     const submitBtn = document.getElementById("submitBtn");
     const formStatus = document.getElementById("formStatus");
@@ -1275,6 +1395,8 @@
     const pricePreview = document.getElementById("pricePreview");
     const pricePreviewTitle = document.getElementById("pricePreviewTitle");
     const pricePreviewText = document.getElementById("pricePreviewText");
+    const availabilityAlert = document.getElementById("availabilityAlert");
+    const availabilityList = document.getElementById("availabilityList");
 
     const successModal = document.getElementById("successModal");
     const closeSuccessModal = document.getElementById("closeSuccessModal");
@@ -1356,8 +1478,160 @@
       if (campaignInput) campaignInput.value = campaignCode;
     }
 
+    function getRequestedPeopleCount() {
+      if (!numberOfPeopleInput) return 1;
+
+      const rawValue = Number(numberOfPeopleInput.value || 1);
+      const requested = Math.max(1, rawValue || 1);
+
+      return requested;
+    }
+
+    function getStayAvailabilityStatus(value, requestedPeople) {
+      if (!value) {
+        return {
+          className: "",
+          unavailable: false,
+          alertText: "",
+          optionText: "",
+          listText: "Choose option"
+        };
+      }
+
+      const availability = STAY_AVAILABILITY[value];
+
+      if (!availability || availability.remaining === null || availability.remaining === undefined) {
+        return {
+          className: "available",
+          unavailable: false,
+          alertText: "We’ll help you confirm the best stay option after reviewing your application.",
+          optionText: "Open",
+          listText: "Open"
+        };
+      }
+
+      const remaining = Math.max(0, Number(availability.remaining || 0));
+      const urgentAt = Math.max(0, Number(availability.urgentAt || 0));
+      const people = Math.max(1, Number(requestedPeople || 1));
+
+      if (remaining === 0) {
+        return {
+          className: "sold-out",
+          unavailable: true,
+          alertText: "Sold out — this stay option is currently not available.",
+          optionText: "Sold out",
+          listText: "Sold out"
+        };
+      }
+
+      if (remaining < people) {
+        return {
+          className: "sold-out",
+          unavailable: true,
+          alertText: `Sold out for ${people} ${people === 1 ? "person" : "people"} — only ${remaining} ${remaining === 1 ? "spot is" : "spots are"} left in this stay option.`,
+          optionText: `Sold out for ${people}`,
+          listText: `Only ${remaining} left`
+        };
+      }
+
+      if (remaining === people) {
+        return {
+          className: "urgent",
+          unavailable: false,
+          alertText: `Last ${remaining} ${remaining === 1 ? "spot" : "spots"} available for this stay option.`,
+          optionText: remaining === 1 ? "Last spot" : `Last ${remaining} spots`,
+          listText: remaining === 1 ? "Last spot" : `Last ${remaining}`
+        };
+      }
+
+      if (remaining <= urgentAt) {
+        return {
+          className: "urgent",
+          unavailable: false,
+          alertText: `Only ${remaining} ${remaining === 1 ? "spot" : "spots"} left for this stay option.`,
+          optionText: remaining === 1 ? "Only 1 left" : `Only ${remaining} left`,
+          listText: remaining === 1 ? "Only 1 left" : `Only ${remaining} left`
+        };
+      }
+
+      return {
+        className: "available",
+        unavailable: false,
+        alertText: `${remaining} ${remaining === 1 ? "spot is" : "spots are"} currently available for this stay option.`,
+        optionText: `${remaining} available`,
+        listText: `${remaining} available`
+      };
+    }
+
+    function isSelectedStayUnavailable() {
+      if (!reservationTypeInput) return false;
+
+      const requestedPeople = getRequestedPeopleCount();
+      const status = getStayAvailabilityStatus(reservationTypeInput.value, requestedPeople);
+
+      return status.unavailable;
+    }
+
+    function updateStayAvailabilityUI() {
+      if (!reservationTypeInput || !numberOfPeopleInput) return;
+
+      const requestedPeople = getRequestedPeopleCount();
+      const selectedValue = reservationTypeInput.value;
+      const options = Array.from(reservationTypeInput.options || []);
+
+      options.forEach((option) => {
+        if (!option.value) return;
+
+        if (!option.dataset.baseLabel) {
+          option.dataset.baseLabel = option.textContent.trim();
+        }
+
+        const status = getStayAvailabilityStatus(option.value, requestedPeople);
+        option.textContent = status.optionText
+          ? `${option.dataset.baseLabel} — ${status.optionText}`
+          : option.dataset.baseLabel;
+
+        option.disabled = status.unavailable && option.value !== selectedValue;
+      });
+
+      if (availabilityAlert) {
+        const status = getStayAvailabilityStatus(selectedValue, requestedPeople);
+
+        if (!selectedValue) {
+          availabilityAlert.className = "availability-alert";
+          availabilityAlert.textContent = "";
+        } else {
+          availabilityAlert.className = `availability-alert show ${status.className || ""}`;
+          availabilityAlert.textContent = status.alertText || "";
+        }
+      }
+
+      if (availabilityList) {
+        const rows = Object.keys(STAY_AVAILABILITY)
+          .filter((value) => value !== "Not sure yet")
+          .map((value) => {
+            const status = getStayAvailabilityStatus(value, requestedPeople);
+            const label = value
+              .replace(" - Shared Room", "")
+              .replace("Private Suite", "Private Suite");
+
+            return `
+              <div class="availability-item ${status.className || ""}">
+                <strong>${label}</strong>
+                <span class="availability-pill">${status.listText}</span>
+              </div>
+            `;
+          })
+          .join("");
+
+        availabilityList.innerHTML = rows;
+      }
+    }
+
     function updatePricingFields() {
       if (!reservationTypeInput || !numberOfPeopleInput) return;
+
+      updateStayAvailabilityUI();
 
       const selectedOption = reservationTypeInput.options[reservationTypeInput.selectedIndex];
 
@@ -1382,6 +1656,7 @@
 
       const isSuite = pricingBasis === "Suite total";
       const isToConfirm = pricingBasis === "To confirm";
+      const availabilityStatus = getStayAvailabilityStatus(reservationTypeInput.value, numberOfPeople);
 
       const totalPrice = isToConfirm
         ? 0
@@ -1396,6 +1671,12 @@
 
       if (pricePreview && pricePreviewTitle && pricePreviewText) {
         pricePreview.classList.add("show");
+
+        if (availabilityStatus.unavailable) {
+          pricePreviewTitle.textContent = "Sold out for this group size";
+          pricePreviewText.textContent = availabilityStatus.alertText + " Please choose another stay option or reduce the number of people.";
+          return;
+        }
 
         if (isToConfirm) {
           pricePreviewTitle.textContent = "Stay option to confirm";
@@ -1439,7 +1720,7 @@
         phone: "Please enter your WhatsApp number.",
         coming_from: "Please enter where you are coming from.",
         reservation_type: "Please choose a stay preference.",
-        number_of_people: "Please enter how many people are included.",
+        number_of_people: "Please enter the number of people for this stay.",
         about_you: "Please write a short introduction."
       };
 
@@ -1471,6 +1752,13 @@
       if (!numberOfPeople || numberOfPeople < 1) {
         if (numberOfPeopleInput) numberOfPeopleInput.focus();
         showStatus("Please enter at least 1 person.", "error");
+        return false;
+      }
+
+      if (isSelectedStayUnavailable()) {
+        const availabilityStatus = getStayAvailabilityStatus(reservationTypeInput.value, getRequestedPeopleCount());
+        reservationTypeInput.focus();
+        showStatus(availabilityStatus.alertText + " Please choose another stay option before submitting.", "error");
         return false;
       }
 
