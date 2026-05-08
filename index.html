@@ -381,6 +381,7 @@
       display: grid;
       gap: 14px;
       transform: translateZ(28px);
+      margin-bottom: 8px;
     }
 
     .hero-date-card {
@@ -439,6 +440,153 @@
       margin-top: 2px;
       font-size: 1rem;
       box-shadow: 0 18px 42px rgba(39, 69, 55, 0.28);
+    }
+
+    .hero-actions-note {
+      display: inline-flex;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: rgba(255,253,248,0.92);
+      font-size: 0.86rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      text-shadow: 0 5px 18px rgba(0,0,0,0.22);
+    }
+
+    .hero-booking-card {
+      display: grid;
+      gap: 14px;
+      padding: clamp(20px, 3vw, 28px);
+      border-radius: 30px;
+      background: rgba(255, 252, 246, 0.92);
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,0.58);
+      box-shadow: 0 26px 72px rgba(0,0,0,0.22);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .hero-booking-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 2px;
+    }
+
+    .hero-booking-topline span {
+      display: inline-flex;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(39,69,55,0.10);
+      color: var(--forest);
+      font-size: 0.68rem;
+      font-weight: 950;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .hero-booking-topline strong {
+      color: var(--gold);
+      font-size: 0.96rem;
+      font-weight: 950;
+    }
+
+    .hero-booking-card h2 {
+      font-size: clamp(1.95rem, 3.4vw, 3rem);
+      line-height: 0.96;
+      color: var(--forest);
+    }
+
+    .hero-booking-card p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.98rem;
+    }
+
+    .hero-booking-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+      margin-top: 2px;
+    }
+
+    .hero-booking-field {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .hero-booking-field span {
+      color: var(--forest);
+      font-size: 0.70rem;
+      font-weight: 900;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .hero-booking-field input,
+    .hero-booking-field select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid rgba(39,69,55,0.15);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.74);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.96rem;
+      padding: 0 13px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .hero-booking-field select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--forest) 50%),
+        linear-gradient(135deg, var(--forest) 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) 52%,
+        calc(100% - 13px) 52%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 34px;
+    }
+
+    .hero-booking-field input:focus,
+    .hero-booking-field select:focus {
+      border-color: rgba(184,139,47,0.72);
+      box-shadow: 0 0 0 4px rgba(184,139,47,0.14);
+      background: #fffdf8;
+      transform: translateY(-1px);
+    }
+
+    .hero-booking-room {
+      grid-column: span 1;
+    }
+
+    .hero-booking-submit {
+      width: 100%;
+      min-height: 56px;
+      border: 0;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 4px;
+      box-shadow: 0 18px 42px rgba(39, 69, 55, 0.30);
+    }
+
+    .hero-booking-note {
+      text-align: center;
+      color: rgba(28,33,29,0.58);
+      font-size: 0.82rem;
+      line-height: 1.45;
     }
 
     .countdown-card {
@@ -2953,6 +3101,60 @@
         font-size: 0.92rem;
       }
 
+      .hero-actions-note {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 11px;
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        text-align: center;
+      }
+
+      .hero-booking-card {
+        padding: 16px;
+        border-radius: 22px;
+        gap: 12px;
+      }
+
+      .hero-booking-topline span {
+        font-size: 0.58rem;
+        letter-spacing: 0.10em;
+      }
+
+      .hero-booking-topline strong {
+        font-size: 0.86rem;
+      }
+
+      .hero-booking-card h2 {
+        font-size: clamp(1.65rem, 8vw, 2.25rem);
+      }
+
+      .hero-booking-card p {
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .hero-booking-grid {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .hero-booking-field input,
+      .hero-booking-field select {
+        min-height: 46px;
+        border-radius: 14px;
+        font-size: 0.92rem;
+      }
+
+      .hero-booking-submit {
+        min-height: 50px;
+        font-size: 0.92rem;
+      }
+
+      .hero-booking-note {
+        font-size: 0.76rem;
+      }
+
       .promise-section {
         padding: 34px 0 24px;
       }
@@ -3465,51 +3667,59 @@
                   A small, curated Shavuos retreat for Jewish young adults in a private Vermont home — kosher meals, Shabbos and Chag rhythm, mountain air, and the kind of connection that feels natural.
                 </p>
 
-                <div class="hero-actions">
-                  <a href="#house" class="button-secondary">See the house</a>
+                <div class="hero-actions hero-actions-note">
+                  <span>May 21–24 · private Vermont home · from $370</span>
                 </div>
               </div>
 
               <aside class="hero-panel" data-reveal style="--delay: 160ms;">
-                <div class="hero-date-card glass interactive-card">
-                  <h2>4 days. 3 nights. One curated group.</h2>
-                  <p>Not a hotel program. Not a giant event. A more personal Shavuos weekend built around warmth, observance, and real shared time.</p>
-                </div>
-
-                <div class="hero-chip-grid">
-                  <div class="hero-chip interactive-card">From $370</div>
-                  <div class="hero-chip interactive-card">Kosher meals</div>
-                  <div class="hero-chip interactive-card">Minyan + eiruv</div>
-                  <div class="hero-chip interactive-card">Pool + hot tub</div>
-                </div>
-
-                <div class="countdown-card" id="earlyBirdCountdown" aria-label="Retreat date countdown">
-                  <div class="countdown-top">
-                    <span>When is it</span>
-                    <strong>May 21</strong>
+                <form class="hero-booking-card" id="heroQuickBookingForm" autocomplete="on">
+                  <div class="hero-booking-topline">
+                    <span>Shavuos booking</span>
+                    <strong>From $370</strong>
                   </div>
 
-                  <div class="countdown-row">
-                    <div class="countdown-unit">
-                      <span class="countdown-number" id="early-days">00</span>
-                      <span class="countdown-label">Days</span>
-                    </div>
-                    <div class="countdown-unit">
-                      <span class="countdown-number" id="early-hours">00</span>
-                      <span class="countdown-label">Hours</span>
-                    </div>
-                    <div class="countdown-unit">
-                      <span class="countdown-number" id="early-minutes">00</span>
-                      <span class="countdown-label">Min</span>
-                    </div>
-                    <div class="countdown-unit">
-                      <span class="countdown-number" id="early-seconds">00</span>
-                      <span class="countdown-label">Sec</span>
-                    </div>
-                  </div>
-                </div>
+                  <h2>Start your spot in 30 seconds.</h2>
+                  <p>Choose your room now. The full application opens next, already pre-filled with these details.</p>
 
-                <a href="Forms/apply.html" class="button hero-countdown-cta">Apply for Shavuos</a>
+                  <div class="hero-booking-grid">
+                    <label class="hero-booking-field">
+                      <span>First name</span>
+                      <input id="heroFirstName" name="firstName" type="text" autocomplete="given-name" required>
+                    </label>
+
+                    <label class="hero-booking-field">
+                      <span>Last name</span>
+                      <input id="heroLastName" name="lastName" type="text" autocomplete="family-name" required>
+                    </label>
+
+                    <label class="hero-booking-field hero-booking-age">
+                      <span>Age</span>
+                      <input id="heroAge" name="age" type="number" min="18" max="45" inputmode="numeric" required>
+                    </label>
+
+                    <label class="hero-booking-field hero-booking-room">
+                      <span>Room I want</span>
+                      <select id="heroRoomChoice" name="roomChoice" required>
+                        <option value="" selected disabled>Select room</option>
+                        <option value="Camping spot - from $370">Camping spot — from $370</option>
+                        <option value="Shared full bed">Shared full bed</option>
+                        <option value="Bunk bed">Bunk bed</option>
+                        <option value="Twin bed">Twin bed</option>
+                        <option value="Private suite">Private suite</option>
+                        <option value="Not sure yet">Not sure yet</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <button class="button hero-booking-submit" type="submit" data-hn-track="Hero quick booking submit">
+                    Start booking Shavuos
+                  </button>
+
+                  <div class="hero-booking-note">
+                    May 21–24 · full application opens next · no payment on this step
+                  </div>
+                </form>
               </aside>
             </div>
 
@@ -4806,6 +5016,41 @@ Request received. Opening WhatsApp...
       loadTripsFromTripsPage();
     }
 
+    function hnInitHeroQuickBooking() {
+      const form = document.getElementById("heroQuickBookingForm");
+      if (!form) return;
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const firstName = document.getElementById("heroFirstName")?.value?.trim() || "";
+        const lastName = document.getElementById("heroLastName")?.value?.trim() || "";
+        const age = document.getElementById("heroAge")?.value?.trim() || "";
+        const roomChoice = document.getElementById("heroRoomChoice")?.value?.trim() || "";
+
+        if (!firstName || !lastName || !age || !roomChoice) {
+          form.reportValidity?.();
+          return;
+        }
+
+        const params = new URLSearchParams({
+          firstName,
+          lastName,
+          name: firstName,
+          age,
+          roomChoice,
+          room: roomChoice,
+          preferredRoom: roomChoice,
+          accommodation: roomChoice,
+          trip: "Shavuos in Vermont",
+          event: "Shavuos 2026",
+          source: "hero_quick_booking"
+        });
+
+        window.location.href = `Forms/apply.html?${params.toString()}`;
+      });
+    }
+
     function hnInitCountdown() {
       const deadline = new Date("2026-05-21T00:00:00-04:00").getTime();
 
@@ -5071,6 +5316,7 @@ Request received. Opening WhatsApp...
       safeInit("hero carousel", hnInitHeroCarousel);
       safeInit("rhythm tabs", hnInitRhythmTabs);
       safeInit("lounge notes", hnInitLoungeNotes);
+      safeInit("hero quick booking", hnInitHeroQuickBooking);
       safeInit("countdown", hnInitCountdown);
       safeInit("WhatsApp access", hnInitWhatsAppAccess);
       safeInit("share", hnInitShare);
