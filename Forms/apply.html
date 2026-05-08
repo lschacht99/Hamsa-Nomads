@@ -920,6 +920,8 @@
         <input type="hidden" id="pricing_basis" name="pricing_basis" value="" />
         <input type="hidden" id="total_price" name="total_price" value="" />
         <input type="hidden" id="campaign_code" name="campaign_code" value="" />
+        <input type="hidden" id="quick_booking_source" name="quick_booking_source" value="" />
+        <input type="hidden" id="quick_room_choice_raw" name="quick_room_choice_raw" value="" />
 
         <section class="section">
           <p class="section-kicker">Step one</p>
@@ -1065,7 +1067,6 @@
 >
   $370/person — Camping Spot
 </option>
-              </option>
             </select>
           </div>
 
@@ -1343,7 +1344,7 @@
   <script src="../assets/site-components.js" data-base="../"></script>
 
   <script>
-    const PRIVATE_SUITE_EXTRA_PERSON_PRICE = 350;
+    const PRIVATE_SUITE_EXTRA_PERSON_PRICE = 370;
 
     const form = document.getElementById("applyForm");
     const submitBtn = document.getElementById("submitBtn");
@@ -1492,6 +1493,71 @@
       }
     }
 
+    function normalizePrefillValue(value) {
+      return String(value || "")
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "")
+        .trim();
+    }
+
+    function setFieldValueById(id, value) {
+      const field = document.getElementById(id);
+      if (!field || value === null || value === undefined || String(value).trim() === "") return;
+
+      field.value = String(value).trim();
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      field.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    function getHeroRoomReservationValue(rawRoomChoice) {
+      const normalizedRoom = normalizePrefillValue(rawRoomChoice);
+
+      if (!normalizedRoom || normalizedRoom.includes("notsure")) return "";
+      if (normalizedRoom.includes("camping")) return "Camping Spot";
+      if (normalizedRoom.includes("private") || normalizedRoom.includes("suite")) return "Private Suite";
+      if (normalizedRoom.includes("twin")) return "Twin Bed - Shared Room";
+      if (normalizedRoom.includes("bunk")) return "Bunk Bed - Shared Room";
+      if (normalizedRoom.includes("sharedfull") || normalizedRoom.includes("fullbed") || normalizedRoom.includes("shared")) {
+        return "Shared Full Bed - Shared Room";
+      }
+
+      return "";
+    }
+
+    function applyHeroQuickBookingPrefill() {
+      const params = new URLSearchParams(window.location.search);
+
+      const firstName = params.get("firstName") || params.get("first_name") || params.get("name") || "";
+      const lastName = params.get("lastName") || params.get("last_name") || params.get("lastname") || "";
+      const age = params.get("age") || "";
+      const roomChoice = params.get("roomChoice") || params.get("room") || params.get("accommodation") || params.get("reservation_type") || "";
+      const campaignCode = params.get("hn") || params.get("utm_campaign") || "";
+
+      const hasQuickBookingData = Boolean(firstName || lastName || age || roomChoice);
+      if (!hasQuickBookingData) return;
+
+      setFieldValueById("first_name", firstName);
+      setFieldValueById("last_name", lastName);
+      setFieldValueById("age", age);
+      setFieldValueById("campaign_code", campaignCode);
+      setFieldValueById("quick_booking_source", "Hero quick booking");
+      setFieldValueById("quick_room_choice_raw", roomChoice);
+
+      const reservationValue = getHeroRoomReservationValue(roomChoice);
+      if (reservationValue && reservationTypeInput) {
+        reservationTypeInput.value = reservationValue;
+        reservationTypeInput.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+
+      if (numberOfPeopleInput && !numberOfPeopleInput.value) {
+        numberOfPeopleInput.value = "1";
+      }
+
+      updatePricingFields();
+      toggleConditionalFields();
+    }
+
     function toggleConditionalFields() {
       const comingWithSomeone = selectedRadioValue("coming_with_someone");
       if (roommateNameWrap) {
@@ -1617,7 +1683,10 @@
     }
 
     toggleConditionalFields();
+    applyHeroQuickBookingPrefill();
     updatePricingFields();
+    setTimeout(applyHeroQuickBookingPrefill, 350);
+    setTimeout(applyHeroQuickBookingPrefill, 1000);
 
     form.addEventListener("submit", function(event) {
       hideStatus();
