@@ -1408,28 +1408,87 @@
       return aliases.some(([incoming, target]) => room.includes(incoming) && optionText.includes(target));
     }
 
+    function getFirstParam(params, names) {
+      for (const name of names) {
+        const value = params.get(name);
+        if (value && String(value).trim()) {
+          return String(value).trim();
+        }
+      }
+
+      return "";
+    }
+
+    function setPrefilledField(id, value) {
+      const field = document.getElementById(id);
+
+      if (!field || !value) return;
+
+      field.value = value;
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+      field.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
     function applyHeroPrefill() {
       const params = new URLSearchParams(window.location.search);
+
       const fieldMap = {
-        first_name: params.get("firstName") || params.get("name") || "",
-        last_name: params.get("lastName") || params.get("lastname") || "",
-        age: params.get("age") || ""
+        first_name: getFirstParam(params, [
+          "firstName",
+          "first_name",
+          "givenName",
+          "given_name",
+          "name"
+        ]),
+        last_name: getFirstParam(params, [
+          "lastName",
+          "last_name",
+          "lastname",
+          "familyName",
+          "family_name"
+        ]),
+        age: getFirstParam(params, [
+          "age",
+          "heroAge"
+        ]),
+        email: getFirstParam(params, [
+          "email",
+          "mail",
+          "emailAddress",
+          "email_address"
+        ]),
+        phone: getFirstParam(params, [
+          "phone",
+          "phoneNumber",
+          "phone_number",
+          "whatsapp",
+          "whatsappNumber",
+          "whatsapp_number",
+          "number"
+        ])
       };
 
       Object.entries(fieldMap).forEach(([id, value]) => {
-        const field = document.getElementById(id);
-        if (field && value && !field.value) {
-          field.value = value;
-          field.dispatchEvent(new Event("input", { bubbles: true }));
-          field.dispatchEvent(new Event("change", { bubbles: true }));
-        }
+        setPrefilledField(id, value);
       });
 
-      const roomChoice = params.get("roomChoice") || params.get("room") || params.get("preferredRoom") || params.get("accommodation") || "";
+      const roomChoice = getFirstParam(params, [
+        "roomChoice",
+        "room_choice",
+        "room",
+        "preferredRoom",
+        "preferred_room",
+        "accommodation",
+        "reservation_type",
+        "stayPreference",
+        "stay_preference"
+      ]);
 
-      if (reservationTypeInput && roomChoice && !reservationTypeInput.value) {
+      if (reservationTypeInput && roomChoice) {
         const options = Array.from(reservationTypeInput.options || []);
-        const match = options.find((option) => roomMatches(option, roomChoice));
+        const exactMatch = options.find((option) => option.value === roomChoice);
+        const fuzzyMatch = options.find((option) => roomMatches(option, roomChoice));
+        const match = exactMatch || fuzzyMatch;
 
         if (match) {
           reservationTypeInput.value = match.value;
@@ -1437,7 +1496,7 @@
         }
       }
 
-      const campaignCode = params.get("hn") || params.get("utm_campaign") || "";
+      const campaignCode = getFirstParam(params, ["hn", "campaign_code", "campaignCode", "utm_campaign"]);
       if (campaignInput) campaignInput.value = campaignCode;
     }
 
