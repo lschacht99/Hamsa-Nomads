@@ -3679,8 +3679,8 @@
                     <strong>From $370</strong>
                   </div>
 
-                  <h2>Start your spot for Shavuos.</h2>
-                  <p>Share the essentials first. The full application opens next, already pre-filled with these details.</p>
+                  <h2>Start your spot in 30 seconds.</h2>
+                  <p>Choose your room now. The full application opens next, already pre-filled with these details.</p>
 
                   <div class="hero-booking-grid">
                     <label class="hero-booking-field">
@@ -3696,16 +3696,6 @@
                     <label class="hero-booking-field hero-booking-age">
                       <span>Age</span>
                       <input id="heroAge" name="age" type="number" min="18" inputmode="numeric" required>
-                    </label>
-
-                    <label class="hero-booking-field">
-                      <span>Email</span>
-                      <input id="heroEmail" name="email" type="email" autocomplete="email" required>
-                    </label>
-
-                    <label class="hero-booking-field">
-                      <span>WhatsApp number</span>
-                      <input id="heroPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 555 000 0000" required>
                     </label>
 
                     <label class="hero-booking-field hero-booking-room">
@@ -3727,7 +3717,7 @@
                   </button>
 
                   <div class="hero-booking-note">
-                    We save this first step so we can follow up if you don’t finish the full application.
+                    May 21–24 · full application opens next · no payment on this step
                   </div>
                 </form>
               </aside>
@@ -5026,57 +5016,6 @@ Request received. Opening WhatsApp...
       loadTripsFromTripsPage();
     }
 
-    const HN_HERO_LEAD_SCRIPT_URL = "PASTE_YOUR_HERO_LEAD_GOOGLE_SCRIPT_WEB_APP_URL_HERE";
-
-    function hnIsHeroLeadScriptReady() {
-      return HN_HERO_LEAD_SCRIPT_URL && !HN_HERO_LEAD_SCRIPT_URL.includes("PASTE_YOUR_HERO_LEAD");
-    }
-
-    function hnGetTrackingParams() {
-      const urlParams = new URLSearchParams(window.location.search);
-
-      return {
-        hn: urlParams.get("hn") || "",
-        utm_source: urlParams.get("utm_source") || "",
-        utm_medium: urlParams.get("utm_medium") || "",
-        utm_campaign: urlParams.get("utm_campaign") || "",
-        utm_content: urlParams.get("utm_content") || "",
-        utm_term: urlParams.get("utm_term") || ""
-      };
-    }
-
-    function hnSubmitHeroLeadCapture(leadData) {
-      if (!hnIsHeroLeadScriptReady()) {
-        return Promise.resolve();
-      }
-
-      const body = new URLSearchParams(leadData).toString();
-
-      try {
-        if (navigator.sendBeacon) {
-          const blob = new Blob([body], {
-            type: "application/x-www-form-urlencoded;charset=UTF-8"
-          });
-
-          const sent = navigator.sendBeacon(HN_HERO_LEAD_SCRIPT_URL, blob);
-          if (sent) {
-            return Promise.resolve();
-          }
-        }
-      } catch (error) {
-        // Fall through to fetch.
-      }
-
-      return fetch(HN_HERO_LEAD_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body,
-        keepalive: true
-      }).catch(function () {
-        // Lead capture should never block the redirect to the application.
-      });
-    }
-
     function hnInitHeroQuickBooking() {
       const form = document.getElementById("heroQuickBookingForm");
       if (!form) return;
@@ -5088,70 +5027,29 @@ Request received. Opening WhatsApp...
         heroAgeInput.setCustomValidity("");
       }
 
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-
+      form.addEventListener("submit", function (event) {
         const heroAgeInput = document.getElementById("heroAge");
         if (heroAgeInput) {
           heroAgeInput.removeAttribute("max");
           heroAgeInput.setCustomValidity("");
         }
+        event.preventDefault();
 
         const firstName = document.getElementById("heroFirstName")?.value?.trim() || "";
         const lastName = document.getElementById("heroLastName")?.value?.trim() || "";
         const age = document.getElementById("heroAge")?.value?.trim() || "";
-        const email = document.getElementById("heroEmail")?.value?.trim() || "";
-        const phone = document.getElementById("heroPhone")?.value?.trim() || "";
         const roomChoice = document.getElementById("heroRoomChoice")?.value?.trim() || "";
 
-        if (!firstName || !lastName || !age || !email || !phone || !roomChoice) {
+        if (!firstName || !lastName || !age || !roomChoice) {
           form.reportValidity?.();
           return;
         }
-
-        const submitButton = form.querySelector(".hero-booking-submit");
-        const originalButtonText = submitButton ? submitButton.textContent : "";
-
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.textContent = "Opening application...";
-        }
-
-        const trackingParams = hnGetTrackingParams();
-
-        const leadData = {
-          submitted_at: new Date().toISOString(),
-          status: "Started hero booking",
-          firstName,
-          lastName,
-          fullName: `${firstName} ${lastName}`.trim(),
-          age,
-          email,
-          phone,
-          roomChoice,
-          trip: "Shavuos in Vermont",
-          event: "Shavuos 2026",
-          source: "hero_quick_booking",
-          page_url: window.location.href,
-          referrer: document.referrer || "",
-          user_agent: navigator.userAgent || "",
-          language: navigator.language || "",
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
-          campaign_code: trackingParams.hn,
-          utm_source: trackingParams.utm_source,
-          utm_medium: trackingParams.utm_medium,
-          utm_campaign: trackingParams.utm_campaign,
-          utm_content: trackingParams.utm_content,
-          utm_term: trackingParams.utm_term
-        };
 
         const params = new URLSearchParams({
           firstName,
           lastName,
           name: firstName,
           age,
-          email,
-          phone,
           roomChoice,
           room: roomChoice,
           preferredRoom: roomChoice,
@@ -5161,21 +5059,7 @@ Request received. Opening WhatsApp...
           source: "hero_quick_booking"
         });
 
-        try {
-          await Promise.race([
-            hnSubmitHeroLeadCapture(leadData),
-            new Promise((resolve) => setTimeout(resolve, 650))
-          ]);
-        } finally {
-          window.location.href = `Forms/apply.html?${params.toString()}`;
-
-          setTimeout(() => {
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = originalButtonText || "Start booking Shavuos";
-            }
-          }, 1600);
-        }
+        window.location.href = `Forms/apply.html?${params.toString()}`;
       });
     }
 
