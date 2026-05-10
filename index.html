@@ -569,7 +569,7 @@
     }
 
     .hero-booking-room {
-      grid-column: span 1;
+      grid-column: 1 / -1;
     }
 
     .hero-booking-submit {
@@ -3698,6 +3698,11 @@
                       <input id="heroAge" name="age" type="number" min="18" inputmode="numeric" required>
                     </label>
 
+                    <label class="hero-booking-field hero-booking-email">
+                      <span>Email</span>
+                      <input id="heroEmail" name="email" type="email" autocomplete="email" required>
+                    </label>
+
                     <label class="hero-booking-field hero-booking-room">
                       <span>Room I want</span>
                       <select id="heroRoomChoice" name="roomChoice" required>
@@ -5028,19 +5033,21 @@ Request received. Opening WhatsApp...
       }
 
       form.addEventListener("submit", function (event) {
-        const heroAgeInput = document.getElementById("heroAge");
-        if (heroAgeInput) {
-          heroAgeInput.removeAttribute("max");
-          heroAgeInput.setCustomValidity("");
-        }
         event.preventDefault();
 
         const firstName = document.getElementById("heroFirstName")?.value?.trim() || "";
         const lastName = document.getElementById("heroLastName")?.value?.trim() || "";
-        const age = document.getElementById("heroAge")?.value?.trim() || "";
+        const ageInput = document.getElementById("heroAge");
+        const age = ageInput?.value?.trim() || "";
+        const email = document.getElementById("heroEmail")?.value?.trim() || "";
         const roomChoice = document.getElementById("heroRoomChoice")?.value?.trim() || "";
 
-        if (!firstName || !lastName || !age || !roomChoice) {
+        if (ageInput) {
+          ageInput.removeAttribute("max");
+          ageInput.setCustomValidity("");
+        }
+
+        if (!firstName || !lastName || !age || !email || !roomChoice) {
           form.reportValidity?.();
           return;
         }
@@ -5050,6 +5057,7 @@ Request received. Opening WhatsApp...
           lastName,
           name: firstName,
           age,
+          email,
           roomChoice,
           room: roomChoice,
           preferredRoom: roomChoice,
