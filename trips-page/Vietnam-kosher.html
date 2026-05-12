@@ -6,6 +6,9 @@
   <title>Traveling Kosher in Vietnam | Hamsa Nomads</title>
   <meta name="description" content="A kosher-friendly Vietnam route with Chabad houses, Shabbat planning, northern adventures, Hue, Hoi An, Saigon, and a clickable mobile-friendly map of Jewish resources and travel stops." />
 
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/site-components.css" />
+
   <!-- Leaflet map. No API key required. No integrity attribute because some builders/CDNs break it. -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -153,7 +156,7 @@
       padding: 26px;
       background:
         linear-gradient(150deg, rgba(79,90,63,0.88), rgba(127,138,106,0.58)),
-        url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1300&q=80') center/cover;
+        url('../assets/vietnam-hero.jpg') center/cover;
       color: white;
       display: flex;
       flex-direction: column;
@@ -517,7 +520,7 @@
       padding: clamp(28px, 6vw, 64px);
       background:
         linear-gradient(135deg, rgba(79,90,63,0.93), rgba(127,138,106,0.86)),
-        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80') center/cover;
+        url('../assets/vietnam-footer.jpg') center/cover;
       color: white;
       text-align: center;
       box-shadow: var(--shadow);
@@ -1116,5 +1119,6 @@
       });
     })();
   </script>
+  <script src="../assets/site-components.js"></script>
 </body>
 </html>
