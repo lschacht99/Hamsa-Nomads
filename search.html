@@ -1,833 +1,887 @@
-<!-- Hamsa Nomads Kosher Travel Finder — Professional Version -->
-<section class="hn-kosher-finder" id="kosher-travel-finder">
-  <div class="hn-finder-shell">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Kosher Travel Index | Hamsa Nomads</title>
+
+  <meta
+    name="description"
+    content="Search kosher travel programs, retreats, cruises, Pesach programs, tours, and Jewish travel experiences around the world."
+  />
+
+ <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="assets/site-components.css" />
+<script src="assets/site-components.js" data-base=""></script>
+
+  <style>
+    :root {
+      --hn-cream: #f7f3ea;
+      --hn-paper: #fffaf0;
+      --hn-green: #174f19;
+      --hn-green-2: #476343;
+      --hn-gold: #b88b2f;
+      --hn-ink: #182015;
+      --hn-muted: #68715f;
+      --hn-line: rgba(23, 79, 25, 0.16);
+      --hn-line-strong: rgba(23, 79, 25, 0.26);
+      --hn-card: rgba(255, 255, 255, 0.78);
+      --hn-shadow: 0 18px 50px rgba(24, 32, 21, 0.10);
+      --hn-soft-shadow: 0 10px 30px rgba(24, 32, 21, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--hn-ink);
+      background: var(--hn-cream);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hn-page-main {
+      min-height: 70vh;
+    }
+
+    .hn-kosher-finder {
+      background:
+        radial-gradient(circle at top left, rgba(184, 139, 47, 0.10), transparent 34%),
+        linear-gradient(180deg, #fbf7ee 0%, var(--hn-cream) 42%, #f1eadc 100%);
+      color: var(--hn-ink);
+      padding: clamp(42px, 6vw, 82px) 18px;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .hn-finder-shell {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
 
-    <div class="hn-finder-hero">
-      <div>
-        <p class="hn-eyebrow">Kosher Travel Index</p>
-        <h1>Find kosher trips, retreats, cruises, and programs worldwide.</h1>
-        <p class="hn-hero-copy">
-          A searchable directory of kosher travel experiences gathered from public sources.
-          Filter by destination, program type, audience, and price.
-        </p>
-      </div>
-
-      <div class="hn-hero-note">
-        <span>Auto-updated directory</span>
-        <p>
-          Listings are gathered automatically. Always confirm details directly with each organizer.
-        </p>
-      </div>
-    </div>
-
-    <div class="hn-search-panel">
-      <div class="hn-search-line">
-        <div class="hn-main-search">
-          <label for="hnSearchInput">Search listings</label>
-          <input
-            id="hnSearchInput"
-            type="search"
-            placeholder="Search destination, holiday, organizer, program..."
-            autocomplete="off"
-          />
-        </div>
-
-        <button type="button" id="hnResetFilters" class="hn-reset-button">
-          Reset
-        </button>
-      </div>
-
-      <div class="hn-filter-row">
-        <div class="hn-filter-field">
-          <label for="hnTypeFilter">Type</label>
-          <select id="hnTypeFilter">
-            <option value="">All types</option>
-          </select>
-        </div>
-
-        <div class="hn-filter-field">
-          <label for="hnCountryFilter">Country</label>
-          <select id="hnCountryFilter">
-            <option value="">All countries</option>
-          </select>
-        </div>
-
-        <div class="hn-filter-field">
-          <label for="hnAudienceFilter">Audience</label>
-          <select id="hnAudienceFilter">
-            <option value="">All audiences</option>
-          </select>
-        </div>
-
-        <div class="hn-filter-field">
-          <label for="hnSortFilter">Sort</label>
-          <select id="hnSortFilter">
-            <option value="newest">Newest found</option>
-            <option value="price-low">Lowest price</option>
-            <option value="price-high">Highest price</option>
-            <option value="name">A–Z</option>
-          </select>
-        </div>
-
-        <div class="hn-filter-field">
-          <label for="hnMaxPrice">Max price</label>
-          <input id="hnMaxPrice" type="number" placeholder="Any" min="0" />
-        </div>
-      </div>
-    </div>
-
-    <div class="hn-results-bar">
-      <p id="hnResultCount">Loading listings...</p>
-
-      <div class="hn-results-actions">
-        <span id="hnLastUpdated"></span>
-      </div>
-    </div>
-
-    <div id="hnProgramsGrid" class="hn-programs-grid"></div>
-
-    <div id="hnEmptyState" class="hn-empty-state" hidden>
-      <h3>No listings found</h3>
-      <p>Try a broader search or remove one of the filters.</p>
-    </div>
-
-    <div class="hn-finder-disclaimer">
-      <strong>Important:</strong>
-      Listings are gathered automatically from public sources and may change without notice.
-      Hamsa Nomads does not manually verify every listing. Please confirm pricing, dates,
-      availability, and kashrut details directly with each organizer.
-    </div>
-
-  </div>
-</section>
-
-<style>
-  :root {
-    --hn-cream: #f7f3ea;
-    --hn-paper: #fffaf0;
-    --hn-green: #174f19;
-    --hn-green-2: #476343;
-    --hn-gold: #b88b2f;
-    --hn-ink: #182015;
-    --hn-muted: #68715f;
-    --hn-line: rgba(23, 79, 25, 0.16);
-    --hn-line-strong: rgba(23, 79, 25, 0.26);
-    --hn-card: rgba(255, 255, 255, 0.78);
-    --hn-shadow: 0 18px 50px rgba(24, 32, 21, 0.10);
-    --hn-soft-shadow: 0 10px 30px rgba(24, 32, 21, 0.08);
-  }
-
-  .hn-kosher-finder {
-    background:
-      radial-gradient(circle at top left, rgba(184, 139, 47, 0.10), transparent 34%),
-      linear-gradient(180deg, #fbf7ee 0%, var(--hn-cream) 42%, #f1eadc 100%);
-    color: var(--hn-ink);
-    padding: clamp(42px, 6vw, 82px) 18px;
-    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-
-  .hn-finder-shell {
-    width: min(1180px, 100%);
-    margin: 0 auto;
-  }
-
-  .hn-finder-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 320px;
-    gap: clamp(22px, 4vw, 48px);
-    align-items: end;
-    margin-bottom: 26px;
-  }
-
-  .hn-eyebrow {
-    margin: 0 0 10px;
-    color: var(--hn-gold);
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-size: 0.74rem;
-    font-weight: 850;
-  }
-
-  .hn-finder-hero h1 {
-    max-width: 820px;
-    margin: 0;
-    color: var(--hn-green);
-    font-family: "Iowan Old Style", Georgia, serif;
-    font-size: clamp(2.45rem, 5.4vw, 5.2rem);
-    line-height: 0.93;
-    letter-spacing: -0.055em;
-  }
-
-  .hn-hero-copy {
-    max-width: 680px;
-    margin: 18px 0 0;
-    color: var(--hn-muted);
-    font-size: 1.02rem;
-    line-height: 1.65;
-  }
-
-  .hn-hero-note {
-    border: 1px solid var(--hn-line);
-    background: rgba(255, 255, 255, 0.56);
-    border-radius: 24px;
-    padding: 18px;
-    box-shadow: var(--hn-soft-shadow);
-  }
-
-  .hn-hero-note span {
-    display: block;
-    color: var(--hn-green);
-    font-weight: 850;
-    font-size: 0.92rem;
-    margin-bottom: 6px;
-  }
-
-  .hn-hero-note p {
-    margin: 0;
-    color: var(--hn-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .hn-search-panel {
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    background: rgba(255, 250, 240, 0.86);
-    border: 1px solid var(--hn-line);
-    border-radius: 28px;
-    box-shadow: var(--hn-shadow);
-    backdrop-filter: blur(18px);
-    padding: clamp(16px, 2vw, 22px);
-    margin-bottom: 18px;
-  }
-
-  .hn-search-line {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 12px;
-    align-items: end;
-    margin-bottom: 12px;
-  }
-
-  .hn-main-search label,
-  .hn-filter-field label {
-    display: block;
-    color: var(--hn-green);
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.11em;
-    font-weight: 850;
-    margin-bottom: 7px;
-  }
-
-  .hn-main-search input {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid var(--hn-line-strong);
-    border-radius: 18px;
-    padding: 16px 18px;
-    font-size: 1rem;
-    color: var(--hn-ink);
-    background: rgba(255, 255, 255, 0.9);
-    outline: none;
-  }
-
-  .hn-filter-row {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr 1fr 0.85fr 0.8fr;
-    gap: 10px;
-  }
-
-  .hn-filter-field input,
-  .hn-filter-field select {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid rgba(23, 79, 25, 0.18);
-    border-radius: 15px;
-    padding: 12px 12px;
-    min-height: 45px;
-    color: var(--hn-ink);
-    background: rgba(255, 255, 255, 0.88);
-    outline: none;
-    font-size: 0.92rem;
-  }
-
-  .hn-main-search input:focus,
-  .hn-filter-field input:focus,
-  .hn-filter-field select:focus {
-    border-color: var(--hn-green);
-    box-shadow: 0 0 0 4px rgba(23, 79, 25, 0.08);
-  }
-
-  .hn-reset-button {
-    border: 1px solid rgba(23, 79, 25, 0.22);
-    background: var(--hn-green);
-    color: white;
-    border-radius: 18px;
-    padding: 15px 20px;
-    min-height: 53px;
-    font-weight: 850;
-    cursor: pointer;
-    transition: transform 0.18s ease, opacity 0.18s ease;
-  }
-
-  .hn-reset-button:hover {
-    transform: translateY(-1px);
-    opacity: 0.95;
-  }
-
-  .hn-results-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    margin: 20px 4px 16px;
-  }
-
-  #hnResultCount {
-    margin: 0;
-    color: var(--hn-green);
-    font-size: 0.98rem;
-    font-weight: 850;
-  }
-
-  .hn-results-actions {
-    color: var(--hn-muted);
-    font-size: 0.86rem;
-  }
-
-  .hn-programs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .hn-program-card {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid var(--hn-line);
-    border-radius: 26px;
-    overflow: hidden;
-    box-shadow: 0 12px 34px rgba(24, 32, 21, 0.08);
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  }
-
-  .hn-program-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 48px rgba(24, 32, 21, 0.12);
-    border-color: rgba(23, 79, 25, 0.28);
-  }
-
-  .hn-program-image {
-    width: 100%;
-    height: 168px;
-    background: rgba(247, 243, 234, 0.9);
-    overflow: hidden;
-  }
-
-  .hn-program-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .hn-program-image-placeholder {
-    display: grid;
-    place-items: center;
-    background:
-      radial-gradient(circle at top left, rgba(184, 139, 47, 0.20), transparent 36%),
-      linear-gradient(135deg, rgba(23, 79, 25, 0.12), rgba(247, 243, 234, 0.96));
-  }
-
-  .hn-program-image-placeholder span {
-    color: var(--hn-green);
-    font-family: "Iowan Old Style", Georgia, serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-  }
-
-  .hn-program-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 18px;
-  }
-
-  .hn-program-meta-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
-
-  .hn-program-type {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    max-width: 100%;
-    border: 1px solid rgba(23, 79, 25, 0.14);
-    border-radius: 999px;
-    padding: 6px 9px;
-    color: var(--hn-green);
-    background: rgba(247, 243, 234, 0.8);
-    font-size: 0.72rem;
-    line-height: 1;
-    font-weight: 850;
-  }
-
-  .hn-program-price {
-    color: var(--hn-green);
-    font-size: 0.84rem;
-    font-weight: 850;
-    white-space: nowrap;
-  }
-
-  .hn-program-card h3 {
-    margin: 0 0 7px;
-    color: var(--hn-green);
-    font-family: "Iowan Old Style", Georgia, serif;
-    font-size: 1.42rem;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-
-  .hn-program-organizer {
-    margin: 0 0 13px;
-    color: var(--hn-muted);
-    font-size: 0.9rem;
-  }
-
-  .hn-program-facts {
-    display: grid;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
-
-  .hn-fact {
-    display: grid;
-    grid-template-columns: 82px minmax(0, 1fr);
-    gap: 8px;
-    color: var(--hn-ink);
-    font-size: 0.88rem;
-    line-height: 1.35;
-  }
-
-  .hn-fact strong {
-    color: var(--hn-green-2);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .hn-program-description {
-    margin: 0 0 16px;
-    color: var(--hn-muted);
-    line-height: 1.5;
-    font-size: 0.88rem;
-  }
-
-  .hn-program-actions {
-    display: flex;
-    gap: 9px;
-    flex-wrap: wrap;
-    margin-top: auto;
-  }
-
-  .hn-program-actions a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    border-radius: 999px;
-    padding: 10px 13px;
-    font-weight: 850;
-    font-size: 0.84rem;
-  }
-
-  .hn-primary-link {
-    background: var(--hn-green);
-    color: white;
-  }
-
-  .hn-secondary-link {
-    border: 1px solid rgba(23, 79, 25, 0.2);
-    color: var(--hn-green);
-    background: rgba(255, 255, 255, 0.62);
-  }
-
-  .hn-empty-state {
-    border: 1px dashed rgba(23, 79, 25, 0.28);
-    border-radius: 26px;
-    padding: 38px 20px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.56);
-  }
-
-  .hn-empty-state h3 {
-    margin: 0 0 8px;
-    color: var(--hn-green);
-    font-family: "Iowan Old Style", Georgia, serif;
-    font-size: 2rem;
-  }
-
-  .hn-empty-state p {
-    margin: 0;
-    color: var(--hn-muted);
-  }
-
-  .hn-finder-disclaimer {
-    margin-top: 24px;
-    border-top: 1px solid var(--hn-line);
-    padding-top: 16px;
-    color: var(--hn-muted);
-    font-size: 0.84rem;
-    line-height: 1.55;
-  }
-
-  .hn-finder-disclaimer strong {
-    color: var(--hn-green);
-  }
-
-  @media (max-width: 980px) {
     .hn-finder-hero {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: clamp(22px, 4vw, 48px);
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .hn-eyebrow {
+      margin: 0 0 10px;
+      color: var(--hn-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.74rem;
+      font-weight: 850;
+    }
+
+    .hn-finder-hero h1 {
+      max-width: 820px;
+      margin: 0;
+      color: var(--hn-green);
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: clamp(2.45rem, 5.4vw, 5.2rem);
+      line-height: 0.93;
+      letter-spacing: -0.055em;
+    }
+
+    .hn-hero-copy {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: var(--hn-muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
     }
 
     .hn-hero-note {
-      max-width: 560px;
+      border: 1px solid var(--hn-line);
+      background: rgba(255, 255, 255, 0.56);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: var(--hn-soft-shadow);
     }
 
-    .hn-filter-row {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .hn-hero-note span {
+      display: block;
+      color: var(--hn-green);
+      font-weight: 850;
+      font-size: 0.92rem;
+      margin-bottom: 6px;
     }
 
-    .hn-programs-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 680px) {
-    .hn-kosher-finder {
-      padding-left: 14px;
-      padding-right: 14px;
+    .hn-hero-note p {
+      margin: 0;
+      color: var(--hn-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
     .hn-search-panel {
-      position: relative;
-      border-radius: 24px;
+      position: sticky;
+      top: 82px;
+      z-index: 5;
+      background: rgba(255, 250, 240, 0.88);
+      border: 1px solid var(--hn-line);
+      border-radius: 28px;
+      box-shadow: var(--hn-shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: clamp(16px, 2vw, 22px);
+      margin-bottom: 18px;
     }
 
-    .hn-search-line,
-    .hn-filter-row,
-    .hn-programs-grid {
-      grid-template-columns: 1fr;
+    .hn-search-line {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+
+    .hn-main-search label,
+    .hn-filter-field label {
+      display: block;
+      color: var(--hn-green);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-weight: 850;
+      margin-bottom: 7px;
+    }
+
+    .hn-main-search input {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--hn-line-strong);
+      border-radius: 18px;
+      padding: 16px 18px;
+      font-size: 1rem;
+      color: var(--hn-ink);
+      background: rgba(255, 255, 255, 0.9);
+      outline: none;
+    }
+
+    .hn-filter-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr 0.85fr 0.8fr;
+      gap: 10px;
+    }
+
+    .hn-filter-field input,
+    .hn-filter-field select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(23, 79, 25, 0.18);
+      border-radius: 15px;
+      padding: 12px 12px;
+      min-height: 45px;
+      color: var(--hn-ink);
+      background: rgba(255, 255, 255, 0.88);
+      outline: none;
+      font-size: 0.92rem;
+    }
+
+    .hn-main-search input:focus,
+    .hn-filter-field input:focus,
+    .hn-filter-field select:focus {
+      border-color: var(--hn-green);
+      box-shadow: 0 0 0 4px rgba(23, 79, 25, 0.08);
     }
 
     .hn-reset-button {
-      width: 100%;
+      border: 1px solid rgba(23, 79, 25, 0.22);
+      background: var(--hn-green);
+      color: white;
+      border-radius: 18px;
+      padding: 15px 20px;
+      min-height: 53px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .hn-reset-button:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
     }
 
     .hn-results-bar {
-      flex-direction: column;
-      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin: 20px 4px 16px;
+    }
+
+    #hnResultCount {
+      margin: 0;
+      color: var(--hn-green);
+      font-size: 0.98rem;
+      font-weight: 850;
+    }
+
+    .hn-results-actions {
+      color: var(--hn-muted);
+      font-size: 0.86rem;
+    }
+
+    .hn-programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .hn-program-card {
-      border-radius: 24px;
-    }
-  }
-</style>
-
-<script>
-  const HN_PROGRAMS_JSON_URL = "https://script.google.com/macros/s/AKfycbwjdbqYIe7iq8Y7K32S634T2nPfTBLSftF8cCt0l5M1ChbYxZkhQCcBbXww2blevjVw/exec";
-
-  let hnAllPrograms = [];
-
-  const hnEls = {
-    search: document.getElementById("hnSearchInput"),
-    type: document.getElementById("hnTypeFilter"),
-    country: document.getElementById("hnCountryFilter"),
-    audience: document.getElementById("hnAudienceFilter"),
-    sort: document.getElementById("hnSortFilter"),
-    maxPrice: document.getElementById("hnMaxPrice"),
-    reset: document.getElementById("hnResetFilters"),
-    grid: document.getElementById("hnProgramsGrid"),
-    count: document.getElementById("hnResultCount"),
-    empty: document.getElementById("hnEmptyState"),
-    lastUpdated: document.getElementById("hnLastUpdated")
-  };
-
-  async function hnLoadPrograms() {
-    try {
-      const response = await fetch(HN_PROGRAMS_JSON_URL);
-      const data = await response.json();
-
-      hnAllPrograms = Array.isArray(data.programs) ? data.programs : [];
-
-      hnPopulateFilters(hnAllPrograms);
-      hnSetLastUpdated(data.updatedAt);
-      hnRenderPrograms();
-    } catch (error) {
-      console.error("Hamsa Nomads finder error:", error);
-      hnEls.count.textContent = "Could not load listings right now.";
-      hnEls.grid.innerHTML = "";
-      hnEls.empty.hidden = false;
-    }
-  }
-
-  function hnSetLastUpdated(updatedAt) {
-    if (!updatedAt) {
-      hnEls.lastUpdated.textContent = "";
-      return;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--hn-line);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 12px 34px rgba(24, 32, 21, 0.08);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
-    const date = new Date(updatedAt);
-
-    if (Number.isNaN(date.getTime())) {
-      hnEls.lastUpdated.textContent = "";
-      return;
+    .hn-program-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 48px rgba(24, 32, 21, 0.12);
+      border-color: rgba(23, 79, 25, 0.28);
     }
 
-    hnEls.lastUpdated.textContent = `Updated ${date.toLocaleDateString(undefined, {
-      month: "short",
-      day: "numeric",
-      year: "numeric"
-    })}`;
-  }
-
-  function hnPopulateFilters(programs) {
-    hnFillSelect(hnEls.type, hnUnique(programs.map(p => p.programType)), "All types");
-    hnFillSelect(hnEls.country, hnUnique(programs.map(p => p.country)), "All countries");
-    hnFillSelect(hnEls.audience, hnUnique(programs.map(p => p.audience)), "All audiences");
-  }
-
-  function hnFillSelect(selectEl, values, defaultLabel) {
-    const currentValue = selectEl.value;
-
-    selectEl.innerHTML = `<option value="">${defaultLabel}</option>`;
-
-    values.forEach(value => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = value;
-      selectEl.appendChild(option);
-    });
-
-    selectEl.value = currentValue;
-  }
-
-  function hnRenderPrograms() {
-    const query = hnNormalize(hnEls.search.value);
-    const type = hnNormalize(hnEls.type.value);
-    const country = hnNormalize(hnEls.country.value);
-    const audience = hnNormalize(hnEls.audience.value);
-    const maxPrice = Number(hnEls.maxPrice.value || 0);
-    const sortValue = hnEls.sort.value;
-
-    let results = hnAllPrograms.filter(program => {
-      const searchable = hnNormalize([
-        program.programName,
-        program.organizer,
-        program.websiteUrl,
-        program.country,
-        program.cityRegion,
-        program.programType,
-        program.dates,
-        program.kashrutInfo,
-        program.audience,
-        program.description
-      ].join(" "));
-
-      const price = hnNumber(program.priceFrom);
-
-      const matchesQuery = !query || searchable.includes(query);
-      const matchesType = !type || hnNormalize(program.programType) === type;
-      const matchesCountry = !country || hnNormalize(program.country) === country;
-      const matchesAudience = !audience || hnNormalize(program.audience) === audience;
-      const matchesMaxPrice = !maxPrice || !price || price <= maxPrice;
-
-      return (
-        matchesQuery &&
-        matchesType &&
-        matchesCountry &&
-        matchesAudience &&
-        matchesMaxPrice
-      );
-    });
-
-    results = hnSortPrograms(results, sortValue);
-
-    hnEls.count.textContent =
-      results.length === 1
-        ? "1 listing"
-        : `${results.length} listings`;
-
-    hnEls.empty.hidden = results.length !== 0;
-    hnEls.grid.innerHTML = results.map(hnProgramCard).join("");
-  }
-
-  function hnSortPrograms(programs, sortValue) {
-    const sorted = [...programs];
-
-    if (sortValue === "price-low") {
-      sorted.sort((a, b) => hnNumber(a.priceFrom) - hnNumber(b.priceFrom));
+    .hn-program-image {
+      width: 100%;
+      height: 168px;
+      background: rgba(247, 243, 234, 0.9);
+      overflow: hidden;
     }
 
-    if (sortValue === "price-high") {
-      sorted.sort((a, b) => hnNumber(b.priceFrom) - hnNumber(a.priceFrom));
+    .hn-program-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    if (sortValue === "name") {
-      sorted.sort((a, b) =>
-        String(a.programName || "").localeCompare(String(b.programName || ""))
-      );
+    .hn-program-image-placeholder {
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at top left, rgba(184, 139, 47, 0.20), transparent 36%),
+        linear-gradient(135deg, rgba(23, 79, 25, 0.12), rgba(247, 243, 234, 0.96));
     }
 
-    if (sortValue === "newest") {
-      sorted.sort((a, b) =>
-        new Date(b.lastChecked || 0) - new Date(a.lastChecked || 0)
-      );
+    .hn-program-image-placeholder span {
+      color: var(--hn-green);
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
     }
 
-    return sorted;
-  }
+    .hn-program-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 18px;
+    }
 
-  function hnProgramCard(program) {
-    const name = hnEscape(program.programName || "Kosher Travel Program");
-    const organizer = hnEscape(program.organizer || "Organizer not listed");
-    const type = hnEscape(program.programType || "Kosher Travel Program");
-    const country = hnEscape(program.country || "");
-    const city = hnEscape(program.cityRegion || "");
-    const dates = hnEscape(program.dates || "Dates not listed");
-    const price = hnFormatPrice(program);
-    const kashrut = hnEscape(program.kashrutInfo || "Confirm with organizer");
-    const audience = hnEscape(program.audience || "Not specified");
-    const description = hnEscape(hnShorten(
-      program.description || "Automatically gathered listing. Please confirm all details directly with the organizer.",
-      175
-    ));
-    const url = hnEscape(program.websiteUrl || "#");
-    const sourceUrl = hnEscape(program.sourceUrl || "");
-    const pictureUrl = hnEscape(program.pictureUrl || "");
+    .hn-program-meta-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
 
-    const location = [city, country].filter(Boolean).join(", ") || "Location not listed";
+    .hn-program-type {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%;
+      border: 1px solid rgba(23, 79, 25, 0.14);
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: var(--hn-green);
+      background: rgba(247, 243, 234, 0.8);
+      font-size: 0.72rem;
+      line-height: 1;
+      font-weight: 850;
+    }
 
-    return `
-      <article class="hn-program-card">
-        ${
-          pictureUrl
-            ? `<div class="hn-program-image"><img src="${pictureUrl}" alt="${name}" loading="lazy" /></div>`
-            : `<div class="hn-program-image hn-program-image-placeholder"><span>Hamsa Nomads</span></div>`
-        }
+    .hn-program-price {
+      color: var(--hn-green);
+      font-size: 0.84rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
 
-        <div class="hn-program-body">
-          <div class="hn-program-meta-line">
-            <span class="hn-program-type">${type}</span>
-            <span class="hn-program-price">${price}</span>
+    .hn-program-card h3 {
+      margin: 0 0 7px;
+      color: var(--hn-green);
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 1.42rem;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .hn-program-organizer {
+      margin: 0 0 13px;
+      color: var(--hn-muted);
+      font-size: 0.9rem;
+    }
+
+    .hn-program-facts {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .hn-fact {
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: 8px;
+      color: var(--hn-ink);
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .hn-fact strong {
+      color: var(--hn-green-2);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hn-program-description {
+      margin: 0 0 16px;
+      color: var(--hn-muted);
+      line-height: 1.5;
+      font-size: 0.88rem;
+    }
+
+    .hn-program-actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .hn-program-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 10px 13px;
+      font-weight: 850;
+      font-size: 0.84rem;
+    }
+
+    .hn-primary-link {
+      background: var(--hn-green);
+      color: white;
+    }
+
+    .hn-secondary-link {
+      border: 1px solid rgba(23, 79, 25, 0.2);
+      color: var(--hn-green);
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .hn-empty-state {
+      border: 1px dashed rgba(23, 79, 25, 0.28);
+      border-radius: 26px;
+      padding: 38px 20px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .hn-empty-state h3 {
+      margin: 0 0 8px;
+      color: var(--hn-green);
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: 2rem;
+    }
+
+    .hn-empty-state p {
+      margin: 0;
+      color: var(--hn-muted);
+    }
+
+    .hn-finder-disclaimer {
+      margin-top: 24px;
+      border-top: 1px solid var(--hn-line);
+      padding-top: 16px;
+      color: var(--hn-muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .hn-finder-disclaimer strong {
+      color: var(--hn-green);
+    }
+
+    @media (max-width: 980px) {
+      .hn-finder-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hn-hero-note {
+        max-width: 560px;
+      }
+
+      .hn-filter-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hn-programs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hn-kosher-finder {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .hn-search-panel {
+        position: relative;
+        top: auto;
+        border-radius: 24px;
+      }
+
+      .hn-search-line,
+      .hn-filter-row,
+      .hn-programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hn-reset-button {
+        width: 100%;
+      }
+
+      .hn-results-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hn-program-card {
+        border-radius: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main class="hn-page-main">
+    <section class="hn-kosher-finder" id="kosher-travel-finder">
+      <div class="hn-finder-shell">
+
+        <div class="hn-finder-hero">
+          <div>
+            <p class="hn-eyebrow">Kosher Travel Index</p>
+            <h1>Find kosher trips, retreats, cruises, and programs worldwide.</h1>
+            <p class="hn-hero-copy">
+              A searchable directory of kosher travel experiences gathered from public sources.
+              Filter by destination, program type, audience, and price.
+            </p>
           </div>
 
-          <h3>${name}</h3>
-          <p class="hn-program-organizer">${organizer}</p>
-
-          <div class="hn-program-facts">
-            <div class="hn-fact"><strong>Where</strong><span>${location}</span></div>
-            <div class="hn-fact"><strong>When</strong><span>${dates}</span></div>
-            <div class="hn-fact"><strong>Who</strong><span>${audience}</span></div>
-            <div class="hn-fact"><strong>Kashrut</strong><span>${kashrut}</span></div>
-          </div>
-
-          <p class="hn-program-description">${description}</p>
-
-          <div class="hn-program-actions">
-            <a class="hn-primary-link" href="${url}" target="_blank" rel="noopener noreferrer">
-              View listing
-            </a>
-            ${
-              sourceUrl
-                ? `<a class="hn-secondary-link" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">Source</a>`
-                : ""
-            }
+          <div class="hn-hero-note">
+            <span>Auto-updated directory</span>
+            <p>
+              Listings are gathered automatically. Always confirm details directly with each organizer.
+            </p>
           </div>
         </div>
-      </article>
-    `;
-  }
 
-  function hnFormatPrice(program) {
-    const currency = program.currency || "";
-    const from = program.priceFrom;
-    const to = program.priceTo;
+        <div class="hn-search-panel">
+          <div class="hn-search-line">
+            <div class="hn-main-search">
+              <label for="hnSearchInput">Search listings</label>
+              <input
+                id="hnSearchInput"
+                type="search"
+                placeholder="Search destination, holiday, organizer, program..."
+                autocomplete="off"
+              />
+            </div>
 
-    if (!from && !to) return "Price not listed";
-    if (from && to) return `${currency}${from}–${currency}${to}`;
-    if (from) return `From ${currency}${from}`;
-    return `${currency}${to}`;
-  }
+            <button type="button" id="hnResetFilters" class="hn-reset-button">
+              Reset
+            </button>
+          </div>
 
-  function hnShorten(text, maxLength) {
-    const clean = String(text || "").trim();
+          <div class="hn-filter-row">
+            <div class="hn-filter-field">
+              <label for="hnTypeFilter">Type</label>
+              <select id="hnTypeFilter">
+                <option value="">All types</option>
+              </select>
+            </div>
 
-    if (clean.length <= maxLength) return clean;
+            <div class="hn-filter-field">
+              <label for="hnCountryFilter">Country</label>
+              <select id="hnCountryFilter">
+                <option value="">All countries</option>
+              </select>
+            </div>
 
-    return clean.slice(0, maxLength).trim() + "…";
-  }
+            <div class="hn-filter-field">
+              <label for="hnAudienceFilter">Audience</label>
+              <select id="hnAudienceFilter">
+                <option value="">All audiences</option>
+              </select>
+            </div>
 
-  function hnUnique(values) {
-    return [...new Set(
-      values
-        .map(value => String(value || "").trim())
-        .filter(Boolean)
-    )].sort((a, b) => a.localeCompare(b));
-  }
+            <div class="hn-filter-field">
+              <label for="hnSortFilter">Sort</label>
+              <select id="hnSortFilter">
+                <option value="newest">Newest found</option>
+                <option value="price-low">Lowest price</option>
+                <option value="price-high">Highest price</option>
+                <option value="name">A–Z</option>
+              </select>
+            </div>
 
-  function hnNormalize(value) {
-    return String(value || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim();
-  }
+            <div class="hn-filter-field">
+              <label for="hnMaxPrice">Max price</label>
+              <input id="hnMaxPrice" type="number" placeholder="Any" min="0" />
+            </div>
+          </div>
+        </div>
 
-  function hnNumber(value) {
-    const number = Number(String(value || "").replace(/[^0-9.]/g, ""));
-    return Number.isFinite(number) ? number : 0;
-  }
+        <div class="hn-results-bar">
+          <p id="hnResultCount">Loading listings...</p>
 
-  function hnEscape(value) {
-    return String(value || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
+          <div class="hn-results-actions">
+            <span id="hnLastUpdated"></span>
+          </div>
+        </div>
 
-  [
-    hnEls.search,
-    hnEls.type,
-    hnEls.country,
-    hnEls.audience,
-    hnEls.sort,
-    hnEls.maxPrice
-  ].forEach(el => {
-    el.addEventListener("input", hnRenderPrograms);
-    el.addEventListener("change", hnRenderPrograms);
-  });
+        <div id="hnProgramsGrid" class="hn-programs-grid"></div>
 
-  hnEls.reset.addEventListener("click", () => {
-    hnEls.search.value = "";
-    hnEls.type.value = "";
-    hnEls.country.value = "";
-    hnEls.audience.value = "";
-    hnEls.sort.value = "newest";
-    hnEls.maxPrice.value = "";
-    hnRenderPrograms();
-  });
+        <div id="hnEmptyState" class="hn-empty-state" hidden>
+          <h3>No listings found</h3>
+          <p>Try a broader search or remove one of the filters.</p>
+        </div>
 
-  hnLoadPrograms();
-</script>
+        <div class="hn-finder-disclaimer">
+          <strong>Important:</strong>
+          Listings are gathered automatically from public sources and may change without notice.
+          Hamsa Nomads does not manually verify every listing. Please confirm pricing, dates,
+          availability, and kashrut details directly with each organizer.
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="../assets/site-components.js" data-base="../"></script>
+
+  <script>
+    const HN_PROGRAMS_JSON_URL = "https://script.google.com/macros/s/AKfycbwjdbqYIe7iq8Y7K32S634T2nPfTBLSftF8cCt0l5M1ChbYxZkhQCcBbXww2blevjVw/exec";
+
+    let hnAllPrograms = [];
+
+    const hnEls = {
+      search: document.getElementById("hnSearchInput"),
+      type: document.getElementById("hnTypeFilter"),
+      country: document.getElementById("hnCountryFilter"),
+      audience: document.getElementById("hnAudienceFilter"),
+      sort: document.getElementById("hnSortFilter"),
+      maxPrice: document.getElementById("hnMaxPrice"),
+      reset: document.getElementById("hnResetFilters"),
+      grid: document.getElementById("hnProgramsGrid"),
+      count: document.getElementById("hnResultCount"),
+      empty: document.getElementById("hnEmptyState"),
+      lastUpdated: document.getElementById("hnLastUpdated")
+    };
+
+    async function hnLoadPrograms() {
+      try {
+        const response = await fetch(HN_PROGRAMS_JSON_URL);
+        const data = await response.json();
+
+        hnAllPrograms = Array.isArray(data.programs) ? data.programs : [];
+
+        hnPopulateFilters(hnAllPrograms);
+        hnSetLastUpdated(data.updatedAt);
+        hnRenderPrograms();
+      } catch (error) {
+        console.error("Hamsa Nomads finder error:", error);
+        hnEls.count.textContent = "Could not load listings right now.";
+        hnEls.grid.innerHTML = "";
+        hnEls.empty.hidden = false;
+      }
+    }
+
+    function hnSetLastUpdated(updatedAt) {
+      if (!updatedAt) {
+        hnEls.lastUpdated.textContent = "";
+        return;
+      }
+
+      const date = new Date(updatedAt);
+
+      if (Number.isNaN(date.getTime())) {
+        hnEls.lastUpdated.textContent = "";
+        return;
+      }
+
+      hnEls.lastUpdated.textContent = `Updated ${date.toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      })}`;
+    }
+
+    function hnPopulateFilters(programs) {
+      hnFillSelect(hnEls.type, hnUnique(programs.map(p => p.programType)), "All types");
+      hnFillSelect(hnEls.country, hnUnique(programs.map(p => p.country)), "All countries");
+      hnFillSelect(hnEls.audience, hnUnique(programs.map(p => p.audience)), "All audiences");
+    }
+
+    function hnFillSelect(selectEl, values, defaultLabel) {
+      const currentValue = selectEl.value;
+
+      selectEl.innerHTML = `<option value="">${defaultLabel}</option>`;
+
+      values.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        selectEl.appendChild(option);
+      });
+
+      selectEl.value = currentValue;
+    }
+
+    function hnRenderPrograms() {
+      const query = hnNormalize(hnEls.search.value);
+      const type = hnNormalize(hnEls.type.value);
+      const country = hnNormalize(hnEls.country.value);
+      const audience = hnNormalize(hnEls.audience.value);
+      const maxPrice = Number(hnEls.maxPrice.value || 0);
+      const sortValue = hnEls.sort.value;
+
+      let results = hnAllPrograms.filter(program => {
+        const searchable = hnNormalize([
+          program.programName,
+          program.organizer,
+          program.websiteUrl,
+          program.country,
+          program.cityRegion,
+          program.programType,
+          program.dates,
+          program.kashrutInfo,
+          program.audience,
+          program.description
+        ].join(" "));
+
+        const price = hnNumber(program.priceFrom);
+
+        const matchesQuery = !query || searchable.includes(query);
+        const matchesType = !type || hnNormalize(program.programType) === type;
+        const matchesCountry = !country || hnNormalize(program.country) === country;
+        const matchesAudience = !audience || hnNormalize(program.audience) === audience;
+        const matchesMaxPrice = !maxPrice || !price || price <= maxPrice;
+
+        return (
+          matchesQuery &&
+          matchesType &&
+          matchesCountry &&
+          matchesAudience &&
+          matchesMaxPrice
+        );
+      });
+
+      results = hnSortPrograms(results, sortValue);
+
+      hnEls.count.textContent =
+        results.length === 1
+          ? "1 listing"
+          : `${results.length} listings`;
+
+      hnEls.empty.hidden = results.length !== 0;
+      hnEls.grid.innerHTML = results.map(hnProgramCard).join("");
+    }
+
+    function hnSortPrograms(programs, sortValue) {
+      const sorted = [...programs];
+
+      if (sortValue === "price-low") {
+        sorted.sort((a, b) => hnNumber(a.priceFrom) - hnNumber(b.priceFrom));
+      }
+
+      if (sortValue === "price-high") {
+        sorted.sort((a, b) => hnNumber(b.priceFrom) - hnNumber(a.priceFrom));
+      }
+
+      if (sortValue === "name") {
+        sorted.sort((a, b) =>
+          String(a.programName || "").localeCompare(String(b.programName || ""))
+        );
+      }
+
+      if (sortValue === "newest") {
+        sorted.sort((a, b) =>
+          new Date(b.lastChecked || 0) - new Date(a.lastChecked || 0)
+        );
+      }
+
+      return sorted;
+    }
+
+    function hnProgramCard(program) {
+      const name = hnEscape(program.programName || "Kosher Travel Program");
+      const organizer = hnEscape(program.organizer || "Organizer not listed");
+      const type = hnEscape(program.programType || "Kosher Travel Program");
+      const country = hnEscape(program.country || "");
+      const city = hnEscape(program.cityRegion || "");
+      const dates = hnEscape(program.dates || "Dates not listed");
+      const price = hnFormatPrice(program);
+      const kashrut = hnEscape(program.kashrutInfo || "Confirm with organizer");
+      const audience = hnEscape(program.audience || "Not specified");
+      const description = hnEscape(hnShorten(
+        program.description || "Automatically gathered listing. Please confirm all details directly with the organizer.",
+        175
+      ));
+      const url = hnEscape(program.websiteUrl || "#");
+      const sourceUrl = hnEscape(program.sourceUrl || "");
+      const pictureUrl = hnEscape(program.pictureUrl || "");
+
+      const location = [city, country].filter(Boolean).join(", ") || "Location not listed";
+
+      return `
+        <article class="hn-program-card">
+          ${
+            pictureUrl
+              ? `<div class="hn-program-image"><img src="${pictureUrl}" alt="${name}" loading="lazy" /></div>`
+              : `<div class="hn-program-image hn-program-image-placeholder"><span>Hamsa Nomads</span></div>`
+          }
+
+          <div class="hn-program-body">
+            <div class="hn-program-meta-line">
+              <span class="hn-program-type">${type}</span>
+              <span class="hn-program-price">${price}</span>
+            </div>
+
+            <h3>${name}</h3>
+            <p class="hn-program-organizer">${organizer}</p>
+
+            <div class="hn-program-facts">
+              <div class="hn-fact"><strong>Where</strong><span>${location}</span></div>
+              <div class="hn-fact"><strong>When</strong><span>${dates}</span></div>
+              <div class="hn-fact"><strong>Who</strong><span>${audience}</span></div>
+              <div class="hn-fact"><strong>Kashrut</strong><span>${kashrut}</span></div>
+            </div>
+
+            <p class="hn-program-description">${description}</p>
+
+            <div class="hn-program-actions">
+              <a class="hn-primary-link" href="${url}" target="_blank" rel="noopener noreferrer">
+                View listing
+              </a>
+              ${
+                sourceUrl
+                  ? `<a class="hn-secondary-link" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">Source</a>`
+                  : ""
+              }
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function hnFormatPrice(program) {
+      const currency = program.currency || "";
+      const from = program.priceFrom;
+      const to = program.priceTo;
+
+      if (!from && !to) return "Price not listed";
+      if (from && to) return `${currency}${from}–${currency}${to}`;
+      if (from) return `From ${currency}${from}`;
+      return `${currency}${to}`;
+    }
+
+    function hnShorten(text, maxLength) {
+      const clean = String(text || "").trim();
+
+      if (clean.length <= maxLength) return clean;
+
+      return clean.slice(0, maxLength).trim() + "…";
+    }
+
+    function hnUnique(values) {
+      return [...new Set(
+        values
+          .map(value => String(value || "").trim())
+          .filter(Boolean)
+      )].sort((a, b) => a.localeCompare(b));
+    }
+
+    function hnNormalize(value) {
+      return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+
+    function hnNumber(value) {
+      const number = Number(String(value || "").replace(/[^0-9.]/g, ""));
+      return Number.isFinite(number) ? number : 0;
+    }
+
+    function hnEscape(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    [
+      hnEls.search,
+      hnEls.type,
+      hnEls.country,
+      hnEls.audience,
+      hnEls.sort,
+      hnEls.maxPrice
+    ].forEach(el => {
+      el.addEventListener("input", hnRenderPrograms);
+      el.addEventListener("change", hnRenderPrograms);
+    });
+
+    hnEls.reset.addEventListener("click", () => {
+      hnEls.search.value = "";
+      hnEls.type.value = "";
+      hnEls.country.value = "";
+      hnEls.audience.value = "";
+      hnEls.sort.value = "newest";
+      hnEls.maxPrice.value = "";
+      hnRenderPrograms();
+    });
+
+    hnLoadPrograms();
+  </script>
+</body>
+</html>
