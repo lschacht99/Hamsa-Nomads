@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traveling Kosher in Vietnam | Hamsa Nomads</title>
+  <meta name="description" content="A kosher-friendly Vietnam route with Chabad houses, Shabbat planning, northern adventures, central Vietnam, the south, and a clickable map of Jewish resources and travel stops." />
+
+  <!-- Leaflet map: no API key required -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQkf3+Q8gJkGZ2S7qUo5hHYz8Y6LkzQ=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style>
+    :root {
+      --cream: #f7f3ea;
+      --cream-2: #fffaf0;
+      --green: #174f19;
+      --green-2: #0f3512;
+      --gold: #c49a3a;
+      --orange: #d98034;
+      --ink: #172017;
+      --muted: #5e6559;
+      --line: rgba(23, 79, 25, 0.18);
+      --paper: rgba(255, 250, 240, 0.78);
+      --shadow: 0 22px 60px rgba(23, 79, 25, 0.14);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(196, 154, 58, 0.18), transparent 32rem),
+        radial-gradient(circle at 80% 10%, rgba(23, 79, 25, 0.13), transparent 30rem),
+        var(--cream);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    .hn-vietnam-page a { color: inherit; }
+    .hn-vietnam-page {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .route-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.23;
+      background-image: url("data:image/svg+xml,%3Csvg width='1200' height='900' viewBox='0 0 1200 900' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M99 130 C 260 80, 320 210, 455 175 S 695 155, 725 285 S 620 490, 775 575 S 990 625, 1040 800' fill='none' stroke='%23174F19' stroke-width='3' stroke-dasharray='9 13' stroke-linecap='round'/%3E%3Ccircle cx='99' cy='130' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='455' cy='175' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='725' cy='285' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='775' cy='575' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='1040' cy='800' r='7' fill='%23C49A3A'/%3E%3C/svg%3E");
+      background-size: 1200px 900px;
+      background-repeat: repeat-y;
+      z-index: 0;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 34px;
+      align-items: center;
+      padding: 82px 0 58px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: var(--gold);
+      display: inline-block;
+    }
+
+    h1, h2, h3 {
+      font-family: Iowan Old Style, Georgia, "Times New Roman", serif;
+      color: var(--green-2);
+      line-height: 0.98;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(3.3rem, 8.2vw, 7.8rem);
+      letter-spacing: -0.075em;
+      max-width: 900px;
+    }
+
+    .hero-subtitle {
+      margin: 24px 0 28px;
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 19px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(23, 79, 25, 0.14); }
+    .btn-primary { background: var(--green); color: var(--cream-2) !important; }
+    .btn-secondary { background: rgba(255,255,255,0.5); color: var(--green); backdrop-filter: blur(10px); }
+
+    .hero-card {
+      background: var(--paper);
+      border: 1px solid rgba(23,79,25,0.15);
+      box-shadow: var(--shadow);
+      border-radius: 34px;
+      padding: 20px;
+      backdrop-filter: blur(18px);
+      position: relative;
+      transform: rotate(1deg);
+    }
+
+    .hero-card-inner {
+      min-height: 500px;
+      border-radius: 26px;
+      padding: 26px;
+      background:
+        linear-gradient(150deg, rgba(23,79,25,0.86), rgba(23,79,25,0.54)),
+        url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1300&q=80') center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card-inner::after {
+      content: "VIETNAM";
+      position: absolute;
+      right: -22px;
+      bottom: 20px;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: -0.09em;
+      color: rgba(255,255,255,0.16);
+      transform: rotate(-6deg);
+    }
+
+    .route-pill {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.82);
+      color: var(--green);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-weight: 900;
+      font-size: 0.82rem;
+    }
+
+    .hero-card-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 340px;
+    }
+    .hero-card-copy h2 { color: white; font-size: clamp(2rem, 3.6vw, 3.2rem); }
+    .hero-card-copy p { color: rgba(255,255,255,0.86); margin-bottom: 0; }
+
+    .section {
+      padding: 74px 0;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+    .section-header h2 { font-size: clamp(2.4rem, 5.5vw, 5rem); letter-spacing: -0.06em; }
+    .section-header p { color: var(--muted); max-width: 520px; margin: 0; }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      background: rgba(255,250,240,0.76);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 44px rgba(23,79,25,0.08);
+      padding: 24px;
+      backdrop-filter: blur(14px);
+    }
+    .card h3 { font-size: 1.65rem; margin-bottom: 10px; letter-spacing: -0.035em; }
+    .card p { color: var(--muted); margin: 0; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .tag {
+      border: 1px solid rgba(23,79,25,0.18);
+      background: rgba(255,255,255,0.52);
+      color: var(--green);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .map-section {
+      padding: 36px 0 82px;
+    }
+    .map-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 18px;
+      background: rgba(255,250,240,0.76);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+    #vietnamMap {
+      min-height: 640px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(23,79,25,0.16);
+      z-index: 1;
+    }
+    .map-panel {
+      max-height: 640px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+    .map-panel h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.06em;
+      margin: 8px 0 10px;
+    }
+    .map-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+    .filter-btn {
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.6);
+      color: var(--green);
+      font-weight: 850;
+      border-radius: 999px;
+      padding: 8px 10px;
+    }
+    .filter-btn.active { background: var(--green); color: var(--cream); }
+    .stop-list { display: grid; gap: 10px; }
+    .stop-card {
+      text-align: left;
+      width: 100%;
+      border: 1px solid rgba(23,79,25,0.16);
+      background: rgba(255,255,255,0.58);
+      border-radius: 18px;
+      padding: 14px;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+    .stop-card:hover { transform: translateY(-2px); background: white; }
+    .stop-card strong { display: block; color: var(--green-2); font-size: 1rem; }
+    .stop-card span { color: var(--muted); font-size: 0.88rem; }
+    .stop-card small { display: inline-flex; margin-top: 7px; color: var(--green); font-weight: 850; }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 18px;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+    }
+    .popup-title { font-weight: 900; color: var(--green-2); font-size: 1rem; }
+    .popup-type { color: var(--orange); font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .popup-text { color: #3c4539; margin-top: 5px; }
+
+    .route-timeline {
+      display: grid;
+      gap: 15px;
+      counter-reset: route;
+    }
+    .route-step {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 16px;
+      align-items: start;
+      background: rgba(255,250,240,0.76);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 12px 36px rgba(23,79,25,0.07);
+    }
+    .route-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--cream);
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+    }
+    .route-step h3 { margin-bottom: 6px; }
+    .route-step p { margin: 0; color: var(--muted); }
+    .route-step ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); }
+
+    .note-box {
+      border-radius: 28px;
+      padding: 26px;
+      background: var(--green);
+      color: var(--cream-2);
+      box-shadow: var(--shadow);
+    }
+    .note-box h2 { color: white; font-size: clamp(2.2rem, 4vw, 4rem); letter-spacing: -0.06em; margin-bottom: 12px; }
+    .note-box p, .note-box li { color: rgba(255,255,255,0.86); }
+    .note-box ul { margin: 10px 0 0; padding-left: 19px; }
+
+    .activity-columns {
+      columns: 2;
+      column-gap: 22px;
+    }
+    .activity-columns li { break-inside: avoid; margin-bottom: 9px; color: var(--muted); }
+
+    .footer-cta {
+      padding: 82px 0 96px;
+    }
+    .footer-card {
+      border-radius: 38px;
+      padding: clamp(28px, 6vw, 64px);
+      background:
+        linear-gradient(135deg, rgba(23,79,25,0.92), rgba(15,53,18,0.86)),
+        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80') center/cover;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .footer-card h2 { color: white; font-size: clamp(2.6rem, 6vw, 5.6rem); letter-spacing: -0.075em; }
+    .footer-card p { max-width: 690px; margin: 18px auto 26px; color: rgba(255,255,255,0.86); font-size: 1.1rem; }
+
+    @media (max-width: 980px) {
+      .hero, .map-shell, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .hero { padding-top: 46px; }
+      .hero-card { transform: none; }
+      .hero-card-inner { min-height: 380px; }
+      .section-header { display: block; }
+      .section-header p { margin-top: 14px; }
+      #vietnamMap { min-height: 520px; }
+      .map-panel { max-height: none; }
+    }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .section { padding: 50px 0; }
+      .activity-columns { columns: 1; }
+      .route-step { grid-template-columns: 1fr; }
+      .hero-actions { display: grid; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="hn-vietnam-page">
+    <div class="route-line" aria-hidden="true"></div>
+
+    <section class="wrap hero">
+      <div>
+        <div class="eyebrow">Kosher travel field guide</div>
+        <h1>Traveling kosher in Vietnam</h1>
+        <p class="hero-subtitle">A north-to-south route for Jewish travelers: Chabad houses, Shabbat planning, mountain loops, beach stops, history, cities, trains, sleeper buses, and the best places to build a Vietnam itinerary around.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#map">Open the route map</a>
+          <a class="btn btn-secondary" href="#chabad">See Chabad houses</a>
+          <a class="btn btn-secondary" href="#route">Follow the route</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Vietnam kosher route preview">
+        <div class="hero-card-inner">
+          <div class="route-pill">Hanoi → Sapa → Hoi An → Saigon</div>
+          <div class="hero-card-copy">
+            <h2>One long country. Four Jewish anchors.</h2>
+            <p>Use the Chabad houses as your Shabbat bases, then build adventure loops around them.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="chabad" class="wrap section">
+      <div class="section-header">
+        <h2>Jewish bases in Vietnam</h2>
+        <p>Vietnam currently has four main Chabad/Jewish traveler bases. Always message ahead for Shabbat meals, minyan details, kosher food orders, and holiday schedules.</p>
+      </div>
+      <div class="grid grid-4">
+        <article class="card">
+          <h3>Hanoi</h3>
+          <p>The best kosher anchor for the north. Use it for Old Quarter exploring, coffee culture, Ninh Binh, Ha Long Bay / Cat Ba, and before heading to Sapa, Ha Giang, or Cao Bang.</p>
+          <div class="tag-row"><span class="tag">Chabad</span><span class="tag">Kosher food</span><span class="tag">North base</span></div>
+        </article>
+        <article class="card">
+          <h3>Sapa</h3>
+          <p>A mountain base for rice terraces, trekking, local villages, Fansipan, and northern views. Great for travelers who want nature without immediately jumping into the intense motorbike routes.</p>
+          <div class="tag-row"><span class="tag">Chabad</span><span class="tag">Trekking</span><span class="tag">Mountains</span></div>
+        </article>
+        <article class="card">
+          <h3>Hoi An</h3>
+          <p>The central Vietnam anchor: lantern streets, beach, cafés, cycling, tailoring, nearby Da Nang, Cham history, and easy slow travel energy.</p>
+          <div class="tag-row"><span class="tag">Chabad</span><span class="tag">Old town</span><span class="tag">Beach</span></div>
+        </article>
+        <article class="card">
+          <h3>Ho Chi Minh City / Saigon</h3>
+          <p>The southern base for kosher food, markets, city life, museums, the Mekong Delta, Cu Chi, Phu Quoc, and Con Dao.</p>
+          <div class="tag-row"><span class="tag">Chabad</span><span class="tag">Kosher mart</span><span class="tag">South base</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="map" class="wrap map-section">
+      <div class="map-shell">
+        <div id="vietnamMap" aria-label="Interactive Vietnam kosher travel map"></div>
+        <aside class="map-panel">
+          <div class="eyebrow">Click a point</div>
+          <h2>Follow the road</h2>
+          <p style="color: var(--muted); margin: 0;">Filter the map by Chabad/Jewish houses, adventure stops, history/culture, beach/island stops, and transport anchors. Click any card to zoom to the stop.</p>
+          <div class="map-filters" role="group" aria-label="Map filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="chabad">Chabad</button>
+            <button class="filter-btn" data-filter="nature">Nature</button>
+            <button class="filter-btn" data-filter="history">History</button>
+            <button class="filter-btn" data-filter="beach">Beach</button>
+            <button class="filter-btn" data-filter="transport">Transport</button>
+          </div>
+          <div id="stopList" class="stop-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="route" class="wrap section">
+      <div class="section-header">
+        <h2>Suggested route</h2>
+        <p>This route keeps kosher logistics realistic: start around Hanoi, choose one northern adventure loop, then move south through central Vietnam and finish with Saigon plus a southern add-on.</p>
+      </div>
+
+      <div class="route-timeline">
+        <article class="route-step">
+          <div class="route-num">1</div>
+          <div>
+            <h3>Start in Hanoi</h3>
+            <p>Base yourself near the Jewish/kosher support you need, then explore the capital.</p>
+            <ul>
+              <li>Old Quarter, Hoan Kiem Lake, Train Street area, cafés, egg coffee culture.</li>
+              <li>Temple of Literature, Ho Chi Minh Mausoleum area, Hoa Lo Prison Museum, Women’s Museum.</li>
+              <li>Day or overnight trips: Ninh Binh, Ha Long Bay, Lan Ha Bay, Cat Ba.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="route-step">
+          <div class="route-num">2</div>
+          <div>
+            <h3>Sapa mountain stop</h3>
+            <p>Go north for terraces, cooler air, villages, and mountain hikes.</p>
+            <ul>
+              <li>Rice terrace walks, Muong Hoa Valley, Cat Cat / Ta Van village areas.</li>
+              <li>Fansipan cable car or hiking options depending on weather and fitness.</li>
+              <li>Good place to slow down before choosing a more adventurous loop.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="route-step">
+          <div class="route-num">3</div>
+          <div>
+            <h3>Choose your northern adventure: Ha Giang or Cao Bang</h3>
+            <p>Ha Giang is the legendary loop. Cao Bang is stunning, less chaotic, and often feels like a calmer alternative.</p>
+            <ul>
+              <li><strong>Ha Giang Loop:</strong> dramatic mountain passes, Dong Van Karst Plateau, Ma Pi Leng Pass, Meo Vac. Best with a proper group or Easy Rider unless you are experienced and legally covered.</li>
+              <li><strong>Cao Bang:</strong> Ban Gioc Waterfall, Nguom Ngao Cave, karst valleys, Pac Bo historical site, Ba Be Lake extension.</li>
+              <li>For self-driving, check Vietnam’s motorbike license and international driving permit rules carefully before riding.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="route-step">
+          <div class="route-num">4</div>
+          <div>
+            <h3>Move down to Hoi An</h3>
+            <p>Fly, train, or bus toward Da Nang/Hoi An and use Hoi An as the central Vietnam Shabbat base.</p>
+            <ul>
+              <li>Lantern old town, river walks, tailoring, cafés, cooking-style experiences, beaches.</li>
+              <li>Nearby: Da Nang, Marble Mountains, My Son Sanctuary, Cham Museum, Hue Imperial City.</li>
+              <li>Great place to rest between the intense north and the fast south.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="route-step">
+          <div class="route-num">5</div>
+          <div>
+            <h3>Finish in Ho Chi Minh City / Saigon</h3>
+            <p>Use Saigon as the southern kosher anchor and gateway to the Mekong or islands.</p>
+            <ul>
+              <li>Ben Thanh Market area, War Remnants Museum, Independence Palace, colonial-era architecture, Chinatown / Cholon.</li>
+              <li>Day trips: Cu Chi Tunnels, Mekong Delta, Can Tho floating markets.</li>
+              <li>Southern add-ons: Phu Quoc for easier beach energy, Con Dao for remote nature and history.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="grid grid-2">
+        <div class="note-box">
+          <h2>Kosher planning notes</h2>
+          <ul>
+            <li>Contact Chabad before arrival for Shabbat meals, holiday meals, minyan, kosher food orders, and delivery options.</li>
+            <li>Do not assume kosher meals are available without advance notice, especially outside Hanoi and Saigon.</li>
+            <li>For Shabbat, plan walking distance, keys/access, hotel location, and whether the area is practical after dark.</li>
+            <li>Bring backup shelf-stable food, especially before loops, hikes, sleeper buses, and islands.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Transportation strategy</h3>
+          <p>Vietnam is long. Use sleeper buses and trains when you want to save money and turn travel into part of the experience. Fly when the distance is too large or you need to protect time before Shabbat.</p>
+          <div class="tag-row"><span class="tag">Sleeper buses</span><span class="tag">Trains</span><span class="tag">Domestic flights</span><span class="tag">Shabbat buffer</span></div>
+          <p style="margin-top: 18px;">Best rule: never arrive right before Shabbat from a long bus, border-style transfer, mountain loop, or island ferry. Build in a buffer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="section-header">
+        <h2>Maximum activity ideas along the road</h2>
+        <p>Use this as a menu. Pick based on weather, Shabbat timing, budget, and how intense you want the trip to feel.</p>
+      </div>
+      <div class="card">
+        <ul class="activity-columns">
+          <li>Hanoi Old Quarter street walk</li>
+          <li>Hoan Kiem Lake sunrise walk</li>
+          <li>Vietnamese coffee café crawl</li>
+          <li>Temple of Literature</li>
+          <li>Hoa Lo Prison Museum</li>
+          <li>Vietnam Museum of Ethnology</li>
+          <li>Hanoi Train Street area</li>
+          <li>Ninh Binh boat ride: Trang An or Tam Coc</li>
+          <li>Mua Cave viewpoint</li>
+          <li>Bich Dong Pagoda</li>
+          <li>Ha Long Bay cruise</li>
+          <li>Lan Ha Bay / Cat Ba alternative</li>
+          <li>Cat Ba National Park hike</li>
+          <li>Sapa rice terrace trekking</li>
+          <li>Muong Hoa Valley</li>
+          <li>Fansipan cable car</li>
+          <li>Local village walk near Sapa</li>
+          <li>Ha Giang Loop with Easy Rider</li>
+          <li>Dong Van Karst Plateau</li>
+          <li>Ma Pi Leng Pass viewpoint</li>
+          <li>Meo Vac market area</li>
+          <li>Lung Cu Flag Tower</li>
+          <li>Cao Bang loop</li>
+          <li>Ban Gioc Waterfall</li>
+          <li>Nguom Ngao Cave</li>
+          <li>Pac Bo historical site</li>
+          <li>Ba Be Lake extension</li>
+          <li>Phong Nha caves add-on</li>
+          <li>Hue Imperial City</li>
+          <li>Hai Van Pass</li>
+          <li>Da Nang beach</li>
+          <li>Marble Mountains</li>
+          <li>My Son Sanctuary</li>
+          <li>Hoi An lantern walk</li>
+          <li>Hoi An tailoring</li>
+          <li>An Bang Beach</li>
+          <li>Hoi An countryside cycling</li>
+          <li>Cham Islands boat day if conditions are good</li>
+          <li>Saigon café + market day</li>
+          <li>War Remnants Museum</li>
+          <li>Independence Palace</li>
+          <li>Notre-Dame Cathedral / Central Post Office area</li>
+          <li>Cholon / Chinatown</li>
+          <li>Cu Chi Tunnels</li>
+          <li>Mekong Delta day trip</li>
+          <li>Can Tho floating market</li>
+          <li>Phu Quoc beaches</li>
+          <li>Phu Quoc National Park</li>
+          <li>Con Dao beaches and snorkeling</li>
+          <li>Con Dao historical prison sites</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wrap footer-cta">
+      <div class="footer-card">
+        <h2>Make Vietnam easier to travel Jewish.</h2>
+        <p>Use this page as a starting point, then check directly with local Chabad houses and recent travelers before booking Shabbat plans, loops, trains, buses, and island stays.</p>
+        <a class="btn btn-primary" style="background: white; color: var(--green) !important;" href="https://www.hamsanomads.com/Forms/apply.html">Join the Hamsa Nomads travel circle</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const stops = [
+      { name: 'Chabad of Hanoi', type: 'chabad', lat: 21.0598, lng: 105.8233, text: 'Northern kosher base. Shabbat meals, kosher food support, traveler help. Message ahead.', link: 'https://www.jewishhanoi.com/' },
+      { name: 'Hanoi Old Quarter', type: 'history', lat: 21.0338, lng: 105.8500, text: 'Street life, markets, cafés, lake walks, museums, and classic first stop in Vietnam.' },
+      { name: 'Ninh Binh / Trang An', type: 'nature', lat: 20.2506, lng: 105.9745, text: 'Karst mountains, boat rides, caves, cycling, and one of the best day/overnight trips from Hanoi.' },
+      { name: 'Ha Long Bay', type: 'nature', lat: 20.9101, lng: 107.1839, text: 'Iconic bay cruise area. Consider Cat Ba / Lan Ha Bay for a slightly different feel.' },
+      { name: 'Cat Ba / Lan Ha Bay', type: 'nature', lat: 20.7271, lng: 107.0482, text: 'Island base for bay trips, kayaking, national park hikes, and a less standard bay route.' },
+      { name: 'Chabad of Sapa', type: 'chabad', lat: 22.3364, lng: 103.8438, text: 'Mountain Jewish base near rice terraces, trekking, villages, and Fansipan.' },
+      { name: 'Sapa / Muong Hoa Valley', type: 'nature', lat: 22.3030, lng: 103.8870, text: 'Rice terraces, local village walks, mountain air, and trekking.' },
+      { name: 'Fansipan', type: 'nature', lat: 22.3033, lng: 103.7756, text: 'Vietnam’s highest peak area. Cable car option makes it accessible when weather is good.' },
+      { name: 'Ha Giang City', type: 'transport', lat: 22.8233, lng: 104.9836, text: 'Gateway to the Ha Giang Loop. Best with a reputable group or Easy Rider unless legally and practically prepared.' },
+      { name: 'Dong Van Karst Plateau', type: 'nature', lat: 23.2600, lng: 105.3600, text: 'Dramatic northern landscapes, geologic formations, and a major Ha Giang Loop highlight.' },
+      { name: 'Ma Pi Leng Pass', type: 'nature', lat: 23.2496, lng: 105.4052, text: 'One of the most famous mountain pass viewpoints on the Ha Giang Loop.' },
+      { name: 'Cao Bang', type: 'transport', lat: 22.6657, lng: 106.2570, text: 'Gateway for Ban Gioc Waterfall, caves, karst valleys, and a beautiful northern alternative to Ha Giang.' },
+      { name: 'Ban Gioc Waterfall', type: 'nature', lat: 22.8557, lng: 106.7245, text: 'Spectacular waterfall on the Vietnam–China border. A major Cao Bang highlight.' },
+      { name: 'Nguom Ngao Cave', type: 'nature', lat: 22.8428, lng: 106.7158, text: 'Large cave system near Ban Gioc, easy to combine in the same northern loop.' },
+      { name: 'Pac Bo Historical Site', type: 'history', lat: 22.9995, lng: 106.0537, text: 'Historical site connected to Ho Chi Minh’s return to Vietnam; often paired with Cao Bang routes.' },
+      { name: 'Ba Be Lake', type: 'nature', lat: 22.4167, lng: 105.6333, text: 'Lake and national park extension between northern routes and Hanoi.' },
+      { name: 'Hue Imperial City', type: 'history', lat: 16.4696, lng: 107.5775, text: 'Former imperial capital with citadel, tombs, pagodas, and deep history.' },
+      { name: 'Da Nang', type: 'beach', lat: 16.0471, lng: 108.2068, text: 'Airport gateway for Hoi An, beaches, Marble Mountains, Cham Museum, and Hai Van Pass.' },
+      { name: 'Marble Mountains', type: 'history', lat: 16.0036, lng: 108.2646, text: 'Caves, viewpoints, temples, and a simple add-on between Da Nang and Hoi An.' },
+      { name: 'My Son Sanctuary', type: 'history', lat: 15.7651, lng: 108.1223, text: 'Cham temple ruins and one of the best cultural day trips from Hoi An.' },
+      { name: 'Chabad of Hoi An', type: 'chabad', lat: 15.8801, lng: 108.3453, text: 'Central Vietnam Jewish base. Shabbat meals, kosher food support, Hoi An old town and beaches nearby.', link: 'https://www.jewishvietnam.com/templates/articlecco_cdo/aid/5715178/jewish/Chabad-Hoi-An.htm' },
+      { name: 'Hoi An Ancient Town', type: 'history', lat: 15.8801, lng: 108.3380, text: 'Lantern streets, old town, cafés, river walks, tailoring, cycling, and beach access.' },
+      { name: 'An Bang Beach', type: 'beach', lat: 15.9146, lng: 108.3375, text: 'Easy beach break from Hoi An.' },
+      { name: 'Phong Nha', type: 'nature', lat: 17.6103, lng: 106.3106, text: 'Caves, national park, river landscapes. Better as a planned add-on, not a rushed stop.' },
+      { name: 'Chabad of Vietnam — Ho Chi Minh City', type: 'chabad', lat: 10.7869, lng: 106.7009, text: 'Southern kosher base with Chabad center and kosher mart support. Message ahead for meals and Shabbat.', link: 'https://www.jewishvietnam.com/' },
+      { name: 'War Remnants Museum', type: 'history', lat: 10.7795, lng: 106.6920, text: 'Major history museum in Ho Chi Minh City.' },
+      { name: 'Independence Palace', type: 'history', lat: 10.7772, lng: 106.6953, text: 'Historic Saigon landmark and easy city stop.' },
+      { name: 'Ben Thanh Market', type: 'history', lat: 10.7720, lng: 106.6983, text: 'Central market area and classic Saigon orientation point.' },
+      { name: 'Cu Chi Tunnels', type: 'history', lat: 11.1419, lng: 106.4645, text: 'Common half-day history trip from Saigon.' },
+      { name: 'Mekong Delta / My Tho', type: 'nature', lat: 10.3600, lng: 106.3600, text: 'River life, village visits, boat routes, and easy day trip energy from Saigon.' },
+      { name: 'Can Tho Floating Market', type: 'nature', lat: 10.0452, lng: 105.7469, text: 'Best with an overnight so you can start early for the floating market.' },
+      { name: 'Phu Quoc', type: 'beach', lat: 10.2899, lng: 103.9840, text: 'Beach/island add-on with resorts, snorkeling, national park, and rest days.' },
+      { name: 'Con Dao', type: 'beach', lat: 8.6950, lng: 106.6086, text: 'Remote island feel, beaches, snorkeling, nature, and serious historical sites.' }
+    ];
+
+    const map = L.map('vietnamMap', { scrollWheelZoom: false }).setView([16.5, 106.2], 5.3);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const colors = {
+      chabad: '#174f19',
+      nature: '#3d7f3f',
+      history: '#c49a3a',
+      beach: '#d98034',
+      transport: '#53605a'
+    };
+
+    const markerLayer = L.layerGroup().addTo(map);
+    const markerRefs = new Map();
+
+    function makeIcon(type) {
+      const color = colors[type] || colors.transport;
+      return L.divIcon({
+        className: '',
+        html: `<div style="width:26px;height:26px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.25)"></div>`,
+        iconSize: [26,26],
+        iconAnchor: [13,13]
+      });
+    }
+
+    function popupContent(stop) {
+      const link = stop.link ? `<p style="margin:8px 0 0"><a href="${stop.link}" target="_blank" rel="noopener" style="color:#174f19;font-weight:900">Open official page</a></p>` : '';
+      return `<div><div class="popup-type">${stop.type}</div><div class="popup-title">${stop.name}</div><div class="popup-text">${stop.text}</div>${link}</div>`;
+    }
+
+    function renderStops(filter = 'all') {
+      markerLayer.clearLayers();
+      markerRefs.clear();
+      const list = document.getElementById('stopList');
+      list.innerHTML = '';
+
+      const visibleStops = stops.filter(stop => filter === 'all' || stop.type === filter);
+
+      visibleStops.forEach((stop) => {
+        const marker = L.marker([stop.lat, stop.lng], { icon: makeIcon(stop.type) })
+          .bindPopup(popupContent(stop));
+        marker.addTo(markerLayer);
+        markerRefs.set(stop.name, marker);
+
+        const card = document.createElement('button');
+        card.className = 'stop-card';
+        card.innerHTML = `<strong>${stop.name}</strong><span>${stop.text}</span><br><small>${stop.type}</small>`;
+        card.addEventListener('click', () => {
+          map.setView([stop.lat, stop.lng], stop.type === 'chabad' ? 13 : 10, { animate: true });
+          marker.openPopup();
+        });
+        list.appendChild(card);
+      });
+
+      if (visibleStops.length > 0) {
+        const bounds = L.latLngBounds(visibleStops.map(s => [s.lat, s.lng]));
+        map.fitBounds(bounds, { padding: [34, 34] });
+      }
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderStops(btn.dataset.filter);
+      });
+    });
+
+    renderStops('all');
+  </script>
+</body>
+</html>
