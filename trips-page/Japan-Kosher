@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traveling Kosher in Japan | Hamsa Nomads</title>
+  <meta name="description" content="A kosher-friendly Japan route with Chabad houses, Shabbat planning, Tokyo, Kyoto, Osaka, Hiroshima, Mount Fuji, Hakone, Nara, and a clickable mobile-friendly travel map." />
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../assets/site-components.css" />
+
+  <!-- Leaflet map. No API key required. -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    :root {
+      --cream: #f7f3ea;
+      --cream-2: #fffaf0;
+      --green: #7F8A6A;
+      --green-2: #4f5a3f;
+      --gold: #c49a3a;
+      --orange: #d98034;
+      --ink: #172017;
+      --muted: #5e6559;
+      --line: rgba(127, 138, 106, 0.24);
+      --paper: rgba(255, 250, 240, 0.84);
+      --shadow: 0 22px 60px rgba(127, 138, 106, 0.16);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(196, 154, 58, 0.18), transparent 32rem),
+        radial-gradient(circle at 80% 10%, rgba(127, 138, 106, 0.18), transparent 30rem),
+        var(--cream);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+    }
+
+    .hn-shared-header {
+      position: relative;
+      top: auto;
+      z-index: 99999;
+    }
+
+    #site-footer {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hn-japan-page a { color: inherit; }
+    .hn-japan-page {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .route-line {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml,%3Csvg width='1200' height='900' viewBox='0 0 1200 900' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M115 135 C 260 90, 345 230, 505 185 S 730 210, 735 340 S 660 510, 835 610 S 985 700, 1040 810' fill='none' stroke='%237F8A6A' stroke-width='3' stroke-dasharray='9 13' stroke-linecap='round'/%3E%3Ccircle cx='115' cy='135' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='505' cy='185' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='735' cy='340' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='835' cy='610' r='7' fill='%23C49A3A'/%3E%3Ccircle cx='1040' cy='810' r='7' fill='%23C49A3A'/%3E%3C/svg%3E");
+      background-size: 1200px 900px;
+      background-repeat: repeat-y;
+      z-index: 0;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 76vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 34px;
+      align-items: center;
+      padding: 72px 0 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green-2);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: var(--gold);
+      display: inline-block;
+    }
+
+    h1, h2, h3 {
+      font-family: Iowan Old Style, Georgia, "Times New Roman", serif;
+      color: var(--green-2);
+      line-height: 0.98;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(3.1rem, 8.2vw, 7.6rem);
+      letter-spacing: -0.075em;
+      max-width: 900px;
+    }
+
+    .hero-subtitle {
+      margin: 24px 0 26px;
+      font-size: clamp(1.05rem, 2vw, 1.32rem);
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 19px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(127, 138, 106, 0.18); }
+    .btn-primary { background: var(--green); color: var(--cream-2) !important; }
+    .btn-secondary { background: rgba(255,255,255,0.60); color: var(--green-2); backdrop-filter: blur(10px); }
+
+    .hero-card {
+      background: var(--paper);
+      border: 1px solid rgba(127,138,106,0.22);
+      box-shadow: var(--shadow);
+      border-radius: 34px;
+      padding: 20px;
+      backdrop-filter: blur(18px);
+      position: relative;
+      transform: rotate(1deg);
+    }
+
+    .hero-card-inner {
+      min-height: 470px;
+      border-radius: 26px;
+      padding: 26px;
+      background:
+        linear-gradient(150deg, rgba(79,90,63,0.88), rgba(127,138,106,0.58)),
+        url('../assets/japan-hero.jpg') center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card-inner::after {
+      content: "JAPAN";
+      position: absolute;
+      right: -18px;
+      bottom: 20px;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: -0.09em;
+      color: rgba(255,255,255,0.16);
+      transform: rotate(-6deg);
+    }
+
+    .route-pill {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.84);
+      color: var(--green-2);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-weight: 900;
+      font-size: 0.82rem;
+    }
+
+    .hero-card-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 360px;
+    }
+    .hero-card-copy h2 { color: white; font-size: clamp(2rem, 3.6vw, 3.2rem); }
+    .hero-card-copy p { color: rgba(255,255,255,0.88); margin-bottom: 0; }
+
+    .section { padding: 54px 0; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+    .section-header h2 { font-size: clamp(2.35rem, 5vw, 4.8rem); letter-spacing: -0.06em; }
+    .section-header p { color: var(--muted); max-width: 540px; margin: 0; }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      background: rgba(255,250,240,0.82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 44px rgba(127,138,106,0.10);
+      padding: 22px;
+      backdrop-filter: blur(14px);
+    }
+    .card h3 { font-size: 1.55rem; margin-bottom: 10px; letter-spacing: -0.035em; }
+    .card p { color: var(--muted); margin: 0; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .tag {
+      border: 1px solid rgba(127,138,106,0.28);
+      background: rgba(255,255,255,0.60);
+      color: var(--green-2);
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .compact-planner { padding-top: 18px; padding-bottom: 32px; }
+    .compact-header { margin-bottom: 18px; }
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .quick-card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255,250,240,0.86);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(127,138,106,0.10);
+      transition: transform 180ms ease, background 180ms ease;
+    }
+    .quick-card:hover { transform: translateY(-2px); background: white; }
+    .quick-card strong { display: block; color: var(--green-2); font-size: 1rem; }
+    .quick-card span { display: block; color: var(--muted); font-size: 0.88rem; margin-top: 3px; }
+    .snapshot-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .snapshot-row div {
+      background: rgba(127,138,106,0.12);
+      border: 1px solid rgba(127,138,106,0.22);
+      border-radius: 18px;
+      padding: 13px 14px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+    .snapshot-row strong { color: var(--green-2); }
+
+    .map-section { padding: 26px 0 52px; }
+    .map-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 18px;
+      background: rgba(255,250,240,0.82);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+
+    .map-box {
+      position: relative;
+      min-height: 610px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(127,138,106,0.24);
+      background: #e8eadf;
+    }
+
+    #japanMap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .map-loading,
+    .map-error {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      z-index: 0;
+      color: var(--green-2);
+      background:
+        radial-gradient(circle at top left, rgba(196,154,58,0.20), transparent 22rem),
+        #e8eadf;
+    }
+
+    .map-error { display: none; z-index: 3; }
+
+    .map-error-inner,
+    .map-loading-inner {
+      max-width: 390px;
+      background: rgba(255,250,240,0.88);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 16px 34px rgba(127,138,106,0.12);
+    }
+
+    .map-error-inner strong,
+    .map-loading-inner strong {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--green-2);
+      margin-bottom: 6px;
+    }
+
+    .map-panel {
+      max-height: 610px;
+      overflow: auto;
+      padding: 4px 4px 4px 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    .map-panel h2 {
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      letter-spacing: -0.06em;
+      margin: 8px 0 10px;
+    }
+    .map-filters {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin: 18px 0;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .filter-btn {
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.70);
+      color: var(--green-2);
+      font-weight: 850;
+      border-radius: 999px;
+      padding: 10px 13px;
+      min-height: 42px;
+      white-space: nowrap;
+      flex: 0 0 auto;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .filter-btn.active { background: var(--green); color: var(--cream); }
+    .stop-list { display: grid; gap: 10px; }
+    .stop-card {
+      text-align: left;
+      width: 100%;
+      border: 1px solid rgba(127,138,106,0.22);
+      background: rgba(255,255,255,0.64);
+      border-radius: 18px;
+      padding: 14px;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .stop-card:hover { transform: translateY(-2px); background: white; }
+    .stop-card strong { display: block; color: var(--green-2); font-size: 1rem; }
+    .stop-card span { color: var(--muted); font-size: 0.88rem; }
+    .stop-card small { display: inline-flex; margin-top: 7px; color: var(--green-2); font-weight: 850; text-transform: capitalize; }
+
+    .leaflet-container {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #e8eadf;
+    }
+    .leaflet-control-container .leaflet-top,
+    .leaflet-control-container .leaflet-bottom { z-index: 900; }
+    .leaflet-popup-content-wrapper { border-radius: 18px; box-shadow: 0 14px 32px rgba(0,0,0,0.18); }
+    .leaflet-popup-content { margin: 14px 16px; min-width: 210px; }
+    .popup-title { font-weight: 900; color: var(--green-2); font-size: 1rem; }
+    .popup-type { color: var(--orange); font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .popup-text { color: #3c4539; margin-top: 5px; }
+
+    .route-timeline { display: grid; gap: 12px; }
+    .route-step {
+      background: rgba(255,250,240,0.84);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 12px 36px rgba(127,138,106,0.09);
+      overflow: hidden;
+    }
+    .route-step summary {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 14px;
+      align-items: center;
+      cursor: pointer;
+      padding: 16px;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .route-step summary::-webkit-details-marker { display: none; }
+    .route-step summary::after {
+      content: '+';
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--green-2);
+      font-weight: 900;
+      font-size: 1.35rem;
+    }
+    .route-step[open] summary::after { content: '–'; }
+    .route-step summary strong {
+      display: block;
+      color: var(--green-2);
+      font-size: 1.12rem;
+      padding-right: 34px;
+    }
+    .route-step summary em {
+      display: block;
+      color: var(--muted);
+      font-style: normal;
+      font-size: 0.9rem;
+      margin-top: 2px;
+      padding-right: 34px;
+    }
+    .route-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--cream);
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+    }
+    .route-details { border-top: 1px solid var(--line); padding: 16px 18px 18px 78px; }
+    .route-step p { margin: 0; color: var(--muted); }
+    .route-step ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); }
+
+    .note-box {
+      border-radius: 28px;
+      padding: 26px;
+      background: var(--green);
+      color: var(--cream-2);
+      box-shadow: var(--shadow);
+    }
+    .note-box h2 { color: white; font-size: clamp(2.2rem, 4vw, 4rem); letter-spacing: -0.06em; margin-bottom: 12px; }
+    .note-box p, .note-box li { color: rgba(255,255,255,0.90); }
+    .note-box ul { margin: 10px 0 0; padding-left: 19px; }
+
+    .activity-region-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .activity-region {
+      background: rgba(255,250,240,0.84);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(127,138,106,0.08);
+    }
+    .activity-region summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 18px;
+      color: var(--green-2);
+      font-weight: 900;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .activity-region summary::-webkit-details-marker { display: none; }
+    .activity-region ul { margin: 0; padding: 0 20px 18px 34px; color: var(--muted); }
+    .activity-region li { margin-bottom: 7px; }
+
+    .suggestion-section { padding: 34px 0 72px; }
+    .suggestion-card {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: center;
+      background: rgba(255,250,240,0.86);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: clamp(22px, 4vw, 42px);
+      box-shadow: var(--shadow);
+    }
+    .suggestion-card h2 { font-size: clamp(2.2rem, 5vw, 4.4rem); letter-spacing: -0.06em; }
+    .suggestion-card p { color: var(--muted); margin-top: 14px; max-width: 520px; }
+    .suggestion-form { display: grid; gap: 12px; }
+    .suggestion-form input,
+    .suggestion-form textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 15px;
+      background: rgba(255,255,255,0.68);
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+    }
+    .suggestion-form textarea { min-height: 130px; resize: vertical; }
+    .suggestion-message { min-height: 22px; color: var(--green-2); font-size: 0.92rem; text-align: center; }
+    .suggestion-message.error { color: #8b2f25; }
+
+    .footer-cta { padding: 66px 0 84px; }
+    .footer-card {
+      border-radius: 38px;
+      padding: clamp(28px, 6vw, 64px);
+      background:
+        linear-gradient(135deg, rgba(79,90,63,0.93), rgba(127,138,106,0.86)),
+        url('../assets/japan-footer.jpg') center/cover;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .footer-card h2 { color: white; font-size: clamp(2.6rem, 6vw, 5.6rem); letter-spacing: -0.075em; }
+    .footer-card p { max-width: 690px; margin: 18px auto 26px; color: rgba(255,255,255,0.88); font-size: 1.1rem; }
+
+    @media (max-width: 980px) {
+      .hero, .grid-4, .grid-3, .grid-2, .quick-grid, .snapshot-row, .activity-region-grid, .suggestion-card { grid-template-columns: 1fr; }
+      .hero { padding-top: 46px; min-height: auto; }
+      .hero-card { transform: none; }
+      .hero-card-inner { min-height: 360px; }
+      .section { padding: 42px 0; }
+      .section-header { display: block; }
+      .section-header p { margin-top: 14px; }
+      .map-shell { display: flex; flex-direction: column; padding: 12px; border-radius: 28px; }
+      .map-box { min-height: 430px; height: 58vh; max-height: 560px; order: 2; }
+      .map-panel { order: 1; max-height: none; overflow: visible; padding: 0; }
+      .stop-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stop-card { min-height: 118px; }
+      .stop-card span {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .section { padding: 36px 0; }
+      .route-step summary { grid-template-columns: 42px 1fr; padding: 14px; }
+      .route-details { padding: 14px 16px 16px; }
+      .hero-actions { display: grid; }
+      .btn { width: 100%; }
+      h1 { font-size: clamp(3.05rem, 17vw, 4.8rem); }
+      .hero-subtitle { font-size: 1.02rem; }
+      .hero-card-inner { min-height: 305px; padding: 20px; }
+      .map-section { padding-top: 14px; }
+      .map-shell { width: 100%; }
+      .map-box { min-height: 370px; height: 58vh; border-radius: 20px; }
+      .map-panel h2 { font-size: 2.45rem; }
+      .map-filters { margin-left: -2px; margin-right: -2px; }
+      .filter-btn { padding: 10px 12px; font-size: 0.9rem; }
+      .stop-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 2px 2px 12px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      .stop-card { flex: 0 0 78%; min-height: 126px; scroll-snap-align: start; }
+      .leaflet-control-zoom a { width: 34px !important; height: 34px !important; line-height: 34px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="hn-japan-page">
+    <div class="route-line" aria-hidden="true"></div>
+
+    <section class="wrap hero">
+      <div>
+        <div class="eyebrow">Kosher travel field guide</div>
+        <h1>Traveling kosher in Japan</h1>
+        <p class="hero-subtitle">A route for Jewish travelers through Japan: Tokyo, Mount Fuji, Hakone, Kyoto, Osaka, Nara, Hiroshima, Shabbat planning, kosher food logistics, trains, temples, city energy, and nature.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#quick-plan">Start with the quick planner</a>
+          <a class="btn btn-secondary" href="#map">Open the map</a>
+          <a class="btn btn-secondary" href="#chabad">Jewish bases</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Japan kosher route preview">
+        <div class="hero-card-inner">
+          <div class="route-pill">Tokyo → Fuji / Hakone → Kyoto → Osaka → Hiroshima</div>
+          <div class="hero-card-copy">
+            <h2>Japan is easy to move through. Kosher takes planning.</h2>
+            <p>Use Tokyo and Kyoto as your Jewish anchors, then build the route around train access and Shabbat timing.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="quick-plan" class="wrap section compact-planner">
+      <div class="section-header compact-header">
+        <h2>Quick planner</h2>
+        <p>Use this if you don’t want to scroll through everything. Pick your route first, then open the map or details only when needed.</p>
+      </div>
+      <div class="quick-grid">
+        <a class="quick-card" href="#chabad"><strong>Jewish bases</strong><span>Tokyo and Kyoto</span></a>
+        <a class="quick-card" href="#map"><strong>Map</strong><span>All points + filters</span></a>
+        <a class="quick-card" href="#route"><strong>Route</strong><span>Tokyo → Fuji → Kyoto → Osaka → Hiroshima</span></a>
+        <a class="quick-card" href="#activities"><strong>Activities</strong><span>Best stops by region</span></a>
+      </div>
+      <div class="snapshot-row">
+        <div><strong>Best kosher anchors:</strong> Tokyo and Kyoto.</div>
+        <div><strong>Best transport:</strong> Shinkansen and trains; luggage forwarding can make the trip easier.</div>
+        <div><strong>Shabbat rule:</strong> Stay walking distance from Chabad and arrive before Friday afternoon.</div>
+      </div>
+    </section>
+
+    <section id="chabad" class="wrap section">
+      <div class="section-header">
+        <h2>Jewish bases in Japan</h2>
+        <p>Japan’s main Jewish travel anchors are Tokyo and Kyoto. Always message ahead for Shabbat meals, services, kosher food orders, delivery, and holiday schedules.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Tokyo</h3>
+          <p>Japan’s main kosher/Jewish base. Use Tokyo for Shabbat, kosher food support, city exploring, day trips, and the start or end of a Japan itinerary.</p>
+          <div class="tag-row"><span class="tag">Chabad</span><span class="tag">Kosher food</span><span class="tag">Main base</span><span class="tag">City</span></div>
+        </article>
+        <article class="card">
+          <h3>Kyoto</h3>
+          <p>The central Japan Jewish base. Use it for Shabbat while exploring Kyoto, Nara, Osaka, Arashiyama, temples, gardens, and the cultural heart of Japan.</p>
+          <div class="tag-row"><span class="tag">Chabad</span><span class="tag">Shabbat base</span><span class="tag">Culture</span><span class="tag">Kansai</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="map" class="wrap map-section">
+      <div class="map-shell">
+        <div class="map-box">
+          <div id="japanMap" aria-label="Interactive Japan kosher travel map"></div>
+          <div class="map-loading" id="mapLoading">
+            <div class="map-loading-inner">
+              <strong>Loading Japan route map</strong>
+              <span>The stops are also listed below, so the page still works on mobile.</span>
+            </div>
+          </div>
+          <div class="map-error" id="mapError">
+            <div class="map-error-inner">
+              <strong>Map could not load here</strong>
+              <span>Your website builder may be blocking external map scripts. The full route list still works below.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="map-panel">
+          <div class="eyebrow">Click a point</div>
+          <h2>Follow the route</h2>
+          <p style="color: var(--muted); margin: 0;">Filter the map by Chabad/Jewish bases, nature, history/culture, city stops, and transport anchors. On mobile, swipe the stop cards and tap one to zoom.</p>
+          <div class="map-filters" role="group" aria-label="Map filters">
+            <button class="filter-btn active" type="button" data-filter="all">All</button>
+            <button class="filter-btn" type="button" data-filter="chabad">Chabad</button>
+            <button class="filter-btn" type="button" data-filter="nature">Nature</button>
+            <button class="filter-btn" type="button" data-filter="history">History</button>
+            <button class="filter-btn" type="button" data-filter="city">City</button>
+            <button class="filter-btn" type="button" data-filter="transport">Transport</button>
+          </div>
+          <div id="stopList" class="stop-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="route" class="wrap section">
+      <div class="section-header">
+        <h2>Suggested route</h2>
+        <p>Compact version: open the parts you need. This keeps the page easier to scan on mobile.</p>
+      </div>
+
+      <div class="route-timeline">
+        <details class="route-step" open>
+          <summary><span class="route-num">1</span><span><strong>Start in Tokyo</strong><em>Chabad, kosher food, Shibuya, Asakusa, museums, neighborhoods</em></span></summary>
+          <div class="route-details">
+            <p>Use Tokyo as your main kosher base and first Shabbat anchor.</p>
+            <ul>
+              <li>Shibuya, Harajuku, Meiji Shrine area, Shinjuku, Asakusa, Ueno, Ginza.</li>
+              <li>TeamLab-style digital art, museums, cafés, gardens, skyline viewpoints.</li>
+              <li>Day trips: Nikko, Kamakura, Yokohama, Mount Takao, or Fuji/Hakone.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="route-step">
+          <summary><span class="route-num">2</span><span><strong>Mount Fuji / Hakone</strong><em>Views, lakes, ropeways, onsens, nature break</em></span></summary>
+          <div class="route-details">
+            <p>Build this as a day trip or overnight between Tokyo and Kyoto, depending on weather and Shabbat timing.</p>
+            <ul>
+              <li>Lake Kawaguchiko for Fuji views, Chureito Pagoda, cycling, ropeways.</li>
+              <li>Hakone for lake views, cable cars, open-air museum, ryokan atmosphere.</li>
+              <li>Weather matters: do not overbuild the itinerary around Fuji visibility.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="route-step">
+          <summary><span class="route-num">3</span><span><strong>Kyoto Shabbat base</strong><em>Temples, gardens, Arashiyama, Gion, old streets</em></span></summary>
+          <div class="route-details">
+            <p>Use Kyoto as the second Jewish anchor and plan your hotel location around walking distance.</p>
+            <ul>
+              <li>Fushimi Inari, Kiyomizu-dera, Gion, Nishiki Market area, Philosopher’s Path.</li>
+              <li>Arashiyama bamboo grove, river area, gardens, tea culture.</li>
+              <li>Book Shabbat and kosher food ahead; do not assume last-minute availability.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="route-step">
+          <summary><span class="route-num">4</span><span><strong>Osaka + Nara</strong><em>Food-city energy, deer park, temples, day trips</em></span></summary>
+          <div class="route-details">
+            <p>Osaka and Nara are easy from Kyoto, so you can keep one base and avoid too many hotel moves.</p>
+            <ul>
+              <li>Osaka: Dotonbori, castle area, Shinsekai, Umeda, aquarium, city energy.</li>
+              <li>Nara: deer park, Todai-ji, Kasuga Taisha, old town walks.</li>
+              <li>Great section for lighter logistics because trains are frequent and easy.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="route-step">
+          <summary><span class="route-num">5</span><span><strong>Hiroshima + Miyajima</strong><em>Peace history, island shrine, slower ending</em></span></summary>
+          <div class="route-details">
+            <p>A meaningful final extension if you have enough days after Kyoto/Osaka.</p>
+            <ul>
+              <li>Hiroshima Peace Memorial Museum and park.</li>
+              <li>Miyajima island, Itsukushima Shrine area, hiking options, coastal views.</li>
+              <li>Plan food carefully because kosher support is more limited away from Tokyo/Kyoto.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <div class="grid grid-2">
+        <div class="note-box">
+          <h2>Kosher planning notes</h2>
+          <ul>
+            <li>Contact Tokyo or Kyoto Chabad before arrival for Shabbat meals, holiday meals, kosher food orders, and service details.</li>
+            <li>Do not rely on finding kosher food spontaneously outside the main Jewish bases.</li>
+            <li>For Shabbat, book hotels within walking distance and check key cards, elevators, and route practicality.</li>
+            <li>Bring backup shelf-stable food for train days, mountain stops, and cities without kosher support.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Transportation strategy</h3>
+          <p>Japan is built for trains. Use the Shinkansen for long-distance movement and local trains for city/day trips. Luggage forwarding can make the route easier, especially between Tokyo, Kyoto, and Osaka.</p>
+          <div class="tag-row"><span class="tag">Shinkansen</span><span class="tag">Local trains</span><span class="tag">IC card</span><span class="tag">Luggage forwarding</span></div>
+          <p style="margin-top: 18px;">Best rule: do not arrive in a new city right before Shabbat. Build in time for hotel check-in, food pickup, and walking-route checks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="activities">
+      <div class="section-header">
+        <h2>Activities by region</h2>
+        <p>Same information, less endless scrolling. Open the region you need.</p>
+      </div>
+      <div class="activity-region-grid">
+        <details class="activity-region" open>
+          <summary>Tokyo + nearby</summary>
+          <ul>
+            <li>Shibuya Crossing</li>
+            <li>Meiji Shrine area</li>
+            <li>Harajuku and Omotesando</li>
+            <li>Shinjuku night lights</li>
+            <li>Asakusa and Senso-ji area</li>
+            <li>Ueno Park and museums</li>
+            <li>Ginza architecture walk</li>
+            <li>Tokyo Station / Marunouchi</li>
+            <li>teamLab-style digital art</li>
+            <li>Yoyogi Park</li>
+            <li>Kamakura day trip</li>
+            <li>Nikko day trip</li>
+            <li>Yokohama day trip</li>
+            <li>Mount Takao hike</li>
+          </ul>
+        </details>
+
+        <details class="activity-region" open>
+          <summary>Fuji, Hakone, Kyoto, Osaka</summary>
+          <ul>
+            <li>Lake Kawaguchiko</li>
+            <li>Chureito Pagoda viewpoint</li>
+            <li>Hakone ropeway</li>
+            <li>Lake Ashi</li>
+            <li>Hakone Open-Air Museum</li>
+            <li>Fushimi Inari</li>
+            <li>Kiyomizu-dera</li>
+            <li>Gion evening walk</li>
+            <li>Nishiki Market area</li>
+            <li>Philosopher’s Path</li>
+            <li>Arashiyama bamboo grove</li>
+            <li>Kinkaku-ji</li>
+            <li>Osaka Castle</li>
+            <li>Dotonbori</li>
+          </ul>
+        </details>
+
+        <details class="activity-region" open>
+          <summary>Nara, Hiroshima, extensions</summary>
+          <ul>
+            <li>Nara deer park</li>
+            <li>Todai-ji Temple</li>
+            <li>Kasuga Taisha area</li>
+            <li>Uji tea town</li>
+            <li>Kobe day trip</li>
+            <li>Himeji Castle</li>
+            <li>Hiroshima Peace Memorial Museum</li>
+            <li>Peace Memorial Park</li>
+            <li>Miyajima island</li>
+            <li>Itsukushima Shrine area</li>
+            <li>Mount Misen hike</li>
+            <li>Naoshima art island extension</li>
+            <li>Kanazawa extension</li>
+            <li>Takayama / Shirakawa-go extension</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section class="wrap suggestion-section" id="suggestions">
+      <div class="suggestion-card">
+        <div>
+          <div class="eyebrow">Help us improve this guide</div>
+          <h2>Have a kosher Japan travel tip?</h2>
+          <p>If you know a Chabad update, kosher option, activity, local contact, hidden spot, hotel tip, or correction we should add, send it here. We’ll review suggestions before adding them.</p>
+        </div>
+
+        <form class="suggestion-form" id="suggestionForm">
+          <input type="hidden" name="sourcePage" value="Japan-kosher.html" />
+          <input type="text" name="name" placeholder="Your name" />
+          <input type="email" name="email" placeholder="Email, optional" />
+          <textarea name="suggestion" placeholder="Write your suggestion, correction, Chabad info, activity, or travel tip..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send suggestion</button>
+          <div class="suggestion-message" id="suggestionMessage"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="wrap footer-cta">
+      <div class="footer-card">
+        <h2>Make Japan easier to travel Jewish.</h2>
+        <p>Use this page as a starting point, then check directly with local Chabad houses and recent travelers before booking Shabbat plans, trains, hotels, and food.</p>
+        <a class="btn btn-primary" style="background: white; color: var(--green-2) !important;" href="https://www.hamsanomads.com/Forms/apply.html">Join the Hamsa Nomads travel circle</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      const stops = [
+        { name: 'Chabad of Japan — Tokyo', type: 'chabad', lat: 35.6385, lng: 139.7368, text: 'Main Jewish/kosher base in Japan. Shabbat, holidays, kosher food support, and traveler help. Message ahead.', link: 'https://www.chabad.jp/' },
+        { name: 'Kosher Delica / Kosher Japan', type: 'chabad', lat: 35.6385, lng: 139.7368, text: 'Kosher food support associated with Chabad of Tokyo. Check current ordering and pickup/delivery options before relying on it.', link: 'https://chabadjapan.org/kosher-japan/' },
+        { name: 'Shibuya', type: 'city', lat: 35.6595, lng: 139.7005, text: 'Classic Tokyo energy: crossing, shopping streets, cafés, and nightlife atmosphere.' },
+        { name: 'Meiji Shrine / Harajuku', type: 'history', lat: 35.6764, lng: 139.6993, text: 'Forest shrine area near Harajuku, Omotesando, and Yoyogi Park.' },
+        { name: 'Asakusa / Senso-ji', type: 'history', lat: 35.7148, lng: 139.7967, text: 'Old Tokyo atmosphere, temple area, traditional streets, and river access.' },
+        { name: 'Ueno', type: 'city', lat: 35.7142, lng: 139.7745, text: 'Museums, park, market streets, and easy Tokyo exploring.' },
+        { name: 'Kamakura', type: 'history', lat: 35.3192, lng: 139.5467, text: 'Coastal day trip with temples, old streets, hikes, and beach atmosphere.' },
+        { name: 'Nikko', type: 'history', lat: 36.7564, lng: 139.5989, text: 'Historic shrine complex, forest, waterfalls, and a deeper day trip from Tokyo.' },
+        { name: 'Lake Kawaguchiko / Fuji', type: 'nature', lat: 35.5171, lng: 138.7518, text: 'Mount Fuji views, lake walks, cycling, viewpoints, and nature break.' },
+        { name: 'Hakone', type: 'nature', lat: 35.2324, lng: 139.1069, text: 'Ropeways, Lake Ashi, open-air museum, ryokan atmosphere, and Fuji views when weather cooperates.' },
+        { name: 'Chabad of Kyoto', type: 'chabad', lat: 35.0173, lng: 135.7824, text: 'Kyoto Jewish base for Shabbat, holidays, kosher food, and traveler support. Message ahead.', link: 'https://www.chabadkyoto.com/' },
+        { name: 'Fushimi Inari', type: 'history', lat: 34.9671, lng: 135.7727, text: 'Iconic torii-gate mountain path and one of Kyoto’s most recognizable sites.' },
+        { name: 'Gion / Higashiyama', type: 'history', lat: 35.0037, lng: 135.7789, text: 'Old Kyoto streets, evening walks, teahouse atmosphere, and classic architecture.' },
+        { name: 'Arashiyama', type: 'nature', lat: 35.0094, lng: 135.6668, text: 'Bamboo grove, river walks, gardens, monkey park area, and scenic Kyoto edge.' },
+        { name: 'Nara', type: 'history', lat: 34.6851, lng: 135.8048, text: 'Deer park, Todai-ji, old temples, and a very easy day trip from Kyoto or Osaka.' },
+        { name: 'Osaka', type: 'city', lat: 34.6937, lng: 135.5023, text: 'Big-city energy, Dotonbori, Osaka Castle, Umeda, aquarium, and easy Kansai train connections.' },
+        { name: 'Himeji Castle', type: 'history', lat: 34.8394, lng: 134.6939, text: 'One of Japan’s most famous castles, easy as a stop between Kansai and Hiroshima.' },
+        { name: 'Hiroshima', type: 'history', lat: 34.3853, lng: 132.4553, text: 'Peace Memorial Museum, park, modern city, and meaningful history stop.' },
+        { name: 'Miyajima', type: 'nature', lat: 34.2959, lng: 132.3197, text: 'Island shrine area, coastal views, deer, hiking, and a beautiful extension from Hiroshima.' },
+        { name: 'Kanazawa', type: 'history', lat: 36.5613, lng: 136.6562, text: 'Gardens, old districts, crafts, and an elegant extension if you have more time.' },
+        { name: 'Takayama / Shirakawa-go', type: 'nature', lat: 36.1428, lng: 137.2528, text: 'Mountain town atmosphere and traditional village extension. Plan food carefully.' }
+      ];
+
+      const colors = {
+        chabad: '#7F8A6A',
+        nature: '#6f8f63',
+        history: '#c49a3a',
+        city: '#d98034',
+        transport: '#53605a'
+      };
+
+      let map = null;
+      let markerLayer = null;
+      let routeLine = null;
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>'"]/g, function (char) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char];
+        });
+      }
+
+      function makeIcon(type) {
+        const color = colors[type] || colors.transport;
+        return L.divIcon({
+          className: 'hn-map-marker',
+          html: '<div style="width:28px;height:28px;border-radius:999px;background:' + color + ';border:3px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.25)"></div>',
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
+        });
+      }
+
+      function popupContent(stop) {
+        const link = stop.link ? '<p style="margin:8px 0 0"><a href="' + escapeHtml(stop.link) + '" target="_blank" rel="noopener" style="color:#4f5a3f;font-weight:900">Open official page</a></p>' : '';
+        return '<div><div class="popup-type">' + escapeHtml(stop.type) + '</div><div class="popup-title">' + escapeHtml(stop.name) + '</div><div class="popup-text">' + escapeHtml(stop.text) + '</div>' + link + '</div>';
+      }
+
+      function showMapError() {
+        const mapError = document.getElementById('mapError');
+        const mapLoading = document.getElementById('mapLoading');
+        if (mapLoading) mapLoading.style.display = 'none';
+        if (mapError) mapError.style.display = 'grid';
+      }
+
+      function hideMapLoading() {
+        const mapLoading = document.getElementById('mapLoading');
+        if (mapLoading) mapLoading.style.display = 'none';
+      }
+
+      function renderStops(filter) {
+        const list = document.getElementById('stopList');
+        if (!list) return;
+        list.innerHTML = '';
+
+        const visibleStops = stops.filter(function (stop) {
+          return filter === 'all' || stop.type === filter;
+        });
+
+        if (markerLayer) markerLayer.clearLayers();
+        if (routeLine && map) {
+          map.removeLayer(routeLine);
+          routeLine = null;
+        }
+
+        visibleStops.forEach(function (stop) {
+          let marker = null;
+
+          if (map && markerLayer && window.L) {
+            marker = L.marker([stop.lat, stop.lng], { icon: makeIcon(stop.type), title: stop.name })
+              .bindPopup(popupContent(stop));
+            marker.addTo(markerLayer);
+          }
+
+          const card = document.createElement('button');
+          card.className = 'stop-card';
+          card.type = 'button';
+          card.innerHTML = '<strong>' + escapeHtml(stop.name) + '</strong><span>' + escapeHtml(stop.text) + '</span><br><small>' + escapeHtml(stop.type) + '</small>';
+          card.addEventListener('click', function () {
+            if (map && marker) {
+              map.setView([stop.lat, stop.lng], stop.type === 'chabad' ? 13 : 9, { animate: true });
+              window.setTimeout(function () { marker.openPopup(); }, 260);
+              const mapBox = document.querySelector('.map-box');
+              if (window.innerWidth <= 980 && mapBox) {
+                mapBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }
+          });
+          list.appendChild(card);
+        });
+
+        if (map && visibleStops.length > 0) {
+          const bounds = L.latLngBounds(visibleStops.map(function (s) { return [s.lat, s.lng]; }));
+          map.fitBounds(bounds, { padding: [32, 32], maxZoom: filter === 'all' ? 7 : 10 });
+
+          if (filter === 'all') {
+            const routeStops = [
+              [35.6385, 139.7368],
+              [35.5171, 138.7518],
+              [35.2324, 139.1069],
+              [35.0173, 135.7824],
+              [34.6851, 135.8048],
+              [34.6937, 135.5023],
+              [34.3853, 132.4553],
+              [34.2959, 132.3197]
+            ];
+            routeLine = L.polyline(routeStops, {
+              color: '#7F8A6A',
+              weight: 3,
+              opacity: 0.65,
+              dashArray: '7 9'
+            }).addTo(map);
+          }
+
+          window.setTimeout(function () { map.invalidateSize(false); }, 120);
+        }
+      }
+
+      function initMap() {
+        const mapEl = document.getElementById('japanMap');
+        if (!mapEl) return;
+
+        if (!window.L) {
+          renderStops('all');
+          showMapError();
+          return;
+        }
+
+        try {
+          map = L.map('japanMap', {
+            scrollWheelZoom: false,
+            tap: true,
+            dragging: true,
+            zoomControl: true
+          }).setView([35.5, 137.2], 6);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+
+          markerLayer = L.layerGroup().addTo(map);
+          hideMapLoading();
+          renderStops('all');
+
+          window.setTimeout(function () { map.invalidateSize(false); }, 250);
+          window.setTimeout(function () { map.invalidateSize(false); }, 900);
+
+          window.addEventListener('resize', function () {
+            if (map) window.setTimeout(function () { map.invalidateSize(false); }, 180);
+          });
+        } catch (error) {
+          renderStops('all');
+          showMapError();
+          console.warn('Japan map failed:', error);
+        }
+      }
+
+      document.querySelectorAll('.filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          renderStops(btn.dataset.filter || 'all');
+        });
+      });
+
+      renderStops('all');
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMap);
+      } else {
+        initMap();
+      }
+
+      window.addEventListener('load', function () {
+        if (map) map.invalidateSize(false);
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const SUGGESTION_SCRIPT_URL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+      const form = document.getElementById("suggestionForm");
+      const message = document.getElementById("suggestionMessage");
+      if (!form) return;
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (!SUGGESTION_SCRIPT_URL || SUGGESTION_SCRIPT_URL.includes("PASTE_")) {
+          message.textContent = "Suggestion form is not connected yet.";
+          message.classList.add("error");
+          return;
+        }
+
+        const button = form.querySelector("button");
+        const formData = new FormData(form);
+        formData.append("timestamp", new Date().toISOString());
+        formData.append("pageUrl", window.location.href);
+
+        button.disabled = true;
+        button.textContent = "Sending...";
+        message.textContent = "";
+        message.classList.remove("error");
+
+        fetch(SUGGESTION_SCRIPT_URL, { method: "POST", body: formData })
+          .then(function () {
+            message.textContent = "Thank you — we received your suggestion.";
+            form.reset();
+          })
+          .catch(function () {
+            message.textContent = "Something went wrong. Please try again.";
+            message.classList.add("error");
+          })
+          .finally(function () {
+            button.disabled = false;
+            button.textContent = "Send suggestion";
+          });
+      });
+    })();
+  </script>
+
+  <script src="../assets/site-components.js" data-base="../"></script>
+</body>
+</html>
