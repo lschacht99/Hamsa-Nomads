@@ -51,34 +51,44 @@
       overflow-x: hidden;
     }
 
+    body.hn-modal-open {
+      overflow: hidden;
+    }
+
     a {
       color: inherit;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
     }
 
     .hn-page-main {
       min-height: 70vh;
     }
 
-    .hn-kosher-finder {
+    .hn-index-page {
       background:
         radial-gradient(circle at top left, rgba(184, 139, 47, 0.11), transparent 32%),
         radial-gradient(circle at 86% 12%, rgba(23, 79, 25, 0.08), transparent 28%),
         linear-gradient(180deg, #fbf7ee 0%, var(--hn-cream) 46%, #f1eadc 100%);
       color: var(--hn-ink);
-      padding: clamp(38px, 6vw, 78px) 18px;
+      padding: clamp(36px, 6vw, 78px) 18px;
     }
 
-    .hn-finder-shell {
+    .hn-shell {
       width: min(1180px, 100%);
       margin: 0 auto;
     }
 
-    .hn-finder-hero {
+    .hn-hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 330px;
-      gap: clamp(22px, 4vw, 48px);
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: clamp(24px, 4vw, 54px);
       align-items: end;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
     .hn-eyebrow {
@@ -90,7 +100,7 @@
       font-weight: 850;
     }
 
-    .hn-finder-hero h1 {
+    .hn-hero h1 {
       max-width: 860px;
       margin: 0;
       color: var(--hn-green);
@@ -101,7 +111,7 @@
     }
 
     .hn-hero-copy {
-      max-width: 690px;
+      max-width: 720px;
       margin: 18px 0 0;
       color: var(--hn-muted);
       font-size: 1.02rem;
@@ -110,7 +120,7 @@
 
     .hn-hero-note {
       border: 1px solid var(--hn-line);
-      background: rgba(255, 255, 255, 0.60);
+      background: rgba(255, 255, 255, 0.62);
       border-radius: 24px;
       padding: 18px;
       box-shadow: var(--hn-soft-shadow);
@@ -118,12 +128,12 @@
       -webkit-backdrop-filter: blur(14px);
     }
 
-    .hn-hero-note span {
+    .hn-hero-note strong {
       display: block;
       color: var(--hn-green);
       font-weight: 850;
-      font-size: 0.92rem;
-      margin-bottom: 6px;
+      font-size: 0.94rem;
+      margin-bottom: 7px;
     }
 
     .hn-hero-note p {
@@ -133,9 +143,170 @@
       line-height: 1.5;
     }
 
-    .hn-tool-layout {
+    .hn-search-stage {
+      border: 1px solid var(--hn-line);
+      border-radius: 32px;
+      background: rgba(255, 250, 240, 0.90);
+      box-shadow: var(--hn-shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: clamp(18px, 2.5vw, 28px);
+      margin-bottom: 18px;
+    }
+
+    .hn-search-stage-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .hn-search-stage-header h2 {
+      margin: 0;
+      color: var(--hn-green);
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .hn-search-stage-header p {
+      max-width: 460px;
+      margin: 0;
+      color: var(--hn-muted);
+      font-size: 0.91rem;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    .hn-main-search label {
+      display: block;
+      color: var(--hn-green);
+      font-size: 0.70rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    .hn-search-input-wrap {
+      position: relative;
+    }
+
+    .hn-search-input-wrap input {
+      width: 100%;
+      border: 1px solid var(--hn-line-strong);
+      border-radius: 22px;
+      padding: 18px 52px 18px 18px;
+      font-size: 1.02rem;
+      color: var(--hn-ink);
+      background: rgba(255, 255, 255, 0.94);
+      outline: none;
+    }
+
+    .hn-search-input-wrap input:focus {
+      border-color: var(--hn-green);
+      box-shadow: 0 0 0 4px rgba(23, 79, 25, 0.08);
+    }
+
+    .hn-search-icon {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--hn-green);
+      font-weight: 900;
+      pointer-events: none;
+    }
+
+    .hn-suggestion-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 13px;
+      align-items: center;
+    }
+
+    .hn-suggestion-label {
+      color: var(--hn-muted);
+      font-size: 0.8rem;
+      font-weight: 750;
+      margin-right: 2px;
+    }
+
+    .hn-suggestion-chip {
+      border: 1px solid rgba(23, 79, 25, 0.14);
+      background: rgba(255, 255, 255, 0.66);
+      color: var(--hn-green);
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .hn-suggestion-chip:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .hn-active-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--hn-line);
+      min-height: 39px;
+    }
+
+    .hn-active-label {
+      color: var(--hn-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-right: 2px;
+    }
+
+    .hn-active-empty {
+      color: var(--hn-muted);
+      font-size: 0.82rem;
+    }
+
+    .hn-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(23, 79, 25, 0.14);
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--hn-green);
+      padding: 7px 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .hn-chip button {
+      border: 0;
+      background: rgba(23, 79, 25, 0.10);
+      color: var(--hn-green);
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
       display: grid;
-      grid-template-columns: 290px minmax(0, 1fr);
+      place-items: center;
+      cursor: pointer;
+      font-size: 0.74rem;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .hn-workspace {
+      display: grid;
+      grid-template-columns: 294px minmax(0, 1fr);
       gap: 18px;
       align-items: start;
     }
@@ -146,8 +317,8 @@
       z-index: 4;
       border: 1px solid var(--hn-line);
       border-radius: var(--hn-radius-xl);
-      background: rgba(255, 250, 240, 0.86);
-      box-shadow: var(--hn-shadow);
+      background: rgba(255, 250, 240, 0.88);
+      box-shadow: var(--hn-soft-shadow);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       padding: 18px;
@@ -167,7 +338,7 @@
       margin: 0;
       color: var(--hn-green);
       font-family: "Iowan Old Style", Georgia, serif;
-      font-size: 1.48rem;
+      font-size: 1.46rem;
       line-height: 1;
       letter-spacing: -0.035em;
     }
@@ -213,8 +384,7 @@
     }
 
     .hn-filter-field input:focus,
-    .hn-filter-field select:focus,
-    .hn-main-search input:focus {
+    .hn-filter-field select:focus {
       border-color: var(--hn-green);
       box-shadow: 0 0 0 4px rgba(23, 79, 25, 0.08);
     }
@@ -230,90 +400,21 @@
       line-height: 1.5;
     }
 
+    .hn-mobile-filter-toggle {
+      display: none;
+      width: 100%;
+      border: 1px solid rgba(23, 79, 25, 0.18);
+      background: var(--hn-green);
+      color: white;
+      border-radius: 999px;
+      padding: 13px 16px;
+      font-weight: 850;
+      cursor: pointer;
+      margin: 0 0 12px;
+    }
+
     .hn-results-column {
       min-width: 0;
-    }
-
-    .hn-search-main-card {
-      border: 1px solid var(--hn-line);
-      border-radius: var(--hn-radius-xl);
-      background: rgba(255, 250, 240, 0.88);
-      box-shadow: var(--hn-shadow);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      padding: clamp(16px, 2vw, 22px);
-      margin-bottom: 12px;
-    }
-
-    .hn-main-search label {
-      display: block;
-      color: var(--hn-green);
-      font-size: 0.70rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 850;
-      margin-bottom: 8px;
-    }
-
-    .hn-main-search input {
-      width: 100%;
-      border: 1px solid var(--hn-line-strong);
-      border-radius: 20px;
-      padding: 17px 18px;
-      font-size: 1rem;
-      color: var(--hn-ink);
-      background: rgba(255, 255, 255, 0.92);
-      outline: none;
-    }
-
-    .hn-quick-settings {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin-top: 13px;
-      min-height: 33px;
-    }
-
-    .hn-settings-label {
-      color: var(--hn-muted);
-      font-size: 0.78rem;
-      font-weight: 750;
-      margin-right: 2px;
-    }
-
-    .hn-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border-radius: 999px;
-      border: 1px solid rgba(23, 79, 25, 0.14);
-      background: rgba(255, 255, 255, 0.64);
-      color: var(--hn-green);
-      padding: 7px 10px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .hn-chip button {
-      border: 0;
-      background: rgba(23, 79, 25, 0.10);
-      color: var(--hn-green);
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      font-size: 0.74rem;
-      line-height: 1;
-      padding: 0;
-    }
-
-    .hn-chip-empty {
-      color: var(--hn-muted);
-      font-size: 0.82rem;
     }
 
     .hn-results-bar {
@@ -321,7 +422,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      margin: 18px 4px 16px;
+      margin: 4px 4px 16px;
     }
 
     #hnResultCount {
@@ -346,7 +447,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100%;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.82);
       border: 1px solid var(--hn-line);
       border-radius: 26px;
       overflow: hidden;
@@ -484,6 +585,7 @@
       margin-top: auto;
     }
 
+    .hn-program-actions button,
     .hn-program-actions a {
       display: inline-flex;
       align-items: center;
@@ -493,6 +595,9 @@
       padding: 10px 13px;
       font-weight: 850;
       font-size: 0.84rem;
+      cursor: pointer;
+      border: 0;
+      font-family: inherit;
     }
 
     .hn-primary-link {
@@ -501,7 +606,7 @@
     }
 
     .hn-secondary-link {
-      border: 1px solid rgba(23, 79, 25, 0.2);
+      border: 1px solid rgba(23, 79, 25, 0.2) !important;
       color: var(--hn-green);
       background: rgba(255, 255, 255, 0.62);
     }
@@ -526,7 +631,7 @@
       color: var(--hn-muted);
     }
 
-    .hn-finder-disclaimer {
+    .hn-disclaimer {
       margin-top: 24px;
       border-top: 1px solid var(--hn-line);
       padding-top: 16px;
@@ -535,25 +640,198 @@
       line-height: 1.55;
     }
 
-    .hn-finder-disclaimer strong {
+    .hn-disclaimer strong {
       color: var(--hn-green);
     }
 
-    .hn-mobile-filter-toggle {
+    .hn-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
       display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(15, 25, 16, 0.46);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hn-modal.is-open {
+      display: flex;
+    }
+
+    .hn-modal-card {
+      width: min(920px, 100%);
+      max-height: min(88vh, 900px);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      border-radius: 30px;
+      background: var(--hn-paper);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: 0 32px 90px rgba(10, 20, 12, 0.28);
+    }
+
+    .hn-modal-image {
+      position: relative;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at top left, rgba(184, 139, 47, 0.20), transparent 36%),
+        linear-gradient(135deg, rgba(23, 79, 25, 0.14), rgba(247, 243, 234, 0.96));
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .hn-modal-image img {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
       width: 100%;
-      border: 1px solid rgba(23, 79, 25, 0.18);
-      background: var(--hn-green);
-      color: white;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hn-modal-body {
+      position: relative;
+      padding: clamp(22px, 3vw, 34px);
+      overflow: auto;
+    }
+
+    .hn-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(23, 79, 25, 0.16);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--hn-green);
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .hn-modal-kicker {
+      margin: 0 0 9px;
+      color: var(--hn-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.72rem;
+      font-weight: 850;
+    }
+
+    .hn-modal-title {
+      margin: 0 44px 8px 0;
+      color: var(--hn-green);
+      font-family: "Iowan Old Style", Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .hn-modal-organizer {
+      margin: 0 0 18px;
+      color: var(--hn-muted);
+      line-height: 1.5;
+    }
+
+    .hn-modal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .hn-modal-info {
+      border: 1px solid rgba(23, 79, 25, 0.12);
+      background: rgba(255, 255, 255, 0.58);
+      border-radius: 18px;
+      padding: 12px;
+    }
+
+    .hn-modal-info strong {
+      display: block;
+      color: var(--hn-green-2);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+
+    .hn-modal-info span {
+      color: var(--hn-ink);
+      line-height: 1.42;
+      font-size: 0.92rem;
+    }
+
+    .hn-modal-description {
+      margin: 18px 0 0;
+      color: var(--hn-muted);
+      line-height: 1.62;
+      font-size: 0.95rem;
+    }
+
+    .hn-modal-warning {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(184, 139, 47, 0.10);
+      border: 1px solid rgba(184, 139, 47, 0.20);
+      color: var(--hn-muted);
+      font-size: 0.86rem;
+      line-height: 1.52;
+    }
+
+    .hn-modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .hn-modal-actions a,
+    .hn-modal-actions button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 999px;
-      padding: 13px 16px;
+      padding: 12px 15px;
+      text-decoration: none;
+      font-size: 0.88rem;
       font-weight: 850;
       cursor: pointer;
-      margin: 0 0 12px;
+      border: 0;
+      font-family: inherit;
+    }
+
+    .hn-modal-primary {
+      background: var(--hn-green);
+      color: white;
+    }
+
+    .hn-modal-secondary {
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--hn-green);
+      border: 1px solid rgba(23, 79, 25, 0.16) !important;
+    }
+
+    .hn-save-note {
+      display: none;
+      margin-top: 12px;
+      color: var(--hn-green);
+      font-weight: 750;
+      font-size: 0.88rem;
+    }
+
+    .hn-save-note.is-visible {
+      display: block;
     }
 
     @media (max-width: 980px) {
-      .hn-finder-hero {
+      .hn-hero {
         grid-template-columns: 1fr;
       }
 
@@ -561,7 +839,16 @@
         max-width: 560px;
       }
 
-      .hn-tool-layout {
+      .hn-search-stage-header {
+        display: block;
+      }
+
+      .hn-search-stage-header p {
+        text-align: left;
+        margin-top: 8px;
+      }
+
+      .hn-workspace {
         grid-template-columns: 1fr;
       }
 
@@ -584,19 +871,32 @@
       .hn-programs-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .hn-modal-card {
+        grid-template-columns: 1fr;
+        overflow: auto;
+      }
+
+      .hn-modal-image {
+        min-height: 230px;
+      }
+
+      .hn-modal-body {
+        overflow: visible;
+      }
     }
 
     @media (max-width: 680px) {
-      .hn-kosher-finder {
+      .hn-index-page {
         padding-left: 14px;
         padding-right: 14px;
       }
 
-      .hn-finder-hero h1 {
+      .hn-hero h1 {
         font-size: clamp(2.25rem, 12vw, 3.35rem);
       }
 
-      .hn-search-main-card,
+      .hn-search-stage,
       .hn-filter-sidebar {
         border-radius: 24px;
       }
@@ -613,6 +913,23 @@
       .hn-program-card {
         border-radius: 24px;
       }
+
+      .hn-modal {
+        padding: 10px;
+      }
+
+      .hn-modal-card {
+        max-height: 92vh;
+        border-radius: 24px;
+      }
+
+      .hn-modal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hn-modal-title {
+        margin-right: 36px;
+      }
     }
   </style>
 </head>
@@ -621,24 +938,62 @@
   <div id="site-header"></div>
 
   <main class="hn-page-main">
-    <section class="hn-kosher-finder" id="kosher-travel-finder">
-      <div class="hn-finder-shell">
+    <section class="hn-index-page" id="kosher-travel-index">
+      <div class="hn-shell">
 
-        <div class="hn-finder-hero">
+        <div class="hn-hero">
           <div>
             <p class="hn-eyebrow">Kosher Travel Index</p>
-            <h1>Find kosher trips, retreats, cruises, and programs worldwide.</h1>
+            <h1>The search engine for kosher travel programs worldwide.</h1>
             <p class="hn-hero-copy">
-              A searchable directory of kosher travel experiences gathered from public sources.
-              Filter by destination, program type, audience, and price.
+              Hamsa Nomads indexes public kosher trips, retreats, cruises, holiday programs, and travel experiences so travelers can compare options in one clear place.
             </p>
           </div>
 
           <div class="hn-hero-note">
-            <span>Auto-updated directory</span>
+            <strong>Independent index</strong>
             <p>
-              Listings are gathered automatically. Always confirm details directly with each organizer.
+              Most listings are not operated by Hamsa Nomads. We gather public information and send users back to the original organizer for booking and verification.
             </p>
+          </div>
+        </div>
+
+        <div class="hn-search-stage">
+          <div class="hn-search-stage-header">
+            <div>
+              <p class="hn-eyebrow">Search first</p>
+              <h2>Start with a destination, holiday, or organizer.</h2>
+            </div>
+            <p>
+              Then use the filter panel below to narrow by program type, audience, country, or price.
+            </p>
+          </div>
+
+          <div class="hn-main-search">
+            <label for="hnSearchInput">Search the index</label>
+            <div class="hn-search-input-wrap">
+              <input
+                id="hnSearchInput"
+                type="search"
+                placeholder="Try: Pesach, Italy, singles, cruise, Morocco, Chabad..."
+                autocomplete="off"
+              />
+              <span class="hn-search-icon">⌕</span>
+            </div>
+          </div>
+
+          <div class="hn-suggestion-row" aria-label="Suggested searches">
+            <span class="hn-suggestion-label">Popular:</span>
+            <button class="hn-suggestion-chip" type="button" data-suggestion="Pesach">Pesach</button>
+            <button class="hn-suggestion-chip" type="button" data-suggestion="Cruise">Cruise</button>
+            <button class="hn-suggestion-chip" type="button" data-suggestion="Singles">Singles</button>
+            <button class="hn-suggestion-chip" type="button" data-suggestion="Sukkot">Sukkot</button>
+            <button class="hn-suggestion-chip" type="button" data-suggestion="Israel">Israel</button>
+            <button class="hn-suggestion-chip" type="button" data-suggestion="Families">Families</button>
+          </div>
+
+          <div class="hn-active-bar" id="hnActiveFilters">
+            <span class="hn-active-empty">No filters selected</span>
           </div>
         </div>
 
@@ -646,7 +1001,7 @@
           Show filters
         </button>
 
-        <div class="hn-tool-layout">
+        <div class="hn-workspace">
           <aside class="hn-filter-sidebar" id="hnFilterSidebar" aria-label="Search filters">
             <div class="hn-sidebar-top">
               <h2>Filters</h2>
@@ -692,30 +1047,13 @@
             </div>
 
             <p class="hn-sidebar-note">
-              Tip: start with a destination or holiday, then narrow by type, audience, or price.
+              Future account tools will let users save programs, build shortlists, and return to their favorite kosher travel options.
             </p>
           </aside>
 
           <div class="hn-results-column">
-            <div class="hn-search-main-card">
-              <div class="hn-main-search">
-                <label for="hnSearchInput">Search listings</label>
-                <input
-                  id="hnSearchInput"
-                  type="search"
-                  placeholder="Search destination, holiday, organizer, or program..."
-                  autocomplete="off"
-                />
-              </div>
-
-              <div class="hn-quick-settings" id="hnActiveFilters">
-                <span class="hn-chip-empty">No filters selected</span>
-              </div>
-            </div>
-
             <div class="hn-results-bar">
               <p id="hnResultCount">Loading listings...</p>
-
               <div class="hn-results-actions">
                 <span id="hnLastUpdated"></span>
               </div>
@@ -728,7 +1066,7 @@
               <p>Try a broader search or remove one of the filters.</p>
             </div>
 
-            <div class="hn-finder-disclaimer">
+            <div class="hn-disclaimer">
               <strong>Important:</strong>
               Listings are gathered automatically from public sources and may change without notice.
               Hamsa Nomads does not manually verify every listing. Please confirm pricing, dates,
@@ -743,12 +1081,53 @@
 
   <div id="site-footer"></div>
 
+  <div class="hn-modal" id="hnProgramModal" aria-hidden="true">
+    <div class="hn-modal-card" role="dialog" aria-modal="true" aria-labelledby="hnModalTitle">
+      <div class="hn-modal-image" id="hnModalImageWrap">
+        <span class="hn-image-fallback-text">Hamsa Nomads</span>
+      </div>
+
+      <div class="hn-modal-body">
+        <button type="button" class="hn-modal-close" id="hnModalClose" aria-label="Close details">×</button>
+
+        <p class="hn-modal-kicker" id="hnModalType"></p>
+        <h2 class="hn-modal-title" id="hnModalTitle"></h2>
+        <p class="hn-modal-organizer" id="hnModalOrganizer"></p>
+
+        <div class="hn-modal-grid" id="hnModalFacts"></div>
+
+        <p class="hn-modal-description" id="hnModalDescription"></p>
+
+        <div class="hn-modal-warning">
+          This listing is indexed from public sources. Always confirm pricing, dates, availability, and kashrut details directly with the original organizer.
+        </div>
+
+        <div class="hn-modal-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="hn-modal-primary" id="hnModalOriginalLink">
+            View original listing
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="hn-modal-secondary" id="hnModalWhatsApp">
+            Send on WhatsApp
+          </a>
+          <button type="button" class="hn-modal-secondary" id="hnModalSave">
+            Save for later
+          </button>
+        </div>
+
+        <div class="hn-save-note" id="hnSaveNote">
+          Save feature coming soon: future Hamsa Nomads accounts will let travelers keep a shortlist of kosher programs.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="assets/site-components.js" data-base=""></script>
 
   <script>
     const HN_PROGRAMS_JSON_URL = "https://script.google.com/macros/s/AKfycbwjdbqYIe7iq8Y7K32S634T2nPfTBLSftF8cCt0l5M1ChbYxZkhQCcBbXww2blevjVw/exec";
 
     let hnAllPrograms = [];
+    let hnCurrentResults = [];
 
     const hnEls = {
       search: document.getElementById("hnSearchInput"),
@@ -764,7 +1143,21 @@
       lastUpdated: document.getElementById("hnLastUpdated"),
       activeFilters: document.getElementById("hnActiveFilters"),
       mobileFilterToggle: document.getElementById("hnMobileFilterToggle"),
-      filterSidebar: document.getElementById("hnFilterSidebar")
+      filterSidebar: document.getElementById("hnFilterSidebar"),
+      suggestionButtons: document.querySelectorAll("[data-suggestion]"),
+
+      modal: document.getElementById("hnProgramModal"),
+      modalClose: document.getElementById("hnModalClose"),
+      modalImageWrap: document.getElementById("hnModalImageWrap"),
+      modalType: document.getElementById("hnModalType"),
+      modalTitle: document.getElementById("hnModalTitle"),
+      modalOrganizer: document.getElementById("hnModalOrganizer"),
+      modalFacts: document.getElementById("hnModalFacts"),
+      modalDescription: document.getElementById("hnModalDescription"),
+      modalOriginalLink: document.getElementById("hnModalOriginalLink"),
+      modalWhatsApp: document.getElementById("hnModalWhatsApp"),
+      modalSave: document.getElementById("hnModalSave"),
+      saveNote: document.getElementById("hnSaveNote")
     };
 
     async function hnLoadPrograms() {
@@ -772,7 +1165,9 @@
         const response = await fetch(HN_PROGRAMS_JSON_URL);
         const data = await response.json();
 
-        hnAllPrograms = Array.isArray(data.programs) ? data.programs : [];
+        hnAllPrograms = Array.isArray(data.programs)
+          ? data.programs.map(hnNormalizeProgramRecord)
+          : [];
 
         hnPopulateFilters(hnAllPrograms);
         hnSetLastUpdated(data.updatedAt);
@@ -783,6 +1178,25 @@
         hnEls.grid.innerHTML = "";
         hnEls.empty.hidden = false;
       }
+    }
+
+    function hnNormalizeProgramRecord(program) {
+      const location = program.location || [program.cityRegion, program.country].filter(Boolean).join(", ");
+
+      return {
+        ...program,
+        programName: program.programName || "Kosher Travel Program",
+        organizer: program.organizer || program.sourceName || "Organizer not listed",
+        location: location || "Location not listed",
+        description: program.description || "Automatically indexed listing. Please confirm all details directly with the organizer.",
+        longDescription: program.longDescription || program.description || "",
+        websiteUrl: program.websiteUrl || "#",
+        sourceUrl: program.sourceUrl || "",
+        pictureUrl: program.pictureUrl || "",
+        programType: program.programType || "Kosher Travel Program",
+        kashrutInfo: program.kashrutInfo || "Confirm kashrut details with organizer",
+        audience: program.audience || "Not specified"
+      };
     }
 
     function hnSetLastUpdated(updatedAt) {
@@ -841,11 +1255,13 @@
           program.websiteUrl,
           program.country,
           program.cityRegion,
+          program.location,
           program.programType,
           program.dates,
           program.kashrutInfo,
           program.audience,
-          program.description
+          program.description,
+          program.longDescription
         ].join(" "));
 
         const price = hnNumber(program.priceFrom);
@@ -856,16 +1272,11 @@
         const matchesAudience = !audience || hnNormalize(program.audience) === audience;
         const matchesMaxPrice = !maxPrice || !price || price <= maxPrice;
 
-        return (
-          matchesQuery &&
-          matchesType &&
-          matchesCountry &&
-          matchesAudience &&
-          matchesMaxPrice
-        );
+        return matchesQuery && matchesType && matchesCountry && matchesAudience && matchesMaxPrice;
       });
 
       results = hnSortPrograms(results, sortValue);
+      hnCurrentResults = results;
 
       hnEls.count.textContent =
         results.length === 1
@@ -882,38 +1293,23 @@
       const chips = [];
 
       if (hnEls.search.value.trim()) {
-        chips.push({
-          label: `Search: ${hnEls.search.value.trim()}`,
-          clear: "search"
-        });
+        chips.push({ label: `Search: ${hnEls.search.value.trim()}`, clear: "search" });
       }
 
       if (hnEls.type.value) {
-        chips.push({
-          label: `Type: ${hnEls.type.value}`,
-          clear: "type"
-        });
+        chips.push({ label: `Type: ${hnEls.type.value}`, clear: "type" });
       }
 
       if (hnEls.country.value) {
-        chips.push({
-          label: `Country: ${hnEls.country.value}`,
-          clear: "country"
-        });
+        chips.push({ label: `Country: ${hnEls.country.value}`, clear: "country" });
       }
 
       if (hnEls.audience.value) {
-        chips.push({
-          label: `Audience: ${hnEls.audience.value}`,
-          clear: "audience"
-        });
+        chips.push({ label: `Audience: ${hnEls.audience.value}`, clear: "audience" });
       }
 
       if (hnEls.maxPrice.value) {
-        chips.push({
-          label: `Max: ${hnEls.maxPrice.value}`,
-          clear: "maxPrice"
-        });
+        chips.push({ label: `Max: ${hnEls.maxPrice.value}`, clear: "maxPrice" });
       }
 
       if (hnEls.sort.value && hnEls.sort.value !== "newest") {
@@ -924,12 +1320,12 @@
       }
 
       if (!chips.length) {
-        hnEls.activeFilters.innerHTML = `<span class="hn-chip-empty">No filters selected</span>`;
+        hnEls.activeFilters.innerHTML = `<span class="hn-active-empty">No filters selected</span>`;
         return;
       }
 
       hnEls.activeFilters.innerHTML =
-        `<span class="hn-settings-label">Active:</span>` +
+        `<span class="hn-active-label">Active:</span>` +
         chips.map(chip => `
           <span class="hn-chip">
             ${hnEscape(chip.label)}
@@ -979,25 +1375,20 @@
       return sorted;
     }
 
-    function hnProgramCard(program) {
+    function hnProgramCard(program, index) {
       const name = hnEscape(program.programName || "Kosher Travel Program");
       const organizer = hnEscape(program.organizer || "Organizer not listed");
       const type = hnEscape(program.programType || "Kosher Travel Program");
-      const country = hnEscape(program.country || "");
-      const city = hnEscape(program.cityRegion || "");
       const dates = hnEscape(program.dates || "Dates not listed");
       const price = hnFormatPrice(program);
       const kashrut = hnEscape(program.kashrutInfo || "Confirm with organizer");
       const audience = hnEscape(program.audience || "Not specified");
       const description = hnEscape(hnShorten(
-        program.description || "Automatically gathered listing. Please confirm all details directly with the organizer.",
-        175
+        program.description || "Automatically indexed listing. Please confirm all details directly with the organizer.",
+        155
       ));
-      const url = hnEscape(program.websiteUrl || "#");
-      const sourceUrl = hnEscape(program.sourceUrl || "");
       const pictureUrl = hnEscape(program.pictureUrl || "");
-
-      const location = [city, country].filter(Boolean).join(", ") || "Location not listed";
+      const location = hnEscape(program.location || "Location not listed");
 
       return `
         <article class="hn-program-card">
@@ -1041,18 +1432,78 @@
             <p class="hn-program-description">${description}</p>
 
             <div class="hn-program-actions">
-              <a class="hn-primary-link" href="${url}" target="_blank" rel="noopener noreferrer">
-                View listing
+              <button class="hn-primary-link" type="button" data-open-program="${index}">
+                Details
+              </button>
+              <a class="hn-secondary-link" href="${hnEscape(program.websiteUrl || "#")}" target="_blank" rel="noopener noreferrer">
+                Original site
               </a>
-              ${
-                sourceUrl
-                  ? `<a class="hn-secondary-link" href="${sourceUrl}" target="_blank" rel="noopener noreferrer">Source</a>`
-                  : ""
-              }
             </div>
           </div>
         </article>
       `;
+    }
+
+    function hnOpenModal(program) {
+      if (!program) return;
+
+      const name = program.programName || "Kosher Travel Program";
+      const imageUrl = program.pictureUrl || "";
+      const originalUrl = program.websiteUrl || "#";
+      const shareText = program.shareText || `I found this kosher travel listing on Hamsa Nomads: ${name} — ${originalUrl}`;
+
+      hnEls.modalType.textContent = program.programType || "Kosher Travel Program";
+      hnEls.modalTitle.textContent = name;
+      hnEls.modalOrganizer.textContent = program.organizer || "Organizer not listed";
+
+      hnEls.modalImageWrap.innerHTML = imageUrl
+        ? `
+          <img
+            src="${hnEscape(imageUrl)}"
+            alt="${hnEscape(name)}"
+            referrerpolicy="no-referrer"
+            onerror="this.closest('.hn-modal-image').classList.add('hn-program-image-placeholder'); this.remove();"
+          />
+          <span class="hn-image-fallback-text">Hamsa Nomads</span>
+        `
+        : `<span class="hn-image-fallback-text">Hamsa Nomads</span>`;
+
+      const facts = [
+        ["Location", program.location || "Location not listed"],
+        ["Dates", program.dates || "Dates not listed"],
+        ["Price", hnFormatPrice(program)],
+        ["Audience", program.audience || "Not specified"],
+        ["Kashrut", program.kashrutInfo || "Confirm with organizer"],
+        ["Meals", program.mealsIncluded || "Not listed"],
+        ["Lodging", program.lodgingIncluded || "Not listed"],
+        ["Source", program.sourceName || "Public source"]
+      ];
+
+      hnEls.modalFacts.innerHTML = facts.map(([label, value]) => `
+        <div class="hn-modal-info">
+          <strong>${hnEscape(label)}</strong>
+          <span>${hnEscape(value)}</span>
+        </div>
+      `).join("");
+
+      hnEls.modalDescription.textContent =
+        program.longDescription ||
+        program.description ||
+        "Automatically indexed listing. Please confirm all details directly with the organizer.";
+
+      hnEls.modalOriginalLink.href = originalUrl;
+      hnEls.modalWhatsApp.href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+      hnEls.saveNote.classList.remove("is-visible");
+
+      hnEls.modal.classList.add("is-open");
+      hnEls.modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("hn-modal-open");
+    }
+
+    function hnCloseModal() {
+      hnEls.modal.classList.remove("is-open");
+      hnEls.modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("hn-modal-open");
     }
 
     function hnFormatPrice(program) {
@@ -1068,9 +1519,7 @@
 
     function hnShorten(text, maxLength) {
       const clean = String(text || "").trim();
-
       if (clean.length <= maxLength) return clean;
-
       return clean.slice(0, maxLength).trim() + "…";
     }
 
@@ -1116,9 +1565,14 @@
       el.addEventListener("change", hnRenderPrograms);
     });
 
-    hnEls.reset.addEventListener("click", () => {
-      hnResetAllFilters();
+    hnEls.suggestionButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        hnEls.search.value = button.getAttribute("data-suggestion") || "";
+        hnRenderPrograms();
+      });
     });
+
+    hnEls.reset.addEventListener("click", hnResetAllFilters);
 
     function hnResetAllFilters() {
       hnEls.search.value = "";
@@ -1139,6 +1593,28 @@
             : "Show filters";
       });
     }
+
+    hnEls.grid.addEventListener("click", event => {
+      const button = event.target.closest("[data-open-program]");
+      if (!button) return;
+
+      const index = Number(button.getAttribute("data-open-program"));
+      hnOpenModal(hnCurrentResults[index]);
+    });
+
+    hnEls.modalClose.addEventListener("click", hnCloseModal);
+
+    hnEls.modal.addEventListener("click", event => {
+      if (event.target === hnEls.modal) hnCloseModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") hnCloseModal();
+    });
+
+    hnEls.modalSave.addEventListener("click", () => {
+      hnEls.saveNote.classList.add("is-visible");
+    });
 
     hnLoadPrograms();
   </script>
