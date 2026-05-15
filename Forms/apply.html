@@ -1046,7 +1046,6 @@
         <input type="hidden" id="dietary_restrictions" name="dietary_restrictions" value="" />
         <input type="hidden" id="dietary_other" name="dietary_other" value="" />
         <input type="hidden" id="retreat_hopes" name="retreat_hopes" value="" />
-        <input type="hidden" id="heard_about" name="heard_about" value="Website application" />
         <input type="hidden" id="heard_other" name="heard_other" value="" />
         <input type="hidden" id="extra_camping_hike" name="extra_camping_hike" value="" />
 
@@ -1141,13 +1140,26 @@
                 placeholder="Friend’s name, if relevant"
               />
             </div>
+
+            <div class="field">
+              <label for="heard_about">How did you hear about us? *</label>
+              <select id="heard_about" name="heard_about" required>
+                <option value="">Select an option</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Friend">Friend</option>
+                <option value="Website">Website</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
           </div>
 
           <div class="grid two">
             <div class="field">
               <label for="reservation_type">Stay preference *</label>
               <p class="pricing-note">
-                Prices are per person, except the private suite: $1400 includes up to 2 people,
+                Prices are per person, except the private room: $1400 includes up to 2 people,
                 then +$370 per additional person.
               </p>
 
@@ -1186,14 +1198,15 @@
                   $650/person — Twin Bed - Shared Room
                 </option>
                 <option
-                  value="Private Suite"
-                  data-bed-type="Private Suite - One Queen Bed"
+                  value="Private Room"
+                  data-bed-type="Private Room - Two Twin Beds"
                   data-price="1400"
-                  data-pricing-basis="Suite total"
+                  data-pricing-basis="Room total"
                 >
-                  $1400 — Private Suite: one queen bed, includes up to 2 people
+                  $1400 — Private Room: two twin beds, includes up to 2 people
                 </option>
-               
+              </select>
+
               <div id="selectionStatusWrap" class="selection-status-wrap" aria-live="polite">
                 <div id="selectionStatus" class="selection-status"></div>
                 <div id="selectionStatusDetail" class="selection-status-detail"></div>
@@ -1310,7 +1323,7 @@
   <script src="../assets/site-components.js" data-base="../"></script>
 
   <script>
-    const PRIVATE_SUITE_EXTRA_PERSON_PRICE = 370;
+    const PRIVATE_ROOM_EXTRA_PERSON_PRICE = 370;
 
     /*
       Edit these numbers to control the urgency/sold-out labels on the form.
@@ -1324,7 +1337,7 @@
       "Shared Full Bed - Shared Room": { remaining: 10, urgentAt: 5 },
       "Bunk Bed - Shared Room": { remaining: 0, urgentAt: 3 },
       "Twin Bed - Shared Room": { remaining: 9, urgentAt: 2 },
-      "Private Suite": { remaining: 1, urgentAt: 1 },
+      "Private Room": { remaining: 1, urgentAt: 1 },
       "Not sure yet": { remaining: null, urgentAt: 0 }
     };
 
@@ -1392,7 +1405,7 @@
         ["sharedfullbed", "sharedfullbedsharedroom"],
         ["bunkbed", "bunkbedsharedroom"],
         ["twinbed", "twinbedsharedroom"],
-        ["privatesuite", "privatesuite"],
+        ["privateroom", "privateroom"],
         ["notsureyet", "notsureyet"]
       ];
 
@@ -1622,14 +1635,14 @@
         numberOfPeople = 1;
       }
 
-      const isSuite = pricingBasis === "Suite total";
+      const isPrivateRoom = pricingBasis === "Room total";
       const isToConfirm = pricingBasis === "To confirm";
       const availabilityStatus = getStayAvailabilityStatus(reservationTypeInput.value, numberOfPeople);
 
       const totalPrice = isToConfirm
         ? 0
-        : isSuite
-          ? selectedPrice + Math.max(0, numberOfPeople - 2) * PRIVATE_SUITE_EXTRA_PERSON_PRICE
+        : isPrivateRoom
+          ? selectedPrice + Math.max(0, numberOfPeople - 2) * PRIVATE_ROOM_EXTRA_PERSON_PRICE
           : selectedPrice * numberOfPeople;
 
       if (bedTypeInput) bedTypeInput.value = bedType;
@@ -1654,11 +1667,11 @@
 
         pricePreviewTitle.textContent = `${formatMoney(totalPrice)} total`;
 
-        if (isSuite) {
+        if (isPrivateRoom) {
           const extraPeople = Math.max(0, numberOfPeople - 2);
           pricePreviewText.textContent = extraPeople > 0
-            ? `Private Suite includes up to 2 people. This adds ${formatMoney(PRIVATE_SUITE_EXTRA_PERSON_PRICE)} × ${extraPeople} additional ${extraPeople === 1 ? "person" : "people"}.`
-            : "Private Suite includes up to 2 people.";
+            ? `Private Room includes up to 2 people. This adds ${formatMoney(PRIVATE_ROOM_EXTRA_PERSON_PRICE)} × ${extraPeople} additional ${extraPeople === 1 ? "person" : "people"}.`
+            : "Private Room includes up to 2 people.";
         } else {
           pricePreviewText.textContent = `${formatMoney(selectedPrice)} per person × ${numberOfPeople} ${numberOfPeople === 1 ? "person" : "people"}.`;
         }
@@ -1674,6 +1687,7 @@
         "email",
         "phone",
         "coming_from",
+        "heard_about",
         "reservation_type",
         "number_of_people",
         "about_you"
@@ -1687,6 +1701,7 @@
         email: "Please enter a valid email address.",
         phone: "Please enter your WhatsApp number.",
         coming_from: "Please enter where you are coming from.",
+        heard_about: "Please select how you heard about us.",
         reservation_type: "Please choose a stay preference.",
         number_of_people: "Please enter the number of people for this stay.",
         about_you: "Please write a short introduction."
@@ -1741,11 +1756,6 @@
     }
 
     function prepareCompatibilityFields() {
-      const friendName = document.getElementById("friend_name")?.value?.trim() || "";
-      if (heardAboutInput) {
-        heardAboutInput.value = friendName ? "Friend" : "Website application";
-      }
-
       const numberOfPeople = Number(numberOfPeopleInput ? numberOfPeopleInput.value : 1);
       const comingWithSomeone = document.getElementById("coming_with_someone");
       if (comingWithSomeone) {
